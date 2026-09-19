@@ -44,7 +44,7 @@ namespace Forradia
         auto world_area{_<world>().current_world_area_};
         auto size{world_area->get_size()};
 
-        auto num_dirt_patches{20 + rand() % 10};
+        auto num_dirt_patches{15 + rand() % 8};
 
         for (auto i = 0; i < num_dirt_patches; i++)
         {

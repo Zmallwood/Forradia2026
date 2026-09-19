@@ -150,7 +150,7 @@ namespace Forradia
             auto base_x{tile_left + static_cast<float>(x_pos) /
                                         tile_units_width * tile_width};
             auto base_y{0.75f + k_margin_.y +
-                        static_cast<float>(y_pos) / tile_units_width *
+                        static_cast<float>(y_pos + 1) / tile_units_width *
                             (0.25f - 2 * k_margin_.y)};
 
             auto image_x{base_x - image_width / 2.0f};
