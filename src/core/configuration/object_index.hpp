@@ -1,0 +1,17 @@
+#pragma once
+
+#include "object_index_entry.hpp"
+
+namespace darktale
+{
+    class object_index
+    {
+      public:
+        object_index();
+
+        bool is_small_object(int object_hash);
+
+      private:
+        std::unordered_map<int, object_index_entry> entries_;
+    };
+}

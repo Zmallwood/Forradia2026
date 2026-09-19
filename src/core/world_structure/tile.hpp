@@ -1,0 +1,16 @@
+#pragma once
+
+namespace darktale
+{
+    class tile_objects;
+
+    class tile
+    {
+      public:
+        tile();
+
+        int ground_{0};
+        int elevation_{0};
+        std::shared_ptr<tile_objects> tile_objects_;
+    };
+}
