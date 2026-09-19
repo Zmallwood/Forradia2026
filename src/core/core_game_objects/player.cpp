@@ -46,6 +46,8 @@ namespace Forradia
         position_ = {new_x, new_y};
 
         faced_tile_ = {position_.x, position_.y - 1};
+
+        facing_direction_ = world_directions::north;
     }
 
     void player::move_east()
@@ -63,6 +65,8 @@ namespace Forradia
         position_ = {new_x, new_y};
 
         faced_tile_ = {position_.x + 1, position_.y};
+
+        facing_direction_ = world_directions::east;
     }
 
     void player::move_south()
@@ -80,6 +84,8 @@ namespace Forradia
         position_ = {new_x, new_y};
 
         faced_tile_ = {position_.x, position_.y + 1};
+
+        facing_direction_ = world_directions::south;
     }
 
     void player::move_west()
@@ -97,25 +103,35 @@ namespace Forradia
         position_ = {new_x, new_y};
 
         faced_tile_ = {position_.x - 1, position_.y};
+
+        facing_direction_ = world_directions::west;
     }
 
     void player::turn_north()
     {
         faced_tile_ = {position_.x, position_.y - 1};
+
+        facing_direction_ = world_directions::north;
     }
 
     void player::turn_east()
     {
         faced_tile_ = {position_.x + 1, position_.y};
+
+        facing_direction_ = world_directions::east;
     }
 
     void player::turn_south()
     {
         faced_tile_ = {position_.x, position_.y + 1};
+
+        facing_direction_ = world_directions::south;
     }
 
     void player::turn_west()
     {
         faced_tile_ = {position_.x - 1, position_.y};
+
+        facing_direction_ = world_directions::west;
     }
 }

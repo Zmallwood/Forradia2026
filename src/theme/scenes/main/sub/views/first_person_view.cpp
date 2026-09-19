@@ -101,8 +101,30 @@ namespace Forradia
                                convert_width_to_height(k_large_object_scale);
             }
 
-            auto x_pos{position.x};
-            auto y_pos{position.y};
+            int x_pos;
+            int y_pos;
+
+            auto facing_direction{_<player>().facing_direction_};
+
+            switch (facing_direction)
+            {
+            case world_directions::north:
+                x_pos = position.x;
+                y_pos = position.y;
+                break;
+            case world_directions::east:
+                x_pos = position.y;
+                y_pos = tile_units_width - 1 - position.x;
+                break;
+            case world_directions::south:
+                x_pos = tile_units_width - 1 - position.x;
+                y_pos = tile_units_width - 1 - position.y;
+                break;
+            case world_directions::west:
+                x_pos = tile_units_width - 1 - position.y;
+                y_pos = position.x;
+                break;
+            }
 
             auto tile_width{k_view_width_ - 2 * k_margin_.x -
                             static_cast<float>(tile_units_width - y_pos) /
