@@ -1,4 +1,13 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #pragma once
+
+#include "image_entry.hpp"
 
 namespace Forradia
 {
@@ -15,7 +24,7 @@ namespace Forradia
         void load_single_image(std::string_view full_path);
 
         static constexpr std::string_view k_relative_images_directory_{
-            "resources/images/"};
-        std::unordered_map<int, std::shared_ptr<SDL_Texture>> images_;
+            "resources/Images/"};
+        std::unordered_map<int, image_entry> images_;
     };
 }

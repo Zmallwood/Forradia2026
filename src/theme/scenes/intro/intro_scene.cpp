@@ -1,6 +1,13 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "intro_scene.hpp"
-#include "core/rendering/image_renderer.hpp"
-#include "core/scenes_core/scene_manager.hpp"
+#include "Core/Rendering/Images/image_renderer.hpp"
+#include "Core/ScenesCore/scene_manager.hpp"
 
 namespace Forradia
 {

@@ -1,5 +1,12 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "keyboard_movement.hpp"
-#include "core/core_game_objects/player.hpp"
+#include "Core/CoreGameObjects/player.hpp"
 
 namespace Forradia
 {

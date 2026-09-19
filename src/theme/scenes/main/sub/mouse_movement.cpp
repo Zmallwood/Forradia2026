@@ -1,5 +1,13 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "mouse_movement.hpp"
-#include "core/core_game_objects/player.hpp"
+#include "Core/Configuration/game_properties.hpp"
+#include "Core/CoreGameObjects/player.hpp"
 #include "tile_hovering.hpp"
 
 namespace Forradia
@@ -140,6 +148,15 @@ namespace Forradia
 
     void mouse_movement::on_mouse_down(Uint8 button)
     {
+        auto view_width{game_properties::k_view_width_};
+
+        auto mouse_position{get_mouse_position()};
+
+        if (mouse_position.x > view_width)
+        {
+            return;
+        }
+
         if (button == SDL_BUTTON_LEFT)
         {
             _<player>().destination_ = _<tile_hovering>().hovered_coordinate_;

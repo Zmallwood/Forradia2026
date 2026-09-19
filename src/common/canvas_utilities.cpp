@@ -1,5 +1,12 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "canvas_utilities.hpp"
-#include "core/sdl_device/sdl_device.hpp"
+#include "Core/SDLDevice/sdl_device.hpp"
 
 namespace Forradia
 {

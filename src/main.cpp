@@ -1,4 +1,11 @@
-#include "theme/run_new_theme.hpp"
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
+#include "Theme/run_new_theme.hpp"
 
 int main(int argc, char *argv[])
 {

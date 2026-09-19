@@ -1,9 +1,18 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "main_scene.hpp"
-#include "sub/keyboard_movement.hpp"
-#include "sub/mouse_movement.hpp"
-#include "sub/tile_hovering.hpp"
-#include "sub/first_person_view/first_person_view.hpp"
-#include "sub/world_view/world_view.hpp"
+#include "Sub/FirstPersonView/first_person_view.hpp"
+#include "Sub/WorldView/world_view.hpp"
+#include "Sub/keyboard_movement.hpp"
+#include "Sub/mouse_movement.hpp"
+#include "Sub/object_hovering.hpp"
+#include "Sub/tile_hovering.hpp"
+
 
 namespace Forradia
 {
@@ -14,6 +23,8 @@ namespace Forradia
         _<mouse_movement>().update();
 
         _<tile_hovering>().update();
+
+        _<object_hovering>().update();
     }
 
     void main_scene::render_derived()
@@ -21,6 +32,8 @@ namespace Forradia
         _<world_view>().render();
 
         _<first_person_view>().render();
+
+        _<object_hovering>().render();
     }
 
     void main_scene::on_key_down(SDL_Keycode key)

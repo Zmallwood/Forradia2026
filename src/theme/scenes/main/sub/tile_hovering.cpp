@@ -1,9 +1,16 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "tile_hovering.hpp"
-#include "core/configuration/game_properties.hpp"
-#include "core/core_game_objects/player.hpp"
-#include "core/world_structure/tile.hpp"
-#include "core/world_structure/world.hpp"
-#include "core/world_structure/world_area.hpp"
+#include "Core/Configuration/game_properties.hpp"
+#include "Core/CoreGameObjects/player.hpp"
+#include "Core/WorldStructure/tile.hpp"
+#include "Core/WorldStructure/world.hpp"
+#include "Core/WorldStructure/world_area.hpp"
 
 namespace Forradia
 {

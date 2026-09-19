@@ -1,5 +1,12 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "run_new_theme.hpp"
-#include "core/game.hpp"
+#include "Core/Game.hpp"
 
 namespace Forradia
 {

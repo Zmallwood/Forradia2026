@@ -1,5 +1,12 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #include "image_bank.hpp"
-#include "core/sdl_device/sdl_device.hpp"
+#include "Core/SDLDevice/sdl_device.hpp"
 
 namespace Forradia
 {
@@ -30,25 +37,31 @@ namespace Forradia
 
         auto hash{get_hash(pure_name)};
 
-        auto texture{std::shared_ptr<SDL_Texture>(
-            IMG_LoadTexture(_<sdl_device>().renderer_.get(), path.c_str()),
-            sdl_deleter())};
+        auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(path.c_str()),
+                                                  sdl_deleter())};
 
-        if (!texture)
+        if (!surface)
         {
             std::cout << "Failed to load image " << path << ": "
                       << IMG_GetError() << std::endl;
             return;
         }
 
-        images_.insert({hash, texture});
+        auto texture{std::shared_ptr<SDL_Texture>(
+            SDL_CreateTextureFromSurface(_<sdl_device>().renderer_.get(),
+                                         surface.get()),
+            sdl_deleter())};
+
+        image_entry entry{texture, surface};
+
+        images_.insert({hash, entry});
     }
 
     std::shared_ptr<SDL_Texture> image_bank::get_image(int imageNameHash)
     {
         if (images_.contains(imageNameHash))
         {
-            return images_.at(imageNameHash);
+            return images_.at(imageNameHash).texture;
         }
 
         return nullptr;
@@ -61,8 +74,8 @@ namespace Forradia
 
         if (images_.contains(imageNameHash))
         {
-            SDL_QueryTexture(images_.at(imageNameHash).get(), nullptr, nullptr,
-                             &width, &height);
+            SDL_QueryTexture(images_.at(imageNameHash).texture.get(), nullptr,
+                             nullptr, &width, &height);
         }
 
         return {width, height};

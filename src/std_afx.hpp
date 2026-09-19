@@ -1,34 +1,41 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
 #pragma once
 
-#include <iostream>
-#include <memory>
-#include <unordered_map>
-#include <map>
+#include <compare>
 #include <filesystem>
+#include <iostream>
+#include <map>
+#include <memory>
+#include <set>
 #include <string>
 #include <string_view>
+#include <unordered_map>
 #include <vector>
-#include <set>
-#include <compare>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "common/singleton.hpp"
-#include "common/sdl_deleter.hpp"
-#include "common/get_hash.hpp"
-#include "common/constants.hpp"
-#include "common/matter/geometry/point.hpp"
-#include "common/matter/geometry/size.hpp"
-#include "common/matter/geometry/point_f.hpp"
-#include "common/matter/geometry/rect_f.hpp"
-#include "common/matter/coloring/color.hpp"
-#include "common/matter/coloring/colors.hpp"
-#include "common/string_utilities.hpp"
-#include "common/file_path_utilities.hpp"
-#include "common/canvas_utilities.hpp"
-#include "common/time_utilities.hpp"
-#include "common/number_utilities.hpp"
-#include "common/mouse_utilities.hpp"
-#include "common/world_directions.hpp"
+#include "Common/Matter/Coloring/color.hpp"
+#include "Common/Matter/Coloring/colors.hpp"
+#include "Common/Matter/Geometry/point.hpp"
+#include "Common/Matter/Geometry/point_f.hpp"
+#include "Common/Matter/Geometry/rect_f.hpp"
+#include "Common/Matter/Geometry/size.hpp"
+#include "Common/canvas_utilities.hpp"
+#include "Common/constants.hpp"
+#include "Common/file_path_utilities.hpp"
+#include "Common/get_hash.hpp"
+#include "Common/mouse_utilities.hpp"
+#include "Common/number_utilities.hpp"
+#include "Common/sdl_deleter.hpp"
+#include "Common/singleton.hpp"
+#include "Common/string_utilities.hpp"
+#include "Common/time_utilities.hpp"
+#include "Common/world_directions.hpp"
