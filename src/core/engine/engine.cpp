@@ -3,7 +3,7 @@
 #include "core/scenes_core/scene_manager.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void engine::start()
     {

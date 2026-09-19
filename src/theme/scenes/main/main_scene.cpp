@@ -5,7 +5,7 @@
 #include "sub/views/first_person_view.hpp"
 #include "sub/views/world_view.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void main_scene::update_derived()
     {

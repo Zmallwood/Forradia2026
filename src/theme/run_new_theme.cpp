@@ -1,7 +1,7 @@
 #include "run_new_theme.hpp"
 #include "core/game.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void run_new_theme()
     {

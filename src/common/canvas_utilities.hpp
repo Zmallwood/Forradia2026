@@ -1,6 +1,6 @@
 #pragma once
 
-namespace darktale
+namespace Forradia
 {
     size get_canvas_size();
 

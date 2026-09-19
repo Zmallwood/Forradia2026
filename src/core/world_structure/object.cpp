@@ -1,6 +1,6 @@
 #include "object.hpp"
 
-namespace darktale
+namespace Forradia
 {
     object::object(int type)
     {

@@ -1,6 +1,6 @@
 #include "i_scene.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void i_scene::update()
     {

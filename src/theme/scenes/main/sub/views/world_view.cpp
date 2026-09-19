@@ -13,7 +13,7 @@
 #include "core/world_structure/world_area.hpp"
 #include "theme/scenes/main/sub/tile_hovering.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void world_view::render()
     {
@@ -60,7 +60,7 @@ namespace darktale
 
                 if (dx != 0 || dy != 0)
                 {
-                    auto num_steps{std::max(std::abs(dx), std::abs(dy)) - 1};
+                    auto num_steps{std::max(std::abs(dx), std::abs(dy))};
 
                     auto step_x{static_cast<float>(dx) / num_steps};
                     auto step_y{static_cast<float>(dy) / num_steps};
@@ -68,7 +68,7 @@ namespace darktale
                     auto current_x_f{static_cast<float>(x_coordinate) + step_x};
                     auto current_y_f{static_cast<float>(y_coordinate) + step_y};
 
-                    for (auto i = 0; i < num_steps; i++)
+                    for (auto i = 0; i < num_steps - 1; i++)
                     {
                         auto current_x{static_cast<int>(current_x_f)};
                         auto current_y{static_cast<int>(current_y_f)};
@@ -82,7 +82,8 @@ namespace darktale
 
                         for (auto object : tile->tile_objects_->objects_)
                         {
-                            if (!_<object_index>().is_small_object(object.second->type_))
+                            if (!_<object_index>().is_small_object(
+                                    object.second->type_))
                             {
                                 num_blocking_objects++;
 

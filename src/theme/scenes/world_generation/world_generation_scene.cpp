@@ -2,7 +2,7 @@
 #include "core/scenes_core/scene_manager.hpp"
 #include "sub/world_generator.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void world_generation_scene::on_enter()
     {

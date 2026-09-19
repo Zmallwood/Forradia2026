@@ -1,6 +1,6 @@
 #include "number_utilities.hpp"
 
-namespace darktale
+namespace Forradia
 {
     int invert_speed(float speed)
     {

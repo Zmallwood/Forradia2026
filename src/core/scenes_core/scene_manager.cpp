@@ -6,7 +6,7 @@
 #include "theme/scenes/world_generation/world_generation_scene.hpp"
 
 
-namespace darktale
+namespace Forradia
 {
     scene_manager::scene_manager()
     {

@@ -1,6 +1,6 @@
 #include "sdl_deleter.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void sdl_deleter::operator()(SDL_Window *window)
     {

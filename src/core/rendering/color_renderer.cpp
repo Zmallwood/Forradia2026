@@ -1,7 +1,7 @@
 #include "color_renderer.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void color_renderer::fill_rect(float x, float y, float width, float height,
                                    color color)

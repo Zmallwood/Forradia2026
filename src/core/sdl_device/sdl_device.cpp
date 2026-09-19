@@ -1,6 +1,6 @@
 #include "sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     sdl_device::sdl_device()
     {

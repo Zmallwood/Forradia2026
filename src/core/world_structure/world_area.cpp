@@ -2,7 +2,7 @@
 #include "core/configuration/game_properties.hpp"
 #include "core/world_structure/tile.hpp"
 
-namespace darktale
+namespace Forradia
 {
     world_area::world_area()
     {

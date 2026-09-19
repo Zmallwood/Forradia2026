@@ -1,6 +1,6 @@
 #include "mouse_utilities.hpp"
 
-namespace darktale
+namespace Forradia
 {
     point_f get_mouse_position()
     {

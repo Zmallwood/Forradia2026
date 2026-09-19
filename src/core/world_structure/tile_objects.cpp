@@ -2,7 +2,7 @@
 #include "core/configuration/game_properties.hpp"
 #include "object.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void tile_objects::clear()
     {

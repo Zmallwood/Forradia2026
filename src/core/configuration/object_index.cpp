@@ -1,7 +1,7 @@
 #include "object_index.hpp"
 #include "object_flags.hpp"
 
-namespace darktale
+namespace Forradia
 {
     object_index::object_index()
     {

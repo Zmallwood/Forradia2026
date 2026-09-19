@@ -2,7 +2,7 @@
 
 #include "object_index_entry.hpp"
 
-namespace darktale
+namespace Forradia
 {
     class object_index
     {

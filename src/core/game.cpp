@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include "engine/engine.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void game::start()
     {

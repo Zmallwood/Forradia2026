@@ -2,7 +2,7 @@
 
 #include "core/scenes_core/i_scene.hpp"
 
-namespace darktale
+namespace Forradia
 {
     class intro_scene : public i_scene
     {

@@ -1,7 +1,7 @@
 #include "canvas_utilities.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     size get_canvas_size()
     {

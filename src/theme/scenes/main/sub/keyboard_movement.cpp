@@ -1,7 +1,7 @@
 #include "keyboard_movement.hpp"
 #include "core/core_game_objects/player.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void keyboard_movement::update()
     {

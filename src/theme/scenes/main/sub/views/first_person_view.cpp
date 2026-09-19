@@ -12,7 +12,7 @@
 #include "core/world_structure/world.hpp"
 #include "core/world_structure/world_area.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void first_person_view::render()
     {

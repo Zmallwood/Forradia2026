@@ -5,7 +5,7 @@
 #include "core/world_structure/world.hpp"
 #include "core/world_structure/world_area.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void tile_hovering::update()
     {

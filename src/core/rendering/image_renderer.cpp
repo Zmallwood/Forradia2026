@@ -2,7 +2,7 @@
 #include "core/assets/image_bank.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void image_renderer::draw_image(int image_name_hash, float x, float y,
                                     float width, float height)

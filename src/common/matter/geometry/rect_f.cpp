@@ -1,6 +1,6 @@
 #include "rect_f.hpp"
 
-namespace darktale
+namespace Forradia
 {
     bool rect_f::contains(point_f point)
     {

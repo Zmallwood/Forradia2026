@@ -1,6 +1,6 @@
 #pragma once
 
-namespace darktale
+namespace Forradia
 {
     int invert_speed(float speed);
 }

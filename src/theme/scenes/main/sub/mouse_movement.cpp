@@ -2,7 +2,7 @@
 #include "core/core_game_objects/player.hpp"
 #include "tile_hovering.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void mouse_movement::update()
     {

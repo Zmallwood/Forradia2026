@@ -1,6 +1,6 @@
 #pragma once
 
-namespace darktale
+namespace Forradia
 {
     void run_new_theme();
 }

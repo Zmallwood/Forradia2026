@@ -1,7 +1,7 @@
 #include "image_bank.hpp"
 #include "core/sdl_device/sdl_device.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void image_bank::load_images()
     {

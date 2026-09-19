@@ -2,14 +2,14 @@
 #include "core/rendering/image_renderer.hpp"
 #include "core/scenes_core/scene_manager.hpp"
 
-namespace darktale
+namespace Forradia
 {
     void main_menu_scene::render_derived()
     {
         _<image_renderer>().draw_image("default_scene_background", 0.0f, 0.0f,
                                        1.0f, 1.0f);
 
-        _<image_renderer>().draw_image("darktale_logo", 0.3f, 0.2f, 0.4f,
+        _<image_renderer>().draw_image("forradia_logo", 0.3f, 0.2f, 0.4f,
                                        0.15f);
     }
 

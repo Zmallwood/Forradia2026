@@ -1,7 +1,7 @@
 #include "tile.hpp"
 #include "tile_objects.hpp"
 
-namespace darktale
+namespace Forradia
 {
     tile::tile()
     {

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace darktale
+namespace Forradia
 {
     namespace object_flags
     {

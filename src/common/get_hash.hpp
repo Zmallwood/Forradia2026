@@ -1,6 +1,6 @@
 #pragma once
 
-namespace darktale
+namespace Forradia
 {
     constexpr auto get_hash(std::string_view text) -> int
     {

@@ -1,6 +1,6 @@
 #include "time_utilities.hpp"
 
-namespace darktale
+namespace Forradia
 {
     int ticks()
     {

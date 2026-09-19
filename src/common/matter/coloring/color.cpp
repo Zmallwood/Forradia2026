@@ -1,6 +1,6 @@
 #include "color.hpp"
 
-namespace darktale
+namespace Forradia
 {
     SDL_Color color::to_sdl_color()
     {
