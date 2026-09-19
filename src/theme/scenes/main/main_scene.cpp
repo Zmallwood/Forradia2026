@@ -2,8 +2,8 @@
 #include "sub/keyboard_movement.hpp"
 #include "sub/mouse_movement.hpp"
 #include "sub/tile_hovering.hpp"
-#include "sub/views/first_person_view.hpp"
-#include "sub/views/world_view.hpp"
+#include "sub/first_person_view/first_person_view.hpp"
+#include "sub/world_view/world_view.hpp"
 
 namespace Forradia
 {

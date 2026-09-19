@@ -11,6 +11,7 @@
 #include "core/world_structure/tile_objects.hpp"
 #include "core/world_structure/world.hpp"
 #include "core/world_structure/world_area.hpp"
+#include "positioned_object.hpp"
 
 namespace Forradia
 {
@@ -70,36 +71,12 @@ namespace Forradia
 
         auto objects{faced_tile->tile_objects_->objects_};
 
+        std::map<int, positioned_object> objects_ordered;
+
         for (auto entry : objects)
         {
             auto position{entry.first};
             auto object{entry.second};
-
-            auto object_type{object->type_};
-
-            auto image_size{_<image_bank>().get_image_size(object_type)};
-
-            constexpr float k_large_object_scale{0.22f};
-            constexpr float k_small_object_scale{0.08f};
-
-            float image_width;
-            float image_height;
-
-            auto is_small_object{
-                _<object_index>().is_small_object(object_type)};
-
-            if (is_small_object)
-            {
-                image_width = image_size.width / 60.0f * k_small_object_scale;
-                image_height = image_size.height / 60.0f *
-                               convert_width_to_height(k_small_object_scale);
-            }
-            else
-            {
-                image_width = image_size.width / 60.0f * k_large_object_scale;
-                image_height = image_size.height / 60.0f *
-                               convert_width_to_height(k_large_object_scale);
-            }
 
             int x_pos;
             int y_pos;
@@ -124,6 +101,43 @@ namespace Forradia
                 x_pos = tile_units_width - 1 - position.y;
                 y_pos = position.x;
                 break;
+            }
+
+            positioned_object positioned_object;
+            positioned_object.position_ = {x_pos, y_pos};
+            positioned_object.object_ = object;
+
+            objects_ordered[y_pos] = positioned_object;
+        }
+
+        for (auto entry : objects_ordered)
+        {
+            auto x_pos = entry.second.position_.x;
+            auto y_pos = entry.second.position_.y;
+            auto object_type = entry.second.object_->type_;
+
+            auto image_size{_<image_bank>().get_image_size(object_type)};
+
+            constexpr float k_large_object_scale{0.22f};
+            constexpr float k_small_object_scale{0.08f};
+
+            float image_width;
+            float image_height;
+
+            auto is_small_object{
+                _<object_index>().is_small_object(object_type)};
+
+            if (is_small_object)
+            {
+                image_width = image_size.width / 60.0f * k_small_object_scale;
+                image_height = image_size.height / 60.0f *
+                               convert_width_to_height(k_small_object_scale);
+            }
+            else
+            {
+                image_width = image_size.width / 60.0f * k_large_object_scale;
+                image_height = image_size.height / 60.0f *
+                               convert_width_to_height(k_large_object_scale);
             }
 
             auto tile_width{k_view_width_ - 2 * k_margin_.x -
