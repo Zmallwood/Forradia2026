@@ -5,8 +5,8 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "tile.hpp"
-#include "tile_objects.hpp"
+#include "Tile.hpp"
+#include "TileObjects.hpp"
 
 namespace Forradia
 {

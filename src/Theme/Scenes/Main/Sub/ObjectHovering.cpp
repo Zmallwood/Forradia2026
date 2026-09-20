@@ -5,13 +5,15 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "ObjectHovering.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    void object_hovering::update()
     {
-        _<engine>().start();
+    }
+
+    void object_hovering::render()
+    {
     }
 }

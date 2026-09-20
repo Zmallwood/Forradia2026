@@ -5,13 +5,13 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "RectF.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    bool rect_f::contains(point_f point)
     {
-        _<engine>().start();
+        return point.x >= x && point.x <= x + width && point.y >= y &&
+               point.y <= y + height;
     }
 }

@@ -5,13 +5,17 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "IScene.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    void i_scene::update()
     {
-        _<engine>().start();
+        update_derived();
+    }
+
+    void i_scene::render()
+    {
+        render_derived();
     }
 }

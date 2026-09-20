@@ -5,13 +5,23 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "StringUtilities.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    std::string replace(std::string_view text, std::string_view old_value,
+                        std::string_view new_value)
     {
-        _<engine>().start();
+        std::string result(text);
+
+        size_t pos = 0;
+
+        while ((pos = result.find(old_value, pos)) != std::string::npos)
+        {
+            result.replace(pos, old_value.length(), new_value);
+            pos += new_value.length();
+        }
+
+        return result;
     }
 }

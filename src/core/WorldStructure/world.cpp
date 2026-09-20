@@ -5,8 +5,8 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "world.hpp"
-#include "Core/WorldStructure/world_area.hpp"
+#include "World.hpp"
+#include "Core/WorldStructure/WorldArea.hpp"
 
 namespace Forradia
 {

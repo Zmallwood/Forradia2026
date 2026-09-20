@@ -5,13 +5,12 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "NumberUtilities.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    int invert_speed(float speed)
     {
-        _<engine>().start();
+        return static_cast<int>(1000 / speed);
     }
 }

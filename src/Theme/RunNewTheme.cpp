@@ -5,13 +5,13 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "RunNewTheme.hpp"
+#include "Core/Game.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    void run_new_theme()
     {
-        _<engine>().start();
+        _<game>().start();
     }
 }

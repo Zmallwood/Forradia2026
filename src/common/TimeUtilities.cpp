@@ -5,13 +5,12 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "TimeUtilities.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    int ticks()
     {
-        _<engine>().start();
+        return SDL_GetTicks();
     }
 }

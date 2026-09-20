@@ -5,13 +5,26 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#pragma once
+
+#include "ImageEntry.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    class image_bank
     {
-        _<engine>().start();
-    }
+      public:
+        void load_images();
+
+        std::shared_ptr<SDL_Texture> get_image(int imageNameHash);
+
+        size get_image_size(int imageNameHash);
+
+      private:
+        void load_single_image(std::string_view full_path);
+
+        static constexpr std::string_view k_relative_images_directory_{
+            "resources/Images/"};
+        std::unordered_map<int, image_entry> images_;
+    };
 }

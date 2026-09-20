@@ -5,13 +5,19 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "MouseUtilities.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    point_f get_mouse_position()
     {
-        _<engine>().start();
+        auto canvas_size{get_canvas_size()};
+
+        int x, y;
+
+        SDL_GetMouseState(&x, &y);
+
+        return point_f{static_cast<float>(x) / canvas_size.width,
+                       static_cast<float>(y) / canvas_size.height};
     }
 }

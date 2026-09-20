@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Theme/run_new_theme.hpp"
+#include "Theme/RunNewTheme.hpp"
 
 int main(int argc, char *argv[])
 {

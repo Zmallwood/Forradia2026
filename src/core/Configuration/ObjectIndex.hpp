@@ -5,13 +5,20 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#pragma once
+
+#include "ObjectIndexEntry.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    class object_index
     {
-        _<engine>().start();
-    }
+      public:
+        object_index();
+
+        bool is_small_object(int object_hash);
+
+      private:
+        std::unordered_map<int, object_index_entry> entries_;
+    };
 }

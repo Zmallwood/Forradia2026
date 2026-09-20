@@ -5,10 +5,10 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "engine.hpp"
-#include "Core/Assets/image_bank.hpp"
-#include "Core/SDLDevice/sdl_device.hpp"
-#include "Core/ScenesCore/scene_manager.hpp"
+#include "Engine.hpp"
+#include "Core/Assets/ImageBank.hpp"
+#include "Core/SDLDevice/SDLDevice.hpp"
+#include "Core/ScenesCore/SceneManager.hpp"
 
 namespace Forradia
 {

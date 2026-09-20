@@ -5,13 +5,16 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "WorldGenerationScene.hpp"
+#include "Core/ScenesCore/SceneManager.hpp"
+#include "Sub/WorldGenerator.hpp"
 
 namespace Forradia
 {
-    void game::start()
+    void world_generation_scene::on_enter()
     {
-        _<engine>().start();
+        _<world_generator>().generate_new_world();
+
+        _<scene_manager>().go_to_scene("main_scene");
     }
 }

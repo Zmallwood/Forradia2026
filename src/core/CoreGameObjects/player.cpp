@@ -5,11 +5,11 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "player.hpp"
-#include "Core/Configuration/game_properties.hpp"
-#include "Core/WorldStructure/tile.hpp"
-#include "Core/WorldStructure/world.hpp"
-#include "Core/WorldStructure/world_area.hpp"
+#include "Player.hpp"
+#include "Core/Configuration/GameProperties.hpp"
+#include "Core/WorldStructure/Tile.hpp"
+#include "Core/WorldStructure/World.hpp"
+#include "Core/WorldStructure/WorldArea.hpp"
 
 namespace Forradia
 {

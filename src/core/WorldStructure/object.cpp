@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "object.hpp"
+#include "Object.hpp"
 
 namespace Forradia
 {
