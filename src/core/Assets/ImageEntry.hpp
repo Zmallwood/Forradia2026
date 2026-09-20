@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    class image_entry
+    class ImageEntry
     {
       public:
         std::shared_ptr<SDL_Texture> texture;

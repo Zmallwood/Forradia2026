@@ -9,5 +9,5 @@
 
 namespace Forradia
 {
-    constexpr float k_small_value{0.0005f};
+    constexpr float k_smallValue{0.0005f};
 }

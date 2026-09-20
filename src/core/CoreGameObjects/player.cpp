@@ -13,132 +13,132 @@
 
 namespace Forradia
 {
-    player::player()
+    Player::Player()
     {
-        spawn_on_suitable_location();
+        SpawnOnSuitableLocation();
     }
 
-    void player::spawn_on_suitable_location()
+    void Player::SpawnOnSuitableLocation()
     {
-        auto world_area{_<world>().current_world_area_};
+        auto world_area{_<World>().current_world_area_};
 
-        auto world_area_size{world_area->get_size()};
+        auto world_area_size{world_area->GetSize()};
 
         position_ = {world_area_size.width / 2, world_area_size.height / 2};
 
-        auto tile{world_area->get_tile(position_)};
+        auto tile{world_area->GetTile(position_)};
 
-        while (tile->ground_ == get_hash("ground_water"))
+        while (tile->ground_ == GetHash("ground_water"))
         {
             position_ = {rand() % world_area_size.width,
                          rand() % world_area_size.height};
-            tile = world_area->get_tile(position_);
+            tile = world_area->GetTile(position_);
         }
 
-        faced_tile_ = {position_.x, position_.y + 1};
+        facedTile_ = {position_.x, position_.y + 1};
     }
 
-    void player::move_north()
+    void Player::MoveNorth()
     {
         auto new_x{position_.x};
         auto new_y{position_.y - 1};
 
-        auto new_tile{_<world>().current_world_area_->get_tile({new_x, new_y})};
+        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
 
-        if (new_tile && new_tile->ground_ == get_hash("ground_water"))
+        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
         {
             return;
         }
 
         position_ = {new_x, new_y};
 
-        faced_tile_ = {position_.x, position_.y - 1};
+        facedTile_ = {position_.x, position_.y - 1};
 
-        facing_direction_ = world_directions::north;
+        facingDirection_ = WorldDirections::north;
     }
 
-    void player::move_east()
+    void Player::MoveEast()
     {
         auto new_x{position_.x + 1};
         auto new_y{position_.y};
 
-        auto new_tile{_<world>().current_world_area_->get_tile({new_x, new_y})};
+        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
 
-        if (new_tile && new_tile->ground_ == get_hash("ground_water"))
+        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
         {
             return;
         }
 
         position_ = {new_x, new_y};
 
-        faced_tile_ = {position_.x + 1, position_.y};
+        facedTile_ = {position_.x + 1, position_.y};
 
-        facing_direction_ = world_directions::east;
+        facingDirection_ = WorldDirections::east;
     }
 
-    void player::move_south()
+    void Player::MoveSouth()
     {
         auto new_x{position_.x};
         auto new_y{position_.y + 1};
 
-        auto new_tile{_<world>().current_world_area_->get_tile({new_x, new_y})};
+        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
 
-        if (new_tile && new_tile->ground_ == get_hash("ground_water"))
+        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
         {
             return;
         }
 
         position_ = {new_x, new_y};
 
-        faced_tile_ = {position_.x, position_.y + 1};
+        facedTile_ = {position_.x, position_.y + 1};
 
-        facing_direction_ = world_directions::south;
+        facingDirection_ = WorldDirections::south;
     }
 
-    void player::move_west()
+    void Player::MoveWest()
     {
         auto new_x{position_.x - 1};
         auto new_y{position_.y};
 
-        auto new_tile{_<world>().current_world_area_->get_tile({new_x, new_y})};
+        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
 
-        if (new_tile && new_tile->ground_ == get_hash("ground_water"))
+        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
         {
             return;
         }
 
         position_ = {new_x, new_y};
 
-        faced_tile_ = {position_.x - 1, position_.y};
+        facedTile_ = {position_.x - 1, position_.y};
 
-        facing_direction_ = world_directions::west;
+        facingDirection_ = WorldDirections::west;
     }
 
-    void player::turn_north()
+    void Player::TurnNorth()
     {
-        faced_tile_ = {position_.x, position_.y - 1};
+        facedTile_ = {position_.x, position_.y - 1};
 
-        facing_direction_ = world_directions::north;
+        facingDirection_ = WorldDirections::north;
     }
 
-    void player::turn_east()
+    void Player::TurnEast()
     {
-        faced_tile_ = {position_.x + 1, position_.y};
+        facedTile_ = {position_.x + 1, position_.y};
 
-        facing_direction_ = world_directions::east;
+        facingDirection_ = WorldDirections::east;
     }
 
-    void player::turn_south()
+    void Player::TurnSouth()
     {
-        faced_tile_ = {position_.x, position_.y + 1};
+        facedTile_ = {position_.x, position_.y + 1};
 
-        facing_direction_ = world_directions::south;
+        facingDirection_ = WorldDirections::south;
     }
 
-    void player::turn_west()
+    void Player::TurnWest()
     {
-        faced_tile_ = {position_.x - 1, position_.y};
+        facedTile_ = {position_.x - 1, position_.y};
 
-        facing_direction_ = world_directions::west;
+        facingDirection_ = WorldDirections::west;
     }
 }

@@ -9,36 +9,36 @@
 
 namespace Forradia
 {
-    sdl_device::sdl_device()
+    SDLDevice::SDLDevice()
     {
         auto window_flags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
 
         window_ = std::shared_ptr<SDL_Window>(
             SDL_CreateWindow(k_window_name_.data(), SDL_WINDOWPOS_CENTERED,
                              SDL_WINDOWPOS_CENTERED, 800, 600, window_flags),
-            sdl_deleter());
+            SDLDeleter());
 
         renderer_ = std::shared_ptr<SDL_Renderer>(
             SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED),
-            sdl_deleter());
+            SDLDeleter());
     }
 
-    void sdl_device::clear_canvas()
+    void SDLDevice::ClearCanvas()
     {
         SDL_SetRenderDrawColor(renderer_.get(), 0, 150, 255, 255);
         SDL_RenderClear(renderer_.get());
     }
 
-    void sdl_device::present_canvas()
+    void SDLDevice::PresentCanvas()
     {
         SDL_RenderPresent(renderer_.get());
     }
 
-    void sdl_device::clip(float x, float y, float width, float height)
+    void SDLDevice::Clip(float x, float y, float width, float height)
     {
         SDL_Rect clip_rect;
 
-        auto canvas_size{get_canvas_size()};
+        auto canvas_size{GetCanvasSize()};
 
         clip_rect.x = static_cast<int>(x * canvas_size.width);
         clip_rect.y = static_cast<int>(y * canvas_size.height);
@@ -48,7 +48,7 @@ namespace Forradia
         SDL_RenderSetClipRect(renderer_.get(), &clip_rect);
     }
 
-    void sdl_device::reset_clip()
+    void SDLDevice::ResetClip()
     {
         SDL_RenderSetClipRect(renderer_.get(), nullptr);
     }

@@ -9,18 +9,17 @@
 
 namespace Forradia
 {
-    class object;
+    class Object;
 
-    class tile_objects
+    class TileObjects
     {
       public:
-        void clear();
+        void Clear();
 
-        void add_object(std::string_view object_name,
-                        point position = {-1, -1});
+        void AddObject(std::string_view object_name, Point position = {-1, -1});
 
-        int count();
+        int Count();
 
-        std::map<point, std::shared_ptr<object>> objects_;
+        std::map<Point, std::shared_ptr<Object>> objects_;
     };
 }

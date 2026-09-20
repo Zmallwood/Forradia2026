@@ -6,88 +6,89 @@
  ************************************************************************/
 
 #include "SceneManager.hpp"
+#include "IScene.hpp"
 #include "Theme/Scenes/Intro/IntroScene.hpp"
 #include "Theme/Scenes/Main/MainScene.hpp"
 #include "Theme/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme/Scenes/WorldGeneration/WorldGenerationScene.hpp"
-#include "IScene.hpp"
+
 
 namespace Forradia
 {
-    scene_manager::scene_manager()
+    SceneManager::SceneManager()
     {
-        add_scene("intro_scene", _<intro_scene>());
-        add_scene("main_menu_scene", _<main_menu_scene>());
-        add_scene("world_generation_scene", _<world_generation_scene>());
-        add_scene("main_scene", _<main_scene>());
+        AddScene("intro_scene", _<IntroScene>());
+        AddScene("main_menu_scene", _<MainMenuScene>());
+        AddScene("world_generation_scene", _<WorldGenerationScene>());
+        AddScene("main_scene", _<MainScene>());
 
-        go_to_scene("intro_scene");
+        GoToScene("intro_scene");
     }
 
-    void scene_manager::add_scene(std::string_view scene_name, i_scene &scene)
+    void SceneManager::AddScene(std::string_view scene_name, IScene &scene)
     {
-        auto hash{get_hash(scene_name)};
+        auto hash{GetHash(scene_name)};
 
         scenes_.insert({hash, scene});
     }
 
-    void scene_manager::go_to_scene(std::string_view scene_name)
+    void SceneManager::GoToScene(std::string_view scene_name)
     {
-        auto hash{get_hash(scene_name)};
+        auto hash{GetHash(scene_name)};
 
         if (scenes_.contains(hash))
         {
             current_scene_ = hash;
 
-            scenes_.at(current_scene_).on_enter();
+            scenes_.at(current_scene_).OnEnter();
         }
     }
 
-    void scene_manager::update_current_scene()
+    void SceneManager::UpdateCurrentScene()
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).update();
+            scenes_.at(current_scene_).Update();
         }
     }
 
-    void scene_manager::render_current_scene()
+    void SceneManager::RenderCurrentScene()
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).render();
+            scenes_.at(current_scene_).Render();
         }
     }
 
-    void scene_manager::on_key_down_current_scene(SDL_Keycode key)
+    void SceneManager::OnKeyDownCurrentScene(SDL_Keycode key)
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).on_key_down(key);
+            scenes_.at(current_scene_).OnKeyDown(key);
         }
     }
 
-    void scene_manager::on_key_up_current_scene(SDL_Keycode key)
+    void SceneManager::OnKeyUpCurrentScene(SDL_Keycode key)
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).on_key_up(key);
+            scenes_.at(current_scene_).OnKeyUp(key);
         }
     }
 
-    void scene_manager::on_mouse_down_current_scene(Uint8 button)
+    void SceneManager::OnMouseDownCurrentScene(Uint8 button)
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).on_mouse_down(button);
+            scenes_.at(current_scene_).OnMouseDown(button);
         }
     }
 
-    void scene_manager::on_mouse_up_current_scene(Uint8 button, int click_speed)
+    void SceneManager::OnMouseUpCurrentScene(Uint8 button, int click_speed)
     {
         if (scenes_.contains(current_scene_))
         {
-            scenes_.at(current_scene_).on_mouse_up(button, click_speed);
+            scenes_.at(current_scene_).OnMouseUp(button, click_speed);
         }
     }
 }

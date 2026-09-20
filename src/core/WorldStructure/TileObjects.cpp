@@ -11,24 +11,24 @@
 
 namespace Forradia
 {
-    void tile_objects::clear()
+    void TileObjects::Clear()
     {
         objects_.clear();
     }
 
-    void tile_objects::add_object(std::string_view object_name, point position)
+    void TileObjects::AddObject(std::string_view object_name, Point position)
     {
         if (position.x == -1 || position.y == -1)
         {
-            position.x = rand() % _<game_properties>().k_tile_units_width_;
-            position.y = rand() % _<game_properties>().k_tile_units_width_;
+            position.x = rand() % _<GameProperties>().k_tileUnitsWidth_;
+            position.y = rand() % _<GameProperties>().k_tileUnitsWidth_;
         }
 
         objects_.insert(
-            {position, std::make_shared<object>(get_hash(object_name))});
+            {position, std::make_shared<Object>(GetHash(object_name))});
     }
 
-    int tile_objects::count()
+    int TileObjects::Count()
     {
         return objects_.size();
     }

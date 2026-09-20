@@ -14,13 +14,13 @@
 
 namespace Forradia
 {
-    void tile_hovering::update()
+    void TileHovering::Update()
     {
-        auto mouse_position{get_mouse_position()};
+        auto mouse_position{GetMousePosition()};
 
-        auto world_area{_<world>().current_world_area_};
+        auto world_area{_<World>().current_world_area_};
 
-        auto player_tile{world_area->get_tile(_<player>().position_)};
+        auto player_tile{world_area->GetTile(_<Player>().position_)};
 
         if (!player_tile)
         {
@@ -29,23 +29,22 @@ namespace Forradia
 
         auto player_elevation{player_tile->elevation_};
 
-        auto tile_width{_<game_properties>().k_tile_width_};
-        auto tile_height{convert_width_to_height(tile_width)};
+        auto tile_width{GameProperties::k_tileWidth_};
+        auto tile_height{ConvertWidthToHeight(tile_width)};
 
         for (auto y = -6; y < 11 + 6; y++)
         {
             for (auto x = -6; x < 11 + 6; x++)
             {
-                auto x_coordinate{_<player>().position_.x - 5 + x};
-                auto y_coordinate{_<player>().position_.y - 5 + y};
+                auto x_coordinate{_<Player>().position_.x - 5 + x};
+                auto y_coordinate{_<Player>().position_.y - 5 + y};
 
-                if (!world_area->is_valid_coordinate(x_coordinate,
-                                                     y_coordinate))
+                if (!world_area->IsValidCoordinate(x_coordinate, y_coordinate))
                 {
                     continue;
                 }
 
-                auto tile{world_area->get_tile(x_coordinate, y_coordinate)};
+                auto tile{world_area->GetTile(x_coordinate, y_coordinate)};
 
                 auto elevation{tile->elevation_};
 
@@ -57,7 +56,7 @@ namespace Forradia
                             player_elevation * tile_height / 4};
 
                 auto center_bottom{
-                    point_f{tile_x + tile_width / 2, tile_y + tile_height / 2}};
+                    PointF{tile_x + tile_width / 2, tile_y + tile_height / 2}};
 
                 auto dx_bottom{std::abs(mouse_position.x - center_bottom.x) /
                                (tile_width / 2)};
@@ -65,18 +64,18 @@ namespace Forradia
                                (tile_height / 2)};
                 if (dx_bottom + dy_bottom <= 1.0f)
                 {
-                    hovered_coordinate_ = point{x_coordinate, y_coordinate};
+                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
                 }
 
                 auto elevation_height{elevation * tile_height / 4};
 
-                rect_f elevation_rect{
+                RectF elevation_rect{
                     tile_x, tile_y - elevation_height + tile_height / 2,
                     tile_width, elevation_height};
 
-                if (elevation_rect.contains(mouse_position))
+                if (elevation_rect.Contains(mouse_position))
                 {
-                    hovered_coordinate_ = point{x_coordinate, y_coordinate};
+                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
                 }
 
                 for (auto i = 0; i < elevation; i++)
@@ -85,7 +84,7 @@ namespace Forradia
                 }
 
                 auto center_top{
-                    point_f{tile_x + tile_width / 2, tile_y + tile_height / 2}};
+                    PointF{tile_x + tile_width / 2, tile_y + tile_height / 2}};
 
                 auto dx_top{std::abs(mouse_position.x - center_top.x) /
                             (tile_width / 2)};
@@ -93,7 +92,7 @@ namespace Forradia
                             (tile_height / 2)};
                 if (dx_top + dy_top <= 1.0f)
                 {
-                    hovered_coordinate_ = point{x_coordinate, y_coordinate};
+                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
                 }
             }
         }

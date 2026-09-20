@@ -7,51 +7,50 @@
 
 #include "MainScene.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
-#include "Sub/WorldView/WorldView.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
 #include "Sub/ObjectHovering.hpp"
 #include "Sub/TileHovering.hpp"
-
+#include "Sub/WorldView/WorldView.hpp"
 
 namespace Forradia
 {
-    void main_scene::update_derived()
+    void MainScene::UpdateDerived()
     {
-        _<keyboard_movement>().update();
+        _<KeyboardMovement>().Update();
 
-        _<mouse_movement>().update();
+        _<MouseMovement>().Update();
 
-        _<tile_hovering>().update();
+        _<TileHovering>().Update();
 
-        _<object_hovering>().update();
+        _<ObjectHovering>().Update();
     }
 
-    void main_scene::render_derived()
+    void MainScene::RenderDerived()
     {
-        _<world_view>().render();
+        _<WorldView>().Render();
 
-        _<first_person_view>().render();
+        _<FirstPersonView>().Render();
 
-        _<object_hovering>().render();
+        _<ObjectHovering>().Render();
     }
 
-    void main_scene::on_key_down(SDL_Keycode key)
+    void MainScene::OnKeyDown(SDL_Keycode key)
     {
-        _<keyboard_movement>().on_key_down(key);
+        _<KeyboardMovement>().OnKeyDown(key);
 
-        _<mouse_movement>().on_key_down(key);
+        _<MouseMovement>().OnKeyDown(key);
     }
 
-    void main_scene::on_key_up(SDL_Keycode key)
+    void MainScene::OnKeyUp(SDL_Keycode key)
     {
-        _<keyboard_movement>().on_key_up(key);
+        _<KeyboardMovement>().OnKeyUp(key);
 
-        _<mouse_movement>().on_key_up(key);
+        _<MouseMovement>().OnKeyUp(key);
     }
 
-    void main_scene::on_mouse_down(Uint8 button)
+    void MainScene::OnMouseDown(Uint8 button)
     {
-        _<mouse_movement>().on_mouse_down(button);
+        _<MouseMovement>().OnMouseDown(button);
     }
 }

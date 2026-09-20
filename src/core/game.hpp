@@ -9,9 +9,9 @@
 
 namespace Forradia
 {
-    class game
+    class Game
     {
       public:
-        void start();
+        void Start();
     };
 }

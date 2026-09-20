@@ -9,10 +9,12 @@
 
 namespace Forradia
 {
-    class positioned_object
+    class Object;
+
+    class PositionedObject
     {
       public:
-        point position_{-1, -1};
-        std::shared_ptr<object> object_;
+        Point position_{-1, -1};
+        std::shared_ptr<Object> object_;
     };
 }

@@ -9,39 +9,39 @@
 
 namespace Forradia
 {
-    class i_scene
+    class IScene
     {
       public:
-        void update();
+        void Update();
 
-        void render();
+        void Render();
 
-        virtual void on_enter()
+        virtual void OnEnter()
         {
         }
 
-        virtual void on_key_down(SDL_Keycode key)
+        virtual void OnKeyDown(SDL_Keycode key)
         {
         }
 
-        virtual void on_key_up(SDL_Keycode key)
+        virtual void OnKeyUp(SDL_Keycode key)
         {
         }
 
-        virtual void on_mouse_down(Uint8 button)
+        virtual void OnMouseDown(Uint8 button)
         {
         }
 
-        virtual void on_mouse_up(Uint8 button, int click_speed)
+        virtual void OnMouseUp(Uint8 button, int click_speed)
         {
         }
 
       protected:
-        virtual void update_derived()
+        virtual void UpdateDerived()
         {
         }
 
-        virtual void render_derived()
+        virtual void RenderDerived()
         {
         }
     };

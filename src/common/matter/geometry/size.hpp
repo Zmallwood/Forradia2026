@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    class size
+    class Size
     {
       public:
         int width{0};

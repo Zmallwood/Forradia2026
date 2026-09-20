@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    constexpr auto get_hash(std::string_view text) -> int
+    constexpr auto GetHash(std::string_view text) -> int
     {
         // Use djb2 algorithm by Daniel J. Bernstein.
         unsigned long hash{5381};

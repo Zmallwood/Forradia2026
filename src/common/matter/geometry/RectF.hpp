@@ -9,10 +9,10 @@
 
 namespace Forradia
 {
-    class rect_f
+    class RectF
     {
       public:
-        bool contains(point_f point);
+        bool Contains(PointF point);
 
         float x{0.0f};
         float y{0.0f};

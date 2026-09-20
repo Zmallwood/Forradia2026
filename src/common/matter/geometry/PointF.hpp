@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    class point_f
+    class PointF
     {
       public:
         float x{0.0f};

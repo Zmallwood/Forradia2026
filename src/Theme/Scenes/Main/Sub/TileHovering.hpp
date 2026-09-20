@@ -9,11 +9,11 @@
 
 namespace Forradia
 {
-    class tile_hovering
+    class TileHovering
     {
       public:
-        void update();
+        void Update();
 
-        point hovered_coordinate_{-1, -1};
+        Point hovered_coordinate_{-1, -1};
     };
 }

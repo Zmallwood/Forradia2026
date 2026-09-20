@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    int invert_speed(float speed)
+    int InvertSpeed(float speed)
     {
         return static_cast<int>(1000 / speed);
     }

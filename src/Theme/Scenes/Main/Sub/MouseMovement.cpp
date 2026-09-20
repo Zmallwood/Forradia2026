@@ -12,26 +12,26 @@
 
 namespace Forradia
 {
-    void mouse_movement::update()
+    void MouseMovement::Update()
     {
-        auto destination{_<player>().destination_};
+        auto destination{_<Player>().destination_};
 
         if (destination.x != -1 && destination.y != -1)
         {
-            auto now{ticks()};
+            auto now{Ticks()};
 
-            if (now > _<player>().ticks_last_movement_ +
-                          invert_speed(_<player>().movement_speed_))
+            if (now > _<Player>().ticksLastMovement_ +
+                          InvertSpeed(_<Player>().movementSpeed_))
             {
-                auto dx{destination.x - _<player>().position_.x};
-                auto dy{destination.y - _<player>().position_.y};
+                auto dx{destination.x - _<Player>().position_.x};
+                auto dy{destination.y - _<Player>().position_.y};
 
                 auto abs_dx{std::abs(dx)};
                 auto abs_dy{std::abs(dy)};
 
                 if (dx == 0 && dy == 0)
                 {
-                    _<player>().destination_ = {-1, -1};
+                    _<Player>().destination_ = {-1, -1};
 
                     return;
                 }
@@ -40,97 +40,97 @@ namespace Forradia
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_north();
+                        _<Player>().TurnNorth();
                     }
                     else
                     {
-                        _<player>().move_north();
+                        _<Player>().MoveNorth();
                     }
                 }
                 else if (dy > 0 && abs_dy > abs_dx)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_south();
+                        _<Player>().TurnSouth();
                     }
                     else
                     {
-                        _<player>().move_south();
+                        _<Player>().MoveSouth();
                     }
                 }
                 else if (dx < 0 && abs_dx > abs_dy)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_west();
+                        _<Player>().TurnWest();
                     }
                     else
                     {
-                        _<player>().move_west();
+                        _<Player>().MoveWest();
                     }
                 }
                 else if (dx > 0 && abs_dx > abs_dy)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_east();
+                        _<Player>().TurnEast();
                     }
                     else
                     {
-                        _<player>().move_east();
+                        _<Player>().MoveEast();
                     }
                 }
                 else if (dy < 0)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_north();
+                        _<Player>().TurnNorth();
                     }
                     else
                     {
-                        _<player>().move_north();
+                        _<Player>().MoveNorth();
                     }
                 }
                 else if (dy > 0)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_south();
+                        _<Player>().TurnSouth();
                     }
                     else
                     {
-                        _<player>().move_south();
+                        _<Player>().MoveSouth();
                     }
                 }
                 else if (dx < 0)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_west();
+                        _<Player>().TurnWest();
                     }
                     else
                     {
-                        _<player>().move_west();
+                        _<Player>().MoveWest();
                     }
                 }
                 else if (dx > 0)
                 {
                     if (ctrl_key_down_)
                     {
-                        _<player>().turn_east();
+                        _<Player>().TurnEast();
                     }
                     else
                     {
-                        _<player>().move_east();
+                        _<Player>().MoveEast();
                     }
                 }
 
-                _<player>().ticks_last_movement_ = now;
+                _<Player>().ticksLastMovement_ = now;
             }
         }
     }
 
-    void mouse_movement::on_key_down(SDL_Keycode key)
+    void MouseMovement::OnKeyDown(SDL_Keycode key)
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
@@ -138,7 +138,7 @@ namespace Forradia
         }
     }
 
-    void mouse_movement::on_key_up(SDL_Keycode key)
+    void MouseMovement::OnKeyUp(SDL_Keycode key)
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
@@ -146,11 +146,11 @@ namespace Forradia
         }
     }
 
-    void mouse_movement::on_mouse_down(Uint8 button)
+    void MouseMovement::OnMouseDown(Uint8 button)
     {
-        auto view_width{game_properties::k_view_width_};
+        auto view_width{GameProperties::k_viewWidth_};
 
-        auto mouse_position{get_mouse_position()};
+        auto mouse_position{GetMousePosition()};
 
         if (mouse_position.x > view_width)
         {
@@ -159,7 +159,7 @@ namespace Forradia
 
         if (button == SDL_BUTTON_LEFT)
         {
-            _<player>().destination_ = _<tile_hovering>().hovered_coordinate_;
+            _<Player>().destination_ = _<TileHovering>().hovered_coordinate_;
         }
     }
 }

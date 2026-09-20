@@ -9,16 +9,16 @@
 
 namespace Forradia
 {
-    class mouse_movement
+    class MouseMovement
     {
       public:
-        void update();
+        void Update();
 
-        void on_key_down(SDL_Keycode key);
+        void OnKeyDown(SDL_Keycode key);
 
-        void on_key_up(SDL_Keycode key);
+        void OnKeyUp(SDL_Keycode key);
 
-        void on_mouse_down(Uint8 button);
+        void OnMouseDown(Uint8 button);
 
       private:
         bool ctrl_key_down_{false};

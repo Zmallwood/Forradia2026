@@ -9,24 +9,24 @@
 
 namespace Forradia
 {
-    class tile;
+    class Tile;
 
-    class world_area
+    class WorldArea
     {
       public:
-        world_area();
+        WorldArea();
 
-        size get_size();
+        Size GetSize();
 
-        bool is_valid_coordinate(int x, int y);
+        bool IsValidCoordinate(int x, int y);
 
-        bool is_valid_coordinate(point coordinate);
+        bool IsValidCoordinate(Point coordinate);
 
-        std::shared_ptr<tile> get_tile(int x, int y);
+        std::shared_ptr<Tile> GetTile(int x, int y);
 
-        std::shared_ptr<tile> get_tile(point coordinate);
+        std::shared_ptr<Tile> GetTile(Point coordinate);
 
       private:
-        std::vector<std::vector<std::shared_ptr<tile>>> tiles_;
+        std::vector<std::vector<std::shared_ptr<Tile>>> tiles_;
     };
 }

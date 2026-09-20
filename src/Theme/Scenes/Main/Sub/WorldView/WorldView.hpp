@@ -9,9 +9,9 @@
 
 namespace Forradia
 {
-    class world_view
+    class WorldView
     {
       public:
-        void render();
+        void Render();
     };
 }

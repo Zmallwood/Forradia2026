@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    int ticks()
+    int Ticks()
     {
         return SDL_GetTicks();
     }

@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    object::object(int type)
+    Object::Object(int type)
     {
         type_ = type;
     }

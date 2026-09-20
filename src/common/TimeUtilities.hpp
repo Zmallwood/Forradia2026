@@ -9,5 +9,5 @@
 
 namespace Forradia
 {
-    int ticks();
+    int Ticks();
 }

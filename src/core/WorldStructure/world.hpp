@@ -9,13 +9,13 @@
 
 namespace Forradia
 {
-    class world_area;
+    class WorldArea;
 
-    class world
+    class World
     {
       public:
-        world();
+        World();
 
-        std::shared_ptr<world_area> current_world_area_;
+        std::shared_ptr<WorldArea> current_world_area_;
     };
 }

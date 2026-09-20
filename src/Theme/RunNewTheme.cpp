@@ -10,8 +10,8 @@
 
 namespace Forradia
 {
-    void run_new_theme()
+    void RunNewTheme()
     {
-        _<game>().start();
+        _<Game>().Start();
     }
 }

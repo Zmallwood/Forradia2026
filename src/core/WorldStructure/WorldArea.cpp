@@ -11,22 +11,22 @@
 
 namespace Forradia
 {
-    world_area::world_area()
+    WorldArea::WorldArea()
     {
-        auto size{_<game_properties>().k_world_area_size_};
+        auto size{_<GameProperties>().k_worldAreaSize_};
 
         for (auto x = 0; x < size.width; x++)
         {
-            tiles_.push_back(std::vector<std::shared_ptr<tile>>());
+            tiles_.push_back(std::vector<std::shared_ptr<Tile>>());
 
             for (auto y = 0; y < size.height; y++)
             {
-                tiles_.at(x).push_back(std::make_shared<tile>());
+                tiles_.at(x).push_back(std::make_shared<Tile>());
             }
         }
     }
 
-    size world_area::get_size()
+    Size WorldArea::GetSize()
     {
         auto width{static_cast<int>(tiles_.size())};
         auto height{0};
@@ -39,21 +39,21 @@ namespace Forradia
         return {width, height};
     }
 
-    bool world_area::is_valid_coordinate(int x, int y)
+    bool WorldArea::IsValidCoordinate(int x, int y)
     {
-        auto size{get_size()};
+        auto size{GetSize()};
 
         return x >= 0 && x < size.width && y >= 0 && y < size.height;
     }
 
-    bool world_area::is_valid_coordinate(point coordinate)
+    bool WorldArea::IsValidCoordinate(Point coordinate)
     {
-        return is_valid_coordinate(coordinate.x, coordinate.y);
+        return IsValidCoordinate(coordinate.x, coordinate.y);
     }
 
-    std::shared_ptr<tile> world_area::get_tile(int x, int y)
+    std::shared_ptr<Tile> WorldArea::GetTile(int x, int y)
     {
-        if (is_valid_coordinate(x, y))
+        if (IsValidCoordinate(x, y))
         {
             return tiles_.at(x).at(y);
         }
@@ -61,8 +61,8 @@ namespace Forradia
         return nullptr;
     }
 
-    std::shared_ptr<tile> world_area::get_tile(point coordinate)
+    std::shared_ptr<Tile> WorldArea::GetTile(Point coordinate)
     {
-        return get_tile(coordinate.x, coordinate.y);
+        return GetTile(coordinate.x, coordinate.y);
     }
 }

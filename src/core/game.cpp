@@ -10,8 +10,8 @@
 
 namespace Forradia
 {
-    void game::start()
+    void Game::Start()
     {
-        _<engine>().start();
+        _<Engine>().Start();
     }
 }

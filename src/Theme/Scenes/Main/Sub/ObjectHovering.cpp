@@ -9,11 +9,11 @@
 
 namespace Forradia
 {
-    void object_hovering::update()
+    void ObjectHovering::Update()
     {
     }
 
-    void object_hovering::render()
+    void ObjectHovering::Render()
     {
     }
 }

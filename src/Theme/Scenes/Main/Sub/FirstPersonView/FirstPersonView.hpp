@@ -9,12 +9,12 @@
 
 namespace Forradia
 {
-    class first_person_view
+    class FirstPersonView
     {
       public:
-        void render();
+        void Render();
 
       private:
-        static constexpr point_f k_margin_{0.03f, 0.01f};
+        static constexpr PointF k_margin_{0.03f, 0.01f};
     };
 }

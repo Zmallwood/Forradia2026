@@ -9,5 +9,5 @@
 
 namespace Forradia
 {
-    int invert_speed(float speed);
+    int InvertSpeed(float speed);
 }

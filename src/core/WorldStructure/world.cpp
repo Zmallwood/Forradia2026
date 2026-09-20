@@ -10,8 +10,8 @@
 
 namespace Forradia
 {
-    world::world()
+    World::World()
     {
-        current_world_area_ = std::make_shared<world_area>();
+        current_world_area_ = std::make_shared<WorldArea>();
     }
 }

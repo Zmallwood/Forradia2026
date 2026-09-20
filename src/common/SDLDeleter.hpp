@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    class sdl_deleter
+    class SDLDeleter
     {
       public:
         void operator()(SDL_Window *window);

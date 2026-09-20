@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    class object_index_entry
+    class ObjectIndexEntry
     {
       public:
         int flags{0};

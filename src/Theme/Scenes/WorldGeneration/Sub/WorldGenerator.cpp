@@ -13,43 +13,43 @@
 
 namespace Forradia
 {
-    void world_generator::generate_new_world()
+    void WorldGenerator::GenerateNewWorld()
     {
-        clear_with_grass();
+        ClearWithGrass();
 
-        generate_dirt();
+        GenerateDirt();
 
-        generate_water();
+        GenerateWater();
 
-        generate_elevation();
+        GenerateElevation();
 
-        generate_rock();
+        GenerateRock();
 
-        generate_large_objects();
+        GenerateLargeObjects();
 
-        generate_small_objects();
+        GenerateSmallObjects();
     }
 
-    void world_generator::clear_with_grass()
+    void WorldGenerator::ClearWithGrass()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         for (auto y = 0; y < size.height; y++)
         {
             for (auto x = 0; x < size.width; x++)
             {
-                auto tile{world_area->get_tile(x, y)};
+                auto tile{world_area->GetTile(x, y)};
 
-                tile->ground_ = get_hash("ground_grass");
+                tile->ground_ = GetHash("ground_grass");
             }
         }
     }
 
-    void world_generator::generate_dirt()
+    void WorldGenerator::GenerateDirt()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         auto num_dirt_patches{15 + rand() % 8};
 
@@ -63,7 +63,7 @@ namespace Forradia
             {
                 for (auto x = x_center - radius; x <= x_center + radius; x++)
                 {
-                    if (!world_area->is_valid_coordinate(x, y))
+                    if (!world_area->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -73,19 +73,19 @@ namespace Forradia
 
                     if (dx * dx + dy * dy <= radius * radius)
                     {
-                        auto tile{world_area->get_tile(x, y)};
+                        auto tile{world_area->GetTile(x, y)};
 
-                        tile->ground_ = get_hash("ground_dirt");
+                        tile->ground_ = GetHash("ground_dirt");
                     }
                 }
             }
         }
     }
 
-    void world_generator::generate_water()
+    void WorldGenerator::GenerateWater()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         auto num_lakes{40 + rand() % 20};
 
@@ -99,7 +99,7 @@ namespace Forradia
             {
                 for (auto x = x_center - radius; x <= x_center + radius; x++)
                 {
-                    if (!world_area->is_valid_coordinate(x, y))
+                    if (!world_area->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -109,26 +109,26 @@ namespace Forradia
 
                     if (dx * dx + dy * dy <= radius * radius)
                     {
-                        auto tile{world_area->get_tile(x, y)};
-                        tile->ground_ = get_hash("ground_water");
+                        auto tile{world_area->GetTile(x, y)};
+                        tile->ground_ = GetHash("ground_water");
                     }
                 }
             }
         }
     }
 
-    void world_generator::generate_elevation()
+    void WorldGenerator::GenerateElevation()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         for (auto y = 0; y < size.height; y++)
         {
             for (auto x = 0; x < size.width; x++)
             {
-                auto tile{world_area->get_tile(x, y)};
+                auto tile{world_area->GetTile(x, y)};
 
-                if (tile->ground_ != get_hash("ground_water"))
+                if (tile->ground_ != GetHash("ground_water"))
                 {
                     tile->elevation_ = 1;
                 }
@@ -149,7 +149,7 @@ namespace Forradia
                 {
                     for (auto x = x_center - r; x <= x_center + r; x++)
                     {
-                        if (!world_area->is_valid_coordinate(x, y))
+                        if (!world_area->IsValidCoordinate(x, y))
                         {
                             continue;
                         }
@@ -159,9 +159,9 @@ namespace Forradia
 
                         if (dx * dx + dy * dy <= r * r)
                         {
-                            auto tile{world_area->get_tile(x, y)};
+                            auto tile{world_area->GetTile(x, y)};
 
-                            if (tile->ground_ == get_hash("ground_water"))
+                            if (tile->ground_ == GetHash("ground_water"))
                             {
                                 continue;
                             }
@@ -174,10 +174,10 @@ namespace Forradia
         }
     }
 
-    void world_generator::generate_rock()
+    void WorldGenerator::GenerateRock()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         auto num_rock_patches{60 + rand() % 5};
 
@@ -191,7 +191,7 @@ namespace Forradia
             {
                 for (auto x = x_center - radius; x <= x_center + radius; x++)
                 {
-                    if (!world_area->is_valid_coordinate(x, y))
+                    if (!world_area->IsValidCoordinate(x, y))
                     {
                         continue;
                     }
@@ -201,11 +201,11 @@ namespace Forradia
 
                     if (dx * dx + dy * dy <= radius * radius)
                     {
-                        auto tile{world_area->get_tile(x, y)};
+                        auto tile{world_area->GetTile(x, y)};
 
                         if (tile->elevation_ >= 2)
                         {
-                            tile->ground_ = get_hash("ground_rock");
+                            tile->ground_ = GetHash("ground_rock");
                         }
                     }
                 }
@@ -213,10 +213,10 @@ namespace Forradia
         }
     }
 
-    void world_generator::generate_large_objects()
+    void WorldGenerator::GenerateLargeObjects()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         auto num_tree_2_groups{100 + rand() % 10};
 
@@ -232,22 +232,22 @@ namespace Forradia
                 x += rand() % 3 - rand() % 3;
                 y += rand() % 3 - rand() % 3;
 
-                if (!world_area->is_valid_coordinate(x, y))
+                if (!world_area->IsValidCoordinate(x, y))
                 {
                     continue;
                 }
 
-                auto tile{world_area->get_tile(x, y)};
+                auto tile{world_area->GetTile(x, y)};
 
-                if (tile->ground_ == get_hash("ground_water") ||
-                    tile->ground_ == get_hash("ground_rock"))
+                if (tile->ground_ == GetHash("ground_water") ||
+                    tile->ground_ == GetHash("ground_rock"))
                 {
                     continue;
                 }
 
-                tile->tile_objects_->clear();
+                tile->tile_objects_->Clear();
 
-                tile->tile_objects_->add_object("object_tree_2");
+                tile->tile_objects_->AddObject("object_tree_2");
             }
         }
 
@@ -265,22 +265,22 @@ namespace Forradia
                 x += rand() % 3 - rand() % 3;
                 y += rand() % 3 - rand() % 3;
 
-                if (!world_area->is_valid_coordinate(x, y))
+                if (!world_area->IsValidCoordinate(x, y))
                 {
                     continue;
                 }
 
-                auto tile{world_area->get_tile(x, y)};
+                auto tile{world_area->GetTile(x, y)};
 
-                if (tile->ground_ == get_hash("ground_water") ||
-                    tile->ground_ == get_hash("ground_rock"))
+                if (tile->ground_ == GetHash("ground_water") ||
+                    tile->ground_ == GetHash("ground_rock"))
                 {
                     continue;
                 }
 
-                tile->tile_objects_->clear();
+                tile->tile_objects_->Clear();
 
-                tile->tile_objects_->add_object("object_tree_1");
+                tile->tile_objects_->AddObject("object_tree_1");
             }
         }
 
@@ -291,16 +291,16 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_water") ||
-                tile->ground_ == get_hash("ground_dirt") ||
-                tile->ground_ == get_hash("ground_rock"))
+            if (tile->ground_ == GetHash("ground_water") ||
+                tile->ground_ == GetHash("ground_dirt") ||
+                tile->ground_ == GetHash("ground_rock"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_bush_1");
+            tile->tile_objects_->AddObject("object_bush_1");
         }
 
         auto num_stone_boulders{100 + rand() % 50};
@@ -310,22 +310,22 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_grass") ||
-                tile->ground_ == get_hash("ground_dirt"))
+            if (tile->ground_ == GetHash("ground_grass") ||
+                tile->ground_ == GetHash("ground_dirt"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_stone_boulder");
+            tile->tile_objects_->AddObject("object_stone_boulder");
         }
     }
 
-    void world_generator::generate_small_objects()
+    void WorldGenerator::GenerateSmallObjects()
     {
-        auto world_area{_<world>().current_world_area_};
-        auto size{world_area->get_size()};
+        auto world_area{_<World>().current_world_area_};
+        auto size{world_area->GetSize()};
 
         auto num_stones{500 + rand() % 50};
 
@@ -334,14 +334,14 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_water"))
+            if (tile->ground_ == GetHash("ground_water"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_stone");
+            tile->tile_objects_->AddObject("object_stone");
         }
 
         auto num_branches{500 + rand() % 50};
@@ -351,15 +351,15 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_water") ||
-                tile->ground_ == get_hash("ground_rock"))
+            if (tile->ground_ == GetHash("ground_water") ||
+                tile->ground_ == GetHash("ground_rock"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_branch");
+            tile->tile_objects_->AddObject("object_branch");
         }
 
         auto num_pink_flowers{500 + rand() % 50};
@@ -369,16 +369,16 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_water") ||
-                tile->ground_ == get_hash("ground_rock") ||
-                tile->ground_ == get_hash("ground_dirt"))
+            if (tile->ground_ == GetHash("ground_water") ||
+                tile->ground_ == GetHash("ground_rock") ||
+                tile->ground_ == GetHash("ground_dirt"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_pink_flower");
+            tile->tile_objects_->AddObject("object_pink_flower");
         }
 
         auto num_leaves{500 + rand() % 50};
@@ -388,15 +388,15 @@ namespace Forradia
             auto x{rand() % size.width};
             auto y{rand() % size.height};
 
-            auto tile{world_area->get_tile(x, y)};
+            auto tile{world_area->GetTile(x, y)};
 
-            if (tile->ground_ == get_hash("ground_water") ||
-                tile->ground_ == get_hash("ground_rock"))
+            if (tile->ground_ == GetHash("ground_water") ||
+                tile->ground_ == GetHash("ground_rock"))
             {
                 continue;
             }
 
-            tile->tile_objects_->add_object("object_leaf");
+            tile->tile_objects_->AddObject("object_leaf");
         }
     }
 }

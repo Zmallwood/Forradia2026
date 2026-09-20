@@ -12,27 +12,27 @@
 
 namespace Forradia
 {
-    void engine::start()
+    void Engine::Start()
     {
         srand(time(nullptr));
 
-        _<image_bank>().load_images();
+        _<ImageBank>().LoadImages();
 
         while (running_)
         {
-            poll_events();
+            PollEvents();
 
-            _<scene_manager>().update_current_scene();
+            _<SceneManager>().UpdateCurrentScene();
 
-            _<sdl_device>().clear_canvas();
+            _<SDLDevice>().ClearCanvas();
 
-            _<scene_manager>().render_current_scene();
+            _<SceneManager>().RenderCurrentScene();
 
-            _<sdl_device>().present_canvas();
+            _<SDLDevice>().PresentCanvas();
         }
     }
 
-    void engine::poll_events()
+    void Engine::PollEvents()
     {
         SDL_Event event;
 
@@ -44,20 +44,17 @@ namespace Forradia
                 running_ = false;
                 break;
             case SDL_KEYDOWN:
-                _<scene_manager>().on_key_down_current_scene(
-                    event.key.keysym.sym);
+                _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_KEYUP:
-                _<scene_manager>().on_key_up_current_scene(
-                    event.key.keysym.sym);
+                _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
                 break;
             case SDL_MOUSEBUTTONDOWN:
-                _<scene_manager>().on_mouse_down_current_scene(
-                    event.button.button);
+                _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
                 break;
             case SDL_MOUSEBUTTONUP:
-                _<scene_manager>().on_mouse_up_current_scene(
-                    event.button.button, event.button.clicks);
+                _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
+                                                        event.button.clicks);
                 break;
             }
         }

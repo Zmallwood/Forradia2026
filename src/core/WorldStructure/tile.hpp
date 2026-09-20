@@ -9,15 +9,15 @@
 
 namespace Forradia
 {
-    class tile_objects;
+    class TileObjects;
 
-    class tile
+    class Tile
     {
       public:
-        tile();
+        Tile();
 
         int ground_{0};
         int elevation_{0};
-        std::shared_ptr<tile_objects> tile_objects_;
+        std::shared_ptr<TileObjects> tile_objects_;
     };
 }

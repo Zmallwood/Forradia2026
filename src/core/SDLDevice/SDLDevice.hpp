@@ -9,18 +9,18 @@
 
 namespace Forradia
 {
-    class sdl_device
+    class SDLDevice
     {
       public:
-        sdl_device();
+        SDLDevice();
 
-        void clear_canvas();
+        void ClearCanvas();
 
-        void present_canvas();
+        void PresentCanvas();
 
-        void clip(float x, float y, float width, float height);
+        void Clip(float x, float y, float width, float height);
 
-        void reset_clip();
+        void ResetClip();
 
         std::shared_ptr<SDL_Window> window_;
         std::shared_ptr<SDL_Renderer> renderer_;

@@ -9,13 +9,13 @@
 
 namespace Forradia
 {
-    class engine
+    class Engine
     {
       public:
-        void start();
+        void Start();
 
       private:
-        void poll_events();
+        void PollEvents();
 
         bool running_{true};
     };

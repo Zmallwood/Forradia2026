@@ -11,20 +11,20 @@
 
 namespace Forradia
 {
-    class image_bank
+    class ImageBank
     {
       public:
-        void load_images();
+        void LoadImages();
 
-        std::shared_ptr<SDL_Texture> get_image(int imageNameHash);
+        std::shared_ptr<SDL_Texture> GetImage(int imageNameHash);
 
-        size get_image_size(int imageNameHash);
+        Size GetImageSize(int imageNameHash);
 
       private:
-        void load_single_image(std::string_view full_path);
+        void LoadSingleImage(std::string_view full_path);
 
-        static constexpr std::string_view k_relative_images_directory_{
+        static constexpr std::string_view k_relativeImagesDirectory_{
             "resources/Images/"};
-        std::unordered_map<int, image_entry> images_;
+        std::unordered_map<int, ImageEntry> images_;
     };
 }

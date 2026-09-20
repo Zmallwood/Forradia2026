@@ -9,12 +9,12 @@
 
 namespace Forradia
 {
-    class game_properties
+    class GameProperties
     {
       public:
-        static constexpr size k_world_area_size_{100, 100};
-        static constexpr float k_tile_width_{0.05f};
-        static constexpr int k_tile_units_width_{20};
-        static constexpr float k_view_width_{0.5f};
+        static constexpr Size k_worldAreaSize_{100, 100};
+        static constexpr float k_tileWidth_{0.05f};
+        static constexpr int k_tileUnitsWidth_{20};
+        static constexpr float k_viewWidth_{0.5f};
     };
 }

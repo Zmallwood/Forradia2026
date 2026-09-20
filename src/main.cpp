@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     using namespace Forradia;
 
-    run_new_theme();
+    RunNewTheme();
 
     return 0;
 }

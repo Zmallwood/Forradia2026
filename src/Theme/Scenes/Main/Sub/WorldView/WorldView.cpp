@@ -22,18 +22,18 @@
 
 namespace Forradia
 {
-    void world_view::render()
+    void WorldView::Render()
     {
-        _<sdl_device>().clip(0.0f, 0.0f, 0.5f, 1.0f);
+        _<SDLDevice>().Clip(0.0f, 0.0f, 0.5f, 1.0f);
 
-        auto view_width{game_properties::k_view_width_};
+        auto view_width{GameProperties::k_viewWidth_};
 
-        _<color_renderer>().fill_rect(0.0f, 0.0f, view_width, 1.0f,
-                                      colors::k_black);
+        _<ColorRenderer>().FillRect(0.0f, 0.0f, view_width, 1.0f,
+                                    Colors::k_black);
 
-        auto world_area{_<world>().current_world_area_};
+        auto world_area{_<World>().current_world_area_};
 
-        auto player_tile{world_area->get_tile(_<player>().position_)};
+        auto player_tile{world_area->GetTile(_<Player>().position_)};
 
         auto player_elevation{0};
 
@@ -42,21 +42,21 @@ namespace Forradia
             player_elevation = player_tile->elevation_;
         }
 
-        auto hovered_coordinate{_<tile_hovering>().hovered_coordinate_};
+        auto hovered_coordinate{_<TileHovering>().hovered_coordinate_};
 
-        auto faced_tile{_<player>().faced_tile_};
+        auto faced_tile{_<Player>().facedTile_};
 
-        auto tile_width{_<game_properties>().k_tile_width_};
-        auto tile_height{convert_width_to_height(tile_width)};
+        auto tile_width{_<GameProperties>().k_tileWidth_};
+        auto tile_height{ConvertWidthToHeight(tile_width)};
 
         for (auto y = -6; y < 11 + 6; y++)
         {
             for (auto x = -6; x < 11 + 6; x++)
             {
-                auto x_coordinate{_<player>().position_.x - 5 + x};
-                auto y_coordinate{_<player>().position_.y - 5 + y};
+                auto x_coordinate{_<Player>().position_.x - 5 + x};
+                auto y_coordinate{_<Player>().position_.y - 5 + y};
 
-                if (!world_area->is_valid_coordinate(x_coordinate,
+                if (!world_area->IsValidCoordinate(x_coordinate,
                                                      y_coordinate))
                 {
                     continue;
@@ -64,8 +64,8 @@ namespace Forradia
 
                 auto num_blocking_objects{0};
 
-                auto dx{_<player>().position_.x - x_coordinate};
-                auto dy{_<player>().position_.y - y_coordinate};
+                auto dx{_<Player>().position_.x - x_coordinate};
+                auto dy{_<Player>().position_.y - y_coordinate};
 
                 if (dx != 0 || dy != 0)
                 {
@@ -82,7 +82,7 @@ namespace Forradia
                         auto current_x{static_cast<int>(current_x_f)};
                         auto current_y{static_cast<int>(current_y_f)};
 
-                        auto tile{world_area->get_tile(current_x, current_y)};
+                        auto tile{world_area->GetTile(current_x, current_y)};
 
                         if (!tile)
                         {
@@ -91,7 +91,7 @@ namespace Forradia
 
                         for (auto object : tile->tile_objects_->objects_)
                         {
-                            if (!_<object_index>().is_small_object(
+                            if (!_<ObjectIndex>().IsSmallObject(
                                     object.second->type_))
                             {
                                 num_blocking_objects++;
@@ -110,42 +110,42 @@ namespace Forradia
                     }
                 }
 
-                auto tile{world_area->get_tile(x_coordinate, y_coordinate)};
+                auto tile{world_area->GetTile(x_coordinate, y_coordinate)};
 
                 auto elevation{tile->elevation_};
 
-                point coordinate_north{x_coordinate, y_coordinate - 1};
-                point coordinate_east{x_coordinate + 1, y_coordinate};
-                point coordinate_south{x_coordinate, y_coordinate + 1};
-                point coordinate_west{x_coordinate - 1, y_coordinate};
+                Point coordinate_north{x_coordinate, y_coordinate - 1};
+                Point coordinate_east{x_coordinate + 1, y_coordinate};
+                Point coordinate_south{x_coordinate, y_coordinate + 1};
+                Point coordinate_west{x_coordinate - 1, y_coordinate};
 
                 auto elevation_north{elevation};
                 auto elevation_east{elevation};
                 auto elevation_south{elevation};
                 auto elevation_west{elevation};
 
-                if (world_area->is_valid_coordinate(coordinate_north))
+                if (world_area->IsValidCoordinate(coordinate_north))
                 {
                     elevation_north =
-                        world_area->get_tile(coordinate_north)->elevation_;
+                        world_area->GetTile(coordinate_north)->elevation_;
                 }
 
-                if (world_area->is_valid_coordinate(coordinate_east))
+                if (world_area->IsValidCoordinate(coordinate_east))
                 {
                     elevation_east =
-                        world_area->get_tile(coordinate_east)->elevation_;
+                        world_area->GetTile(coordinate_east)->elevation_;
                 }
 
-                if (world_area->is_valid_coordinate(coordinate_south))
+                if (world_area->IsValidCoordinate(coordinate_south))
                 {
                     elevation_south =
-                        world_area->get_tile(coordinate_south)->elevation_;
+                        world_area->GetTile(coordinate_south)->elevation_;
                 }
 
-                if (world_area->is_valid_coordinate(coordinate_west))
+                if (world_area->IsValidCoordinate(coordinate_west))
                 {
                     elevation_west =
-                        world_area->get_tile(coordinate_west)->elevation_;
+                        world_area->GetTile(coordinate_west)->elevation_;
                 }
 
                 auto tile_x{0.25f - tile_width / 2 + x * tile_width / 2 -
@@ -157,7 +157,7 @@ namespace Forradia
 
                 for (auto i = 0; i < elevation; i++)
                 {
-                    _<image_renderer>().draw_image(
+                    _<ImageRenderer>().DrawImage(
                         "elevation", tile_x, tile_y + tile_height / 4,
                         tile_width, tile_height * 3 / 4);
 
@@ -166,46 +166,46 @@ namespace Forradia
 
                 auto ground{tile->ground_};
 
-                if (ground == get_hash("ground_water"))
+                if (ground == GetHash("ground_water"))
                 {
                     auto water_anim_index{
-                        ((ticks() + 10 * x_coordinate * y_coordinate) % 900) /
+                        ((Ticks() + 10 * x_coordinate * y_coordinate) % 900) /
                         300};
 
                     std::string ground_image_name{
                         "ground_water_" + std::to_string(water_anim_index)};
 
-                    ground = get_hash(ground_image_name);
+                    ground = GetHash(ground_image_name);
                 }
 
-                _<image_renderer>().draw_image(ground, tile_x, tile_y,
-                                               tile_width + k_small_value,
-                                               tile_height + k_small_value);
+                _<ImageRenderer>().DrawImage(ground, tile_x, tile_y,
+                                               tile_width + k_smallValue,
+                                               tile_height + k_smallValue);
 
                 if (elevation > elevation_north)
                 {
-                    _<image_renderer>().draw_image("elevation_edge_north",
+                    _<ImageRenderer>().DrawImage("elevation_edge_north",
                                                    tile_x, tile_y, tile_width,
                                                    tile_height);
                 }
 
                 if (elevation > elevation_east)
                 {
-                    _<image_renderer>().draw_image("elevation_edge_east",
+                    _<ImageRenderer>().DrawImage("elevation_edge_east",
                                                    tile_x, tile_y, tile_width,
                                                    tile_height);
                 }
 
                 if (elevation > elevation_south)
                 {
-                    _<image_renderer>().draw_image("elevation_edge_south",
+                    _<ImageRenderer>().DrawImage("elevation_edge_south",
                                                    tile_x, tile_y, tile_width,
                                                    tile_height);
                 }
 
                 if (elevation > elevation_west)
                 {
-                    _<image_renderer>().draw_image("elevation_edge_west",
+                    _<ImageRenderer>().DrawImage("elevation_edge_west",
                                                    tile_x, tile_y, tile_width,
                                                    tile_height);
                 }
@@ -213,7 +213,7 @@ namespace Forradia
                 if (x_coordinate == faced_tile.x &&
                     y_coordinate == faced_tile.y)
                 {
-                    _<image_renderer>().draw_image("faced_tile", tile_x, tile_y,
+                    _<ImageRenderer>().DrawImage("faced_tile", tile_x, tile_y,
                                                    tile_width, tile_height);
                 }
 
@@ -221,7 +221,7 @@ namespace Forradia
                     y_coordinate == hovered_coordinate.y)
                 {
 
-                    _<image_renderer>().draw_image("hovered_tile", tile_x,
+                    _<ImageRenderer>().DrawImage("hovered_tile", tile_x,
                                                    tile_y, tile_width,
                                                    tile_height);
                 }
@@ -235,7 +235,7 @@ namespace Forradia
                     auto object_type{object->type_};
 
                     auto is_small_object{
-                        _<object_index>().is_small_object(object_type)};
+                        _<ObjectIndex>().IsSmallObject(object_type)};
 
                     if (is_small_object)
                     {
@@ -243,7 +243,7 @@ namespace Forradia
                     }
 
                     auto image_size{
-                        _<image_bank>().get_image_size(object_type)};
+                        _<ImageBank>().GetImageSize(object_type)};
 
                     auto object_width{image_size.width / 60.0f * tile_width};
                     auto object_height{image_size.height / 60.0f * tile_height};
@@ -251,20 +251,20 @@ namespace Forradia
                     auto object_x{tile_x + tile_width / 2 - object_width / 2};
                     auto object_y{tile_y + tile_height / 2 - object_height};
 
-                    _<image_renderer>().draw_image(object_type, object_x,
+                    _<ImageRenderer>().DrawImage(object_type, object_x,
                                                    object_y, object_width,
                                                    object_height);
                 }
 
-                if (x_coordinate == _<player>().position_.x &&
-                    y_coordinate == _<player>().position_.y)
+                if (x_coordinate == _<Player>().position_.x &&
+                    y_coordinate == _<Player>().position_.y)
                 {
-                    _<image_renderer>().draw_image("player", tile_x,
+                    _<ImageRenderer>().DrawImage("player", tile_x,
                                                    tile_y - tile_height / 2,
                                                    tile_width, tile_height);
                 }
             }
         }
-        _<sdl_device>().reset_clip();
+        _<SDLDevice>().ResetClip();
     }
 }

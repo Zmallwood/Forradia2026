@@ -9,24 +9,24 @@
 
 namespace Forradia
 {
-    class world_generator
+    class WorldGenerator
     {
       public:
-        void generate_new_world();
+        void GenerateNewWorld();
 
       private:
-        void clear_with_grass();
+        void ClearWithGrass();
 
-        void generate_dirt();
+        void GenerateDirt();
 
-        void generate_water();
+        void GenerateWater();
 
-        void generate_elevation();
+        void GenerateElevation();
 
-        void generate_rock();
+        void GenerateRock();
 
-        void generate_large_objects();
+        void GenerateLargeObjects();
 
-        void generate_small_objects();
+        void GenerateSmallObjects();
     };
 }

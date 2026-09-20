@@ -9,11 +9,11 @@
 
 namespace Forradia
 {
-    size get_canvas_size();
+    Size GetCanvasSize();
 
-    float get_aspect_ratio();
+    float GetAspectRatio();
 
-    float convert_width_to_height(float width);
+    float ConvertWidthToHeight(float width);
 
-    float convert_height_to_width(float height);
+    float ConvertHeightToWidth(float height);
 }

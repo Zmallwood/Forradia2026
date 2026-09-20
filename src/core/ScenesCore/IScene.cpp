@@ -9,13 +9,13 @@
 
 namespace Forradia
 {
-    void i_scene::update()
+    void IScene::Update()
     {
-        update_derived();
+        UpdateDerived();
     }
 
-    void i_scene::render()
+    void IScene::Render()
     {
-        render_derived();
+        RenderDerived();
     }
 }

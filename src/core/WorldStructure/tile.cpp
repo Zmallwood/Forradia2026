@@ -10,8 +10,8 @@
 
 namespace Forradia
 {
-    tile::tile()
+    Tile::Tile()
     {
-        tile_objects_ = std::make_shared<tile_objects>();
+        tile_objects_ = std::make_shared<TileObjects>();
     }
 }

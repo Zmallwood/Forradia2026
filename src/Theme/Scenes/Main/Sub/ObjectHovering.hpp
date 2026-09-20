@@ -9,11 +9,11 @@
 
 namespace Forradia
 {
-    class object_hovering
+    class ObjectHovering
     {
       public:
-        void update();
+        void Update();
 
-        void render();
+        void Render();
     };
 }

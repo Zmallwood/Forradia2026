@@ -11,14 +11,14 @@
 
 namespace Forradia
 {
-    class object_index
+    class ObjectIndex
     {
       public:
-        object_index();
+        ObjectIndex();
 
-        bool is_small_object(int object_hash);
+        bool IsSmallObject(int object_hash);
 
       private:
-        std::unordered_map<int, object_index_entry> entries_;
+        std::unordered_map<int, ObjectIndexEntry> entries_;
     };
 }

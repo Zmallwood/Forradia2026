@@ -9,8 +9,8 @@
 
 namespace Forradia
 {
-    namespace object_flags
+    namespace ObjectFlags
     {
-        constexpr int k_small_object{1 << 0};
+        constexpr int k_smallObject{1 << 0};
     }
 }

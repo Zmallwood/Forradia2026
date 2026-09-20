@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    enum class font_sizes : int
+    enum class FontSizes : int
     {
         _12 = 12,
         _18 = 18,

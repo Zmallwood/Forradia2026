@@ -9,10 +9,10 @@
 
 namespace Forradia
 {
-    class object
+    class Object
     {
       public:
-        object(int type);
+        Object(int type);
 
         int type_{0};
     };

@@ -9,7 +9,7 @@
 
 namespace Forradia
 {
-    enum class world_directions
+    enum class WorldDirections
     {
         north,
         east,

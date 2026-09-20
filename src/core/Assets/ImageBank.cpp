@@ -10,12 +10,12 @@
 
 namespace Forradia
 {
-    void image_bank::load_images()
+    void ImageBank::LoadImages()
     {
         auto images_directory{SDL_GetBasePath() +
-                              std::string(k_relative_images_directory_)};
+                              std::string(k_relativeImagesDirectory_)};
 
-        images_directory = replace(images_directory, "\\", "/");
+        images_directory = Replace(images_directory, "\\", "/");
 
         auto rdi{
             std::filesystem::recursive_directory_iterator(images_directory)};
@@ -24,21 +24,21 @@ namespace Forradia
         {
             if (entry.is_regular_file() && entry.path().extension() == ".png")
             {
-                load_single_image(entry.path().string());
+                LoadSingleImage(entry.path().string());
             }
         }
     }
 
-    void image_bank::load_single_image(std::string_view full_path)
+    void ImageBank::LoadSingleImage(std::string_view full_path)
     {
-        std::string path{replace(full_path, "\\", "/")};
+        std::string path{Replace(full_path, "\\", "/")};
 
-        auto pure_name{get_file_name_no_ext(path)};
+        auto pure_name{GetFileNameNoExt(path)};
 
-        auto hash{get_hash(pure_name)};
+        auto hash{GetHash(pure_name)};
 
-        auto surface{std::shared_ptr<SDL_Surface>(IMG_Load(path.c_str()),
-                                                  sdl_deleter())};
+        auto surface{
+            std::shared_ptr<SDL_Surface>(IMG_Load(path.c_str()), SDLDeleter())};
 
         if (!surface)
         {
@@ -48,16 +48,16 @@ namespace Forradia
         }
 
         auto texture{std::shared_ptr<SDL_Texture>(
-            SDL_CreateTextureFromSurface(_<sdl_device>().renderer_.get(),
+            SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(),
                                          surface.get()),
-            sdl_deleter())};
+            SDLDeleter())};
 
-        image_entry entry{texture, surface};
+        ImageEntry entry{texture, surface};
 
         images_.insert({hash, entry});
     }
 
-    std::shared_ptr<SDL_Texture> image_bank::get_image(int imageNameHash)
+    std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash)
     {
         if (images_.contains(imageNameHash))
         {
@@ -67,7 +67,7 @@ namespace Forradia
         return nullptr;
     }
 
-    size image_bank::get_image_size(int imageNameHash)
+    Size ImageBank::GetImageSize(int imageNameHash)
     {
         auto width{0};
         auto height{0};

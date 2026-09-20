@@ -10,30 +10,30 @@
 
 namespace Forradia
 {
-    size get_canvas_size()
+    Size GetCanvasSize()
     {
         int width{0};
         int height{0};
 
-        SDL_GetWindowSize(_<sdl_device>().window_.get(), &width, &height);
+        SDL_GetWindowSize(_<SDLDevice>().window_.get(), &width, &height);
 
         return {width, height};
     }
 
-    float get_aspect_ratio()
+    float GetAspectRatio()
     {
-        auto size{get_canvas_size()};
+        auto size{GetCanvasSize()};
 
         return static_cast<float>(size.width) / size.height;
     }
 
-    float convert_width_to_height(float width)
+    float ConvertWidthToHeight(float width)
     {
-        return width * get_aspect_ratio();
+        return width * GetAspectRatio();
     }
 
-    float convert_height_to_width(float height)
+    float ConvertHeightToWidth(float height)
     {
-        return height / get_aspect_ratio();
+        return height / GetAspectRatio();
     }
 }

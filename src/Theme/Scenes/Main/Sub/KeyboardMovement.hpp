@@ -9,14 +9,14 @@
 
 namespace Forradia
 {
-    class keyboard_movement
+    class KeyboardMovement
     {
       public:
-        void update();
+        void Update();
 
-        void on_key_down(SDL_Keycode key);
+        void OnKeyDown(SDL_Keycode key);
 
-        void on_key_up(SDL_Keycode key);
+        void OnKeyUp(SDL_Keycode key);
 
       private:
         std::set<SDL_Keycode> pressed_keys_;

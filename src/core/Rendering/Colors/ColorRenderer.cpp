@@ -10,10 +10,10 @@
 
 namespace Forradia
 {
-    void color_renderer::fill_rect(float x, float y, float width, float height,
-                                   color color)
+    void ColorRenderer::FillRect(float x, float y, float width, float height,
+                                 Color color)
     {
-        auto canvas_size{get_canvas_size()};
+        auto canvas_size{GetCanvasSize()};
 
         auto dest_x{static_cast<int>(x * canvas_size.width)};
         auto dest_y{static_cast<int>(y * canvas_size.height)};
@@ -22,30 +22,30 @@ namespace Forradia
 
         auto rect{SDL_Rect{dest_x, dest_y, dest_width, dest_height}};
 
-        auto sdl_color{color.to_sdl_color()};
+        auto sdl_color{color.ToSDLColor()};
 
-        SDL_SetRenderDrawColor(_<sdl_device>().renderer_.get(), sdl_color.r,
+        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdl_color.r,
                                sdl_color.g, sdl_color.b, sdl_color.a);
 
-        SDL_RenderFillRect(_<sdl_device>().renderer_.get(), &rect);
+        SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
     }
 
-    void color_renderer::draw_line(float x1, float y1, float x2, float y2,
-                                   color color)
+    void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
+                                 Color color)
     {
-        auto canvas_size{get_canvas_size()};
+        auto canvas_size{GetCanvasSize()};
 
         auto dest_x1{static_cast<int>(x1 * canvas_size.width)};
         auto dest_y1{static_cast<int>(y1 * canvas_size.height)};
         auto dest_x2{static_cast<int>(x2 * canvas_size.width)};
         auto dest_y2{static_cast<int>(y2 * canvas_size.height)};
 
-        auto sdl_color{color.to_sdl_color()};
+        auto sdl_color{color.ToSDLColor()};
 
-        SDL_SetRenderDrawColor(_<sdl_device>().renderer_.get(), sdl_color.r,
+        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdl_color.r,
                                sdl_color.g, sdl_color.b, sdl_color.a);
 
-        SDL_RenderDrawLine(_<sdl_device>().renderer_.get(), dest_x1, dest_y1,
+        SDL_RenderDrawLine(_<SDLDevice>().renderer_.get(), dest_x1, dest_y1,
                            dest_x2, dest_y2);
     }
 }

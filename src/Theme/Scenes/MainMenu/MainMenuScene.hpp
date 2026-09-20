@@ -11,13 +11,13 @@
 
 namespace Forradia
 {
-    class main_menu_scene : public i_scene
+    class MainMenuScene : public IScene
     {
       protected:
-        void render_derived() override;
+        void RenderDerived() override;
 
-        void on_key_down(SDL_Keycode key) override;
+        void OnKeyDown(SDL_Keycode key) override;
 
-        void on_mouse_down(Uint8 button) override;
+        void OnMouseDown(Uint8 button) override;
     };
 }

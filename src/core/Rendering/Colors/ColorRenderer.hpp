@@ -9,13 +9,13 @@
 
 namespace Forradia
 {
-    class color_renderer
+    class ColorRenderer
     {
       public:
-        void fill_rect(float x, float y, float width, float height,
-                       color color = colors::k_black);
+        void FillRect(float x, float y, float width, float height,
+                      Color color = Colors::k_black);
 
-        void draw_line(float x1, float y1, float x2, float y2,
-                       color color = colors::k_black);
+        void DrawLine(float x1, float y1, float x2, float y2,
+                      Color color = Colors::k_black);
     };
 }

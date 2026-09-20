@@ -9,31 +9,31 @@
 
 namespace Forradia
 {
-    class i_scene;
+    class IScene;
 
-    class scene_manager
+    class SceneManager
     {
       public:
-        scene_manager();
+        SceneManager();
 
-        void go_to_scene(std::string_view scene_name);
+        void GoToScene(std::string_view scene_name);
 
-        void update_current_scene();
+        void UpdateCurrentScene();
 
-        void render_current_scene();
+        void RenderCurrentScene();
 
-        void on_key_down_current_scene(SDL_Keycode key);
+        void OnKeyDownCurrentScene(SDL_Keycode key);
 
-        void on_key_up_current_scene(SDL_Keycode key);
+        void OnKeyUpCurrentScene(SDL_Keycode key);
 
-        void on_mouse_down_current_scene(Uint8 button);
+        void OnMouseDownCurrentScene(Uint8 button);
 
-        void on_mouse_up_current_scene(Uint8 button, int click_speed);
+        void OnMouseUpCurrentScene(Uint8 button, int click_speed);
 
       private:
-        void add_scene(std::string_view scene_name, i_scene &scene);
+        void AddScene(std::string_view scene_name, IScene &scene);
 
         int current_scene_{0};
-        std::unordered_map<int, i_scene &> scenes_;
+        std::unordered_map<int, IScene &> scenes_;
     };
 }

@@ -11,10 +11,10 @@
 
 namespace Forradia
 {
-    void world_generation_scene::on_enter()
+    void WorldGenerationScene::OnEnter()
     {
-        _<world_generator>().generate_new_world();
+        _<WorldGenerator>().GenerateNewWorld();
 
-        _<scene_manager>().go_to_scene("main_scene");
+        _<SceneManager>().GoToScene("main_scene");
     }
 }

@@ -9,10 +9,10 @@
 
 namespace Forradia
 {
-    class color
+    class Color
     {
       public:
-        SDL_Color to_sdl_color();
+        SDL_Color ToSDLColor();
 
         float r{0.0f};
         float g{0.0f};

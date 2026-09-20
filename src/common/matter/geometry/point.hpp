@@ -9,10 +9,10 @@
 
 namespace Forradia
 {
-    class point
+    class Point
     {
       public:
-        auto operator<=>(const point &) const = default;
+        auto operator<=>(const Point &) const = default;
 
         int x{0};
         int y{0};
