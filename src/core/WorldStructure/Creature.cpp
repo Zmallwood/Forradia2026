@@ -13,4 +13,11 @@ namespace Forradia
     {
         type_ = Hash(typeName);
     }
+
+    void Creature::Hit(int damage, PointF hitPosition)
+    {
+        ticksLastHitReceive_ = Now();
+
+        lastHitPosition_ = hitPosition;
+    }
 }

@@ -80,4 +80,41 @@ namespace Forradia
 
         return {width, height};
     }
+
+    bool ImageBank::IsPixelVisible(int imageNameHash, int x, int y)
+    {
+        if (images_.contains(imageNameHash))
+        {
+            auto surface{images_.at(imageNameHash).surface.get()};
+
+            if (!surface || x < 0 || y < 0 || x >= surface->w ||
+                y >= surface->h)
+            {
+                return false;
+            }
+
+            if (SDL_MUSTLOCK(surface))
+            {
+                SDL_LockSurface(surface);
+            }
+
+            Uint32 pixel{*reinterpret_cast<Uint32 *>(
+                static_cast<Uint8 *>(surface->pixels) + y * surface->pitch +
+                x * surface->format->BytesPerPixel)};
+
+            Uint8 alpha;
+
+            SDL_GetRGBA(pixel, surface->format, nullptr, nullptr, nullptr,
+                        &alpha);
+
+            if (SDL_MUSTLOCK(surface))
+            {
+                SDL_UnlockSurface(surface);
+            }
+
+            return alpha > 0;
+        }
+
+        return false;
+    }
 }

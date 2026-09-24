@@ -32,6 +32,8 @@ namespace Forradia
         _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
                                     Colors::k_black);
 
+        auto now{Now()};
+
         std::string groundImageName;
 
         auto worldArea{_<World>().currentWorldArea_};
@@ -72,10 +74,11 @@ namespace Forradia
         }
         }
 
+        constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
+
         _<ImageRenderer>().DrawImage(
-            groundImageName, 1.0f - viewWidth + k_margin_.x,
-            0.75f + k_margin_.y, viewWidth - 2 * k_margin_.x,
-            0.25f - 2 * k_margin_.y);
+            groundImageName, 1.0f - viewWidth + k_margin.x, 0.75f + k_margin.y,
+            viewWidth - 2 * k_margin.x, 0.25f - 2 * k_margin.y);
 
         auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
 
@@ -120,8 +123,8 @@ namespace Forradia
             objectsOrdered[yPos] = positionedObject;
         }
 
-        constexpr float k_largeObjectScale{0.22f};
-        constexpr float k_smallObjectScale{0.08f};
+        constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
+        constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
 
         for (auto entry : objectsOrdered)
         {
@@ -145,29 +148,29 @@ namespace Forradia
 
             if (isSmallObject)
             {
-                imageWidth = imageSize.width / 60.0f * k_smallObjectScale;
+                imageWidth = imageSize.width / 60.0f * smallObjectScale;
                 imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(k_smallObjectScale);
+                              ConvertWidthToHeight(smallObjectScale);
             }
             else
             {
-                imageWidth = imageSize.width / 60.0f * k_largeObjectScale;
+                imageWidth = imageSize.width / 60.0f * largeObjectScale;
                 imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(k_largeObjectScale);
+                              ConvertWidthToHeight(largeObjectScale);
             }
 
-            auto tileWidth{viewWidth - 2 * k_margin_.x -
+            auto tileWidth{viewWidth - 2 * k_margin.x -
                            static_cast<float>(tileUnitsWidth - yPos) /
                                tileUnitsWidth * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin_.x +
+            auto tileLeft{1.0f - viewWidth + k_margin.x +
                           static_cast<float>(tileUnitsWidth - yPos) /
                               tileUnitsWidth * viewWidth * 0.3f};
 
             auto baseX{tileLeft +
                        static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-            auto baseY{0.75f + k_margin_.y +
+            auto baseY{0.75f + k_margin.y +
                        static_cast<float>(yPos + 1) / tileUnitsWidth *
-                           (0.25f - 2 * k_margin_.y)};
+                           (0.25f - 2 * k_margin.y)};
 
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
@@ -184,23 +187,48 @@ namespace Forradia
 
             auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
 
-            auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
+            auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
             auto imageHeight{imageSize.height / 60.0f *
-                             ConvertWidthToHeight(k_largeObjectScale)};
+                             ConvertWidthToHeight(largeObjectScale)};
 
-            auto tileWidth{viewWidth - 2 * k_margin_.x -
+            auto tileWidth{viewWidth - 2 * k_margin.x -
                            0.5f * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin_.x +
+            auto tileLeft{1.0f - viewWidth + k_margin.x +
                           0.5f * viewWidth * 0.3f};
 
             auto baseX{tileLeft + 0.5f * tileWidth};
-            auto baseY{0.75f + k_margin_.y + 0.5f * (0.25f - 2 * k_margin_.y)};
+            auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
 
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
             _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
                                          imageWidth, imageHeight);
+
+            if (now - creature->ticksLastHitReceive_ < k_hitEffectDuration_)
+            {
+                auto lastHitPosition{creature->lastHitPosition_};
+
+                auto hitEffectImageSize{
+                    _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+
+                constexpr float k_hitEffectScale{0.1f};
+
+                auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
+                                    k_hitEffectScale};
+                auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
+                                     ConvertWidthToHeight(k_hitEffectScale)};
+
+                auto hitEffectBaseX{imageX + lastHitPosition.x * imageWidth};
+                auto hitEffectBaseY{imageY + lastHitPosition.y * imageHeight};
+
+                auto hitEffectX{hitEffectBaseX - hitEffectWidth / 2.0f};
+                auto hitEffectY{hitEffectBaseY - hitEffectHeight / 2.0f};
+
+                _<ImageRenderer>().DrawImage("HitEffect", hitEffectX,
+                                             hitEffectY, hitEffectWidth,
+                                             hitEffectHeight);
+            }
         }
 
         for (auto entry : objectsOrdered)
@@ -225,29 +253,29 @@ namespace Forradia
 
             if (isSmallObject)
             {
-                imageWidth = imageSize.width / 60.0f * k_smallObjectScale;
+                imageWidth = imageSize.width / 60.0f * smallObjectScale;
                 imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(k_smallObjectScale);
+                              ConvertWidthToHeight(smallObjectScale);
             }
             else
             {
-                imageWidth = imageSize.width / 60.0f * k_largeObjectScale;
+                imageWidth = imageSize.width / 60.0f * largeObjectScale;
                 imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(k_largeObjectScale);
+                              ConvertWidthToHeight(largeObjectScale);
             }
 
-            auto tileWidth{viewWidth - 2 * k_margin_.x -
+            auto tileWidth{viewWidth - 2 * k_margin.x -
                            static_cast<float>(tileUnitsWidth - yPos) /
                                tileUnitsWidth * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin_.x +
+            auto tileLeft{1.0f - viewWidth + k_margin.x +
                           static_cast<float>(tileUnitsWidth - yPos) /
                               tileUnitsWidth * viewWidth * 0.3f};
 
             auto baseX{tileLeft +
                        static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-            auto baseY{0.75f + k_margin_.y +
+            auto baseY{0.75f + k_margin.y +
                        static_cast<float>(yPos + 1) / tileUnitsWidth *
-                           (0.25f - 2 * k_margin_.y)};
+                           (0.25f - 2 * k_margin.y)};
 
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};

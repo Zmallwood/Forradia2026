@@ -9,17 +9,9 @@
 
 namespace Forradia
 {
-    class Creature
+    class Combat
     {
       public:
-        Creature(std::string_view typeName);
-
-        void Hit(int damage, PointF hitPosition);
-
-        int type_{0};
-        int ticksLastMovement_{0};
-        float movementSpeed_{1.0f};
-        int ticksLastHitReceive_{0};
-        PointF lastHitPosition_{-1.0f, -1.0f};
+        void OnMouseDown(Uint8 button);
     };
 }

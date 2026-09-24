@@ -20,6 +20,8 @@ namespace Forradia
 
         Size GetImageSize(int imageNameHash);
 
+        bool IsPixelVisible(int imageNameHash, int x, int y);
+
       private:
         void LoadSingleImage(std::string_view fullPath);
 

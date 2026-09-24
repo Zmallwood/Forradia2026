@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include "MainScene.hpp"
+#include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
 #include "Sub/KeyboardMovement.hpp"
@@ -55,6 +56,8 @@ namespace Forradia
 
     void MainScene::OnMouseDown(Uint8 button)
     {
+        _<Combat>().OnMouseDown(button);
+
         _<MouseMovement>().OnMouseDown(button);
     }
 }
