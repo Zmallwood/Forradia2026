@@ -28,7 +28,7 @@ namespace Forradia
 
         auto tile{worldArea->GetTile(position_)};
 
-        while (tile->ground_ == Hash("ground_water"))
+        while (tile->ground_ == Hash("GroundWater"))
         {
             position_ = {rand() % worldAreaSize.width,
                          rand() % worldAreaSize.height};
@@ -45,7 +45,7 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("GroundWater"))
         {
             return;
         }
@@ -64,7 +64,7 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("GroundWater"))
         {
             return;
         }
@@ -83,7 +83,7 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("GroundWater"))
         {
             return;
         }
@@ -102,7 +102,7 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("GroundWater"))
         {
             return;
         }

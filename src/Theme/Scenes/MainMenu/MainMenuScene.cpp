@@ -13,10 +13,10 @@ namespace Forradia
 {
     void MainMenuScene::RenderDerived()
     {
-        _<ImageRenderer>().DrawImage("default_scene_background", 0.0f, 0.0f,
-                                     1.0f, 1.0f);
+        _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                     1.0f);
 
-        _<ImageRenderer>().DrawImage("forradia_logo", 0.3f, 0.2f, 0.4f, 0.15f);
+        _<ImageRenderer>().DrawImage("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
     }
 
     void MainMenuScene::OnKeyDown(SDL_Keycode key)

@@ -41,7 +41,7 @@ namespace Forradia
             {
                 auto tile{worldArea->GetTile(x, y)};
 
-                tile->ground_ = Hash("ground_grass");
+                tile->ground_ = Hash("GroundGrass");
             }
         }
     }
@@ -75,7 +75,7 @@ namespace Forradia
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        tile->ground_ = Hash("ground_dirt");
+                        tile->ground_ = Hash("GroundDirt");
                     }
                 }
             }
@@ -111,7 +111,7 @@ namespace Forradia
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        tile->ground_ = Hash("ground_water");
+                        tile->ground_ = Hash("GroundWater");
                     }
                 }
             }
@@ -129,7 +129,7 @@ namespace Forradia
             {
                 auto tile{worldArea->GetTile(x, y)};
 
-                if (tile->ground_ != Hash("ground_water"))
+                if (tile->ground_ != Hash("GroundWater"))
                 {
                     tile->elevation_ = 1;
                 }
@@ -162,7 +162,7 @@ namespace Forradia
                         {
                             auto tile{worldArea->GetTile(x, y)};
 
-                            if (tile->ground_ == Hash("ground_water"))
+                            if (tile->ground_ == Hash("GroundWater"))
                             {
                                 continue;
                             }
@@ -206,7 +206,7 @@ namespace Forradia
 
                         if (tile->elevation_ >= 2)
                         {
-                            tile->ground_ = Hash("ground_rock");
+                            tile->ground_ = Hash("GroundRock");
                         }
                     }
                 }
@@ -240,15 +240,15 @@ namespace Forradia
 
                 auto tile{worldArea->GetTile(x, y)};
 
-                if (tile->ground_ == Hash("ground_water") ||
-                    tile->ground_ == Hash("ground_rock"))
+                if (tile->ground_ == Hash("GroundWater") ||
+                    tile->ground_ == Hash("GroundRock"))
                 {
                     continue;
                 }
 
                 tile->tileObjects_->Clear();
 
-                tile->tileObjects_->AddObject("object_tree_2");
+                tile->tileObjects_->AddObject("ObjectTree2");
             }
         }
 
@@ -273,15 +273,15 @@ namespace Forradia
 
                 auto tile{worldArea->GetTile(x, y)};
 
-                if (tile->ground_ == Hash("ground_water") ||
-                    tile->ground_ == Hash("ground_rock"))
+                if (tile->ground_ == Hash("GroundWater") ||
+                    tile->ground_ == Hash("GroundRock"))
                 {
                     continue;
                 }
 
                 tile->tileObjects_->Clear();
 
-                tile->tileObjects_->AddObject("object_tree_1");
+                tile->tileObjects_->AddObject("ObjectTree1");
             }
         }
 
@@ -294,14 +294,14 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_water") ||
-                tile->ground_ == Hash("ground_dirt") ||
-                tile->ground_ == Hash("ground_rock"))
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundDirt") ||
+                tile->ground_ == Hash("GroundRock"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_bush_1");
+            tile->tileObjects_->AddObject("ObjectBush1");
         }
 
         auto numStoneBoulders{100 + rand() % 50};
@@ -313,13 +313,13 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_grass") ||
-                tile->ground_ == Hash("ground_dirt"))
+            if (tile->ground_ == Hash("GroundGrass") ||
+                tile->ground_ == Hash("GroundDirt"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_stone_boulder");
+            tile->tileObjects_->AddObject("ObjectStoneBoulder");
         }
     }
 
@@ -337,12 +337,12 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_water"))
+            if (tile->ground_ == Hash("GroundWater"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_stone");
+            tile->tileObjects_->AddObject("ObjectStone");
         }
 
         auto numBranches{500 + rand() % 50};
@@ -354,13 +354,13 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_water") ||
-                tile->ground_ == Hash("ground_rock"))
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundRock"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_branch");
+            tile->tileObjects_->AddObject("ObjectBranch");
         }
 
         auto numPinkFlowers{500 + rand() % 50};
@@ -372,14 +372,14 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_water") ||
-                tile->ground_ == Hash("ground_rock") ||
-                tile->ground_ == Hash("ground_dirt"))
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundRock") ||
+                tile->ground_ == Hash("GroundDirt"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_pink_flower");
+            tile->tileObjects_->AddObject("ObjectPinkFlower");
         }
 
         auto numLeaves{500 + rand() % 50};
@@ -391,13 +391,13 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("ground_water") ||
-                tile->ground_ == Hash("ground_rock"))
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundRock"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("object_leaf");
+            tile->tileObjects_->AddObject("ObjectLeaf");
         }
     }
 }

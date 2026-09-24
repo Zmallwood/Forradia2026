@@ -45,28 +45,28 @@ namespace Forradia
 
         switch (groundType)
         {
-        case Hash("ground_grass"):
+        case Hash("GroundGrass"):
         {
-            groundImageName = "ground_first_person_grass";
+            groundImageName = "GroundFirstPersonGrass";
             break;
         }
-        case Hash("ground_water"):
+        case Hash("GroundWater"):
         {
             auto water_anim_index{(Now() % 450) / 150};
 
             groundImageName =
-                "ground_first_person_water_" + std::to_string(water_anim_index);
+                "GroundFirstPersonWater_" + std::to_string(water_anim_index);
 
             break;
         }
-        case Hash("ground_dirt"):
+        case Hash("GroundDirt"):
         {
-            groundImageName = "ground_first_person_dirt";
+            groundImageName = "GroundFirstPersonDirt";
             break;
         }
-        case Hash("ground_rock"):
+        case Hash("GroundRock"):
         {
-            groundImageName = "ground_first_person_rock";
+            groundImageName = "GroundFirstPersonRock";
             break;
         }
         }
@@ -198,9 +198,9 @@ namespace Forradia
 
         auto handY{1.0f - handHeight + handYOffset + handAnimation};
 
-        _<ImageRenderer>().DrawImage("hand_left", leftHandX, handY, handWidth,
+        _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
                                      handHeight);
-        _<ImageRenderer>().DrawImage("hand_right", rightHandX, handY, handWidth,
+        _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
                                      handHeight);
 
         _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,

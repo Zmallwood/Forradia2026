@@ -156,7 +156,7 @@ namespace Forradia
 
                 for (auto i = 0; i < elevation; i++)
                 {
-                    _<ImageRenderer>().DrawImage("elevation", tileX,
+                    _<ImageRenderer>().DrawImage("Elevation", tileX,
                                                  tileY + tileHeight / 4,
                                                  tileWidth, tileHeight * 3 / 4);
 
@@ -165,12 +165,12 @@ namespace Forradia
 
                 auto ground{tile->ground_};
 
-                if (ground == Hash("ground_water"))
+                if (ground == Hash("GroundWater"))
                 {
                     auto waterAnimIndex{
                         ((Now() + 10 * xCoordinate * yCoordinate) % 900) / 300};
 
-                    std::string groundImageName{"ground_water_" +
+                    std::string groundImageName{"GroundWater_" +
                                                 std::to_string(waterAnimIndex)};
 
                     ground = Hash(groundImageName);
@@ -182,31 +182,31 @@ namespace Forradia
 
                 if (elevation > elevationNorth)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_north", tileX,
+                    _<ImageRenderer>().DrawImage("ElevationEdgeNorth", tileX,
                                                  tileY, tileWidth, tileHeight);
                 }
 
                 if (elevation > elevationEast)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_east", tileX,
+                    _<ImageRenderer>().DrawImage("ElevationEdgeEast", tileX,
                                                  tileY, tileWidth, tileHeight);
                 }
 
                 if (elevation > elevationSouth)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_south", tileX,
+                    _<ImageRenderer>().DrawImage("ElevationEdgeSouth", tileX,
                                                  tileY, tileWidth, tileHeight);
                 }
 
                 if (elevation > elevationWest)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_west", tileX,
+                    _<ImageRenderer>().DrawImage("ElevationEdgeWest", tileX,
                                                  tileY, tileWidth, tileHeight);
                 }
 
                 if (xCoordinate == facedTile.x && yCoordinate == facedTile.y)
                 {
-                    _<ImageRenderer>().DrawImage("faced_tile", tileX, tileY,
+                    _<ImageRenderer>().DrawImage("FacedTile", tileX, tileY,
                                                  tileWidth, tileHeight);
                 }
 
@@ -214,7 +214,7 @@ namespace Forradia
                     yCoordinate == hoveredCoordinate.y)
                 {
 
-                    _<ImageRenderer>().DrawImage("hovered_tile", tileX, tileY,
+                    _<ImageRenderer>().DrawImage("HoveredTile", tileX, tileY,
                                                  tileWidth, tileHeight);
                 }
 
@@ -249,7 +249,7 @@ namespace Forradia
                 if (xCoordinate == _<Player>().position_.x &&
                     yCoordinate == _<Player>().position_.y)
                 {
-                    _<ImageRenderer>().DrawImage("player", tileX,
+                    _<ImageRenderer>().DrawImage("Player", tileX,
                                                  tileY - tileHeight / 2,
                                                  tileWidth, tileHeight);
                 }
