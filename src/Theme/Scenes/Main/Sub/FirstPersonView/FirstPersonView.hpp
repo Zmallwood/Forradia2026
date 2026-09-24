@@ -15,6 +15,6 @@ namespace Forradia
         void Render();
 
       private:
-        static constexpr int k_hitEffectDuration_{500};
+        static constexpr int k_hitEffectDuration_{250};
     };
 }

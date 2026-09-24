@@ -19,7 +19,7 @@ namespace Forradia
         int type_{0};
         int ticksLastMovement_{0};
         float movementSpeed_{1.0f};
-        int ticksLastHitReceive_{0};
+        int ticksLastHitOnSelf_{0};
         PointF lastHitPosition_{-1.0f, -1.0f};
     };
 }

@@ -205,7 +205,7 @@ namespace Forradia
             _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
                                          imageWidth, imageHeight);
 
-            if (now - creature->ticksLastHitReceive_ < k_hitEffectDuration_)
+            if (now - creature->ticksLastHitOnSelf_ < k_hitEffectDuration_)
             {
                 auto lastHitPosition{creature->lastHitPosition_};
 

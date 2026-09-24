@@ -6,11 +6,12 @@
  ************************************************************************/
 
 #include "CreaturesMovement.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
 #include "Core/WorldStructure/Creature.hpp"
+#include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
-#include "Core/WorldStructure/Tile.hpp"
-#include "Core/CoreGameObjects/Player.hpp"
+
 
 namespace Forradia
 {
@@ -79,11 +80,21 @@ namespace Forradia
                     continue;
                 }
 
+                if (creature->type_ == Hash("CreatureDeer"))
+                {
+                    if (newTile->ground_ == Hash("GroundRock"))
+                    {
+                        ++it;
+
+                        continue;
+                    }
+                }
+
                 auto oldTile{worldArea->GetTile(position)};
 
                 newTile->creature_ = creature;
                 oldTile->creature_ = nullptr;
-                
+
                 creatures.erase(it++);
                 creatures.insert({creature, newPosition});
 

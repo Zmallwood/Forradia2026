@@ -16,7 +16,7 @@ namespace Forradia
 
     void Creature::Hit(int damage, PointF hitPosition)
     {
-        ticksLastHitReceive_ = Now();
+        ticksLastHitOnSelf_ = Now();
 
         lastHitPosition_ = hitPosition;
     }

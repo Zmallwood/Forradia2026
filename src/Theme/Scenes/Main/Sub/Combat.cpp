@@ -20,6 +20,14 @@ namespace Forradia
     {
         auto viewWidth{GameProperties::k_viewWidth_};
 
+        auto now{Now()};
+
+        if (now - _<Player>().ticksLastHitOnOther_ <
+            InvertSpeed(_<Player>().attackSpeed_))
+        {
+            return;
+        }
+
         auto mousePosition{GetMousePosition()};
 
         if (mousePosition.x < viewWidth / 2.0f)
@@ -79,5 +87,7 @@ namespace Forradia
         }
 
         creature->Hit(1, PointF{x, y});
+
+        _<Player>().ticksLastHitOnOther_ = now;
     }
 }

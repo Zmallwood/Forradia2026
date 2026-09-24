@@ -36,6 +36,8 @@ namespace Forradia
         Point destination_{-1, -1};
         Point facedTile_{-1, -1};
         WorldDirections facingDirection_{WorldDirections::South};
+        int ticksLastHitOnOther_{0};
+        float attackSpeed_{2.0f};
 
       private:
         void SpawnOnSuitableLocation();

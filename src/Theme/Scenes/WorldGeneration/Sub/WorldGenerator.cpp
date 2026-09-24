@@ -409,7 +409,7 @@ namespace Forradia
         auto worldArea{_<World>().currentWorldArea_};
         auto size{worldArea->GetSize()};
 
-        auto numDeers{100 + rand() % 20};
+        auto numDeers{150 + rand() % 20};
 
         for (auto i = 0; i < numDeers; i++)
         {
@@ -418,7 +418,8 @@ namespace Forradia
 
             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("GroundWater"))
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundRock"))
             {
                 continue;
             }
