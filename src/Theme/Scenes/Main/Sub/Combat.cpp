@@ -11,6 +11,7 @@
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Tile.hpp"
+#include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
@@ -89,5 +90,7 @@ namespace Forradia
         creature->Hit(1, PointF{x, y});
 
         _<Player>().ticksLastHitOnOther_ = now;
+
+        tile->tileObjects_->AddObject("ObjectPoolOfBlood");
     }
 }

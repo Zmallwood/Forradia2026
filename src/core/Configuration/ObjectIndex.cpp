@@ -20,6 +20,8 @@ namespace Forradia
             {Hash("ObjectPinkFlower"), {ObjectFlags::k_smallObject}});
 
         entries_.insert({Hash("ObjectLeaf"), {ObjectFlags::k_smallObject}});
+
+        entries_.insert({Hash("ObjectPoolOfBlood"), {ObjectFlags::k_smallObject}});
     }
 
     bool ObjectIndex::IsSmallObject(int objectHash)
