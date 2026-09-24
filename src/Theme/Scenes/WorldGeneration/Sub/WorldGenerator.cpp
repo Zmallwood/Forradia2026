@@ -6,11 +6,11 @@
  ************************************************************************/
 
 #include "WorldGenerator.hpp"
+#include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
-#include "Core/WorldStructure/Creature.hpp"
 
 namespace Forradia
 {
@@ -423,7 +423,11 @@ namespace Forradia
                 continue;
             }
 
-            tile->creature_ = std::make_shared<Creature>("CreatureDeer");
+            auto newCreature{std::make_shared<Creature>("CreatureDeer")};
+
+            worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+
+            tile->creature_ = newCreature;
         }
     }
 }

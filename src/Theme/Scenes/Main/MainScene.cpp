@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include "MainScene.hpp"
+#include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
@@ -13,10 +14,13 @@
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
 
+
 namespace Forradia
 {
     void MainScene::UpdateDerived()
     {
+        _<CreaturesMovement>().Update();
+
         _<KeyboardMovement>().Update();
 
         _<MouseMovement>().Update();

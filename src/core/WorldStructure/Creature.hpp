@@ -15,5 +15,7 @@ namespace Forradia
         Creature(std::string_view typeName);
 
         int type_{0};
+        int ticksLastMovement_{0};
+        float movementSpeed_{1.0f};
     };
 }
