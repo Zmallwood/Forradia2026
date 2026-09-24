@@ -71,6 +71,13 @@ namespace Forradia
         auto x{dx / imageWidth};
         auto y{dy / imageHeight};
 
+        auto isPixelVisible{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
+
+        if (!isPixelVisible)
+        {
+            return;
+        }
+
         creature->Hit(1, PointF{x, y});
     }
 }

@@ -37,15 +37,28 @@ namespace Forradia
 
         auto hash{Hash(pureName)};
 
-        auto surface{
-            std::shared_ptr<SDL_Surface>(IMG_Load(path.c_str()), SDLDeleter())};
+        auto loaded{IMG_Load(path.c_str())};
 
-        if (!surface)
+        if (!loaded)
         {
             std::cout << "Failed to load image " << path << ": "
                       << IMG_GetError() << std::endl;
             return;
         }
+
+        auto converted{SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32,
+                                                0)};
+
+        SDL_FreeSurface(loaded);
+
+        if (!converted)
+        {
+            std::cout << "Failed to convert image " << path << ": "
+                      << SDL_GetError() << std::endl;
+            return;
+        }
+
+        auto surface{std::shared_ptr<SDL_Surface>(converted, SDLDeleter())};
 
         auto texture{std::shared_ptr<SDL_Texture>(
             SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(),
@@ -81,36 +94,44 @@ namespace Forradia
         return {width, height};
     }
 
-    bool ImageBank::IsPixelVisible(int imageNameHash, int x, int y)
+    bool ImageBank::IsPixelVisible(int imageNameHash, float x, float y)
     {
         if (images_.contains(imageNameHash))
         {
             auto surface{images_.at(imageNameHash).surface.get()};
 
-            if (!surface || x < 0 || y < 0 || x >= surface->w ||
-                y >= surface->h)
+            if (!surface || !surface->pixels || surface->w <= 0 ||
+                surface->h <= 0 || x < 0.0f || y < 0.0f || x >= 1.0f ||
+                y >= 1.0f)
             {
                 return false;
             }
 
-            if (SDL_MUSTLOCK(surface))
+            auto xPx{static_cast<int>(x * static_cast<float>(surface->w))};
+            auto yPx{static_cast<int>(y * static_cast<float>(surface->h))};
+
+            if (xPx < 0)
             {
-                SDL_LockSurface(surface);
+                xPx = 0;
             }
 
-            Uint32 pixel{*reinterpret_cast<Uint32 *>(
-                static_cast<Uint8 *>(surface->pixels) + y * surface->pitch +
-                x * surface->format->BytesPerPixel)};
-
-            Uint8 alpha;
-
-            SDL_GetRGBA(pixel, surface->format, nullptr, nullptr, nullptr,
-                        &alpha);
-
-            if (SDL_MUSTLOCK(surface))
+            if (yPx < 0)
             {
-                SDL_UnlockSurface(surface);
+                yPx = 0;
             }
+
+            if (xPx >= surface->w)
+            {
+                xPx = surface->w - 1;
+            }
+
+            if (yPx >= surface->h)
+            {
+                yPx = surface->h - 1;
+            }
+
+            auto pixels{static_cast<Uint8 *>(surface->pixels)};
+            auto alpha{pixels[yPx * surface->pitch + xPx * 4 + 3]};
 
             return alpha > 0;
         }
