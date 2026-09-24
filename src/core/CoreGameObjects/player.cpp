@@ -45,7 +45,8 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("GroundWater"))
+        if (newTile &&
+            (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
         {
             return;
         }
@@ -64,7 +65,8 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("GroundWater"))
+        if (newTile &&
+            (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
         {
             return;
         }
@@ -83,7 +85,8 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("GroundWater"))
+        if (newTile &&
+            (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
         {
             return;
         }
@@ -102,7 +105,8 @@ namespace Forradia
 
         auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (newTile && newTile->ground_ == Hash("GroundWater"))
+        if (newTile &&
+            (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
         {
             return;
         }

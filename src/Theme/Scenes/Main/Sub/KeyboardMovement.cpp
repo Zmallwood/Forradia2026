@@ -35,6 +35,7 @@ namespace Forradia
                 }
                 else
                 {
+                    _<Player>().TurnNorth();
                     _<Player>().MoveNorth();
                 }
             }
@@ -47,6 +48,7 @@ namespace Forradia
                 }
                 else
                 {
+                    _<Player>().TurnEast();
                     _<Player>().MoveEast();
                 }
             }
@@ -59,6 +61,7 @@ namespace Forradia
                 }
                 else
                 {
+                    _<Player>().TurnSouth();
                     _<Player>().MoveSouth();
                 }
             }
@@ -71,6 +74,7 @@ namespace Forradia
                 }
                 else
                 {
+                    _<Player>().TurnWest();
                     _<Player>().MoveWest();
                 }
             }
