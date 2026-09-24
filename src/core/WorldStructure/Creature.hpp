@@ -9,26 +9,11 @@
 
 namespace Forradia
 {
-    class WorldGenerator
+    class Creature
     {
       public:
-        void GenerateNewWorld();
+        Creature(std::string_view typeName);
 
-      private:
-        void ClearWithGrass();
-
-        void GenerateDirt();
-
-        void GenerateWater();
-
-        void GenerateElevation();
-
-        void GenerateRock();
-
-        void GenerateLargeObjects();
-
-        void GenerateSmallObjects();
-
-        void GenerateCreatures();
+        int type_{0};
     };
 }

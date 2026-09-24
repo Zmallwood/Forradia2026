@@ -5,30 +5,12 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "Creature.hpp"
 
 namespace Forradia
 {
-    class WorldGenerator
+    Creature::Creature(std::string_view typeName)
     {
-      public:
-        void GenerateNewWorld();
-
-      private:
-        void ClearWithGrass();
-
-        void GenerateDirt();
-
-        void GenerateWater();
-
-        void GenerateElevation();
-
-        void GenerateRock();
-
-        void GenerateLargeObjects();
-
-        void GenerateSmallObjects();
-
-        void GenerateCreatures();
-    };
+        type_ = Hash(typeName);
+    }
 }

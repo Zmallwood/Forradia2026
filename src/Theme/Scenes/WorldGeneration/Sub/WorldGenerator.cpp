@@ -10,6 +10,7 @@
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
+#include "Core/WorldStructure/Creature.hpp"
 
 namespace Forradia
 {
@@ -28,6 +29,8 @@ namespace Forradia
         GenerateLargeObjects();
 
         GenerateSmallObjects();
+
+        GenerateCreatures();
     }
 
     void WorldGenerator::ClearWithGrass()
@@ -398,6 +401,29 @@ namespace Forradia
             }
 
             tile->tileObjects_->AddObject("ObjectLeaf");
+        }
+    }
+
+    void WorldGenerator::GenerateCreatures()
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+        auto size{worldArea->GetSize()};
+
+        auto numDeers{100 + rand() % 20};
+
+        for (auto i = 0; i < numDeers; i++)
+        {
+            auto x{rand() % size.width};
+            auto y{rand() % size.height};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile->ground_ == Hash("GroundWater"))
+            {
+                continue;
+            }
+
+            tile->creature_ = std::make_shared<Creature>("CreatureDeer");
         }
     }
 }

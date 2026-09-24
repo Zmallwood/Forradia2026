@@ -13,12 +13,14 @@
 #include "Core/Rendering/Colors/ColorRenderer.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
+#include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "Theme/Scenes/Main/Sub/TileHovering.hpp"
+
 
 namespace Forradia
 {
@@ -244,6 +246,25 @@ namespace Forradia
 
                     _<ImageRenderer>().DrawImage(objectType, objectX, objectY,
                                                  objectWidth, objectHeight);
+                }
+
+                auto creature{tile->creature_};
+
+                if (creature)
+                {
+                    auto creatureType{creature->type_};
+
+                    auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+
+                    auto creatureWidth{imageSize.width / 60.0f * tileWidth};
+                    auto creatureHeight{imageSize.height / 60.0f * tileHeight};
+
+                    auto creatureX{tileX + tileWidth / 2 - creatureWidth / 2};
+                    auto creatureY{tileY + tileHeight / 2 - creatureHeight};
+
+                    _<ImageRenderer>().DrawImage(creatureType, creatureX,
+                                                 creatureY, creatureWidth,
+                                                 creatureHeight);
                 }
 
                 if (xCoordinate == _<Player>().position_.x &&

@@ -13,6 +13,7 @@
 #include "Core/Rendering/Colors/ColorRenderer.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
+#include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
@@ -119,16 +120,103 @@ namespace Forradia
             objectsOrdered[yPos] = positionedObject;
         }
 
+        constexpr float k_largeObjectScale{0.22f};
+        constexpr float k_smallObjectScale{0.08f};
+
         for (auto entry : objectsOrdered)
         {
-            auto xPos = entry.second.position_.x;
-            auto yPos = entry.second.position_.y;
+            auto xPos{entry.second.position_.x};
+            auto yPos{entry.second.position_.y};
+
+            if (yPos * tileUnitsWidth + xPos >=
+                tileUnitsWidth * tileUnitsWidth / 2)
+            {
+                break;
+            }
+
             auto objectType = entry.second.object_->type_;
 
             auto imageSize{_<ImageBank>().GetImageSize(objectType)};
 
-            constexpr float k_largeObjectScale{0.22f};
-            constexpr float k_smallObjectScale{0.08f};
+            float imageWidth;
+            float imageHeight;
+
+            auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+
+            if (isSmallObject)
+            {
+                imageWidth = imageSize.width / 60.0f * k_smallObjectScale;
+                imageHeight = imageSize.height / 60.0f *
+                              ConvertWidthToHeight(k_smallObjectScale);
+            }
+            else
+            {
+                imageWidth = imageSize.width / 60.0f * k_largeObjectScale;
+                imageHeight = imageSize.height / 60.0f *
+                              ConvertWidthToHeight(k_largeObjectScale);
+            }
+
+            auto tileWidth{viewWidth - 2 * k_margin_.x -
+                           static_cast<float>(tileUnitsWidth - yPos) /
+                               tileUnitsWidth * viewWidth * 0.6f};
+            auto tileLeft{1.0f - viewWidth + k_margin_.x +
+                          static_cast<float>(tileUnitsWidth - yPos) /
+                              tileUnitsWidth * viewWidth * 0.3f};
+
+            auto baseX{tileLeft +
+                       static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
+            auto baseY{0.75f + k_margin_.y +
+                       static_cast<float>(yPos + 1) / tileUnitsWidth *
+                           (0.25f - 2 * k_margin_.y)};
+
+            auto imageX{baseX - imageWidth / 2.0f};
+            auto imageY{baseY - imageHeight};
+
+            _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
+                                         imageHeight);
+        }
+
+        auto creature{facedTile->creature_};
+
+        if (creature)
+        {
+            auto creatureType{creature->type_};
+
+            auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+
+            auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
+            auto imageHeight{imageSize.height / 60.0f *
+                             ConvertWidthToHeight(k_largeObjectScale)};
+
+            auto tileWidth{viewWidth - 2 * k_margin_.x -
+                           0.5f * viewWidth * 0.6f};
+            auto tileLeft{1.0f - viewWidth + k_margin_.x +
+                          0.5f * viewWidth * 0.3f};
+
+            auto baseX{tileLeft + 0.5f * tileWidth};
+            auto baseY{0.75f + k_margin_.y + 0.5f * (0.25f - 2 * k_margin_.y)};
+
+            auto imageX{baseX - imageWidth / 2.0f};
+            auto imageY{baseY - imageHeight};
+
+            _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
+                                         imageWidth, imageHeight);
+        }
+
+        for (auto entry : objectsOrdered)
+        {
+            auto xPos{entry.second.position_.x};
+            auto yPos{entry.second.position_.y};
+
+            if (yPos * tileUnitsWidth + xPos <
+                tileUnitsWidth * tileUnitsWidth / 2)
+            {
+                continue;
+            }
+
+            auto objectType = entry.second.object_->type_;
+
+            auto imageSize{_<ImageBank>().GetImageSize(objectType)};
 
             float imageWidth;
             float imageHeight;

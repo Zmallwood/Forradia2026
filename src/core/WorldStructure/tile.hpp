@@ -10,6 +10,7 @@
 namespace Forradia
 {
     class TileObjects;
+    class Creature;
 
     class Tile
     {
@@ -19,5 +20,6 @@ namespace Forradia
         int ground_{0};
         int elevation_{0};
         std::shared_ptr<TileObjects> tileObjects_;
+        std::shared_ptr<Creature> creature_;
     };
 }
