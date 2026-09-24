@@ -26,8 +26,8 @@ namespace Forradia
                 auto dx{destination.x - _<Player>().position_.x};
                 auto dy{destination.y - _<Player>().position_.y};
 
-                auto abs_dx{std::abs(dx)};
-                auto abs_dy{std::abs(dy)};
+                auto absDx{std::abs(dx)};
+                auto absDy{std::abs(dy)};
 
                 if (dx == 0 && dy == 0)
                 {
@@ -36,9 +36,9 @@ namespace Forradia
                     return;
                 }
 
-                if (dy < 0 && abs_dy > abs_dx)
+                if (dy < 0 && absDy > absDx)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnNorth();
                     }
@@ -47,9 +47,9 @@ namespace Forradia
                         _<Player>().MoveNorth();
                     }
                 }
-                else if (dy > 0 && abs_dy > abs_dx)
+                else if (dy > 0 && absDy > absDx)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnSouth();
                     }
@@ -58,9 +58,9 @@ namespace Forradia
                         _<Player>().MoveSouth();
                     }
                 }
-                else if (dx < 0 && abs_dx > abs_dy)
+                else if (dx < 0 && absDx > absDy)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnWest();
                     }
@@ -69,9 +69,9 @@ namespace Forradia
                         _<Player>().MoveWest();
                     }
                 }
-                else if (dx > 0 && abs_dx > abs_dy)
+                else if (dx > 0 && absDx > absDy)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnEast();
                     }
@@ -82,7 +82,7 @@ namespace Forradia
                 }
                 else if (dy < 0)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnNorth();
                     }
@@ -93,7 +93,7 @@ namespace Forradia
                 }
                 else if (dy > 0)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnSouth();
                     }
@@ -104,7 +104,7 @@ namespace Forradia
                 }
                 else if (dx < 0)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnWest();
                     }
@@ -115,7 +115,7 @@ namespace Forradia
                 }
                 else if (dx > 0)
                 {
-                    if (ctrl_key_down_)
+                    if (ctrlKeyDown_)
                     {
                         _<Player>().TurnEast();
                     }
@@ -134,7 +134,7 @@ namespace Forradia
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
-            ctrl_key_down_ = true;
+            ctrlKeyDown_ = true;
         }
     }
 
@@ -142,24 +142,24 @@ namespace Forradia
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
-            ctrl_key_down_ = false;
+            ctrlKeyDown_ = false;
         }
     }
 
     void MouseMovement::OnMouseDown(Uint8 button)
     {
-        auto view_width{GameProperties::k_viewWidth_};
+        auto viewWidth{GameProperties::k_viewWidth_};
 
-        auto mouse_position{GetMousePosition()};
+        auto mousePosition{GetMousePosition()};
 
-        if (mouse_position.x > view_width)
+        if (mousePosition.x > viewWidth)
         {
             return;
         }
 
         if (button == SDL_BUTTON_LEFT)
         {
-            _<Player>().destination_ = _<TileHovering>().hovered_coordinate_;
+            _<Player>().destination_ = _<TileHovering>().hoveredCoordinate_;
         }
     }
 }

@@ -16,83 +16,83 @@ namespace Forradia
 {
     void TileHovering::Update()
     {
-        auto mouse_position{GetMousePosition()};
+        auto mousePosition{GetMousePosition()};
 
-        auto world_area{_<World>().currentWorldArea_};
+        auto worldArea{_<World>().currentWorldArea_};
 
-        auto player_tile{world_area->GetTile(_<Player>().position_)};
+        auto playerTile{worldArea->GetTile(_<Player>().position_)};
 
-        if (!player_tile)
+        if (!playerTile)
         {
             return;
         }
 
-        auto player_elevation{player_tile->elevation_};
+        auto playerElevation{playerTile->elevation_};
 
-        auto tile_width{GameProperties::k_tileWidth_};
-        auto tile_height{ConvertWidthToHeight(tile_width)};
+        auto tileWidth{GameProperties::k_tileWidth_};
+        auto tileHeight{ConvertWidthToHeight(tileWidth)};
 
         for (auto y = -6; y < 11 + 6; y++)
         {
             for (auto x = -6; x < 11 + 6; x++)
             {
-                auto x_coordinate{_<Player>().position_.x - 5 + x};
-                auto y_coordinate{_<Player>().position_.y - 5 + y};
+                auto xCoordinate{_<Player>().position_.x - 5 + x};
+                auto yCoordinate{_<Player>().position_.y - 5 + y};
 
-                if (!world_area->IsValidCoordinate(x_coordinate, y_coordinate))
+                if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
                 {
                     continue;
                 }
 
-                auto tile{world_area->GetTile(x_coordinate, y_coordinate)};
+                auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
 
                 auto elevation{tile->elevation_};
 
-                auto tile_x{0.25f - tile_width / 2 + x * tile_width / 2 -
-                            y * tile_width / 2};
+                auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
+                           y * tileWidth / 2};
 
-                auto tile_y{0.5f - 5.5f * tile_height + x * tile_height / 2 +
-                            y * tile_height / 2 +
-                            player_elevation * tile_height / 4};
+                auto tileY{0.5f - 5.5f * tileHeight + x * tileHeight / 2 +
+                           y * tileHeight / 2 +
+                           playerElevation * tileHeight / 4};
 
-                auto center_bottom{
-                    PointF{tile_x + tile_width / 2, tile_y + tile_height / 2}};
+                auto centerBottom{
+                    PointF{tileX + tileWidth / 2, tileY + tileHeight / 2}};
 
-                auto dx_bottom{std::abs(mouse_position.x - center_bottom.x) /
-                               (tile_width / 2)};
-                auto dy_bottom{std::abs(mouse_position.y - center_bottom.y) /
-                               (tile_height / 2)};
-                if (dx_bottom + dy_bottom <= 1.0f)
+                auto dxBottom{std::abs(mousePosition.x - centerBottom.x) /
+                              (tileWidth / 2)};
+                auto dyBottom{std::abs(mousePosition.y - centerBottom.y) /
+                              (tileHeight / 2)};
+                if (dxBottom + dyBottom <= 1.0f)
                 {
-                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
+                    hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
 
-                auto elevation_height{elevation * tile_height / 4};
+                auto elevationHeight{elevation * tileHeight / 4};
 
-                RectF elevation_rect{
-                    tile_x, tile_y - elevation_height + tile_height / 2,
-                    tile_width, elevation_height};
+                RectF elevationRect{tileX,
+                                    tileY - elevationHeight + tileHeight / 2,
+                                    tileWidth, elevationHeight};
 
-                if (elevation_rect.Contains(mouse_position))
+                if (elevationRect.Contains(mousePosition))
                 {
-                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
+                    hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
 
                 for (auto i = 0; i < elevation; i++)
                 {
-                    tile_y -= tile_height / 4;
+                    tileY -= tileHeight / 4;
                 }
 
-                auto center_top{
-                    PointF{tile_x + tile_width / 2, tile_y + tile_height / 2}};
+                auto centerTop{
+                    PointF{tileX + tileWidth / 2, tileY + tileHeight / 2}};
 
-                auto dx_top{std::abs(mouse_position.x - center_top.x) /
-                            (tile_width / 2)};
-                auto dy_top{std::abs(mouse_position.y - center_top.y) /
-                            (tile_height / 2)};
-                if (dx_top + dy_top <= 1.0f)
+                auto dxTop{std::abs(mousePosition.x - centerTop.x) /
+                           (tileWidth / 2)};
+                auto dyTop{std::abs(mousePosition.y - centerTop.y) /
+                           (tileHeight / 2)};
+                if (dxTop + dyTop <= 1.0f)
                 {
-                    hovered_coordinate_ = Point{x_coordinate, y_coordinate};
+                    hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
             }
         }

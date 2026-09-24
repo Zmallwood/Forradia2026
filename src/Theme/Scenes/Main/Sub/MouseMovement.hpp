@@ -21,6 +21,6 @@ namespace Forradia
         void OnMouseDown(Uint8 button);
 
       private:
-        bool ctrl_key_down_{false};
+        bool ctrlKeyDown_{false};
     };
 }

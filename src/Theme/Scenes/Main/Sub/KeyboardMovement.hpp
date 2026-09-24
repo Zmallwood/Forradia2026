@@ -19,6 +19,6 @@ namespace Forradia
         void OnKeyUp(SDL_Keycode key);
 
       private:
-        std::set<SDL_Keycode> pressed_keys_;
+        std::set<SDL_Keycode> pressedKeys_;
     };
 }

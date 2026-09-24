@@ -14,6 +14,6 @@ namespace Forradia
       public:
         void Update();
 
-        Point hovered_coordinate_{-1, -1};
+        Point hoveredCoordinate_{-1, -1};
     };
 }

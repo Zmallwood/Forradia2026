@@ -12,24 +12,24 @@ namespace Forradia
 {
     void KeyboardMovement::Update()
     {
-        auto w_pressed{pressed_keys_.contains(SDLK_w)};
-        auto s_pressed{pressed_keys_.contains(SDLK_s)};
-        auto a_pressed{pressed_keys_.contains(SDLK_a)};
-        auto q_pressed{pressed_keys_.contains(SDLK_q)};
+        auto wPressed{pressedKeys_.contains(SDLK_w)};
+        auto sPressed{pressedKeys_.contains(SDLK_s)};
+        auto aPressed{pressedKeys_.contains(SDLK_a)};
+        auto qPressed{pressedKeys_.contains(SDLK_q)};
 
         auto now{Now()};
 
         if (now > _<Player>().ticksLastMovement_ +
                       InvertSpeed(_<Player>().movementSpeed_) &&
-            (w_pressed || s_pressed || a_pressed || q_pressed))
+            (wPressed || sPressed || aPressed || qPressed))
         {
 
             _<Player>().destination_ = {-1, -1};
 
-            if (w_pressed)
+            if (wPressed)
             {
-                if (pressed_keys_.contains(SDLK_LCTRL) ||
-                    pressed_keys_.contains(SDLK_RCTRL))
+                if (pressedKeys_.contains(SDLK_LCTRL) ||
+                    pressedKeys_.contains(SDLK_RCTRL))
                 {
                     _<Player>().TurnNorth();
                 }
@@ -38,10 +38,10 @@ namespace Forradia
                     _<Player>().MoveNorth();
                 }
             }
-            else if (s_pressed)
+            else if (sPressed)
             {
-                if (pressed_keys_.contains(SDLK_LCTRL) ||
-                    pressed_keys_.contains(SDLK_RCTRL))
+                if (pressedKeys_.contains(SDLK_LCTRL) ||
+                    pressedKeys_.contains(SDLK_RCTRL))
                 {
                     _<Player>().TurnEast();
                 }
@@ -50,10 +50,10 @@ namespace Forradia
                     _<Player>().MoveEast();
                 }
             }
-            else if (a_pressed)
+            else if (aPressed)
             {
-                if (pressed_keys_.contains(SDLK_LCTRL) ||
-                    pressed_keys_.contains(SDLK_RCTRL))
+                if (pressedKeys_.contains(SDLK_LCTRL) ||
+                    pressedKeys_.contains(SDLK_RCTRL))
                 {
                     _<Player>().TurnSouth();
                 }
@@ -62,10 +62,10 @@ namespace Forradia
                     _<Player>().MoveSouth();
                 }
             }
-            else if (q_pressed)
+            else if (qPressed)
             {
-                if (pressed_keys_.contains(SDLK_LCTRL) ||
-                    pressed_keys_.contains(SDLK_RCTRL))
+                if (pressedKeys_.contains(SDLK_LCTRL) ||
+                    pressedKeys_.contains(SDLK_RCTRL))
                 {
                     _<Player>().TurnWest();
                 }
@@ -81,11 +81,11 @@ namespace Forradia
 
     void KeyboardMovement::OnKeyDown(SDL_Keycode key)
     {
-        pressed_keys_.insert(key);
+        pressedKeys_.insert(key);
     }
 
     void KeyboardMovement::OnKeyUp(SDL_Keycode key)
     {
-        pressed_keys_.erase(key);
+        pressedKeys_.erase(key);
     }
 }
