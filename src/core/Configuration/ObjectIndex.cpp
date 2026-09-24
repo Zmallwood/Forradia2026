@@ -12,20 +12,18 @@ namespace Forradia
 {
     ObjectIndex::ObjectIndex()
     {
-        entries_.insert(
-            {GetHash("object_stone"), {ObjectFlags::k_smallObject}});
+        entries_.insert({Hash("object_stone"), {ObjectFlags::k_smallObject}});
+
+        entries_.insert({Hash("object_branch"), {ObjectFlags::k_smallObject}});
 
         entries_.insert(
-            {GetHash("object_branch"), {ObjectFlags::k_smallObject}});
+            {Hash("object_pink_flower"), {ObjectFlags::k_smallObject}});
 
-        entries_.insert(
-            {GetHash("object_pink_flower"), {ObjectFlags::k_smallObject}});
-
-        entries_.insert({GetHash("object_leaf"), {ObjectFlags::k_smallObject}});
+        entries_.insert({Hash("object_leaf"), {ObjectFlags::k_smallObject}});
     }
 
-    bool ObjectIndex::IsSmallObject(int object_hash)
+    bool ObjectIndex::IsSmallObject(int objectHash)
     {
-        return entries_[object_hash].flags & ObjectFlags::k_smallObject;
+        return entries_[objectHash].flags & ObjectFlags::k_smallObject;
     }
 }

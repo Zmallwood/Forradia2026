@@ -31,7 +31,7 @@
 #include "Common/CanvasUtilities.hpp"
 #include "Common/Constants.hpp"
 #include "Common/FilePathUtilities.hpp"
-#include "Common/GetHash.hpp"
+#include "Common/Hash.hpp"
 #include "Common/MouseUtilities.hpp"
 #include "Common/NumberUtilities.hpp"
 #include "Common/SDLDeleter.hpp"

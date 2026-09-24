@@ -11,9 +11,9 @@ namespace Forradia
 {
     enum class WorldDirections
     {
-        north,
-        east,
-        south,
-        west,
+        North,
+        East,
+        South,
+        West,
     };
 }

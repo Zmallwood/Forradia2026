@@ -32,7 +32,7 @@ namespace Forradia
         {
         }
 
-        virtual void OnMouseUp(Uint8 button, int click_speed)
+        virtual void OnMouseUp(Uint8 button, int clickSpeed)
         {
         }
 

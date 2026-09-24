@@ -12,13 +12,13 @@ namespace Forradia
 {
     void ImageBank::LoadImages()
     {
-        auto images_directory{SDL_GetBasePath() +
-                              std::string(k_relativeImagesDirectory_)};
+        auto imagesDirectory{SDL_GetBasePath() +
+                             std::string(k_relativeImagesDirectory_)};
 
-        images_directory = Replace(images_directory, "\\", "/");
+        imagesDirectory = Replace(imagesDirectory, "\\", "/");
 
         auto rdi{
-            std::filesystem::recursive_directory_iterator(images_directory)};
+            std::filesystem::recursive_directory_iterator(imagesDirectory)};
 
         for (const auto &entry : rdi)
         {
@@ -29,13 +29,13 @@ namespace Forradia
         }
     }
 
-    void ImageBank::LoadSingleImage(std::string_view full_path)
+    void ImageBank::LoadSingleImage(std::string_view fullPath)
     {
-        std::string path{Replace(full_path, "\\", "/")};
+        std::string path{Replace(fullPath, "\\", "/")};
 
-        auto pure_name{GetFileNameNoExt(path)};
+        auto pureName{GetFileNameNoExt(path)};
 
-        auto hash{GetHash(pure_name)};
+        auto hash{Hash(pureName)};
 
         auto surface{
             std::shared_ptr<SDL_Surface>(IMG_Load(path.c_str()), SDLDeleter())};

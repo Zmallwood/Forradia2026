@@ -31,7 +31,7 @@ namespace Forradia
         _<ColorRenderer>().FillRect(0.0f, 0.0f, view_width, 1.0f,
                                     Colors::k_black);
 
-        auto world_area{_<World>().current_world_area_};
+        auto world_area{_<World>().currentWorldArea_};
 
         auto player_tile{world_area->GetTile(_<Player>().position_)};
 
@@ -56,8 +56,7 @@ namespace Forradia
                 auto x_coordinate{_<Player>().position_.x - 5 + x};
                 auto y_coordinate{_<Player>().position_.y - 5 + y};
 
-                if (!world_area->IsValidCoordinate(x_coordinate,
-                                                     y_coordinate))
+                if (!world_area->IsValidCoordinate(x_coordinate, y_coordinate))
                 {
                     continue;
                 }
@@ -89,7 +88,7 @@ namespace Forradia
                             continue;
                         }
 
-                        for (auto object : tile->tile_objects_->objects_)
+                        for (auto object : tile->tileObjects_->objects_)
                         {
                             if (!_<ObjectIndex>().IsSmallObject(
                                     object.second->type_))
@@ -166,67 +165,66 @@ namespace Forradia
 
                 auto ground{tile->ground_};
 
-                if (ground == GetHash("ground_water"))
+                if (ground == Hash("ground_water"))
                 {
                     auto water_anim_index{
-                        ((Ticks() + 10 * x_coordinate * y_coordinate) % 900) /
+                        ((Now() + 10 * x_coordinate * y_coordinate) % 900) /
                         300};
 
                     std::string ground_image_name{
                         "ground_water_" + std::to_string(water_anim_index)};
 
-                    ground = GetHash(ground_image_name);
+                    ground = Hash(ground_image_name);
                 }
 
                 _<ImageRenderer>().DrawImage(ground, tile_x, tile_y,
-                                               tile_width + k_smallValue,
-                                               tile_height + k_smallValue);
+                                             tile_width + k_smallValue,
+                                             tile_height + k_smallValue);
 
                 if (elevation > elevation_north)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_north",
-                                                   tile_x, tile_y, tile_width,
-                                                   tile_height);
+                    _<ImageRenderer>().DrawImage("elevation_edge_north", tile_x,
+                                                 tile_y, tile_width,
+                                                 tile_height);
                 }
 
                 if (elevation > elevation_east)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_east",
-                                                   tile_x, tile_y, tile_width,
-                                                   tile_height);
+                    _<ImageRenderer>().DrawImage("elevation_edge_east", tile_x,
+                                                 tile_y, tile_width,
+                                                 tile_height);
                 }
 
                 if (elevation > elevation_south)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_south",
-                                                   tile_x, tile_y, tile_width,
-                                                   tile_height);
+                    _<ImageRenderer>().DrawImage("elevation_edge_south", tile_x,
+                                                 tile_y, tile_width,
+                                                 tile_height);
                 }
 
                 if (elevation > elevation_west)
                 {
-                    _<ImageRenderer>().DrawImage("elevation_edge_west",
-                                                   tile_x, tile_y, tile_width,
-                                                   tile_height);
+                    _<ImageRenderer>().DrawImage("elevation_edge_west", tile_x,
+                                                 tile_y, tile_width,
+                                                 tile_height);
                 }
 
                 if (x_coordinate == faced_tile.x &&
                     y_coordinate == faced_tile.y)
                 {
                     _<ImageRenderer>().DrawImage("faced_tile", tile_x, tile_y,
-                                                   tile_width, tile_height);
+                                                 tile_width, tile_height);
                 }
 
                 if (x_coordinate == hovered_coordinate.x &&
                     y_coordinate == hovered_coordinate.y)
                 {
 
-                    _<ImageRenderer>().DrawImage("hovered_tile", tile_x,
-                                                   tile_y, tile_width,
-                                                   tile_height);
+                    _<ImageRenderer>().DrawImage("hovered_tile", tile_x, tile_y,
+                                                 tile_width, tile_height);
                 }
 
-                auto objects{tile->tile_objects_->objects_};
+                auto objects{tile->tileObjects_->objects_};
 
                 for (auto entry : objects)
                 {
@@ -242,8 +240,7 @@ namespace Forradia
                         continue;
                     }
 
-                    auto image_size{
-                        _<ImageBank>().GetImageSize(object_type)};
+                    auto image_size{_<ImageBank>().GetImageSize(object_type)};
 
                     auto object_width{image_size.width / 60.0f * tile_width};
                     auto object_height{image_size.height / 60.0f * tile_height};
@@ -252,16 +249,16 @@ namespace Forradia
                     auto object_y{tile_y + tile_height / 2 - object_height};
 
                     _<ImageRenderer>().DrawImage(object_type, object_x,
-                                                   object_y, object_width,
-                                                   object_height);
+                                                 object_y, object_width,
+                                                 object_height);
                 }
 
                 if (x_coordinate == _<Player>().position_.x &&
                     y_coordinate == _<Player>().position_.y)
                 {
                     _<ImageRenderer>().DrawImage("player", tile_x,
-                                                   tile_y - tile_height / 2,
-                                                   tile_width, tile_height);
+                                                 tile_y - tile_height / 2,
+                                                 tile_width, tile_height);
                 }
             }
         }

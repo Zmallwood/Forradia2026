@@ -18,6 +18,6 @@ namespace Forradia
 
         int ground_{0};
         int elevation_{0};
-        std::shared_ptr<TileObjects> tile_objects_;
+        std::shared_ptr<TileObjects> tileObjects_;
     };
 }

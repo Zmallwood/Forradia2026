@@ -11,14 +11,14 @@ namespace Forradia
 {
     PointF GetMousePosition()
     {
-        auto canvas_size{GetCanvasSize()};
+        auto canvasSize{GetCanvasSize()};
 
         int x;
         int y;
 
         SDL_GetMouseState(&x, &y);
 
-        return PointF{static_cast<float>(x) / canvas_size.width,
-                      static_cast<float>(y) / canvas_size.height};
+        return {static_cast<float>(x) / canvasSize.width,
+                static_cast<float>(y) / canvasSize.height};
     }
 }

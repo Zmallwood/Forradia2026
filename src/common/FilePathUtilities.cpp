@@ -11,8 +11,8 @@ namespace Forradia
 {
     std::string GetFileNameNoExt(std::string_view path)
     {
-        auto file_name{std::filesystem::path(path).filename().string()};
+        auto fileName{std::filesystem::path(path).filename().string()};
 
-        return file_name.substr(0, file_name.find_last_of("."));
+        return fileName.substr(0, fileName.find_last_of("."));
     }
 }

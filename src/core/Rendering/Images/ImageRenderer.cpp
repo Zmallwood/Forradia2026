@@ -11,28 +11,28 @@
 
 namespace Forradia
 {
-    void ImageRenderer::DrawImage(int image_name_hash, float x, float y,
+    void ImageRenderer::DrawImage(int imageNameHash, float x, float y,
                                   float width, float height)
     {
-        auto canvas_size{GetCanvasSize()};
+        auto canvasSize{GetCanvasSize()};
 
-        auto x_px{static_cast<int>(x * canvas_size.width)};
-        auto y_px{static_cast<int>(y * canvas_size.height)};
-        auto width_px{static_cast<int>(width * canvas_size.width)};
-        auto height_px{static_cast<int>(height * canvas_size.height)};
+        auto xPx{static_cast<int>(x * canvasSize.width)};
+        auto yPx{static_cast<int>(y * canvasSize.height)};
+        auto widthPx{static_cast<int>(width * canvasSize.width)};
+        auto heightPx{static_cast<int>(height * canvasSize.height)};
 
-        auto rect{SDL_Rect{x_px, y_px, width_px, height_px}};
+        auto rect{SDL_Rect{xPx, yPx, widthPx, heightPx}};
 
-        auto image{_<ImageBank>().GetImage(image_name_hash)};
+        auto image{_<ImageBank>().GetImage(imageNameHash)};
 
         SDL_RenderCopy(_<SDLDevice>().renderer_.get(), image.get(), nullptr,
                        &rect);
     }
 
-    void ImageRenderer::DrawImage(std::string_view image_name, float x, float y,
+    void ImageRenderer::DrawImage(std::string_view imageName, float x, float y,
                                   float width, float height)
     {
-        auto hash{GetHash(image_name)};
+        auto hash{Hash(imageName)};
 
         DrawImage(hash, x, y, width, height);
     }

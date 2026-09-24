@@ -12,83 +12,82 @@
 #include "Theme/Scenes/MainMenu/MainMenuScene.hpp"
 #include "Theme/Scenes/WorldGeneration/WorldGenerationScene.hpp"
 
-
 namespace Forradia
 {
     SceneManager::SceneManager()
     {
-        AddScene("intro_scene", _<IntroScene>());
-        AddScene("main_menu_scene", _<MainMenuScene>());
-        AddScene("world_generation_scene", _<WorldGenerationScene>());
-        AddScene("main_scene", _<MainScene>());
+        AddScene("IntroScene", _<IntroScene>());
+        AddScene("MainMenuScene", _<MainMenuScene>());
+        AddScene("WorldGenerationScene", _<WorldGenerationScene>());
+        AddScene("MainScene", _<MainScene>());
 
-        GoToScene("intro_scene");
+        GoToScene("IntroScene");
     }
 
-    void SceneManager::AddScene(std::string_view scene_name, IScene &scene)
+    void SceneManager::AddScene(std::string_view sceneName, IScene &scene)
     {
-        auto hash{GetHash(scene_name)};
+        auto hash{Hash(sceneName)};
 
         scenes_.insert({hash, scene});
     }
 
-    void SceneManager::GoToScene(std::string_view scene_name)
+    void SceneManager::GoToScene(std::string_view sceneName)
     {
-        auto hash{GetHash(scene_name)};
+        auto hash{Hash(sceneName)};
 
         if (scenes_.contains(hash))
         {
-            current_scene_ = hash;
+            currentScene_ = hash;
 
-            scenes_.at(current_scene_).OnEnter();
+            scenes_.at(currentScene_).OnEnter();
         }
     }
 
     void SceneManager::UpdateCurrentScene()
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).Update();
+            scenes_.at(currentScene_).Update();
         }
     }
 
     void SceneManager::RenderCurrentScene()
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).Render();
+            scenes_.at(currentScene_).Render();
         }
     }
 
     void SceneManager::OnKeyDownCurrentScene(SDL_Keycode key)
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).OnKeyDown(key);
+            scenes_.at(currentScene_).OnKeyDown(key);
         }
     }
 
     void SceneManager::OnKeyUpCurrentScene(SDL_Keycode key)
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).OnKeyUp(key);
+            scenes_.at(currentScene_).OnKeyUp(key);
         }
     }
 
     void SceneManager::OnMouseDownCurrentScene(Uint8 button)
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).OnMouseDown(button);
+            scenes_.at(currentScene_).OnMouseDown(button);
         }
     }
 
-    void SceneManager::OnMouseUpCurrentScene(Uint8 button, int click_speed)
+    void SceneManager::OnMouseUpCurrentScene(Uint8 button, int clickSpeed)
     {
-        if (scenes_.contains(current_scene_))
+        if (scenes_.contains(currentScene_))
         {
-            scenes_.at(current_scene_).OnMouseUp(button, click_speed);
+            scenes_.at(currentScene_).OnMouseUp(button, clickSpeed);
         }
     }
 }

@@ -13,19 +13,19 @@ namespace Forradia
     void ColorRenderer::FillRect(float x, float y, float width, float height,
                                  Color color)
     {
-        auto canvas_size{GetCanvasSize()};
+        auto canvasSize{GetCanvasSize()};
 
-        auto dest_x{static_cast<int>(x * canvas_size.width)};
-        auto dest_y{static_cast<int>(y * canvas_size.height)};
-        auto dest_width{static_cast<int>(width * canvas_size.width)};
-        auto dest_height{static_cast<int>(height * canvas_size.height)};
+        auto destX{static_cast<int>(x * canvasSize.width)};
+        auto destY{static_cast<int>(y * canvasSize.height)};
+        auto destWidth{static_cast<int>(width * canvasSize.width)};
+        auto destHeight{static_cast<int>(height * canvasSize.height)};
 
-        auto rect{SDL_Rect{dest_x, dest_y, dest_width, dest_height}};
+        auto rect{SDL_Rect{destX, destY, destWidth, destHeight}};
 
-        auto sdl_color{color.ToSDLColor()};
+        auto sdlColor{color.ToSDLColor()};
 
-        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdl_color.r,
-                               sdl_color.g, sdl_color.b, sdl_color.a);
+        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+                               sdlColor.g, sdlColor.b, sdlColor.a);
 
         SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
     }
@@ -33,19 +33,19 @@ namespace Forradia
     void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
                                  Color color)
     {
-        auto canvas_size{GetCanvasSize()};
+        auto canvasSize{GetCanvasSize()};
 
-        auto dest_x1{static_cast<int>(x1 * canvas_size.width)};
-        auto dest_y1{static_cast<int>(y1 * canvas_size.height)};
-        auto dest_x2{static_cast<int>(x2 * canvas_size.width)};
-        auto dest_y2{static_cast<int>(y2 * canvas_size.height)};
+        auto destX1{static_cast<int>(x1 * canvasSize.width)};
+        auto destY1{static_cast<int>(y1 * canvasSize.height)};
+        auto destX2{static_cast<int>(x2 * canvasSize.width)};
+        auto destY2{static_cast<int>(y2 * canvasSize.height)};
 
-        auto sdl_color{color.ToSDLColor()};
+        auto sdlColor{color.ToSDLColor()};
 
-        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdl_color.r,
-                               sdl_color.g, sdl_color.b, sdl_color.a);
+        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+                               sdlColor.g, sdlColor.b, sdlColor.a);
 
-        SDL_RenderDrawLine(_<SDLDevice>().renderer_.get(), dest_x1, dest_y1,
-                           dest_x2, dest_y2);
+        SDL_RenderDrawLine(_<SDLDevice>().renderer_.get(), destX1, destY1,
+                           destX2, destY2);
     }
 }

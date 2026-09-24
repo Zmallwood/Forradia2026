@@ -26,6 +26,6 @@ namespace Forradia
         std::shared_ptr<SDL_Renderer> renderer_;
 
       private:
-        static constexpr std::string_view k_window_name_{"Darktale"};
+        static constexpr std::string_view k_windowName_{"Forradia"};
     };
 }

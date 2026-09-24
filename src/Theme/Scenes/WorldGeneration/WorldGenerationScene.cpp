@@ -15,6 +15,6 @@ namespace Forradia
     {
         _<WorldGenerator>().GenerateNewWorld();
 
-        _<SceneManager>().GoToScene("main_scene");
+        _<SceneManager>().GoToScene("MainScene");
     }
 }

@@ -18,7 +18,7 @@ namespace Forradia
     {
         auto mouse_position{GetMousePosition()};
 
-        auto world_area{_<World>().current_world_area_};
+        auto world_area{_<World>().currentWorldArea_};
 
         auto player_tile{world_area->GetTile(_<Player>().position_)};
 

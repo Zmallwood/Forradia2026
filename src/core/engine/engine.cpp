@@ -41,21 +41,52 @@ namespace Forradia
             switch (event.type)
             {
             case SDL_QUIT:
+            {
                 running_ = false;
                 break;
+            }
             case SDL_KEYDOWN:
+            {
                 _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
                 break;
+            }
             case SDL_KEYUP:
+            {
                 _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
                 break;
+            }
             case SDL_MOUSEBUTTONDOWN:
+            {
                 _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
+
+                switch (event.button.button)
+                {
+                case SDL_BUTTON_LEFT:
+                    ticksLeftMouseButtonDown_ = Now();
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    ticksRightMouseButtonDown_ = Now();
+                    break;
+                }
                 break;
+            }
             case SDL_MOUSEBUTTONUP:
+            {
+                auto clickSpeed{0};
+
+                switch (event.button.button)
+                {
+                case SDL_BUTTON_LEFT:
+                    clickSpeed = Now() - ticksLeftMouseButtonDown_;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    clickSpeed = Now() - ticksRightMouseButtonDown_;
+                    break;
+                }
                 _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
-                                                        event.button.clicks);
+                                                        clickSpeed);
                 break;
+            }
             }
         }
     }

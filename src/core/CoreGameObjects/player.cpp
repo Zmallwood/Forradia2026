@@ -20,19 +20,19 @@ namespace Forradia
 
     void Player::SpawnOnSuitableLocation()
     {
-        auto world_area{_<World>().current_world_area_};
+        auto worldArea{_<World>().currentWorldArea_};
 
-        auto world_area_size{world_area->GetSize()};
+        auto worldAreaSize{worldArea->GetSize()};
 
-        position_ = {world_area_size.width / 2, world_area_size.height / 2};
+        position_ = {worldAreaSize.width / 2, worldAreaSize.height / 2};
 
-        auto tile{world_area->GetTile(position_)};
+        auto tile{worldArea->GetTile(position_)};
 
-        while (tile->ground_ == GetHash("ground_water"))
+        while (tile->ground_ == Hash("ground_water"))
         {
-            position_ = {rand() % world_area_size.width,
-                         rand() % world_area_size.height};
-            tile = world_area->GetTile(position_);
+            position_ = {rand() % worldAreaSize.width,
+                         rand() % worldAreaSize.height};
+            tile = worldArea->GetTile(position_);
         }
 
         facedTile_ = {position_.x, position_.y + 1};
@@ -40,105 +40,105 @@ namespace Forradia
 
     void Player::MoveNorth()
     {
-        auto new_x{position_.x};
-        auto new_y{position_.y - 1};
+        auto newX{position_.x};
+        auto newY{position_.y - 1};
 
-        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
+        auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("ground_water"))
         {
             return;
         }
 
-        position_ = {new_x, new_y};
+        position_ = {newX, newY};
 
         facedTile_ = {position_.x, position_.y - 1};
 
-        facingDirection_ = WorldDirections::north;
+        facingDirection_ = WorldDirections::North;
     }
 
     void Player::MoveEast()
     {
-        auto new_x{position_.x + 1};
-        auto new_y{position_.y};
+        auto newX{position_.x + 1};
+        auto newY{position_.y};
 
-        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
+        auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("ground_water"))
         {
             return;
         }
 
-        position_ = {new_x, new_y};
+        position_ = {newX, newY};
 
         facedTile_ = {position_.x + 1, position_.y};
 
-        facingDirection_ = WorldDirections::east;
+        facingDirection_ = WorldDirections::East;
     }
 
     void Player::MoveSouth()
     {
-        auto new_x{position_.x};
-        auto new_y{position_.y + 1};
+        auto newX{position_.x};
+        auto newY{position_.y + 1};
 
-        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
+        auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("ground_water"))
         {
             return;
         }
 
-        position_ = {new_x, new_y};
+        position_ = {newX, newY};
 
         facedTile_ = {position_.x, position_.y + 1};
 
-        facingDirection_ = WorldDirections::south;
+        facingDirection_ = WorldDirections::South;
     }
 
     void Player::MoveWest()
     {
-        auto new_x{position_.x - 1};
-        auto new_y{position_.y};
+        auto newX{position_.x - 1};
+        auto newY{position_.y};
 
-        auto new_tile{_<World>().current_world_area_->GetTile({new_x, new_y})};
+        auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
 
-        if (new_tile && new_tile->ground_ == GetHash("ground_water"))
+        if (newTile && newTile->ground_ == Hash("ground_water"))
         {
             return;
         }
 
-        position_ = {new_x, new_y};
+        position_ = {newX, newY};
 
         facedTile_ = {position_.x - 1, position_.y};
 
-        facingDirection_ = WorldDirections::west;
+        facingDirection_ = WorldDirections::West;
     }
 
     void Player::TurnNorth()
     {
         facedTile_ = {position_.x, position_.y - 1};
 
-        facingDirection_ = WorldDirections::north;
+        facingDirection_ = WorldDirections::North;
     }
 
     void Player::TurnEast()
     {
         facedTile_ = {position_.x + 1, position_.y};
 
-        facingDirection_ = WorldDirections::east;
+        facingDirection_ = WorldDirections::East;
     }
 
     void Player::TurnSouth()
     {
         facedTile_ = {position_.x, position_.y + 1};
 
-        facingDirection_ = WorldDirections::south;
+        facingDirection_ = WorldDirections::South;
     }
 
     void Player::TurnWest()
     {
         facedTile_ = {position_.x - 1, position_.y};
 
-        facingDirection_ = WorldDirections::west;
+        facingDirection_ = WorldDirections::West;
     }
 }

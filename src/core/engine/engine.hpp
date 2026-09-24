@@ -18,5 +18,7 @@ namespace Forradia
         void PollEvents();
 
         bool running_{true};
+        int ticksLeftMouseButtonDown_{0};
+        int ticksRightMouseButtonDown_{0};
     };
 }

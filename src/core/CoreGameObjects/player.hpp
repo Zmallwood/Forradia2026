@@ -35,7 +35,7 @@ namespace Forradia
         float movementSpeed_{4.0f};
         Point destination_{-1, -1};
         Point facedTile_{-1, -1};
-        WorldDirections facingDirection_{WorldDirections::south};
+        WorldDirections facingDirection_{WorldDirections::South};
 
       private:
         void SpawnOnSuitableLocation();

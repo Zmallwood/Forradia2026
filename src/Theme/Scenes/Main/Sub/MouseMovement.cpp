@@ -18,7 +18,7 @@ namespace Forradia
 
         if (destination.x != -1 && destination.y != -1)
         {
-            auto now{Ticks()};
+            auto now{Now()};
 
             if (now > _<Player>().ticksLastMovement_ +
                           InvertSpeed(_<Player>().movementSpeed_))

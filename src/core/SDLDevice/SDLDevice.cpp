@@ -11,11 +11,11 @@ namespace Forradia
 {
     SDLDevice::SDLDevice()
     {
-        auto window_flags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
+        auto windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
 
         window_ = std::shared_ptr<SDL_Window>(
-            SDL_CreateWindow(k_window_name_.data(), SDL_WINDOWPOS_CENTERED,
-                             SDL_WINDOWPOS_CENTERED, 800, 600, window_flags),
+            SDL_CreateWindow(k_windowName_.data(), SDL_WINDOWPOS_CENTERED,
+                             SDL_WINDOWPOS_CENTERED, 800, 600, windowFlags),
             SDLDeleter());
 
         renderer_ = std::shared_ptr<SDL_Renderer>(
@@ -36,16 +36,16 @@ namespace Forradia
 
     void SDLDevice::Clip(float x, float y, float width, float height)
     {
-        SDL_Rect clip_rect;
+        SDL_Rect clipRect;
 
-        auto canvas_size{GetCanvasSize()};
+        auto canvasSize{GetCanvasSize()};
 
-        clip_rect.x = static_cast<int>(x * canvas_size.width);
-        clip_rect.y = static_cast<int>(y * canvas_size.height);
-        clip_rect.w = static_cast<int>(width * canvas_size.width);
-        clip_rect.h = static_cast<int>(height * canvas_size.height);
+        clipRect.x = static_cast<int>(x * canvasSize.width);
+        clipRect.y = static_cast<int>(y * canvasSize.height);
+        clipRect.w = static_cast<int>(width * canvasSize.width);
+        clipRect.h = static_cast<int>(height * canvasSize.height);
 
-        SDL_RenderSetClipRect(renderer_.get(), &clip_rect);
+        SDL_RenderSetClipRect(renderer_.get(), &clipRect);
     }
 
     void SDLDevice::ResetClip()

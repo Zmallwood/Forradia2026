@@ -17,7 +17,7 @@ namespace Forradia
         auto a_pressed{pressed_keys_.contains(SDLK_a)};
         auto q_pressed{pressed_keys_.contains(SDLK_q)};
 
-        auto now{Ticks()};
+        auto now{Now()};
 
         if (now > _<Player>().ticksLastMovement_ +
                       InvertSpeed(_<Player>().movementSpeed_) &&

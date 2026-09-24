@@ -16,7 +16,7 @@ namespace Forradia
         objects_.clear();
     }
 
-    void TileObjects::AddObject(std::string_view object_name, Point position)
+    void TileObjects::AddObject(std::string_view objectName, Point position)
     {
         if (position.x == -1 || position.y == -1)
         {
@@ -24,8 +24,7 @@ namespace Forradia
             position.y = rand() % _<GameProperties>().k_tileUnitsWidth_;
         }
 
-        objects_.insert(
-            {position, std::make_shared<Object>(GetHash(object_name))});
+        objects_.insert({position, std::make_shared<Object>(Hash(objectName))});
     }
 
     int TileObjects::Count()

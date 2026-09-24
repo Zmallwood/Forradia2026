@@ -12,10 +12,10 @@ namespace Forradia
     class ImageRenderer
     {
       public:
-        void DrawImage(int image_name_hash, float x, float y, float width,
+        void DrawImage(int imageNameHash, float x, float y, float width,
                        float height);
 
-        void DrawImage(std::string_view image_name, float x, float y,
+        void DrawImage(std::string_view imageName, float x, float y,
                        float width, float height);
     };
 }

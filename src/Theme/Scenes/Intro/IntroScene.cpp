@@ -21,11 +21,11 @@ namespace Forradia
 
     void IntroScene::OnKeyDown(SDL_Keycode key)
     {
-        _<SceneManager>().GoToScene("main_menu_scene");
+        _<SceneManager>().GoToScene("MainMenuScene");
     }
 
     void IntroScene::OnMouseDown(Uint8 button)
     {
-        _<SceneManager>().GoToScene("main_menu_scene");
+        _<SceneManager>().GoToScene("MainMenuScene");
     }
 }

@@ -16,7 +16,7 @@ namespace Forradia
       public:
         SceneManager();
 
-        void GoToScene(std::string_view scene_name);
+        void GoToScene(std::string_view sceneName);
 
         void UpdateCurrentScene();
 
@@ -28,12 +28,12 @@ namespace Forradia
 
         void OnMouseDownCurrentScene(Uint8 button);
 
-        void OnMouseUpCurrentScene(Uint8 button, int click_speed);
+        void OnMouseUpCurrentScene(Uint8 button, int clickSpeed);
 
       private:
-        void AddScene(std::string_view scene_name, IScene &scene);
+        void AddScene(std::string_view sceneName, IScene &scene);
 
-        int current_scene_{0};
+        int currentScene_{0};
         std::unordered_map<int, IScene &> scenes_;
     };
 }

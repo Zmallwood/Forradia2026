@@ -21,7 +21,7 @@ namespace Forradia
         Size GetImageSize(int imageNameHash);
 
       private:
-        void LoadSingleImage(std::string_view full_path);
+        void LoadSingleImage(std::string_view fullPath);
 
         static constexpr std::string_view k_relativeImagesDirectory_{
             "resources/Images/"};

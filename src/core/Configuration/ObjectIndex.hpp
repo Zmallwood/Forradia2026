@@ -16,7 +16,7 @@ namespace Forradia
       public:
         ObjectIndex();
 
-        bool IsSmallObject(int object_hash);
+        bool IsSmallObject(int objectHash);
 
       private:
         std::unordered_map<int, ObjectIndexEntry> entries_;
