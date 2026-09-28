@@ -7,6 +7,7 @@
 
 #include "FirstPersonHovering.hpp"
 #include "Core/Assets/ImageBank.hpp"
+#include "Core/Configuration/CreatureIndex.hpp"
 #include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/ObjectIndex.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
@@ -17,6 +18,7 @@
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "FirstPersonView/FirstPersonViewFunctions.hpp"
+
 
 namespace Forradia
 {
@@ -251,7 +253,15 @@ namespace Forradia
         }
         else if (hoveredCreature_)
         {
-            _<TextRenderer>().DrawString("Hovered Creature", mousePosition.x,
+            auto creatureLabel{
+                _<CreatureIndex>().GetCreatureLabel(hoveredCreature_->type_)};
+
+            if (creatureLabel.empty())
+            {
+                creatureLabel = "?";
+            }
+
+            _<TextRenderer>().DrawString(creatureLabel, mousePosition.x,
                                          mousePosition.y + k_textYOffset_);
         }
     }

@@ -16,16 +16,24 @@ namespace Forradia
 
         AddEntry("ObjectBranch", "Branch", ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectPinkFlower", "Pink Flower", ObjectFlags::k_smallObject);
+        AddEntry("ObjectPinkFlower", "Pink flower", ObjectFlags::k_smallObject);
 
         AddEntry("ObjectLeaf", "Leaf", ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectPoolOfBlood", "Pool of Blood",
+        AddEntry("ObjectPoolOfBlood", "Pool of blood",
                  ObjectFlags::k_smallObject);
 
         AddEntry("ObjectTree1", "Tree", 0);
 
         AddEntry("ObjectTree2", "Tree", 0);
+
+        AddEntry("ObjectBush1", "Bush", 0);
+
+        AddEntry("ObjectStoneBoulder", "Stone boulder", 0);
+
+        AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
+
+        AddEntry("ObjectCreatureBoarCorpse", "Boar corpse", 0);
     }
 
     void ObjectIndex::AddEntry(std::string_view name, std::string_view label,

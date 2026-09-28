@@ -5,28 +5,29 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Creature.hpp"
+#include "CreatureIndex.hpp"
 
 namespace Forradia
 {
-    Creature::Creature(std::string_view typeName)
+    CreatureIndex::CreatureIndex()
     {
-        type_ = Hash(typeName);
+        AddEntry("CreatureDeer", "Deer");
 
-        corpesType_ = Hash("Object" + std::string(typeName) + "Corpse");
+        AddEntry("CreatureBoar", "Boar");
     }
 
-    void Creature::Hit(float damage, PointF hitPosition)
+    void CreatureIndex::AddEntry(std::string_view name, std::string_view label)
     {
-        health_ -= damage;
-
-        ticksLastHitOnSelf_ = Now();
-
-        lastHitPosition_ = hitPosition;
+        entries_.insert({Hash(name), {label.data()}});
     }
 
-    bool Creature::IsDead()
+    std::string CreatureIndex::GetCreatureLabel(int creatureHash)
     {
-        return health_ <= 0.0f;
+        if (entries_.contains(creatureHash))
+        {
+            return entries_[creatureHash].label;
+        }
+
+        return "";
     }
 }
