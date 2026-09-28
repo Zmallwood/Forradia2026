@@ -19,12 +19,12 @@ namespace Forradia
         _<ImageRenderer>().DrawImage("ForradiaLogo", 0.2f, 0.2f, 0.6f, 0.2f);
     }
 
-    void IntroScene::OnKeyDown(SDL_Keycode key)
+    void IntroScene::OnKeyDownDerived(SDL_Keycode key)
     {
         _<SceneManager>().GoToScene("MainMenuScene");
     }
 
-    void IntroScene::OnMouseDown(Uint8 button)
+    void IntroScene::OnMouseDownDerived(Uint8 button)
     {
         _<SceneManager>().GoToScene("MainMenuScene");
     }

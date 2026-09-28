@@ -7,10 +7,11 @@
 
 #include "Engine.hpp"
 #include "Core/Assets/ImageBank.hpp"
+#include "Core/MinorComponents/Cursor.hpp"
+#include "Core/MinorComponents/FPSCounter.hpp"
+#include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
-#include "Core/MinorComponents/Cursor.hpp"
-#include "Core/Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {
@@ -26,11 +27,17 @@ namespace Forradia
         {
             PollEvents();
 
+            _<Cursor>().Reset();
+
             _<SceneManager>().UpdateCurrentScene();
+
+            _<FPSCounter>().Update();
 
             _<SDLDevice>().ClearCanvas();
 
             _<SceneManager>().RenderCurrentScene();
+
+            _<FPSCounter>().Render();
 
             _<Cursor>().Render();
 
@@ -95,5 +102,10 @@ namespace Forradia
             }
             }
         }
+    }
+
+    void Engine::Stop()
+    {
+        running_ = false;
     }
 }

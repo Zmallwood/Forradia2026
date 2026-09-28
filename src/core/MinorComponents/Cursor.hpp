@@ -16,6 +16,8 @@ namespace Forradia
       public:
         Cursor();
 
+        void Reset();
+
         void Render();
 
         CursorStyles cursorStyle_{CursorStyles::Default};

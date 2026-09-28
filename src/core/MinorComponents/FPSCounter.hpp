@@ -7,17 +7,18 @@
 
 #pragma once
 
-#include "Core/ScenesCore/IScene.hpp"
-
 namespace Forradia
 {
-    class IntroScene : public IScene
+    class FPSCounter
     {
-      protected:
-        void RenderDerived() override;
+      public:
+        void Update();
 
-        void OnKeyDownDerived(SDL_Keycode key) override;
+        void Render();
 
-        void OnMouseDownDerived(Uint8 button) override;
+      private:
+        int fps_{0};
+        int framesCounter_{0};
+        int ticksLastUpdate_{0};
     };
 }

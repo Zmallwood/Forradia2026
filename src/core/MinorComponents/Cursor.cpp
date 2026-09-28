@@ -15,6 +15,11 @@ namespace Forradia
         SDL_ShowCursor(SDL_DISABLE);
     }
 
+    void Cursor::Reset()
+    {
+        cursorStyle_ = CursorStyles::Default;
+    }
+
     void Cursor::Render()
     {
         auto mousePosition{GetMousePosition()};

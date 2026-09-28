@@ -18,8 +18,8 @@ namespace Forradia
 
         void RenderDerived() override;
 
-        void OnKeyDown(SDL_Keycode key) override;
+        void OnKeyDownDerived(SDL_Keycode key) override;
 
-        void OnMouseDown(Uint8 button) override;
+        void OnMouseDownDerived(Uint8 button) override;
     };
 }

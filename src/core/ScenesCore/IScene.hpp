@@ -26,13 +26,13 @@ namespace Forradia
         {
         }
 
-        virtual void OnKeyDown(SDL_Keycode key);
+        void OnKeyDown(SDL_Keycode key);
 
-        virtual void OnKeyUp(SDL_Keycode key);
+        void OnKeyUp(SDL_Keycode key);
 
-        virtual void OnMouseDown(Uint8 button);
+        void OnMouseDown(Uint8 button);
 
-        virtual void OnMouseUp(Uint8 button, int clickSpeed);
+        void OnMouseUp(Uint8 button, int clickSpeed);
 
       protected:
         virtual void InitializeDerived()
@@ -44,6 +44,22 @@ namespace Forradia
         }
 
         virtual void RenderDerived()
+        {
+        }
+
+        virtual void OnKeyDownDerived(SDL_Keycode key)
+        {
+        }
+
+        virtual void OnKeyUpDerived(SDL_Keycode key)
+        {
+        }
+
+        virtual void OnMouseDownDerived(Uint8 button)
+        {
+        }
+
+        virtual void OnMouseUpDerived(Uint8 button, int clickSpeed)
         {
         }
 

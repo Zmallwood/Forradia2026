@@ -10,4 +10,5 @@
 namespace Forradia
 {
     constexpr float k_smallValue{0.0005f};
+    constexpr int k_oneSecondMillis{1000};
 }

@@ -15,7 +15,6 @@
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
 
-
 namespace Forradia
 {
     void MainScene::UpdateDerived()
@@ -40,21 +39,21 @@ namespace Forradia
         _<ObjectHovering>().Render();
     }
 
-    void MainScene::OnKeyDown(SDL_Keycode key)
+    void MainScene::OnKeyDownDerived(SDL_Keycode key)
     {
         _<KeyboardMovement>().OnKeyDown(key);
 
         _<MouseMovement>().OnKeyDown(key);
     }
 
-    void MainScene::OnKeyUp(SDL_Keycode key)
+    void MainScene::OnKeyUpDerived(SDL_Keycode key)
     {
         _<KeyboardMovement>().OnKeyUp(key);
 
         _<MouseMovement>().OnKeyUp(key);
     }
 
-    void MainScene::OnMouseDown(Uint8 button)
+    void MainScene::OnMouseDownDerived(Uint8 button)
     {
         _<Combat>().OnMouseDown(button);
 
