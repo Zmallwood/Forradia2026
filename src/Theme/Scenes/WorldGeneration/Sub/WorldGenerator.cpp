@@ -430,5 +430,25 @@ namespace Forradia
 
             tile->creature_ = newCreature;
         }
+
+        auto numBoars{150 + rand() % 20};
+
+        for (auto i = 0; i < numBoars; i++)
+        {
+            auto x{rand() % size.width};
+            auto y{rand() % size.height};
+
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile->ground_ == Hash("GroundWater") ||
+                tile->ground_ == Hash("GroundRock"))
+            {
+                continue;
+            }
+
+            auto newCreature{std::make_shared<Creature>("CreatureBoar")};
+
+            worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+        }
     }
 }
