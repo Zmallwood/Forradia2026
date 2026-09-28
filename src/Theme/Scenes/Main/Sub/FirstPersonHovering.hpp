@@ -5,15 +5,24 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "ObjectHovering.hpp"
+#pragma once
 
 namespace Forradia
 {
-    void ObjectHovering::Update()
-    {
-    }
+    class Object;
+    class Creature;
 
-    void ObjectHovering::Render()
+    class FirstPersonHovering
     {
-    }
+      public:
+        void Update();
+
+        void Render();
+
+        std::shared_ptr<Object> hoveredObject_;
+        std::shared_ptr<Creature> hoveredCreature_;
+
+      private:
+        static constexpr float k_textYOffset_{-0.03f};
+    };
 }

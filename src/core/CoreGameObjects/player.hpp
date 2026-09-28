@@ -34,7 +34,7 @@ namespace Forradia
         int ticksLastMovement_{0};
         float movementSpeed_{4.0f};
         Point destination_{-1, -1};
-        Point facedTile_{-1, -1};
+        Point facedTileCoordinate_{-1, -1};
         WorldDirections facingDirection_{WorldDirections::South};
         int ticksLastHitOnOther_{0};
         float attackSpeed_{2.0f};

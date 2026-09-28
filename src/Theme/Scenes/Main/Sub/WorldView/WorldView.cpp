@@ -21,7 +21,6 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "Theme/Scenes/Main/Sub/TileHovering.hpp"
 
-
 namespace Forradia
 {
     void WorldView::Render()
@@ -46,7 +45,7 @@ namespace Forradia
 
         auto hoveredCoordinate{_<TileHovering>().hoveredCoordinate_};
 
-        auto facedTile{_<Player>().facedTile_};
+        auto facedTile{_<Player>().facedTileCoordinate_};
 
         auto tileWidth{_<GameProperties>().k_tileWidth_};
         auto tileHeight{ConvertWidthToHeight(tileWidth)};

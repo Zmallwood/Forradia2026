@@ -40,7 +40,7 @@ namespace Forradia
 
         auto worldArea{_<World>().currentWorldArea_};
 
-        auto facedTile{_<Player>().facedTile_};
+        auto facedTile{_<Player>().facedTileCoordinate_};
 
         auto tile{worldArea->GetTile(facedTile)};
 

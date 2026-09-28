@@ -5,83 +5,46 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "FirstPersonView.hpp"
+#include "FirstPersonHovering.hpp"
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/ObjectIndex.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
-#include "Core/Rendering/Colors/ColorRenderer.hpp"
-#include "Core/Rendering/Images/ImageRenderer.hpp"
-#include "Core/SDLDevice/SDLDevice.hpp"
+#include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
-#include "FirstPersonViewFunctions.hpp"
+#include "FirstPersonView/FirstPersonViewFunctions.hpp"
 
 namespace Forradia
 {
-    void FirstPersonView::Render()
+    void FirstPersonHovering::Update()
     {
-        _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
+        hoveredObject_ = nullptr;
+        hoveredCreature_ = nullptr;
 
         auto viewWidth{GameProperties::k_viewWidth_};
 
-        _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
-                                    Colors::k_black);
+        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
 
-        auto now{Now()};
+        constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
 
-        std::string groundImageName;
+        auto orderedObjects{GetOrderedObjects()};
+
+        auto mousePosition{GetMousePosition()};
 
         auto worldArea{_<World>().currentWorldArea_};
         auto facedTile{worldArea->GetTile(_<Player>().facedTileCoordinate_)};
 
         if (!facedTile)
         {
+            hoveredObject_ = nullptr;
+            hoveredCreature_ = nullptr;
+
             return;
         }
-
-        auto groundType{facedTile->ground_};
-
-        switch (groundType)
-        {
-        case Hash("GroundGrass"):
-        {
-            groundImageName = "GroundFirstPersonGrass";
-            break;
-        }
-        case Hash("GroundWater"):
-        {
-            auto water_anim_index{(Now() % 450) / 150};
-
-            groundImageName =
-                "GroundFirstPersonWater_" + std::to_string(water_anim_index);
-
-            break;
-        }
-        case Hash("GroundDirt"):
-        {
-            groundImageName = "GroundFirstPersonDirt";
-            break;
-        }
-        case Hash("GroundRock"):
-        {
-            groundImageName = "GroundFirstPersonRock";
-            break;
-        }
-        }
-
-        constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
-
-        _<ImageRenderer>().DrawImage(
-            groundImageName, 1.0f - viewWidth + k_margin.x, 0.75f + k_margin.y,
-            viewWidth - 2 * k_margin.x, 0.25f - 2 * k_margin.y);
-
-        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
-
-        auto orderedObjects{GetOrderedObjects()};
 
         constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
         constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
@@ -135,8 +98,24 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                         imageHeight);
+            RectF rect = {imageX, imageY, imageWidth, imageHeight};
+
+            if (rect.Contains(mousePosition))
+            {
+                auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
+
+                auto x{(mousePosition.x - imageX) / imageWidth};
+                auto y{(mousePosition.y - imageY) / imageHeight};
+
+                auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+
+                if (isHovered)
+                {
+                    hoveredObject_ = entry.second.object_;
+
+                    hoveredCreature_ = nullptr;
+                }
+            }
         }
 
         auto creature{facedTile->creature_};
@@ -162,32 +141,24 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
-                                         imageWidth, imageHeight);
+            RectF rect = {imageX, imageY, imageWidth, imageHeight};
 
-            if (now - creature->ticksLastHitOnSelf_ < k_hitEffectDuration_)
+            if (rect.Contains(mousePosition))
             {
-                auto lastHitPosition{creature->lastHitPosition_};
+                auto scale{largeObjectScale};
 
-                auto hitEffectImageSize{
-                    _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+                auto x{(mousePosition.x - imageX) / imageWidth};
+                auto y{(mousePosition.y - imageY) / imageHeight};
 
-                constexpr float k_hitEffectScale{0.1f};
+                auto isHovered{
+                    _<ImageBank>().IsPixelVisible(creatureType, x, y)};
 
-                auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
-                                    k_hitEffectScale};
-                auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
-                                     ConvertWidthToHeight(k_hitEffectScale)};
+                if (isHovered)
+                {
+                    hoveredObject_ = nullptr;
 
-                auto hitEffectBaseX{imageX + lastHitPosition.x * imageWidth};
-                auto hitEffectBaseY{imageY + lastHitPosition.y * imageHeight};
-
-                auto hitEffectX{hitEffectBaseX - hitEffectWidth / 2.0f};
-                auto hitEffectY{hitEffectBaseY - hitEffectHeight / 2.0f};
-
-                _<ImageRenderer>().DrawImage("HitEffect", hitEffectX,
-                                             hitEffectY, hitEffectWidth,
-                                             hitEffectHeight);
+                    hoveredCreature_ = creature;
+                }
             }
         }
 
@@ -240,48 +211,48 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                         imageHeight);
+            RectF rect = {imageX, imageY, imageWidth, imageHeight};
+
+            if (rect.Contains(mousePosition))
+            {
+                auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
+
+                auto x{(mousePosition.x - imageX) / imageWidth};
+                auto y{(mousePosition.y - imageY) / imageHeight};
+
+                auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+
+                if (isHovered)
+                {
+                    hoveredObject_ = entry.second.object_;
+
+                    hoveredCreature_ = nullptr;
+                }
+            }
         }
+    }
 
-        constexpr float k_handScale{0.1f};
+    void FirstPersonHovering::Render()
+    {
+        auto mousePosition{GetMousePosition()};
 
-        auto handWidth{k_handScale};
-        auto handHeight{ConvertWidthToHeight(k_handScale * 6 / 4)};
-        auto handSpacing{0.1f};
-
-        auto leftHandX{1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
-                       handWidth / 2};
-        auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
-                        handWidth / 2};
-
-        auto ticksLastMovement{_<Player>().ticksLastMovement_};
-
-        auto ticksOneStep{InvertSpeed(_<Player>().movementSpeed_)};
-
-        auto delta{Now() - ticksLastMovement};
-
-        auto handAnimation{0.0f};
-
-        if (delta < ticksOneStep)
+        if (hoveredObject_)
         {
-            handAnimation =
-                std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) *
-                0.02f;
+            auto objectLabel{
+                _<ObjectIndex>().GetObjectLabel(hoveredObject_->type_)};
+
+            if (objectLabel.empty())
+            {
+                objectLabel = "?";
+            }
+
+            _<TextRenderer>().DrawString(objectLabel, mousePosition.x,
+                                         mousePosition.y + k_textYOffset_);
         }
-
-        auto handYOffset{0.07f};
-
-        auto handY{1.0f - handHeight + handYOffset + handAnimation};
-
-        _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
-                                     handHeight);
-        _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
-                                     handHeight);
-
-        _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
-                                    Colors::k_white);
-
-        _<SDLDevice>().ResetClip();
+        else if (hoveredCreature_)
+        {
+            _<TextRenderer>().DrawString("Hovered Creature", mousePosition.x,
+                                         mousePosition.y + k_textYOffset_);
+        }
     }
 }

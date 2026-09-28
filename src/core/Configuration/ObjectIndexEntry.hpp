@@ -12,6 +12,7 @@ namespace Forradia
     class ObjectIndexEntry
     {
       public:
+        std::string label;
         int flags{0};
     };
 }

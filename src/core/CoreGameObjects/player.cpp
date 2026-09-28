@@ -35,7 +35,7 @@ namespace Forradia
             tile = worldArea->GetTile(position_);
         }
 
-        facedTile_ = {position_.x, position_.y + 1};
+        facedTileCoordinate_ = {position_.x, position_.y + 1};
     }
 
     void Player::MoveNorth()
@@ -53,7 +53,7 @@ namespace Forradia
 
         position_ = {newX, newY};
 
-        facedTile_ = {position_.x, position_.y - 1};
+        facedTileCoordinate_ = {position_.x, position_.y - 1};
 
         facingDirection_ = WorldDirections::North;
     }
@@ -73,7 +73,7 @@ namespace Forradia
 
         position_ = {newX, newY};
 
-        facedTile_ = {position_.x + 1, position_.y};
+        facedTileCoordinate_ = {position_.x + 1, position_.y};
 
         facingDirection_ = WorldDirections::East;
     }
@@ -93,7 +93,7 @@ namespace Forradia
 
         position_ = {newX, newY};
 
-        facedTile_ = {position_.x, position_.y + 1};
+        facedTileCoordinate_ = {position_.x, position_.y + 1};
 
         facingDirection_ = WorldDirections::South;
     }
@@ -113,35 +113,35 @@ namespace Forradia
 
         position_ = {newX, newY};
 
-        facedTile_ = {position_.x - 1, position_.y};
+        facedTileCoordinate_ = {position_.x - 1, position_.y};
 
         facingDirection_ = WorldDirections::West;
     }
 
     void Player::TurnNorth()
     {
-        facedTile_ = {position_.x, position_.y - 1};
+        facedTileCoordinate_ = {position_.x, position_.y - 1};
 
         facingDirection_ = WorldDirections::North;
     }
 
     void Player::TurnEast()
     {
-        facedTile_ = {position_.x + 1, position_.y};
+        facedTileCoordinate_ = {position_.x + 1, position_.y};
 
         facingDirection_ = WorldDirections::East;
     }
 
     void Player::TurnSouth()
     {
-        facedTile_ = {position_.x, position_.y + 1};
+        facedTileCoordinate_ = {position_.x, position_.y + 1};
 
         facingDirection_ = WorldDirections::South;
     }
 
     void Player::TurnWest()
     {
-        facedTile_ = {position_.x - 1, position_.y};
+        facedTileCoordinate_ = {position_.x - 1, position_.y};
 
         facingDirection_ = WorldDirections::West;
     }

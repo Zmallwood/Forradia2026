@@ -18,7 +18,12 @@ namespace Forradia
 
         bool IsSmallObject(int objectHash);
 
+        std::string GetObjectLabel(int objectHash);
+
       private:
+        void AddEntry(std::string_view objectName, std::string_view label,
+                      int flags);
+
         std::unordered_map<int, ObjectIndexEntry> entries_;
     };
 }

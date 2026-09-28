@@ -8,15 +8,15 @@
 #include "MainScene.hpp"
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 #include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
+#include "Sub/FirstPersonHovering.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
-#include "Sub/ObjectHovering.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
-#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
@@ -50,7 +50,7 @@ namespace Forradia
 
         _<TileHovering>().Update();
 
-        _<ObjectHovering>().Update();
+        _<FirstPersonHovering>().Update();
     }
 
     void MainScene::RenderDerived()
@@ -59,7 +59,7 @@ namespace Forradia
 
         _<FirstPersonView>().Render();
 
-        _<ObjectHovering>().Render();
+        _<FirstPersonHovering>().Render();
     }
 
     void MainScene::OnKeyDownDerived(SDL_Keycode key)

@@ -7,13 +7,9 @@
 
 #pragma once
 
+#include "PositionedObject.hpp"
+
 namespace Forradia
 {
-    class ObjectHovering
-    {
-      public:
-        void Update();
-
-        void Render();
-    };
+    std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
 }
