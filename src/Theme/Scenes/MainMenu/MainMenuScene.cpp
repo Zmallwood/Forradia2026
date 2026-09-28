@@ -18,7 +18,7 @@ namespace Forradia
 {
     void MainMenuScene::InitializeDerived()
     {
-        gui_->AddComponent(std::make_shared<GUITextConsole>());
+        gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
 
         gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
 
@@ -29,6 +29,11 @@ namespace Forradia
         gui_->AddComponent(
             std::make_shared<GUIButton>("Quit ", 0.45f, 0.52f, 0.1f, 0.04f,
                                         [this]() { _<Engine>().Stop(); }));
+    }
+
+    void MainMenuScene::OnEnterDerived()
+    {
+        _<GUITextConsole>().PrintLine("Starting game.");
     }
 
     void MainMenuScene::RenderDerived()

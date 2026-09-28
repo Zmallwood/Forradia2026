@@ -16,6 +16,8 @@ namespace Forradia
       protected:
         void InitializeDerived() override;
 
+        void OnEnterDerived() override;
+
         void RenderDerived() override;
 
         void OnKeyDownDerived(SDL_Keycode key) override;
