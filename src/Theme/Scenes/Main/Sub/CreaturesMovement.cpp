@@ -12,7 +12,6 @@
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
-
 namespace Forradia
 {
     void CreaturesMovement::Update()
@@ -80,7 +79,8 @@ namespace Forradia
                     continue;
                 }
 
-                if (creature->type_ == Hash("CreatureDeer"))
+                if (creature->type_ == Hash("CreatureDeer") ||
+                    creature->type_ == Hash("CreatureBoar"))
                 {
                     if (newTile->ground_ == Hash("GroundRock"))
                     {
