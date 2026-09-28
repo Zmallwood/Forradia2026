@@ -21,6 +21,8 @@ namespace Forradia
     {
         auto viewWidth{GameProperties::k_viewWidth_};
 
+        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+
         auto now{Now()};
 
         if (now - _<Player>().ticksLastHitOnOther_ <
@@ -50,6 +52,11 @@ namespace Forradia
         auto creature{tile->creature_};
 
         if (!creature)
+        {
+            return;
+        }
+
+        if (creature->IsDead())
         {
             return;
         }
@@ -87,10 +94,21 @@ namespace Forradia
             return;
         }
 
-        creature->Hit(1, PointF{x, y});
+        creature->Hit(1.0f, PointF{x, y});
 
         _<Player>().ticksLastHitOnOther_ = now;
 
         tile->tileObjects_->AddObject("ObjectPoolOfBlood");
+
+        if (creature->IsDead())
+        {
+            tile->tileObjects_->AddObject(
+                creature->corpesType_,
+                {tileUnitsWidth / 2, tileUnitsWidth / 2});
+
+            tile->creature_ = nullptr;
+
+            worldArea->creaturesMirror_.erase(creature);
+        }
     }
 }

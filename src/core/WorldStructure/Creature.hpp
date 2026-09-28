@@ -14,12 +14,19 @@ namespace Forradia
       public:
         Creature(std::string_view typeName);
 
-        void Hit(int damage, PointF hitPosition);
+        void Hit(float damage, PointF hitPosition);
+
+        bool IsDead();
 
         int type_{0};
+        int corpesType_{0};
         int ticksLastMovement_{0};
         float movementSpeed_{1.0f};
         int ticksLastHitOnSelf_{0};
         PointF lastHitPosition_{-1.0f, -1.0f};
+
+      private:
+        float health_{5.0f};
+        float maxHealth_{5.0f};
     };
 }

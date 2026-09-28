@@ -84,7 +84,7 @@ namespace Forradia
 
         auto objects{facedTile->tileObjects_->objects_};
 
-        std::map<int, PositionedObject> objectsOrdered;
+        std::map<std::pair<int, int>, PositionedObject> objectsOrdered;
 
         for (auto entry : objects)
         {
@@ -120,7 +120,7 @@ namespace Forradia
             positionedObject.position_ = {xPos, yPos};
             positionedObject.object_ = object;
 
-            objectsOrdered[yPos] = positionedObject;
+            objectsOrdered[{yPos, xPos}] = positionedObject;
         }
 
         constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};

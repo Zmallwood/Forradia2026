@@ -16,6 +16,8 @@ namespace Forradia
       public:
         void Clear();
 
+        void AddObject(int objectType, Point position = {-1, -1});
+
         void AddObject(std::string_view objectName, Point position = {-1, -1});
 
         int Count();
