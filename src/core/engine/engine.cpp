@@ -9,6 +9,7 @@
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
+#include "Core/MinorComponents/Cursor.hpp"
 
 namespace Forradia
 {
@@ -27,6 +28,8 @@ namespace Forradia
             _<SDLDevice>().ClearCanvas();
 
             _<SceneManager>().RenderCurrentScene();
+
+            _<Cursor>().Render();
 
             _<SDLDevice>().PresentCanvas();
         }
