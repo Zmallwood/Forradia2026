@@ -29,6 +29,8 @@ namespace Forradia
         auto hash{Hash(sceneName)};
 
         scenes_.insert({hash, scene});
+
+        scene.Initialize();
     }
 
     void SceneManager::GoToScene(std::string_view sceneName)

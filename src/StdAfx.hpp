@@ -17,6 +17,7 @@
 #include <string_view>
 #include <unordered_map>
 #include <vector>
+#include <functional>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -28,6 +29,7 @@
 #include "Common/Matter/Geometry/PointF.hpp"
 #include "Common/Matter/Geometry/RectF.hpp"
 #include "Common/Matter/Geometry/Size.hpp"
+#include "Common/Matter/Geometry/SizeF.hpp"
 #include "Common/CanvasUtilities.hpp"
 #include "Common/Constants.hpp"
 #include "Common/FilePathUtilities.hpp"

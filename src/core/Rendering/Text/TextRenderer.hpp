@@ -7,19 +7,24 @@
 
 #pragma once
 
-#include "Core/ScenesCore/IScene.hpp"
+#include "FontSizes.hpp"
 
 namespace Forradia
 {
-    class MainMenuScene : public IScene
+    class TextRenderer
     {
-      protected:
-        void InitializeDerived() override;
+      public:
+        void Initialize();
 
-        void RenderDerived() override;
+        void DrawString(std::string_view text, float x, float y,
+                        FontSizes fontSize = FontSizes::_12,
+                        bool centered = false);
 
-        void OnKeyDown(SDL_Keycode key) override;
+      private:
+        void AddFont(FontSizes fontSize);
 
-        void OnMouseDown(Uint8 button) override;
+        const std::string k_defaultFontPath_{
+            "./resources/Fonts/PixeloidSans.ttf"};
+        std::unordered_map<FontSizes, std::shared_ptr<TTF_Font>> fonts_;
     };
 }

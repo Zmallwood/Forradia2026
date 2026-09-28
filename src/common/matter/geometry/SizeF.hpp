@@ -7,19 +7,12 @@
 
 #pragma once
 
-#include "Core/ScenesCore/IScene.hpp"
-
 namespace Forradia
 {
-    class MainMenuScene : public IScene
+    class SizeF
     {
-      protected:
-        void InitializeDerived() override;
-
-        void RenderDerived() override;
-
-        void OnKeyDown(SDL_Keycode key) override;
-
-        void OnMouseDown(Uint8 button) override;
+      public:
+        float width{0.0f};
+        float height{0.0f};
     };
 }

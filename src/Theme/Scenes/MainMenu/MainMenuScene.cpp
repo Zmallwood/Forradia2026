@@ -8,9 +8,16 @@
 #include "MainMenuScene.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
+#include "Core/GUICore/GUI.hpp"
+#include "Core/GUICore/GUIPanel.hpp"
 
 namespace Forradia
 {
+    void MainMenuScene::InitializeDerived()
+    {
+        gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
+    }
+
     void MainMenuScene::RenderDerived()
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,

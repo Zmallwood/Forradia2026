@@ -16,6 +16,8 @@ namespace Forradia
       public:
         IScene();
 
+        void Initialize();
+
         void Update();
 
         void Render();
@@ -33,6 +35,10 @@ namespace Forradia
         virtual void OnMouseUp(Uint8 button, int clickSpeed);
 
       protected:
+        virtual void InitializeDerived()
+        {
+        }
+
         virtual void UpdateDerived()
         {
         }

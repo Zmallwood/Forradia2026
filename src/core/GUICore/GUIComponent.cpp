@@ -151,7 +151,7 @@ namespace Forradia
         return component;
     }
 
-    PointF GUIComponent::GetPosition() const
+    PointF GUIComponent::GetPosition()
     {
         PointF finalPosition{0.0F, 0.0F};
 

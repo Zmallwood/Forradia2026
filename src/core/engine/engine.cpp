@@ -10,6 +10,7 @@
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Core/MinorComponents/Cursor.hpp"
+#include "Core/Rendering/Text/TextRenderer.hpp"
 
 namespace Forradia
 {
@@ -18,6 +19,8 @@ namespace Forradia
         srand(time(nullptr));
 
         _<ImageBank>().LoadImages();
+
+        _<TextRenderer>().Initialize();
 
         while (running_)
         {

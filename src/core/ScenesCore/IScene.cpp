@@ -14,6 +14,11 @@ namespace Forradia
     {
     }
 
+    void IScene::Initialize()
+    {
+        InitializeDerived();
+    }
+
     void IScene::Update()
     {
         gui_->Update();

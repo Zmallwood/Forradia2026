@@ -31,7 +31,7 @@ namespace Forradia
         std::shared_ptr<GUIComponent>
         AddComponent(std::shared_ptr<GUIComponent> component);
 
-        virtual PointF GetPosition() const;
+        virtual PointF GetPosition();
 
         void SetYPosition(float y);
 
@@ -48,13 +48,13 @@ namespace Forradia
         {
         }
 
-        virtual void RenderDerived() const
+        virtual void RenderDerived()
         {
         }
 
       private:
         std::vector<std::shared_ptr<GUIComponent>> components_;
-        PointF position_{0.0F, 0.0F};
+        PointF position_{0.0f, 0.0f};
         GUIComponent *parent_{nullptr};
     };
 }
