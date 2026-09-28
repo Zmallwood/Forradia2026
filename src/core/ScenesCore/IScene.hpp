@@ -9,9 +9,13 @@
 
 namespace Forradia
 {
+    class GUI;
+
     class IScene
     {
       public:
+        IScene();
+
         void Update();
 
         void Render();
@@ -20,21 +24,13 @@ namespace Forradia
         {
         }
 
-        virtual void OnKeyDown(SDL_Keycode key)
-        {
-        }
+        virtual void OnKeyDown(SDL_Keycode key);
 
-        virtual void OnKeyUp(SDL_Keycode key)
-        {
-        }
+        virtual void OnKeyUp(SDL_Keycode key);
 
-        virtual void OnMouseDown(Uint8 button)
-        {
-        }
+        virtual void OnMouseDown(Uint8 button);
 
-        virtual void OnMouseUp(Uint8 button, int clickSpeed)
-        {
-        }
+        virtual void OnMouseUp(Uint8 button, int clickSpeed);
 
       protected:
         virtual void UpdateDerived()
@@ -44,5 +40,7 @@ namespace Forradia
         virtual void RenderDerived()
         {
         }
+
+        std::shared_ptr<GUI> gui_;
     };
 }

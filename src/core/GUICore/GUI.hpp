@@ -7,14 +7,13 @@
 
 #pragma once
 
+#include "GUIComponent.hpp"
+
 namespace Forradia
 {
-    class PointF
+    class GUI : public GUIComponent
     {
       public:
-        void operator+=(const PointF &other);
-
-        float x{0.0f};
-        float y{0.0f};
+        using GUIComponent::GUIComponent;
     };
 }

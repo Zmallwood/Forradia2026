@@ -5,16 +5,13 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "PointF.hpp"
 
 namespace Forradia
 {
-    class PointF
+    void PointF::operator+=(const PointF &other)
     {
-      public:
-        void operator+=(const PointF &other);
-
-        float x{0.0f};
-        float y{0.0f};
-    };
+        x += other.x;
+        y += other.y;
+    }
 }
