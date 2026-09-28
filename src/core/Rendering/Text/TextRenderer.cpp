@@ -34,6 +34,11 @@ namespace Forradia
     void TextRenderer::DrawString(std::string_view text, float x, float y,
                                   FontSizes fontSize, bool centered)
     {
+        if (text.empty())
+        {
+            return;
+        }
+
         auto font{fonts_[fontSize]};
 
         auto surface{std::shared_ptr<SDL_Surface>(

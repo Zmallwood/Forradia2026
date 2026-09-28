@@ -6,6 +6,8 @@
  ************************************************************************/
 
 #include "MainScene.hpp"
+#include "Core/GUICore/GUI.hpp"
+#include "Core/GUICore/GUIButton.hpp"
 #include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
@@ -17,6 +19,19 @@
 
 namespace Forradia
 {
+    void MainScene::InitializeDerived()
+    {
+        gui_->AddComponent(std::make_shared<GUIButton>(
+            "", 0.94f, 0.08f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
+            "GUIButtonInventoryBackground",
+            "GUIButtonInventoryHoveredBackground"));
+
+        gui_->AddComponent(std::make_shared<GUIButton>(
+            "", 0.94f, 0.18f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
+            "GUIButtonEquipmentBackground",
+            "GUIButtonEquipmentHoveredBackground"));
+    }
+
     void MainScene::UpdateDerived()
     {
         _<CreaturesMovement>().Update();

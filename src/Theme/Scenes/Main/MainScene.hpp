@@ -14,6 +14,8 @@ namespace Forradia
     class MainScene : public IScene
     {
       protected:
+        void InitializeDerived() override;
+
         void UpdateDerived() override;
 
         void RenderDerived() override;
