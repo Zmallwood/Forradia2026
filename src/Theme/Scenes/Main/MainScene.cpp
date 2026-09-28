@@ -16,11 +16,14 @@
 #include "Sub/ObjectHovering.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
     void MainScene::InitializeDerived()
     {
+        gui_->AddComponent(std::make_shared<GUITextConsole>());
+
         gui_->AddComponent(std::make_shared<GUIButton>(
             "", 0.94f, 0.08f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
             "GUIButtonInventoryBackground",

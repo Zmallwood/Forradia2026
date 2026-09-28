@@ -5,16 +5,25 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "WorldGenerationScene.hpp"
-#include "Core/ScenesCore/SceneManager.hpp"
-#include "Sub/WorldGenerator.hpp"
+#pragma once
+
+#include "GUIPanel.hpp"
 
 namespace Forradia
 {
-    void WorldGenerationScene::OnEnterDerived()
+    class GUITextConsole : public GUIPanel
     {
-        _<WorldGenerator>().GenerateNewWorld();
+      public:
+        GUITextConsole();
 
-        _<SceneManager>().GoToScene("MainScene");
-    }
+        void PrintLine(std::string_view line);
+
+      protected:
+        void RenderDerived() override;
+
+      private:
+        static constexpr float k_lineHeight_{0.02f};
+
+        std::vector<std::string> lines_;
+    };
 }

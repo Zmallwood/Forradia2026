@@ -22,9 +22,7 @@ namespace Forradia
 
         void Render();
 
-        virtual void OnEnter()
-        {
-        }
+        void OnEnter();
 
         void OnKeyDown(SDL_Keycode key);
 
@@ -36,6 +34,10 @@ namespace Forradia
 
       protected:
         virtual void InitializeDerived()
+        {
+        }
+
+        virtual void OnEnterDerived()
         {
         }
 

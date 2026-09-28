@@ -10,10 +10,18 @@
 namespace Forradia
 {
     template <class T>
-    T &_()
+    std::shared_ptr<T> GetSingletonPtr()
     {
-        static T instance;
+        static std::shared_ptr<T> instance = std::make_shared<T>();
 
         return instance;
+    }
+
+    template <class T>
+    T &_()
+    {
+        auto ptr{GetSingletonPtr<T>()};
+
+        return *ptr;
     }
 }

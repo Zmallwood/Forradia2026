@@ -12,11 +12,14 @@
 #include "Core/GUICore/GUIPanel.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
     void MainMenuScene::InitializeDerived()
     {
+        gui_->AddComponent(std::make_shared<GUITextConsole>());
+
         gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
 
         gui_->AddComponent(std::make_shared<GUIButton>(
