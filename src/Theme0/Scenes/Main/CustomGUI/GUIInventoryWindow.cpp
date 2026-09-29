@@ -71,7 +71,7 @@ namespace Forradia
 
                         if (object)
                         {
-                            _<ObjectMoving>().objectInAir_ = object;
+                            _<ObjectMoving>().SetObjectInAir(object);
                         }
                     }
 
@@ -87,7 +87,7 @@ namespace Forradia
 
     void GUIInventoryWindow::RenderDerived()
     {
-        GUIPanel::RenderDerived();
+        GUIWindow::RenderDerived();
 
         auto position{GetPosition()};
 
@@ -135,5 +135,69 @@ namespace Forradia
                 ++inventoryIndex;
             }
         }
+    }
+
+    bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
+    {
+        GUIWindow::OnMouseUp(mouseButton, clickSpeed);
+
+        if (!_<ObjectMoving>().GetObjectInAir())
+        {
+            return false;
+        }
+
+        auto mousePosition{GetMousePosition()};
+
+        auto position{GetPosition()};
+
+        auto size{size_};
+
+        auto titleBarHeight{titleBar_->size_.height};
+
+        auto numCols{
+            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
+
+        auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
+
+        auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
+
+        auto numRows{static_cast<int>((size.height - titleBarHeight) /
+                                      (slotHeight + slotMarginY))};
+
+        auto inventoryIndex{0};
+
+        for (auto y = 0; y < numRows; y++)
+        {
+            for (auto x = 0; x < numCols; x++)
+            {
+                auto slotX{position.x + k_slotMarginX_ +
+                           x * (k_slotWidth_ + k_slotMarginX_)};
+
+                auto slotY{position.y + titleBarHeight +
+                           y * (slotHeight + slotMarginY)};
+
+                auto slotWidth{k_slotWidth_};
+
+                auto slotBounds = RectF{slotX, slotY, slotWidth, slotHeight};
+
+                if (slotBounds.Contains(mousePosition))
+                {
+                    if (!_<Player>().playerInventory_->HasObject(
+                            inventoryIndex))
+                    {
+                        _<Player>().playerInventory_->AddObject(
+                            _<ObjectMoving>().GetObjectInAir(), inventoryIndex);
+
+                        _<ObjectMoving>().ClearObject();
+
+                        return true;
+                    }
+                }
+
+                ++inventoryIndex;
+            }
+        }
+
+        return false;
     }
 }

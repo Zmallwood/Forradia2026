@@ -94,7 +94,7 @@ namespace Forradia
 
         tile->tileObjects_->AddObject(objectInAir_, hoveredTilePosition);
 
-        objectInAir_ = nullptr;
+        ClearObject();
     }
 
     void ObjectMoving::Render()
@@ -127,5 +127,12 @@ namespace Forradia
 
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
+    }
+
+    void ObjectMoving::ClearObject()
+    {
+        objectInAir_ = nullptr;
+
+        draggingMouseOffset_ = {0.0f, 0.0f};
     }
 }

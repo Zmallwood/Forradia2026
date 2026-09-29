@@ -19,6 +19,8 @@ namespace Forradia
       protected:
         bool OnMouseDown(Uint8 mouseButton) override;
 
+        bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
+
         void RenderDerived() override;
 
       private:

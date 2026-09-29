@@ -23,6 +23,12 @@ namespace Forradia
         }
     }
 
+    void PlayerInventory::AddObject(std::shared_ptr<Object> object,
+                                    int slotIndex)
+    {
+        objects_.insert({slotIndex, object});
+    }
+
     std::shared_ptr<Object> PlayerInventory::GetObject(int index)
     {
         if (objects_.contains(index))
@@ -50,5 +56,10 @@ namespace Forradia
         }
 
         return nullptr;
+    }
+
+    bool PlayerInventory::HasObject(int index)
+    {
+        return objects_.contains(index);
     }
 }

@@ -16,9 +16,13 @@ namespace Forradia
       public:
         void AddObject(std::string_view objectName);
 
+        void AddObject(std::shared_ptr<Object> object, int slotIndex);
+
         std::shared_ptr<Object> GetObject(int index);
 
         std::shared_ptr<Object> PickObject(int index);
+
+        bool HasObject(int index);
 
       private:
         static constexpr int k_maxObjects_{1000};
