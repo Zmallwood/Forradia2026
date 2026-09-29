@@ -12,4 +12,6 @@
 namespace Forradia
 {
     std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
+
+    Point GetHoveredTilePosition(PointF mouseOffset);
 }

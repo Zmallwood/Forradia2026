@@ -11,22 +11,18 @@ namespace Forradia
 {
     class Object;
 
-    class TileObjects
+    class ObjectMoving
     {
       public:
-        void Clear();
+        void OnMouseDown(Uint8 button);
 
-        void AddObject(int objectType, Point position = {-1, -1});
+        void OnMouseUp(Uint8 button, int clickSpeed);
 
-        void AddObject(std::string_view objectName, Point position = {-1, -1});
+        void Render();
 
-        void AddObject(std::shared_ptr<Object> object,
-                       Point position = {-1, -1});
-
-        int Count();
-
-        std::shared_ptr<Object> PickObject(std::shared_ptr<Object> object);
-
-        std::map<Point, std::shared_ptr<Object>> objects_;
+      private:
+        std::shared_ptr<Object> objectInAir_;
+        PointF draggingMouseOffset_;
+        Point pickedPosition_;
     };
 }

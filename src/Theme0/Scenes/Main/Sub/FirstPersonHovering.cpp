@@ -19,7 +19,6 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "FirstPersonView/FirstPersonViewFunctions.hpp"
 
-
 namespace Forradia
 {
     void FirstPersonHovering::Update()
@@ -100,23 +99,21 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            RectF rect = {imageX, imageY, imageWidth, imageHeight};
+            auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
 
-            if (rect.Contains(mousePosition))
+            auto x{(mousePosition.x - imageX) / imageWidth};
+            auto y{(mousePosition.y - imageY) / imageHeight};
+
+            auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+
+            if (isHovered)
             {
-                auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
+                hoveredObject_ = entry.second.object_;
 
-                auto x{(mousePosition.x - imageX) / imageWidth};
-                auto y{(mousePosition.y - imageY) / imageHeight};
+                hoveredCreature_ = nullptr;
 
-                auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
-
-                if (isHovered)
-                {
-                    hoveredObject_ = entry.second.object_;
-
-                    hoveredCreature_ = nullptr;
-                }
+                hoveredThingMouseOffset_ = {mousePosition.x - baseX,
+                                            mousePosition.y - baseY};
             }
         }
 
@@ -143,24 +140,21 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            RectF rect = {imageX, imageY, imageWidth, imageHeight};
+            auto scale{largeObjectScale};
 
-            if (rect.Contains(mousePosition))
+            auto x{(mousePosition.x - imageX) / imageWidth};
+            auto y{(mousePosition.y - imageY) / imageHeight};
+
+            auto isHovered{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
+
+            if (isHovered)
             {
-                auto scale{largeObjectScale};
+                hoveredObject_ = nullptr;
 
-                auto x{(mousePosition.x - imageX) / imageWidth};
-                auto y{(mousePosition.y - imageY) / imageHeight};
+                hoveredCreature_ = creature;
 
-                auto isHovered{
-                    _<ImageBank>().IsPixelVisible(creatureType, x, y)};
-
-                if (isHovered)
-                {
-                    hoveredObject_ = nullptr;
-
-                    hoveredCreature_ = creature;
-                }
+                hoveredThingMouseOffset_ = {mousePosition.x - baseX,
+                                            mousePosition.y - baseY};
             }
         }
 
@@ -213,23 +207,21 @@ namespace Forradia
             auto imageX{baseX - imageWidth / 2.0f};
             auto imageY{baseY - imageHeight};
 
-            RectF rect = {imageX, imageY, imageWidth, imageHeight};
+            auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
 
-            if (rect.Contains(mousePosition))
+            auto x{(mousePosition.x - imageX) / imageWidth};
+            auto y{(mousePosition.y - imageY) / imageHeight};
+
+            auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+
+            if (isHovered)
             {
-                auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
+                hoveredObject_ = entry.second.object_;
 
-                auto x{(mousePosition.x - imageX) / imageWidth};
-                auto y{(mousePosition.y - imageY) / imageHeight};
+                hoveredCreature_ = nullptr;
 
-                auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
-
-                if (isHovered)
-                {
-                    hoveredObject_ = entry.second.object_;
-
-                    hoveredCreature_ = nullptr;
-                }
+                hoveredThingMouseOffset_ = {mousePosition.x - baseX,
+                                            mousePosition.y - baseY};
             }
         }
     }

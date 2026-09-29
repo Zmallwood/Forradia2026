@@ -23,7 +23,7 @@ namespace Forradia
             position.x = rand() % _<GameProperties>().k_tileUnitsWidth_;
             position.y = rand() % _<GameProperties>().k_tileUnitsWidth_;
         }
-        
+
         objects_.insert({position, std::make_shared<Object>(objectType)});
     }
 
@@ -32,8 +32,29 @@ namespace Forradia
         AddObject(Hash(objectName), position);
     }
 
+    void TileObjects::AddObject(std::shared_ptr<Object> object, Point position)
+    {
+        objects_.insert({position, object});
+    }
+
     int TileObjects::Count()
     {
         return objects_.size();
+    }
+
+    std::shared_ptr<Object>
+    TileObjects::PickObject(std::shared_ptr<Object> object)
+    {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it)
+        {
+            if (it->second == object)
+            {
+                objects_.erase(it);
+
+                return object;
+            }
+        }
+
+        return nullptr;
     }
 }

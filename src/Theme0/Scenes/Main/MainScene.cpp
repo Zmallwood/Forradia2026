@@ -20,10 +20,10 @@
 #include "Sub/KeyboardHotkeys.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
+#include "Sub/ObjectMoving.hpp"
 #include "Sub/PlayerCombatToOthers.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
-
 
 namespace Forradia
 {
@@ -82,6 +82,8 @@ namespace Forradia
         _<FirstPersonView>().Render();
 
         _<FirstPersonHovering>().Render();
+
+        _<ObjectMoving>().Render();
     }
 
     void MainScene::OnKeyDownDerived(SDL_Keycode key)
@@ -105,5 +107,12 @@ namespace Forradia
         _<PlayerCombatToOthers>().OnMouseDown(button);
 
         _<MouseMovement>().OnMouseDown(button);
+
+        _<ObjectMoving>().OnMouseDown(button);
+    }
+
+    void MainScene::OnMouseUpDerived(Uint8 button, int clickSpeed)
+    {
+        _<ObjectMoving>().OnMouseUp(button, clickSpeed);
     }
 }

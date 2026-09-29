@@ -27,5 +27,7 @@ namespace Forradia
         void OnKeyUpDerived(SDL_Keycode key) override;
 
         void OnMouseDownDerived(Uint8 button) override;
+
+        void OnMouseUpDerived(Uint8 button, int clickSpeed) override;
     };
 }
