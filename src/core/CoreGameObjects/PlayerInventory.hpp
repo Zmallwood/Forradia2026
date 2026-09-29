@@ -21,6 +21,7 @@ namespace Forradia
         std::shared_ptr<Object> PickObject(int index);
 
       private:
-        std::vector<std::shared_ptr<Object>> objects_;
+        static constexpr int k_maxObjects_{1000};
+        std::unordered_map<int, std::shared_ptr<Object>> objects_;
     };
 }

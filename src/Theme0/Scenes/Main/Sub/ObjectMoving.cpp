@@ -110,21 +110,16 @@ namespace Forradia
 
         auto imageSize{_<ImageBank>().GetImageSize(objectType)};
 
-        float imageWidth;
-        float imageHeight;
+        constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
+        constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
 
-        if (imageSize.width > imageSize.height)
-        {
-            imageWidth = k_imageWidth_;
-            imageHeight = static_cast<float>(imageSize.height) /
-                          imageSize.width * ConvertWidthToHeight(k_imageWidth_);
-        }
-        else
-        {
-            imageWidth = k_imageWidth_;
-            imageHeight = static_cast<float>(imageSize.height) /
-                          imageSize.width * ConvertWidthToHeight(k_imageWidth_);
-        }
+        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+
+        auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
+
+        auto imageWidth{imageSize.width / 60.0f * scale};
+        auto imageHeight{imageSize.height / 60.0f *
+                         ConvertWidthToHeight(scale)};
 
         auto imageX{mousePosition.x - draggingMouseOffset_.x -
                     imageWidth / 2.0f};

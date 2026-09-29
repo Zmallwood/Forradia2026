@@ -12,12 +12,20 @@ namespace Forradia
 {
     void PlayerInventory::AddObject(std::string_view objectName)
     {
-        objects_.push_back(std::make_shared<Object>(objectName));
+        for (auto i = 0; i < k_maxObjects_; i++)
+        {
+            if (!objects_.contains(i))
+            {
+                objects_[i] = std::make_shared<Object>(objectName);
+
+                return;
+            }
+        }
     }
 
     std::shared_ptr<Object> PlayerInventory::GetObject(int index)
     {
-        if (index >= 0 && index < objects_.size())
+        if (objects_.contains(index))
         {
             return objects_.at(index);
         }
@@ -27,13 +35,18 @@ namespace Forradia
 
     std::shared_ptr<Object> PlayerInventory::PickObject(int index)
     {
-        if (index >= 0 && index < objects_.size())
+        for (auto it = objects_.begin(); it != objects_.end();)
         {
-            auto result{objects_.at(index)};
+            if (it->first == index)
+            {
+                auto result{it->second};
 
-            objects_.erase(objects_.begin() + index);
+                objects_.erase(it++);
 
-            return result;
+                return result;
+            }
+
+            ++it;
         }
 
         return nullptr;
