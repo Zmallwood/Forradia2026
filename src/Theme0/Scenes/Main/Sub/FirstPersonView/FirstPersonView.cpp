@@ -165,7 +165,7 @@ namespace Forradia
             _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
                                          imageWidth, imageHeight);
 
-            if (now - creature->ticksLastHitOnSelf_ < k_hitEffectDuration_)
+            if (now - creature->ticksLastHitOnSelf_ < k_hitOtherEffectDuration_)
             {
                 auto lastHitPosition{creature->lastHitPosition_};
 
@@ -281,6 +281,12 @@ namespace Forradia
 
         _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
                                     Colors::k_white);
+
+        if (now < _<Player>().ticksLastHitOnSelf_ + k_hitSelfEffectDuration_)
+        {
+            _<ColorRenderer>().FillRect(viewWidth, 0.0f, viewWidth, 1.0f,
+                                        Colors::k_red);
+        }
 
         _<SDLDevice>().ResetClip();
     }

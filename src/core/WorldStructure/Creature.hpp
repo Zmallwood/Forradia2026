@@ -28,6 +28,9 @@ namespace Forradia
         PointF lastHitPosition_{-1.0f, -1.0f};
         int experienceValue_{13};
         int respawnTimeMillis_{5000};
+        int ticksLastHitOnOther_{0};
+        float attackSpeed_{0.5f};
+        bool targetingPlayer_{false};
 
       private:
         float health_{5.0f};

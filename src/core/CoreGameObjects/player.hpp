@@ -34,6 +34,8 @@ namespace Forradia
 
         void AddExperience(int amount);
 
+        void Hit(float damage);
+
         Point position_{0, 0};
         int ticksLastMovement_{0};
         float movementSpeed_{4.0f};
@@ -47,6 +49,7 @@ namespace Forradia
         std::shared_ptr<PlayerInventory> playerInventory_;
         float health_{10.0f};
         float maxHealth_{10.0f};
+        int ticksLastHitOnSelf_{0};
 
       private:
         void SpawnOnSuitableLocation();

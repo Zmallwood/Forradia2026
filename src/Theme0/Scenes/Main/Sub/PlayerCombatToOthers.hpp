@@ -9,13 +9,9 @@
 
 namespace Forradia
 {
-    class FirstPersonView
+    class PlayerCombatToOthers
     {
       public:
-        void Render();
-
-      private:
-        static constexpr int k_hitOtherEffectDuration_{250};
-        static constexpr int k_hitSelfEffectDuration_{100};
+        void OnMouseDown(Uint8 button);
     };
 }

@@ -159,4 +159,17 @@ namespace Forradia
         _<GUITextConsole>().PrintLine("You gained " + std::to_string(amount) +
                                       " experience points.");
     }
+
+    void Player::Hit(float damage)
+    {
+        health_ -= damage;
+
+        ticksLastHitOnSelf_ = Now();
+
+        std::stringstream ssDamage;
+        ssDamage << std::fixed << std::setprecision(1) << damage;
+
+        _<GUITextConsole>().PrintLine("You took " + ssDamage.str() +
+                                      " damage.");
+    }
 }

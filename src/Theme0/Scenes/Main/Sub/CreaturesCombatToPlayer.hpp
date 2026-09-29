@@ -9,9 +9,9 @@
 
 namespace Forradia
 {
-    class Combat
+    class CreaturesCombatToPlayer
     {
       public:
-        void OnMouseDown(Uint8 button);
+        void Update();
     };
 }

@@ -12,16 +12,18 @@
 #include "CustomGUI/GUIExperienceMeter.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUIStatusPanel.hpp"
-#include "Sub/Combat.hpp"
+#include "Sub/CreatureRespawner.hpp"
+#include "Sub/CreaturesCombatToPlayer.hpp"
 #include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonHovering.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
 #include "Sub/KeyboardHotkeys.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
+#include "Sub/PlayerCombatToOthers.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
-#include "Sub/CreatureRespawner.hpp"
+
 
 namespace Forradia
 {
@@ -69,6 +71,8 @@ namespace Forradia
         _<FirstPersonHovering>().Update();
 
         _<CreatureRespawner>().Update();
+
+        _<CreaturesCombatToPlayer>().Update();
     }
 
     void MainScene::RenderDerived()
@@ -98,7 +102,7 @@ namespace Forradia
 
     void MainScene::OnMouseDownDerived(Uint8 button)
     {
-        _<Combat>().OnMouseDown(button);
+        _<PlayerCombatToOthers>().OnMouseDown(button);
 
         _<MouseMovement>().OnMouseDown(button);
     }

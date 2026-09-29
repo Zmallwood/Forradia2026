@@ -35,6 +35,15 @@ namespace Forradia
 
         lastHitPosition_ = hitPosition;
 
+        targetingPlayer_ = true;
+
+        auto now{Now()};
+
+        if (now - ticksLastHitOnOther_ > InvertSpeed(attackSpeed_))
+        {
+            ticksLastHitOnOther_ = now;
+        }
+
         auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
 
         std::stringstream ssDamage;

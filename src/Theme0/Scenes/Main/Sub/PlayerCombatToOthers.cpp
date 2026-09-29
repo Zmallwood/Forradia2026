@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Combat.hpp"
+#include "PlayerCombatToOthers.hpp"
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/Configuration/CreatureIndex.hpp"
 #include "Core/Configuration/GameProperties.hpp"
@@ -18,10 +18,9 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "CreatureRespawner.hpp"
 
-
 namespace Forradia
 {
-    void Combat::OnMouseDown(Uint8 button)
+    void PlayerCombatToOthers::OnMouseDown(Uint8 button)
     {
         auto viewWidth{GameProperties::k_viewWidth_};
 
