@@ -7,6 +7,7 @@
 
 #include "Player.hpp"
 #include "Core/Configuration/GameProperties.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
@@ -147,5 +148,13 @@ namespace Forradia
         facedTileCoordinate_ = {position_.x - 1, position_.y};
 
         facingDirection_ = WorldDirections::West;
+    }
+
+    void Player::AddExperience(int amount)
+    {
+        experience_ += amount;
+
+        _<GUITextConsole>().PrintLine("You gained " + std::to_string(amount) +
+                                      " experience points.");
     }
 }

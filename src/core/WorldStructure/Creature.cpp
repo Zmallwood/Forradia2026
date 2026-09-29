@@ -6,6 +6,8 @@
  ************************************************************************/
 
 #include "Creature.hpp"
+#include "Core/Configuration/CreatureIndex.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
@@ -23,6 +25,14 @@ namespace Forradia
         ticksLastHitOnSelf_ = Now();
 
         lastHitPosition_ = hitPosition;
+
+        auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
+
+        std::stringstream ssDamage;
+        ssDamage << std::fixed << std::setprecision(1) << damage;
+
+        _<GUITextConsole>().PrintLine("You hit a " + creatureLabel + " for " +
+                                      ssDamage.str() + " damage.");
     }
 
     bool Creature::IsDead()

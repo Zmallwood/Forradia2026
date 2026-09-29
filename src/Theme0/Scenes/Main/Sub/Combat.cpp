@@ -109,6 +109,8 @@ namespace Forradia
             tile->creature_ = nullptr;
 
             worldArea->creaturesMirror_.erase(creature);
+
+            _<Player>().AddExperience(creature->experienceValue_);
         }
     }
 }

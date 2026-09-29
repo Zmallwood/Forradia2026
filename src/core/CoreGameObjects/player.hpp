@@ -32,6 +32,8 @@ namespace Forradia
 
         void TurnWest();
 
+        void AddExperience(int amount);
+
         Point position_{0, 0};
         int ticksLastMovement_{0};
         float movementSpeed_{4.0f};

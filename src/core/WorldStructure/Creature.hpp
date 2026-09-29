@@ -24,6 +24,7 @@ namespace Forradia
         float movementSpeed_{1.0f};
         int ticksLastHitOnSelf_{0};
         PointF lastHitPosition_{-1.0f, -1.0f};
+        int experienceValue_{10};
 
       private:
         float health_{5.0f};
