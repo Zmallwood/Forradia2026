@@ -40,28 +40,40 @@ namespace Forradia
 
     void IScene::OnKeyDown(SDL_Keycode key)
     {
-        gui_->OnKeyDown(key);
+        if (gui_->OnKeyDown(key))
+        {
+            return;
+        }
 
         OnKeyDownDerived(key);
     }
 
     void IScene::OnKeyUp(SDL_Keycode key)
     {
-        gui_->OnKeyUp(key);
+        if (gui_->OnKeyUp(key))
+        {
+            return;
+        }
 
         OnKeyUpDerived(key);
     }
 
     void IScene::OnMouseDown(Uint8 button)
     {
-        gui_->OnMouseDown(button);
+        if (gui_->OnMouseDown(button))
+        {
+            return;
+        }
 
         OnMouseDownDerived(button);
     }
 
     void IScene::OnMouseUp(Uint8 button, int clickSpeed)
     {
-        gui_->OnMouseUp(button, clickSpeed);
+        if (gui_->OnMouseUp(button, clickSpeed))
+        {
+            return;
+        }
 
         OnMouseUpDerived(button, clickSpeed);
     }
