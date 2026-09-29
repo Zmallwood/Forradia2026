@@ -18,7 +18,7 @@ namespace Forradia
 
         void OnEnterDerived() override;
 
-        void RenderDerived() override;
+        void RenderBeforeGUIDerived() override;
 
         void OnKeyDownDerived(SDL_Keycode key) override;
 

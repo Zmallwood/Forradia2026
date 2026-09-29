@@ -18,6 +18,8 @@ namespace Forradia
 
         std::shared_ptr<Object> GetObject(int index);
 
+        std::shared_ptr<Object> PickObject(int index);
+
       private:
         std::vector<std::shared_ptr<Object>> objects_;
     };

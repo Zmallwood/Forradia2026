@@ -75,14 +75,17 @@ namespace Forradia
         _<CreaturesCombatToPlayer>().Update();
     }
 
-    void MainScene::RenderDerived()
+    void MainScene::RenderBeforeGUIDerived()
     {
         _<WorldView>().Render();
 
         _<FirstPersonView>().Render();
 
         _<FirstPersonHovering>().Render();
+    }
 
+    void MainScene::RenderAfterGUIDerived()
+    {
         _<ObjectMoving>().Render();
     }
 

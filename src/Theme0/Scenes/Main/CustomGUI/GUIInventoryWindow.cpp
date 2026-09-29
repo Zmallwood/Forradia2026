@@ -9,8 +9,9 @@
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/CoreGameObjects/PlayerInventory.hpp"
 #include "Core/GUICore/Windows/GUIWindowTitleBar.hpp"
-#include "Core/WorldStructure/Object.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
+#include "Core/WorldStructure/Object.hpp"
+#include "Theme0/Scenes/Main/Sub/ObjectMoving.hpp"
 
 namespace Forradia
 {
@@ -65,14 +66,13 @@ namespace Forradia
 
                     if (slotBounds.Contains(mousePosition))
                     {
-                        // auto object{
-                        //     _<Player>().GetPlayerInventory()->PickObject(
-                        //         inventoryIndex)};
+                        auto object{_<Player>().playerInventory_->PickObject(
+                            inventoryIndex)};
 
-                        // if (object)
-                        // {
-                        //     _<ObjectMoving>().SetObjectInAir(object);
-                        // }
+                        if (object)
+                        {
+                            _<ObjectMoving>().objectInAir_ = object;
+                        }
                     }
 
                     ++inventoryIndex;

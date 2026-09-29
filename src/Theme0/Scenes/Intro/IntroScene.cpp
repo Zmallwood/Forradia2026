@@ -11,7 +11,7 @@
 
 namespace Forradia
 {
-    void IntroScene::RenderDerived()
+    void IntroScene::RenderBeforeGUIDerived()
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
                                      1.0f);

@@ -45,7 +45,11 @@ namespace Forradia
         {
         }
 
-        virtual void RenderDerived()
+        virtual void RenderBeforeGUIDerived()
+        {
+        }
+
+        virtual void RenderAfterGUIDerived()
         {
         }
 

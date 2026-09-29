@@ -33,9 +33,11 @@ namespace Forradia
 
     void IScene::Render()
     {
-        RenderDerived();
+        RenderBeforeGUIDerived();
 
         gui_->Render();
+
+        RenderAfterGUIDerived();
     }
 
     void IScene::OnKeyDown(SDL_Keycode key)

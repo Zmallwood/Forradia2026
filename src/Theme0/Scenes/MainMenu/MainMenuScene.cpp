@@ -39,7 +39,7 @@ namespace Forradia
                                          _<GUITextConsole>().size_.height);
     }
 
-    void MainMenuScene::RenderDerived()
+    void MainMenuScene::RenderBeforeGUIDerived()
     {
         _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
                                      1.0f);

@@ -14,7 +14,7 @@ namespace Forradia
     class IntroScene : public IScene
     {
       protected:
-        void RenderDerived() override;
+        void RenderBeforeGUIDerived() override;
 
         void OnKeyDownDerived(SDL_Keycode key) override;
 

@@ -24,4 +24,18 @@ namespace Forradia
 
         return nullptr;
     }
+
+    std::shared_ptr<Object> PlayerInventory::PickObject(int index)
+    {
+        if (index >= 0 && index < objects_.size())
+        {
+            auto result{objects_.at(index)};
+
+            objects_.erase(objects_.begin() + index);
+
+            return result;
+        }
+
+        return nullptr;
+    }
 }

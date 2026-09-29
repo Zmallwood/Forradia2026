@@ -20,8 +20,10 @@ namespace Forradia
 
         void Render();
 
-      private:
         std::shared_ptr<Object> objectInAir_;
+
+      private:
+        static constexpr float k_imageWidth_{0.05f};
         PointF draggingMouseOffset_;
         Point pickedPosition_;
     };
