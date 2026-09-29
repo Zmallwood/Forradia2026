@@ -45,11 +45,10 @@ namespace Forradia
         std::string name_{"Unnamed player"};
         int experience_{0};
         std::shared_ptr<PlayerInventory> playerInventory_;
+        float health_{10.0f};
+        float maxHealth_{10.0f};
 
       private:
         void SpawnOnSuitableLocation();
-
-        float health_{10.0f};
-        float maxHealth_{10.0f};
     };
 }
