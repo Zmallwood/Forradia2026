@@ -10,12 +10,15 @@
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
+#include "PlayerInventory.hpp"
 
 namespace Forradia
 {
-    Player::Player()
+    Player::Player() : playerInventory_(std::make_shared<PlayerInventory>())
     {
         SpawnOnSuitableLocation();
+
+        playerInventory_->AddObject("ObjectRedApple");
     }
 
     void Player::SpawnOnSuitableLocation()

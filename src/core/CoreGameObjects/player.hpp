@@ -9,6 +9,8 @@
 
 namespace Forradia
 {
+    class PlayerInventory;
+
     class Player
     {
       public:
@@ -40,6 +42,7 @@ namespace Forradia
         float attackSpeed_{2.0f};
         std::string name_{"Unnamed player"};
         int experience_{0};
+        std::shared_ptr<PlayerInventory> playerInventory_;
 
       private:
         void SpawnOnSuitableLocation();

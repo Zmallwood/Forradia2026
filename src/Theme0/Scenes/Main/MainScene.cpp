@@ -9,6 +9,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
+#include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUIStatusPanel.hpp"
 #include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
@@ -26,7 +27,8 @@ namespace Forradia
         gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
 
         gui_->AddComponent(std::make_shared<GUIButton>(
-            "", 0.94f, 0.08f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
+            "", 0.94f, 0.08f, 0.05f, ConvertWidthToHeight(0.05f),
+            [this]() { _<GUIInventoryWindow>().ToggleVisibility(); },
             "GUIButtonInventoryBackground",
             "GUIButtonInventoryHoveredBackground"));
 
@@ -36,6 +38,8 @@ namespace Forradia
             "GUIButtonEquipmentHoveredBackground"));
 
         gui_->AddComponent(std::make_shared<GUIStatusPanel>());
+
+        gui_->AddComponent(GetSingletonPtr<GUIInventoryWindow>());
     }
 
     void MainScene::OnEnterDerived()

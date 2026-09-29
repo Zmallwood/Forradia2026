@@ -5,15 +5,23 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Object.hpp"
+#include "PlayerInventory.hpp"
+#include "Core/WorldStructure/Object.hpp"
 
 namespace Forradia
 {
-    Object::Object(int type) : type_(type)
+    void PlayerInventory::AddObject(std::string_view objectName)
     {
+        objects_.push_back(std::make_shared<Object>(objectName));
     }
 
-    Object::Object(std::string_view typeName) : type_(Hash(typeName))
+    std::shared_ptr<Object> PlayerInventory::GetObject(int index)
     {
+        if (index >= 0 && index < objects_.size())
+        {
+            return objects_.at(index);
+        }
+
+        return nullptr;
     }
 }

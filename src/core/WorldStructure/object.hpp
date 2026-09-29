@@ -14,6 +14,8 @@ namespace Forradia
       public:
         Object(int type);
 
+        Object(std::string_view typeName);
+
         int type_{0};
     };
 }

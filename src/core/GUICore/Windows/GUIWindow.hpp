@@ -21,12 +21,6 @@ namespace Forradia
 
         void ToggleVisibility();
 
-        auto GetTitleBar() const
-        {
-            return titleBar_;
-        }
-
-      private:
         std::shared_ptr<GUIWindowTitleBar> titleBar_;
     };
 }

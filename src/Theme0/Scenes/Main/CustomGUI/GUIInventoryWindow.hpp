@@ -5,15 +5,24 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "Object.hpp"
+#pragma once
+
+#include "Core/GUICore/Windows/GUIWindow.hpp"
 
 namespace Forradia
 {
-    Object::Object(int type) : type_(type)
+    class GUIInventoryWindow : public GUIWindow
     {
-    }
+      public:
+        GUIInventoryWindow();
 
-    Object::Object(std::string_view typeName) : type_(Hash(typeName))
-    {
-    }
+      protected:
+        bool OnMouseDown(Uint8 mouseButton) override;
+
+        void RenderDerived() override;
+
+      private:
+        static constexpr float k_slotWidth_{0.037F};
+        static constexpr float k_slotMarginX_{0.005f};
+    };
 }
