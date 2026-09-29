@@ -9,23 +9,26 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
+#include "CustomGUI/GUIExperienceMeter.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUIStatusPanel.hpp"
 #include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonHovering.hpp"
 #include "Sub/FirstPersonView/FirstPersonView.hpp"
+#include "Sub/KeyboardHotkeys.hpp"
 #include "Sub/KeyboardMovement.hpp"
 #include "Sub/MouseMovement.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
-#include "Sub/KeyboardHotkeys.hpp"
 
 namespace Forradia
 {
     void MainScene::InitializeDerived()
     {
         gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
+
+        gui_->AddComponent(GetSingletonPtr<GUIExperienceMeter>());
 
         gui_->AddComponent(std::make_shared<GUIButton>(
             "", 0.94f, 0.08f, 0.05f, ConvertWidthToHeight(0.05f),
@@ -45,6 +48,10 @@ namespace Forradia
 
     void MainScene::OnEnterDerived()
     {
+        _<GUITextConsole>().SetYPosition(1.0f -
+                                         _<GUITextConsole>().size_.height -
+                                         _<GUIExperienceMeter>().size_.height);
+
         _<GUITextConsole>().PrintLine("You have entered the world.");
     }
 

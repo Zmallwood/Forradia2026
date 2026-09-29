@@ -48,5 +48,8 @@ namespace Forradia
 
       private:
         void SpawnOnSuitableLocation();
+
+        float health_{10.0f};
+        float maxHealth_{10.0f};
     };
 }

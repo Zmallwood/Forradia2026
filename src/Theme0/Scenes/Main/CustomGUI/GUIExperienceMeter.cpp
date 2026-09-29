@@ -5,17 +5,23 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "GUIExperienceMeter.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
+#include "Theme0/Theme0Math/ExperienceMath.hpp"
 
 namespace Forradia
 {
-    namespace Colors
+    GUIExperienceMeter::GUIExperienceMeter()
+        : GUIMeter(0.0f, 0.985f, 1.0f, 0.015f)
     {
-        inline static constexpr Color k_black{0.0f, 0.0f, 0.0f, 1.0f};
-        inline static constexpr Color k_white{1.0f, 1.0f, 1.0f, 1.0f};
-        inline static constexpr Color k_gold{1.0f, 0.84f, 0.0f, 1.0f};
-        inline static constexpr Color k_wheat{0.96f, 0.87f, 0.7f, 1.0f};
-        inline static constexpr Color k_darkBlue{0.0f, 0.0f, 0.3f, 1.0f};
-        inline static constexpr Color k_yellowGray{0.85f, 0.75f, 0.4f, 1.0f};
+    }
+
+    float GUIExperienceMeter::GetMeterProgress()
+    {
+        auto experience{_<Player>().experience_};
+
+        auto progress{CalculateFractionalExperienceProgress(experience)};
+
+        return progress;
     }
 }

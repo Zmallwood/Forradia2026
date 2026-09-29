@@ -10,9 +10,9 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Core/GUICore/GUIPanel.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
-#include "Core/GUICore/GUITextConsole.hpp"
 
 namespace Forradia
 {
@@ -34,6 +34,9 @@ namespace Forradia
     void MainMenuScene::OnEnterDerived()
     {
         _<GUITextConsole>().PrintLine("Starting game.");
+
+        _<GUITextConsole>().SetYPosition(1.0f -
+                                         _<GUITextConsole>().size_.height);
     }
 
     void MainMenuScene::RenderDerived()

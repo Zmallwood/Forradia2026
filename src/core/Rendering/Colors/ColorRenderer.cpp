@@ -13,14 +13,7 @@ namespace Forradia
     void ColorRenderer::FillRect(float x, float y, float width, float height,
                                  Color color)
     {
-        auto canvasSize{GetCanvasSize()};
-
-        auto destX{static_cast<int>(x * canvasSize.width)};
-        auto destY{static_cast<int>(y * canvasSize.height)};
-        auto destWidth{static_cast<int>(width * canvasSize.width)};
-        auto destHeight{static_cast<int>(height * canvasSize.height)};
-
-        auto rect{SDL_Rect{destX, destY, destWidth, destHeight}};
+        auto rect{CreateSDLRect(x, y, width, height)};
 
         auto sdlColor{color.ToSDLColor()};
 
@@ -28,6 +21,19 @@ namespace Forradia
                                sdlColor.g, sdlColor.b, sdlColor.a);
 
         SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
+    }
+
+    void ColorRenderer::DrawRect(float x, float y, float width, float height,
+                                 Color color)
+    {
+        auto rect{CreateSDLRect(x, y, width, height)};
+
+        auto sdlColor{color.ToSDLColor()};
+
+        SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+                               sdlColor.g, sdlColor.b, sdlColor.a);
+
+        SDL_RenderDrawRect(_<SDLDevice>().renderer_.get(), &rect);
     }
 
     void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
@@ -47,5 +53,19 @@ namespace Forradia
 
         SDL_RenderDrawLine(_<SDLDevice>().renderer_.get(), destX1, destY1,
                            destX2, destY2);
+    }
+
+    SDL_Rect ColorRenderer::CreateSDLRect(float x, float y, float width,
+                                          float height)
+    {
+        auto canvasSize{GetCanvasSize()};
+
+        auto destX{static_cast<int>(std::floor(x * canvasSize.width))};
+        auto destY{static_cast<int>(std::floor(y * canvasSize.height))};
+        auto destWidth{static_cast<int>(std::ceil(width * canvasSize.width))};
+        auto destHeight{
+            static_cast<int>(std::ceil(height * canvasSize.height))};
+
+        return SDL_Rect{destX, destY, destWidth, destHeight};
     }
 }

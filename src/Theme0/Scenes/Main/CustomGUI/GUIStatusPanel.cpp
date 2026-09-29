@@ -28,6 +28,6 @@ namespace Forradia
         std::string levelText{"Level " + std::to_string(playerLevel)};
 
         _<TextRenderer>().DrawString(levelText, 0.015f, 0.04f, FontSizes::_24,
-                                     false, Colors::k_gold);
+                                     false, Colors::k_yellowGray);
     }
 }
