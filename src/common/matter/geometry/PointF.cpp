@@ -14,4 +14,14 @@ namespace Forradia
         x += other.x;
         y += other.y;
     }
+
+    PointF PointF::operator+(const PointF &other) const
+    {
+        return {x + other.x, y + other.y};
+    }
+
+    PointF PointF::operator-(const PointF &other) const
+    {
+        return {x - other.x, y - other.y};
+    }
 }

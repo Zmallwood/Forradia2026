@@ -7,18 +7,26 @@
 
 #pragma once
 
+#include "Core/GUICore/GUIPanel.hpp"
+
 namespace Forradia
 {
-    class PointF
+    class GUIWindowTitleBar;
+
+    class GUIWindow : public GUIPanel
     {
       public:
-        void operator+=(const PointF &other);
+        GUIWindow(std::string_view title, float x, float y, float width,
+                  float height);
 
-        PointF operator+(const PointF &other) const;
+        void ToggleVisibility();
 
-        PointF operator-(const PointF &other) const;
+        auto GetTitleBar() const
+        {
+            return titleBar_;
+        }
 
-        float x{0.0f};
-        float y{0.0f};
+      private:
+        std::shared_ptr<GUIWindowTitleBar> titleBar_;
     };
 }
