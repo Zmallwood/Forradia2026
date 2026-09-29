@@ -1,0 +1,65 @@
+/************************************************************************
+ *                               Forradia                               *
+ *                                                                      *
+ * Copyright (c) 2026 Andreas Åkerberg                                  *
+ * SPDX-License-Identifier: MIT                                         *
+ ************************************************************************/
+
+#include "ExperienceMath.hpp"
+
+namespace Forradia
+{
+    int CalculateCurrentLevel(int experience)
+    {
+        auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
+
+        return static_cast<int>(level);
+    }
+
+    int CalculateExperienceForLevel(int level)
+    {
+        auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
+
+        return static_cast<int>(experience);
+    }
+
+    int CalculateExperienceDifferenceToNextLevel(int experience)
+    {
+        auto currentLevel{CalculateCurrentLevel(experience)};
+
+        auto nextLevel{currentLevel + 1};
+
+        auto totalExperienceForCurrentLevel{
+            CalculateExperienceForLevel(currentLevel)};
+
+        auto totalExperienceForNextLevel{
+            CalculateExperienceForLevel(nextLevel)};
+
+        return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
+    }
+
+    int CalculateExperienceRequiredForCurrentLevelStart(int experience)
+    {
+        auto currentLevel{CalculateCurrentLevel(experience)};
+
+        return CalculateExperienceForLevel(currentLevel);
+    }
+
+    int CalculateExperienceGainedSinceLevelStart(int experience)
+    {
+        return experience -
+               CalculateExperienceRequiredForCurrentLevelStart(experience);
+    }
+
+    float CalculateFractionalExperienceProgress(int experience)
+    {
+        auto experienceGain{
+            experience -
+            CalculateExperienceRequiredForCurrentLevelStart(experience)};
+
+        auto experienceDiff{
+            CalculateExperienceDifferenceToNextLevel(experience)};
+
+        return static_cast<float>(experienceGain) / experienceDiff;
+    }
+}

@@ -32,7 +32,8 @@ namespace Forradia
     }
 
     void TextRenderer::DrawString(std::string_view text, float x, float y,
-                                  FontSizes fontSize, bool centered)
+                                  FontSizes fontSize, bool centered,
+                                  Color color)
     {
         if (text.empty())
         {
@@ -41,8 +42,10 @@ namespace Forradia
 
         auto font{fonts_[fontSize]};
 
+        auto sdlColor{color.ToSDLColor()};
+
         auto surface{std::shared_ptr<SDL_Surface>(
-            TTF_RenderText_Solid(font.get(), text.data(), {255, 255, 255, 255}),
+            TTF_RenderText_Solid(font.get(), text.data(), sdlColor),
             SDLDeleter())};
 
         auto texture{std::shared_ptr<SDL_Texture>(

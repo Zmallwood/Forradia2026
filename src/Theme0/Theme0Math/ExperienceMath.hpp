@@ -5,13 +5,19 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "RunNewTheme.hpp"
-#include "Core/Game.hpp"
+#pragma once
 
 namespace Forradia
 {
-    void RunNewTheme()
-    {
-        _<Game>().Start();
-    }
+    int CalculateCurrentLevel(int experience);
+
+    int CalculateExperienceForLevel(int level);
+
+    int CalculateExperienceDifferenceToNextLevel(int experience);
+
+    int CalculateExperienceRequiredForCurrentLevelStart(int experience);
+
+    int CalculateExperienceGainedSinceLevelStart(int experience);
+
+    float CalculateFractionalExperienceProgress(int experience);
 }

@@ -9,6 +9,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
+#include "CustomGUI/GUIStatusPanel.hpp"
 #include "Sub/Combat.hpp"
 #include "Sub/CreaturesMovement.hpp"
 #include "Sub/FirstPersonHovering.hpp"
@@ -33,6 +34,8 @@ namespace Forradia
             "", 0.94f, 0.18f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
             "GUIButtonEquipmentBackground",
             "GUIButtonEquipmentHoveredBackground"));
+
+        gui_->AddComponent(std::make_shared<GUIStatusPanel>());
     }
 
     void MainScene::OnEnterDerived()

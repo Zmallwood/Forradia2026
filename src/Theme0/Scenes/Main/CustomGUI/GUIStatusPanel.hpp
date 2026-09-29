@@ -5,15 +5,16 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "Core/GUICore/GUIPanel.hpp"
 
 namespace Forradia
 {
-    namespace Colors
+    class GUIStatusPanel : public GUIPanel
     {
-        inline static constexpr Color k_black{0.0f, 0.0f, 0.0f, 1.0f};
-        inline static constexpr Color k_white{1.0f, 1.0f, 1.0f, 1.0f};
-        inline static constexpr Color k_gold{1.0f, 0.84f, 0.0f, 1.0f};
-        inline static constexpr Color k_wheat{0.96f, 0.87f, 0.7f, 1.0f};
-    }
+      public:
+        GUIStatusPanel();
+
+      protected:
+        void RenderDerived() override;
+    };
 }

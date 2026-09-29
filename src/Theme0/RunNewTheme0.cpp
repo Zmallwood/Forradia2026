@@ -5,9 +5,13 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "RunNewTheme0.hpp"
+#include "Core/Game.hpp"
 
 namespace Forradia
 {
-    void RunNewTheme();
+    void RunNewTheme0()
+    {
+        _<Game>().Start();
+    }
 }

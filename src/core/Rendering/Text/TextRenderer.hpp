@@ -18,7 +18,7 @@ namespace Forradia
 
         void DrawString(std::string_view text, float x, float y,
                         FontSizes fontSize = FontSizes::_12,
-                        bool centered = false);
+                        bool centered = false, Color color = Colors::k_wheat);
 
       private:
         void AddFont(FontSizes fontSize);

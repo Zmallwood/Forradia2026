@@ -38,6 +38,8 @@ namespace Forradia
         WorldDirections facingDirection_{WorldDirections::South};
         int ticksLastHitOnOther_{0};
         float attackSpeed_{2.0f};
+        std::string name_{"Unnamed player"};
+        int experience_{0};
 
       private:
         void SpawnOnSuitableLocation();
