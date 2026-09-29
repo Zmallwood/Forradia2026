@@ -8,12 +8,15 @@
 #include "Combat.hpp"
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/Configuration/GameProperties.hpp"
+#include "Core/Configuration/CreatureIndex.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
+
 
 namespace Forradia
 {
@@ -109,6 +112,12 @@ namespace Forradia
             tile->creature_ = nullptr;
 
             worldArea->creaturesMirror_.erase(creature);
+
+            auto creatureLabel{
+                _<CreatureIndex>().GetCreatureLabel(creatureType)};
+
+            _<GUITextConsole>().PrintLine("You have killed a " + creatureLabel +
+                                          ".");
 
             _<Player>().AddExperience(creature->experienceValue_);
         }
