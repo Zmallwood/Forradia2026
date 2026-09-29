@@ -19,6 +19,7 @@
 #include "Sub/MouseMovement.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
+#include "Sub/KeyboardHotkeys.hpp"
 
 namespace Forradia
 {
@@ -74,6 +75,8 @@ namespace Forradia
         _<KeyboardMovement>().OnKeyDown(key);
 
         _<MouseMovement>().OnKeyDown(key);
+
+        _<KeyboardHotkeys>().OnKeyDown(key);
     }
 
     void MainScene::OnKeyUpDerived(SDL_Keycode key)
