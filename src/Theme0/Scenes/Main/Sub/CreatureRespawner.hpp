@@ -9,28 +9,14 @@
 
 namespace Forradia
 {
-    class Creature
+    class CreatureRespawner
     {
       public:
-        Creature(std::string_view typeName);
+        void Update();
 
-        Creature(int type);
-
-        void Hit(float damage, PointF hitPosition);
-
-        bool IsDead();
-
-        int type_{0};
-        int corpesType_{0};
-        int ticksLastMovement_{0};
-        float movementSpeed_{1.0f};
-        int ticksLastHitOnSelf_{0};
-        PointF lastHitPosition_{-1.0f, -1.0f};
-        int experienceValue_{13};
-        int respawnTimeMillis_{5000};
+        void RespawnCreature(int creatureType, int respawnTimeMillis);
 
       private:
-        float health_{5.0f};
-        float maxHealth_{5.0f};
+        std::unordered_multimap<int, int> creatureRespawns_;
     };
 }

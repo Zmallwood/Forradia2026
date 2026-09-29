@@ -7,8 +7,8 @@
 
 #include "Combat.hpp"
 #include "Core/Assets/ImageBank.hpp"
-#include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/CreatureIndex.hpp"
+#include "Core/Configuration/GameProperties.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 #include "Core/WorldStructure/Creature.hpp"
@@ -16,6 +16,7 @@
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
+#include "CreatureRespawner.hpp"
 
 
 namespace Forradia
@@ -120,6 +121,9 @@ namespace Forradia
                                           ".");
 
             _<Player>().AddExperience(creature->experienceValue_);
+
+            _<CreatureRespawner>().RespawnCreature(
+                creatureType, creature->respawnTimeMillis_);
         }
     }
 }

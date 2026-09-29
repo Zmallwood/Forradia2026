@@ -21,6 +21,7 @@
 #include "Sub/MouseMovement.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
+#include "Sub/CreatureRespawner.hpp"
 
 namespace Forradia
 {
@@ -66,6 +67,8 @@ namespace Forradia
         _<TileHovering>().Update();
 
         _<FirstPersonHovering>().Update();
+
+        _<CreatureRespawner>().Update();
     }
 
     void MainScene::RenderDerived()
