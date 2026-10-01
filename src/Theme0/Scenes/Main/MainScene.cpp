@@ -9,6 +9,7 @@
 #include "Core/GUICore/GUI.hpp"
 #include "Core/GUICore/GUIButton.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
+#include "CustomGUI/GUIEquipmentWindow.hpp"
 #include "CustomGUI/GUIExperienceMeter.hpp"
 #include "CustomGUI/GUIInventoryWindow.hpp"
 #include "CustomGUI/GUIStatusPanel.hpp"
@@ -25,6 +26,7 @@
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
 
+
 namespace Forradia
 {
     void MainScene::InitializeDerived()
@@ -40,13 +42,16 @@ namespace Forradia
             "GUIButtonInventoryHoveredBackground"));
 
         gui_->AddComponent(std::make_shared<GUIButton>(
-            "", 0.94f, 0.18f, 0.05f, ConvertWidthToHeight(0.05f), [this]() {},
+            "", 0.94f, 0.18f, 0.05f, ConvertWidthToHeight(0.05f),
+            [this]() { _<GUIEquipmentWindow>().ToggleVisibility(); },
             "GUIButtonEquipmentBackground",
             "GUIButtonEquipmentHoveredBackground"));
 
         gui_->AddComponent(std::make_shared<GUIStatusPanel>());
 
         gui_->AddComponent(GetSingletonPtr<GUIInventoryWindow>());
+
+        gui_->AddComponent(GetSingletonPtr<GUIEquipmentWindow>());
     }
 
     void MainScene::OnEnterDerived()

@@ -43,6 +43,8 @@ namespace Forradia
 
         AddEntry("ObjectCopperSword", "Copper sword",
                  ObjectFlags::k_smallObject);
+
+        AddEntry("ObjectWoodAxe", "Wood axe", ObjectFlags::k_smallObject);
     }
 
     void ObjectIndex::AddEntry(std::string_view name, std::string_view label,

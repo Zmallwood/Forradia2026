@@ -24,7 +24,7 @@ namespace Forradia
         void RenderDerived() override;
 
       private:
-        static constexpr float k_slotWidth_{0.037F};
+        static constexpr float k_slotWidth_{0.037f};
         static constexpr float k_slotMarginX_{0.005f};
     };
 }

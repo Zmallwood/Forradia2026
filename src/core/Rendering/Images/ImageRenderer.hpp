@@ -17,5 +17,7 @@ namespace Forradia
 
         void DrawImage(std::string_view imageName, float x, float y,
                        float width, float height);
+
+        void DrawImage(std::string_view imageName, RectF bounds);
     };
 }

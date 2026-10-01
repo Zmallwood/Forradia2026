@@ -6,6 +6,7 @@
  ************************************************************************/
 
 #include "KeyboardHotkeys.hpp"
+#include "Theme0/Scenes/Main/CustomGUI/GUIEquipmentWindow.hpp"
 #include "Theme0/Scenes/Main/CustomGUI/GUIInventoryWindow.hpp"
 
 namespace Forradia
@@ -15,6 +16,10 @@ namespace Forradia
         if (key == SDLK_b)
         {
             _<GUIInventoryWindow>().ToggleVisibility();
+        }
+        else if (key == SDLK_e)
+        {
+            _<GUIEquipmentWindow>().ToggleVisibility();
         }
     }
 }

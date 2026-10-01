@@ -32,10 +32,10 @@ namespace Forradia
             objectInAir_ = value;
         }
 
-      private:
-        static constexpr float k_imageWidth_{0.05f};
-        std::shared_ptr<Object> objectInAir_;
         PointF draggingMouseOffset_;
+
+      private:
+        std::shared_ptr<Object> objectInAir_;
         Point pickedPosition_;
     };
 }

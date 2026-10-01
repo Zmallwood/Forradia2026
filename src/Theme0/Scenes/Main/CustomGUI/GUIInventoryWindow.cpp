@@ -6,6 +6,8 @@
  ************************************************************************/
 
 #include "GUIInventoryWindow.hpp"
+#include "Core/Configuration/GameProperties.hpp"
+#include "Core/Configuration/ObjectIndex.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/CoreGameObjects/PlayerInventory.hpp"
 #include "Core/GUICore/Windows/GUIWindowTitleBar.hpp"
@@ -72,6 +74,25 @@ namespace Forradia
                         if (object)
                         {
                             _<ObjectMoving>().SetObjectInAir(object);
+
+                            constexpr auto largeObjectScale{
+                                GameProperties::k_largeObjectScale_};
+                            constexpr auto smallObjectScale{
+                                GameProperties::k_smallObjectScale_};
+
+                            auto isSmallObject{
+                                _<ObjectIndex>().IsSmallObject(object->type_)};
+
+                            auto scale{isSmallObject ? smallObjectScale
+                                                     : largeObjectScale};
+
+                            auto offsetX{(mousePosition.x -
+                                         (slotBounds.x + slotWidth / 2.0f)) * scale/k_slotWidth_};
+                            auto offsetY{(mousePosition.y -
+                                         (slotBounds.y + slotHeight)) * scale/k_slotWidth_};
+
+                            _<ObjectMoving>().draggingMouseOffset_ = {offsetX,
+                                                                      offsetY};
                         }
                     }
 
@@ -83,58 +104,6 @@ namespace Forradia
         }
 
         return false;
-    }
-
-    void GUIInventoryWindow::RenderDerived()
-    {
-        GUIWindow::RenderDerived();
-
-        auto position{GetPosition()};
-
-        auto size{size_};
-
-        auto titleBarHeight{titleBar_->size_.height};
-
-        auto numCols{
-            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
-
-        auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
-
-        auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
-
-        auto numRows{static_cast<int>((size.height - titleBarHeight) /
-                                      (slotHeight + slotMarginY))};
-
-        auto inventoryIndex{0};
-
-        for (auto y = 0; y < numRows; y++)
-        {
-            for (auto x = 0; x < numCols; x++)
-            {
-                auto slotX{position.x + k_slotMarginX_ +
-                           x * (k_slotWidth_ + k_slotMarginX_)};
-
-                auto slotY{position.y + titleBarHeight +
-                           y * (slotHeight + slotMarginY)};
-
-                auto slotWidth{k_slotWidth_};
-
-                _<ImageRenderer>().DrawImage("GUIInventoryWindowSlotBackground",
-                                             slotX, slotY, slotWidth,
-                                             slotHeight);
-
-                auto object{
-                    _<Player>().playerInventory_->GetObject(inventoryIndex)};
-
-                if (object)
-                {
-                    _<ImageRenderer>().DrawImage(object->type_, slotX, slotY,
-                                                 slotWidth, slotHeight);
-                }
-
-                ++inventoryIndex;
-            }
-        }
     }
 
     bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
@@ -199,5 +168,57 @@ namespace Forradia
         }
 
         return false;
+    }
+
+    void GUIInventoryWindow::RenderDerived()
+    {
+        GUIWindow::RenderDerived();
+
+        auto position{GetPosition()};
+
+        auto size{size_};
+
+        auto titleBarHeight{titleBar_->size_.height};
+
+        auto numCols{
+            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
+
+        auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
+
+        auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
+
+        auto numRows{static_cast<int>((size.height - titleBarHeight) /
+                                      (slotHeight + slotMarginY))};
+
+        auto inventoryIndex{0};
+
+        for (auto y = 0; y < numRows; y++)
+        {
+            for (auto x = 0; x < numCols; x++)
+            {
+                auto slotX{position.x + k_slotMarginX_ +
+                           x * (k_slotWidth_ + k_slotMarginX_)};
+
+                auto slotY{position.y + titleBarHeight +
+                           y * (slotHeight + slotMarginY)};
+
+                auto slotWidth{k_slotWidth_};
+
+                _<ImageRenderer>().DrawImage("GUIInventoryWindowSlotBackground",
+                                             slotX, slotY, slotWidth,
+                                             slotHeight);
+
+                auto object{
+                    _<Player>().playerInventory_->GetObject(inventoryIndex)};
+
+                if (object)
+                {
+                    _<ImageRenderer>().DrawImage(object->type_, slotX, slotY,
+                                                 slotWidth, slotHeight);
+                }
+
+                ++inventoryIndex;
+            }
+        }
     }
 }
