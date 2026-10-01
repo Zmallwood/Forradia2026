@@ -13,5 +13,6 @@ namespace Forradia
     {
       public:
         std::string label;
+        int corpseType{0};
     };
 }

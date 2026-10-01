@@ -14,8 +14,6 @@ namespace Forradia
     Creature::Creature(std::string_view typeName)
     {
         type_ = Hash(typeName);
-
-        corpesType_ = Hash("Object" + std::string(typeName) + "Corpse");
     }
 
     Creature::Creature(int type)
@@ -23,8 +21,6 @@ namespace Forradia
         type_ = type;
 
         auto typeName{_<CreatureIndex>().GetCreatureLabel(type)};
-
-        corpesType_ = Hash("Object" + std::string(typeName) + "Corpse");
     }
 
     void Creature::Hit(float damage, PointF hitPosition)

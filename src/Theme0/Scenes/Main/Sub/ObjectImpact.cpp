@@ -87,7 +87,7 @@ namespace Forradia
             }
         }
 
-        auto allImpactPointsCompleted{true};
+        auto allImpactPointsCompleted{impactPoints.size() > 0};
 
         for (auto &impactPoint : impactPoints)
         {

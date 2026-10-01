@@ -105,9 +105,11 @@ namespace Forradia
 
         if (creature->IsDead())
         {
+            auto corpseType{
+                _<CreatureIndex>().GetCreatureCorpseType(creatureType)};
+
             tile->tileObjects_->AddObject(
-                creature->corpesType_,
-                {tileUnitsWidth / 2, tileUnitsWidth / 2});
+                corpseType, {tileUnitsWidth / 2, tileUnitsWidth / 2});
 
             tile->creature_ = nullptr;
 

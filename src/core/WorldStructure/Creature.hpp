@@ -21,7 +21,6 @@ namespace Forradia
         bool IsDead();
 
         int type_{0};
-        int corpesType_{0};
         int ticksLastMovement_{0};
         float movementSpeed_{1.0f};
         int ticksLastHitOnSelf_{0};

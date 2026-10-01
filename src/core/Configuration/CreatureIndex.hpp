@@ -18,8 +18,11 @@ namespace Forradia
 
         std::string GetCreatureLabel(int creatureHash);
 
+        int GetCreatureCorpseType(int creatureHash);
+
       private:
-        void AddEntry(std::string_view creatureName, std::string_view label);
+        void AddEntry(std::string_view creatureName, std::string_view label,
+                      std::string_view corpseType = {});
 
         std::unordered_map<int, CreatureIndexEntry> entries_;
     };

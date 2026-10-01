@@ -11,14 +11,15 @@ namespace Forradia
 {
     CreatureIndex::CreatureIndex()
     {
-        AddEntry("CreatureDeer", "Deer");
+        AddEntry("CreatureDeer", "Deer", "ObjectCreatureDeerCorpse");
 
-        AddEntry("CreatureBoar", "Boar");
+        AddEntry("CreatureBoar", "Boar", "ObjectCreatureBoarCorpse");
     }
 
-    void CreatureIndex::AddEntry(std::string_view name, std::string_view label)
+    void CreatureIndex::AddEntry(std::string_view name, std::string_view label,
+                                 std::string_view corpseType)
     {
-        entries_.insert({Hash(name), {label.data()}});
+        entries_.insert({Hash(name), {label.data(), Hash(corpseType)}});
     }
 
     std::string CreatureIndex::GetCreatureLabel(int creatureHash)
@@ -29,5 +30,15 @@ namespace Forradia
         }
 
         return "";
+    }
+
+    int CreatureIndex::GetCreatureCorpseType(int creatureHash)
+    {
+        if (entries_.contains(creatureHash))
+        {
+            return entries_[creatureHash].corpseType;
+        }
+
+        return 0;
     }
 }
