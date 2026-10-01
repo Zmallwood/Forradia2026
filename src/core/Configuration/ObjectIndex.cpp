@@ -23,13 +23,16 @@ namespace Forradia
         AddEntry("ObjectPoolOfBlood", "Pool of blood",
                  ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectTree1", "Tree",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"}, "ObjectFelledTree");
+        AddEntry(
+            "ObjectTree1", "Tree",
+            ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.95f}, PointF{0.55f, 0.95f}, PointF{0.6f, 0.95f}},
+            {"ObjectWoodAxe"}, "ObjectFelledTree");
 
         AddEntry("ObjectTree2", "Tree",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"}, "ObjectFelledTree");
+                 {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
+                 {"ObjectWoodAxe"}, "ObjectFelledTree");
 
         AddEntry("ObjectBush1", "Bush",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
