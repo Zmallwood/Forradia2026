@@ -13,13 +13,15 @@ namespace Forradia
     {
       public:
         void DrawImage(int imageNameHash, float x, float y, float width,
-                       float height);
+                       float height, bool flipHorizontal = false);
 
         void DrawImage(std::string_view imageName, float x, float y,
-                       float width, float height);
+                       float width, float height, bool flipHorizontal = false);
 
-        void DrawImage(int imageNameHash, RectF bounds);
+        void DrawImage(int imageNameHash, RectF bounds,
+                       bool flipHorizontal = false);
 
-        void DrawImage(std::string_view imageName, RectF bounds);
+        void DrawImage(std::string_view imageName, RectF bounds,
+                       bool flipHorizontal = false);
     };
 }

@@ -9,8 +9,8 @@
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/CoreGameObjects/PlayerEquipment.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
-#include "Theme0/Scenes/Main/Sub/ObjectMoving.hpp"
 #include "Core/WorldStructure/Object.hpp"
+#include "Theme0/Scenes/Main/Sub/ObjectMoving.hpp"
 
 namespace Forradia
 {
@@ -22,6 +22,63 @@ namespace Forradia
     bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
     {
         GUIWindow::OnMouseDown(mouseButton);
+
+        auto mousePosition{GetMousePosition()};
+
+        if (GetHeadSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->headObject_);
+
+            _<Player>().playerEquipment_->headObject_ = nullptr;
+
+            return true;
+        }
+        else if (GetChestSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->chestObject_);
+
+            _<Player>().playerEquipment_->chestObject_ = nullptr;
+
+            return true;
+        }
+        else if (GetLegsSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->legsObject_);
+
+            _<Player>().playerEquipment_->legsObject_ = nullptr;
+
+            return true;
+        }
+        else if (GetFeetSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->feetObject_);
+
+            _<Player>().playerEquipment_->feetObject_ = nullptr;
+
+            return true;
+        }
+        else if (GetRightHandSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->rightHandObject_);
+
+            _<Player>().playerEquipment_->rightHandObject_ = nullptr;
+
+            return true;
+        }
+        else if (GetLeftHandSlotBounds().Contains(mousePosition))
+        {
+            _<ObjectMoving>().SetObjectInAir(
+                _<Player>().playerEquipment_->leftHandObject_);
+
+            _<Player>().playerEquipment_->leftHandObject_ = nullptr;
+
+            return true;
+        }
 
         return false;
     }

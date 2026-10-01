@@ -12,7 +12,8 @@
 namespace Forradia
 {
     void ImageRenderer::DrawImage(int imageNameHash, float x, float y,
-                                  float width, float height)
+                                  float width, float height,
+                                  bool flipHorizontal)
     {
         auto canvasSize{GetCanvasSize()};
 
@@ -25,26 +26,33 @@ namespace Forradia
 
         auto image{_<ImageBank>().GetImage(imageNameHash)};
 
-        SDL_RenderCopy(_<SDLDevice>().renderer_.get(), image.get(), nullptr,
-                       &rect);
+        SDL_RendererFlip flip{flipHorizontal ? SDL_FLIP_HORIZONTAL
+                                             : SDL_FLIP_NONE};
+
+        SDL_RenderCopyEx(_<SDLDevice>().renderer_.get(), image.get(), nullptr,
+                         &rect, 0, nullptr, flip);
     }
 
     void ImageRenderer::DrawImage(std::string_view imageName, float x, float y,
-                                  float width, float height)
+                                  float width, float height,
+                                  bool flipHorizontal)
     {
         auto hash{Hash(imageName)};
 
-        DrawImage(hash, x, y, width, height);
+        DrawImage(hash, x, y, width, height, flipHorizontal);
     }
 
-    void ImageRenderer::DrawImage(int imageNameHash, RectF bounds)
+    void ImageRenderer::DrawImage(int imageNameHash, RectF bounds,
+                                  bool flipHorizontal)
     {
         DrawImage(imageNameHash, bounds.x, bounds.y, bounds.width,
-                  bounds.height);
+                  bounds.height, flipHorizontal);
     }
 
-    void ImageRenderer::DrawImage(std::string_view imageName, RectF bounds)
+    void ImageRenderer::DrawImage(std::string_view imageName, RectF bounds,
+                                  bool flipHorizontal)
     {
-        DrawImage(imageName, bounds.x, bounds.y, bounds.width, bounds.height);
+        DrawImage(imageName, bounds.x, bounds.y, bounds.width, bounds.height,
+                  flipHorizontal);
     }
 }

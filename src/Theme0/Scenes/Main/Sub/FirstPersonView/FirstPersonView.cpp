@@ -10,6 +10,7 @@
 #include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/ObjectIndex.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
+#include "Core/CoreGameObjects/PlayerEquipment.hpp"
 #include "Core/Rendering/Colors/ColorRenderer.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
@@ -273,6 +274,42 @@ namespace Forradia
         auto handYOffset{0.07f};
 
         auto handY{1.0f - handHeight + handYOffset + handAnimation};
+
+        auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
+        auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
+
+        if (rightHandObject)
+        {
+            auto imageSize{_<ImageBank>().GetImageSize(rightHandObject->type_)};
+
+            auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
+            auto imageHeight{imageSize.height / 60.0f *
+                             ConvertWidthToHeight(k_wieldedObjectScale_)};
+
+            auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
+                            imageWidth / 2.0f};
+            auto rightHandY{handY - imageHeight / 2.0f};
+
+            _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
+                                         rightHandY, imageWidth, imageHeight);
+        }
+
+        if (leftHandObject)
+        {
+            auto imageSize{_<ImageBank>().GetImageSize(leftHandObject->type_)};
+
+            auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
+            auto imageHeight{imageSize.height / 60.0f *
+                             ConvertWidthToHeight(k_wieldedObjectScale_)};
+
+            auto leftHandX{1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
+                           imageWidth / 2.0f};
+            auto leftHandY{handY - imageHeight / 2.0f};
+
+            _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
+                                         leftHandY, imageWidth, imageHeight,
+                                         true);
+        }
 
         _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
                                      handHeight);
