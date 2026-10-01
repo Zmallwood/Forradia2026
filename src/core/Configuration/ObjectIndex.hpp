@@ -28,10 +28,13 @@ namespace Forradia
 
         std::vector<int> GetImpactObjects(int objectHash);
 
+        int GetImpactCompleteTransformToObject(int objectHash);
+
       private:
         void AddEntry(std::string_view objectName, std::string_view label,
                       int flags, std::vector<PointF> impactPoints = {},
-                      std::vector<std::string> impactObjects = {});
+                      std::vector<std::string> impactObjects = {},
+                      std::string impactCompleteTransformToObject = {});
 
         std::unordered_map<int, ObjectIndexEntry> entries_;
     };

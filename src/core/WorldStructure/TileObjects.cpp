@@ -57,4 +57,27 @@ namespace Forradia
 
         return nullptr;
     }
+
+    void TileObjects::ReplaceObject(std::shared_ptr<Object> object,
+                                    int objectType)
+    {
+        Point position{-1, -1};
+
+        for (auto it = objects_.begin(); it != objects_.end(); ++it)
+        {
+            if (it->second == object)
+            {
+                position = it->first;
+
+                objects_.erase(it);
+
+                break;
+            }
+        }
+
+        if (position != Point{-1, -1})
+        {
+            AddObject(objectType, position);
+        }
+    }
 }

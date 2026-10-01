@@ -25,6 +25,8 @@ namespace Forradia
 
         int Count();
 
+        void ReplaceObject(std::shared_ptr<Object> object, int objectType);
+
         std::shared_ptr<Object> PickObject(std::shared_ptr<Object> object);
 
         std::map<Point, std::shared_ptr<Object>> objects_;

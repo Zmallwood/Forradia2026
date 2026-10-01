@@ -25,11 +25,11 @@ namespace Forradia
 
         AddEntry("ObjectTree1", "Tree",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"});
+                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"}, "ObjectFelledTree");
 
         AddEntry("ObjectTree2", "Tree",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"});
+                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"}, "ObjectFelledTree");
 
         AddEntry("ObjectBush1", "Bush",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
@@ -51,7 +51,8 @@ namespace Forradia
 
     void ObjectIndex::AddEntry(std::string_view name, std::string_view label,
                                int flags, std::vector<PointF> impactPoints,
-                               std::vector<std::string> impactObjects)
+                               std::vector<std::string> impactObjects,
+                               std::string impactCompleteTransformToObject)
     {
         std::vector<int> impactObjectHashes;
 
@@ -60,9 +61,9 @@ namespace Forradia
             impactObjectHashes.push_back(Hash(impactObject));
         }
 
-        entries_.insert(
-            {Hash(name),
-             {label.data(), flags, impactPoints, impactObjectHashes}});
+        entries_.insert({Hash(name),
+                         {label.data(), flags, impactPoints, impactObjectHashes,
+                          Hash(impactCompleteTransformToObject)}});
     }
 
     bool ObjectIndex::IsSmallObject(int objectHash)
@@ -126,5 +127,15 @@ namespace Forradia
         }
 
         return {};
+    }
+
+    int ObjectIndex::GetImpactCompleteTransformToObject(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_.at(objectHash).impactCompleteTransformToObject;
+        }
+
+        return 0;
     }
 }
