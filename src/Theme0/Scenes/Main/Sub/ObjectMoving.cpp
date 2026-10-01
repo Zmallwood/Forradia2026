@@ -44,6 +44,11 @@ namespace Forradia
             return;
         }
 
+        if (_<ObjectIndex>().ObjectUnmovable(hoveredObject->type_))
+        {
+            return;
+        }
+
         auto worldArea{_<World>().currentWorldArea_};
 
         auto facedTileCoordinate{_<Player>().facedTileCoordinate_};

@@ -57,7 +57,8 @@ namespace Forradia
     {
         if (entries_.contains(objectHash))
         {
-            return entries_[objectHash].flags & ObjectFlags::k_smallObject != 0;
+            return (entries_.at(objectHash).flags &
+                    ObjectFlags::k_smallObject) != 0;
         }
 
         return false;
@@ -67,7 +68,7 @@ namespace Forradia
     {
         if (entries_.contains(objectHash))
         {
-            return entries_[objectHash].label;
+            return entries_.at(objectHash).label;
         }
 
         return "";
@@ -77,7 +78,8 @@ namespace Forradia
     {
         if (entries_.contains(objectHash))
         {
-            return entries_[objectHash].flags & ObjectFlags::k_blocksSight != 0;
+            return (entries_.at(objectHash).flags &
+                    ObjectFlags::k_blocksSight) != 0;
         }
 
         return false;
@@ -85,10 +87,10 @@ namespace Forradia
 
     bool ObjectIndex::ObjectUnmovable(int objectHash)
     {
-
         if (entries_.contains(objectHash))
         {
-            return entries_[objectHash].flags & ObjectFlags::k_unmovable != 0;
+            return (entries_.at(objectHash).flags & ObjectFlags::k_unmovable) !=
+                   0;
         }
 
         return false;
