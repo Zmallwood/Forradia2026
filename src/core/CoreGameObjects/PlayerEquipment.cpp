@@ -5,21 +5,8 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#pragma once
+#include "PlayerEquipment.hpp"
 
 namespace Forradia
 {
-    class ImageRenderer
-    {
-      public:
-        void DrawImage(int imageNameHash, float x, float y, float width,
-                       float height);
-
-        void DrawImage(std::string_view imageName, float x, float y,
-                       float width, float height);
-
-        void DrawImage(int imageNameHash, RectF bounds);
-
-        void DrawImage(std::string_view imageName, RectF bounds);
-    };
 }

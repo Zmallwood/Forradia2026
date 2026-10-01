@@ -10,6 +10,7 @@
 namespace Forradia
 {
     class PlayerInventory;
+    class PlayerEquipment;
 
     class Player
     {
@@ -50,6 +51,7 @@ namespace Forradia
         float health_{10.0f};
         float maxHealth_{10.0f};
         int ticksLastHitOnSelf_{0};
+        std::shared_ptr<PlayerEquipment> playerEquipment_;
 
       private:
         void SpawnOnSuitableLocation();

@@ -37,6 +37,12 @@ namespace Forradia
         DrawImage(hash, x, y, width, height);
     }
 
+    void ImageRenderer::DrawImage(int imageNameHash, RectF bounds)
+    {
+        DrawImage(imageNameHash, bounds.x, bounds.y, bounds.width,
+                  bounds.height);
+    }
+
     void ImageRenderer::DrawImage(std::string_view imageName, RectF bounds)
     {
         DrawImage(imageName, bounds.x, bounds.y, bounds.width, bounds.height);

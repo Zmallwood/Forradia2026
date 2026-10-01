@@ -9,17 +9,16 @@
 
 namespace Forradia
 {
-    class ImageRenderer
+    class Object;
+
+    class PlayerEquipment
     {
       public:
-        void DrawImage(int imageNameHash, float x, float y, float width,
-                       float height);
-
-        void DrawImage(std::string_view imageName, float x, float y,
-                       float width, float height);
-
-        void DrawImage(int imageNameHash, RectF bounds);
-
-        void DrawImage(std::string_view imageName, RectF bounds);
+        std::shared_ptr<Object> headObject_;
+        std::shared_ptr<Object> chestObject_;
+        std::shared_ptr<Object> legsObject_;
+        std::shared_ptr<Object> feetObject_;
+        std::shared_ptr<Object> rightHandObject_;
+        std::shared_ptr<Object> leftHandObject_;
     };
 }

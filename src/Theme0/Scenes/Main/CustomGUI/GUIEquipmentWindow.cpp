@@ -6,7 +6,11 @@
  ************************************************************************/
 
 #include "GUIEquipmentWindow.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
+#include "Core/CoreGameObjects/PlayerEquipment.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
+#include "Theme0/Scenes/Main/Sub/ObjectMoving.hpp"
+#include "Core/WorldStructure/Object.hpp"
 
 namespace Forradia
 {
@@ -26,6 +30,51 @@ namespace Forradia
     {
         GUIWindow::OnMouseUp(mouseButton, clickSpeed);
 
+        auto mousePosition{GetMousePosition()};
+
+        if (GetHeadSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->headObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+        else if (GetChestSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->chestObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+        else if (GetLegsSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->legsObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+        else if (GetFeetSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->feetObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+        else if (GetRightHandSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->rightHandObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+        else if (GetLeftHandSlotBounds().Contains(mousePosition))
+        {
+            _<Player>().playerEquipment_->leftHandObject_ =
+                _<ObjectMoving>().GetObjectInAir();
+
+            _<ObjectMoving>().ClearObject();
+        }
+
         return false;
     }
 
@@ -33,14 +82,52 @@ namespace Forradia
     {
         GUIWindow::RenderDerived();
 
-        _<ImageRenderer>().DrawImage(k_headSlotImage_, GetHeadSlotBounds());
-        _<ImageRenderer>().DrawImage(k_chestSlotImage_, GetChestSlotBounds());
-        _<ImageRenderer>().DrawImage(k_legsSlotImage_, GetLegsSlotBounds());
-        _<ImageRenderer>().DrawImage(k_feetSlotImage_, GetFeetSlotBounds());
-        _<ImageRenderer>().DrawImage(k_rightHandSlotImage_,
-                                     GetRightHandSlotBounds());
-        _<ImageRenderer>().DrawImage(k_leftHandSlotImage_,
-                                     GetLeftHandSlotBounds());
+        auto headBounds{GetHeadSlotBounds()};
+        auto chestBounds{GetChestSlotBounds()};
+        auto legsBounds{GetLegsSlotBounds()};
+        auto feetBounds{GetFeetSlotBounds()};
+        auto rightHandBounds{GetRightHandSlotBounds()};
+        auto leftHandBounds{GetLeftHandSlotBounds()};
+
+        _<ImageRenderer>().DrawImage(k_headSlotImage_, headBounds);
+        _<ImageRenderer>().DrawImage(k_chestSlotImage_, chestBounds);
+        _<ImageRenderer>().DrawImage(k_legsSlotImage_, legsBounds);
+        _<ImageRenderer>().DrawImage(k_feetSlotImage_, feetBounds);
+        _<ImageRenderer>().DrawImage(k_rightHandSlotImage_, rightHandBounds);
+        _<ImageRenderer>().DrawImage(k_leftHandSlotImage_, leftHandBounds);
+
+        if (_<Player>().playerEquipment_->headObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->headObject_->type_, headBounds);
+        }
+        if (_<Player>().playerEquipment_->chestObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->chestObject_->type_, chestBounds);
+        }
+        if (_<Player>().playerEquipment_->legsObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->legsObject_->type_, legsBounds);
+        }
+        if (_<Player>().playerEquipment_->feetObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->feetObject_->type_, feetBounds);
+        }
+        if (_<Player>().playerEquipment_->rightHandObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->rightHandObject_->type_,
+                rightHandBounds);
+        }
+        if (_<Player>().playerEquipment_->leftHandObject_)
+        {
+            _<ImageRenderer>().DrawImage(
+                _<Player>().playerEquipment_->leftHandObject_->type_,
+                leftHandBounds);
+        }
     }
 
     RectF GUIEquipmentWindow::GetHeadSlotBounds()

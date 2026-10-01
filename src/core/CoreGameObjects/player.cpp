@@ -12,10 +12,13 @@
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "PlayerInventory.hpp"
+#include "PlayerEquipment.hpp"
 
 namespace Forradia
 {
-    Player::Player() : playerInventory_(std::make_shared<PlayerInventory>())
+    Player::Player()
+        : playerInventory_(std::make_shared<PlayerInventory>()),
+          playerEquipment_(std::make_shared<PlayerEquipment>())
     {
         SpawnOnSuitableLocation();
 
