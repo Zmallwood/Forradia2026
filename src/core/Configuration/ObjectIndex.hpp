@@ -20,6 +20,10 @@ namespace Forradia
 
         std::string GetObjectLabel(int objectHash);
 
+        bool ObjectBlocksSight(int objectHash);
+
+        bool ObjectUnmovable(int objectHash);
+
       private:
         void AddEntry(std::string_view objectName, std::string_view label,
                       int flags);

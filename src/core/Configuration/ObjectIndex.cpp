@@ -23,13 +23,17 @@ namespace Forradia
         AddEntry("ObjectPoolOfBlood", "Pool of blood",
                  ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectTree1", "Tree", 0);
+        AddEntry("ObjectTree1", "Tree",
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-        AddEntry("ObjectTree2", "Tree", 0);
+        AddEntry("ObjectTree2", "Tree",
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-        AddEntry("ObjectBush1", "Bush", 0);
+        AddEntry("ObjectBush1", "Bush",
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-        AddEntry("ObjectStoneBoulder", "Stone boulder", 0);
+        AddEntry("ObjectStoneBoulder", "Stone boulder",
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
         AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
 
@@ -51,7 +55,7 @@ namespace Forradia
     {
         if (entries_.contains(objectHash))
         {
-            return entries_[objectHash].flags & ObjectFlags::k_smallObject;
+            return entries_[objectHash].flags & ObjectFlags::k_smallObject != 0;
         }
 
         return false;
@@ -65,5 +69,26 @@ namespace Forradia
         }
 
         return "";
+    }
+
+    bool ObjectIndex::ObjectBlocksSight(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_[objectHash].flags & ObjectFlags::k_blocksSight != 0;
+        }
+
+        return false;
+    }
+
+    bool ObjectIndex::ObjectUnmovable(int objectHash)
+    {
+
+        if (entries_.contains(objectHash))
+        {
+            return entries_[objectHash].flags & ObjectFlags::k_unmovable != 0;
+        }
+
+        return false;
     }
 }

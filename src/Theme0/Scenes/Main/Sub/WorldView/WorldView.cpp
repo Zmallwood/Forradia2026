@@ -91,7 +91,7 @@ namespace Forradia
 
                         for (auto object : tile->tileObjects_->objects_)
                         {
-                            if (!_<ObjectIndex>().IsSmallObject(
+                            if (!_<ObjectIndex>().ObjectBlocksSight(
                                     object.second->type_))
                             {
                                 numBlockingObjects++;
