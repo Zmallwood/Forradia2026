@@ -19,5 +19,6 @@ namespace Forradia
         static constexpr float k_largeObjectScale_{0.22f};
         static constexpr float k_smallObjectScale_{0.08f};
         static constexpr PointF k_firstPersonViewMargin_{0.03f, 0.01f};
+        static constexpr float k_impactPointWidth_{0.01f};
     };
 }

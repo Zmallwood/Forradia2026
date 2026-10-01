@@ -24,10 +24,12 @@ namespace Forradia
                  ObjectFlags::k_smallObject);
 
         AddEntry("ObjectTree1", "Tree",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"});
 
         AddEntry("ObjectTree2", "Tree",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+                 {PointF{0.5f, 0.5f}}, {"ObjectWoodAxe"});
 
         AddEntry("ObjectBush1", "Bush",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
@@ -48,9 +50,19 @@ namespace Forradia
     }
 
     void ObjectIndex::AddEntry(std::string_view name, std::string_view label,
-                               int flags)
+                               int flags, std::vector<PointF> impactPoints,
+                               std::vector<std::string> impactObjects)
     {
-        entries_.insert({Hash(name), {label.data(), flags}});
+        std::vector<int> impactObjectHashes;
+
+        for (auto &impactObject : impactObjects)
+        {
+            impactObjectHashes.push_back(Hash(impactObject));
+        }
+
+        entries_.insert(
+            {Hash(name),
+             {label.data(), flags, impactPoints, impactObjectHashes}});
     }
 
     bool ObjectIndex::IsSmallObject(int objectHash)
@@ -94,5 +106,25 @@ namespace Forradia
         }
 
         return false;
+    }
+
+    std::vector<PointF> ObjectIndex::GetImpactPoints(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_.at(objectHash).impactPoints;
+        }
+
+        return {};
+    }
+
+    std::vector<int> ObjectIndex::GetImpactObjects(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_.at(objectHash).impactObjects;
+        }
+
+        return {};
     }
 }

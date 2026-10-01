@@ -14,5 +14,7 @@ namespace Forradia
       public:
         std::string label;
         int flags{0};
+        std::vector<PointF> impactPoints;
+        std::vector<int> impactObjects;
     };
 }

@@ -6,14 +6,21 @@
  ************************************************************************/
 
 #include "Object.hpp"
+#include "Core/Configuration/ObjectIndex.hpp"
 
 namespace Forradia
 {
     Object::Object(int type) : type_(type)
     {
+        auto impactPoints{_<ObjectIndex>().GetImpactPoints(type)};
+
+        for (auto impactPoint : impactPoints)
+        {
+            impactPoints_.push_back(CompletableImpactPoint{impactPoint});
+        }
     }
 
-    Object::Object(std::string_view typeName) : type_(Hash(typeName))
+    Object::Object(std::string_view typeName) : Object(Hash(typeName))
     {
     }
 }

@@ -44,6 +44,9 @@ namespace Forradia
             return;
         }
 
+        auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
+        auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
+
         auto groundType{facedTile->ground_};
 
         switch (groundType)
@@ -138,6 +141,56 @@ namespace Forradia
 
             _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                          imageHeight);
+
+            auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
+
+            auto canImpact{false};
+
+            for (auto impactObject : impactObjects)
+            {
+                if (rightHandObject)
+                {
+                    if (impactObject == rightHandObject->type_)
+                    {
+                        canImpact = true;
+                        break;
+                    }
+                }
+
+                if (leftHandObject)
+                {
+                    if (impactObject == leftHandObject->type_)
+                    {
+                        canImpact = true;
+                        break;
+                    }
+                }
+            }
+
+            if (canImpact)
+            {
+                auto impactPoints{entry.second.object_->impactPoints_};
+
+                for (auto impactPoint : impactPoints)
+                {
+                    auto impactPointWidth{GameProperties::k_impactPointWidth_};
+                    auto impactPointHeight{
+                        ConvertWidthToHeight(impactPointWidth)};
+                    auto impactPointX{imageX +
+                                      impactPoint.position.x * imageWidth -
+                                      impactPointWidth / 2.0f};
+                    auto impactPointY{imageY +
+                                      impactPoint.position.y * imageHeight -
+                                      impactPointHeight / 2.0f};
+
+                    auto color{impactPoint.completed ? Colors::k_green
+                                                     : Colors::k_red};
+
+                    _<ColorRenderer>().FillRect(impactPointX, impactPointY,
+                                                impactPointWidth,
+                                                impactPointHeight, color);
+                }
+            }
         }
 
         auto creature{facedTile->creature_};
@@ -243,6 +296,56 @@ namespace Forradia
 
             _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                          imageHeight);
+
+            auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
+
+            auto canImpact{false};
+
+            for (auto impactObject : impactObjects)
+            {
+                if (rightHandObject)
+                {
+                    if (impactObject == rightHandObject->type_)
+                    {
+                        canImpact = true;
+                        break;
+                    }
+                }
+
+                if (leftHandObject)
+                {
+                    if (impactObject == leftHandObject->type_)
+                    {
+                        canImpact = true;
+                        break;
+                    }
+                }
+            }
+
+            if (canImpact)
+            {
+                auto impactPoints{entry.second.object_->impactPoints_};
+
+                for (auto impactPoint : impactPoints)
+                {
+                    auto impactPointWidth{GameProperties::k_impactPointWidth_};
+                    auto impactPointHeight{
+                        ConvertWidthToHeight(impactPointWidth)};
+                    auto impactPointX{imageX +
+                                      impactPoint.position.x * imageWidth -
+                                      impactPointWidth / 2.0f};
+                    auto impactPointY{imageY +
+                                      impactPoint.position.y * imageHeight -
+                                      impactPointHeight / 2.0f};
+
+                    auto color{impactPoint.completed ? Colors::k_green
+                                                     : Colors::k_red};
+
+                    _<ColorRenderer>().FillRect(impactPointX, impactPointY,
+                                                impactPointWidth,
+                                                impactPointHeight, color);
+                }
+            }
         }
 
         constexpr float k_handScale{0.1f};
@@ -274,9 +377,6 @@ namespace Forradia
         auto handYOffset{0.07f};
 
         auto handY{1.0f - handHeight + handYOffset + handAnimation};
-
-        auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
-        auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
 
         if (rightHandObject)
         {

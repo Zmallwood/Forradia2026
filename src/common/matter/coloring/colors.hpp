@@ -18,5 +18,6 @@ namespace Forradia
         inline static constexpr Color k_darkBlue{0.0f, 0.0f, 0.3f, 1.0f};
         inline static constexpr Color k_yellowGray{0.85f, 0.75f, 0.4f, 1.0f};
         inline static constexpr Color k_red{0.8f, 0.0f, 0.0f, 1.0f};
+        inline static constexpr Color k_green{0.0f, 0.8f, 0.0f, 1.0f};
     }
 }

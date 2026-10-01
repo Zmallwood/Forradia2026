@@ -25,7 +25,7 @@
 #include "Sub/PlayerCombatToOthers.hpp"
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
-
+#include "Sub/ObjectImpact.hpp"
 
 namespace Forradia
 {
@@ -115,6 +115,8 @@ namespace Forradia
         _<PlayerCombatToOthers>().OnMouseDown(button);
 
         _<MouseMovement>().OnMouseDown(button);
+
+        _<ObjectImpact>().OnMouseDown(button);
 
         _<ObjectMoving>().OnMouseDown(button);
     }

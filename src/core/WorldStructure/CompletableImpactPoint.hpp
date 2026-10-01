@@ -7,18 +7,12 @@
 
 #pragma once
 
-#include "CompletableImpactPoint.hpp"
-
 namespace Forradia
 {
-    class Object
+    class CompletableImpactPoint
     {
       public:
-        Object(int type);
-
-        Object(std::string_view typeName);
-
-        int type_{0};
-        std::vector<CompletableImpactPoint> impactPoints_;
+        PointF position;
+        bool completed{false};
     };
 }

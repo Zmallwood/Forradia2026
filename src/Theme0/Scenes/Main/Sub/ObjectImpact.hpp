@@ -7,18 +7,11 @@
 
 #pragma once
 
-#include "CompletableImpactPoint.hpp"
-
 namespace Forradia
 {
-    class Object
+    class ObjectImpact
     {
       public:
-        Object(int type);
-
-        Object(std::string_view typeName);
-
-        int type_{0};
-        std::vector<CompletableImpactPoint> impactPoints_;
+        void OnMouseDown(Uint8 button);
     };
 }
