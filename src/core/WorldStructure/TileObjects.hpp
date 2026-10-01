@@ -25,7 +25,7 @@ namespace Forradia
 
         int Count();
 
-        void ReplaceObject(std::shared_ptr<Object> object, int objectType);
+        void TransformObject(std::shared_ptr<Object> object, int newObjectType);
 
         std::shared_ptr<Object> PickObject(std::shared_ptr<Object> object);
 

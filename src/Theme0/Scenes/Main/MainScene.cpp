@@ -78,6 +78,8 @@ namespace Forradia
         _<CreatureRespawner>().Update();
 
         _<CreaturesCombatToPlayer>().Update();
+
+        _<FirstPersonView>().Update();
     }
 
     void MainScene::RenderBeforeGUIDerived()

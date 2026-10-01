@@ -12,10 +12,11 @@
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
+#include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
-#include "Core/WorldStructure/TileObjects.hpp"
 #include "FirstPersonHovering.hpp"
+#include "FirstPersonView/FirstPersonView.hpp"
 
 namespace Forradia
 {
@@ -35,6 +36,8 @@ namespace Forradia
 
         constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
         constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+
+        auto now{Now()};
 
         auto mousePosition{GetMousePosition()};
 
@@ -73,10 +76,13 @@ namespace Forradia
 
         for (auto &impactPoint : impactPoints)
         {
-            auto impactPointX{imageX + impactPoint.position.x * imageWidth -
-                              impactPointWidth / 2.0f};
-            auto impactPointY{imageY + impactPoint.position.y * imageHeight -
-                              impactPointHeight / 2.0f};
+            auto implactPointCenterX{imageX +
+                                     impactPoint.position.x * imageWidth};
+            auto implactPointCenterY{imageY +
+                                     impactPoint.position.y * imageHeight};
+
+            auto impactPointX{implactPointCenterX - impactPointWidth / 2.0f};
+            auto impactPointY{implactPointCenterY - impactPointHeight / 2.0f};
 
             auto rect{RectF{impactPointX, impactPointY, impactPointWidth,
                             impactPointHeight}};
@@ -84,6 +90,9 @@ namespace Forradia
             if (rect.Contains(mousePosition))
             {
                 impactPoint.completed = true;
+
+                _<FirstPersonView>().completedObjectImpacts_.push_back(
+                    {PointF{implactPointCenterX, implactPointCenterY}, now});
             }
         }
 
@@ -114,7 +123,7 @@ namespace Forradia
 
                 auto tileObject{facedTile->tileObjects_};
 
-                tileObject->ReplaceObject(hoveredObject, transformToObject);
+                tileObject->TransformObject(hoveredObject, transformToObject);
             }
         }
     }

@@ -58,8 +58,8 @@ namespace Forradia
         return nullptr;
     }
 
-    void TileObjects::ReplaceObject(std::shared_ptr<Object> object,
-                                    int objectType)
+    void TileObjects::TransformObject(std::shared_ptr<Object> object,
+                                    int newObjectType)
     {
         Point position{-1, -1};
 
@@ -77,7 +77,7 @@ namespace Forradia
 
         if (position != Point{-1, -1})
         {
-            AddObject(objectType, position);
+            AddObject(newObjectType, position);
         }
     }
 }

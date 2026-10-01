@@ -7,23 +7,12 @@
 
 #pragma once
 
-#include "CompletedObjectImpact.hpp"
-
 namespace Forradia
 {
-    class FirstPersonView
+    class CompletedObjectImpact
     {
       public:
-        void Update();
-
-        void Render();
-
-        std::vector<CompletedObjectImpact> completedObjectImpacts_;
-
-      private:
-        static constexpr int k_hitOtherEffectDuration_{100};
-        static constexpr int k_hitSelfEffectDuration_{100};
-        static constexpr int k_impactPointEffectDuration_{100};
-        static constexpr float k_wieldedObjectScale_{0.15f};
+        PointF position;
+        int ticksCompleted{0};
     };
 }

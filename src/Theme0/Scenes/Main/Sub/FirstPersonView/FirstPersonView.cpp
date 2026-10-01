@@ -23,6 +23,24 @@
 
 namespace Forradia
 {
+    void FirstPersonView::Update()
+    {
+        auto now{Now()};
+
+        for (auto it = completedObjectImpacts_.begin();
+             it != completedObjectImpacts_.end();)
+        {
+            if (now > it->ticksCompleted + k_impactPointEffectDuration_)
+            {
+                it = completedObjectImpacts_.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+
     void FirstPersonView::Render()
     {
         _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
@@ -345,6 +363,33 @@ namespace Forradia
                                                 impactPointWidth,
                                                 impactPointHeight, color);
                 }
+            }
+        }
+
+        for (auto completedObjectImpact : completedObjectImpacts_)
+        {
+            if (now - completedObjectImpact.ticksCompleted <
+                k_impactPointEffectDuration_)
+            {
+                auto hitEffectImageSize{
+                    _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+
+                constexpr float k_hitEffectScale{0.1f};
+
+                auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
+                                    k_hitEffectScale};
+                auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
+                                     ConvertWidthToHeight(k_hitEffectScale)};
+
+                auto impactPointX{completedObjectImpact.position.x};
+                auto impactPointY{completedObjectImpact.position.y};
+
+                auto hitEffectX{impactPointX - hitEffectWidth / 2.0f};
+                auto hitEffectY{impactPointY - hitEffectHeight / 2.0f};
+
+                _<ImageRenderer>().DrawImage("HitEffect", hitEffectX,
+                                             hitEffectY, hitEffectWidth,
+                                             hitEffectHeight);
             }
         }
 
