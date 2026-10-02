@@ -51,15 +51,18 @@ namespace Forradia
             "ObjectTree1", "Tree",
             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
             {PointF{0.5f, 0.95f}, PointF{0.55f, 0.95f}, PointF{0.6f, 0.95f}},
-            {"ObjectWoodAxe"}, allImpactPointsCompletedActionObjectTree1);
+            {"ObjectWoodAxe"}, []() {},
+            allImpactPointsCompletedActionObjectTree1);
 
         auto allImpactPointsCompletedActionObjectTree2 =
             allImpactPointsCompletedActionObjectTree1;
 
-        AddEntry("ObjectTree2", "Tree",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-                 {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
-                 {"ObjectWoodAxe"}, allImpactPointsCompletedActionObjectTree2);
+        AddEntry(
+            "ObjectTree2", "Tree",
+            ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
+            {"ObjectWoodAxe"}, []() {},
+            allImpactPointsCompletedActionObjectTree2);
 
         AddEntry("ObjectBush1", "Bush",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
@@ -77,13 +80,52 @@ namespace Forradia
                  ObjectFlags::k_smallObject);
 
         AddEntry("ObjectWoodAxe", "Wood axe", ObjectFlags::k_smallObject);
+
+        auto singleImpactPointCompletedActionObjectFelledTree = []()
+        {
+            auto worldArea{_<World>().currentWorldArea_};
+
+            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+            facedTile->tileObjects_->AddObject("ObjectWoodLog");
+
+            _<GUITextConsole>().PrintLine("You have chopped some wood logs.");
+
+            _<Player>().AddExperience(7);
+        };
+
+        auto allImpactPointsCompletedActionObjectFelledTree =
+            [](std::shared_ptr<Object> object)
+        {
+            auto worldArea{_<World>().currentWorldArea_};
+
+            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+            facedTile->tileObjects_->RemoveObject(object);
+
+            _<GUITextConsole>().PrintLine(
+                "You have chopped up the felled tree.");
+        };
+
+        AddEntry("ObjectFelledTree", "Felled tree", ObjectFlags::k_unmovable,
+                 {PointF{0.55f, 0.95f}, PointF{0.55f, 0.89f},
+                  PointF{0.55f, 0.83f}, PointF{0.55f, 0.77f}},
+                 {"ObjectWoodAxe"},
+                 singleImpactPointCompletedActionObjectFelledTree,
+                 allImpactPointsCompletedActionObjectFelledTree);
     }
 
-    void ObjectIndex::AddEntry(std::string_view name, std::string_view label,
-                               int flags, std::vector<PointF> impactPoints,
-                               std::vector<std::string> impactObjects,
-                               std::function<void(std::shared_ptr<Object>)>
-                                   allImpactPointsCompletedAction)
+    void ObjectIndex::AddEntry(
+        std::string_view name, std::string_view label, int flags,
+        std::vector<PointF> impactPoints,
+        std::vector<std::string> impactObjects,
+        std::function<void()> singleImpactPointCompletedAction,
+        std::function<void(std::shared_ptr<Object>)>
+            allImpactPointsCompletedAction)
     {
         std::vector<int> impactObjectHashes;
 
@@ -94,6 +136,7 @@ namespace Forradia
 
         entries_.insert({Hash(name),
                          {label.data(), flags, impactPoints, impactObjectHashes,
+                          singleImpactPointCompletedAction,
                           allImpactPointsCompletedAction}});
     }
 
@@ -160,6 +203,17 @@ namespace Forradia
         return {};
     }
 
+    std::function<void()>
+    ObjectIndex::GetSingleImpactPointCompletedAction(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_.at(objectHash).singleImpactPointCompletedAction;
+        }
+
+        return []() {};
+    }
+
     std::function<void(std::shared_ptr<Object>)>
     ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
     {
@@ -168,6 +222,6 @@ namespace Forradia
             return entries_.at(objectHash).allImpactPointsCompletedAction;
         }
 
-        return {};
+        return [](std::shared_ptr<Object>) {};
     }
 }

@@ -80,4 +80,17 @@ namespace Forradia
             AddObject(newObjectType, position);
         }
     }
+
+    void TileObjects::RemoveObject(std::shared_ptr<Object> object)
+    {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it)
+        {
+            if (it->second == object)
+            {
+                objects_.erase(it);
+
+                return;
+            }
+        }
+    }
 }

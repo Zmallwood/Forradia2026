@@ -18,6 +18,7 @@ namespace Forradia
         int flags{0};
         std::vector<PointF> impactPoints;
         std::vector<int> impactObjects;
+        std::function<void()> singleImpactPointCompletedAction;
         std::function<void(std::shared_ptr<Object>)>
             allImpactPointsCompletedAction;
     };

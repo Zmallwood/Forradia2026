@@ -30,6 +30,8 @@ namespace Forradia
 
         std::shared_ptr<Object> PickObject(std::shared_ptr<Object> object);
 
+        void RemoveObject(std::shared_ptr<Object> object);
+
         std::map<Point, std::shared_ptr<Object>> objects_;
     };
 }

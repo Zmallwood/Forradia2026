@@ -9,9 +9,9 @@
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/ObjectIndex.hpp"
+#include "Core/WorldStructure/Object.hpp"
 #include "FirstPersonHovering.hpp"
 #include "FirstPersonView/FirstPersonView.hpp"
-#include "Core/WorldStructure/Object.hpp"
 
 namespace Forradia
 {
@@ -88,6 +88,12 @@ namespace Forradia
 
                 _<FirstPersonView>().completedObjectImpacts_.push_back(
                     {PointF{implactPointCenterX, implactPointCenterY}, now});
+
+                auto singleImpactPointCompletedAction{
+                    _<ObjectIndex>().GetSingleImpactPointCompletedAction(
+                        hoveredObject->type_)};
+                        
+                singleImpactPointCompletedAction();
             }
         }
 
