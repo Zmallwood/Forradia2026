@@ -6,6 +6,13 @@
  ************************************************************************/
 
 #include "ObjectIndex.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
+#include "Core/GUICore/GUITextConsole.hpp"
+#include "Core/WorldStructure/Object.hpp"
+#include "Core/WorldStructure/Tile.hpp"
+#include "Core/WorldStructure/TileObjects.hpp"
+#include "Core/WorldStructure/World.hpp"
+#include "Core/WorldStructure/WorldArea.hpp"
 #include "ObjectFlags.hpp"
 
 namespace Forradia
@@ -23,16 +30,36 @@ namespace Forradia
         AddEntry("ObjectPoolOfBlood", "Pool of blood",
                  ObjectFlags::k_smallObject);
 
+        auto allImpactPointsCompletedActionObjectTree1 =
+            [](std::shared_ptr<Object> object)
+        {
+            auto worldArea{_<World>().currentWorldArea_};
+
+            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+            facedTile->tileObjects_->TransformObject(object,
+                                                     "ObjectFelledTree");
+
+            _<GUITextConsole>().PrintLine("You have felled the tree.");
+
+            _<Player>().AddExperience(13);
+        };
+
         AddEntry(
             "ObjectTree1", "Tree",
             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
             {PointF{0.5f, 0.95f}, PointF{0.55f, 0.95f}, PointF{0.6f, 0.95f}},
-            {"ObjectWoodAxe"}, "ObjectFelledTree");
+            {"ObjectWoodAxe"}, allImpactPointsCompletedActionObjectTree1);
+
+        auto allImpactPointsCompletedActionObjectTree2 =
+            allImpactPointsCompletedActionObjectTree1;
 
         AddEntry("ObjectTree2", "Tree",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
                  {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
-                 {"ObjectWoodAxe"}, "ObjectFelledTree");
+                 {"ObjectWoodAxe"}, allImpactPointsCompletedActionObjectTree2);
 
         AddEntry("ObjectBush1", "Bush",
                  ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
@@ -55,7 +82,8 @@ namespace Forradia
     void ObjectIndex::AddEntry(std::string_view name, std::string_view label,
                                int flags, std::vector<PointF> impactPoints,
                                std::vector<std::string> impactObjects,
-                               std::string impactCompleteTransformToObject)
+                               std::function<void(std::shared_ptr<Object>)>
+                                   allImpactPointsCompletedAction)
     {
         std::vector<int> impactObjectHashes;
 
@@ -66,7 +94,7 @@ namespace Forradia
 
         entries_.insert({Hash(name),
                          {label.data(), flags, impactPoints, impactObjectHashes,
-                          Hash(impactCompleteTransformToObject)}});
+                          allImpactPointsCompletedAction}});
     }
 
     bool ObjectIndex::IsSmallObject(int objectHash)
@@ -132,13 +160,14 @@ namespace Forradia
         return {};
     }
 
-    int ObjectIndex::GetImpactCompleteTransformToObject(int objectHash)
+    std::function<void(std::shared_ptr<Object>)>
+    ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
     {
         if (entries_.contains(objectHash))
         {
-            return entries_.at(objectHash).impactCompleteTransformToObject;
+            return entries_.at(objectHash).allImpactPointsCompletedAction;
         }
 
-        return 0;
+        return {};
     }
 }

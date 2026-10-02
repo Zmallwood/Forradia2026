@@ -9,6 +9,8 @@
 
 namespace Forradia
 {
+    class Object;
+
     class ObjectIndexEntry
     {
       public:
@@ -16,6 +18,7 @@ namespace Forradia
         int flags{0};
         std::vector<PointF> impactPoints;
         std::vector<int> impactObjects;
-        int impactCompleteTransformToObject{0};
+        std::function<void(std::shared_ptr<Object>)>
+            allImpactPointsCompletedAction;
     };
 }

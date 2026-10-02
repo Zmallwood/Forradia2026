@@ -59,7 +59,7 @@ namespace Forradia
     }
 
     void TileObjects::TransformObject(std::shared_ptr<Object> object,
-                                    int newObjectType)
+                                      std::string_view newObjectType)
     {
         Point position{-1, -1};
 

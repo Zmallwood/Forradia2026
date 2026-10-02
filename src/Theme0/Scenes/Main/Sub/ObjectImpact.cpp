@@ -9,14 +9,9 @@
 #include "Core/Assets/ImageBank.hpp"
 #include "Core/Configuration/GameProperties.hpp"
 #include "Core/Configuration/ObjectIndex.hpp"
-#include "Core/CoreGameObjects/Player.hpp"
-#include "Core/WorldStructure/Object.hpp"
-#include "Core/WorldStructure/Tile.hpp"
-#include "Core/WorldStructure/TileObjects.hpp"
-#include "Core/WorldStructure/World.hpp"
-#include "Core/WorldStructure/WorldArea.hpp"
 #include "FirstPersonHovering.hpp"
 #include "FirstPersonView/FirstPersonView.hpp"
+#include "Core/WorldStructure/Object.hpp"
 
 namespace Forradia
 {
@@ -109,22 +104,11 @@ namespace Forradia
 
         if (allImpactPointsCompleted)
         {
-            auto transformToObject{
-                _<ObjectIndex>().GetImpactCompleteTransformToObject(
+            auto allImpactPointsCompletedAction{
+                _<ObjectIndex>().GetAllImpactPointsCompletedAction(
                     hoveredObject->type_)};
 
-            if (transformToObject)
-            {
-                auto worldArea{_<World>().currentWorldArea_};
-
-                auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
-
-                auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-                auto tileObject{facedTile->tileObjects_};
-
-                tileObject->TransformObject(hoveredObject, transformToObject);
-            }
+            allImpactPointsCompletedAction(hoveredObject);
         }
     }
 }
