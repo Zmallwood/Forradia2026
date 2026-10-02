@@ -220,6 +220,26 @@ namespace Forradia
             {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
             allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
             "ObjectPlannedObject");
+
+        AddEntry(
+            "ObjectWoodWallPlankNorth1", "Wood wall", ObjectFlags::k_unmovable,
+            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
+            "ObjectWoodWallPlankNorth1WorldView");
+
+        AddEntry(
+            "ObjectWoodWallPlankNorth2", "Wood wall", ObjectFlags::k_unmovable,
+            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
+            "ObjectWoodWallPlankNorth2WorldView");
+
+        AddEntry(
+            "ObjectWoodWallPlankNorth3", "Wood wall", ObjectFlags::k_unmovable,
+            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
+            "ObjectWoodWallPlankNorth3WorldView");
+
+        AddEntry(
+            "ObjectWoodWallPlankNorth4", "Wood wall", ObjectFlags::k_unmovable,
+            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
+            "ObjectWoodWallPlankNorth4WorldView");
     }
 
     void ObjectIndex::AddEntry(
