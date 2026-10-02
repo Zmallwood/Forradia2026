@@ -255,6 +255,13 @@ namespace Forradia
 
                     auto objectType{object->type_};
 
+                    auto worldViewObjectType{_<ObjectIndex>().GetWorldViewObjectType(objectType)};
+
+                    if (worldViewObjectType != 0)
+                    {
+                        objectType = worldViewObjectType;
+                    }
+
                     auto isSmallObject{
                         _<ObjectIndex>().IsSmallObject(objectType)};
 

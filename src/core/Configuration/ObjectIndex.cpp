@@ -140,6 +140,30 @@ namespace Forradia
         AddEntry("ObjectWoodPlank", "Wood plank", ObjectFlags::k_smallObject);
 
         AddEntry("ObjectSaw", "Saw", ObjectFlags::k_smallObject);
+
+        AddEntry(
+            "ObjectPlannedWoodWallNorthPlank1",
+            "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
+            [](std::shared_ptr<Object>) {}, "ObjectPlannedObject");
+
+        AddEntry(
+            "ObjectPlannedWoodWallNorthPlank2",
+            "Planned wood wall north, plank 2", ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
+            [](std::shared_ptr<Object>) {}, "ObjectPlannedObject");
+
+        AddEntry(
+            "ObjectPlannedWoodWallNorthPlank3",
+            "Planned wood wall north, plank 3", ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
+            [](std::shared_ptr<Object>) {}, "ObjectPlannedObject");
+
+        AddEntry(
+            "ObjectPlannedWoodWallNorthPlank4",
+            "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
+            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
+            [](std::shared_ptr<Object>) {}, "ObjectPlannedObject");
     }
 
     void ObjectIndex::AddEntry(
@@ -148,7 +172,8 @@ namespace Forradia
         std::vector<std::string> impactObjects,
         std::function<void()> singleImpactPointCompletedAction,
         std::function<void(std::shared_ptr<Object>)>
-            allImpactPointsCompletedAction)
+            allImpactPointsCompletedAction,
+        std::string_view worldViewObjectType)
     {
         std::vector<int> impactObjectHashes;
 
@@ -157,10 +182,18 @@ namespace Forradia
             impactObjectHashes.push_back(Hash(impactObject));
         }
 
-        entries_.insert({Hash(name),
-                         {label.data(), flags, impactPoints, impactObjectHashes,
-                          singleImpactPointCompletedAction,
-                          allImpactPointsCompletedAction}});
+        int worldViewObjectTypeHash{0};
+
+        if (worldViewObjectType != "")
+        {
+            worldViewObjectTypeHash = Hash(worldViewObjectType);
+        }
+
+        entries_.insert(
+            {Hash(name),
+             {label.data(), flags, impactPoints, impactObjectHashes,
+              singleImpactPointCompletedAction, allImpactPointsCompletedAction,
+              worldViewObjectTypeHash}});
     }
 
     bool ObjectIndex::IsSmallObject(int objectHash)
@@ -246,5 +279,15 @@ namespace Forradia
         }
 
         return [](std::shared_ptr<Object>) {};
+    }
+
+    int ObjectIndex::GetWorldViewObjectType(int objectHash)
+    {
+        if (entries_.contains(objectHash))
+        {
+            return entries_.at(objectHash).worldViewObjectType;
+        }
+
+        return 0;
     }
 }

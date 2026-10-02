@@ -6,11 +6,13 @@
  ************************************************************************/
 
 #include "GUIActionMenu.hpp"
+#include "Core/Configuration/GameProperties.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/MinorComponents/Cursor.hpp"
 #include "Core/Rendering/Colors/ColorRenderer.hpp"
 #include "Core/Rendering/Text/TextRenderer.hpp"
 #include "Core/WorldStructure/Tile.hpp"
+#include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
@@ -19,6 +21,8 @@ namespace Forradia
     void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
     {
         auto mousePosition{GetMousePosition()};
+
+        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
 
         if (mouseButton == SDL_BUTTON_RIGHT)
         {
@@ -38,11 +42,61 @@ namespace Forradia
 
             if (ground != Hash("GroundWater"))
             {
-                GUIActionMenuEntry entry;
-                entry.label = "Plan wood wall north, plank 1";
-                entry.action = []() {};
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank1;
+                entryPlannedWoodWallNorthPlank1.label =
+                    "Plan wood wall north, plank 1";
+                entryPlannedWoodWallNorthPlank1.action = [=]()
+                {
+                    auto tileObjects{tile->tileObjects_};
 
-                entries_.push_back(entry);
+                    tileObjects->AddObject(
+                        "ObjectPlannedWoodWallNorthPlank1",
+                        {tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank1);
+
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank2;
+                entryPlannedWoodWallNorthPlank2.label =
+                    "Plan wood wall north, plank 2";
+                entryPlannedWoodWallNorthPlank2.action = [=]()
+                {
+                    auto tileObjects{tile->tileObjects_};
+
+                    tileObjects->AddObject(
+                        "ObjectPlannedWoodWallNorthPlank2",
+                        {tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank2);
+
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank3;
+                entryPlannedWoodWallNorthPlank3.label =
+                    "Plan wood wall north, plank 3";
+                entryPlannedWoodWallNorthPlank3.action = [=]()
+                {
+                    auto tileObjects{tile->tileObjects_};
+
+                    tileObjects->AddObject(
+                        "ObjectPlannedWoodWallNorthPlank3",
+                        {tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank3);
+
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank4;
+                entryPlannedWoodWallNorthPlank4.label =
+                    "Plan wood wall north, plank 4";
+                entryPlannedWoodWallNorthPlank4.action = [=]()
+                {
+                    auto tileObjects{tile->tileObjects_};
+
+                    tileObjects->AddObject(
+                        "ObjectPlannedWoodWallNorthPlank4",
+                        {tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank4);
             }
         }
         else if (mouseButton == SDL_BUTTON_LEFT)

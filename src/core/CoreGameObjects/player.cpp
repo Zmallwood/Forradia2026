@@ -29,6 +29,8 @@ namespace Forradia
         playerInventory_->AddObject("ObjectWoodAxe");
 
         playerInventory_->AddObject("ObjectSaw");
+
+        playerInventory_->AddObject("ObjectHammer");
     }
 
     void Player::SpawnOnSuitableLocation()

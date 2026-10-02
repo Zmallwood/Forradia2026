@@ -34,6 +34,8 @@ namespace Forradia
         std::function<void(std::shared_ptr<Object>)>
         GetAllImpactPointsCompletedAction(int objectHash);
 
+        int GetWorldViewObjectType(int objectHash);
+
       private:
         void AddEntry(
             std::string_view objectName, std::string_view label, int flags,
@@ -41,8 +43,8 @@ namespace Forradia
             std::vector<std::string> impactObjects = {},
             std::function<void()> singleImpactPointCompletedAction = []() {},
             std::function<void(std::shared_ptr<Object>)>
-                allImpactPointsCompletedAction =
-                    [](std::shared_ptr<Object>) {});
+                allImpactPointsCompletedAction = [](std::shared_ptr<Object>) {},
+            std::string_view worldViewObjectType = "");
 
         std::unordered_map<int, ObjectIndexEntry> entries_;
     };

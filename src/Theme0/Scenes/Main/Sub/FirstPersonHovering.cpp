@@ -69,18 +69,29 @@ namespace Forradia
             float imageHeight;
 
             auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
-
             if (isSmallObject)
             {
-                imageWidth = imageSize.width / 60.0f * smallObjectScale;
-                imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(smallObjectScale);
+                imageWidth = imageSize.width / 60.0f * smallObjectScale *
+                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                             tileUnitsWidth;
+                imageHeight =
+                    imageSize.height / 60.0f *
+                    ConvertWidthToHeight(
+                        smallObjectScale *
+                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                        tileUnitsWidth);
             }
             else
             {
-                imageWidth = imageSize.width / 60.0f * largeObjectScale;
-                imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(largeObjectScale);
+                imageWidth = imageSize.width / 60.0f * largeObjectScale *
+                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                             tileUnitsWidth;
+                imageHeight =
+                    imageSize.height / 60.0f *
+                    ConvertWidthToHeight(
+                        largeObjectScale *
+                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                        tileUnitsWidth);
             }
 
             auto tileWidth{viewWidth - 2 * k_margin.x -
@@ -180,15 +191,27 @@ namespace Forradia
 
             if (isSmallObject)
             {
-                imageWidth = imageSize.width / 60.0f * smallObjectScale;
-                imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(smallObjectScale);
+                imageWidth = imageSize.width / 60.0f * smallObjectScale *
+                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                             tileUnitsWidth;
+                imageHeight =
+                    imageSize.height / 60.0f *
+                    ConvertWidthToHeight(
+                        smallObjectScale *
+                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                        tileUnitsWidth);
             }
             else
             {
-                imageWidth = imageSize.width / 60.0f * largeObjectScale;
-                imageHeight = imageSize.height / 60.0f *
-                              ConvertWidthToHeight(largeObjectScale);
+                imageWidth = imageSize.width / 60.0f * largeObjectScale *
+                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                             tileUnitsWidth;
+                imageHeight =
+                    imageSize.height / 60.0f *
+                    ConvertWidthToHeight(
+                        largeObjectScale *
+                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                        tileUnitsWidth);
             }
 
             auto tileWidth{viewWidth - 2 * k_margin.x -

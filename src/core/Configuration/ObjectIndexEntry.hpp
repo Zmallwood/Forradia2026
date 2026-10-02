@@ -21,5 +21,6 @@ namespace Forradia
         std::function<void()> singleImpactPointCompletedAction;
         std::function<void(std::shared_ptr<Object>)>
             allImpactPointsCompletedAction;
+        int worldViewObjectType{0};
     };
 }
