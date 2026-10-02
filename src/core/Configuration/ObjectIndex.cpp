@@ -157,8 +157,8 @@ namespace Forradia
         AddEntry(
             "ObjectPlannedWoodWallNorthPlank1",
             "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
-            allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
+            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
+            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
@@ -177,8 +177,8 @@ namespace Forradia
         AddEntry(
             "ObjectPlannedWoodWallNorthPlank2",
             "Planned wood wall north, plank 2", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
-            allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
+            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
+            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
@@ -197,8 +197,8 @@ namespace Forradia
         AddEntry(
             "ObjectPlannedWoodWallNorthPlank3",
             "Planned wood wall north, plank 3", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
-            allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
+            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
+            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
@@ -217,8 +217,8 @@ namespace Forradia
         AddEntry(
             "ObjectPlannedWoodWallNorthPlank4",
             "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.95f}}, {"ObjectHammer"}, []() {},
-            allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
+            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
+            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
             "ObjectPlannedObject");
 
         AddEntry(
