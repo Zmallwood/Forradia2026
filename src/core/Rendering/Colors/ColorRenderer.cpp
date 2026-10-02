@@ -23,6 +23,11 @@ namespace Forradia
         SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
     }
 
+    void ColorRenderer::FillRect(RectF rect, Color color)
+    {
+        FillRect(rect.x, rect.y, rect.width, rect.height, color);
+    }
+
     void ColorRenderer::DrawRect(float x, float y, float width, float height,
                                  Color color)
     {

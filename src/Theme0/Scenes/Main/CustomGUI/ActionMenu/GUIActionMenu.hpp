@@ -7,23 +7,23 @@
 
 #pragma once
 
+#include "GUIActionMenuEntry.hpp"
+
 namespace Forradia
 {
-    class ColorRenderer
+    class GUIActionMenu
     {
       public:
-        void FillRect(float x, float y, float width, float height,
-                      Color color = Colors::k_black);
+        void OnMouseDown(Uint8 mouseButton);
 
-        void FillRect(RectF rect, Color color = Colors::k_black);
-
-        void DrawRect(float x, float y, float width, float height,
-                      Color color = Colors::k_black);
-
-        void DrawLine(float x1, float y1, float x2, float y2,
-                      Color color = Colors::k_black);
+        void Render();
 
       private:
-        SDL_Rect CreateSDLRect(float x, float y, float width, float height);
+        static constexpr float k_width{0.1f};
+        static constexpr float k_lineHeight{0.02f};
+        static constexpr float k_marginX{0.002f};
+        PointF rightClickMousePosition_;
+        std::vector<GUIActionMenuEntry> entries_;
+        bool visible_{false};
     };
 }

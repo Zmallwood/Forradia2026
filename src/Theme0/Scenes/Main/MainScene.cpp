@@ -26,6 +26,7 @@
 #include "Sub/TileHovering.hpp"
 #include "Sub/WorldView/WorldView.hpp"
 #include "Sub/ObjectImpact.hpp"
+#include "CustomGUI/ActionMenu/GUIActionMenu.hpp"
 
 namespace Forradia
 {
@@ -89,6 +90,8 @@ namespace Forradia
         _<FirstPersonView>().Render();
 
         _<FirstPersonHovering>().Render();
+
+        _<GUIActionMenu>().Render();
     }
 
     void MainScene::RenderAfterGUIDerived()
@@ -121,6 +124,8 @@ namespace Forradia
         _<ObjectImpact>().OnMouseDown(button);
 
         _<ObjectMoving>().OnMouseDown(button);
+
+        _<GUIActionMenu>().OnMouseDown(button);
     }
 
     void MainScene::OnMouseUpDerived(Uint8 button, int clickSpeed)
