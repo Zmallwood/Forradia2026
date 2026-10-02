@@ -117,6 +117,29 @@ namespace Forradia
                  {"ObjectWoodAxe"},
                  singleImpactPointCompletedActionObjectFelledTree,
                  allImpactPointsCompletedActionObjectFelledTree);
+
+        auto allImpactPointsCompletedActionObjectWoodLog =
+            [](std::shared_ptr<Object> object)
+        {
+            auto worldArea{_<World>().currentWorldArea_};
+
+            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+            facedTile->tileObjects_->TransformObject(object, "ObjectWoodPlank");
+
+            _<GUITextConsole>().PrintLine("You have sawed the wood log.");
+        };
+
+        AddEntry(
+            "ObjectWoodLog", "Wood log", ObjectFlags::k_smallObject,
+            {PointF{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
+            allImpactPointsCompletedActionObjectWoodLog);
+
+        AddEntry("ObjectWoodPlank", "Wood plank", ObjectFlags::k_smallObject);
+
+        AddEntry("ObjectSaw", "Saw", ObjectFlags::k_smallObject);
     }
 
     void ObjectIndex::AddEntry(

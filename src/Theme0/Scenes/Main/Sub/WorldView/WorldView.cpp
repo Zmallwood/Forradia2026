@@ -103,12 +103,9 @@ namespace Forradia
                         currentXf += stepX;
                         currentYf += stepY;
                     }
-
-                    if (numBlockingObjects >= 2)
-                    {
-                        continue;
-                    }
                 }
+
+                auto sightBlocked{numBlockingObjects >= 2};
 
                 auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
 
@@ -151,9 +148,40 @@ namespace Forradia
                 auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
                            y * tileWidth / 2};
 
-                auto tileY{0.5f - 5.5f * tileHeight + x * tileHeight / 2 +
-                           y * tileHeight / 2 +
-                           playerElevation * tileHeight / 4};
+                auto tileYOriginal{0.5f - 5.5f * tileHeight +
+                                   x * tileHeight / 2 + y * tileHeight / 2 +
+                                   playerElevation * tileHeight / 4};
+
+                auto tileY{tileYOriginal};
+
+                if (sightBlocked)
+                {
+                    for (auto i = 0; i < elevationWest; i++)
+                    {
+                        _<ImageRenderer>().DrawImage(
+                            "ElevationWestBackSideBlack", tileX,
+                            tileY - tileHeight / 4, tileWidth,
+                            tileHeight * 3 / 4);
+
+                        tileY -= tileHeight / 4;
+                    }
+
+                    tileY = tileYOriginal;
+
+                    for (auto i = 0; i < elevationNorth; i++)
+                    {
+                        _<ImageRenderer>().DrawImage(
+                            "ElevationNorthBackSideBlack", tileX,
+                            tileY - tileHeight / 4, tileWidth,
+                            tileHeight * 3 / 4);
+
+                        tileY -= tileHeight / 4;
+                    }
+
+                    continue;
+                }
+
+                tileY = tileYOriginal;
 
                 for (auto i = 0; i < elevation; i++)
                 {
