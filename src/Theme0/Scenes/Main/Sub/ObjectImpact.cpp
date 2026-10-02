@@ -82,7 +82,7 @@ namespace Forradia
             auto rect{RectF{impactPointX, impactPointY, impactPointWidth,
                             impactPointHeight}};
 
-            if (rect.Contains(mousePosition))
+            if (rect.Contains(mousePosition) && !impactPoint.completed)
             {
                 impactPoint.completed = true;
 
