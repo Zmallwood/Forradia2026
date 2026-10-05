@@ -1,9 +1,5 @@
-/************************************************************************
- *                               Forradia                               *
- *                                                                      *
- * Copyright (c) 2026 Andreas Åkerberg                                  *
- * SPDX-License-Identifier: MIT                                         *
- ************************************************************************/
+// Copyright (c) 2026 Andreas Åkerberg
+// SPDX-License-Identifier: MIT
 
 #include "MainMenuScene.hpp"
 #include "Core/Engine/Engine.hpp"

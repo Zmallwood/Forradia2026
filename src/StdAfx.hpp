@@ -1,9 +1,5 @@
-/************************************************************************
- *                               Forradia                               *
- *                                                                      *
- * Copyright (c) 2026 Andreas Åkerberg                                  *
- * SPDX-License-Identifier: MIT                                         *
- ************************************************************************/
+// Copyright (c) 2026 Andreas Åkerberg
+// SPDX-License-Identifier: MIT
 
 #pragma once
 
@@ -41,4 +37,3 @@
 #include "Common/Singleton.hpp"
 #include "Common/StringUtilities.hpp"
 #include "Common/TimeUtilities.hpp"
-#include "Common/WorldDirections.hpp"

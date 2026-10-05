@@ -3,4 +3,10 @@
 
 #pragma once
 
-PointF GetMousePosition();
+enum class WorldDirections
+{
+    North,
+    East,
+    South,
+    West,
+};

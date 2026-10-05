@@ -1,9 +1,5 @@
-/************************************************************************
- *                               Forradia                               *
- *                                                                      *
- * Copyright (c) 2026 Andreas Åkerberg                                  *
- * SPDX-License-Identifier: MIT                                         *
- ************************************************************************/
+// Copyright (c) 2026 Andreas Åkerberg
+// SPDX-License-Identifier: MIT
 
 #include "GUIWindowTitleBar.hpp"
 #include "Core/Rendering/Text/TextRenderer.hpp"

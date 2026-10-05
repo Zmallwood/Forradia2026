@@ -1,11 +1,9 @@
-/************************************************************************
- *                               Forradia                               *
- *                                                                      *
- * Copyright (c) 2026 Andreas Åkerberg                                  *
- * SPDX-License-Identifier: MIT                                         *
- ************************************************************************/
+// Copyright (c) 2026 Andreas Åkerberg
+// SPDX-License-Identifier: MIT
 
 #pragma once
+
+#include "Core/WorldStructure/WorldDirections.hpp"
 
 class PlayerInventory;
 class PlayerEquipment;
