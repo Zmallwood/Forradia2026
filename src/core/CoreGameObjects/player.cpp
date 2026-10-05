@@ -20,8 +20,6 @@ namespace Forradia
         : playerInventory_(std::make_shared<PlayerInventory>()),
           playerEquipment_(std::make_shared<PlayerEquipment>())
     {
-        SpawnOnSuitableLocation();
-
         playerInventory_->AddObject("ObjectRedApple");
 
         playerInventory_->AddObject("ObjectCopperSword");

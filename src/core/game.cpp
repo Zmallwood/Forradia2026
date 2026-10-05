@@ -13,5 +13,7 @@ namespace Forradia
     void Game::Start()
     {
         _<Engine>().Start();
+
+        DestroySingleton<Engine>();
     }
 }

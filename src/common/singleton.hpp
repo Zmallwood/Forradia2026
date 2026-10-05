@@ -10,7 +10,7 @@
 namespace Forradia
 {
     template <class T>
-    std::shared_ptr<T> GetSingletonPtr()
+    std::shared_ptr<T> &SingletonStorage()
     {
         static std::shared_ptr<T> instance = std::make_shared<T>();
 
@@ -18,10 +18,27 @@ namespace Forradia
     }
 
     template <class T>
+    std::shared_ptr<T> GetSingletonPtr()
+    {
+        auto &instance{SingletonStorage<T>()};
+
+        if (!instance)
+        {
+            instance = std::make_shared<T>();
+        }
+
+        return instance;
+    }
+
+    template <class T>
+    void DestroySingleton()
+    {
+        SingletonStorage<T>().reset();
+    }
+
+    template <class T>
     T &_()
     {
-        auto ptr{GetSingletonPtr<T>()};
-
-        return *ptr;
+        return *GetSingletonPtr<T>();
     }
 }

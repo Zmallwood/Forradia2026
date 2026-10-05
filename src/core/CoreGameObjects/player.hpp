@@ -37,6 +37,8 @@ namespace Forradia
 
         void Hit(float damage);
 
+        void SpawnOnSuitableLocation();
+
         Point position_{0, 0};
         int ticksLastMovement_{0};
         float movementSpeed_{4.0f};
@@ -52,8 +54,5 @@ namespace Forradia
         float maxHealth_{10.0f};
         int ticksLastHitOnSelf_{0};
         std::shared_ptr<PlayerEquipment> playerEquipment_;
-
-      private:
-        void SpawnOnSuitableLocation();
     };
 }

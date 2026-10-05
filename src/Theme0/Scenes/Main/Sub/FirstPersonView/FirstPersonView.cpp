@@ -15,11 +15,13 @@
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/WorldStructure/Creature.hpp"
+#include "Core/WorldStructure/NPC.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "FirstPersonViewFunctions.hpp"
+
 
 namespace Forradia
 {
@@ -91,6 +93,11 @@ namespace Forradia
         case Hash("GroundRock"):
         {
             groundImageName = "GroundFirstPersonRock";
+            break;
+        }
+        case Hash("GroundCobblestone"):
+        {
+            groundImageName = "GroundFirstPersonCobblestone";
             break;
         }
         }
@@ -221,6 +228,33 @@ namespace Forradia
                                                 impactPointHeight, color);
                 }
             }
+        }
+
+        auto npc{facedTile->npc_};
+
+        if (npc)
+        {
+            auto npcType{npc->type_};
+
+            auto imageSize{_<ImageBank>().GetImageSize(npcType)};
+
+            auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
+            auto imageHeight{imageSize.height / 60.0f *
+                             ConvertWidthToHeight(largeObjectScale)};
+
+            auto tileWidth{viewWidth - 2 * k_margin.x -
+                           0.5f * viewWidth * 0.6f};
+            auto tileLeft{1.0f - viewWidth + k_margin.x +
+                          0.5f * viewWidth * 0.3f};
+
+            auto baseX{tileLeft + 0.5f * tileWidth};
+            auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
+
+            auto imageX{baseX - imageWidth / 2.0f};
+            auto imageY{baseY - imageHeight};
+
+            _<ImageRenderer>().DrawImage(npcType, imageX, imageY, imageWidth,
+                                         imageHeight);
         }
 
         auto creature{facedTile->creature_};

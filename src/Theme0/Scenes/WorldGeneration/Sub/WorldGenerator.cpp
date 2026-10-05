@@ -6,11 +6,13 @@
  ************************************************************************/
 
 #include "WorldGenerator.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
 #include "Core/WorldStructure/Creature.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
+#include "Core/WorldStructure/NPC.hpp"
 
 namespace Forradia
 {
@@ -450,5 +452,51 @@ namespace Forradia
 
             worldArea->creaturesMirror_.insert({newCreature, {x, y}});
         }
+    }
+
+    void WorldGenerator::GenerateCivilization()
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+        auto size{worldArea->GetSize()};
+
+        auto playerPosition{_<Player>().position_};
+
+        for (auto x = 0; x < size.width; x++)
+        {
+            auto tile{worldArea->GetTile(x, playerPosition.y)};
+
+            tile->tileObjects_->Clear();
+
+            tile->ground_ = Hash("GroundCobblestone");
+        }
+
+        for (auto y = 0; y < size.height; y++)
+        {
+            auto tile{worldArea->GetTile(playerPosition.x, y)};
+
+            tile->tileObjects_->Clear();
+
+            tile->ground_ = Hash("GroundCobblestone");
+        }
+
+        for (auto y = playerPosition.y - 1; y <= playerPosition.y + 1; y++)
+        {
+            for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1; x++)
+            {
+                auto tile{worldArea->GetTile(x, y)};
+                
+                tile->tileObjects_->Clear();
+
+                tile->ground_ = Hash("GroundCobblestone");
+            }
+        }
+
+        auto tileNW {worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
+
+        tileNW->npc_ = std::make_shared<NPC>("NPC0");
+
+        auto tileNE {worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
+
+        tileNE->npc_ = std::make_shared<NPC>("NPC1");
     }
 }

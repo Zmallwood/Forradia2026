@@ -5,22 +5,11 @@
  * SPDX-License-Identifier: MIT                                         *
  ************************************************************************/
 
-#include "RunNewTheme0.hpp"
-#include "Core/Game.hpp"
-
-extern "C"
-{
-    using Callback = void (*)();
-
-    void RunGame(Callback callback);
-}
+#include "NPC.hpp"
 
 namespace Forradia
 {
-    void RunNewTheme0()
+    NPC::NPC(std::string_view typeName) : type_(Hash(typeName))
     {
-        _<Game>().Start();
-
-        DestroySingleton<Game>();
     }
 }

@@ -14,12 +14,14 @@
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/WorldStructure/Creature.hpp"
+#include "Core/WorldStructure/NPC.hpp"
 #include "Core/WorldStructure/Object.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "Theme0/Scenes/Main/Sub/TileHovering.hpp"
+
 
 namespace Forradia
 {
@@ -255,7 +257,8 @@ namespace Forradia
 
                     auto objectType{object->type_};
 
-                    auto worldViewObjectType{_<ObjectIndex>().GetWorldViewObjectType(objectType)};
+                    auto worldViewObjectType{
+                        _<ObjectIndex>().GetWorldViewObjectType(objectType)};
 
                     if (worldViewObjectType != 0)
                     {
@@ -280,6 +283,24 @@ namespace Forradia
 
                     _<ImageRenderer>().DrawImage(objectType, objectX, objectY,
                                                  objectWidth, objectHeight);
+                }
+
+                auto npc{tile->npc_};
+
+                if (npc)
+                {
+                    auto npcType{npc->type_};
+
+                    auto imageSize{_<ImageBank>().GetImageSize(npcType)};
+
+                    auto npcWidth{imageSize.width / 60.0f * tileWidth};
+                    auto npcHeight{imageSize.height / 60.0f * tileHeight};
+
+                    auto npcX{tileX + tileWidth / 2 - npcWidth / 2};
+                    auto npcY{tileY + tileHeight / 2 - npcHeight};
+
+                    _<ImageRenderer>().DrawImage(npcType, npcX, npcY, npcWidth,
+                                                 npcHeight);
                 }
 
                 auto creature{tile->creature_};

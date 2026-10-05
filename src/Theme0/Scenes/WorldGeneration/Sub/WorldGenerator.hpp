@@ -14,6 +14,8 @@ namespace Forradia
       public:
         void GenerateNewWorld();
 
+        void GenerateCivilization();
+
       private:
         void ClearWithGrass();
 
