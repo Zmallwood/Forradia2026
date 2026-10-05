@@ -13,99 +13,96 @@
 #include "Core/SDLDevice/SDLDevice.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 
-namespace Forradia
+void Engine::Start()
 {
-    void Engine::Start()
+    srand(time(nullptr));
+
+    _<ImageBank>().LoadImages();
+
+    _<TextRenderer>().Initialize();
+
+    while (running_)
     {
-        srand(time(nullptr));
+        PollEvents();
 
-        _<ImageBank>().LoadImages();
+        _<Cursor>().Reset();
 
-        _<TextRenderer>().Initialize();
+        _<SceneManager>().UpdateCurrentScene();
 
-        while (running_)
+        _<FPSCounter>().Update();
+
+        _<SDLDevice>().ClearCanvas();
+
+        _<SceneManager>().RenderCurrentScene();
+
+        _<FPSCounter>().Render();
+
+        _<Cursor>().Render();
+
+        _<SDLDevice>().PresentCanvas();
+    }
+}
+
+void Engine::PollEvents()
+{
+    SDL_Event event;
+
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
         {
-            PollEvents();
+        case SDL_QUIT:
+        {
+            running_ = false;
+            break;
+        }
+        case SDL_KEYDOWN:
+        {
+            _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
+            break;
+        }
+        case SDL_KEYUP:
+        {
+            _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
+            break;
+        }
+        case SDL_MOUSEBUTTONDOWN:
+        {
+            _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
 
-            _<Cursor>().Reset();
+            switch (event.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                ticksLeftMouseButtonDown_ = Now();
+                break;
+            case SDL_BUTTON_RIGHT:
+                ticksRightMouseButtonDown_ = Now();
+                break;
+            }
+            break;
+        }
+        case SDL_MOUSEBUTTONUP:
+        {
+            auto clickSpeed{0};
 
-            _<SceneManager>().UpdateCurrentScene();
-
-            _<FPSCounter>().Update();
-
-            _<SDLDevice>().ClearCanvas();
-
-            _<SceneManager>().RenderCurrentScene();
-
-            _<FPSCounter>().Render();
-
-            _<Cursor>().Render();
-
-            _<SDLDevice>().PresentCanvas();
+            switch (event.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                clickSpeed = Now() - ticksLeftMouseButtonDown_;
+                break;
+            case SDL_BUTTON_RIGHT:
+                clickSpeed = Now() - ticksRightMouseButtonDown_;
+                break;
+            }
+            _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
+                                                    clickSpeed);
+            break;
+        }
         }
     }
+}
 
-    void Engine::PollEvents()
-    {
-        SDL_Event event;
-
-        while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-            {
-                running_ = false;
-                break;
-            }
-            case SDL_KEYDOWN:
-            {
-                _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
-                break;
-            }
-            case SDL_KEYUP:
-            {
-                _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
-                break;
-            }
-            case SDL_MOUSEBUTTONDOWN:
-            {
-                _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
-
-                switch (event.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    ticksLeftMouseButtonDown_ = Now();
-                    break;
-                case SDL_BUTTON_RIGHT:
-                    ticksRightMouseButtonDown_ = Now();
-                    break;
-                }
-                break;
-            }
-            case SDL_MOUSEBUTTONUP:
-            {
-                auto clickSpeed{0};
-
-                switch (event.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    clickSpeed = Now() - ticksLeftMouseButtonDown_;
-                    break;
-                case SDL_BUTTON_RIGHT:
-                    clickSpeed = Now() - ticksRightMouseButtonDown_;
-                    break;
-                }
-                _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
-                                                        clickSpeed);
-                break;
-            }
-            }
-        }
-    }
-
-    void Engine::Stop()
-    {
-        running_ = false;
-    }
+void Engine::Stop()
+{
+    running_ = false;
 }

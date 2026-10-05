@@ -7,14 +7,11 @@
 
 #pragma once
 
-namespace Forradia
-{
-    class Object;
+class Object;
 
-    class PositionedObject
-    {
-      public:
-        Point position_{-1, -1};
-        std::shared_ptr<Object> object_;
-    };
-}
+class PositionedObject
+{
+  public:
+    Point position_{-1, -1};
+    std::shared_ptr<Object> object_;
+};

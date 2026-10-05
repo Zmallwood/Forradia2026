@@ -7,20 +7,17 @@
 
 #pragma once
 
-namespace Forradia
+class Engine
 {
-    class Engine
-    {
-      public:
-        void Start();
+  public:
+    void Start();
 
-        void Stop();
+    void Stop();
 
-      private:
-        void PollEvents();
+  private:
+    void PollEvents();
 
-        bool running_{true};
-        int ticksLeftMouseButtonDown_{0};
-        int ticksRightMouseButtonDown_{0};
-    };
-}
+    bool running_{true};
+    int ticksLeftMouseButtonDown_{0};
+    int ticksRightMouseButtonDown_{0};
+};

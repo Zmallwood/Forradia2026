@@ -8,12 +8,9 @@
 #include "Game.hpp"
 #include "Engine/Engine.hpp"
 
-namespace Forradia
+void Game::Start()
 {
-    void Game::Start()
-    {
-        _<Engine>().Start();
+    _<Engine>().Start();
 
-        DestroySingleton<Engine>();
-    }
+    DestroySingleton<Engine>();
 }

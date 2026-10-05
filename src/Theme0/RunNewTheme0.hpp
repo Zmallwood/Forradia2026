@@ -7,7 +7,4 @@
 
 #pragma once
 
-namespace Forradia
-{
-    void RunNewTheme0();
-}
+void RunNewTheme0();

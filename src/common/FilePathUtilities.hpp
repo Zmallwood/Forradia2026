@@ -7,7 +7,4 @@
 
 #pragma once
 
-namespace Forradia
-{
-    std::string GetFileNameNoExt(std::string_view path);
-}
+std::string GetFileNameNoExt(std::string_view path);

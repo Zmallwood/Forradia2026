@@ -9,21 +9,18 @@
 
 #include "GUIPanel.hpp"
 
-namespace Forradia
+class GUITextConsole : public GUIPanel
 {
-    class GUITextConsole : public GUIPanel
-    {
-      public:
-        GUITextConsole();
+  public:
+    GUITextConsole();
 
-        void PrintLine(std::string_view line);
+    void PrintLine(std::string_view line);
 
-      protected:
-        void RenderDerived() override;
+  protected:
+    void RenderDerived() override;
 
-      private:
-        static constexpr float k_lineHeight_{0.02f};
+  private:
+    static constexpr float k_lineHeight_{0.02f};
 
-        std::vector<std::string> lines_;
-    };
-}
+    std::vector<std::string> lines_;
+};

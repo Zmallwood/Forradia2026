@@ -18,113 +18,108 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "CreatureRespawner.hpp"
 
-namespace Forradia
+void PlayerCombatToOthers::OnMouseDown(Uint8 button)
 {
-    void PlayerCombatToOthers::OnMouseDown(Uint8 button)
+    auto viewWidth{GameProperties::k_viewWidth_};
+
+    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+
+    auto now{Now()};
+
+    if (now - _<Player>().ticksLastHitOnOther_ <
+        InvertSpeed(_<Player>().attackSpeed_))
     {
-        auto viewWidth{GameProperties::k_viewWidth_};
+        return;
+    }
 
-        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto mousePosition{GetMousePosition()};
 
-        auto now{Now()};
+    if (mousePosition.x < viewWidth / 2.0f)
+    {
+        return;
+    }
 
-        if (now - _<Player>().ticksLastHitOnOther_ <
-            InvertSpeed(_<Player>().attackSpeed_))
-        {
-            return;
-        }
+    auto worldArea{_<World>().currentWorldArea_};
 
-        auto mousePosition{GetMousePosition()};
+    auto facedTile{_<Player>().facedTileCoordinate_};
 
-        if (mousePosition.x < viewWidth / 2.0f)
-        {
-            return;
-        }
+    auto tile{worldArea->GetTile(facedTile)};
 
-        auto worldArea{_<World>().currentWorldArea_};
+    if (!tile)
+    {
+        return;
+    }
 
-        auto facedTile{_<Player>().facedTileCoordinate_};
+    auto creature{tile->creature_};
 
-        auto tile{worldArea->GetTile(facedTile)};
+    if (!creature)
+    {
+        return;
+    }
 
-        if (!tile)
-        {
-            return;
-        }
+    if (creature->IsDead())
+    {
+        return;
+    }
 
-        auto creature{tile->creature_};
+    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
+    constexpr auto k_largeObjectScale{GameProperties::k_largeObjectScale_};
 
-        if (!creature)
-        {
-            return;
-        }
+    auto creatureType{creature->type_};
 
-        if (creature->IsDead())
-        {
-            return;
-        }
+    auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
 
-        constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
-        constexpr auto k_largeObjectScale{GameProperties::k_largeObjectScale_};
+    auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
+    auto imageHeight{imageSize.height / 60.0f *
+                     ConvertWidthToHeight(k_largeObjectScale)};
 
-        auto creatureType{creature->type_};
+    auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
+    auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
 
-        auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+    auto baseX{tileLeft + 0.5f * tileWidth};
+    auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
 
-        auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
-        auto imageHeight{imageSize.height / 60.0f *
-                         ConvertWidthToHeight(k_largeObjectScale)};
+    auto imageX{baseX - imageWidth / 2.0f};
+    auto imageY{baseY - imageHeight};
 
-        auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
-        auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
+    auto dx{mousePosition.x - imageX};
+    auto dy{mousePosition.y - imageY};
 
-        auto baseX{tileLeft + 0.5f * tileWidth};
-        auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
+    auto x{dx / imageWidth};
+    auto y{dy / imageHeight};
 
-        auto imageX{baseX - imageWidth / 2.0f};
-        auto imageY{baseY - imageHeight};
+    auto isPixelVisible{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
 
-        auto dx{mousePosition.x - imageX};
-        auto dy{mousePosition.y - imageY};
+    if (!isPixelVisible)
+    {
+        return;
+    }
 
-        auto x{dx / imageWidth};
-        auto y{dy / imageHeight};
+    creature->Hit(1.0f, PointF{x, y});
 
-        auto isPixelVisible{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
+    _<Player>().ticksLastHitOnOther_ = now;
 
-        if (!isPixelVisible)
-        {
-            return;
-        }
+    tile->tileObjects_->AddObject("ObjectPoolOfBlood");
 
-        creature->Hit(1.0f, PointF{x, y});
+    if (creature->IsDead())
+    {
+        auto corpseType{_<CreatureIndex>().GetCreatureCorpseType(creatureType)};
 
-        _<Player>().ticksLastHitOnOther_ = now;
+        tile->tileObjects_->AddObject(corpseType,
+                                      {tileUnitsWidth / 2, tileUnitsWidth / 2});
 
-        tile->tileObjects_->AddObject("ObjectPoolOfBlood");
+        tile->creature_ = nullptr;
 
-        if (creature->IsDead())
-        {
-            auto corpseType{
-                _<CreatureIndex>().GetCreatureCorpseType(creatureType)};
+        worldArea->creaturesMirror_.erase(creature);
 
-            tile->tileObjects_->AddObject(
-                corpseType, {tileUnitsWidth / 2, tileUnitsWidth / 2});
+        auto creatureLabel{_<CreatureIndex>().GetCreatureLabel(creatureType)};
 
-            tile->creature_ = nullptr;
+        _<GUITextConsole>().PrintLine("You have killed a " + creatureLabel +
+                                      ".");
 
-            worldArea->creaturesMirror_.erase(creature);
+        _<Player>().AddExperience(creature->experienceValue_);
 
-            auto creatureLabel{
-                _<CreatureIndex>().GetCreatureLabel(creatureType)};
-
-            _<GUITextConsole>().PrintLine("You have killed a " + creatureLabel +
-                                          ".");
-
-            _<Player>().AddExperience(creature->experienceValue_);
-
-            _<CreatureRespawner>().RespawnCreature(
-                creatureType, creature->respawnTimeMillis_);
-        }
+        _<CreatureRespawner>().RespawnCreature(creatureType,
+                                               creature->respawnTimeMillis_);
     }
 }

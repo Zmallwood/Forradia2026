@@ -8,40 +8,37 @@
 #include "Cursor.hpp"
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 
-namespace Forradia
+Cursor::Cursor()
 {
-    Cursor::Cursor()
+    SDL_ShowCursor(SDL_DISABLE);
+}
+
+void Cursor::Reset()
+{
+    cursorStyle_ = CursorStyles::Default;
+}
+
+void Cursor::Render()
+{
+    auto mousePosition{GetMousePosition()};
+
+    auto cursorWidth{k_cursorSize_};
+    auto cursorHeight{ConvertWidthToHeight(cursorWidth)};
+
+    std::string cursorImage;
+
+    switch (cursorStyle_)
     {
-        SDL_ShowCursor(SDL_DISABLE);
+    case CursorStyles::Hovering:
+        cursorImage = "CursorHovering";
+        break;
+    case CursorStyles::Default:
+    default:
+        cursorImage = "CursorDefault";
+        break;
     }
 
-    void Cursor::Reset()
-    {
-        cursorStyle_ = CursorStyles::Default;
-    }
-
-    void Cursor::Render()
-    {
-        auto mousePosition{GetMousePosition()};
-
-        auto cursorWidth{k_cursorSize_};
-        auto cursorHeight{ConvertWidthToHeight(cursorWidth)};
-
-        std::string cursorImage;
-
-        switch (cursorStyle_)
-        {
-        case CursorStyles::Hovering:
-            cursorImage = "CursorHovering";
-            break;
-        case CursorStyles::Default:
-        default:
-            cursorImage = "CursorDefault";
-            break;
-        }
-
-        _<ImageRenderer>().DrawImage(
-            cursorImage, mousePosition.x - cursorWidth / 2,
-            mousePosition.y - cursorHeight / 2, cursorWidth, cursorHeight);
-    }
+    _<ImageRenderer>().DrawImage(cursorImage, mousePosition.x - cursorWidth / 2,
+                                 mousePosition.y - cursorHeight / 2,
+                                 cursorWidth, cursorHeight);
 }

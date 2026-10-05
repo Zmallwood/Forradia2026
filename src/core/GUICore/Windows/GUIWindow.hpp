@@ -9,18 +9,15 @@
 
 #include "Core/GUICore/GUIPanel.hpp"
 
-namespace Forradia
+class GUIWindowTitleBar;
+
+class GUIWindow : public GUIPanel
 {
-    class GUIWindowTitleBar;
+  public:
+    GUIWindow(std::string_view title, float x, float y, float width,
+              float height);
 
-    class GUIWindow : public GUIPanel
-    {
-      public:
-        GUIWindow(std::string_view title, float x, float y, float width,
-                  float height);
+    void ToggleVisibility();
 
-        void ToggleVisibility();
-
-        std::shared_ptr<GUIWindowTitleBar> titleBar_;
-    };
-}
+    std::shared_ptr<GUIWindowTitleBar> titleBar_;
+};

@@ -7,11 +7,8 @@
 
 #pragma once
 
-namespace Forradia
+class WorldView
 {
-    class WorldView
-    {
-      public:
-        void Render();
-    };
-}
+  public:
+    void Render();
+};

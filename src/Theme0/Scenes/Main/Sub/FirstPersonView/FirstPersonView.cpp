@@ -22,512 +22,490 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "FirstPersonViewFunctions.hpp"
 
-
-namespace Forradia
+void FirstPersonView::Update()
 {
-    void FirstPersonView::Update()
-    {
-        auto now{Now()};
+    auto now{Now()};
 
-        for (auto it = completedObjectImpacts_.begin();
-             it != completedObjectImpacts_.end();)
+    for (auto it = completedObjectImpacts_.begin();
+         it != completedObjectImpacts_.end();)
+    {
+        if (now > it->ticksCompleted + k_impactPointEffectDuration_)
         {
-            if (now > it->ticksCompleted + k_impactPointEffectDuration_)
+            it = completedObjectImpacts_.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
+void FirstPersonView::Render()
+{
+    _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
+
+    auto viewWidth{GameProperties::k_viewWidth_};
+
+    _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
+                                Colors::k_black);
+
+    auto now{Now()};
+
+    std::string groundImageName;
+
+    auto worldArea{_<World>().currentWorldArea_};
+    auto facedTile{worldArea->GetTile(_<Player>().facedTileCoordinate_)};
+
+    if (!facedTile)
+    {
+        return;
+    }
+
+    auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
+    auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
+
+    auto groundType{facedTile->ground_};
+
+    switch (groundType)
+    {
+    case Hash("GroundGrass"):
+    {
+        groundImageName = "GroundFirstPersonGrass";
+        break;
+    }
+    case Hash("GroundWater"):
+    {
+        auto water_anim_index{(Now() % 450) / 150};
+
+        groundImageName =
+            "GroundFirstPersonWater_" + std::to_string(water_anim_index);
+
+        break;
+    }
+    case Hash("GroundDirt"):
+    {
+        groundImageName = "GroundFirstPersonDirt";
+        break;
+    }
+    case Hash("GroundRock"):
+    {
+        groundImageName = "GroundFirstPersonRock";
+        break;
+    }
+    case Hash("GroundCobblestone"):
+    {
+        groundImageName = "GroundFirstPersonCobblestone";
+        break;
+    }
+    }
+
+    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
+
+    _<ImageRenderer>().DrawImage(groundImageName, 1.0f - viewWidth + k_margin.x,
+                                 0.75f + k_margin.y, viewWidth - 2 * k_margin.x,
+                                 0.25f - 2 * k_margin.y);
+
+    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+
+    auto orderedObjects{GetOrderedObjects()};
+
+    constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
+    constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+
+    for (auto entry : orderedObjects)
+    {
+        auto xPos{entry.second.position_.x};
+        auto yPos{entry.second.position_.y};
+
+        if (yPos * tileUnitsWidth + xPos >= tileUnitsWidth * tileUnitsWidth / 2)
+        {
+            break;
+        }
+
+        auto objectType = entry.second.object_->type_;
+
+        auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+
+        float imageWidth;
+        float imageHeight;
+
+        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+
+        if (isSmallObject)
+        {
+            imageWidth = imageSize.width / 60.0f * smallObjectScale *
+                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                         tileUnitsWidth;
+            imageHeight = imageSize.height / 60.0f *
+                          ConvertWidthToHeight(
+                              smallObjectScale *
+                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                              tileUnitsWidth);
+        }
+        else
+        {
+            imageWidth = imageSize.width / 60.0f * largeObjectScale *
+                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                         tileUnitsWidth;
+            imageHeight = imageSize.height / 60.0f *
+                          ConvertWidthToHeight(
+                              largeObjectScale *
+                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                              tileUnitsWidth);
+        }
+
+        auto tileWidth{viewWidth - 2 * k_margin.x -
+                       static_cast<float>(tileUnitsWidth - yPos) /
+                           tileUnitsWidth * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + k_margin.x +
+                      static_cast<float>(tileUnitsWidth - yPos) /
+                          tileUnitsWidth * viewWidth * 0.3f};
+
+        auto baseX{tileLeft +
+                   static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
+        auto baseY{0.75f + k_margin.y +
+                   static_cast<float>(yPos + 1) / tileUnitsWidth *
+                       (0.25f - 2 * k_margin.y)};
+
+        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageY{baseY - imageHeight};
+
+        _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
+                                     imageHeight);
+
+        auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
+
+        auto canImpact{false};
+
+        for (auto impactObject : impactObjects)
+        {
+            if (rightHandObject)
             {
-                it = completedObjectImpacts_.erase(it);
+                if (impactObject == rightHandObject->type_)
+                {
+                    canImpact = true;
+                    break;
+                }
             }
-            else
+
+            if (leftHandObject)
             {
-                ++it;
+                if (impactObject == leftHandObject->type_)
+                {
+                    canImpact = true;
+                    break;
+                }
+            }
+        }
+
+        if (canImpact)
+        {
+            auto impactPoints{entry.second.object_->impactPoints_};
+
+            for (auto impactPoint : impactPoints)
+            {
+                auto impactPointWidth{GameProperties::k_impactPointWidth_};
+                auto impactPointHeight{ConvertWidthToHeight(impactPointWidth)};
+                auto impactPointX{imageX + impactPoint.position.x * imageWidth -
+                                  impactPointWidth / 2.0f};
+                auto impactPointY{imageY +
+                                  impactPoint.position.y * imageHeight -
+                                  impactPointHeight / 2.0f};
+
+                auto color{impactPoint.completed ? Colors::k_green
+                                                 : Colors::k_red};
+
+                _<ColorRenderer>().FillRect(impactPointX, impactPointY,
+                                            impactPointWidth, impactPointHeight,
+                                            color);
             }
         }
     }
 
-    void FirstPersonView::Render()
+    auto npc{facedTile->npc_};
+
+    if (npc)
     {
-        _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
+        auto npcType{npc->type_};
 
-        auto viewWidth{GameProperties::k_viewWidth_};
+        auto imageSize{_<ImageBank>().GetImageSize(npcType)};
 
-        _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
-                                    Colors::k_black);
+        auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
+        auto imageHeight{imageSize.height / 60.0f *
+                         ConvertWidthToHeight(largeObjectScale)};
 
-        auto now{Now()};
+        auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
 
-        std::string groundImageName;
+        auto baseX{tileLeft + 0.5f * tileWidth};
+        auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
 
-        auto worldArea{_<World>().currentWorldArea_};
-        auto facedTile{worldArea->GetTile(_<Player>().facedTileCoordinate_)};
+        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageY{baseY - imageHeight};
 
-        if (!facedTile)
+        _<ImageRenderer>().DrawImage(npcType, imageX, imageY, imageWidth,
+                                     imageHeight);
+    }
+
+    auto creature{facedTile->creature_};
+
+    if (creature)
+    {
+        auto creatureType{creature->type_};
+
+        auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+
+        auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
+        auto imageHeight{imageSize.height / 60.0f *
+                         ConvertWidthToHeight(largeObjectScale)};
+
+        auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
+
+        auto baseX{tileLeft + 0.5f * tileWidth};
+        auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
+
+        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageY{baseY - imageHeight};
+
+        _<ImageRenderer>().DrawImage(creatureType, imageX, imageY, imageWidth,
+                                     imageHeight);
+
+        if (now - creature->ticksLastHitOnSelf_ < k_hitOtherEffectDuration_)
         {
-            return;
+            auto lastHitPosition{creature->lastHitPosition_};
+
+            auto hitEffectImageSize{
+                _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+
+            constexpr float k_hitEffectScale{0.1f};
+
+            auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
+                                k_hitEffectScale};
+            auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
+                                 ConvertWidthToHeight(k_hitEffectScale)};
+
+            auto hitEffectBaseX{imageX + lastHitPosition.x * imageWidth};
+            auto hitEffectBaseY{imageY + lastHitPosition.y * imageHeight};
+
+            auto hitEffectX{hitEffectBaseX - hitEffectWidth / 2.0f};
+            auto hitEffectY{hitEffectBaseY - hitEffectHeight / 2.0f};
+
+            _<ImageRenderer>().DrawImage("HitEffect", hitEffectX, hitEffectY,
+                                         hitEffectWidth, hitEffectHeight);
+        }
+    }
+
+    for (auto entry : orderedObjects)
+    {
+        auto xPos{entry.second.position_.x};
+        auto yPos{entry.second.position_.y};
+
+        if (yPos * tileUnitsWidth + xPos < tileUnitsWidth * tileUnitsWidth / 2)
+        {
+            continue;
         }
 
-        auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
-        auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
+        auto objectType = entry.second.object_->type_;
 
-        auto groundType{facedTile->ground_};
+        auto imageSize{_<ImageBank>().GetImageSize(objectType)};
 
-        switch (groundType)
-        {
-        case Hash("GroundGrass"):
-        {
-            groundImageName = "GroundFirstPersonGrass";
-            break;
-        }
-        case Hash("GroundWater"):
-        {
-            auto water_anim_index{(Now() % 450) / 150};
+        float imageWidth;
+        float imageHeight;
 
-            groundImageName =
-                "GroundFirstPersonWater_" + std::to_string(water_anim_index);
+        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
 
-            break;
-        }
-        case Hash("GroundDirt"):
+        if (isSmallObject)
         {
-            groundImageName = "GroundFirstPersonDirt";
-            break;
+            imageWidth = imageSize.width / 60.0f * smallObjectScale *
+                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                         tileUnitsWidth;
+            imageHeight = imageSize.height / 60.0f *
+                          ConvertWidthToHeight(
+                              smallObjectScale *
+                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                              tileUnitsWidth);
         }
-        case Hash("GroundRock"):
+        else
         {
-            groundImageName = "GroundFirstPersonRock";
-            break;
-        }
-        case Hash("GroundCobblestone"):
-        {
-            groundImageName = "GroundFirstPersonCobblestone";
-            break;
-        }
+            imageWidth = imageSize.width / 60.0f * largeObjectScale *
+                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                         tileUnitsWidth;
+            imageHeight = imageSize.height / 60.0f *
+                          ConvertWidthToHeight(
+                              largeObjectScale *
+                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
+                              tileUnitsWidth);
         }
 
-        constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
+        auto tileWidth{viewWidth - 2 * k_margin.x -
+                       static_cast<float>(tileUnitsWidth - yPos) /
+                           tileUnitsWidth * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + k_margin.x +
+                      static_cast<float>(tileUnitsWidth - yPos) /
+                          tileUnitsWidth * viewWidth * 0.3f};
 
-        _<ImageRenderer>().DrawImage(
-            groundImageName, 1.0f - viewWidth + k_margin.x, 0.75f + k_margin.y,
-            viewWidth - 2 * k_margin.x, 0.25f - 2 * k_margin.y);
+        auto baseX{tileLeft +
+                   static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
+        auto baseY{0.75f + k_margin.y +
+                   static_cast<float>(yPos + 1) / tileUnitsWidth *
+                       (0.25f - 2 * k_margin.y)};
 
-        auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageY{baseY - imageHeight};
 
-        auto orderedObjects{GetOrderedObjects()};
+        _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
+                                     imageHeight);
 
-        constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
-        constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+        auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
 
-        for (auto entry : orderedObjects)
+        auto canImpact{false};
+
+        for (auto impactObject : impactObjects)
         {
-            auto xPos{entry.second.position_.x};
-            auto yPos{entry.second.position_.y};
-
-            if (yPos * tileUnitsWidth + xPos >=
-                tileUnitsWidth * tileUnitsWidth / 2)
+            if (rightHandObject)
             {
-                break;
-            }
-
-            auto objectType = entry.second.object_->type_;
-
-            auto imageSize{_<ImageBank>().GetImageSize(objectType)};
-
-            float imageWidth;
-            float imageHeight;
-
-            auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
-
-            if (isSmallObject)
-            {
-                imageWidth = imageSize.width / 60.0f * smallObjectScale *
-                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                             tileUnitsWidth;
-                imageHeight =
-                    imageSize.height / 60.0f *
-                    ConvertWidthToHeight(
-                        smallObjectScale *
-                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                        tileUnitsWidth);
-            }
-            else
-            {
-                imageWidth = imageSize.width / 60.0f * largeObjectScale *
-                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                             tileUnitsWidth;
-                imageHeight =
-                    imageSize.height / 60.0f *
-                    ConvertWidthToHeight(
-                        largeObjectScale *
-                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                        tileUnitsWidth);
-            }
-
-            auto tileWidth{viewWidth - 2 * k_margin.x -
-                           static_cast<float>(tileUnitsWidth - yPos) /
-                               tileUnitsWidth * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin.x +
-                          static_cast<float>(tileUnitsWidth - yPos) /
-                              tileUnitsWidth * viewWidth * 0.3f};
-
-            auto baseX{tileLeft +
-                       static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-            auto baseY{0.75f + k_margin.y +
-                       static_cast<float>(yPos + 1) / tileUnitsWidth *
-                           (0.25f - 2 * k_margin.y)};
-
-            auto imageX{baseX - imageWidth / 2.0f};
-            auto imageY{baseY - imageHeight};
-
-            _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                         imageHeight);
-
-            auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
-
-            auto canImpact{false};
-
-            for (auto impactObject : impactObjects)
-            {
-                if (rightHandObject)
+                if (impactObject == rightHandObject->type_)
                 {
-                    if (impactObject == rightHandObject->type_)
-                    {
-                        canImpact = true;
-                        break;
-                    }
-                }
-
-                if (leftHandObject)
-                {
-                    if (impactObject == leftHandObject->type_)
-                    {
-                        canImpact = true;
-                        break;
-                    }
+                    canImpact = true;
+                    break;
                 }
             }
 
-            if (canImpact)
+            if (leftHandObject)
             {
-                auto impactPoints{entry.second.object_->impactPoints_};
-
-                for (auto impactPoint : impactPoints)
+                if (impactObject == leftHandObject->type_)
                 {
-                    auto impactPointWidth{GameProperties::k_impactPointWidth_};
-                    auto impactPointHeight{
-                        ConvertWidthToHeight(impactPointWidth)};
-                    auto impactPointX{imageX +
-                                      impactPoint.position.x * imageWidth -
-                                      impactPointWidth / 2.0f};
-                    auto impactPointY{imageY +
-                                      impactPoint.position.y * imageHeight -
-                                      impactPointHeight / 2.0f};
-
-                    auto color{impactPoint.completed ? Colors::k_green
-                                                     : Colors::k_red};
-
-                    _<ColorRenderer>().FillRect(impactPointX, impactPointY,
-                                                impactPointWidth,
-                                                impactPointHeight, color);
+                    canImpact = true;
+                    break;
                 }
             }
         }
 
-        auto npc{facedTile->npc_};
-
-        if (npc)
+        if (canImpact)
         {
-            auto npcType{npc->type_};
+            auto impactPoints{entry.second.object_->impactPoints_};
 
-            auto imageSize{_<ImageBank>().GetImageSize(npcType)};
-
-            auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
-            auto imageHeight{imageSize.height / 60.0f *
-                             ConvertWidthToHeight(largeObjectScale)};
-
-            auto tileWidth{viewWidth - 2 * k_margin.x -
-                           0.5f * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin.x +
-                          0.5f * viewWidth * 0.3f};
-
-            auto baseX{tileLeft + 0.5f * tileWidth};
-            auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
-
-            auto imageX{baseX - imageWidth / 2.0f};
-            auto imageY{baseY - imageHeight};
-
-            _<ImageRenderer>().DrawImage(npcType, imageX, imageY, imageWidth,
-                                         imageHeight);
-        }
-
-        auto creature{facedTile->creature_};
-
-        if (creature)
-        {
-            auto creatureType{creature->type_};
-
-            auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
-
-            auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
-            auto imageHeight{imageSize.height / 60.0f *
-                             ConvertWidthToHeight(largeObjectScale)};
-
-            auto tileWidth{viewWidth - 2 * k_margin.x -
-                           0.5f * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin.x +
-                          0.5f * viewWidth * 0.3f};
-
-            auto baseX{tileLeft + 0.5f * tileWidth};
-            auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
-
-            auto imageX{baseX - imageWidth / 2.0f};
-            auto imageY{baseY - imageHeight};
-
-            _<ImageRenderer>().DrawImage(creatureType, imageX, imageY,
-                                         imageWidth, imageHeight);
-
-            if (now - creature->ticksLastHitOnSelf_ < k_hitOtherEffectDuration_)
+            for (auto impactPoint : impactPoints)
             {
-                auto lastHitPosition{creature->lastHitPosition_};
+                auto impactPointWidth{GameProperties::k_impactPointWidth_};
+                auto impactPointHeight{ConvertWidthToHeight(impactPointWidth)};
+                auto impactPointX{imageX + impactPoint.position.x * imageWidth -
+                                  impactPointWidth / 2.0f};
+                auto impactPointY{imageY +
+                                  impactPoint.position.y * imageHeight -
+                                  impactPointHeight / 2.0f};
 
-                auto hitEffectImageSize{
-                    _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+                auto color{impactPoint.completed ? Colors::k_green
+                                                 : Colors::k_red};
 
-                constexpr float k_hitEffectScale{0.1f};
-
-                auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
-                                    k_hitEffectScale};
-                auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
-                                     ConvertWidthToHeight(k_hitEffectScale)};
-
-                auto hitEffectBaseX{imageX + lastHitPosition.x * imageWidth};
-                auto hitEffectBaseY{imageY + lastHitPosition.y * imageHeight};
-
-                auto hitEffectX{hitEffectBaseX - hitEffectWidth / 2.0f};
-                auto hitEffectY{hitEffectBaseY - hitEffectHeight / 2.0f};
-
-                _<ImageRenderer>().DrawImage("HitEffect", hitEffectX,
-                                             hitEffectY, hitEffectWidth,
-                                             hitEffectHeight);
+                _<ColorRenderer>().FillRect(impactPointX, impactPointY,
+                                            impactPointWidth, impactPointHeight,
+                                            color);
             }
         }
+    }
 
-        for (auto entry : orderedObjects)
+    for (auto completedObjectImpact : completedObjectImpacts_)
+    {
+        if (now - completedObjectImpact.ticksCompleted <
+            k_impactPointEffectDuration_)
         {
-            auto xPos{entry.second.position_.x};
-            auto yPos{entry.second.position_.y};
+            auto hitEffectImageSize{
+                _<ImageBank>().GetImageSize(Hash("HitEffect"))};
 
-            if (yPos * tileUnitsWidth + xPos <
-                tileUnitsWidth * tileUnitsWidth / 2)
-            {
-                continue;
-            }
+            constexpr float k_hitEffectScale{0.1f};
 
-            auto objectType = entry.second.object_->type_;
+            auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
+                                k_hitEffectScale};
+            auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
+                                 ConvertWidthToHeight(k_hitEffectScale)};
 
-            auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+            auto impactPointX{completedObjectImpact.position.x};
+            auto impactPointY{completedObjectImpact.position.y};
 
-            float imageWidth;
-            float imageHeight;
+            auto hitEffectX{impactPointX - hitEffectWidth / 2.0f};
+            auto hitEffectY{impactPointY - hitEffectHeight / 2.0f};
 
-            auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
-
-            if (isSmallObject)
-            {
-                imageWidth = imageSize.width / 60.0f * smallObjectScale *
-                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                             tileUnitsWidth;
-                imageHeight =
-                    imageSize.height / 60.0f *
-                    ConvertWidthToHeight(
-                        smallObjectScale *
-                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                        tileUnitsWidth);
-            }
-            else
-            {
-                imageWidth = imageSize.width / 60.0f * largeObjectScale *
-                             (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                             tileUnitsWidth;
-                imageHeight =
-                    imageSize.height / 60.0f *
-                    ConvertWidthToHeight(
-                        largeObjectScale *
-                        (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
-                        tileUnitsWidth);
-            }
-
-            auto tileWidth{viewWidth - 2 * k_margin.x -
-                           static_cast<float>(tileUnitsWidth - yPos) /
-                               tileUnitsWidth * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + k_margin.x +
-                          static_cast<float>(tileUnitsWidth - yPos) /
-                              tileUnitsWidth * viewWidth * 0.3f};
-
-            auto baseX{tileLeft +
-                       static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-            auto baseY{0.75f + k_margin.y +
-                       static_cast<float>(yPos + 1) / tileUnitsWidth *
-                           (0.25f - 2 * k_margin.y)};
-
-            auto imageX{baseX - imageWidth / 2.0f};
-            auto imageY{baseY - imageHeight};
-
-            _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                         imageHeight);
-
-            auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
-
-            auto canImpact{false};
-
-            for (auto impactObject : impactObjects)
-            {
-                if (rightHandObject)
-                {
-                    if (impactObject == rightHandObject->type_)
-                    {
-                        canImpact = true;
-                        break;
-                    }
-                }
-
-                if (leftHandObject)
-                {
-                    if (impactObject == leftHandObject->type_)
-                    {
-                        canImpact = true;
-                        break;
-                    }
-                }
-            }
-
-            if (canImpact)
-            {
-                auto impactPoints{entry.second.object_->impactPoints_};
-
-                for (auto impactPoint : impactPoints)
-                {
-                    auto impactPointWidth{GameProperties::k_impactPointWidth_};
-                    auto impactPointHeight{
-                        ConvertWidthToHeight(impactPointWidth)};
-                    auto impactPointX{imageX +
-                                      impactPoint.position.x * imageWidth -
-                                      impactPointWidth / 2.0f};
-                    auto impactPointY{imageY +
-                                      impactPoint.position.y * imageHeight -
-                                      impactPointHeight / 2.0f};
-
-                    auto color{impactPoint.completed ? Colors::k_green
-                                                     : Colors::k_red};
-
-                    _<ColorRenderer>().FillRect(impactPointX, impactPointY,
-                                                impactPointWidth,
-                                                impactPointHeight, color);
-                }
-            }
+            _<ImageRenderer>().DrawImage("HitEffect", hitEffectX, hitEffectY,
+                                         hitEffectWidth, hitEffectHeight);
         }
+    }
 
-        for (auto completedObjectImpact : completedObjectImpacts_)
-        {
-            if (now - completedObjectImpact.ticksCompleted <
-                k_impactPointEffectDuration_)
-            {
-                auto hitEffectImageSize{
-                    _<ImageBank>().GetImageSize(Hash("HitEffect"))};
+    constexpr float k_handScale{0.1f};
 
-                constexpr float k_hitEffectScale{0.1f};
+    auto handWidth{k_handScale};
+    auto handHeight{ConvertWidthToHeight(k_handScale * 6 / 4)};
+    auto handSpacing{0.1f};
 
-                auto hitEffectWidth{hitEffectImageSize.width / 60.0f *
-                                    k_hitEffectScale};
-                auto hitEffectHeight{hitEffectImageSize.height / 60.0f *
-                                     ConvertWidthToHeight(k_hitEffectScale)};
+    auto leftHandX{1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
+                   handWidth / 2};
+    auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
+                    handWidth / 2};
 
-                auto impactPointX{completedObjectImpact.position.x};
-                auto impactPointY{completedObjectImpact.position.y};
+    auto ticksLastMovement{_<Player>().ticksLastMovement_};
 
-                auto hitEffectX{impactPointX - hitEffectWidth / 2.0f};
-                auto hitEffectY{impactPointY - hitEffectHeight / 2.0f};
+    auto ticksOneStep{InvertSpeed(_<Player>().movementSpeed_)};
 
-                _<ImageRenderer>().DrawImage("HitEffect", hitEffectX,
-                                             hitEffectY, hitEffectWidth,
-                                             hitEffectHeight);
-            }
-        }
+    auto delta{Now() - ticksLastMovement};
 
-        constexpr float k_handScale{0.1f};
+    auto handAnimation{0.0f};
 
-        auto handWidth{k_handScale};
-        auto handHeight{ConvertWidthToHeight(k_handScale * 6 / 4)};
-        auto handSpacing{0.1f};
+    if (delta < ticksOneStep)
+    {
+        handAnimation =
+            std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) * 0.02f;
+    }
+
+    auto handYOffset{0.07f};
+
+    auto handY{1.0f - handHeight + handYOffset + handAnimation};
+
+    if (rightHandObject)
+    {
+        auto imageSize{_<ImageBank>().GetImageSize(rightHandObject->type_)};
+
+        auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
+        auto imageHeight{imageSize.height / 60.0f *
+                         ConvertWidthToHeight(k_wieldedObjectScale_)};
+
+        auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
+                        imageWidth / 2.0f};
+        auto rightHandY{handY - imageHeight / 2.0f};
+
+        _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
+                                     rightHandY, imageWidth, imageHeight);
+    }
+
+    if (leftHandObject)
+    {
+        auto imageSize{_<ImageBank>().GetImageSize(leftHandObject->type_)};
+
+        auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
+        auto imageHeight{imageSize.height / 60.0f *
+                         ConvertWidthToHeight(k_wieldedObjectScale_)};
 
         auto leftHandX{1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
-                       handWidth / 2};
-        auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
-                        handWidth / 2};
+                       imageWidth / 2.0f};
+        auto leftHandY{handY - imageHeight / 2.0f};
 
-        auto ticksLastMovement{_<Player>().ticksLastMovement_};
-
-        auto ticksOneStep{InvertSpeed(_<Player>().movementSpeed_)};
-
-        auto delta{Now() - ticksLastMovement};
-
-        auto handAnimation{0.0f};
-
-        if (delta < ticksOneStep)
-        {
-            handAnimation =
-                std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) *
-                0.02f;
-        }
-
-        auto handYOffset{0.07f};
-
-        auto handY{1.0f - handHeight + handYOffset + handAnimation};
-
-        if (rightHandObject)
-        {
-            auto imageSize{_<ImageBank>().GetImageSize(rightHandObject->type_)};
-
-            auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
-            auto imageHeight{imageSize.height / 60.0f *
-                             ConvertWidthToHeight(k_wieldedObjectScale_)};
-
-            auto rightHandX{1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
-                            imageWidth / 2.0f};
-            auto rightHandY{handY - imageHeight / 2.0f};
-
-            _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
-                                         rightHandY, imageWidth, imageHeight);
-        }
-
-        if (leftHandObject)
-        {
-            auto imageSize{_<ImageBank>().GetImageSize(leftHandObject->type_)};
-
-            auto imageWidth{imageSize.width / 60.0f * k_wieldedObjectScale_};
-            auto imageHeight{imageSize.height / 60.0f *
-                             ConvertWidthToHeight(k_wieldedObjectScale_)};
-
-            auto leftHandX{1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
-                           imageWidth / 2.0f};
-            auto leftHandY{handY - imageHeight / 2.0f};
-
-            _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
-                                         leftHandY, imageWidth, imageHeight,
-                                         true);
-        }
-
-        _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
-                                     handHeight);
-        _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
-                                     handHeight);
-
-        _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
-                                    Colors::k_white);
-
-        if (now < _<Player>().ticksLastHitOnSelf_ + k_hitSelfEffectDuration_)
-        {
-            _<ColorRenderer>().FillRect(viewWidth, 0.0f, viewWidth, 1.0f,
-                                        Colors::k_red);
-        }
-
-        _<SDLDevice>().ResetClip();
+        _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
+                                     leftHandY, imageWidth, imageHeight, true);
     }
+
+    _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
+                                 handHeight);
+    _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
+                                 handHeight);
+
+    _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
+                                Colors::k_white);
+
+    if (now < _<Player>().ticksLastHitOnSelf_ + k_hitSelfEffectDuration_)
+    {
+        _<ColorRenderer>().FillRect(viewWidth, 0.0f, viewWidth, 1.0f,
+                                    Colors::k_red);
+    }
+
+    _<SDLDevice>().ResetClip();
 }

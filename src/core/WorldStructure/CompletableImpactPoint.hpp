@@ -7,12 +7,9 @@
 
 #pragma once
 
-namespace Forradia
+class CompletableImpactPoint
 {
-    class CompletableImpactPoint
-    {
-      public:
-        PointF position;
-        bool completed{false};
-    };
-}
+  public:
+    PointF position;
+    bool completed{false};
+};

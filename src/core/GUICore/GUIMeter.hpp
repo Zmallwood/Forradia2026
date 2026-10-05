@@ -9,20 +9,17 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
+class GUIMeter : public GUIComponent
 {
-    class GUIMeter : public GUIComponent
-    {
-      public:
-        GUIMeter(float x, float y, float width, float height);
+  public:
+    GUIMeter(float x, float y, float width, float height);
 
-        SizeF size_;
+    SizeF size_;
 
-      protected:
-        virtual void RenderDerived() override;
+  protected:
+    virtual void RenderDerived() override;
 
-        virtual float GetMeterProgress();
+    virtual float GetMeterProgress();
 
-        virtual Color GetFilledColor();
-    };
-}
+    virtual Color GetFilledColor();
+};

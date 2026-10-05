@@ -7,11 +7,8 @@
 
 #pragma once
 
-namespace Forradia
+enum class CursorStyles
 {
-    enum class CursorStyles
-    {
-        Default,
-        Hovering
-    };
-}
+    Default,
+    Hovering
+};

@@ -9,19 +9,16 @@
 
 #include "Core/ScenesCore/IScene.hpp"
 
-namespace Forradia
+class MainMenuScene : public IScene
 {
-    class MainMenuScene : public IScene
-    {
-      protected:
-        void InitializeDerived() override;
+  protected:
+    void InitializeDerived() override;
 
-        void OnEnterDerived() override;
+    void OnEnterDerived() override;
 
-        void RenderBeforeGUIDerived() override;
+    void RenderBeforeGUIDerived() override;
 
-        void OnKeyDownDerived(SDL_Keycode key) override;
+    void OnKeyDownDerived(SDL_Keycode key) override;
 
-        void OnMouseDownDerived(Uint8 button) override;
-    };
-}
+    void OnMouseDownDerived(Uint8 button) override;
+};

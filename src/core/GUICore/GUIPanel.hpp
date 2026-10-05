@@ -9,24 +9,21 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
+class GUIPanel : public GUIComponent
 {
-    class GUIPanel : public GUIComponent
-    {
-      public:
-        GUIPanel(float x, float y, float width, float height);
+  public:
+    GUIPanel(float x, float y, float width, float height);
 
-        SizeF size_{0.0f, 0.0f};
+    SizeF size_{0.0f, 0.0f};
 
-      protected:
-        virtual void RenderDerived() override;
+  protected:
+    virtual void RenderDerived() override;
 
-        virtual std::string GetBackgroundImage();
+    virtual std::string GetBackgroundImage();
 
-        RectF GetBounds();
+    RectF GetBounds();
 
-      private:
-        inline static const std::string k_defaultBackgroundImage_{
-            "GUIPanelBackground"};
-    };
-}
+  private:
+    inline static const std::string k_defaultBackgroundImage_{
+        "GUIPanelBackground"};
+};

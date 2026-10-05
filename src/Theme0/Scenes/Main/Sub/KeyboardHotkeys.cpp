@@ -9,17 +9,14 @@
 #include "Theme0/Scenes/Main/CustomGUI/GUIEquipmentWindow.hpp"
 #include "Theme0/Scenes/Main/CustomGUI/GUIInventoryWindow.hpp"
 
-namespace Forradia
+void KeyboardHotkeys::OnKeyDown(SDL_Keycode key)
 {
-    void KeyboardHotkeys::OnKeyDown(SDL_Keycode key)
+    if (key == SDLK_b)
     {
-        if (key == SDLK_b)
-        {
-            _<GUIInventoryWindow>().ToggleVisibility();
-        }
-        else if (key == SDLK_e)
-        {
-            _<GUIEquipmentWindow>().ToggleVisibility();
-        }
+        _<GUIInventoryWindow>().ToggleVisibility();
+    }
+    else if (key == SDLK_e)
+    {
+        _<GUIEquipmentWindow>().ToggleVisibility();
     }
 }

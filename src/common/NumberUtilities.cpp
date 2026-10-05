@@ -7,10 +7,7 @@
 
 #include "NumberUtilities.hpp"
 
-namespace Forradia
+int InvertSpeed(float speed)
 {
-    int InvertSpeed(float speed)
-    {
-        return static_cast<int>(1000 / speed);
-    }
+    return static_cast<int>(1000 / speed);
 }

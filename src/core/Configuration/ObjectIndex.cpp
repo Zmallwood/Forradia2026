@@ -15,355 +15,343 @@
 #include "Core/WorldStructure/WorldArea.hpp"
 #include "ObjectFlags.hpp"
 
-namespace Forradia
+ObjectIndex::ObjectIndex()
 {
-    ObjectIndex::ObjectIndex()
+    AddEntry("ObjectStone", "Stone", ObjectFlags::k_smallObject);
+
+    AddEntry("ObjectBranch", "Branch", ObjectFlags::k_smallObject);
+
+    AddEntry("ObjectPinkFlower", "Pink flower", ObjectFlags::k_smallObject);
+
+    AddEntry("ObjectLeaf", "Leaf", ObjectFlags::k_smallObject);
+
+    AddEntry("ObjectPoolOfBlood", "Pool of blood", ObjectFlags::k_smallObject);
+
+    auto allImpactPointsCompletedActionObjectTree1 =
+        [](std::shared_ptr<Object> object)
     {
-        AddEntry("ObjectStone", "Stone", ObjectFlags::k_smallObject);
+        auto worldArea{_<World>().currentWorldArea_};
 
-        AddEntry("ObjectBranch", "Branch", ObjectFlags::k_smallObject);
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
 
-        AddEntry("ObjectPinkFlower", "Pink flower", ObjectFlags::k_smallObject);
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
 
-        AddEntry("ObjectLeaf", "Leaf", ObjectFlags::k_smallObject);
+        facedTile->tileObjects_->TransformObject(object, "ObjectFelledTree");
 
-        AddEntry("ObjectPoolOfBlood", "Pool of blood",
-                 ObjectFlags::k_smallObject);
+        _<GUITextConsole>().PrintLine("You have felled the tree.");
 
-        auto allImpactPointsCompletedActionObjectTree1 =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
+        _<Player>().AddExperience(13);
+    };
 
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+    AddEntry(
+        "ObjectTree1", "Tree",
+        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+        {PointF{0.5f, 0.95f}, PointF{0.55f, 0.95f}, PointF{0.6f, 0.95f}},
+        {"ObjectWoodAxe"}, []() {}, allImpactPointsCompletedActionObjectTree1);
 
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+    auto allImpactPointsCompletedActionObjectTree2 =
+        allImpactPointsCompletedActionObjectTree1;
 
-            facedTile->tileObjects_->TransformObject(object,
-                                                     "ObjectFelledTree");
+    AddEntry(
+        "ObjectTree2", "Tree",
+        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
+        {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
+        {"ObjectWoodAxe"}, []() {}, allImpactPointsCompletedActionObjectTree2);
 
-            _<GUITextConsole>().PrintLine("You have felled the tree.");
+    AddEntry("ObjectBush1", "Bush",
+             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-            _<Player>().AddExperience(13);
-        };
+    AddEntry("ObjectStoneBoulder", "Stone boulder",
+             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-        AddEntry(
-            "ObjectTree1", "Tree",
-            ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.95f}, PointF{0.55f, 0.95f}, PointF{0.6f, 0.95f}},
-            {"ObjectWoodAxe"}, []() {},
-            allImpactPointsCompletedActionObjectTree1);
+    AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
 
-        auto allImpactPointsCompletedActionObjectTree2 =
-            allImpactPointsCompletedActionObjectTree1;
+    AddEntry("ObjectCreatureBoarCorpse", "Boar corpse", 0);
 
-        AddEntry(
-            "ObjectTree2", "Tree",
-            ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.8f}, PointF{0.53f, 0.8f}, PointF{0.56f, 0.8f}},
-            {"ObjectWoodAxe"}, []() {},
-            allImpactPointsCompletedActionObjectTree2);
+    AddEntry("ObjectRedApple", "Red apple", ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectBush1", "Bush",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+    AddEntry("ObjectCopperSword", "Copper sword", ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectStoneBoulder", "Stone boulder",
-                 ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+    AddEntry("ObjectWoodAxe", "Wood axe", ObjectFlags::k_smallObject);
 
-        AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
+    auto singleImpactPointCompletedActionObjectFelledTree = []()
+    {
+        auto worldArea{_<World>().currentWorldArea_};
 
-        AddEntry("ObjectCreatureBoarCorpse", "Boar corpse", 0);
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
 
-        AddEntry("ObjectRedApple", "Red apple", ObjectFlags::k_smallObject);
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
 
-        AddEntry("ObjectCopperSword", "Copper sword",
-                 ObjectFlags::k_smallObject);
+        facedTile->tileObjects_->AddObject("ObjectWoodLog");
 
-        AddEntry("ObjectWoodAxe", "Wood axe", ObjectFlags::k_smallObject);
+        _<GUITextConsole>().PrintLine("You have chopped some wood logs.");
 
-        auto singleImpactPointCompletedActionObjectFelledTree = []()
-        {
-            auto worldArea{_<World>().currentWorldArea_};
+        _<Player>().AddExperience(7);
+    };
 
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+    auto allImpactPointsCompletedActionObjectFelledTree =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
 
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
 
-            facedTile->tileObjects_->AddObject("ObjectWoodLog");
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
 
-            _<GUITextConsole>().PrintLine("You have chopped some wood logs.");
+        facedTile->tileObjects_->RemoveObject(object);
 
-            _<Player>().AddExperience(7);
-        };
+        _<GUITextConsole>().PrintLine("You have chopped up the felled tree.");
+    };
 
-        auto allImpactPointsCompletedActionObjectFelledTree =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
+    AddEntry("ObjectFelledTree", "Felled tree", ObjectFlags::k_unmovable,
+             {PointF{0.55f, 0.95f}, PointF{0.55f, 0.89f}, PointF{0.55f, 0.83f},
+              PointF{0.55f, 0.77f}},
+             {"ObjectWoodAxe"},
+             singleImpactPointCompletedActionObjectFelledTree,
+             allImpactPointsCompletedActionObjectFelledTree);
 
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+    auto allImpactPointsCompletedActionObjectWoodLog =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
 
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
 
-            facedTile->tileObjects_->RemoveObject(object);
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
 
-            _<GUITextConsole>().PrintLine(
-                "You have chopped up the felled tree.");
-        };
+        facedTile->tileObjects_->TransformObject(object, "ObjectWoodPlank");
 
-        AddEntry("ObjectFelledTree", "Felled tree", ObjectFlags::k_unmovable,
-                 {PointF{0.55f, 0.95f}, PointF{0.55f, 0.89f},
-                  PointF{0.55f, 0.83f}, PointF{0.55f, 0.77f}},
-                 {"ObjectWoodAxe"},
-                 singleImpactPointCompletedActionObjectFelledTree,
-                 allImpactPointsCompletedActionObjectFelledTree);
+        _<GUITextConsole>().PrintLine("You have sawed the wood log.");
+    };
 
-        auto allImpactPointsCompletedActionObjectWoodLog =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
+    AddEntry(
+        "ObjectWoodLog", "Wood log", ObjectFlags::k_smallObject,
+        {PointF{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
+        allImpactPointsCompletedActionObjectWoodLog);
 
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+    AddEntry("ObjectWoodPlank", "Wood plank", ObjectFlags::k_smallObject);
 
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-            facedTile->tileObjects_->TransformObject(object, "ObjectWoodPlank");
-
-            _<GUITextConsole>().PrintLine("You have sawed the wood log.");
-        };
-
-        AddEntry(
-            "ObjectWoodLog", "Wood log", ObjectFlags::k_smallObject,
-            {PointF{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
-            allImpactPointsCompletedActionObjectWoodLog);
-
-        AddEntry("ObjectWoodPlank", "Wood plank", ObjectFlags::k_smallObject);
-
-        AddEntry("ObjectSaw", "Saw", ObjectFlags::k_smallObject);
-
-        auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
-
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
-
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-            facedTile->tileObjects_->TransformObject(
-                object, "ObjectWoodWallPlankNorth1");
-        };
-
-        AddEntry(
-            "ObjectPlannedWoodWallNorthPlank1",
-            "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
-            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
-            "ObjectPlannedObject");
-
-        auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
-
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
-
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-            facedTile->tileObjects_->TransformObject(
-                object, "ObjectWoodWallPlankNorth2");
-        };
-
-        AddEntry(
-            "ObjectPlannedWoodWallNorthPlank2",
-            "Planned wood wall north, plank 2", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
-            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
-            "ObjectPlannedObject");
-
-        auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
-
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
-
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-            facedTile->tileObjects_->TransformObject(
-                object, "ObjectWoodWallPlankNorth3");
-        };
-
-        AddEntry(
-            "ObjectPlannedWoodWallNorthPlank3",
-            "Planned wood wall north, plank 3", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
-            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
-            "ObjectPlannedObject");
-
-        auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
-            [](std::shared_ptr<Object> object)
-        {
-            auto worldArea{_<World>().currentWorldArea_};
-
-            auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
-
-            auto facedTile{worldArea->GetTile(facedTileCoordinate)};
-
-            facedTile->tileObjects_->TransformObject(
-                object, "ObjectWoodWallPlankNorth4");
-        };
-
-        AddEntry(
-            "ObjectPlannedWoodWallNorthPlank4",
-            "Planned wood wall north, plank 1", ObjectFlags::k_unmovable,
-            {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}}, {"ObjectHammer"},
-            []() {}, allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
-            "ObjectPlannedObject");
-
-        AddEntry(
-            "ObjectWoodWallPlankNorth1", "Wood wall", ObjectFlags::k_unmovable,
-            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
-            "ObjectWoodWallPlankNorth1WorldView");
-
-        AddEntry(
-            "ObjectWoodWallPlankNorth2", "Wood wall", ObjectFlags::k_unmovable,
-            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
-            "ObjectWoodWallPlankNorth2WorldView");
-
-        AddEntry(
-            "ObjectWoodWallPlankNorth3", "Wood wall", ObjectFlags::k_unmovable,
-            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
-            "ObjectWoodWallPlankNorth3WorldView");
-
-        AddEntry(
-            "ObjectWoodWallPlankNorth4", "Wood wall", ObjectFlags::k_unmovable,
-            {}, {}, []() {}, [](std::shared_ptr<Object>) {},
-            "ObjectWoodWallPlankNorth4WorldView");
+    AddEntry("ObjectSaw", "Saw", ObjectFlags::k_smallObject);
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankNorth1");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallNorthPlank1", "Planned wood wall north, plank 1",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankNorth2");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallNorthPlank2", "Planned wood wall north, plank 2",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankNorth3");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallNorthPlank3", "Planned wood wall north, plank 3",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea{_<World>().currentWorldArea_};
+
+        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+
+        auto facedTile{worldArea->GetTile(facedTileCoordinate)};
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankNorth4");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallNorthPlank4", "Planned wood wall north, plank 1",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
+        "ObjectPlannedObject");
+
+    AddEntry(
+        "ObjectWoodWallPlankNorth1", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankNorth1WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankNorth2", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankNorth2WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankNorth3", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankNorth3WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankNorth4", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankNorth4WorldView");
+}
+
+void ObjectIndex::AddEntry(
+    std::string_view name, std::string_view label, int flags,
+    std::vector<PointF> impactPoints, std::vector<std::string> impactObjects,
+    std::function<void()> singleImpactPointCompletedAction,
+    std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction,
+    std::string_view worldViewObjectType)
+{
+    std::vector<int> impactObjectHashes;
+
+    for (auto &impactObject : impactObjects)
+    {
+        impactObjectHashes.push_back(Hash(impactObject));
     }
 
-    void ObjectIndex::AddEntry(
-        std::string_view name, std::string_view label, int flags,
-        std::vector<PointF> impactPoints,
-        std::vector<std::string> impactObjects,
-        std::function<void()> singleImpactPointCompletedAction,
-        std::function<void(std::shared_ptr<Object>)>
-            allImpactPointsCompletedAction,
-        std::string_view worldViewObjectType)
+    int worldViewObjectTypeHash{0};
+
+    if (worldViewObjectType != "")
     {
-        std::vector<int> impactObjectHashes;
-
-        for (auto &impactObject : impactObjects)
-        {
-            impactObjectHashes.push_back(Hash(impactObject));
-        }
-
-        int worldViewObjectTypeHash{0};
-
-        if (worldViewObjectType != "")
-        {
-            worldViewObjectTypeHash = Hash(worldViewObjectType);
-        }
-
-        entries_.insert(
-            {Hash(name),
-             {label.data(), flags, impactPoints, impactObjectHashes,
-              singleImpactPointCompletedAction, allImpactPointsCompletedAction,
-              worldViewObjectTypeHash}});
+        worldViewObjectTypeHash = Hash(worldViewObjectType);
     }
 
-    bool ObjectIndex::IsSmallObject(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return (entries_.at(objectHash).flags &
-                    ObjectFlags::k_smallObject) != 0;
-        }
+    entries_.insert(
+        {Hash(name),
+         {label.data(), flags, impactPoints, impactObjectHashes,
+          singleImpactPointCompletedAction, allImpactPointsCompletedAction,
+          worldViewObjectTypeHash}});
+}
 
-        return false;
+bool ObjectIndex::IsSmallObject(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return (entries_.at(objectHash).flags & ObjectFlags::k_smallObject) !=
+               0;
     }
 
-    std::string ObjectIndex::GetObjectLabel(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).label;
-        }
+    return false;
+}
 
-        return "";
+std::string ObjectIndex::GetObjectLabel(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).label;
     }
 
-    bool ObjectIndex::ObjectBlocksSight(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return (entries_.at(objectHash).flags &
-                    ObjectFlags::k_blocksSight) != 0;
-        }
+    return "";
+}
 
-        return false;
+bool ObjectIndex::ObjectBlocksSight(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return (entries_.at(objectHash).flags & ObjectFlags::k_blocksSight) !=
+               0;
     }
 
-    bool ObjectIndex::ObjectUnmovable(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return (entries_.at(objectHash).flags & ObjectFlags::k_unmovable) !=
-                   0;
-        }
+    return false;
+}
 
-        return false;
+bool ObjectIndex::ObjectUnmovable(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return (entries_.at(objectHash).flags & ObjectFlags::k_unmovable) != 0;
     }
 
-    std::vector<PointF> ObjectIndex::GetImpactPoints(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).impactPoints;
-        }
+    return false;
+}
 
-        return {};
+std::vector<PointF> ObjectIndex::GetImpactPoints(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).impactPoints;
     }
 
-    std::vector<int> ObjectIndex::GetImpactObjects(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).impactObjects;
-        }
+    return {};
+}
 
-        return {};
+std::vector<int> ObjectIndex::GetImpactObjects(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).impactObjects;
     }
 
-    std::function<void()>
-    ObjectIndex::GetSingleImpactPointCompletedAction(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).singleImpactPointCompletedAction;
-        }
+    return {};
+}
 
-        return []() {};
+std::function<void()>
+ObjectIndex::GetSingleImpactPointCompletedAction(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).singleImpactPointCompletedAction;
     }
 
-    std::function<void(std::shared_ptr<Object>)>
-    ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).allImpactPointsCompletedAction;
-        }
+    return []() {};
+}
 
-        return [](std::shared_ptr<Object>) {};
+std::function<void(std::shared_ptr<Object>)>
+ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).allImpactPointsCompletedAction;
     }
 
-    int ObjectIndex::GetWorldViewObjectType(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
-            return entries_.at(objectHash).worldViewObjectType;
-        }
+    return [](std::shared_ptr<Object>) {};
+}
 
-        return 0;
+int ObjectIndex::GetWorldViewObjectType(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).worldViewObjectType;
     }
+
+    return 0;
 }

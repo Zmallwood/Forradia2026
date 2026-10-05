@@ -7,11 +7,8 @@
 
 #include "Color.hpp"
 
-namespace Forradia
+SDL_Color Color::ToSDLColor()
 {
-    SDL_Color Color::ToSDLColor()
-    {
-        return {static_cast<Uint8>(r * 255), static_cast<Uint8>(g * 255),
-                static_cast<Uint8>(b * 255), static_cast<Uint8>(a * 255)};
-    }
+    return {static_cast<Uint8>(r * 255), static_cast<Uint8>(g * 255),
+            static_cast<Uint8>(b * 255), static_cast<Uint8>(a * 255)};
 }

@@ -7,35 +7,32 @@
 
 #pragma once
 
-namespace Forradia
+class Object;
+
+class ObjectMoving
 {
-    class Object;
+  public:
+    void OnMouseDown(Uint8 button);
 
-    class ObjectMoving
+    void OnMouseUp(Uint8 button, int clickSpeed);
+
+    void Render();
+
+    void ClearObject();
+
+    auto GetObjectInAir()
     {
-      public:
-        void OnMouseDown(Uint8 button);
+        return objectInAir_;
+    }
 
-        void OnMouseUp(Uint8 button, int clickSpeed);
+    void SetObjectInAir(std::shared_ptr<Object> value)
+    {
+        objectInAir_ = value;
+    }
 
-        void Render();
+    PointF draggingMouseOffset_;
 
-        void ClearObject();
-
-        auto GetObjectInAir()
-        {
-            return objectInAir_;
-        }
-
-        void SetObjectInAir(std::shared_ptr<Object> value)
-        {
-            objectInAir_ = value;
-        }
-
-        PointF draggingMouseOffset_;
-
-      private:
-        std::shared_ptr<Object> objectInAir_;
-        Point pickedPosition_;
-    };
-}
+  private:
+    std::shared_ptr<Object> objectInAir_;
+    Point pickedPosition_;
+};

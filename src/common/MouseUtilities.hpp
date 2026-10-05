@@ -7,7 +7,4 @@
 
 #pragma once
 
-namespace Forradia
-{
-    PointF GetMousePosition();
-}
+PointF GetMousePosition();

@@ -9,21 +9,18 @@
 
 #include "CreatureIndexEntry.hpp"
 
-namespace Forradia
+class CreatureIndex
 {
-    class CreatureIndex
-    {
-      public:
-        CreatureIndex();
+  public:
+    CreatureIndex();
 
-        std::string GetCreatureLabel(int creatureHash);
+    std::string GetCreatureLabel(int creatureHash);
 
-        int GetCreatureCorpseType(int creatureHash);
+    int GetCreatureCorpseType(int creatureHash);
 
-      private:
-        void AddEntry(std::string_view creatureName, std::string_view label,
-                      std::string_view corpseType = {});
+  private:
+    void AddEntry(std::string_view creatureName, std::string_view label,
+                  std::string_view corpseType = {});
 
-        std::unordered_map<int, CreatureIndexEntry> entries_;
-    };
-}
+    std::unordered_map<int, CreatureIndexEntry> entries_;
+};

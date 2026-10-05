@@ -7,11 +7,8 @@
 
 #pragma once
 
-namespace Forradia
+class KeyboardHotkeys
 {
-    class KeyboardHotkeys
-    {
-      public:
-        void OnKeyDown(SDL_Keycode key);
-    };
-}
+  public:
+    void OnKeyDown(SDL_Keycode key);
+};

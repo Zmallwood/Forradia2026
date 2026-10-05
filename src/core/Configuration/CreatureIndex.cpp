@@ -7,38 +7,35 @@
 
 #include "CreatureIndex.hpp"
 
-namespace Forradia
+CreatureIndex::CreatureIndex()
 {
-    CreatureIndex::CreatureIndex()
-    {
-        AddEntry("CreatureDeer", "Deer", "ObjectCreatureDeerCorpse");
+    AddEntry("CreatureDeer", "Deer", "ObjectCreatureDeerCorpse");
 
-        AddEntry("CreatureBoar", "Boar", "ObjectCreatureBoarCorpse");
+    AddEntry("CreatureBoar", "Boar", "ObjectCreatureBoarCorpse");
+}
+
+void CreatureIndex::AddEntry(std::string_view name, std::string_view label,
+                             std::string_view corpseType)
+{
+    entries_.insert({Hash(name), {label.data(), Hash(corpseType)}});
+}
+
+std::string CreatureIndex::GetCreatureLabel(int creatureHash)
+{
+    if (entries_.contains(creatureHash))
+    {
+        return entries_[creatureHash].label;
     }
 
-    void CreatureIndex::AddEntry(std::string_view name, std::string_view label,
-                                 std::string_view corpseType)
+    return "";
+}
+
+int CreatureIndex::GetCreatureCorpseType(int creatureHash)
+{
+    if (entries_.contains(creatureHash))
     {
-        entries_.insert({Hash(name), {label.data(), Hash(corpseType)}});
+        return entries_[creatureHash].corpseType;
     }
 
-    std::string CreatureIndex::GetCreatureLabel(int creatureHash)
-    {
-        if (entries_.contains(creatureHash))
-        {
-            return entries_[creatureHash].label;
-        }
-
-        return "";
-    }
-
-    int CreatureIndex::GetCreatureCorpseType(int creatureHash)
-    {
-        if (entries_.contains(creatureHash))
-        {
-            return entries_[creatureHash].corpseType;
-        }
-
-        return 0;
-    }
+    return 0;
 }

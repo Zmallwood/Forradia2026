@@ -7,12 +7,9 @@
 
 #pragma once
 
-namespace Forradia
+class CreatureIndexEntry
 {
-    class CreatureIndexEntry
-    {
-      public:
-        std::string label;
-        int corpseType{0};
-    };
-}
+  public:
+    std::string label;
+    int corpseType{0};
+};

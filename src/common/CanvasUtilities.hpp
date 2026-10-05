@@ -7,13 +7,10 @@
 
 #pragma once
 
-namespace Forradia
-{
-    Size GetCanvasSize();
+Size GetCanvasSize();
 
-    float GetAspectRatio();
+float GetAspectRatio();
 
-    float ConvertWidthToHeight(float width);
+float ConvertWidthToHeight(float width);
 
-    float ConvertHeightToWidth(float height);
-}
+float ConvertHeightToWidth(float height);

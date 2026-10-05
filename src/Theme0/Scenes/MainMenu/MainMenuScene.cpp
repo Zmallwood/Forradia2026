@@ -14,44 +14,39 @@
 #include "Core/Rendering/Images/ImageRenderer.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 
-namespace Forradia
+void MainMenuScene::InitializeDerived()
 {
-    void MainMenuScene::InitializeDerived()
-    {
-        gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
+    gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
 
-        gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
+    gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
 
-        gui_->AddComponent(std::make_shared<GUIButton>(
-            "Play", 0.45f, 0.44f, 0.1f, 0.04f,
-            [this]() { _<SceneManager>().GoToScene("WorldGenerationScene"); }));
+    gui_->AddComponent(std::make_shared<GUIButton>(
+        "Play", 0.45f, 0.44f, 0.1f, 0.04f,
+        [this]() { _<SceneManager>().GoToScene("WorldGenerationScene"); }));
 
-        gui_->AddComponent(
-            std::make_shared<GUIButton>("Quit ", 0.45f, 0.52f, 0.1f, 0.04f,
-                                        [this]() { _<Engine>().Stop(); }));
-    }
+    gui_->AddComponent(std::make_shared<GUIButton>(
+        "Quit ", 0.45f, 0.52f, 0.1f, 0.04f, [this]() { _<Engine>().Stop(); }));
+}
 
-    void MainMenuScene::OnEnterDerived()
-    {
-        _<GUITextConsole>().PrintLine("Starting game.");
+void MainMenuScene::OnEnterDerived()
+{
+    _<GUITextConsole>().PrintLine("Starting game.");
 
-        _<GUITextConsole>().SetYPosition(1.0f -
-                                         _<GUITextConsole>().size_.height);
-    }
+    _<GUITextConsole>().SetYPosition(1.0f - _<GUITextConsole>().size_.height);
+}
 
-    void MainMenuScene::RenderBeforeGUIDerived()
-    {
-        _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
-                                     1.0f);
+void MainMenuScene::RenderBeforeGUIDerived()
+{
+    _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                 1.0f);
 
-        _<ImageRenderer>().DrawImage("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
-    }
+    _<ImageRenderer>().DrawImage("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
+}
 
-    void MainMenuScene::OnKeyDownDerived(SDL_Keycode key)
-    {
-    }
+void MainMenuScene::OnKeyDownDerived(SDL_Keycode key)
+{
+}
 
-    void MainMenuScene::OnMouseDownDerived(Uint8 button)
-    {
-    }
+void MainMenuScene::OnMouseDownDerived(Uint8 button)
+{
 }

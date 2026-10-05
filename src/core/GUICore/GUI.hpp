@@ -9,11 +9,8 @@
 
 #include "GUIComponent.hpp"
 
-namespace Forradia
+class GUI : public GUIComponent
 {
-    class GUI : public GUIComponent
-    {
-      public:
-        using GUIComponent::GUIComponent;
-    };
-}
+  public:
+    using GUIComponent::GUIComponent;
+};

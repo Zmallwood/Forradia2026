@@ -7,9 +7,6 @@
 
 #include "NPC.hpp"
 
-namespace Forradia
+NPC::NPC(std::string_view typeName) : type_(Hash(typeName))
 {
-    NPC::NPC(std::string_view typeName) : type_(Hash(typeName))
-    {
-    }
 }

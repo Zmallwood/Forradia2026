@@ -8,10 +8,7 @@
 #include "Tile.hpp"
 #include "TileObjects.hpp"
 
-namespace Forradia
+Tile::Tile()
 {
-    Tile::Tile()
-    {
-        tileObjects_ = std::make_shared<TileObjects>();
-    }
+    tileObjects_ = std::make_shared<TileObjects>();
 }

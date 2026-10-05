@@ -12,98 +12,94 @@
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
-namespace Forradia
+void CreaturesMovement::Update()
 {
-    void CreaturesMovement::Update()
+    auto worldArea{_<World>().currentWorldArea_};
+
+    auto playerPosition{_<Player>().position_};
+
+    auto now{Now()};
+
+    auto &creatures{worldArea->creaturesMirror_};
+
+    for (auto it = creatures.begin(); it != creatures.end();)
     {
-        auto worldArea{_<World>().currentWorldArea_};
+        auto creature{it->first};
+        auto position{it->second};
 
-        auto playerPosition{_<Player>().position_};
-
-        auto now{Now()};
-
-        auto &creatures{worldArea->creaturesMirror_};
-
-        for (auto it = creatures.begin(); it != creatures.end();)
+        if (now > creature->ticksLastMovement_ +
+                      InvertSpeed(creature->movementSpeed_))
         {
-            auto creature{it->first};
-            auto position{it->second};
+            auto direction{rand() % 4};
 
-            if (now > creature->ticksLastMovement_ +
-                          InvertSpeed(creature->movementSpeed_))
+            auto dx{0};
+            auto dy{0};
+
+            switch (direction)
             {
-                auto direction{rand() % 4};
+            case 0:
+                dy = -1;
+                break;
+            case 1:
+                dx = 1;
+                break;
+            case 2:
+                dy = 1;
+                break;
+            case 3:
+                dx = -1;
+                break;
+            }
 
-                auto dx{0};
-                auto dy{0};
+            auto newPosition{position + Point{dx, dy}};
 
-                switch (direction)
-                {
-                case 0:
-                    dy = -1;
-                    break;
-                case 1:
-                    dx = 1;
-                    break;
-                case 2:
-                    dy = 1;
-                    break;
-                case 3:
-                    dx = -1;
-                    break;
-                }
-
-                auto newPosition{position + Point{dx, dy}};
-
-                if (!worldArea->IsValidCoordinate(newPosition))
-                {
-                    ++it;
-
-                    continue;
-                }
-
-                if (newPosition == playerPosition)
-                {
-                    ++it;
-
-                    continue;
-                }
-
-                auto newTile{worldArea->GetTile(newPosition)};
-
-                if (newTile->ground_ == Hash("GroundWater") ||
-                    newTile->creature_)
-                {
-                    ++it;
-
-                    continue;
-                }
-
-                if (creature->type_ == Hash("CreatureDeer") ||
-                    creature->type_ == Hash("CreatureBoar"))
-                {
-                    if (newTile->ground_ == Hash("GroundRock"))
-                    {
-                        ++it;
-
-                        continue;
-                    }
-                }
-
-                auto oldTile{worldArea->GetTile(position)};
-
-                newTile->creature_ = creature;
-                oldTile->creature_ = nullptr;
-
-                creatures.erase(it++);
-                creatures.insert({creature, newPosition});
-
-                creature->ticksLastMovement_ = now;
+            if (!worldArea->IsValidCoordinate(newPosition))
+            {
+                ++it;
 
                 continue;
             }
 
-            ++it;
+            if (newPosition == playerPosition)
+            {
+                ++it;
+
+                continue;
+            }
+
+            auto newTile{worldArea->GetTile(newPosition)};
+
+            if (newTile->ground_ == Hash("GroundWater") || newTile->creature_)
+            {
+                ++it;
+
+                continue;
+            }
+
+            if (creature->type_ == Hash("CreatureDeer") ||
+                creature->type_ == Hash("CreatureBoar"))
+            {
+                if (newTile->ground_ == Hash("GroundRock"))
+                {
+                    ++it;
+
+                    continue;
+                }
+            }
+
+            auto oldTile{worldArea->GetTile(position)};
+
+            newTile->creature_ = creature;
+            oldTile->creature_ = nullptr;
+
+            creatures.erase(it++);
+            creatures.insert({creature, newPosition});
+
+            creature->ticksLastMovement_ = now;
+
+            continue;
         }
+
+        ++it;
     }
 }

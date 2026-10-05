@@ -9,20 +9,17 @@
 
 #include "CursorStyles.hpp"
 
-namespace Forradia
+class Cursor
 {
-    class Cursor
-    {
-      public:
-        Cursor();
+  public:
+    Cursor();
 
-        void Reset();
+    void Reset();
 
-        void Render();
+    void Render();
 
-        CursorStyles cursorStyle_{CursorStyles::Default};
+    CursorStyles cursorStyle_{CursorStyles::Default};
 
-      private:
-        static constexpr float k_cursorSize_{0.05f};
-    };
-}
+  private:
+    static constexpr float k_cursorSize_{0.05f};
+};

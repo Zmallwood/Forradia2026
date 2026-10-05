@@ -7,12 +7,9 @@
 
 #pragma once
 
-namespace Forradia
+class SizeF
 {
-    class SizeF
-    {
-      public:
-        float width{0.0f};
-        float height{0.0f};
-    };
-}
+  public:
+    float width{0.0f};
+    float height{0.0f};
+};

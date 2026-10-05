@@ -9,11 +9,8 @@
 
 #include "Core/ScenesCore/IScene.hpp"
 
-namespace Forradia
+class WorldGenerationScene : public IScene
 {
-    class WorldGenerationScene : public IScene
-    {
-      protected:
-        void OnEnterDerived() override;
-    };
-}
+  protected:
+    void OnEnterDerived() override;
+};

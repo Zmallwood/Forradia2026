@@ -7,29 +7,26 @@
 
 #pragma once
 
-namespace Forradia
+class Tile;
+class Creature;
+
+class WorldArea
 {
-    class Tile;
-    class Creature;
+  public:
+    WorldArea();
 
-    class WorldArea
-    {
-      public:
-        WorldArea();
+    Size GetSize();
 
-        Size GetSize();
+    bool IsValidCoordinate(int x, int y);
 
-        bool IsValidCoordinate(int x, int y);
+    bool IsValidCoordinate(Point coordinate);
 
-        bool IsValidCoordinate(Point coordinate);
+    std::shared_ptr<Tile> GetTile(int x, int y);
 
-        std::shared_ptr<Tile> GetTile(int x, int y);
+    std::shared_ptr<Tile> GetTile(Point coordinate);
 
-        std::shared_ptr<Tile> GetTile(Point coordinate);
+    std::unordered_map<std::shared_ptr<Creature>, Point> creaturesMirror_;
 
-        std::unordered_map<std::shared_ptr<Creature>, Point> creaturesMirror_;
-
-      private:
-        std::vector<std::vector<std::shared_ptr<Tile>>> tiles_;
-    };
-}
+  private:
+    std::vector<std::vector<std::shared_ptr<Tile>>> tiles_;
+};

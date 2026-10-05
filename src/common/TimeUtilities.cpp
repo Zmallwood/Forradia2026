@@ -7,10 +7,7 @@
 
 #include "TimeUtilities.hpp"
 
-namespace Forradia
+int Now()
 {
-    int Now()
-    {
-        return SDL_GetTicks();
-    }
+    return SDL_GetTicks();
 }

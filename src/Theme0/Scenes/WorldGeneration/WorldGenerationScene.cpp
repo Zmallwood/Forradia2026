@@ -6,20 +6,17 @@
  ************************************************************************/
 
 #include "WorldGenerationScene.hpp"
+#include "Core/CoreGameObjects/Player.hpp"
 #include "Core/ScenesCore/SceneManager.hpp"
 #include "Sub/WorldGenerator.hpp"
-#include "Core/CoreGameObjects/Player.hpp"
 
-namespace Forradia
+void WorldGenerationScene::OnEnterDerived()
 {
-    void WorldGenerationScene::OnEnterDerived()
-    {
-        _<WorldGenerator>().GenerateNewWorld();
+    _<WorldGenerator>().GenerateNewWorld();
 
-        _<Player>().SpawnOnSuitableLocation();
+    _<Player>().SpawnOnSuitableLocation();
 
-        _<WorldGenerator>().GenerateCivilization();
+    _<WorldGenerator>().GenerateCivilization();
 
-        _<SceneManager>().GoToScene("MainScene");
-    }
+    _<SceneManager>().GoToScene("MainScene");
 }

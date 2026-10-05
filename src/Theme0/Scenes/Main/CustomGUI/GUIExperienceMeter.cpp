@@ -9,19 +9,15 @@
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Theme0/Theme0Math/ExperienceMath.hpp"
 
-namespace Forradia
+GUIExperienceMeter::GUIExperienceMeter() : GUIMeter(0.0f, 0.985f, 1.0f, 0.015f)
 {
-    GUIExperienceMeter::GUIExperienceMeter()
-        : GUIMeter(0.0f, 0.985f, 1.0f, 0.015f)
-    {
-    }
+}
 
-    float GUIExperienceMeter::GetMeterProgress()
-    {
-        auto experience{_<Player>().experience_};
+float GUIExperienceMeter::GetMeterProgress()
+{
+    auto experience{_<Player>().experience_};
 
-        auto progress{CalculateFractionalExperienceProgress(experience)};
+    auto progress{CalculateFractionalExperienceProgress(experience)};
 
-        return progress;
-    }
+    return progress;
 }

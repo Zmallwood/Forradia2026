@@ -7,7 +7,4 @@
 
 #pragma once
 
-namespace Forradia
-{
-    int InvertSpeed(float speed);
-}
+int InvertSpeed(float speed);

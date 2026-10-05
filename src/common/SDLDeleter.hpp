@@ -7,19 +7,16 @@
 
 #pragma once
 
-namespace Forradia
+class SDLDeleter
 {
-    class SDLDeleter
-    {
-      public:
-        void operator()(SDL_Window *window);
+  public:
+    void operator()(SDL_Window *window);
 
-        void operator()(SDL_Renderer *renderer);
+    void operator()(SDL_Renderer *renderer);
 
-        void operator()(SDL_Surface *surface);
+    void operator()(SDL_Surface *surface);
 
-        void operator()(SDL_Texture *texture);
+    void operator()(SDL_Texture *texture);
 
-        void operator()(TTF_Font *font);
-    };
-}
+    void operator()(TTF_Font *font);
+};

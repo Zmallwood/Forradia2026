@@ -8,10 +8,7 @@
 #include "World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
-namespace Forradia
+World::World()
 {
-    World::World()
-    {
-        currentWorldArea_ = std::make_shared<WorldArea>();
-    }
+    currentWorldArea_ = std::make_shared<WorldArea>();
 }

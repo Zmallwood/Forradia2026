@@ -7,18 +7,15 @@
 
 #include "MouseUtilities.hpp"
 
-namespace Forradia
+PointF GetMousePosition()
 {
-    PointF GetMousePosition()
-    {
-        auto canvasSize{GetCanvasSize()};
+    auto canvasSize{GetCanvasSize()};
 
-        int x;
-        int y;
+    int x;
+    int y;
 
-        SDL_GetMouseState(&x, &y);
+    SDL_GetMouseState(&x, &y);
 
-        return {static_cast<float>(x) / canvasSize.width,
-                static_cast<float>(y) / canvasSize.height};
-    }
+    return {static_cast<float>(x) / canvasSize.width,
+            static_cast<float>(y) / canvasSize.height};
 }

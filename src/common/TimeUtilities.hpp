@@ -7,7 +7,4 @@
 
 #pragma once
 
-namespace Forradia
-{
-    int Now();
-}
+int Now();

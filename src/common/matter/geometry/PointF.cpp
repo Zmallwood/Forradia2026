@@ -7,21 +7,18 @@
 
 #include "PointF.hpp"
 
-namespace Forradia
+void PointF::operator+=(const PointF &other)
 {
-    void PointF::operator+=(const PointF &other)
-    {
-        x += other.x;
-        y += other.y;
-    }
+    x += other.x;
+    y += other.y;
+}
 
-    PointF PointF::operator+(const PointF &other) const
-    {
-        return {x + other.x, y + other.y};
-    }
+PointF PointF::operator+(const PointF &other) const
+{
+    return {x + other.x, y + other.y};
+}
 
-    PointF PointF::operator-(const PointF &other) const
-    {
-        return {x - other.x, y - other.y};
-    }
+PointF PointF::operator-(const PointF &other) const
+{
+    return {x - other.x, y - other.y};
 }

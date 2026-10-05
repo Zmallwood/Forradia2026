@@ -7,18 +7,15 @@
 
 #pragma once
 
-namespace Forradia
+class PointF
 {
-    class PointF
-    {
-      public:
-        void operator+=(const PointF &other);
+  public:
+    void operator+=(const PointF &other);
 
-        PointF operator+(const PointF &other) const;
+    PointF operator+(const PointF &other) const;
 
-        PointF operator-(const PointF &other) const;
+    PointF operator-(const PointF &other) const;
 
-        float x{0.0f};
-        float y{0.0f};
-    };
-}
+    float x{0.0f};
+    float y{0.0f};
+};

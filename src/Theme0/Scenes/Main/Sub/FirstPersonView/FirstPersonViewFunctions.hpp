@@ -9,9 +9,6 @@
 
 #include "PositionedObject.hpp"
 
-namespace Forradia
-{
-    std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
+std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
 
-    Point GetHoveredTilePosition(PointF mouseOffset);
-}
+Point GetHoveredTilePosition(PointF mouseOffset);

@@ -7,13 +7,10 @@
 
 #pragma once
 
-namespace Forradia
+class TileHovering
 {
-    class TileHovering
-    {
-      public:
-        void Update();
+  public:
+    void Update();
 
-        Point hoveredCoordinate_{-1, -1};
-    };
-}
+    Point hoveredCoordinate_{-1, -1};
+};

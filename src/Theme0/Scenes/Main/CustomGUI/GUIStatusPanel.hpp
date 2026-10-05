@@ -7,14 +7,11 @@
 
 #include "Core/GUICore/GUIPanel.hpp"
 
-namespace Forradia
+class GUIStatusPanel : public GUIPanel
 {
-    class GUIStatusPanel : public GUIPanel
-    {
-      public:
-        GUIStatusPanel();
+  public:
+    GUIStatusPanel();
 
-      protected:
-        void RenderDerived() override;
-    };
-}
+  protected:
+    void RenderDerived() override;
+};

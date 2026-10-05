@@ -8,19 +8,9 @@
 #include "RunNewTheme0.hpp"
 #include "Core/Game.hpp"
 
-extern "C"
+void RunNewTheme0()
 {
-    using Callback = void (*)();
+    _<Game>().Start();
 
-    void RunGame(Callback callback);
-}
-
-namespace Forradia
-{
-    void RunNewTheme0()
-    {
-        _<Game>().Start();
-
-        DestroySingleton<Game>();
-    }
+    DestroySingleton<Game>();
 }

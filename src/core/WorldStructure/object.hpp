@@ -9,17 +9,14 @@
 
 #include "CompletableImpactPoint.hpp"
 
-namespace Forradia
+class Object
 {
-    class Object
-    {
-      public:
-        Object(int type);
+  public:
+    Object(int type);
 
-        Object(std::string_view typeName);
+    Object(std::string_view typeName);
 
-        int type_{0};
-        int quantity_{1};
-        std::vector<CompletableImpactPoint> impactPoints_;
-    };
-}
+    int type_{0};
+    int quantity_{1};
+    std::vector<CompletableImpactPoint> impactPoints_;
+};

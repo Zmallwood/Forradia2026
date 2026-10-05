@@ -9,48 +9,45 @@
 #include "Core/Configuration/CreatureIndex.hpp"
 #include "Core/GUICore/GUITextConsole.hpp"
 
-namespace Forradia
+Creature::Creature(std::string_view typeName)
 {
-    Creature::Creature(std::string_view typeName)
+    type_ = Hash(typeName);
+}
+
+Creature::Creature(int type)
+{
+    type_ = type;
+
+    auto typeName{_<CreatureIndex>().GetCreatureLabel(type)};
+}
+
+void Creature::Hit(float damage, PointF hitPosition)
+{
+    health_ -= damage;
+
+    ticksLastHitOnSelf_ = Now();
+
+    lastHitPosition_ = hitPosition;
+
+    targetingPlayer_ = true;
+
+    auto now{Now()};
+
+    if (now - ticksLastHitOnOther_ > InvertSpeed(attackSpeed_))
     {
-        type_ = Hash(typeName);
+        ticksLastHitOnOther_ = now;
     }
 
-    Creature::Creature(int type)
-    {
-        type_ = type;
+    auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
 
-        auto typeName{_<CreatureIndex>().GetCreatureLabel(type)};
-    }
+    std::stringstream ssDamage;
+    ssDamage << std::fixed << std::setprecision(1) << damage;
 
-    void Creature::Hit(float damage, PointF hitPosition)
-    {
-        health_ -= damage;
+    _<GUITextConsole>().PrintLine("You hit a " + creatureLabel + " for " +
+                                  ssDamage.str() + " damage.");
+}
 
-        ticksLastHitOnSelf_ = Now();
-
-        lastHitPosition_ = hitPosition;
-
-        targetingPlayer_ = true;
-
-        auto now{Now()};
-
-        if (now - ticksLastHitOnOther_ > InvertSpeed(attackSpeed_))
-        {
-            ticksLastHitOnOther_ = now;
-        }
-
-        auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
-
-        std::stringstream ssDamage;
-        ssDamage << std::fixed << std::setprecision(1) << damage;
-
-        _<GUITextConsole>().PrintLine("You hit a " + creatureLabel + " for " +
-                                      ssDamage.str() + " damage.");
-    }
-
-    bool Creature::IsDead()
-    {
-        return health_ <= 0.0f;
-    }
+bool Creature::IsDead()
+{
+    return health_ <= 0.0f;
 }

@@ -9,22 +9,19 @@
 
 #include "Core/GUICore/Windows/GUIWindow.hpp"
 
-namespace Forradia
+class GUIInventoryWindow : public GUIWindow
 {
-    class GUIInventoryWindow : public GUIWindow
-    {
-      public:
-        GUIInventoryWindow();
+  public:
+    GUIInventoryWindow();
 
-      protected:
-        bool OnMouseDown(Uint8 mouseButton) override;
+  protected:
+    bool OnMouseDown(Uint8 mouseButton) override;
 
-        bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
+    bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
 
-        void RenderDerived() override;
+    void RenderDerived() override;
 
-      private:
-        static constexpr float k_slotWidth_{0.037f};
-        static constexpr float k_slotMarginX_{0.005f};
-    };
-}
+  private:
+    static constexpr float k_slotWidth_{0.037f};
+    static constexpr float k_slotMarginX_{0.005f};
+};

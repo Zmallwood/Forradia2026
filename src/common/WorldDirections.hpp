@@ -7,13 +7,10 @@
 
 #pragma once
 
-namespace Forradia
+enum class WorldDirections
 {
-    enum class WorldDirections
-    {
-        North,
-        East,
-        South,
-        West,
-    };
-}
+    North,
+    East,
+    South,
+    West,
+};

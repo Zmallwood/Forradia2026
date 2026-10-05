@@ -8,88 +8,85 @@
 #include "KeyboardMovement.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
 
-namespace Forradia
+void KeyboardMovement::Update()
 {
-    void KeyboardMovement::Update()
+    auto wPressed{pressedKeys_.contains(SDLK_w)};
+    auto sPressed{pressedKeys_.contains(SDLK_s)};
+    auto aPressed{pressedKeys_.contains(SDLK_a)};
+    auto qPressed{pressedKeys_.contains(SDLK_q)};
+
+    auto now{Now()};
+
+    if (now > _<Player>().ticksLastMovement_ +
+                  InvertSpeed(_<Player>().movementSpeed_) &&
+        (wPressed || sPressed || aPressed || qPressed))
     {
-        auto wPressed{pressedKeys_.contains(SDLK_w)};
-        auto sPressed{pressedKeys_.contains(SDLK_s)};
-        auto aPressed{pressedKeys_.contains(SDLK_a)};
-        auto qPressed{pressedKeys_.contains(SDLK_q)};
 
-        auto now{Now()};
+        _<Player>().destination_ = {-1, -1};
 
-        if (now > _<Player>().ticksLastMovement_ +
-                      InvertSpeed(_<Player>().movementSpeed_) &&
-            (wPressed || sPressed || aPressed || qPressed))
+        if (wPressed)
         {
-
-            _<Player>().destination_ = {-1, -1};
-
-            if (wPressed)
+            if (pressedKeys_.contains(SDLK_LCTRL) ||
+                pressedKeys_.contains(SDLK_RCTRL))
             {
-                if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
-                    _<Player>().TurnNorth();
-                }
-                else
-                {
-                    _<Player>().TurnNorth();
-                    _<Player>().MoveNorth();
-                }
+                _<Player>().TurnNorth();
             }
-            else if (sPressed)
+            else
             {
-                if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
-                    _<Player>().TurnEast();
-                }
-                else
-                {
-                    _<Player>().TurnEast();
-                    _<Player>().MoveEast();
-                }
+                _<Player>().TurnNorth();
+                _<Player>().MoveNorth();
             }
-            else if (aPressed)
-            {
-                if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
-                    _<Player>().TurnSouth();
-                }
-                else
-                {
-                    _<Player>().TurnSouth();
-                    _<Player>().MoveSouth();
-                }
-            }
-            else if (qPressed)
-            {
-                if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
-                    _<Player>().TurnWest();
-                }
-                else
-                {
-                    _<Player>().TurnWest();
-                    _<Player>().MoveWest();
-                }
-            }
-
-            _<Player>().ticksLastMovement_ = now;
         }
-    }
+        else if (sPressed)
+        {
+            if (pressedKeys_.contains(SDLK_LCTRL) ||
+                pressedKeys_.contains(SDLK_RCTRL))
+            {
+                _<Player>().TurnEast();
+            }
+            else
+            {
+                _<Player>().TurnEast();
+                _<Player>().MoveEast();
+            }
+        }
+        else if (aPressed)
+        {
+            if (pressedKeys_.contains(SDLK_LCTRL) ||
+                pressedKeys_.contains(SDLK_RCTRL))
+            {
+                _<Player>().TurnSouth();
+            }
+            else
+            {
+                _<Player>().TurnSouth();
+                _<Player>().MoveSouth();
+            }
+        }
+        else if (qPressed)
+        {
+            if (pressedKeys_.contains(SDLK_LCTRL) ||
+                pressedKeys_.contains(SDLK_RCTRL))
+            {
+                _<Player>().TurnWest();
+            }
+            else
+            {
+                _<Player>().TurnWest();
+                _<Player>().MoveWest();
+            }
+        }
 
-    void KeyboardMovement::OnKeyDown(SDL_Keycode key)
-    {
-        pressedKeys_.insert(key);
+        _<Player>().ticksLastMovement_ = now;
     }
+}
 
-    void KeyboardMovement::OnKeyUp(SDL_Keycode key)
-    {
-        pressedKeys_.erase(key);
-    }
+void KeyboardMovement::OnKeyDown(SDL_Keycode key)
+{
+    pressedKeys_.insert(key);
+}
+
+void KeyboardMovement::OnKeyUp(SDL_Keycode key)
+{
+    pressedKeys_.erase(key);
 }

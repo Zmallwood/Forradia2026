@@ -7,23 +7,20 @@
 
 #pragma once
 
-namespace Forradia
+class Object;
+class Creature;
+
+class FirstPersonHovering
 {
-    class Object;
-    class Creature;
+  public:
+    void Update();
 
-    class FirstPersonHovering
-    {
-      public:
-        void Update();
+    void Render();
 
-        void Render();
+    std::shared_ptr<Object> hoveredObject_;
+    std::shared_ptr<Creature> hoveredCreature_;
+    PointF hoveredThingMouseOffset_;
 
-        std::shared_ptr<Object> hoveredObject_;
-        std::shared_ptr<Creature> hoveredCreature_;
-        PointF hoveredThingMouseOffset_;
-
-      private:
-        static constexpr float k_textYOffset_{-0.03f};
-    };
-}
+  private:
+    static constexpr float k_textYOffset_{-0.03f};
+};

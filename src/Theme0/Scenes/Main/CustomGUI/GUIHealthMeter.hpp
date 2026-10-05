@@ -9,16 +9,13 @@
 
 #include "Core/GUICore/GUIMeter.hpp"
 
-namespace Forradia
+class GUIHealthMeter : public GUIMeter
 {
-    class GUIHealthMeter : public GUIMeter
-    {
-      public:
-        GUIHealthMeter();
+  public:
+    GUIHealthMeter();
 
-      protected:
-        virtual float GetMeterProgress() override;
+  protected:
+    virtual float GetMeterProgress() override;
 
-        virtual Color GetFilledColor() override;
-    };
-}
+    virtual Color GetFilledColor() override;
+};

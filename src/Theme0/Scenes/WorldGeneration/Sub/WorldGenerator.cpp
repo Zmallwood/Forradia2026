@@ -8,65 +8,150 @@
 #include "WorldGenerator.hpp"
 #include "Core/CoreGameObjects/Player.hpp"
 #include "Core/WorldStructure/Creature.hpp"
+#include "Core/WorldStructure/NPC.hpp"
 #include "Core/WorldStructure/Tile.hpp"
 #include "Core/WorldStructure/TileObjects.hpp"
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
-#include "Core/WorldStructure/NPC.hpp"
 
-namespace Forradia
+void WorldGenerator::GenerateNewWorld()
 {
-    void WorldGenerator::GenerateNewWorld()
+    ClearWithGrass();
+
+    GenerateDirt();
+
+    GenerateWater();
+
+    GenerateElevation();
+
+    GenerateRock();
+
+    GenerateLargeObjects();
+
+    GenerateSmallObjects();
+
+    GenerateCreatures();
+}
+
+void WorldGenerator::ClearWithGrass()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto y = 0; y < size.height; y++)
     {
-        ClearWithGrass();
-
-        GenerateDirt();
-
-        GenerateWater();
-
-        GenerateElevation();
-
-        GenerateRock();
-
-        GenerateLargeObjects();
-
-        GenerateSmallObjects();
-
-        GenerateCreatures();
-    }
-
-    void WorldGenerator::ClearWithGrass()
-    {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
-
-        for (auto y = 0; y < size.height; y++)
+        for (auto x = 0; x < size.width; x++)
         {
-            for (auto x = 0; x < size.width; x++)
-            {
-                auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GetTile(x, y)};
 
-                tile->ground_ = Hash("GroundGrass");
+            tile->ground_ = Hash("GroundGrass");
+        }
+    }
+}
+
+void WorldGenerator::GenerateDirt()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto numDirtPatches{15 + rand() % 8};
+
+    for (auto i = 0; i < numDirtPatches; i++)
+    {
+        auto xCenter{rand() % size.width};
+        auto yCenter{rand() % size.height};
+        auto radius{3 + rand() % 14};
+
+        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+        {
+            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+            {
+                if (!worldArea->IsValidCoordinate(x, y))
+                {
+                    continue;
+                }
+
+                auto dx{x - xCenter};
+                auto dy{y - yCenter};
+
+                if (dx * dx + dy * dy <= radius * radius)
+                {
+                    auto tile{worldArea->GetTile(x, y)};
+
+                    tile->ground_ = Hash("GroundDirt");
+                }
+            }
+        }
+    }
+}
+
+void WorldGenerator::GenerateWater()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto numLakes{40 + rand() % 20};
+
+    for (auto i = 0; i < numLakes; i++)
+    {
+        auto xCenter{rand() % size.width};
+        auto yCenter{rand() % size.height};
+        auto radius{3 + rand() % 6};
+
+        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+        {
+            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+            {
+                if (!worldArea->IsValidCoordinate(x, y))
+                {
+                    continue;
+                }
+
+                auto dx{x - xCenter};
+                auto dy{y - yCenter};
+
+                if (dx * dx + dy * dy <= radius * radius)
+                {
+                    auto tile{worldArea->GetTile(x, y)};
+
+                    tile->ground_ = Hash("GroundWater");
+                }
+            }
+        }
+    }
+}
+
+void WorldGenerator::GenerateElevation()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto y = 0; y < size.height; y++)
+    {
+        for (auto x = 0; x < size.width; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (tile->ground_ != Hash("GroundWater"))
+            {
+                tile->elevation_ = 1;
             }
         }
     }
 
-    void WorldGenerator::GenerateDirt()
+    auto numHills{20 + rand() % 10};
+
+    for (auto i = 0; i < numHills; i++)
     {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
+        auto xCenter{rand() % size.width};
+        auto yCenter{rand() % size.height};
+        auto radius{3 + rand() % 9};
 
-        auto numDirtPatches{15 + rand() % 8};
-
-        for (auto i = 0; i < numDirtPatches; i++)
+        for (auto r = radius; r >= 0; r--)
         {
-            auto xCenter{rand() % size.width};
-            auto yCenter{rand() % size.height};
-            auto radius{3 + rand() % 14};
-
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            for (auto y = yCenter - r; y <= yCenter + r; y++)
             {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+                for (auto x = xCenter - r; x <= xCenter + r; x++)
                 {
                     if (!worldArea->IsValidCoordinate(x, y))
                     {
@@ -76,286 +161,118 @@ namespace Forradia
                     auto dx{x - xCenter};
                     auto dy{y - yCenter};
 
-                    if (dx * dx + dy * dy <= radius * radius)
+                    if (dx * dx + dy * dy <= r * r)
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        tile->ground_ = Hash("GroundDirt");
-                    }
-                }
-            }
-        }
-    }
-
-    void WorldGenerator::GenerateWater()
-    {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
-
-        auto numLakes{40 + rand() % 20};
-
-        for (auto i = 0; i < numLakes; i++)
-        {
-            auto xCenter{rand() % size.width};
-            auto yCenter{rand() % size.height};
-            auto radius{3 + rand() % 6};
-
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-            {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-                {
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
-                        continue;
-                    }
-
-                    auto dx{x - xCenter};
-                    auto dy{y - yCenter};
-
-                    if (dx * dx + dy * dy <= radius * radius)
-                    {
-                        auto tile{worldArea->GetTile(x, y)};
-
-                        tile->ground_ = Hash("GroundWater");
-                    }
-                }
-            }
-        }
-    }
-
-    void WorldGenerator::GenerateElevation()
-    {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
-
-        for (auto y = 0; y < size.height; y++)
-        {
-            for (auto x = 0; x < size.width; x++)
-            {
-                auto tile{worldArea->GetTile(x, y)};
-
-                if (tile->ground_ != Hash("GroundWater"))
-                {
-                    tile->elevation_ = 1;
-                }
-            }
-        }
-
-        auto numHills{20 + rand() % 10};
-
-        for (auto i = 0; i < numHills; i++)
-        {
-            auto xCenter{rand() % size.width};
-            auto yCenter{rand() % size.height};
-            auto radius{3 + rand() % 9};
-
-            for (auto r = radius; r >= 0; r--)
-            {
-                for (auto y = yCenter - r; y <= yCenter + r; y++)
-                {
-                    for (auto x = xCenter - r; x <= xCenter + r; x++)
-                    {
-                        if (!worldArea->IsValidCoordinate(x, y))
+                        if (tile->ground_ == Hash("GroundWater"))
                         {
                             continue;
                         }
 
-                        auto dx{x - xCenter};
-                        auto dy{y - yCenter};
-
-                        if (dx * dx + dy * dy <= r * r)
-                        {
-                            auto tile{worldArea->GetTile(x, y)};
-
-                            if (tile->ground_ == Hash("GroundWater"))
-                            {
-                                continue;
-                            }
-
-                            ++tile->elevation_;
-                        }
+                        ++tile->elevation_;
                     }
                 }
             }
         }
     }
+}
 
-    void WorldGenerator::GenerateRock()
+void WorldGenerator::GenerateRock()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto numRockPatches{60 + rand() % 5};
+
+    for (auto i = 0; i < numRockPatches; i++)
     {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
+        auto xCenter{rand() % size.width};
+        auto yCenter{rand() % size.height};
+        auto radius{3 + rand() % 9};
 
-        auto numRockPatches{60 + rand() % 5};
-
-        for (auto i = 0; i < numRockPatches; i++)
+        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
         {
-            auto xCenter{rand() % size.width};
-            auto yCenter{rand() % size.height};
-            auto radius{3 + rand() % 9};
-
-            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
             {
-                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-                {
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
-                        continue;
-                    }
-
-                    auto dx{x - xCenter};
-                    auto dy{y - yCenter};
-
-                    if (dx * dx + dy * dy <= radius * radius)
-                    {
-                        auto tile{worldArea->GetTile(x, y)};
-
-                        if (tile->elevation_ >= 2)
-                        {
-                            tile->ground_ = Hash("GroundRock");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    void WorldGenerator::GenerateLargeObjects()
-    {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
-
-        auto numTree2Groups{100 + rand() % 10};
-
-        for (auto i = 0; i < numTree2Groups; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto numTree2s{60 + rand() % 10};
-
-            for (auto j = 0; j < numTree2s; j++)
-            {
-                x += rand() % 3 - rand() % 3;
-                y += rand() % 3 - rand() % 3;
-
                 if (!worldArea->IsValidCoordinate(x, y))
                 {
                     continue;
                 }
 
-                auto tile{worldArea->GetTile(x, y)};
+                auto dx{x - xCenter};
+                auto dy{y - yCenter};
 
-                if (tile->ground_ == Hash("GroundWater") ||
-                    tile->ground_ == Hash("GroundRock"))
+                if (dx * dx + dy * dy <= radius * radius)
                 {
-                    continue;
+                    auto tile{worldArea->GetTile(x, y)};
+
+                    if (tile->elevation_ >= 2)
+                    {
+                        tile->ground_ = Hash("GroundRock");
+                    }
                 }
-
-                tile->tileObjects_->Clear();
-
-                tile->tileObjects_->AddObject("ObjectTree2");
             }
         }
+    }
+}
 
-        auto numTree1Groups{100 + rand() % 10};
+void WorldGenerator::GenerateLargeObjects()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
 
-        for (auto i = 0; i < numTree1Groups; i++)
+    auto numTree2Groups{100 + rand() % 10};
+
+    for (auto i = 0; i < numTree2Groups; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto numTree2s{60 + rand() % 10};
+
+        for (auto j = 0; j < numTree2s; j++)
         {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
+            x += rand() % 3 - rand() % 3;
+            y += rand() % 3 - rand() % 3;
 
-            auto numTree1s{60 + rand() % 10};
-
-            for (auto j = 0; j < numTree1s; j++)
+            if (!worldArea->IsValidCoordinate(x, y))
             {
-                x += rand() % 3 - rand() % 3;
-                y += rand() % 3 - rand() % 3;
-
-                if (!worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
-
-                auto tile{worldArea->GetTile(x, y)};
-
-                if (tile->ground_ == Hash("GroundWater") ||
-                    tile->ground_ == Hash("GroundRock"))
-                {
-                    continue;
-                }
-
-                tile->tileObjects_->Clear();
-
-                tile->tileObjects_->AddObject("ObjectTree1");
+                continue;
             }
-        }
-
-        auto numBush1s{300 + rand() % 50};
-
-        for (auto i = 0; i < numBush1s; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
 
             auto tile{worldArea->GetTile(x, y)};
 
             if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundDirt") ||
                 tile->ground_ == Hash("GroundRock"))
             {
                 continue;
             }
 
-            tile->tileObjects_->AddObject("ObjectBush1");
-        }
+            tile->tileObjects_->Clear();
 
-        auto numStoneBoulders{100 + rand() % 50};
-
-        for (auto i = 0; i < numStoneBoulders; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundGrass") ||
-                tile->ground_ == Hash("GroundDirt"))
-            {
-                continue;
-            }
-
-            tile->tileObjects_->AddObject("ObjectStoneBoulder");
+            tile->tileObjects_->AddObject("ObjectTree2");
         }
     }
 
-    void WorldGenerator::GenerateSmallObjects()
+    auto numTree1Groups{100 + rand() % 10};
+
+    for (auto i = 0; i < numTree1Groups; i++)
     {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
 
-        auto numStones{500 + rand() % 50};
+        auto numTree1s{60 + rand() % 10};
 
-        for (auto i = 0; i < numStones; i++)
+        for (auto j = 0; j < numTree1s; j++)
         {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
+            x += rand() % 3 - rand() % 3;
+            y += rand() % 3 - rand() % 3;
 
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundWater"))
+            if (!worldArea->IsValidCoordinate(x, y))
             {
                 continue;
             }
-
-            tile->tileObjects_->AddObject("ObjectStone");
-        }
-
-        auto numBranches{500 + rand() % 50};
-
-        for (auto i = 0; i < numBranches; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
 
             auto tile{worldArea->GetTile(x, y)};
 
@@ -365,138 +282,244 @@ namespace Forradia
                 continue;
             }
 
-            tile->tileObjects_->AddObject("ObjectBranch");
-        }
+            tile->tileObjects_->Clear();
 
-        auto numPinkFlowers{500 + rand() % 50};
-
-        for (auto i = 0; i < numPinkFlowers; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock") ||
-                tile->ground_ == Hash("GroundDirt"))
-            {
-                continue;
-            }
-
-            tile->tileObjects_->AddObject("ObjectPinkFlower");
-        }
-
-        auto numLeaves{500 + rand() % 50};
-
-        for (auto i = 0; i < numLeaves; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock"))
-            {
-                continue;
-            }
-
-            tile->tileObjects_->AddObject("ObjectLeaf");
+            tile->tileObjects_->AddObject("ObjectTree1");
         }
     }
 
-    void WorldGenerator::GenerateCreatures()
+    auto numBush1s{300 + rand() % 50};
+
+    for (auto i = 0; i < numBush1s; i++)
     {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
 
-        auto numDeers{150 + rand() % 20};
+        auto tile{worldArea->GetTile(x, y)};
 
-        for (auto i = 0; i < numDeers; i++)
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundDirt") ||
+            tile->ground_ == Hash("GroundRock"))
         {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock"))
-            {
-                continue;
-            }
-
-            auto newCreature{std::make_shared<Creature>("CreatureDeer")};
-
-            worldArea->creaturesMirror_.insert({newCreature, {x, y}});
-
-            tile->creature_ = newCreature;
+            continue;
         }
 
-        auto numBoars{150 + rand() % 20};
-
-        for (auto i = 0; i < numBoars; i++)
-        {
-            auto x{rand() % size.width};
-            auto y{rand() % size.height};
-
-            auto tile{worldArea->GetTile(x, y)};
-
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock"))
-            {
-                continue;
-            }
-
-            auto newCreature{std::make_shared<Creature>("CreatureBoar")};
-
-            worldArea->creaturesMirror_.insert({newCreature, {x, y}});
-        }
+        tile->tileObjects_->AddObject("ObjectBush1");
     }
 
-    void WorldGenerator::GenerateCivilization()
+    auto numStoneBoulders{100 + rand() % 50};
+
+    for (auto i = 0; i < numStoneBoulders; i++)
     {
-        auto worldArea{_<World>().currentWorldArea_};
-        auto size{worldArea->GetSize()};
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
 
-        auto playerPosition{_<Player>().position_};
+        auto tile{worldArea->GetTile(x, y)};
 
-        for (auto x = 0; x < size.width; x++)
+        if (tile->ground_ == Hash("GroundGrass") ||
+            tile->ground_ == Hash("GroundDirt"))
         {
-            auto tile{worldArea->GetTile(x, playerPosition.y)};
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectStoneBoulder");
+    }
+}
+
+void WorldGenerator::GenerateSmallObjects()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto numStones{500 + rand() % 50};
+
+    for (auto i = 0; i < numStones; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater"))
+        {
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectStone");
+    }
+
+    auto numBranches{500 + rand() % 50};
+
+    for (auto i = 0; i < numBranches; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundRock"))
+        {
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectBranch");
+    }
+
+    auto numPinkFlowers{500 + rand() % 50};
+
+    for (auto i = 0; i < numPinkFlowers; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundRock") ||
+            tile->ground_ == Hash("GroundDirt"))
+        {
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectPinkFlower");
+    }
+
+    auto numLeaves{500 + rand() % 50};
+
+    for (auto i = 0; i < numLeaves; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundRock"))
+        {
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectLeaf");
+    }
+}
+
+void WorldGenerator::GenerateCreatures()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto numDeers{150 + rand() % 20};
+
+    for (auto i = 0; i < numDeers; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundRock"))
+        {
+            continue;
+        }
+
+        auto newCreature{std::make_shared<Creature>("CreatureDeer")};
+
+        worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+
+        tile->creature_ = newCreature;
+    }
+
+    auto numBoars{150 + rand() % 20};
+
+    for (auto i = 0; i < numBoars; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundRock"))
+        {
+            continue;
+        }
+
+        auto newCreature{std::make_shared<Creature>("CreatureBoar")};
+
+        worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+    }
+}
+
+void WorldGenerator::GenerateCivilization()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto playerPosition{_<Player>().position_};
+
+    auto prevXTileElevation{0};
+
+    for (auto x = 0; x < size.width; x++)
+    {
+        auto tile{worldArea->GetTile(x, playerPosition.y)};
+
+        tile->tileObjects_->Clear();
+
+        tile->ground_ = Hash("GroundCobblestone");
+
+        auto elevDifference{tile->elevation_ - prevXTileElevation};
+
+        if (elevDifference)
+        {
+            tile->elevation_ =
+                prevXTileElevation + elevDifference / std::abs(elevDifference);
+        }
+
+        prevXTileElevation = tile->elevation_;
+    }
+
+    auto prevYTileElevation{0};
+
+    for (auto y = 0; y < size.height; y++)
+    {
+        auto tile{worldArea->GetTile(playerPosition.x, y)};
+
+        tile->tileObjects_->Clear();
+
+        tile->ground_ = Hash("GroundCobblestone");
+
+        auto elevDifference{tile->elevation_ - prevYTileElevation};
+
+        if (elevDifference)
+        {
+            tile->elevation_ =
+            prevYTileElevation + elevDifference / std::abs(elevDifference);
+        }
+
+        prevYTileElevation = tile->elevation_;
+    }
+
+    for (auto y = playerPosition.y - 1; y <= playerPosition.y + 1; y++)
+    {
+        for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
 
             tile->tileObjects_->Clear();
 
             tile->ground_ = Hash("GroundCobblestone");
         }
-
-        for (auto y = 0; y < size.height; y++)
-        {
-            auto tile{worldArea->GetTile(playerPosition.x, y)};
-
-            tile->tileObjects_->Clear();
-
-            tile->ground_ = Hash("GroundCobblestone");
-        }
-
-        for (auto y = playerPosition.y - 1; y <= playerPosition.y + 1; y++)
-        {
-            for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1; x++)
-            {
-                auto tile{worldArea->GetTile(x, y)};
-                
-                tile->tileObjects_->Clear();
-
-                tile->ground_ = Hash("GroundCobblestone");
-            }
-        }
-
-        auto tileNW {worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
-
-        tileNW->npc_ = std::make_shared<NPC>("NPC0");
-
-        auto tileNE {worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
-
-        tileNE->npc_ = std::make_shared<NPC>("NPC1");
     }
+
+    auto tileNorthWest{
+        worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
+
+    tileNorthWest->npc_ = std::make_shared<NPC>("NPC0");
+
+    auto tileNorthEast{
+        worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
+
+    tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
 }

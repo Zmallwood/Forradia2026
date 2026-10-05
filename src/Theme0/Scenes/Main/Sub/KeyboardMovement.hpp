@@ -7,18 +7,15 @@
 
 #pragma once
 
-namespace Forradia
+class KeyboardMovement
 {
-    class KeyboardMovement
-    {
-      public:
-        void Update();
+  public:
+    void Update();
 
-        void OnKeyDown(SDL_Keycode key);
+    void OnKeyDown(SDL_Keycode key);
 
-        void OnKeyUp(SDL_Keycode key);
+    void OnKeyUp(SDL_Keycode key);
 
-      private:
-        std::set<SDL_Keycode> pressedKeys_;
-    };
-}
+  private:
+    std::set<SDL_Keycode> pressedKeys_;
+};

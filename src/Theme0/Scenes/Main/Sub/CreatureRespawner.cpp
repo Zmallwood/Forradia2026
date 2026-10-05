@@ -11,60 +11,55 @@
 #include "Core/WorldStructure/World.hpp"
 #include "Core/WorldStructure/WorldArea.hpp"
 
-namespace Forradia
+void CreatureRespawner::Update()
 {
-    void CreatureRespawner::Update()
+    auto now{Now()};
+
+    auto worldArea{_<World>().currentWorldArea_};
+
+    auto size{worldArea->GetSize()};
+
+    for (auto it = creatureRespawns_.begin(); it != creatureRespawns_.end();)
     {
-        auto now{Now()};
+        auto creatureRespawnTime{it->first};
+        auto creatureType{it->second};
 
-        auto worldArea{_<World>().currentWorldArea_};
-
-        auto size{worldArea->GetSize()};
-
-        for (auto it = creatureRespawns_.begin();
-             it != creatureRespawns_.end();)
+        if (now >= creatureRespawnTime)
         {
-            auto creatureRespawnTime{it->first};
-            auto creatureType{it->second};
+            auto newCreature{std::make_shared<Creature>(creatureType)};
 
-            if (now >= creatureRespawnTime)
+            int x;
+            int y;
+            std::shared_ptr<Tile> tile;
+
+            do
             {
-                auto newCreature{std::make_shared<Creature>(creatureType)};
+                x = rand() % size.width;
+                y = rand() % size.height;
 
-                int x;
-                int y;
-                std::shared_ptr<Tile> tile;
+                tile = worldArea->GetTile({x, y});
+            } while (tile->ground_ == Hash("GroundWater") ||
+                     tile->ground_ == Hash("GroundDirt"));
 
-                do
-                {
-                    x = rand() % size.width;
-                    y = rand() % size.height;
+            if (tile)
+            {
+                tile->creature_ = newCreature;
 
-                    tile = worldArea->GetTile({x, y});
-                } while (tile->ground_ == Hash("GroundWater") ||
-                         tile->ground_ == Hash("GroundDirt"));
-
-                if (tile)
-                {
-                    tile->creature_ = newCreature;
-
-                    worldArea->creaturesMirror_.insert({newCreature, {x, y}});
-                }
-
-                creatureRespawns_.erase(it++);
-
-                continue;
+                worldArea->creaturesMirror_.insert({newCreature, {x, y}});
             }
 
-            ++it;
+            creatureRespawns_.erase(it++);
+
+            continue;
         }
-    }
 
-    void CreatureRespawner::RespawnCreature(int creatureType,
-                                            int respawnTimeMillis)
-    {
-        auto creatureRespawnTime{Now() + respawnTimeMillis};
-
-        creatureRespawns_.insert({creatureRespawnTime, creatureType});
+        ++it;
     }
+}
+
+void CreatureRespawner::RespawnCreature(int creatureType, int respawnTimeMillis)
+{
+    auto creatureRespawnTime{Now() + respawnTimeMillis};
+
+    creatureRespawns_.insert({creatureRespawnTime, creatureType});
 }

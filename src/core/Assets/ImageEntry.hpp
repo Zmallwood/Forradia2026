@@ -7,12 +7,9 @@
 
 #pragma once
 
-namespace Forradia
+class ImageEntry
 {
-    class ImageEntry
-    {
-      public:
-        std::shared_ptr<SDL_Texture> texture;
-        std::shared_ptr<SDL_Surface> surface;
-    };
-}
+  public:
+    std::shared_ptr<SDL_Texture> texture;
+    std::shared_ptr<SDL_Surface> surface;
+};

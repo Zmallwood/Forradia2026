@@ -9,46 +9,43 @@
 
 #include "Core/GUICore/Windows/GUIWindow.hpp"
 
-namespace Forradia
+class GUIEquipmentWindow : public GUIWindow
 {
-    class GUIEquipmentWindow : public GUIWindow
-    {
-      public:
-        GUIEquipmentWindow();
+  public:
+    GUIEquipmentWindow();
 
-      protected:
-        bool OnMouseDown(Uint8 mouseButton) override;
+  protected:
+    bool OnMouseDown(Uint8 mouseButton) override;
 
-        bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
+    bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
 
-        void RenderDerived() override;
+    void RenderDerived() override;
 
-      private:
-        RectF GetHeadSlotBounds();
+  private:
+    RectF GetHeadSlotBounds();
 
-        RectF GetChestSlotBounds();
+    RectF GetChestSlotBounds();
 
-        RectF GetLegsSlotBounds();
+    RectF GetLegsSlotBounds();
 
-        RectF GetFeetSlotBounds();
+    RectF GetFeetSlotBounds();
 
-        RectF GetRightHandSlotBounds();
+    RectF GetRightHandSlotBounds();
 
-        RectF GetLeftHandSlotBounds();
+    RectF GetLeftHandSlotBounds();
 
-        static constexpr float k_slotWidth_{0.037f};
-        static constexpr float k_marginY_{0.02f};
-        static constexpr std::string_view k_headSlotImage_{
-            "GUIEquipmentWindowHeadSlotBackground"};
-        static constexpr std::string_view k_chestSlotImage_{
-            "GUIEquipmentWindowChestSlotBackground"};
-        static constexpr std::string_view k_legsSlotImage_{
-            "GUIEquipmentWindowLegsSlotBackground"};
-        static constexpr std::string_view k_feetSlotImage_{
-            "GUIEquipmentWindowFeetSlotBackground"};
-        static constexpr std::string_view k_rightHandSlotImage_{
-            "GUIEquipmentWindowRightHandSlotBackground"};
-        static constexpr std::string_view k_leftHandSlotImage_{
-            "GUIEquipmentWindowLeftHandSlotBackground"};
-    };
-}
+    static constexpr float k_slotWidth_{0.037f};
+    static constexpr float k_marginY_{0.02f};
+    static constexpr std::string_view k_headSlotImage_{
+        "GUIEquipmentWindowHeadSlotBackground"};
+    static constexpr std::string_view k_chestSlotImage_{
+        "GUIEquipmentWindowChestSlotBackground"};
+    static constexpr std::string_view k_legsSlotImage_{
+        "GUIEquipmentWindowLegsSlotBackground"};
+    static constexpr std::string_view k_feetSlotImage_{
+        "GUIEquipmentWindowFeetSlotBackground"};
+    static constexpr std::string_view k_rightHandSlotImage_{
+        "GUIEquipmentWindowRightHandSlotBackground"};
+    static constexpr std::string_view k_leftHandSlotImage_{
+        "GUIEquipmentWindowLeftHandSlotBackground"};
+};

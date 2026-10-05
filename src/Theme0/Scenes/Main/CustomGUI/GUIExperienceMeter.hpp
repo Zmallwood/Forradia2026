@@ -9,14 +9,11 @@
 
 #include "Core/GUICore/GUIMeter.hpp"
 
-namespace Forradia
+class GUIExperienceMeter : public GUIMeter
 {
-    class GUIExperienceMeter : public GUIMeter
-    {
-      public:
-        GUIExperienceMeter();
+  public:
+    GUIExperienceMeter();
 
-      protected:
-        virtual float GetMeterProgress() override;
-    };
-}
+  protected:
+    virtual float GetMeterProgress() override;
+};

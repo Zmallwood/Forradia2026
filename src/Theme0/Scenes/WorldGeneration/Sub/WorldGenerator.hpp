@@ -7,30 +7,27 @@
 
 #pragma once
 
-namespace Forradia
+class WorldGenerator
 {
-    class WorldGenerator
-    {
-      public:
-        void GenerateNewWorld();
+  public:
+    void GenerateNewWorld();
 
-        void GenerateCivilization();
+    void GenerateCivilization();
 
-      private:
-        void ClearWithGrass();
+  private:
+    void ClearWithGrass();
 
-        void GenerateDirt();
+    void GenerateDirt();
 
-        void GenerateWater();
+    void GenerateWater();
 
-        void GenerateElevation();
+    void GenerateElevation();
 
-        void GenerateRock();
+    void GenerateRock();
 
-        void GenerateLargeObjects();
+    void GenerateLargeObjects();
 
-        void GenerateSmallObjects();
+    void GenerateSmallObjects();
 
-        void GenerateCreatures();
-    };
-}
+    void GenerateCreatures();
+};

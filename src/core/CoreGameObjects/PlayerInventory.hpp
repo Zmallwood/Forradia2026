@@ -7,25 +7,22 @@
 
 #pragma once
 
-namespace Forradia
+class Object;
+
+class PlayerInventory
 {
-    class Object;
+  public:
+    void AddObject(std::string_view objectName);
 
-    class PlayerInventory
-    {
-      public:
-        void AddObject(std::string_view objectName);
+    void AddObject(std::shared_ptr<Object> object, int slotIndex);
 
-        void AddObject(std::shared_ptr<Object> object, int slotIndex);
+    std::shared_ptr<Object> GetObject(int index);
 
-        std::shared_ptr<Object> GetObject(int index);
+    std::shared_ptr<Object> PickObject(int index);
 
-        std::shared_ptr<Object> PickObject(int index);
+    bool HasObject(int index);
 
-        bool HasObject(int index);
-
-      private:
-        static constexpr int k_maxObjects_{1000};
-        std::unordered_map<int, std::shared_ptr<Object>> objects_;
-    };
-}
+  private:
+    static constexpr int k_maxObjects_{1000};
+    std::unordered_map<int, std::shared_ptr<Object>> objects_;
+};

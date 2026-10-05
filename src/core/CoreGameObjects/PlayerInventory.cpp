@@ -8,58 +8,54 @@
 #include "PlayerInventory.hpp"
 #include "Core/WorldStructure/Object.hpp"
 
-namespace Forradia
+void PlayerInventory::AddObject(std::string_view objectName)
 {
-    void PlayerInventory::AddObject(std::string_view objectName)
+    for (auto i = 0; i < k_maxObjects_; i++)
     {
-        for (auto i = 0; i < k_maxObjects_; i++)
+        if (!objects_.contains(i))
         {
-            if (!objects_.contains(i))
-            {
-                objects_[i] = std::make_shared<Object>(objectName);
+            objects_[i] = std::make_shared<Object>(objectName);
 
-                return;
-            }
+            return;
         }
     }
+}
 
-    void PlayerInventory::AddObject(std::shared_ptr<Object> object,
-                                    int slotIndex)
+void PlayerInventory::AddObject(std::shared_ptr<Object> object, int slotIndex)
+{
+    objects_.insert({slotIndex, object});
+}
+
+std::shared_ptr<Object> PlayerInventory::GetObject(int index)
+{
+    if (objects_.contains(index))
     {
-        objects_.insert({slotIndex, object});
+        return objects_.at(index);
     }
 
-    std::shared_ptr<Object> PlayerInventory::GetObject(int index)
+    return nullptr;
+}
+
+std::shared_ptr<Object> PlayerInventory::PickObject(int index)
+{
+    for (auto it = objects_.begin(); it != objects_.end();)
     {
-        if (objects_.contains(index))
+        if (it->first == index)
         {
-            return objects_.at(index);
+            auto result{it->second};
+
+            objects_.erase(it++);
+
+            return result;
         }
 
-        return nullptr;
+        ++it;
     }
 
-    std::shared_ptr<Object> PlayerInventory::PickObject(int index)
-    {
-        for (auto it = objects_.begin(); it != objects_.end();)
-        {
-            if (it->first == index)
-            {
-                auto result{it->second};
+    return nullptr;
+}
 
-                objects_.erase(it++);
-
-                return result;
-            }
-
-            ++it;
-        }
-
-        return nullptr;
-    }
-
-    bool PlayerInventory::HasObject(int index)
-    {
-        return objects_.contains(index);
-    }
+bool PlayerInventory::HasObject(int index)
+{
+    return objects_.contains(index);
 }

@@ -7,59 +7,54 @@
 
 #include "ExperienceMath.hpp"
 
-namespace Forradia
+int CalculateCurrentLevel(int experience)
 {
-    int CalculateCurrentLevel(int experience)
-    {
-        auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
+    auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
 
-        return static_cast<int>(level);
-    }
+    return static_cast<int>(level);
+}
 
-    int CalculateExperienceForLevel(int level)
-    {
-        auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
+int CalculateExperienceForLevel(int level)
+{
+    auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
 
-        return static_cast<int>(experience);
-    }
+    return static_cast<int>(experience);
+}
 
-    int CalculateExperienceDifferenceToNextLevel(int experience)
-    {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+int CalculateExperienceDifferenceToNextLevel(int experience)
+{
+    auto currentLevel{CalculateCurrentLevel(experience)};
 
-        auto nextLevel{currentLevel + 1};
+    auto nextLevel{currentLevel + 1};
 
-        auto totalExperienceForCurrentLevel{
-            CalculateExperienceForLevel(currentLevel)};
+    auto totalExperienceForCurrentLevel{
+        CalculateExperienceForLevel(currentLevel)};
 
-        auto totalExperienceForNextLevel{
-            CalculateExperienceForLevel(nextLevel)};
+    auto totalExperienceForNextLevel{CalculateExperienceForLevel(nextLevel)};
 
-        return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
-    }
+    return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
+}
 
-    int CalculateExperienceRequiredForCurrentLevelStart(int experience)
-    {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+int CalculateExperienceRequiredForCurrentLevelStart(int experience)
+{
+    auto currentLevel{CalculateCurrentLevel(experience)};
 
-        return CalculateExperienceForLevel(currentLevel);
-    }
+    return CalculateExperienceForLevel(currentLevel);
+}
 
-    int CalculateExperienceGainedSinceLevelStart(int experience)
-    {
-        return experience -
-               CalculateExperienceRequiredForCurrentLevelStart(experience);
-    }
+int CalculateExperienceGainedSinceLevelStart(int experience)
+{
+    return experience -
+           CalculateExperienceRequiredForCurrentLevelStart(experience);
+}
 
-    float CalculateFractionalExperienceProgress(int experience)
-    {
-        auto experienceGain{
-            experience -
-            CalculateExperienceRequiredForCurrentLevelStart(experience)};
+float CalculateFractionalExperienceProgress(int experience)
+{
+    auto experienceGain{
+        experience -
+        CalculateExperienceRequiredForCurrentLevelStart(experience)};
 
-        auto experienceDiff{
-            CalculateExperienceDifferenceToNextLevel(experience)};
+    auto experienceDiff{CalculateExperienceDifferenceToNextLevel(experience)};
 
-        return static_cast<float>(experienceGain) / experienceDiff;
-    }
+    return static_cast<float>(experienceGain) / experienceDiff;
 }

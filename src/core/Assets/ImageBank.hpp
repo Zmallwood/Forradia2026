@@ -9,24 +9,21 @@
 
 #include "ImageEntry.hpp"
 
-namespace Forradia
+class ImageBank
 {
-    class ImageBank
-    {
-      public:
-        void LoadImages();
+  public:
+    void LoadImages();
 
-        std::shared_ptr<SDL_Texture> GetImage(int imageNameHash);
+    std::shared_ptr<SDL_Texture> GetImage(int imageNameHash);
 
-        Size GetImageSize(int imageNameHash);
+    Size GetImageSize(int imageNameHash);
 
-        bool IsPixelVisible(int imageNameHash, float x, float y);
+    bool IsPixelVisible(int imageNameHash, float x, float y);
 
-      private:
-        void LoadSingleImage(std::string_view fullPath);
+  private:
+    void LoadSingleImage(std::string_view fullPath);
 
-        static constexpr std::string_view k_relativeImagesDirectory_{
-            "resources/Images/"};
-        std::unordered_map<int, ImageEntry> images_;
-    };
-}
+    static constexpr std::string_view k_relativeImagesDirectory_{
+        "resources/Images/"};
+    std::unordered_map<int, ImageEntry> images_;
+};
