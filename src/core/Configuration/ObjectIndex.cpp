@@ -144,7 +144,7 @@ ObjectIndex::ObjectIndex()
 
     AddEntry(
         "ObjectPlannedWoodWallNorthPlank1", "Planned wood wall north, plank 1",
-        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
         "ObjectPlannedObject");
@@ -164,7 +164,7 @@ ObjectIndex::ObjectIndex()
 
     AddEntry(
         "ObjectPlannedWoodWallNorthPlank2", "Planned wood wall north, plank 2",
-        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
         "ObjectPlannedObject");
@@ -184,7 +184,7 @@ ObjectIndex::ObjectIndex()
 
     AddEntry(
         "ObjectPlannedWoodWallNorthPlank3", "Planned wood wall north, plank 3",
-        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
         "ObjectPlannedObject");
@@ -204,7 +204,7 @@ ObjectIndex::ObjectIndex()
 
     AddEntry(
         "ObjectPlannedWoodWallNorthPlank4", "Planned wood wall north, plank 1",
-        ObjectFlags::k_unmovable, {PointF{0.5f, 0.15f}, PointF{0.5f, 0.85f}},
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
         "ObjectPlannedObject");
@@ -228,6 +228,106 @@ ObjectIndex::ObjectIndex()
         "ObjectWoodWallPlankNorth4", "Wood wall", ObjectFlags::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
         "ObjectWoodWallPlankNorth4WorldView");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankWest1");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallWestPlank1", "Planned wood wall west, plank 1",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankWest1,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankWest2 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankWest2");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallWestPlank2", "Planned wood wall west, plank 2",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankWest2,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankWest3 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankWest3");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallWestPlank3", "Planned wood wall west, plank 3",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankWest3,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankWest4 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankWest4");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallWestPlank4", "Planned wood wall west, plank 4",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankWest4,
+        "ObjectPlannedObject");
+
+    AddEntry(
+        "ObjectWoodWallPlankWest1", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankWest1WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankWest2", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankWest2WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankWest3", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankWest3WorldView");
+
+    AddEntry(
+        "ObjectWoodWallPlankWest4", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankWest4WorldView");
 }
 
 void ObjectIndex::AddEntry(
