@@ -6,12 +6,12 @@
 
 void ImageBank::LoadImages()
 {
-    auto imagesDirectory{SDL_GetBasePath() +
-                         std::string(k_relativeImagesDirectory_)};
+    auto imagesDirectory =
+        SDL_GetBasePath() + std::string(k_relativeImagesDirectory_);
 
     imagesDirectory = Replace(imagesDirectory, "\\", "/");
 
-    auto rdi{std::filesystem::recursive_directory_iterator(imagesDirectory)};
+    auto rdi = std::filesystem::recursive_directory_iterator(imagesDirectory);
 
     for (const auto &entry : rdi)
     {
@@ -24,42 +24,7 @@ void ImageBank::LoadImages()
 
 void ImageBank::LoadSingleImage(std::string_view fullPath)
 {
-    std::string path{Replace(fullPath, "\\", "/")};
-
-    auto pureName{GetFileNameNoExt(path)};
-
-    auto hash{Hash(pureName)};
-
-    auto loaded{IMG_Load(path.c_str())};
-
-    if (!loaded)
-    {
-        std::cout << "Failed to load image " << path << ": " << IMG_GetError()
-                  << std::endl;
-        return;
-    }
-
-    auto converted{SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32, 0)};
-
-    SDL_FreeSurface(loaded);
-
-    if (!converted)
-    {
-        std::cout << "Failed to convert image " << path << ": "
-                  << SDL_GetError() << std::endl;
-        return;
-    }
-
-    auto surface{std::shared_ptr<SDL_Surface>(converted, SDLDeleter())};
-
-    auto texture{std::shared_ptr<SDL_Texture>(
-        SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(),
-                                     surface.get()),
-        SDLDeleter())};
-
-    ImageEntry entry{texture, surface};
-
-    images_.insert({hash, entry});
+#include "ImageBank_LoadSingleImage.cpp.inc"
 }
 
 std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash)
@@ -74,8 +39,8 @@ std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash)
 
 Size ImageBank::GetImageSize(int imageNameHash)
 {
-    auto width{0};
-    auto height{0};
+    auto width = 0;
+    auto height = 0;
 
     if (images_.contains(imageNameHash))
     {
@@ -90,7 +55,7 @@ bool ImageBank::IsPixelVisible(int imageNameHash, float x, float y)
 {
     if (images_.contains(imageNameHash))
     {
-        auto surface{images_.at(imageNameHash).surface.get()};
+        auto surface = images_.at(imageNameHash).surface.get();
 
         if (!surface || !surface->pixels || surface->w <= 0 ||
             surface->h <= 0 || x < 0.0f || y < 0.0f || x >= 1.0f || y >= 1.0f)
@@ -98,8 +63,8 @@ bool ImageBank::IsPixelVisible(int imageNameHash, float x, float y)
             return false;
         }
 
-        auto xPx{static_cast<int>(x * static_cast<float>(surface->w))};
-        auto yPx{static_cast<int>(y * static_cast<float>(surface->h))};
+        auto xPx = static_cast<int>(x * static_cast<float>(surface->w));
+        auto yPx = static_cast<int>(y * static_cast<float>(surface->h));
 
         if (xPx < 0)
         {
@@ -121,8 +86,8 @@ bool ImageBank::IsPixelVisible(int imageNameHash, float x, float y)
             yPx = surface->h - 1;
         }
 
-        auto pixels{static_cast<Uint8 *>(surface->pixels)};
-        auto alpha{pixels[yPx * surface->pitch + xPx * 4 + 3]};
+        auto pixels = static_cast<Uint8 *>(surface->pixels);
+        auto alpha = pixels[yPx * surface->pitch + xPx * 4 + 3];
 
         return alpha > 0;
     }

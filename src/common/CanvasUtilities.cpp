@@ -6,8 +6,8 @@
 
 Size GetCanvasSize()
 {
-    int width{0};
-    int height{0};
+    int width = 0;
+    int height = 0;
 
     SDL_GetWindowSize(_<SDLDevice>().window_.get(), &width, &height);
 
@@ -16,7 +16,7 @@ Size GetCanvasSize()
 
 float GetAspectRatio()
 {
-    auto size{GetCanvasSize()};
+    auto size = GetCanvasSize();
 
     return static_cast<float>(size.width) / size.height;
 }

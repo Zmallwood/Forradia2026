@@ -14,7 +14,7 @@ std::shared_ptr<T> &SingletonStorage()
 template <class T>
 std::shared_ptr<T> GetSingletonPtr()
 {
-    auto &instance{SingletonStorage<T>()};
+    auto &instance = SingletonStorage<T>();
 
     if (!instance)
     {

@@ -27,6 +27,13 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         return;
     }
 
+    auto now{Now()};
+
+    if (now < _<Player>().ticksLastImpact_ + InvertSpeed(_<Player>().impactSpeed_))
+    {
+        return;
+    }
+
     auto orderedObjects{GetOrderedObjects()};
 
     auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
@@ -34,8 +41,6 @@ void ObjectImpact::OnMouseDown(Uint8 button)
     constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
     constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
     constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
-
-    auto now{Now()};
 
     auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
     auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
@@ -149,6 +154,8 @@ void ObjectImpact::OnMouseDown(Uint8 button)
                 impactPoint.completed = true;
 
                 completedImpactPointThisClick = true;
+
+                _<Player>().ticksLastImpact_ = now;
 
                 _<FirstPersonView>().completedObjectImpacts_.push_back(
                     {PointF{impactPointCenterX, impactPointCenterY}, now});

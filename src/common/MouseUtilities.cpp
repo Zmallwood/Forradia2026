@@ -5,7 +5,7 @@
 
 PointF GetMousePosition()
 {
-    auto canvasSize{GetCanvasSize()};
+    auto canvasSize = GetCanvasSize();
 
     int x;
     int y;

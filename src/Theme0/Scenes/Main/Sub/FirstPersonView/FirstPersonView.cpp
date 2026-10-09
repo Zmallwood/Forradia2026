@@ -503,5 +503,26 @@ void FirstPersonView::Render()
                                     Colors::k_red);
     }
 
+    if (now <
+        _<Player>().ticksLastImpact_ + InvertSpeed(_<Player>().impactSpeed_))
+    {
+        constexpr auto k_impactReloadWidth{0.1f};
+        constexpr auto k_impactReloadHeight{0.01f};
+
+        auto progress{static_cast<float>(now - _<Player>().ticksLastImpact_) /
+                      InvertSpeed(_<Player>().impactSpeed_)};
+
+        auto filledWidth{k_impactReloadWidth * (1.0f - progress)};
+
+        auto x{1.0f - viewWidth + 0.25f - k_impactReloadWidth / 2};
+        auto y{0.5f - k_impactReloadHeight / 2};
+
+        _<ColorRenderer>().FillRect(x, y, k_impactReloadWidth,
+                                    k_impactReloadHeight, Colors::k_black);
+
+        _<ColorRenderer>().FillRect(x, y, filledWidth, k_impactReloadHeight,
+                                    Colors::k_gold);
+    }
+
     _<SDLDevice>().ResetClip();
 }

@@ -19,7 +19,7 @@ class ImageBank
   private:
     void LoadSingleImage(std::string_view fullPath);
 
-    static constexpr std::string_view k_relativeImagesDirectory_{
-        "resources/Images/"};
+    static constexpr std::string_view k_relativeImagesDirectory_ =
+        "resources/Images/";
     std::unordered_map<int, ImageEntry> images_;
 };

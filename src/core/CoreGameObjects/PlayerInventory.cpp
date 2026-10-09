@@ -38,7 +38,7 @@ std::shared_ptr<Object> PlayerInventory::PickObject(int index)
     {
         if (it->first == index)
         {
-            auto result{it->second};
+            auto result = it->second;
 
             objects_.erase(it++);
 

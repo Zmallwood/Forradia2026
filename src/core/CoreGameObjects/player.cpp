@@ -27,13 +27,13 @@ Player::Player()
 
 void Player::SpawnOnSuitableLocation()
 {
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea = _<World>().currentWorldArea_;
 
-    auto worldAreaSize{worldArea->GetSize()};
+    auto worldAreaSize = worldArea->GetSize();
 
     position_ = {worldAreaSize.width / 2, worldAreaSize.height / 2};
 
-    auto tile{worldArea->GetTile(position_)};
+    auto tile = worldArea->GetTile(position_);
 
     while (tile->ground_ == Hash("GroundWater"))
     {
@@ -47,10 +47,10 @@ void Player::SpawnOnSuitableLocation()
 
 void Player::MoveNorth()
 {
-    auto newX{position_.x};
-    auto newY{position_.y - 1};
+    auto newX = position_.x;
+    auto newY = position_.y - 1;
 
-    auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
+    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -67,10 +67,10 @@ void Player::MoveNorth()
 
 void Player::MoveEast()
 {
-    auto newX{position_.x + 1};
-    auto newY{position_.y};
+    auto newX = position_.x + 1;
+    auto newY = position_.y;
 
-    auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
+    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -87,10 +87,10 @@ void Player::MoveEast()
 
 void Player::MoveSouth()
 {
-    auto newX{position_.x};
-    auto newY{position_.y + 1};
+    auto newX = position_.x;
+    auto newY = position_.y + 1;
 
-    auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
+    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -107,10 +107,10 @@ void Player::MoveSouth()
 
 void Player::MoveWest()
 {
-    auto newX{position_.x - 1};
-    auto newY{position_.y};
+    auto newX = position_.x - 1;
+    auto newY = position_.y;
 
-    auto newTile{_<World>().currentWorldArea_->GetTile({newX, newY})};
+    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))

@@ -7,5 +7,5 @@ class CreatureIndexEntry
 {
   public:
     std::string label;
-    int corpseType{0};
+    int corpseType = 0;
 };
