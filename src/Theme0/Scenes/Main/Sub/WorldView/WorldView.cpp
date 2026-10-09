@@ -248,27 +248,34 @@ void WorldView::Render()
                 auto worldViewObjectType{
                     _<ObjectIndex>().GetWorldViewObjectType(objectType)};
 
+                auto usedObjectType{objectType};
+
                 if (worldViewObjectType != 0)
                 {
-                    objectType = worldViewObjectType;
+                    usedObjectType = worldViewObjectType;
                 }
 
-                auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+                auto isSmallObject{
+                    _<ObjectIndex>().IsSmallObject(usedObjectType)};
 
                 if (isSmallObject)
                 {
                     continue;
                 }
 
-                auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+                auto imageSize{_<ImageBank>().GetImageSize(usedObjectType)};
 
                 auto objectWidth{imageSize.width / 60.0f * tileWidth};
                 auto objectHeight{imageSize.height / 60.0f * tileHeight};
 
-                auto objectX{tileX + tileWidth / 2 - objectWidth / 2};
-                auto objectY{tileY + tileHeight / 2 - objectHeight};
+                auto renderOffset{_<ObjectIndex>().GetRenderOffset(objectType)};
 
-                _<ImageRenderer>().DrawImage(objectType, objectX, objectY,
+                auto objectX{tileX + tileWidth / 2 - objectWidth / 2 +
+                             renderOffset.x * tileWidth};
+                auto objectY{tileY + tileHeight / 2 - objectHeight +
+                             renderOffset.y * tileHeight};
+
+                _<ImageRenderer>().DrawImage(usedObjectType, objectX, objectY,
                                              objectWidth, objectHeight);
             }
 

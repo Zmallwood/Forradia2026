@@ -29,6 +29,8 @@ class ObjectIndex
 
     int GetWorldViewObjectType(int objectHash);
 
+    PointF GetRenderOffset(int objectHash);
+
   private:
     void AddEntry(
         std::string_view objectName, std::string_view label, int flags,
@@ -37,7 +39,8 @@ class ObjectIndex
         std::function<void()> singleImpactPointCompletedAction = []() {},
         std::function<void(std::shared_ptr<Object>)>
             allImpactPointsCompletedAction = [](std::shared_ptr<Object>) {},
-        std::string_view worldViewObjectType = "");
+        std::string_view worldViewObjectType = "",
+        PointF renderOffset = PointF{0.0f, 0.0f});
 
     std::unordered_map<int, ObjectIndexEntry> entries_;
 };
