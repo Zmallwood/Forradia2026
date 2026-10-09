@@ -129,6 +129,14 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
 
+        auto renderOffset{_<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType)};
+
+        imageX += renderOffset.x * tileWidth;
+
+        constexpr auto k_tileHeight {0.25f};
+
+        imageY += renderOffset.y * k_tileHeight;
+
         auto impactPointWidth{GameProperties::k_impactPointWidth_};
         auto impactPointHeight{ConvertWidthToHeight(impactPointWidth)};
 

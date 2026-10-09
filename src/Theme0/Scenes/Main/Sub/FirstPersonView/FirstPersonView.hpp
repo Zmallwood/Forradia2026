@@ -19,4 +19,5 @@ class FirstPersonView
     static constexpr int k_hitSelfEffectDuration_{100};
     static constexpr int k_impactPointEffectDuration_{100};
     static constexpr float k_wieldedObjectScale_{0.15f};
+    static constexpr float k_handsOpacity_{0.5f};
 };

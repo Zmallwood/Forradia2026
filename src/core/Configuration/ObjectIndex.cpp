@@ -528,6 +528,29 @@ ObjectIndex::ObjectIndex()
         "ObjectWoodWallPlankWest4", "Wood wall", ObjectFlags::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
         "ObjectWoodWallPlankWest4WorldView", PointF{0.0f, 0.5f});
+
+    auto allImpactPointsCompletedActionObjectWoodFloor =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->RemoveObject(object);
+
+        facedTile->ground_ = Hash("GroundWoodFloor");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodFloor", "Planned wood floor",
+        ObjectFlags::k_unmovable,
+        {PointF{0.25f, 0.25f}, PointF{0.75f, 0.25f}, PointF{0.25f, 0.75f},
+         PointF{0.75f, 0.75f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodFloor, "ObjectPlannedObject",
+        PointF{0.0f, 0.0f}, PointF{0.0f, 0.3f});
 }
 
 void ObjectIndex::AddEntry(
@@ -535,7 +558,8 @@ void ObjectIndex::AddEntry(
     std::vector<PointF> impactPoints, std::vector<std::string> impactObjects,
     std::function<void()> singleImpactPointCompletedAction,
     std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction,
-    std::string_view worldViewObjectType, PointF renderOffset)
+    std::string_view worldViewObjectType, PointF worldViewRenderOffset,
+    PointF firstPersonViewRenderOffset)
 {
     std::vector<int> impactObjectHashes;
 
@@ -551,11 +575,11 @@ void ObjectIndex::AddEntry(
         worldViewObjectTypeHash = Hash(worldViewObjectType);
     }
 
-    entries_.insert(
-        {Hash(name),
-         {label.data(), flags, impactPoints, impactObjectHashes,
-          singleImpactPointCompletedAction, allImpactPointsCompletedAction,
-          worldViewObjectTypeHash, renderOffset}});
+    entries_.insert({Hash(name),
+                     {label.data(), flags, impactPoints, impactObjectHashes,
+                      singleImpactPointCompletedAction,
+                      allImpactPointsCompletedAction, worldViewObjectTypeHash,
+                      worldViewRenderOffset, firstPersonViewRenderOffset}});
 }
 
 bool ObjectIndex::IsSmallObject(int objectHash)
@@ -652,11 +676,21 @@ int ObjectIndex::GetWorldViewObjectType(int objectHash)
     return 0;
 }
 
-PointF ObjectIndex::GetRenderOffset(int objectHash)
+PointF ObjectIndex::GetWorldViewRenderOffset(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
-        return entries_.at(objectHash).renderOffset;
+        return entries_.at(objectHash).worldViewRenderOffset;
+    }
+
+    return PointF{0.0f, 0.0f};
+}
+
+PointF ObjectIndex::GetFirstPersonViewRenderOffset(int objectHash)
+{
+    if (entries_.contains(objectHash))
+    {
+        return entries_.at(objectHash).firstPersonViewRenderOffset;
     }
 
     return PointF{0.0f, 0.0f};

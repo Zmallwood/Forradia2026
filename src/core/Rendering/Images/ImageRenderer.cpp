@@ -6,7 +6,7 @@
 #include "Core/SDLDevice/SDLDevice.hpp"
 
 void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
-                              float height, bool flipHorizontal)
+                              float height, float opacity, bool flipHorizontal)
 {
     auto canvasSize{GetCanvasSize()};
 
@@ -21,28 +21,34 @@ void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
 
     SDL_RendererFlip flip{flipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE};
 
+    auto opacityInt{static_cast<int>(opacity * 255)};
+
+    SDL_SetTextureAlphaMod(image.get(), opacityInt);
+
     SDL_RenderCopyEx(_<SDLDevice>().renderer_.get(), image.get(), nullptr,
                      &rect, 0, nullptr, flip);
+
+    SDL_SetTextureAlphaMod(image.get(), 255);
 }
 
 void ImageRenderer::DrawImage(std::string_view imageName, float x, float y,
-                              float width, float height, bool flipHorizontal)
+                              float width, float height, float opacity, bool flipHorizontal)
 {
     auto hash{Hash(imageName)};
 
-    DrawImage(hash, x, y, width, height, flipHorizontal);
+    DrawImage(hash, x, y, width, height, opacity, flipHorizontal);
 }
 
 void ImageRenderer::DrawImage(int imageNameHash, RectF bounds,
-                              bool flipHorizontal)
+                              float opacity, bool flipHorizontal)
 {
     DrawImage(imageNameHash, bounds.x, bounds.y, bounds.width, bounds.height,
-              flipHorizontal);
+              opacity, flipHorizontal);
 }
 
 void ImageRenderer::DrawImage(std::string_view imageName, RectF bounds,
-                              bool flipHorizontal)
+                              float opacity, bool flipHorizontal)
 {
     DrawImage(imageName, bounds.x, bounds.y, bounds.width, bounds.height,
-              flipHorizontal);
+              opacity, flipHorizontal);
 }

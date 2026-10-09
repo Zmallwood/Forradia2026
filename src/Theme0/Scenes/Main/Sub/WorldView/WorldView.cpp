@@ -268,7 +268,8 @@ void WorldView::Render()
                 auto objectWidth{imageSize.width / 60.0f * tileWidth};
                 auto objectHeight{imageSize.height / 60.0f * tileHeight};
 
-                auto renderOffset{_<ObjectIndex>().GetRenderOffset(objectType)};
+                auto renderOffset{
+                    _<ObjectIndex>().GetWorldViewRenderOffset(objectType)};
 
                 auto objectX{tileX + tileWidth / 2 - objectWidth / 2 +
                              renderOffset.x * tileWidth};

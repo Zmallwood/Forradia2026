@@ -93,6 +93,11 @@ void FirstPersonView::Render()
         groundImageName = "GroundFirstPersonCobblestone";
         break;
     }
+    case Hash("GroundWoodFloor"):
+    {
+        groundImageName = "GroundFirstPersonWoodFloor";
+        break;
+    }
     }
 
     constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
@@ -165,6 +170,15 @@ void FirstPersonView::Render()
 
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
+
+        auto renderOffset{
+            _<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType)};
+
+        imageX += renderOffset.x * tileWidth;
+
+        constexpr auto k_tileHeight{0.25f};
+
+        imageY += renderOffset.y * k_tileHeight;
 
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
@@ -350,6 +364,15 @@ void FirstPersonView::Render()
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
 
+        auto renderOffset{
+            _<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType)};
+
+        imageX += renderOffset.x * tileWidth;
+
+        constexpr auto k_tileHeight{0.25f};
+
+        imageY += renderOffset.y * k_tileHeight;
+
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
 
@@ -470,7 +493,8 @@ void FirstPersonView::Render()
         auto rightHandY{handY - imageHeight / 2.0f};
 
         _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
-                                     rightHandY, imageWidth, imageHeight);
+                                     rightHandY, imageWidth, imageHeight,
+                                     k_handsOpacity_);
     }
 
     if (leftHandObject)
@@ -486,13 +510,14 @@ void FirstPersonView::Render()
         auto leftHandY{handY - imageHeight / 2.0f};
 
         _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
-                                     leftHandY, imageWidth, imageHeight, true);
+                                     leftHandY, imageWidth, imageHeight,
+                                     k_handsOpacity_, true);
     }
 
     _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
-                                 handHeight);
+                                 handHeight, k_handsOpacity_);
     _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
-                                 handHeight);
+                                 handHeight, k_handsOpacity_);
 
     _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
                                 Colors::k_white);

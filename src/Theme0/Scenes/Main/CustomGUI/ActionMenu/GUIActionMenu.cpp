@@ -159,11 +159,11 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank1",
-                                       {tileUnitsWidth - tileUnitsWidth / 4 -
-                                            tileUnitsWidth / 4 * 0 +
-                                            tileUnitsWidth / 8,
-                                        tileUnitsWidth - 1});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallSouthPlank1",
+                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                         tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8,
+                     tileUnitsWidth - 1});
             };
 
             entries_.push_back(entryPlannedWoodWallSouthPlank1);
@@ -175,11 +175,11 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank2",
-                                       {tileUnitsWidth - tileUnitsWidth / 4 -
-                                            tileUnitsWidth / 4 * 1 +
-                                            tileUnitsWidth / 8,
-                                        tileUnitsWidth - 1});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallSouthPlank2",
+                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                         tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8,
+                     tileUnitsWidth - 1});
             };
 
             entries_.push_back(entryPlannedWoodWallSouthPlank2);
@@ -191,11 +191,11 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank3",
-                                       {tileUnitsWidth - tileUnitsWidth / 4 -
-                                            tileUnitsWidth / 4 * 2 +
-                                            tileUnitsWidth / 8,
-                                        tileUnitsWidth - 1});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallSouthPlank3",
+                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                         tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8,
+                     tileUnitsWidth - 1});
             };
 
             entries_.push_back(entryPlannedWoodWallSouthPlank3);
@@ -207,11 +207,11 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank4",
-                                       {tileUnitsWidth - tileUnitsWidth / 4 -
-                                            tileUnitsWidth / 4 * 3 +
-                                            tileUnitsWidth / 8,
-                                        tileUnitsWidth - 1});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallSouthPlank4",
+                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                         tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8,
+                     tileUnitsWidth - 1});
             };
 
             entries_.push_back(entryPlannedWoodWallSouthPlank4);
@@ -223,10 +223,10 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallWestPlank1",
-                                       {0, tileUnitsWidth - tileUnitsWidth / 4 -
-                                               tileUnitsWidth / 4 * 0 +
-                                               tileUnitsWidth / 8});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallWestPlank1",
+                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                            tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
             };
 
             entries_.push_back(entryPlannedWoodWallWestPlank1);
@@ -238,10 +238,10 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallWestPlank2",
-                                       {0, tileUnitsWidth - tileUnitsWidth / 4 -
-                                               tileUnitsWidth / 4 * 1 +
-                                               tileUnitsWidth / 8});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallWestPlank2",
+                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                            tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
             };
 
             entries_.push_back(entryPlannedWoodWallWestPlank2);
@@ -253,10 +253,10 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallWestPlank3",
-                                       {0, tileUnitsWidth - tileUnitsWidth / 4 -
-                                               tileUnitsWidth / 4 * 2 +
-                                               tileUnitsWidth / 8});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallWestPlank3",
+                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                            tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
             };
 
             entries_.push_back(entryPlannedWoodWallWestPlank3);
@@ -268,13 +268,26 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects{tile->tileObjects_};
 
-                tileObjects->AddObject("ObjectPlannedWoodWallWestPlank4",
-                                       {0, tileUnitsWidth - tileUnitsWidth / 4 -
-                                               tileUnitsWidth / 4 * 3 +
-                                               tileUnitsWidth / 8});
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodWallWestPlank4",
+                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                            tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
             };
 
             entries_.push_back(entryPlannedWoodWallWestPlank4);
+
+            GUIActionMenuEntry entryPlannedWoodFloor;
+            entryPlannedWoodFloor.label = "Plan wood floor";
+            entryPlannedWoodFloor.action = [=]()
+            {
+                auto tileObjects{tile->tileObjects_};
+
+                tileObjects->AddObject(
+                    "ObjectPlannedWoodFloor",
+                    {tileUnitsWidth / 2, tileUnitsWidth / 2});
+            };
+
+            entries_.push_back(entryPlannedWoodFloor);
         }
     }
     else if (mouseButton == SDL_BUTTON_LEFT)
