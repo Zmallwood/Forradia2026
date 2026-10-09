@@ -290,7 +290,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             entries_.push_back(entryPlannedWoodFloor);
         }
     }
-    else if (mouseButton == SDL_BUTTON_LEFT)
+    else if (mouseButton == SDL_BUTTON_LEFT && visible_)
     {
         visible_ = false;
 
