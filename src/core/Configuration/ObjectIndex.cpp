@@ -329,6 +329,106 @@ ObjectIndex::ObjectIndex()
         {}, []() {}, [](std::shared_ptr<Object>) {},
         "ObjectWoodWallPlankEast4WorldView", PointF{0.0f, 0.5f});
 
+    auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankSouth1");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallSouthPlank1", "Planned wood wall south, plank 1",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankSouth1,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankSouth2");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallSouthPlank2", "Planned wood wall south, plank 2",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankSouth2,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankSouth3");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallSouthPlank3", "Planned wood wall south, plank 3",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankSouth3,
+        "ObjectPlannedObject");
+
+    auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4 =
+        [](std::shared_ptr<Object> object)
+    {
+        auto worldArea = _<World>().currentWorldArea_;
+
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+
+        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+
+        facedTile->tileObjects_->TransformObject(object,
+                                                 "ObjectWoodWallPlankSouth4");
+    };
+
+    AddEntry(
+        "ObjectPlannedWoodWallSouthPlank4", "Planned wood wall south, plank 4",
+        ObjectFlags::k_unmovable, {PointF{0.5f, 0.08f}, PointF{0.5f, 0.92f}},
+        {"ObjectHammer"}, []() {},
+        allImpactPointsCompletedActionObjectWoodWallPlankSouth4,
+        "ObjectPlannedObject");
+
+    AddEntry(
+        "ObjectWoodWallPlankSouth1", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankSouth1WorldView", PointF{0.0f, 0.5f});
+
+    AddEntry(
+        "ObjectWoodWallPlankSouth2", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankSouth2WorldView", PointF{0.0f, 0.5f});
+
+    AddEntry(
+        "ObjectWoodWallPlankSouth3", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankSouth3WorldView", PointF{0.0f, 0.5f});
+
+    AddEntry(
+        "ObjectWoodWallPlankSouth4", "Wood wall", ObjectFlags::k_unmovable, {},
+        {}, []() {}, [](std::shared_ptr<Object>) {},
+        "ObjectWoodWallPlankSouth4WorldView", PointF{0.0f, 0.5f});
+
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
         [](std::shared_ptr<Object> object)
     {

@@ -152,6 +152,70 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
             entries_.push_back(entryPlannedWoodWallEastPlank4);
 
+            GUIActionMenuEntry entryPlannedWoodWallSouthPlank1;
+            entryPlannedWoodWallSouthPlank1.label =
+                "Plan wood wall south, plank 1";
+            entryPlannedWoodWallSouthPlank1.action = [=]()
+            {
+                auto tileObjects{tile->tileObjects_};
+
+                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank1",
+                                       {tileUnitsWidth - tileUnitsWidth / 4 -
+                                            tileUnitsWidth / 4 * 0 +
+                                            tileUnitsWidth / 8,
+                                        tileUnitsWidth - 1});
+            };
+
+            entries_.push_back(entryPlannedWoodWallSouthPlank1);
+
+            GUIActionMenuEntry entryPlannedWoodWallSouthPlank2;
+            entryPlannedWoodWallSouthPlank2.label =
+                "Plan wood wall south, plank 2";
+            entryPlannedWoodWallSouthPlank2.action = [=]()
+            {
+                auto tileObjects{tile->tileObjects_};
+
+                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank2",
+                                       {tileUnitsWidth - tileUnitsWidth / 4 -
+                                            tileUnitsWidth / 4 * 1 +
+                                            tileUnitsWidth / 8,
+                                        tileUnitsWidth - 1});
+            };
+
+            entries_.push_back(entryPlannedWoodWallSouthPlank2);
+
+            GUIActionMenuEntry entryPlannedWoodWallSouthPlank3;
+            entryPlannedWoodWallSouthPlank3.label =
+                "Plan wood wall south, plank 3";
+            entryPlannedWoodWallSouthPlank3.action = [=]()
+            {
+                auto tileObjects{tile->tileObjects_};
+
+                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank3",
+                                       {tileUnitsWidth - tileUnitsWidth / 4 -
+                                            tileUnitsWidth / 4 * 2 +
+                                            tileUnitsWidth / 8,
+                                        tileUnitsWidth - 1});
+            };
+
+            entries_.push_back(entryPlannedWoodWallSouthPlank3);
+
+            GUIActionMenuEntry entryPlannedWoodWallSouthPlank4;
+            entryPlannedWoodWallSouthPlank4.label =
+                "Plan wood wall south, plank 4";
+            entryPlannedWoodWallSouthPlank4.action = [=]()
+            {
+                auto tileObjects{tile->tileObjects_};
+
+                tileObjects->AddObject("ObjectPlannedWoodWallSouthPlank4",
+                                       {tileUnitsWidth - tileUnitsWidth / 4 -
+                                            tileUnitsWidth / 4 * 3 +
+                                            tileUnitsWidth / 8,
+                                        tileUnitsWidth - 1});
+            };
+
+            entries_.push_back(entryPlannedWoodWallSouthPlank4);
+
             GUIActionMenuEntry entryPlannedWoodWallWestPlank1;
             entryPlannedWoodWallWestPlank1.label =
                 "Plan wood wall west, plank 1";
