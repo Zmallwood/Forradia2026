@@ -31,14 +31,15 @@ void Player::SpawnOnSuitableLocation()
 
     auto worldAreaSize = worldArea->GetSize();
 
-    position_ = {worldAreaSize.width / 2, worldAreaSize.height / 2};
+    position_ = {1 + (worldAreaSize.width - 2) / 2,
+                 1 + (worldAreaSize.height - 2) / 2};
 
     auto tile = worldArea->GetTile(position_);
 
     while (tile->ground_ == Hash("GroundWater"))
     {
-        position_ = {rand() % worldAreaSize.width,
-                     rand() % worldAreaSize.height};
+        position_ = {1 + (rand() % (worldAreaSize.width - 2)),
+                     1 + (rand() % (worldAreaSize.height - 2))};
         tile = worldArea->GetTile(position_);
     }
 
