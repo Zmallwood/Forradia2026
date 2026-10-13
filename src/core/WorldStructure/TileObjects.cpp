@@ -86,3 +86,16 @@ void TileObjects::RemoveObject(std::shared_ptr<Object> object)
         }
     }
 }
+
+bool TileObjects::HasObjectOfType(std::string_view objectType)
+{
+    for (auto it = objects_.begin(); it != objects_.end(); ++it)
+    {
+        if (it->second->type_ == Hash(objectType))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}

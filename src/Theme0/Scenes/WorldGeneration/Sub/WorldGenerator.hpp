@@ -13,6 +13,14 @@ class WorldGenerator
   private:
     void ClearWithGrass();
 
+    void Traverse1(std::function<void(int, int)> callback);
+
+    void Traverse2(std::function<void(int, int)> callback);
+
+    void Traverse3(std::function<void(int, int)> callback);
+
+    void Traverse4(std::function<void(int, int)> callback);
+
     void GenerateDirt();
 
     void GenerateWater();

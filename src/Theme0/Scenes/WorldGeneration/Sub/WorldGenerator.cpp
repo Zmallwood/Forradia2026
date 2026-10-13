@@ -14,19 +14,748 @@ void WorldGenerator::GenerateNewWorld()
 {
     ClearWithGrass();
 
-    GenerateDirt();
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
 
-    GenerateWater();
+    for (auto y = 0; y < size.height; y++)
+    {
+        for (auto x = 0; x < size.width; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+            tile->elevation_ = 1;
+        }
+    }
 
-    GenerateElevation();
+    for (auto y = 1; y < size.height - 1; y++)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
 
-    GenerateRock();
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+
+            if (groundNW == Hash("GroundGrass") &&
+                groundN == Hash("GroundGrass") &&
+                groundNE == Hash("GroundGrass") &&
+                groundW == Hash("GroundGrass"))
+            {
+                auto makeWater{rand() % 1000 < 3};
+
+                if (makeWater)
+                {
+                    tile->ground_ = Hash("GroundWater");
+
+                    tileW->ground_ = Hash("GroundWater");
+
+                    tile->elevation_ = 0;
+                    tileW->elevation_ = 0;
+                }
+            }
+        }
+    }
+
+    auto fnMakeWater = std::function<void(int, int)>(
+        [&](int x, int y)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileE{worldArea->GetTile(x + 1, y)};
+            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
+            auto tileS{worldArea->GetTile(x, y + 1)};
+            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+            auto groundE{tileE->ground_};
+            auto groundSW{tileSW->ground_};
+            auto groundS{tileS->ground_};
+            auto groundSE{tileSE->ground_};
+
+            auto numWaterTiles{0};
+
+            if (groundNW == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundN == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundNE == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundW == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundE == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundSW == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundS == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+            if (groundSE == Hash("GroundWater"))
+            {
+                numWaterTiles++;
+            }
+
+            if (numWaterTiles == 2)
+            {
+                auto makeWater{rand() % 1000 < 500};
+
+                if (makeWater)
+                {
+                    tile->ground_ = Hash("GroundWater");
+
+                    tile->elevation_ = 0;
+                }
+            }
+            else if (numWaterTiles > 2)
+            {
+                auto makeWater{rand() % 1000 < 600};
+
+                if (makeWater)
+                {
+                    tile->ground_ = Hash("GroundWater");
+
+                    tile->elevation_ = 0;
+                }
+            }
+        });
+
+    Traverse1(fnMakeWater);
+    Traverse2(fnMakeWater);
+    Traverse3(fnMakeWater);
+    Traverse4(fnMakeWater);
+
+    for (auto y = 1; y < size.height - 1; y++)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+
+            if (groundNW == Hash("GroundGrass") &&
+                groundN == Hash("GroundGrass") &&
+                groundNE == Hash("GroundGrass") &&
+                groundW == Hash("GroundGrass"))
+            {
+                auto makeDirt{rand() % 1000 < 3};
+
+                if (makeDirt)
+                {
+                    tile->ground_ = Hash("GroundDirt");
+
+                    tileW->ground_ = Hash("GroundDirt");
+
+                    tile->elevation_ = 1;
+                    tileW->elevation_ = 1;
+                }
+            }
+        }
+    }
+
+    auto fnMakeDirt = std::function<void(int, int)>(
+        [&](int x, int y)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileE{worldArea->GetTile(x + 1, y)};
+            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
+            auto tileS{worldArea->GetTile(x, y + 1)};
+            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+            auto groundE{tileE->ground_};
+            auto groundSW{tileSW->ground_};
+            auto groundS{tileS->ground_};
+            auto groundSE{tileSE->ground_};
+
+            auto numDirtTiles{0};
+
+            if (groundNW == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundN == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundNE == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundW == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundE == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundSW == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundS == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+            if (groundSE == Hash("GroundDirt"))
+            {
+                numDirtTiles++;
+            }
+
+            if (numDirtTiles == 2)
+            {
+                auto makeDirt{rand() % 1000 < 500};
+
+                if (makeDirt)
+                {
+                    tile->ground_ = Hash("GroundDirt");
+
+                    tile->elevation_ = 1;
+                }
+            }
+            else if (numDirtTiles > 2)
+            {
+                auto makeDirt{rand() % 1000 < 600};
+
+                if (makeDirt)
+                {
+                    tile->ground_ = Hash("GroundDirt");
+
+                    tile->elevation_ = 1;
+                }
+            }
+        });
+
+    Traverse1(fnMakeDirt);
+    Traverse2(fnMakeDirt);
+    Traverse3(fnMakeDirt);
+    Traverse4(fnMakeDirt);
+
+    for (auto y = 1; y < size.height - 1; y++)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+
+            if (groundNW != Hash("GroundWater") &&
+                groundN != Hash("GroundWater") &&
+                groundNE != Hash("GroundWater") &&
+                groundW != Hash("GroundWater"))
+            {
+                auto increaseElevation{rand() % 1000 < 3};
+
+                if (increaseElevation && tile->ground_ != Hash("GroundWater"))
+                {
+                    tile->elevation_++;
+
+                    tileW->elevation_++;
+
+                    tile->ground_ = Hash("GroundRock");
+
+                    tileW->ground_ = Hash("GroundRock");
+                }
+            }
+        }
+    }
+
+    auto fnMakeMountains = std::function<void(int, int)>(
+        [&](int x, int y)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileE{worldArea->GetTile(x + 1, y)};
+            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
+            auto tileS{worldArea->GetTile(x, y + 1)};
+            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+            auto elevationNW{tileNW->elevation_};
+            auto elevationN{tileN->elevation_};
+            auto elevationNE{tileNE->elevation_};
+            auto elevationW{tileW->elevation_};
+            auto elevationE{tileE->elevation_};
+            auto elevationSW{tileSW->elevation_};
+            auto elevationS{tileS->elevation_};
+            auto elevationSE{tileSE->elevation_};
+
+            auto elevation{tile->elevation_};
+
+            auto numElevationTiles{0};
+
+            if (tile->ground_ != Hash("GroundWater"))
+            {
+                if (elevation <= elevationNW && elevationNW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationN && elevationN > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationNE && elevationNE > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationW && elevationW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationE && elevationE > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationSW && elevationSW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationS && elevationS > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationSE && elevationSE > 1)
+                {
+                    numElevationTiles++;
+                }
+            }
+
+            auto maxElevation{std::max(
+                elevationNW,
+                std::max(
+                    elevationN,
+                    std::max(
+                        elevationNE,
+                        std::max(elevationW,
+                                 std::max(elevationE,
+                                          std::max(elevationSW,
+                                                   std::max(elevationS,
+                                                            elevationSE)))))))};
+
+            auto usedElevation{elevation};
+
+            if (maxElevation - elevation > 0)
+            {
+                usedElevation =
+                    elevation + rand() % (maxElevation - elevation / 4);
+            }
+
+            usedElevation = std::max(usedElevation, elevation + 1);
+
+            if (numElevationTiles == 2)
+            {
+                auto increaseElevation{rand() % 1000 < 500};
+
+                if (increaseElevation)
+                {
+                    tile->elevation_ =
+                        usedElevation + std::max(0, 1 - rand() % 7);
+
+                    tile->ground_ = Hash("GroundRock");
+                }
+            }
+            else if (numElevationTiles > 2)
+            {
+                auto increaseElevation{rand() % 1000 < 700};
+
+                if (increaseElevation)
+                {
+                    tile->elevation_ =
+                        usedElevation + std::max(0, 1 - rand() % 4);
+
+                    tile->ground_ = Hash("GroundRock");
+                }
+            }
+        });
+
+    Traverse1(fnMakeMountains);
+    Traverse2(fnMakeMountains);
+    Traverse3(fnMakeMountains);
+    Traverse4(fnMakeMountains);
+
+
+    auto fnMakeHills = std::function<void(int, int)>(
+        [&](int x, int y)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileE{worldArea->GetTile(x + 1, y)};
+            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
+            auto tileS{worldArea->GetTile(x, y + 1)};
+            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+            auto elevationNW{tileNW->elevation_};
+            auto elevationN{tileN->elevation_};
+            auto elevationNE{tileNE->elevation_};
+            auto elevationW{tileW->elevation_};
+            auto elevationE{tileE->elevation_};
+            auto elevationSW{tileSW->elevation_};
+            auto elevationS{tileS->elevation_};
+            auto elevationSE{tileSE->elevation_};
+
+            auto elevation{tile->elevation_};
+
+            auto numElevationTiles{0};
+
+            if (tile->ground_ != Hash("GroundWater") &&
+                tile->ground_ != Hash("GroundRock"))
+            {
+                if (elevation <= elevationNW && elevationNW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationN && elevationN > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationNE && elevationNE > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationW && elevationW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationE && elevationE > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationSW && elevationSW > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationS && elevationS > 1)
+                {
+                    numElevationTiles++;
+                }
+                if (elevation <= elevationSE && elevationSE > 1)
+                {
+                    numElevationTiles++;
+                }
+            }
+
+            if (numElevationTiles == 2)
+            {
+                auto increaseElevation{rand() % 1000 < 500};
+
+                if (increaseElevation)
+                {
+                    tile->elevation_++;
+                }
+            }
+            else if (numElevationTiles > 2)
+            {
+                auto increaseElevation{rand() % 1000 < 700};
+
+                if (increaseElevation)
+                {
+                    tile->elevation_++;
+                }
+            }
+        });
+
+    Traverse1(fnMakeHills);
+    Traverse2(fnMakeHills);
+    Traverse3(fnMakeHills);
+    Traverse4(fnMakeHills);
+
+    for (auto y = 1; y < size.height - 1; y++)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+
+            if (groundNW != Hash("GroundWater") &&
+                groundN != Hash("GroundWater") &&
+                groundNE != Hash("GroundWater") &&
+                groundW != Hash("GroundWater") &&
+                groundNW != Hash("GroundRock") &&
+                groundN != Hash("GroundRock") &&
+                groundNE != Hash("GroundRock") && groundW != Hash("GroundRock"))
+            {
+                auto makeTree{rand() % 1000 < 5};
+
+                if (makeTree)
+                {
+                    if (rand() % 2)
+                    {
+                        tile->tileObjects_->Clear();
+
+                        tile->tileObjects_->AddObject("ObjectTree1");
+
+                        tileW->tileObjects_->Clear();
+
+                        tileW->tileObjects_->AddObject("ObjectTree1");
+                    }
+                    else
+                    {
+                        tile->tileObjects_->Clear();
+
+                        tile->tileObjects_->AddObject("ObjectTree2");
+
+                        tileW->tileObjects_->Clear();
+
+                        tileW->tileObjects_->AddObject("ObjectTree2");
+                    }
+                }
+            }
+        }
+    }
+
+    auto fnMakeTrees = std::function<void(int, int)>(
+        [&](int x, int y)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+            auto tileN{worldArea->GetTile(x, y - 1)};
+            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileE{worldArea->GetTile(x + 1, y)};
+            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
+            auto tileS{worldArea->GetTile(x, y + 1)};
+            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+
+            auto hasTreeNW{
+                tileNW->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                tileNW->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeN{tileN->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                          tileN->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeNE{
+                tileNE->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                tileNE->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeW{tileW->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                          tileW->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeE{tileE->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                          tileE->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeSW{
+                tileSW->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                tileSW->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeS{tileS->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                          tileS->tileObjects_->HasObjectOfType("ObjectTree2")};
+            auto hasTreeSE{
+                tileSE->tileObjects_->HasObjectOfType("ObjectTree1") ||
+                tileSE->tileObjects_->HasObjectOfType("ObjectTree2")};
+
+            auto numTreeTiles{0};
+
+            if (tile->ground_ != Hash("GroundWater") &&
+                tile->ground_ != Hash("GroundRock"))
+            {
+                if (hasTreeNW)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeN)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeNE)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeW)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeE)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeSW)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeS)
+                {
+                    numTreeTiles++;
+                }
+                if (hasTreeSE)
+                {
+                    numTreeTiles++;
+                }
+            }
+
+            if (numTreeTiles == 2)
+            {
+                auto makeTree{rand() % 1000 < 700};
+
+                if (makeTree)
+                {
+                    if (rand() % 2 % 2)
+                    {
+                        tile->tileObjects_->Clear();
+
+                        tile->tileObjects_->AddObject("ObjectTree1");
+                    }
+                    else if (rand() % 2)
+                    {
+                        tile->tileObjects_->Clear();
+
+                        tile->tileObjects_->AddObject("ObjectTree2");
+                    }
+                }
+            }
+            else if (numTreeTiles > 2)
+            {
+                auto makeTree{rand() % 1000 < 900};
+
+                if (makeTree)
+                {
+                    if (rand() % 2)
+                    {
+                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->AddObject("ObjectTree1");
+                    }
+                    else if (rand() % 2)
+                    {
+                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->AddObject("ObjectTree2");
+                    }
+                }
+            }
+        });
+
+    Traverse1(fnMakeTrees);
+    Traverse2(fnMakeTrees);
+    Traverse3(fnMakeTrees);
+    Traverse4(fnMakeTrees);
+
+    // GenerateDirt();
+
+    // GenerateWater();
+
+    // GenerateElevation();
+
+    // GenerateRock();
 
     GenerateLargeObjects();
 
     GenerateSmallObjects();
 
     GenerateCreatures();
+}
+
+void WorldGenerator::Traverse1(std::function<void(int, int)> callback)
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto y = 1; y < size.height - 1; y++)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            callback(x, y);
+        }
+    }
+}
+
+void WorldGenerator::Traverse2(std::function<void(int, int)> callback)
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto x = 1; x < size.width - 1; x++)
+    {
+        for (auto y = 1; y < size.height - 1; y++)
+        {
+            callback(x, y);
+        }
+    }
+}
+
+void WorldGenerator::Traverse3(std::function<void(int, int)> callback)
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto y = size.height - 2; y > 0; y--)
+    {
+        for (auto x = 1; x < size.width - 1; x++)
+        {
+            callback(x, y);
+        }
+    }
+}
+
+void WorldGenerator::Traverse4(std::function<void(int, int)> callback)
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    for (auto x = size.width - 2; x > 0; x--)
+    {
+        for (auto y = 1; y < size.height - 1; y++)
+        {
+            callback(x, y);
+        }
+    }
 }
 
 void WorldGenerator::ClearWithGrass()
@@ -218,73 +947,73 @@ void WorldGenerator::GenerateLargeObjects()
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
 
-    auto numTree2Groups{100 + rand() % 10};
+    // auto numTree2Groups{100 + rand() % 10};
 
-    for (auto i = 0; i < numTree2Groups; i++)
-    {
-        auto x{rand() % size.width};
-        auto y{rand() % size.height};
+    // for (auto i = 0; i < numTree2Groups; i++)
+    // {
+    //     auto x{rand() % size.width};
+    //     auto y{rand() % size.height};
 
-        auto numTree2s{60 + rand() % 10};
+    //     auto numTree2s{60 + rand() % 10};
 
-        for (auto j = 0; j < numTree2s; j++)
-        {
-            x += rand() % 3 - rand() % 3;
-            y += rand() % 3 - rand() % 3;
+    //     for (auto j = 0; j < numTree2s; j++)
+    //     {
+    //         x += rand() % 3 - rand() % 3;
+    //         y += rand() % 3 - rand() % 3;
 
-            if (!worldArea->IsValidCoordinate(x, y))
-            {
-                continue;
-            }
+    //         if (!worldArea->IsValidCoordinate(x, y))
+    //         {
+    //             continue;
+    //         }
 
-            auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock"))
-            {
-                continue;
-            }
+    //         if (tile->ground_ == Hash("GroundWater") ||
+    //             tile->ground_ == Hash("GroundRock"))
+    //         {
+    //             continue;
+    //         }
 
-            tile->tileObjects_->Clear();
+    //         tile->tileObjects_->Clear();
 
-            tile->tileObjects_->AddObject("ObjectTree2");
-        }
-    }
+    //         tile->tileObjects_->AddObject("ObjectTree2");
+    //     }
+    // }
 
-    auto numTree1Groups{100 + rand() % 10};
+    // auto numTree1Groups{100 + rand() % 10};
 
-    for (auto i = 0; i < numTree1Groups; i++)
-    {
-        auto x{rand() % size.width};
-        auto y{rand() % size.height};
+    // for (auto i = 0; i < numTree1Groups; i++)
+    // {
+    //     auto x{rand() % size.width};
+    //     auto y{rand() % size.height};
 
-        auto numTree1s{60 + rand() % 10};
+    //     auto numTree1s{60 + rand() % 10};
 
-        for (auto j = 0; j < numTree1s; j++)
-        {
-            x += rand() % 3 - rand() % 3;
-            y += rand() % 3 - rand() % 3;
+    //     for (auto j = 0; j < numTree1s; j++)
+    //     {
+    //         x += rand() % 3 - rand() % 3;
+    //         y += rand() % 3 - rand() % 3;
 
-            if (!worldArea->IsValidCoordinate(x, y))
-            {
-                continue;
-            }
+    //         if (!worldArea->IsValidCoordinate(x, y))
+    //         {
+    //             continue;
+    //         }
 
-            auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ == Hash("GroundWater") ||
-                tile->ground_ == Hash("GroundRock"))
-            {
-                continue;
-            }
+    //         if (tile->ground_ == Hash("GroundWater") ||
+    //             tile->ground_ == Hash("GroundRock"))
+    //         {
+    //             continue;
+    //         }
 
-            tile->tileObjects_->Clear();
+    //         tile->tileObjects_->Clear();
 
-            tile->tileObjects_->AddObject("ObjectTree1");
-        }
-    }
+    //         tile->tileObjects_->AddObject("ObjectTree1");
+    //     }
+    // }
 
-    auto numBush1s{300 + rand() % 50};
+    auto numBush1s{100 + rand() % 30};
 
     for (auto i = 0; i < numBush1s; i++)
     {
@@ -319,6 +1048,38 @@ void WorldGenerator::GenerateLargeObjects()
         }
 
         tile->tileObjects_->AddObject("ObjectStoneBoulder");
+    }
+
+    auto numTree1s{100 + rand() % 50};
+
+    for (auto i = 0; i < numTree1s; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundGrass") ||
+            tile->ground_ == Hash("GroundDirt"))
+        {
+            tile->tileObjects_->AddObject("ObjectTree1");
+        }
+    }
+
+    auto numTree2s{100 + rand() % 50};
+
+    for (auto i = 0; i < numTree2s; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundGrass") ||
+            tile->ground_ == Hash("GroundDirt"))
+        {
+            tile->tileObjects_->AddObject("ObjectTree2");
+        }
     }
 }
 
@@ -405,7 +1166,8 @@ void WorldGenerator::GenerateCreatures()
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
 
-    auto numDeers{150 + rand() % 20};
+    // auto numDeers{150 + rand() % 20};
+    auto numDeers{40 + rand() % 10};
 
     for (auto i = 0; i < numDeers; i++)
     {
@@ -427,7 +1189,8 @@ void WorldGenerator::GenerateCreatures()
         tile->creature_ = newCreature;
     }
 
-    auto numBoars{150 + rand() % 20};
+    // auto numBoars{150 + rand() % 20};
+    auto numBoars{40 + rand() % 10};
 
     for (auto i = 0; i < numBoars; i++)
     {
@@ -450,72 +1213,75 @@ void WorldGenerator::GenerateCreatures()
 
 void WorldGenerator::GenerateCivilization()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    // auto worldArea{_<World>().currentWorldArea_};
+    // auto size{worldArea->GetSize()};
 
-    auto playerPosition{_<Player>().position_};
+    // auto playerPosition{_<Player>().position_};
 
-    auto prevXTileElevation{0};
+    // auto prevXTileElevation{0};
 
-    for (auto x = 0; x < size.width; x++)
-    {
-        auto tile{worldArea->GetTile(x, playerPosition.y)};
+    // for (auto x = 0; x < size.width; x++)
+    // {
+    //     auto tile{worldArea->GetTile(x, playerPosition.y)};
 
-        tile->tileObjects_->Clear();
+    //     tile->tileObjects_->Clear();
 
-        tile->ground_ = Hash("GroundCobblestone");
+    //     tile->ground_ = Hash("GroundCobblestone");
 
-        auto elevDifference{tile->elevation_ - prevXTileElevation};
+    //     auto elevDifference{tile->elevation_ - prevXTileElevation};
 
-        if (elevDifference)
-        {
-            tile->elevation_ =
-                prevXTileElevation + elevDifference / std::abs(elevDifference);
-        }
+    //     if (elevDifference)
+    //     {
+    //         tile->elevation_ =
+    //             prevXTileElevation + elevDifference /
+    //             std::abs(elevDifference);
+    //     }
 
-        prevXTileElevation = tile->elevation_;
-    }
+    //     prevXTileElevation = tile->elevation_;
+    // }
 
-    auto prevYTileElevation{0};
+    // auto prevYTileElevation{0};
 
-    for (auto y = 0; y < size.height; y++)
-    {
-        auto tile{worldArea->GetTile(playerPosition.x, y)};
+    // for (auto y = 0; y < size.height; y++)
+    // {
+    //     auto tile{worldArea->GetTile(playerPosition.x, y)};
 
-        tile->tileObjects_->Clear();
+    //     tile->tileObjects_->Clear();
 
-        tile->ground_ = Hash("GroundCobblestone");
+    //     tile->ground_ = Hash("GroundCobblestone");
 
-        auto elevDifference{tile->elevation_ - prevYTileElevation};
+    //     auto elevDifference{tile->elevation_ - prevYTileElevation};
 
-        if (elevDifference)
-        {
-            tile->elevation_ =
-            prevYTileElevation + elevDifference / std::abs(elevDifference);
-        }
+    //     if (elevDifference)
+    //     {
+    //         tile->elevation_ =
+    //         prevYTileElevation + elevDifference /
+    //         std::abs(elevDifference);
+    //     }
 
-        prevYTileElevation = tile->elevation_;
-    }
+    //     prevYTileElevation = tile->elevation_;
+    // }
 
-    for (auto y = playerPosition.y - 1; y <= playerPosition.y + 1; y++)
-    {
-        for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1; x++)
-        {
-            auto tile{worldArea->GetTile(x, y)};
+    // for (auto y = playerPosition.y - 1; y <= playerPosition.y + 1; y++)
+    // {
+    //     for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1;
+    //     x++)
+    //     {
+    //         auto tile{worldArea->GetTile(x, y)};
 
-            tile->tileObjects_->Clear();
+    //         tile->tileObjects_->Clear();
 
-            tile->ground_ = Hash("GroundCobblestone");
-        }
-    }
+    //         tile->ground_ = Hash("GroundCobblestone");
+    //     }
+    // }
 
-    auto tileNorthWest{
-        worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
+    // auto tileNorthWest{
+    //     worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
 
-    tileNorthWest->npc_ = std::make_shared<NPC>("NPC0");
+    // tileNorthWest->npc_ = std::make_shared<NPC>("NPC0");
 
-    auto tileNorthEast{
-        worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
+    // auto tileNorthEast{
+    //     worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
 
-    tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
+    // tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
 }

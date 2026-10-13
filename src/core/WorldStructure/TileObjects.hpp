@@ -25,5 +25,7 @@ class TileObjects
 
     void RemoveObject(std::shared_ptr<Object> object);
 
+    bool HasObjectOfType(std::string_view objectType);
+
     std::map<Point, std::shared_ptr<Object>> objects_;
 };

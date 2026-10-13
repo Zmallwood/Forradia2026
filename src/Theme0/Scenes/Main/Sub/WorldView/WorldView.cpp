@@ -44,9 +44,13 @@ void WorldView::Render()
     auto tileWidth{_<GameProperties>().k_tileWidth_};
     auto tileHeight{ConvertWidthToHeight(tileWidth)};
 
-    for (auto y = -6; y < 11 + 6; y++)
+    // for (auto y = -6; y < 11 + 6; y++)
+    // {
+    //     for (auto x = -6; x < 11 + 6; x++)
+    //     {
+    for (auto y = -12; y < 11 + 12; y++)
     {
-        for (auto x = -6; x < 11 + 6; x++)
+        for (auto x = -12; x < 11 + 12; x++)
         {
             auto xCoordinate{_<Player>().position_.x - 5 + x};
             auto yCoordinate{_<Player>().position_.y - 5 + y};
@@ -100,6 +104,8 @@ void WorldView::Render()
             }
 
             auto sightBlocked{numBlockingObjects >= 2};
+
+            sightBlocked = false;
 
             auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
 
@@ -173,16 +179,25 @@ void WorldView::Render()
 
             tileY = tileYOriginal;
 
+            auto ground{tile->ground_};
+
             for (auto i = 0; i < elevation; i++)
             {
-                _<ImageRenderer>().DrawImage("Elevation", tileX,
-                                             tileY + tileHeight / 4, tileWidth,
-                                             tileHeight * 3 / 4);
+                if (ground == Hash("GroundRock"))
+                {
+                    _<ImageRenderer>().DrawImage("ElevationRock", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
+                else
+                {
+                    _<ImageRenderer>().DrawImage("Elevation", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
 
                 tileY -= tileHeight / 4;
             }
-
-            auto ground{tile->ground_};
 
             if (ground == Hash("GroundWater"))
             {
