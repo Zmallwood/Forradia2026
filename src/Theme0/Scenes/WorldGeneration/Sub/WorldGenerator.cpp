@@ -425,7 +425,6 @@ void WorldGenerator::GenerateNewWorld()
     Traverse3(fnMakeMountains);
     Traverse4(fnMakeMountains);
 
-
     auto fnMakeHills = std::function<void(int, int)>(
         [&](int x, int y)
         {
@@ -514,6 +513,124 @@ void WorldGenerator::GenerateNewWorld()
     Traverse2(fnMakeHills);
     Traverse3(fnMakeHills);
     Traverse4(fnMakeHills);
+
+    auto numRivers{60 + rand() % 20};
+
+    for (auto i = 0; i < numRivers; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->elevation_ > 1)
+        {
+            auto numSegments{rand() % 3 + 2};
+
+            auto prevDestX{x};
+            auto prevDestY{y};
+
+            auto prevX{x};
+            auto prevY{y};
+
+            for (auto j = 0; j < numSegments; j++)
+            {
+                auto foundDestination{false};
+
+                for (auto attempt = 0; attempt < 50; attempt++)
+                {
+                    auto destX{x + rand() % 10 - rand() % 10};
+                    auto destY{y + rand() % 10 - rand() % 10};
+
+                    if (!worldArea->IsValidCoordinate(destX, destY) ||
+                        (destX == x && destY == y))
+                    {
+                        continue;
+                    }
+
+                    auto destTile{worldArea->GetTile(destX, destY)};
+
+                    if (destTile->elevation_ >= tile->elevation_)
+                    {
+                        continue;
+                    }
+
+                    if (j > 0)
+                    {
+                        auto destAngle{std::atan2(destY - y, destX - x)};
+
+                        auto prevDestAngle{
+                            std::atan2(prevDestY - prevY, prevDestX - prevX)};
+
+                        auto angleDiff{destAngle - prevDestAngle};
+
+                        if (angleDiff > M_PI)
+                        {
+                            angleDiff -= 2.0 * M_PI;
+                        }
+                        else if (angleDiff < -M_PI)
+                        {
+                            angleDiff += 2.0 * M_PI;
+                        }
+
+                        if (std::abs(angleDiff) > M_PI / 4.0)
+                        {
+                            continue;
+                        }
+                    }
+
+                    auto dx{destX - x};
+                    auto dy{destY - y};
+
+                    auto numSteps{std::max(std::abs(dx), std::abs(dy))};
+
+                    auto stepX{static_cast<float>(dx) / numSteps};
+                    auto stepY{static_cast<float>(dy) / numSteps};
+
+                    auto lineX{x};
+                    auto lineY{y};
+
+                    for (auto k = 0; k <= numSteps; k++)
+                    {
+                        auto xNew{x + static_cast<int>(std::lround(stepX * k))};
+                        auto yNew{y + static_cast<int>(std::lround(stepY * k))};
+
+                        worldArea->GetTile(xNew, yNew)->ground_ = Hash("GroundWater");
+
+                        auto stepDx{xNew - lineX};
+                        auto stepDy{yNew - lineY};
+
+                        if (stepDx != 0 && stepDy != 0)
+                        {
+                            worldArea->GetTile(xNew, lineY)->ground_ =
+                                Hash("GroundWater");
+                        }
+
+                        lineX = xNew;
+                        lineY = yNew;
+                    }
+
+                    prevX = x;
+                    prevY = y;
+
+                    prevDestX = destX;
+                    prevDestY = destY;
+
+                    x = destX;
+                    y = destY;
+
+                    foundDestination = true;
+
+                    break;
+                }
+
+                if (!foundDestination)
+                {
+                    break;
+                }
+            }
+        }
+    }
 
     for (auto y = 1; y < size.height - 1; y++)
     {
@@ -774,173 +891,173 @@ void WorldGenerator::ClearWithGrass()
     }
 }
 
-void WorldGenerator::GenerateDirt()
-{
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+// void WorldGenerator::GenerateDirt()
+// {
+//     auto worldArea{_<World>().currentWorldArea_};
+//     auto size{worldArea->GetSize()};
 
-    auto numDirtPatches{15 + rand() % 8};
+//     auto numDirtPatches{15 + rand() % 8};
 
-    for (auto i = 0; i < numDirtPatches; i++)
-    {
-        auto xCenter{rand() % size.width};
-        auto yCenter{rand() % size.height};
-        auto radius{3 + rand() % 14};
+//     for (auto i = 0; i < numDirtPatches; i++)
+//     {
+//         auto xCenter{rand() % size.width};
+//         auto yCenter{rand() % size.height};
+//         auto radius{3 + rand() % 14};
 
-        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-        {
-            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-            {
-                if (!worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
+//         for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+//         {
+//             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+//             {
+//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 {
+//                     continue;
+//                 }
 
-                auto dx{x - xCenter};
-                auto dy{y - yCenter};
+//                 auto dx{x - xCenter};
+//                 auto dy{y - yCenter};
 
-                if (dx * dx + dy * dy <= radius * radius)
-                {
-                    auto tile{worldArea->GetTile(x, y)};
+//                 if (dx * dx + dy * dy <= radius * radius)
+//                 {
+//                     auto tile{worldArea->GetTile(x, y)};
 
-                    tile->ground_ = Hash("GroundDirt");
-                }
-            }
-        }
-    }
-}
+//                     tile->ground_ = Hash("GroundDirt");
+//                 }
+//             }
+//         }
+//     }
+// }
 
-void WorldGenerator::GenerateWater()
-{
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+// void WorldGenerator::GenerateWater()
+// {
+//     auto worldArea{_<World>().currentWorldArea_};
+//     auto size{worldArea->GetSize()};
 
-    auto numLakes{40 + rand() % 20};
+//     auto numLakes{40 + rand() % 20};
 
-    for (auto i = 0; i < numLakes; i++)
-    {
-        auto xCenter{rand() % size.width};
-        auto yCenter{rand() % size.height};
-        auto radius{3 + rand() % 6};
+//     for (auto i = 0; i < numLakes; i++)
+//     {
+//         auto xCenter{rand() % size.width};
+//         auto yCenter{rand() % size.height};
+//         auto radius{3 + rand() % 6};
 
-        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-        {
-            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-            {
-                if (!worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
+//         for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+//         {
+//             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+//             {
+//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 {
+//                     continue;
+//                 }
 
-                auto dx{x - xCenter};
-                auto dy{y - yCenter};
+//                 auto dx{x - xCenter};
+//                 auto dy{y - yCenter};
 
-                if (dx * dx + dy * dy <= radius * radius)
-                {
-                    auto tile{worldArea->GetTile(x, y)};
+//                 if (dx * dx + dy * dy <= radius * radius)
+//                 {
+//                     auto tile{worldArea->GetTile(x, y)};
 
-                    tile->ground_ = Hash("GroundWater");
-                }
-            }
-        }
-    }
-}
+//                     tile->ground_ = Hash("GroundWater");
+//                 }
+//             }
+//         }
+//     }
+// }
 
-void WorldGenerator::GenerateElevation()
-{
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+// void WorldGenerator::GenerateElevation()
+// {
+//     auto worldArea{_<World>().currentWorldArea_};
+//     auto size{worldArea->GetSize()};
 
-    for (auto y = 0; y < size.height; y++)
-    {
-        for (auto x = 0; x < size.width; x++)
-        {
-            auto tile{worldArea->GetTile(x, y)};
+//     for (auto y = 0; y < size.height; y++)
+//     {
+//         for (auto x = 0; x < size.width; x++)
+//         {
+//             auto tile{worldArea->GetTile(x, y)};
 
-            if (tile->ground_ != Hash("GroundWater"))
-            {
-                tile->elevation_ = 1;
-            }
-        }
-    }
+//             if (tile->ground_ != Hash("GroundWater"))
+//             {
+//                 tile->elevation_ = 1;
+//             }
+//         }
+//     }
 
-    auto numHills{20 + rand() % 10};
+//     auto numHills{20 + rand() % 10};
 
-    for (auto i = 0; i < numHills; i++)
-    {
-        auto xCenter{rand() % size.width};
-        auto yCenter{rand() % size.height};
-        auto radius{3 + rand() % 9};
+//     for (auto i = 0; i < numHills; i++)
+//     {
+//         auto xCenter{rand() % size.width};
+//         auto yCenter{rand() % size.height};
+//         auto radius{3 + rand() % 9};
 
-        for (auto r = radius; r >= 0; r--)
-        {
-            for (auto y = yCenter - r; y <= yCenter + r; y++)
-            {
-                for (auto x = xCenter - r; x <= xCenter + r; x++)
-                {
-                    if (!worldArea->IsValidCoordinate(x, y))
-                    {
-                        continue;
-                    }
+//         for (auto r = radius; r >= 0; r--)
+//         {
+//             for (auto y = yCenter - r; y <= yCenter + r; y++)
+//             {
+//                 for (auto x = xCenter - r; x <= xCenter + r; x++)
+//                 {
+//                     if (!worldArea->IsValidCoordinate(x, y))
+//                     {
+//                         continue;
+//                     }
 
-                    auto dx{x - xCenter};
-                    auto dy{y - yCenter};
+//                     auto dx{x - xCenter};
+//                     auto dy{y - yCenter};
 
-                    if (dx * dx + dy * dy <= r * r)
-                    {
-                        auto tile{worldArea->GetTile(x, y)};
+//                     if (dx * dx + dy * dy <= r * r)
+//                     {
+//                         auto tile{worldArea->GetTile(x, y)};
 
-                        if (tile->ground_ == Hash("GroundWater"))
-                        {
-                            continue;
-                        }
+//                         if (tile->ground_ == Hash("GroundWater"))
+//                         {
+//                             continue;
+//                         }
 
-                        ++tile->elevation_;
-                    }
-                }
-            }
-        }
-    }
-}
+//                         ++tile->elevation_;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-void WorldGenerator::GenerateRock()
-{
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+// void WorldGenerator::GenerateRock()
+// {
+//     auto worldArea{_<World>().currentWorldArea_};
+//     auto size{worldArea->GetSize()};
 
-    auto numRockPatches{60 + rand() % 5};
+//     auto numRockPatches{60 + rand() % 5};
 
-    for (auto i = 0; i < numRockPatches; i++)
-    {
-        auto xCenter{rand() % size.width};
-        auto yCenter{rand() % size.height};
-        auto radius{3 + rand() % 9};
+//     for (auto i = 0; i < numRockPatches; i++)
+//     {
+//         auto xCenter{rand() % size.width};
+//         auto yCenter{rand() % size.height};
+//         auto radius{3 + rand() % 9};
 
-        for (auto y = yCenter - radius; y <= yCenter + radius; y++)
-        {
-            for (auto x = xCenter - radius; x <= xCenter + radius; x++)
-            {
-                if (!worldArea->IsValidCoordinate(x, y))
-                {
-                    continue;
-                }
+//         for (auto y = yCenter - radius; y <= yCenter + radius; y++)
+//         {
+//             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
+//             {
+//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 {
+//                     continue;
+//                 }
 
-                auto dx{x - xCenter};
-                auto dy{y - yCenter};
+//                 auto dx{x - xCenter};
+//                 auto dy{y - yCenter};
 
-                if (dx * dx + dy * dy <= radius * radius)
-                {
-                    auto tile{worldArea->GetTile(x, y)};
+//                 if (dx * dx + dy * dy <= radius * radius)
+//                 {
+//                     auto tile{worldArea->GetTile(x, y)};
 
-                    if (tile->elevation_ >= 2)
-                    {
-                        tile->ground_ = Hash("GroundRock");
-                    }
-                }
-            }
-        }
-    }
-}
+//                     if (tile->elevation_ >= 2)
+//                     {
+//                         tile->ground_ = Hash("GroundRock");
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 void WorldGenerator::GenerateLargeObjects()
 {

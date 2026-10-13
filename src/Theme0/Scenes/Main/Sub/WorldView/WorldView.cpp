@@ -189,6 +189,12 @@ void WorldView::Render()
                                                  tileY + tileHeight / 4,
                                                  tileWidth, tileHeight * 3 / 4);
                 }
+                else if (ground == Hash("GroundWater"))
+                {
+                    _<ImageRenderer>().DrawImage("ElevationWater", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
                 else
                 {
                     _<ImageRenderer>().DrawImage("Elevation", tileX,

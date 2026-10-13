@@ -21,13 +21,13 @@ class WorldGenerator
 
     void Traverse4(std::function<void(int, int)> callback);
 
-    void GenerateDirt();
+    // void GenerateDirt();
 
-    void GenerateWater();
+    // void GenerateWater();
 
-    void GenerateElevation();
+    // void GenerateElevation();
 
-    void GenerateRock();
+    // void GenerateRock();
 
     void GenerateLargeObjects();
 
