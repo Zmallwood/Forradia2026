@@ -14,5 +14,7 @@ void WorldGenerationScene::OnEnterDerived()
 
     _<WorldGenerator>().GenerateCivilization();
 
+    _<WorldGenerator>().GenerateWorldAroundPlayer();
+
     _<SceneManager>().GoToScene("MainScene");
 }

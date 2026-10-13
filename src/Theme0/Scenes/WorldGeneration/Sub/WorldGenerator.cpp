@@ -514,124 +514,6 @@ void WorldGenerator::GenerateNewWorld()
     Traverse3(fnMakeHills);
     Traverse4(fnMakeHills);
 
-    auto numRivers{60 + rand() % 20};
-
-    for (auto i = 0; i < numRivers; i++)
-    {
-        auto x{rand() % size.width};
-        auto y{rand() % size.height};
-
-        auto tile{worldArea->GetTile(x, y)};
-
-        if (tile->elevation_ > 1)
-        {
-            auto numSegments{rand() % 3 + 2};
-
-            auto prevDestX{x};
-            auto prevDestY{y};
-
-            auto prevX{x};
-            auto prevY{y};
-
-            for (auto j = 0; j < numSegments; j++)
-            {
-                auto foundDestination{false};
-
-                for (auto attempt = 0; attempt < 50; attempt++)
-                {
-                    auto destX{x + rand() % 10 - rand() % 10};
-                    auto destY{y + rand() % 10 - rand() % 10};
-
-                    if (!worldArea->IsValidCoordinate(destX, destY) ||
-                        (destX == x && destY == y))
-                    {
-                        continue;
-                    }
-
-                    auto destTile{worldArea->GetTile(destX, destY)};
-
-                    if (destTile->elevation_ >= tile->elevation_)
-                    {
-                        continue;
-                    }
-
-                    if (j > 0)
-                    {
-                        auto destAngle{std::atan2(destY - y, destX - x)};
-
-                        auto prevDestAngle{
-                            std::atan2(prevDestY - prevY, prevDestX - prevX)};
-
-                        auto angleDiff{destAngle - prevDestAngle};
-
-                        if (angleDiff > M_PI)
-                        {
-                            angleDiff -= 2.0 * M_PI;
-                        }
-                        else if (angleDiff < -M_PI)
-                        {
-                            angleDiff += 2.0 * M_PI;
-                        }
-
-                        if (std::abs(angleDiff) > M_PI / 4.0)
-                        {
-                            continue;
-                        }
-                    }
-
-                    auto dx{destX - x};
-                    auto dy{destY - y};
-
-                    auto numSteps{std::max(std::abs(dx), std::abs(dy))};
-
-                    auto stepX{static_cast<float>(dx) / numSteps};
-                    auto stepY{static_cast<float>(dy) / numSteps};
-
-                    auto lineX{x};
-                    auto lineY{y};
-
-                    for (auto k = 0; k <= numSteps; k++)
-                    {
-                        auto xNew{x + static_cast<int>(std::lround(stepX * k))};
-                        auto yNew{y + static_cast<int>(std::lround(stepY * k))};
-
-                        worldArea->GetTile(xNew, yNew)->ground_ = Hash("GroundWater");
-
-                        auto stepDx{xNew - lineX};
-                        auto stepDy{yNew - lineY};
-
-                        if (stepDx != 0 && stepDy != 0)
-                        {
-                            worldArea->GetTile(xNew, lineY)->ground_ =
-                                Hash("GroundWater");
-                        }
-
-                        lineX = xNew;
-                        lineY = yNew;
-                    }
-
-                    prevX = x;
-                    prevY = y;
-
-                    prevDestX = destX;
-                    prevDestY = destY;
-
-                    x = destX;
-                    y = destY;
-
-                    foundDestination = true;
-
-                    break;
-                }
-
-                if (!foundDestination)
-                {
-                    break;
-                }
-            }
-        }
-    }
-
     for (auto y = 1; y < size.height - 1; y++)
     {
         for (auto x = 1; x < size.width - 1; x++)
@@ -1401,4 +1283,31 @@ void WorldGenerator::GenerateCivilization()
     //     worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
 
     // tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
+}
+
+void WorldGenerator::GenerateWorldAroundPlayer()
+{
+    auto worldArea{_<World>().currentWorldArea_};
+    auto size{worldArea->GetSize()};
+
+    auto playerPosition{_<Player>().position_};
+
+    for (auto y = playerPosition.y - 4; y <= playerPosition.y + 4; y++)
+    {
+        for (auto x = playerPosition.x - 4; x <= playerPosition.x + 4; x++)
+        {
+            auto tile{worldArea->GetTile(x, y)};
+
+            if (!tile)
+            {
+                continue;
+            }
+
+            tile->tileObjects_->Clear();
+
+            tile->ground_ = Hash("GroundGrass");
+
+            tile->elevation_ = 1;
+        }
+    }
 }

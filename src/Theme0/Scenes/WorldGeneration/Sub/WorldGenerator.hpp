@@ -10,6 +10,8 @@ class WorldGenerator
 
     void GenerateCivilization();
 
+    void GenerateWorldAroundPlayer();
+
   private:
     void ClearWithGrass();
 
