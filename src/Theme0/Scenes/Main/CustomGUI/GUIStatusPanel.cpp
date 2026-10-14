@@ -19,9 +19,9 @@ void GUIStatusPanel::RenderDerived()
     _<TextRenderer>().DrawString(_<Player>().name_, 0.015f, 0.01f,
                                  FontSizes::_18, false);
 
-    auto playerLevel{CalculateCurrentLevel(_<Player>().experience_)};
+    auto playerLevel = CalculateCurrentLevel(_<Player>().experience_);
 
-    std::string levelText{"Level " + std::to_string(playerLevel)};
+    std::string levelText = "Level " + std::to_string(playerLevel);
 
     _<TextRenderer>().DrawString(levelText, 0.015f, 0.04f, FontSizes::_24,
                                  false, Colors::k_yellowGray);

@@ -54,7 +54,7 @@ std::shared_ptr<Object> TileObjects::PickObject(std::shared_ptr<Object> object)
 void TileObjects::TransformObject(std::shared_ptr<Object> object,
                                   std::string_view newObjectType)
 {
-    Point position{-1, -1};
+    Point position = {-1, -1};
 
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {

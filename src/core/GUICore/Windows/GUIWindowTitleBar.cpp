@@ -15,13 +15,13 @@ void GUIWindowTitleBar::UpdateDerived()
 {
     GUIPanel::UpdateDerived();
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (isMoving_)
     {
-        auto delta{mousePosition - mousePositionStartMove_};
+        auto delta = mousePosition - mousePositionStartMove_;
 
-        auto newPosition{positionStartMove_ + delta};
+        auto newPosition = positionStartMove_ + delta;
 
         SetPosition(newPosition);
     }
@@ -29,7 +29,7 @@ void GUIWindowTitleBar::UpdateDerived()
 
 bool GUIWindowTitleBar::OnMouseDown(Uint8 mouseButton)
 {
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (GetBounds().Contains(mousePosition))
     {
@@ -47,7 +47,7 @@ bool GUIWindowTitleBar::OnMouseDown(Uint8 mouseButton)
 
 bool GUIWindowTitleBar::OnMouseUp(Uint8 mouseButton, int clickSpeed)
 {
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (GetBounds().Contains(mousePosition))
     {
@@ -63,7 +63,7 @@ void GUIWindowTitleBar::RenderDerived()
 {
     GUIPanel::RenderDerived();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
     _<TextRenderer>().DrawString(title_, position.x + k_margin_.x,
                                  position.y + k_margin_.y, FontSizes::_18,

@@ -48,6 +48,6 @@ class GUIComponent
 
   private:
     std::vector<std::shared_ptr<GUIComponent>> components_;
-    PointF position_{0.0f, 0.0f};
-    GUIComponent *parent_{nullptr};
+    PointF position_ = {0.0f, 0.0f};
+    GUIComponent *parent_ = {nullptr};
 };

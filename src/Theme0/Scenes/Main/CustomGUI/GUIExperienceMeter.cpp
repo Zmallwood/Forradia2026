@@ -11,9 +11,9 @@ GUIExperienceMeter::GUIExperienceMeter() : GUIMeter(0.0f, 0.985f, 1.0f, 0.015f)
 
 float GUIExperienceMeter::GetMeterProgress()
 {
-    auto experience{_<Player>().experience_};
+    auto experience = _<Player>().experience_;
 
-    auto progress{CalculateFractionalExperienceProgress(experience)};
+    auto progress = CalculateFractionalExperienceProgress(experience);
 
     return progress;
 }

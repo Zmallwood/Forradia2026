@@ -17,22 +17,24 @@ void GUITextConsole::RenderDerived()
 {
     GUIPanel::RenderDerived();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
-    auto maxNumLines{static_cast<int>(size.height / k_lineHeight_) - 1};
+    auto maxNumLines = static_cast<int>(size.height / k_lineHeight_) - 1;
 
-    auto iStart{std::max(0, static_cast<int>(lines_.size() - maxNumLines))};
+    auto iStart = std::max(0, static_cast<int>(lines_.size() - maxNumLines));
 
-    auto rowIndex{0};
+    auto rowIndex = 0;
 
     for (auto line = iStart; line < lines_.size(); line++)
     {
         if (line > lines_.size() - 1)
+        {
             break;
+        }
 
-        auto text{lines_[line]};
+        auto text = lines_[line];
 
         _<TextRenderer>().DrawString(text, position.x + 0.01F,
                                      position.y + 0.01F +

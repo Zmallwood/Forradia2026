@@ -18,6 +18,6 @@ class GUIInventoryWindow : public GUIWindow
     void RenderDerived() override;
 
   private:
-    static constexpr float k_slotWidth_{0.037f};
-    static constexpr float k_slotMarginX_{0.005f};
+    static constexpr float k_slotWidth_ = 0.037f;
+    static constexpr float k_slotMarginX_ = 0.005f;
 };

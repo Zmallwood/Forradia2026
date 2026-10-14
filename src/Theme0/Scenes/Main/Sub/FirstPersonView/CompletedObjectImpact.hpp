@@ -7,5 +7,5 @@ class CompletedObjectImpact
 {
   public:
     PointF position;
-    int ticksCompleted{0};
+    int ticksCompleted = 0;
 };

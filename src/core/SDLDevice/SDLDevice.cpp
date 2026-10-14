@@ -5,7 +5,7 @@
 
 SDLDevice::SDLDevice()
 {
-    auto windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
+    auto windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
 
     window_ = std::shared_ptr<SDL_Window>(
         SDL_CreateWindow(k_windowName_.data(), SDL_WINDOWPOS_CENTERED,
@@ -32,7 +32,7 @@ void SDLDevice::Clip(float x, float y, float width, float height)
 {
     SDL_Rect clipRect;
 
-    auto canvasSize{GetCanvasSize()};
+    auto canvasSize = GetCanvasSize();
 
     clipRect.x = static_cast<int>(x * canvasSize.width);
     clipRect.y = static_cast<int>(y * canvasSize.height);

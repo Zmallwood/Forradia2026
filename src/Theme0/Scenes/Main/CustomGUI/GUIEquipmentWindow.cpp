@@ -15,9 +15,9 @@ GUIEquipmentWindow::GUIEquipmentWindow()
 
 bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
 {
-    GUIWindow::OnMouseDown(mouseButton);
+    auto result = GUIWindow::OnMouseDown(mouseButton);
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (GetHeadSlotBounds().Contains(mousePosition))
     {
@@ -74,14 +74,14 @@ bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
         return true;
     }
 
-    return false;
+    return result;
 }
 
 bool GUIEquipmentWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
 {
     GUIWindow::OnMouseUp(mouseButton, clickSpeed);
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (GetHeadSlotBounds().Contains(mousePosition))
     {
@@ -133,12 +133,12 @@ void GUIEquipmentWindow::RenderDerived()
 {
     GUIWindow::RenderDerived();
 
-    auto headBounds{GetHeadSlotBounds()};
-    auto chestBounds{GetChestSlotBounds()};
-    auto legsBounds{GetLegsSlotBounds()};
-    auto feetBounds{GetFeetSlotBounds()};
-    auto rightHandBounds{GetRightHandSlotBounds()};
-    auto leftHandBounds{GetLeftHandSlotBounds()};
+    auto headBounds = GetHeadSlotBounds();
+    auto chestBounds = GetChestSlotBounds();
+    auto legsBounds = GetLegsSlotBounds();
+    auto feetBounds = GetFeetSlotBounds();
+    auto rightHandBounds = GetRightHandSlotBounds();
+    auto leftHandBounds = GetLeftHandSlotBounds();
 
     _<ImageRenderer>().DrawImage(k_headSlotImage_, headBounds);
     _<ImageRenderer>().DrawImage(k_chestSlotImage_, chestBounds);
@@ -183,96 +183,96 @@ void GUIEquipmentWindow::RenderDerived()
 
 RectF GUIEquipmentWindow::GetHeadSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 2.0f};
-    auto yCenter{size_.height / 5.0f * 1};
+    auto xCenter = size_.width / 2.0f;
+    auto yCenter = size_.height / 5.0f * 1;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }
 
 RectF GUIEquipmentWindow::GetChestSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 2.0f};
-    auto yCenter{size_.height / 5.0f * 2};
+    auto xCenter = size_.width / 2.0f;
+    auto yCenter = size_.height / 5.0f * 2;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }
 
 RectF GUIEquipmentWindow::GetLegsSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 2.0f};
-    auto yCenter{size_.height / 5.0f * 3};
+    auto xCenter = size_.width / 2.0f;
+    auto yCenter = size_.height / 5.0f * 3;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }
 
 RectF GUIEquipmentWindow::GetFeetSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 2.0f};
-    auto yCenter{size_.height / 5.0f * 4};
+    auto xCenter = size_.width / 2.0f;
+    auto yCenter = size_.height / 5.0f * 4;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }
 
 RectF GUIEquipmentWindow::GetRightHandSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 4.0f * 1};
-    auto yCenter{size_.height / 5.0f * 2};
+    auto xCenter = size_.width / 4.0f * 1;
+    auto yCenter = size_.height / 5.0f * 2;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }
 
 RectF GUIEquipmentWindow::GetLeftHandSlotBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto xCenter{size_.width / 4.0f * 3};
-    auto yCenter{size_.height / 5.0f * 2};
+    auto xCenter = size_.width / 4.0f * 3;
+    auto yCenter = size_.height / 5.0f * 2;
 
-    auto width{k_slotWidth_};
-    auto height{ConvertWidthToHeight(k_slotWidth_)};
+    auto width = k_slotWidth_;
+    auto height = ConvertWidthToHeight(k_slotWidth_);
 
-    auto x{position.x + xCenter - width / 2.0f};
-    auto y{position.y + k_marginY_ + yCenter - height / 2.0f};
+    auto x = position.x + xCenter - width / 2.0f;
+    auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
 
     return {x, y, width, height};
 }

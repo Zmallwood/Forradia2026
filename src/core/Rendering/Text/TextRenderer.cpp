@@ -15,12 +15,12 @@ void TextRenderer::Initialize()
 
 void TextRenderer::AddFont(FontSizes fontSize)
 {
-    auto absFontPath{std::string(SDL_GetBasePath()) + k_defaultFontPath_};
-    auto fontPath{Replace(absFontPath, "\\", "/")};
-    auto fontSizeN{static_cast<int>(fontSize)};
+    auto absFontPath = std::string(SDL_GetBasePath()) + k_defaultFontPath_;
+    auto fontPath = Replace(absFontPath, "\\", "/");
+    auto fontSizeN = static_cast<int>(fontSize);
 
-    auto newFont{std::shared_ptr<TTF_Font>(
-        TTF_OpenFont(fontPath.c_str(), fontSizeN), SDLDeleter())};
+    auto newFont = std::shared_ptr<TTF_Font>(
+        TTF_OpenFont(fontPath.c_str(), fontSizeN), SDLDeleter());
 
     fonts_.insert({fontSize, newFont});
 }
@@ -33,23 +33,23 @@ void TextRenderer::DrawString(std::string_view text, float x, float y,
         return;
     }
 
-    auto font{fonts_[fontSize]};
+    auto font = fonts_[fontSize];
 
-    auto sdlColor{color.ToSDLColor()};
+    auto sdlColor = color.ToSDLColor();
 
-    auto surface{std::shared_ptr<SDL_Surface>(
-        TTF_RenderText_Solid(font.get(), text.data(), sdlColor), SDLDeleter())};
+    auto surface = std::shared_ptr<SDL_Surface>(
+        TTF_RenderText_Solid(font.get(), text.data(), sdlColor), SDLDeleter());
 
-    auto texture{std::shared_ptr<SDL_Texture>(
+    auto texture = std::shared_ptr<SDL_Texture>(
         SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(),
                                      surface.get()),
-        SDLDeleter())};
+        SDLDeleter());
 
-    auto canvasSize{GetCanvasSize()};
+    auto canvasSize = GetCanvasSize();
 
-    SDL_Rect rect{static_cast<int>(x * canvasSize.width),
-                  static_cast<int>(y * canvasSize.height), surface->w,
-                  surface->h};
+    SDL_Rect rect = {static_cast<int>(x * canvasSize.width),
+                     static_cast<int>(y * canvasSize.height), surface->w,
+                     surface->h};
 
     if (centered)
     {

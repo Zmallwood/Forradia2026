@@ -8,20 +8,21 @@
 void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
                               float height, float opacity, bool flipHorizontal)
 {
-    auto canvasSize{GetCanvasSize()};
+    auto canvasSize = GetCanvasSize();
 
-    auto xPx{static_cast<int>(x * canvasSize.width)};
-    auto yPx{static_cast<int>(y * canvasSize.height)};
-    auto widthPx{static_cast<int>(width * canvasSize.width)};
-    auto heightPx{static_cast<int>(height * canvasSize.height)};
+    auto xPx = static_cast<int>(x * canvasSize.width);
+    auto yPx = static_cast<int>(y * canvasSize.height);
+    auto widthPx = static_cast<int>(width * canvasSize.width);
+    auto heightPx = static_cast<int>(height * canvasSize.height);
 
-    auto rect{SDL_Rect{xPx, yPx, widthPx, heightPx}};
+    auto rect = SDL_Rect{xPx, yPx, widthPx, heightPx};
 
-    auto image{_<ImageBank>().GetImage(imageNameHash)};
+    auto image = _<ImageBank>().GetImage(imageNameHash);
 
-    SDL_RendererFlip flip{flipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE};
+    SDL_RendererFlip flip =
+        flipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
-    auto opacityInt{static_cast<int>(opacity * 255)};
+    auto opacityInt = static_cast<int>(opacity * 255);
 
     SDL_SetTextureAlphaMod(image.get(), opacityInt);
 
@@ -32,15 +33,16 @@ void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
 }
 
 void ImageRenderer::DrawImage(std::string_view imageName, float x, float y,
-                              float width, float height, float opacity, bool flipHorizontal)
+                              float width, float height, float opacity,
+                              bool flipHorizontal)
 {
-    auto hash{Hash(imageName)};
+    auto hash = Hash(imageName);
 
     DrawImage(hash, x, y, width, height, opacity, flipHorizontal);
 }
 
-void ImageRenderer::DrawImage(int imageNameHash, RectF bounds,
-                              float opacity, bool flipHorizontal)
+void ImageRenderer::DrawImage(int imageNameHash, RectF bounds, float opacity,
+                              bool flipHorizontal)
 {
     DrawImage(imageNameHash, bounds.x, bounds.y, bounds.width, bounds.height,
               opacity, flipHorizontal);

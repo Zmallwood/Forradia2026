@@ -6,7 +6,7 @@
 
 void FPSCounter::Update()
 {
-    auto now{Now()};
+    auto now = Now();
 
     if (now > ticksLastUpdate_ + k_oneSecondMillis)
     {
@@ -20,7 +20,7 @@ void FPSCounter::Update()
 
 void FPSCounter::Render()
 {
-    std::string text{"FPS: " + std::to_string(fps_)};
+    std::string text = "FPS: " + std::to_string(fps_);
 
     _<TextRenderer>().DrawString(text, 0.95f, 0.03f);
 }

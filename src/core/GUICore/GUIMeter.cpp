@@ -11,9 +11,9 @@ GUIMeter::GUIMeter(float x, float y, float width, float height)
 
 void GUIMeter::RenderDerived()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
     _<ColorRenderer>().FillRect(position.x, position.y, size.width, size.height,
                                 Colors::k_darkBlue);

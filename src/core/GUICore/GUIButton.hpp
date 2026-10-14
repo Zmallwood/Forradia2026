@@ -24,10 +24,10 @@ class GUIButton : public GUIPanel
     std::string GetBackgroundImage() override;
 
   private:
-    const std::string k_backgroundImage_{"GUIButtonBackground"};
-    const std::string k_hoveredBackgroundImage_{"GUIButtonHoveredBackground"};
+    const std::string k_backgroundImage_ = "GUIButtonBackground";
+    const std::string k_hoveredBackgroundImage_ = "GUIButtonHoveredBackground";
 
     std::string text_;
     std::function<void()> action_;
-    bool hovered_{false};
+    bool hovered_ = false;
 };

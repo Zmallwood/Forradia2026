@@ -7,5 +7,5 @@ class CompletableImpactPoint
 {
   public:
     PointF position;
-    bool completed{false};
+    bool completed = false;
 };

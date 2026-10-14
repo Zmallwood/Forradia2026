@@ -18,73 +18,73 @@ GUIInventoryWindow::GUIInventoryWindow()
 
 bool GUIInventoryWindow::OnMouseDown(Uint8 mouseButton)
 {
-    GUIWindow::OnMouseDown(mouseButton);
+    auto result = GUIWindow::OnMouseDown(mouseButton);
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
-    auto bounds{GetBounds()};
+    auto bounds = GetBounds();
 
     if (mouseButton == SDL_BUTTON_LEFT && bounds.Contains(mousePosition) &&
         isVisible_ && isEnabled_)
     {
-        auto position{GetPosition()};
+        auto position = GetPosition();
 
-        auto size{size_};
+        auto size = size_;
 
-        auto titleBarHeight{titleBar_->size_.height};
+        auto titleBarHeight = titleBar_->size_.height;
 
-        auto numCols{
-            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
+        auto numCols =
+            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
 
-        auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
+        auto slotHeight = ConvertWidthToHeight(k_slotWidth_);
 
-        auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
+        auto slotMarginY = ConvertWidthToHeight(k_slotMarginX_);
 
-        auto numRows{static_cast<int>((size.height - titleBarHeight) /
-                                      (slotHeight + slotMarginY))};
+        auto numRows = static_cast<int>((size.height - titleBarHeight) /
+                                        (slotHeight + slotMarginY));
 
-        auto inventoryIndex{0};
+        auto inventoryIndex = 0;
 
         for (auto y = 0; y < numRows; y++)
         {
             for (auto x = 0; x < numCols; x++)
             {
-                auto slotX{position.x + k_slotMarginX_ +
-                           x * (k_slotWidth_ + k_slotMarginX_)};
+                auto slotX = position.x + k_slotMarginX_ +
+                             x * (k_slotWidth_ + k_slotMarginX_);
 
-                auto slotY{position.y + titleBarHeight +
-                           y * (slotHeight + slotMarginY)};
+                auto slotY = position.y + titleBarHeight +
+                             y * (slotHeight + slotMarginY);
 
-                auto slotWidth{k_slotWidth_};
+                auto slotWidth = k_slotWidth_;
 
-                auto slotBounds = RectF{slotX, slotY, slotWidth, slotHeight};
+                RectF slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
                 if (slotBounds.Contains(mousePosition))
                 {
-                    auto object{_<Player>().playerInventory_->PickObject(
-                        inventoryIndex)};
+                    auto object = _<Player>().playerInventory_->PickObject(
+                        inventoryIndex);
 
                     if (object)
                     {
                         _<ObjectMoving>().SetObjectInAir(object);
 
-                        constexpr auto largeObjectScale{
-                            GameProperties::k_largeObjectScale_};
-                        constexpr auto smallObjectScale{
-                            GameProperties::k_smallObjectScale_};
+                        constexpr auto largeObjectScale =
+                            GameProperties::k_largeObjectScale_;
+                        constexpr auto smallObjectScale =
+                            GameProperties::k_smallObjectScale_;
 
-                        auto isSmallObject{
-                            _<ObjectIndex>().IsSmallObject(object->type_)};
+                        auto isSmallObject =
+                            _<ObjectIndex>().IsSmallObject(object->type_);
 
-                        auto scale{isSmallObject ? smallObjectScale
-                                                 : largeObjectScale};
+                        auto scale =
+                            isSmallObject ? smallObjectScale : largeObjectScale;
 
-                        auto offsetX{(mousePosition.x -
-                                      (slotBounds.x + slotWidth / 2.0f)) *
-                                     scale / k_slotWidth_};
-                        auto offsetY{
+                        auto offsetX = (mousePosition.x -
+                                        (slotBounds.x + slotWidth / 2.0f)) *
+                                       scale / k_slotWidth_;
+                        auto offsetY =
                             (mousePosition.y - (slotBounds.y + slotHeight)) *
-                            scale / k_slotWidth_};
+                            scale / k_slotWidth_;
 
                         _<ObjectMoving>().draggingMouseOffset_ = {offsetX,
                                                                   offsetY};
@@ -98,7 +98,7 @@ bool GUIInventoryWindow::OnMouseDown(Uint8 mouseButton)
         return true;
     }
 
-    return false;
+    return result;
 }
 
 bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
@@ -110,39 +110,39 @@ bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
         return false;
     }
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
-    auto titleBarHeight{titleBar_->size_.height};
+    auto titleBarHeight = titleBar_->size_.height;
 
-    auto numCols{
-        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
+    auto numCols =
+        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
 
-    auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
+    auto slotHeight = ConvertWidthToHeight(k_slotWidth_);
 
-    auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
+    auto slotMarginY = ConvertWidthToHeight(k_slotMarginX_);
 
-    auto numRows{static_cast<int>((size.height - titleBarHeight) /
-                                  (slotHeight + slotMarginY))};
+    auto numRows = static_cast<int>((size.height - titleBarHeight) /
+                                    (slotHeight + slotMarginY));
 
-    auto inventoryIndex{0};
+    auto inventoryIndex = 0;
 
     for (auto y = 0; y < numRows; y++)
     {
         for (auto x = 0; x < numCols; x++)
         {
-            auto slotX{position.x + k_slotMarginX_ +
-                       x * (k_slotWidth_ + k_slotMarginX_)};
+            auto slotX = position.x + k_slotMarginX_ +
+                         x * (k_slotWidth_ + k_slotMarginX_);
 
-            auto slotY{position.y + titleBarHeight +
-                       y * (slotHeight + slotMarginY)};
+            auto slotY =
+                position.y + titleBarHeight + y * (slotHeight + slotMarginY);
 
-            auto slotWidth{k_slotWidth_};
+            auto slotWidth = k_slotWidth_;
 
-            auto slotBounds = RectF{slotX, slotY, slotWidth, slotHeight};
+            RectF slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
             if (slotBounds.Contains(mousePosition))
             {
@@ -168,41 +168,41 @@ void GUIInventoryWindow::RenderDerived()
 {
     GUIWindow::RenderDerived();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
-    auto titleBarHeight{titleBar_->size_.height};
+    auto titleBarHeight = titleBar_->size_.height;
 
-    auto numCols{
-        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_))};
+    auto numCols =
+        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
 
-    auto slotHeight{ConvertWidthToHeight(k_slotWidth_)};
+    auto slotHeight = ConvertWidthToHeight(k_slotWidth_);
 
-    auto slotMarginY{ConvertWidthToHeight(k_slotMarginX_)};
+    auto slotMarginY = ConvertWidthToHeight(k_slotMarginX_);
 
-    auto numRows{static_cast<int>((size.height - titleBarHeight) /
-                                  (slotHeight + slotMarginY))};
+    auto numRows = static_cast<int>((size.height - titleBarHeight) /
+                                    (slotHeight + slotMarginY));
 
-    auto inventoryIndex{0};
+    auto inventoryIndex = 0;
 
     for (auto y = 0; y < numRows; y++)
     {
         for (auto x = 0; x < numCols; x++)
         {
-            auto slotX{position.x + k_slotMarginX_ +
-                       x * (k_slotWidth_ + k_slotMarginX_)};
+            auto slotX = position.x + k_slotMarginX_ +
+                         x * (k_slotWidth_ + k_slotMarginX_);
 
-            auto slotY{position.y + titleBarHeight +
-                       y * (slotHeight + slotMarginY)};
+            auto slotY =
+                position.y + titleBarHeight + y * (slotHeight + slotMarginY);
 
-            auto slotWidth{k_slotWidth_};
+            auto slotWidth = k_slotWidth_;
 
             _<ImageRenderer>().DrawImage("GUIInventoryWindowSlotBackground",
                                          slotX, slotY, slotWidth, slotHeight);
 
-            auto object{
-                _<Player>().playerInventory_->GetObject(inventoryIndex)};
+            auto object =
+                _<Player>().playerInventory_->GetObject(inventoryIndex);
 
             if (object)
             {

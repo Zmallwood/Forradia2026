@@ -19,11 +19,11 @@ void GUIButton::UpdateDerived()
 {
     GUIPanel::UpdateDerived();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
-    auto rect{RectF{position.x, position.y, size.width, size.height}};
+    auto rect = RectF{position.x, position.y, size.width, size.height};
 
     if (rect.Contains(GetMousePosition()))
     {
@@ -41,9 +41,9 @@ void GUIButton::RenderDerived()
 {
     GUIPanel::RenderDerived();
 
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
-    auto size{size_};
+    auto size = size_;
 
     _<TextRenderer>().DrawString(text_, position.x + size.width / 2,
                                  position.y + size.height / 2, FontSizes::_12,
@@ -57,7 +57,7 @@ bool GUIButton::OnMouseDown(Uint8 mouseButton)
         return false;
     }
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
     if (GetBounds().Contains(mousePosition))
     {

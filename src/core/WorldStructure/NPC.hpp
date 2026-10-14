@@ -8,5 +8,5 @@ class NPC
   public:
     NPC(std::string_view typeName);
 
-    int type_{0};
+    int type_ = 0;
 };

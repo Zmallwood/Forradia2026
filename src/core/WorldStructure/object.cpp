@@ -6,7 +6,7 @@
 
 Object::Object(int type) : type_(type)
 {
-    auto impactPoints{_<ObjectIndex>().GetImpactPoints(type)};
+    auto impactPoints = _<ObjectIndex>().GetImpactPoints(type);
 
     for (auto impactPoint : impactPoints)
     {

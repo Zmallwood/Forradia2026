@@ -568,7 +568,7 @@ void ObjectIndex::AddEntry(
         impactObjectHashes.push_back(Hash(impactObject));
     }
 
-    int worldViewObjectTypeHash{0};
+    int worldViewObjectTypeHash = 0;
 
     if (worldViewObjectType != "")
     {

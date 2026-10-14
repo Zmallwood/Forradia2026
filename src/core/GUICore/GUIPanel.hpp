@@ -13,6 +13,8 @@ class GUIPanel : public GUIComponent
     SizeF size_{0.0f, 0.0f};
 
   protected:
+    virtual bool OnMouseDown(Uint8 mouseButton) override;
+
     virtual void RenderDerived() override;
 
     virtual std::string GetBackgroundImage();
@@ -20,6 +22,6 @@ class GUIPanel : public GUIComponent
     RectF GetBounds();
 
   private:
-    inline static const std::string k_defaultBackgroundImage_{
-        "GUIPanelBackground"};
+    inline static const std::string k_defaultBackgroundImage_ =
+        "GUIPanelBackground";
 };

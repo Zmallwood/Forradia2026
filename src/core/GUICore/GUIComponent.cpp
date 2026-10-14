@@ -147,7 +147,7 @@ GUIComponent::AddComponent(std::shared_ptr<GUIComponent> component)
 
 PointF GUIComponent::GetPosition()
 {
-    PointF finalPosition{0.0F, 0.0F};
+    PointF finalPosition = {0.0f, 0.0f};
 
     if (parent_)
     {

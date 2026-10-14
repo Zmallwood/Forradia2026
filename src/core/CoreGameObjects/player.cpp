@@ -185,6 +185,7 @@ void Player::Hit(float damage)
     ticksLastHitOnSelf_ = Now();
 
     std::stringstream ssDamage;
+    
     ssDamage << std::fixed << std::setprecision(1) << damage;
 
     _<GUITextConsole>().PrintLine("You took " + ssDamage.str() + " damage.");

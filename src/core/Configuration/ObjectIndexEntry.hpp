@@ -15,6 +15,6 @@ class ObjectIndexEntry
     std::function<void()> singleImpactPointCompletedAction;
     std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction;
     int worldViewObjectType = 0;
-    PointF worldViewRenderOffset = PointF{0.0f, 0.0f};
-    PointF firstPersonViewRenderOffset = PointF{0.0f, 0.0f};
+    PointF worldViewRenderOffset = {0.0f, 0.0f};
+    PointF firstPersonViewRenderOffset = {0.0f, 0.0f};
 };

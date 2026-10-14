@@ -7,7 +7,7 @@
 
 WorldArea::WorldArea()
 {
-    auto size{_<GameProperties>().k_worldAreaSize_};
+    auto size = _<GameProperties>().k_worldAreaSize_;
 
     for (auto x = 0; x < size.width; x++)
     {
@@ -22,8 +22,8 @@ WorldArea::WorldArea()
 
 Size WorldArea::GetSize()
 {
-    auto width{static_cast<int>(tiles_.size())};
-    auto height{0};
+    auto width = static_cast<int>(tiles_.size());
+    auto height = 0;
 
     if (width)
     {
@@ -35,7 +35,7 @@ Size WorldArea::GetSize()
 
 bool WorldArea::IsValidCoordinate(int x, int y)
 {
-    auto size{GetSize()};
+    auto size = GetSize();
 
     return x >= 0 && x < size.width && y >= 0 && y < size.height;
 }

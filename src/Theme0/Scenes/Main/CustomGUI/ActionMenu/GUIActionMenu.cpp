@@ -14,9 +14,9 @@
 
 void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 {
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
 
     if (mouseButton == SDL_BUTTON_RIGHT)
     {
@@ -26,13 +26,13 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
         rightClickMousePosition_ = mousePosition;
 
-        auto worldArea{_<World>().currentWorldArea_};
+        auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate{_<Player>().facedTileCoordinate_};
+        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
 
-        auto tile{worldArea->GetTile(facedTileCoordinate)};
+        auto tile = worldArea->GetTile(facedTileCoordinate);
 
-        auto ground{tile->ground_};
+        auto ground = tile->ground_;
 
         if (ground != Hash("GroundWater"))
         {
@@ -41,7 +41,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall north, plank 1";
             entryPlannedWoodWallNorthPlank1.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallNorthPlank1",
@@ -55,7 +55,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall north, plank 2";
             entryPlannedWoodWallNorthPlank2.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallNorthPlank2",
@@ -69,7 +69,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall north, plank 3";
             entryPlannedWoodWallNorthPlank3.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallNorthPlank3",
@@ -83,7 +83,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall north, plank 4";
             entryPlannedWoodWallNorthPlank4.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallNorthPlank4",
@@ -97,7 +97,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall east, plank 1";
             entryPlannedWoodWallEastPlank1.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallEastPlank1",
@@ -112,7 +112,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall east, plank 2";
             entryPlannedWoodWallEastPlank2.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallEastPlank2",
@@ -127,7 +127,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall east, plank 3";
             entryPlannedWoodWallEastPlank3.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallEastPlank3",
@@ -142,7 +142,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall east, plank 4";
             entryPlannedWoodWallEastPlank4.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallEastPlank4",
@@ -157,7 +157,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall south, plank 1";
             entryPlannedWoodWallSouthPlank1.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallSouthPlank1",
@@ -173,7 +173,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall south, plank 2";
             entryPlannedWoodWallSouthPlank2.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallSouthPlank2",
@@ -189,7 +189,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall south, plank 3";
             entryPlannedWoodWallSouthPlank3.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallSouthPlank3",
@@ -205,7 +205,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall south, plank 4";
             entryPlannedWoodWallSouthPlank4.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallSouthPlank4",
@@ -221,7 +221,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall west, plank 1";
             entryPlannedWoodWallWestPlank1.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallWestPlank1",
@@ -236,7 +236,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall west, plank 2";
             entryPlannedWoodWallWestPlank2.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallWestPlank2",
@@ -251,7 +251,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall west, plank 3";
             entryPlannedWoodWallWestPlank3.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallWestPlank3",
@@ -266,7 +266,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
                 "Plan wood wall west, plank 4";
             entryPlannedWoodWallWestPlank4.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodWallWestPlank4",
@@ -280,7 +280,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             entryPlannedWoodFloor.label = "Plan wood floor";
             entryPlannedWoodFloor.action = [=]()
             {
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects = tile->tileObjects_;
 
                 tileObjects->AddObject(
                     "ObjectPlannedWoodFloor",
@@ -294,17 +294,17 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
     {
         visible_ = false;
 
-        auto row{1};
+        auto row = 1;
 
         for (auto &entry : entries_)
         {
-            auto bounds{RectF{rightClickMousePosition_.x,
-                              rightClickMousePosition_.y + row * k_lineHeight,
-                              k_width, k_lineHeight}};
+            RectF bounds = {rightClickMousePosition_.x,
+                            rightClickMousePosition_.y + row * k_lineHeight,
+                            k_width, k_lineHeight};
 
             if (bounds.Contains(mousePosition))
             {
-                auto action{entry.action};
+                auto action = entry.action;
 
                 action();
             }
@@ -321,30 +321,30 @@ void GUIActionMenu::Render()
         return;
     }
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition = GetMousePosition();
 
-    auto numEntries{entries_.size()};
+    auto numEntries = entries_.size();
 
     _<ColorRenderer>().FillRect(
         rightClickMousePosition_.x, rightClickMousePosition_.y, k_width,
         k_lineHeight * (numEntries + 1), Colors::k_darkBlueGray);
 
-    auto marginX{k_marginX};
+    auto marginX = k_marginX;
 
-    auto marginY{ConvertWidthToHeight(k_marginX)};
+    auto marginY = ConvertWidthToHeight(k_marginX);
 
     _<TextRenderer>().DrawString("Actions",
                                  rightClickMousePosition_.x + marginX,
                                  rightClickMousePosition_.y + marginY,
                                  FontSizes::_12, false, Colors::k_gold);
 
-    auto row{1};
+    auto row = 1;
 
     for (auto &entry : entries_)
     {
-        auto bounds{RectF{rightClickMousePosition_.x,
-                          rightClickMousePosition_.y + row * k_lineHeight,
-                          k_width, k_lineHeight}};
+        RectF bounds = {rightClickMousePosition_.x,
+                        rightClickMousePosition_.y + row * k_lineHeight,
+                        k_width, k_lineHeight};
 
         if (bounds.Contains(mousePosition))
         {

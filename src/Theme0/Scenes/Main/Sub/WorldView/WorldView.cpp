@@ -132,6 +132,10 @@ void WorldView::Render()
                     {
                         maxZReached = false;
                     }
+                    else
+                    {
+                        continue;
+                    }
 
                     auto doDraw{true};
                     auto drawFromElevation{0};

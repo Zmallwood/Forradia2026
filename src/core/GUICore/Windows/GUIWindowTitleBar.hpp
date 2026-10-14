@@ -29,9 +29,9 @@ class GUIWindowTitleBar : public GUIPanel
     void SetPosition(PointF value) override;
 
   private:
-    inline static const std::string k_defaultBackgroundImage_{
-        "GUIWindowTitleBarBackground"};
-    static constexpr PointF k_margin_{0.01F, 0.01F};
+    inline static const std::string k_defaultBackgroundImage_ =
+        "GUIWindowTitleBarBackground";
+    static constexpr PointF k_margin_ = {0.01F, 0.01F};
 
     GUIWindow &guiWindow_;
     std::string title_;

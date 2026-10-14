@@ -55,11 +55,13 @@ void Engine::PollEvents()
         case SDL_KEYDOWN:
         {
             _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
+
             break;
         }
         case SDL_KEYUP:
         {
             _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
+
             break;
         }
         case SDL_MOUSEBUTTONDOWN:
@@ -79,7 +81,7 @@ void Engine::PollEvents()
         }
         case SDL_MOUSEBUTTONUP:
         {
-            auto clickSpeed{0};
+            auto clickSpeed = 0;
 
             switch (event.button.button)
             {
@@ -90,6 +92,7 @@ void Engine::PollEvents()
                 clickSpeed = Now() - ticksRightMouseButtonDown_;
                 break;
             }
+            
             _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
                                                     clickSpeed);
             break;

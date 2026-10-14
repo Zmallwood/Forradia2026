@@ -14,7 +14,7 @@ Creature::Creature(int type)
 {
     type_ = type;
 
-    auto typeName{_<CreatureIndex>().GetCreatureLabel(type)};
+    auto typeName = _<CreatureIndex>().GetCreatureLabel(type);
 }
 
 void Creature::Hit(float damage, PointF hitPosition)
@@ -27,7 +27,7 @@ void Creature::Hit(float damage, PointF hitPosition)
 
     targetingPlayer_ = true;
 
-    auto now{Now()};
+    auto now = Now();
 
     if (now - ticksLastHitOnOther_ > InvertSpeed(attackSpeed_))
     {
@@ -37,6 +37,7 @@ void Creature::Hit(float damage, PointF hitPosition)
     auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
 
     std::stringstream ssDamage;
+
     ssDamage << std::fixed << std::setprecision(1) << damage;
 
     _<GUITextConsole>().PrintLine("You hit a " + creatureLabel + " for " +

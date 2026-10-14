@@ -14,8 +14,8 @@ class Cursor
 
     void Render();
 
-    CursorStyles cursorStyle_{CursorStyles::Default};
+    CursorStyles cursorStyle_ = CursorStyles::Default;
 
   private:
-    static constexpr float k_cursorSize_{0.05f};
+    static constexpr float k_cursorSize_ = 0.05f;
 };

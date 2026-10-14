@@ -9,9 +9,26 @@ GUIPanel::GUIPanel(float x, float y, float width, float height)
 {
 }
 
+bool GUIPanel::OnMouseDown(Uint8 mouseButton)
+{
+    auto result = GUIComponent::OnMouseDown(mouseButton);
+
+    if (result)
+    {
+        return true;
+    }
+
+    if (!isVisible_ || !isEnabled_)
+    {
+        return false;
+    }
+
+    return GetBounds().Contains(GetMousePosition());
+}
+
 void GUIPanel::RenderDerived()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
     _<ImageRenderer>().DrawImage(GetBackgroundImage(), position.x, position.y,
                                  size_.width, size_.height);
@@ -24,7 +41,7 @@ std::string GUIPanel::GetBackgroundImage()
 
 RectF GUIPanel::GetBounds()
 {
-    auto position{GetPosition()};
+    auto position = GetPosition();
 
     return {position.x, position.y, size_.width, size_.height};
 }

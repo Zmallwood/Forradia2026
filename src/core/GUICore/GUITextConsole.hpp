@@ -16,7 +16,7 @@ class GUITextConsole : public GUIPanel
     void RenderDerived() override;
 
   private:
-    static constexpr float k_lineHeight_{0.02f};
+    static constexpr float k_lineHeight_ = 0.02f;
 
     std::vector<std::string> lines_;
 };
