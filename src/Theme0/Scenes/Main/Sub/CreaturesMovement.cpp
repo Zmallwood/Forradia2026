@@ -56,7 +56,8 @@ void CreaturesMovement::Update()
                 continue;
             }
 
-            if (newPosition == playerPosition)
+            if (newPosition.x == static_cast<int>(playerPosition.x) &&
+                newPosition.y == static_cast<int>(playerPosition.y))
             {
                 ++it;
 

@@ -1290,7 +1290,8 @@ void WorldGenerator::GenerateWorldAroundPlayer()
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
 
-    auto playerPosition{_<Player>().position_};
+    Point playerPosition{static_cast<int>(_<Player>().position_.x),
+                         static_cast<int>(_<Player>().position_.y)};
 
     for (auto y = playerPosition.y - 4; y <= playerPosition.y + 4; y++)
     {

@@ -31,27 +31,32 @@ void Player::SpawnOnSuitableLocation()
 
     auto worldAreaSize = worldArea->GetSize();
 
-    position_ = {4 + (worldAreaSize.width - 5) / 2,
-                 4 + (worldAreaSize.height - 5) / 2};
+    position_ = {4.0f + (worldAreaSize.width - 5.0f) / 2,
+                 4.0f + (worldAreaSize.height - 5.0f) / 2};
 
-    auto tile = worldArea->GetTile(position_);
+    auto tile = worldArea->GetTile(static_cast<int>(position_.x),
+                                   static_cast<int>(position_.y));
 
     while (tile->ground_ == Hash("GroundWater"))
     {
-        position_ = {4 + (rand() % (worldAreaSize.width - 5)),
-                     4 + (rand() % (worldAreaSize.height - 5))};
-        tile = worldArea->GetTile(position_);
+        position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
+                     4.0f + (rand() % (worldAreaSize.height - 5))};
+
+        tile = worldArea->GetTile(static_cast<int>(position_.x),
+                                  static_cast<int>(position_.y));
     }
 
-    facedTileCoordinate_ = {position_.x, position_.y + 1};
+    facedTileCoordinate_ = {static_cast<int>(position_.x),
+                            static_cast<int>(position_.y) + 1};
 }
 
 void Player::MoveNorth()
 {
     auto newX = position_.x;
-    auto newY = position_.y - 1;
+    auto newY = position_.y - stepSize_;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
+    auto newTile = _<World>().currentWorldArea_->GetTile(
+        {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -61,17 +66,19 @@ void Player::MoveNorth()
 
     position_ = {newX, newY};
 
-    facedTileCoordinate_ = {position_.x, position_.y - 1};
+    facedTileCoordinate_ = {static_cast<int>(position_.x),
+                            static_cast<int>(position_.y) - 1};
 
     facingDirection_ = WorldDirections::North;
 }
 
 void Player::MoveEast()
 {
-    auto newX = position_.x + 1;
+    auto newX = position_.x + stepSize_;
     auto newY = position_.y;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
+    auto newTile = _<World>().currentWorldArea_->GetTile(
+        {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -81,7 +88,8 @@ void Player::MoveEast()
 
     position_ = {newX, newY};
 
-    facedTileCoordinate_ = {position_.x + 1, position_.y};
+    facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
+                            static_cast<int>(position_.y)};
 
     facingDirection_ = WorldDirections::East;
 }
@@ -89,9 +97,10 @@ void Player::MoveEast()
 void Player::MoveSouth()
 {
     auto newX = position_.x;
-    auto newY = position_.y + 1;
+    auto newY = position_.y + stepSize_;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
+    auto newTile = _<World>().currentWorldArea_->GetTile(
+        {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -101,17 +110,19 @@ void Player::MoveSouth()
 
     position_ = {newX, newY};
 
-    facedTileCoordinate_ = {position_.x, position_.y + 1};
+    facedTileCoordinate_ = {static_cast<int>(position_.x),
+                            static_cast<int>(position_.y) + 1};
 
     facingDirection_ = WorldDirections::South;
 }
 
 void Player::MoveWest()
 {
-    auto newX = position_.x - 1;
+    auto newX = position_.x - stepSize_;
     auto newY = position_.y;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile({newX, newY});
+    auto newTile = _<World>().currentWorldArea_->GetTile(
+        {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
         (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
@@ -121,35 +132,40 @@ void Player::MoveWest()
 
     position_ = {newX, newY};
 
-    facedTileCoordinate_ = {position_.x - 1, position_.y};
+    facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
+                            static_cast<int>(position_.y)};
 
     facingDirection_ = WorldDirections::West;
 }
 
 void Player::TurnNorth()
 {
-    facedTileCoordinate_ = {position_.x, position_.y - 1};
+    facedTileCoordinate_ = {static_cast<int>(position_.x),
+                            static_cast<int>(position_.y) - 1};
 
     facingDirection_ = WorldDirections::North;
 }
 
 void Player::TurnEast()
 {
-    facedTileCoordinate_ = {position_.x + 1, position_.y};
+    facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
+                            static_cast<int>(position_.y)};
 
     facingDirection_ = WorldDirections::East;
 }
 
 void Player::TurnSouth()
 {
-    facedTileCoordinate_ = {position_.x, position_.y + 1};
+    facedTileCoordinate_ = {static_cast<int>(position_.x),
+                            static_cast<int>(position_.y) + 1};
 
     facingDirection_ = WorldDirections::South;
 }
 
 void Player::TurnWest()
 {
-    facedTileCoordinate_ = {position_.x - 1, position_.y};
+    facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
+                            static_cast<int>(position_.y)};
 
     facingDirection_ = WorldDirections::West;
 }

@@ -10,6 +10,9 @@ void MouseMovement::Update()
 {
     auto destination{_<Player>().destination_};
 
+    Point playerPosition{static_cast<int>(_<Player>().position_.x),
+                         static_cast<int>(_<Player>().position_.y)};
+
     if (destination.x != -1 && destination.y != -1)
     {
         auto now{Now()};
@@ -17,8 +20,8 @@ void MouseMovement::Update()
         if (now > _<Player>().ticksLastMovement_ +
                       InvertSpeed(_<Player>().movementSpeed_))
         {
-            auto dx{destination.x - _<Player>().position_.x};
-            auto dy{destination.y - _<Player>().position_.y};
+            auto dx{destination.x - playerPosition.x};
+            auto dy{destination.y - playerPosition.y};
 
             auto absDx{std::abs(dx)};
             auto absDy{std::abs(dy)};

@@ -24,8 +24,8 @@ void CreaturesCombatToPlayer::Update()
 
         if (creature->targetingPlayer_)
         {
-            auto dx{position.x - playerPosition.x};
-            auto dy{position.y - playerPosition.y};
+            auto dx{position.x - static_cast<int>(playerPosition.x)};
+            auto dy{position.y - static_cast<int>(playerPosition.y)};
 
             auto absDx{std::abs(dx)};
             auto absDy{std::abs(dy)};

@@ -14,7 +14,13 @@ void TileHovering::Update()
 
     auto worldArea{_<World>().currentWorldArea_};
 
-    auto playerTile{worldArea->GetTile(_<Player>().position_)};
+    Point playerPosition{static_cast<int>(_<Player>().position_.x),
+                         static_cast<int>(_<Player>().position_.y)};
+
+    auto playerMoveDx{_<Player>().position_.x - playerPosition.x};
+    auto playerMoveDy{_<Player>().position_.y - playerPosition.y};
+
+    auto playerTile{worldArea->GetTile(playerPosition)};
 
     if (!playerTile)
     {
@@ -34,8 +40,8 @@ void TileHovering::Update()
     {
         for (auto x = -12; x < 11 + 12; x++)
         {
-            auto xCoordinate{_<Player>().position_.x - 5 + x};
-            auto yCoordinate{_<Player>().position_.y - 5 + y};
+            auto xCoordinate{playerPosition.x - 5 + x};
+            auto yCoordinate{playerPosition.y - 5 + y};
 
             if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
             {
@@ -47,10 +53,13 @@ void TileHovering::Update()
             auto elevation{tile->elevation_};
 
             auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
-                       y * tileWidth / 2};
+                       y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
+                       playerMoveDy * tileWidth / 2};
 
             auto tileY{0.5f - 5.5f * tileHeight + x * tileHeight / 2 +
-                       y * tileHeight / 2 + playerElevation * tileHeight / 4};
+                       y * tileHeight / 2 + playerElevation * tileHeight / 4 -
+                       playerMoveDx * tileHeight / 2 -
+                       playerMoveDy * tileHeight / 2};
 
             auto centerBottom{
                 PointF{tileX + tileWidth / 2, tileY + tileHeight / 2}};
