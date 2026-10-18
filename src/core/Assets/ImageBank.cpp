@@ -37,16 +37,6 @@ std::shared_ptr<SDL_Texture> ImageBank::GetImage(int imageNameHash)
     return nullptr;
 }
 
-std::shared_ptr<SDL_Surface> ImageBank::GetImageSurface(int imageNameHash)
-{
-    if (images_.contains(imageNameHash))
-    {
-        return images_.at(imageNameHash).surface;
-    }
-
-    return nullptr;
-}
-
 Size ImageBank::GetImageSize(int imageNameHash)
 {
     auto width = 0;

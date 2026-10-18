@@ -38,7 +38,7 @@ class Player
     PointF position_ = {0.0f, 0.0f};
     int ticksLastMovement_ = 0;
     float movementSpeed_ = 5.0f;
-    float stepSize_ = 0.4f;
+    float stepSize_ = 0.3f;
     Point destination_ = {-1, -1};
     Point facedTileCoordinate_ = {-1, -1};
     WorldDirections facingDirection_ = WorldDirections::South;
