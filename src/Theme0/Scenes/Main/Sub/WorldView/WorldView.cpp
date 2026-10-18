@@ -31,6 +31,9 @@ void WorldView::Render()
     Point playerPosition{static_cast<int>(_<Player>().position_.x),
                          static_cast<int>(_<Player>().position_.y)};
 
+    auto playerXInt = static_cast<int>(_<Player>().position_.x);
+    auto playerYInt = static_cast<int>(_<Player>().position_.y);
+
     auto playerMoveDx{_<Player>().position_.x - playerPosition.x};
     auto playerMoveDy{_<Player>().position_.y - playerPosition.y};
 
@@ -454,6 +457,38 @@ void WorldView::Render()
 
                         drawObjectsOnTilesBelow(x + 2, y, xCoordinate + 2,
                                                 yCoordinate);
+
+                        auto drawPlayerOnTilesBelow =
+                            [&](int xCoordinate, int yCoordinate)
+                        {
+                            if (xCoordinate == playerXInt &&
+                                yCoordinate == playerYInt)
+                            {
+                                auto tileXPlayer{0.25f - tileWidth / 2 +
+                                                 5 * tileWidth / 2 -
+                                                 5 * tileWidth / 2};
+
+                                auto tileYPlayer{0.5f - 5.5f * tileHeight +
+                                                 5 * tileHeight / 2 +
+                                                 5 * tileHeight / 2};
+
+                                _<ImageRenderer>().DrawImageToBuffer(
+                                    Hash("Player"), tileXPlayer,
+                                    tileYPlayer - tileHeight, tileWidth,
+                                    tileHeight);
+
+                                _<ImageRenderer>().ApplyMasksToBuffer(masks);
+
+                                _<ImageRenderer>().DrawBufferToScreen();
+                            }
+                        };
+
+                        drawPlayerOnTilesBelow(xCoordinate + 1,
+                                               yCoordinate + 1);
+
+                        drawPlayerOnTilesBelow(xCoordinate + 1, yCoordinate);
+
+                        drawPlayerOnTilesBelow(xCoordinate, yCoordinate + 1);
 
                         auto npc{tile->npc_};
 

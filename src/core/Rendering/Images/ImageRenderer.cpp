@@ -151,7 +151,7 @@ void ImageRenderer::DrawImageToBuffer(int imageNameHash, float x, float y,
     RestoreClip(renderer, clip);
 }
 
-void ImageRenderer::ApplyMasksToBuffer(std::vector<Mask> masks)
+void ImageRenderer::ApplyMasksToBuffer(std::vector<Mask> &masks)
 {
     if (!buffer_ || !maskBuffer_ || masks.empty())
     {
@@ -356,8 +356,8 @@ Mask ImageRenderer::CreateMaskFromImage(std::string_view imageName, float xF,
         return Mask();
     }
 
-    SDL_Surface *mask = SDL_CreateRGBSurfaceWithFormat(
-        0, width, height, 32, SDL_PIXELFORMAT_RGBA32);
+    SDL_Surface *mask = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32,
+                                                       SDL_PIXELFORMAT_RGBA32);
 
     if (!mask)
     {

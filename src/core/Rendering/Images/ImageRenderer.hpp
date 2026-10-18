@@ -28,7 +28,7 @@ class ImageRenderer
                            float height, float opacity = 1.0f,
                            bool flipHorizontal = false);
 
-    void ApplyMasksToBuffer(std::vector<Mask> masks);
+    void ApplyMasksToBuffer(std::vector<Mask> &masks);
 
     Mask CreateDiamondMask(float xF, float yF, float widthF, float heightF);
 
