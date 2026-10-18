@@ -37,7 +37,7 @@ class Player
 
     PointF position_ = {0.0f, 0.0f};
     int ticksLastMovement_ = 0;
-    float movementSpeed_ = 6.0f;
+    float movementSpeed_ = 10.0f;
     float stepSize_ = 0.2f;
     Point destination_ = {-1, -1};
     Point facedTileCoordinate_ = {-1, -1};

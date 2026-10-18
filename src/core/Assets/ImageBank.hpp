@@ -12,6 +12,8 @@ class ImageBank
 
     std::shared_ptr<SDL_Texture> GetImage(int imageNameHash);
 
+    std::shared_ptr<SDL_Surface> GetImageSurface(int imageNameHash);
+
     Size GetImageSize(int imageNameHash);
 
     bool IsPixelVisible(int imageNameHash, float x, float y);

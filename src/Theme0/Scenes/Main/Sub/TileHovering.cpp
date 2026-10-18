@@ -32,13 +32,18 @@ void TileHovering::Update()
     auto tileWidth{GameProperties::k_tileWidth_};
     auto tileHeight{ConvertWidthToHeight(tileWidth)};
 
+    auto tileGridSize{GameProperties::k_tileGridSize_};
+
+    auto numGridRows{tileGridSize - 11};
+    auto numGridColumns{tileGridSize - 11};
+
     // for (auto y = -6; y < 11 + 6; y++)
     // {
     //     for (auto x = -6; x < 11 + 6; x++)
     //     {
-    for (auto y = -12; y < 11 + 12; y++)
+    for (auto y = -numGridRows; y < 11 + numGridRows; y++)
     {
-        for (auto x = -12; x < 11 + 12; x++)
+        for (auto x = -numGridColumns; x < 11 + numGridColumns; x++)
         {
             auto xCoordinate{playerPosition.x - 5 + x};
             auto yCoordinate{playerPosition.y - 5 + y};

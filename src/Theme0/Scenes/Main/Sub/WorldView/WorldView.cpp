@@ -50,6 +50,11 @@ void WorldView::Render()
     auto tileWidth{_<GameProperties>().k_tileWidth_};
     auto tileHeight{ConvertWidthToHeight(tileWidth)};
 
+    auto tileGridSize{GameProperties::k_tileGridSize_};
+
+    auto numGridRows{tileGridSize - 11};
+    auto numGridColumns{tileGridSize - 11};
+
     auto playerLoopX{5};
     auto playerLoopY{5};
 
@@ -65,9 +70,9 @@ void WorldView::Render()
         {
             maxZReached = true;
 
-            for (auto y = -12; y < 11 + 12; y++)
+            for (auto y = -numGridRows; y < 11 + numGridRows; y++)
             {
-                for (auto x = -12; x < 11 + 12; x++)
+                for (auto x = -numGridColumns; x < 11 + numGridColumns; x++)
                 {
                     auto xCoordinate{playerPosition.x - 5 + x};
                     auto yCoordinate{playerPosition.y - 5 + y};
@@ -76,53 +81,6 @@ void WorldView::Render()
                     {
                         continue;
                     }
-
-                    auto numBlockingObjects{0};
-
-                    auto dx{playerPosition.x - xCoordinate};
-                    auto dy{playerPosition.y - yCoordinate};
-
-                    if (dx != 0 || dy != 0)
-                    {
-                        auto numSteps{std::max(std::abs(dx), std::abs(dy))};
-
-                        auto stepX{static_cast<float>(dx) / numSteps};
-                        auto stepY{static_cast<float>(dy) / numSteps};
-
-                        auto currentXf{static_cast<float>(xCoordinate) + stepX};
-                        auto currentYf{static_cast<float>(yCoordinate) + stepY};
-
-                        for (auto i = 0; i < numSteps - 1; i++)
-                        {
-                            auto currentX{static_cast<int>(currentXf)};
-                            auto currentY{static_cast<int>(currentYf)};
-
-                            auto tile{worldArea->GetTile(currentX, currentY)};
-
-                            if (!tile)
-                            {
-                                continue;
-                            }
-
-                            for (auto object : tile->tileObjects_->objects_)
-                            {
-                                if (_<ObjectIndex>().ObjectBlocksSight(
-                                        object.second->type_))
-                                {
-                                    numBlockingObjects++;
-
-                                    break;
-                                }
-                            }
-
-                            currentXf += stepX;
-                            currentYf += stepY;
-                        }
-                    }
-
-                    auto sightBlocked{numBlockingObjects >= 2};
-
-                    sightBlocked = false;
 
                     auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
 
@@ -217,46 +175,14 @@ void WorldView::Render()
 
                     auto tileY{tileYOriginal};
 
-                    if (sightBlocked)
-                    {
-                        for (auto i = 0; i < elevationWest; i++)
-                        {
-                            if (i == z)
-                            {
-                                _<ImageRenderer>().DrawImage(
-                                    "ElevationWestBackSideBlack", tileX,
-                                    tileY - tileHeight / 4, tileWidth,
-                                    tileHeight * 3 / 4);
-                            }
-
-                            tileY -= tileHeight / 4;
-                        }
-
-                        tileY = tileYOriginal;
-
-                        for (auto i = 0; i < elevationNorth; i++)
-                        {
-                            if (i == z)
-                            {
-                                _<ImageRenderer>().DrawImage(
-                                    "ElevationNorthBackSideBlack", tileX,
-                                    tileY - tileHeight / 4, tileWidth,
-                                    tileHeight * 3 / 4);
-                            }
-
-                            tileY -= tileHeight / 4;
-                        }
-
-                        continue;
-                    }
-
                     tileY = tileYOriginal;
 
                     auto ground{tile->ground_};
 
                     for (auto i = 0; i < elevation; i++)
                     {
-                        if (i == z && i >= drawFromElevation && i <= drawUpToElevation)
+                        if (i == z && i >= drawFromElevation &&
+                            i <= drawUpToElevation)
                         {
                             if (ground == Hash("GroundRock"))
                             {
@@ -399,6 +325,136 @@ void WorldView::Render()
                                 objectHeight);
                         }
 
+                        std::vector<Mask> masks;
+
+                        auto tileYCopy = tileYOriginal;
+
+                        for (auto i = 0; i < elevation; i++)
+                        {
+                            auto elevationMask =
+                                _<ImageRenderer>().CreateMaskFromImage(
+                                    "Elevation", tileX,
+                                    tileYCopy + tileHeight / 4, tileWidth,
+                                    tileHeight * 3 / 4);
+                            masks.push_back(elevationMask);
+
+                            tileYCopy -= tileHeight / 4;
+                        }
+
+                        auto tileMask = _<ImageRenderer>().CreateDiamondMask(
+                            tileX, tileY, tileWidth, tileHeight);
+
+                        masks.push_back(tileMask);
+
+                        auto drawObjectsOnTilesBelow =
+                            [&](int x, int y, int xCoordinate, int yCoordinate)
+                        {
+                            auto tile =
+                                worldArea->GetTile(xCoordinate, yCoordinate);
+
+                            if (!tile)
+                            {
+                                return;
+                            }
+
+                            auto originalTileX = tileX;
+                            auto originalTileY = tileY;
+
+                            auto elevation{tile->elevation_};
+
+                            auto tileX{0.25f - tileWidth / 2 +
+                                       x * tileWidth / 2 - y * tileWidth / 2 -
+                                       playerMoveDx * tileWidth / 2 +
+                                       playerMoveDy * tileWidth / 2};
+
+                            auto tileY{0.5f - 5.5f * tileHeight +
+                                       x * tileHeight / 2 + y * tileHeight / 2 +
+                                       playerElevation * tileHeight / 4 -
+                                       playerMoveDx * tileHeight / 2 -
+                                       playerMoveDy * tileHeight / 2 -
+                                       elevation * tileHeight / 4};
+
+                            auto objects{tile->tileObjects_->objects_};
+
+                            for (auto entry : objects)
+                            {
+                                auto object{entry.second};
+
+                                auto objectType{object->type_};
+
+                                auto worldViewObjectType{
+                                    _<ObjectIndex>().GetWorldViewObjectType(
+                                        objectType)};
+
+                                auto usedObjectType{objectType};
+
+                                if (worldViewObjectType != 0)
+                                {
+                                    usedObjectType = worldViewObjectType;
+                                }
+
+                                auto isSmallObject{
+                                    _<ObjectIndex>().IsSmallObject(
+                                        usedObjectType)};
+
+                                if (isSmallObject)
+                                {
+                                    continue;
+                                }
+
+                                auto imageSize{_<ImageBank>().GetImageSize(
+                                    usedObjectType)};
+
+                                auto objectWidth{imageSize.width / 60.0f *
+                                                 tileWidth};
+                                auto objectHeight{imageSize.height / 60.0f *
+                                                  tileHeight};
+
+                                auto renderOffset{
+                                    _<ObjectIndex>().GetWorldViewRenderOffset(
+                                        objectType)};
+
+                                auto objectX{tileX + tileWidth / 2 -
+                                             objectWidth / 2 +
+                                             renderOffset.x * tileWidth};
+                                auto objectY{tileY + tileHeight / 2 -
+                                             objectHeight +
+                                             renderOffset.y * tileHeight};
+
+                                _<ImageRenderer>().DrawImageToBuffer(
+                                    usedObjectType, objectX, objectY,
+                                    objectWidth, objectHeight);
+
+                                _<ImageRenderer>().ApplyMasksToBuffer(masks);
+
+                                _<ImageRenderer>().DrawBufferToScreen();
+                            }
+                        };
+
+                        drawObjectsOnTilesBelow(x + 1, y + 1, xCoordinate + 1,
+                                                yCoordinate + 1);
+
+                        drawObjectsOnTilesBelow(x + 1, y, xCoordinate + 1,
+                                                yCoordinate);
+
+                        drawObjectsOnTilesBelow(x, y + 1, xCoordinate,
+                                                yCoordinate + 1);
+
+                        drawObjectsOnTilesBelow(x + 2, y + 2, xCoordinate + 2,
+                                                yCoordinate + 2);
+
+                        drawObjectsOnTilesBelow(x + 1, y + 2, xCoordinate + 1,
+                                                yCoordinate + 2);
+
+                        drawObjectsOnTilesBelow(x + 2, y + 1, xCoordinate + 2,
+                                                yCoordinate + 1);
+
+                        drawObjectsOnTilesBelow(x, y + 2, xCoordinate,
+                                                yCoordinate + 2);
+
+                        drawObjectsOnTilesBelow(x + 2, y, xCoordinate + 2,
+                                                yCoordinate);
+
                         auto npc{tile->npc_};
 
                         if (npc)
@@ -442,22 +498,27 @@ void WorldView::Render()
                                 creatureType, creatureX, creatureY,
                                 creatureWidth, creatureHeight);
                         }
+
+                        if (xCoordinate ==
+                                static_cast<int>(_<Player>().position_.x) &&
+                            yCoordinate ==
+                                static_cast<int>(_<Player>().position_.y))
+                        {
+                            auto tileXPlayer{0.25f - tileWidth / 2 +
+                                             5 * tileWidth / 2 -
+                                             5 * tileWidth / 2};
+
+                            auto tileYPlayer{0.5f - 5.5f * tileHeight +
+                                             5 * tileHeight / 2 +
+                                             5 * tileHeight / 2};
+
+                            _<ImageRenderer>().DrawImage(
+                                "Player", tileXPlayer, tileYPlayer - tileHeight,
+                                tileWidth, tileHeight);
+                        }
                     }
                 }
             }
-        }
-
-        if (renderPass == 0)
-        {
-            auto tileXPlayer{0.25f - tileWidth / 2 + 5 * tileWidth / 2 -
-                             5 * tileWidth / 2};
-
-            auto tileYPlayer{0.5f - 5.5f * tileHeight + 5 * tileHeight / 2 +
-                             5 * tileHeight / 2};
-
-            _<ImageRenderer>().DrawImage("Player", tileXPlayer,
-                                         tileYPlayer - tileHeight, tileWidth,
-                                         tileHeight);
         }
     }
 
