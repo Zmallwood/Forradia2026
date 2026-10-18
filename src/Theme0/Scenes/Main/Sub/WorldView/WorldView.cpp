@@ -344,6 +344,68 @@ void WorldView::Render()
                             tileYCopy -= tileHeight / 4;
                         }
 
+                        auto npc{tile->npc_};
+
+                        if (npc)
+                        {
+                            auto npcType{npc->type_};
+
+                            auto imageSize{
+                                _<ImageBank>().GetImageSize(npcType)};
+
+                            auto npcWidth{imageSize.width / 60.0f * tileWidth};
+                            auto npcHeight{imageSize.height / 60.0f *
+                                           tileHeight};
+
+                            auto npcX{tileX + tileWidth / 2 - npcWidth / 2};
+                            auto npcY{tileY + tileHeight / 2 - npcHeight};
+
+                            _<ImageRenderer>().DrawImage(npcType, npcX, npcY,
+                                                         npcWidth, npcHeight);
+                        }
+
+                        auto creature{tile->creature_};
+
+                        if (creature)
+                        {
+                            auto creatureType{creature->type_};
+
+                            auto imageSize{
+                                _<ImageBank>().GetImageSize(creatureType)};
+
+                            auto creatureWidth{imageSize.width / 60.0f *
+                                               tileWidth};
+                            auto creatureHeight{imageSize.height / 60.0f *
+                                                tileHeight};
+
+                            auto creatureX{tileX + tileWidth / 2 -
+                                           creatureWidth / 2};
+                            auto creatureY{tileY + tileHeight / 2 -
+                                           creatureHeight};
+
+                            _<ImageRenderer>().DrawImage(
+                                creatureType, creatureX, creatureY,
+                                creatureWidth, creatureHeight);
+                        }
+
+                        if (xCoordinate ==
+                                static_cast<int>(_<Player>().position_.x) &&
+                            yCoordinate ==
+                                static_cast<int>(_<Player>().position_.y))
+                        {
+                            auto tileXPlayer{0.25f - tileWidth / 2 +
+                                             5 * tileWidth / 2 -
+                                             5 * tileWidth / 2};
+
+                            auto tileYPlayer{0.5f - 5.5f * tileHeight +
+                                             5 * tileHeight / 2 +
+                                             5 * tileHeight / 2};
+
+                            _<ImageRenderer>().DrawImage(
+                                "Player", tileXPlayer, tileYPlayer - tileHeight,
+                                tileWidth, tileHeight);
+                        }
+
                         auto tileMask = _<ImageRenderer>().CreateDiamondMask(
                             tileX, tileY, tileWidth, tileHeight);
 
@@ -489,68 +551,6 @@ void WorldView::Render()
 
                         drawObjectsOnTilesBelow(x + 2, y, xCoordinate + 2,
                                                 yCoordinate);
-
-                        auto npc{tile->npc_};
-
-                        if (npc)
-                        {
-                            auto npcType{npc->type_};
-
-                            auto imageSize{
-                                _<ImageBank>().GetImageSize(npcType)};
-
-                            auto npcWidth{imageSize.width / 60.0f * tileWidth};
-                            auto npcHeight{imageSize.height / 60.0f *
-                                           tileHeight};
-
-                            auto npcX{tileX + tileWidth / 2 - npcWidth / 2};
-                            auto npcY{tileY + tileHeight / 2 - npcHeight};
-
-                            _<ImageRenderer>().DrawImage(npcType, npcX, npcY,
-                                                         npcWidth, npcHeight);
-                        }
-
-                        auto creature{tile->creature_};
-
-                        if (creature)
-                        {
-                            auto creatureType{creature->type_};
-
-                            auto imageSize{
-                                _<ImageBank>().GetImageSize(creatureType)};
-
-                            auto creatureWidth{imageSize.width / 60.0f *
-                                               tileWidth};
-                            auto creatureHeight{imageSize.height / 60.0f *
-                                                tileHeight};
-
-                            auto creatureX{tileX + tileWidth / 2 -
-                                           creatureWidth / 2};
-                            auto creatureY{tileY + tileHeight / 2 -
-                                           creatureHeight};
-
-                            _<ImageRenderer>().DrawImage(
-                                creatureType, creatureX, creatureY,
-                                creatureWidth, creatureHeight);
-                        }
-
-                        if (xCoordinate ==
-                                static_cast<int>(_<Player>().position_.x) &&
-                            yCoordinate ==
-                                static_cast<int>(_<Player>().position_.y))
-                        {
-                            auto tileXPlayer{0.25f - tileWidth / 2 +
-                                             5 * tileWidth / 2 -
-                                             5 * tileWidth / 2};
-
-                            auto tileYPlayer{0.5f - 5.5f * tileHeight +
-                                             5 * tileHeight / 2 +
-                                             5 * tileHeight / 2};
-
-                            _<ImageRenderer>().DrawImage(
-                                "Player", tileXPlayer, tileYPlayer - tileHeight,
-                                tileWidth, tileHeight);
-                        }
                     }
                 }
             }
