@@ -11,29 +11,29 @@
 
 std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
 {
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
 
-    auto worldArea{_<World>().currentWorldArea_};
-    auto facedTile{worldArea->GetTile(_<Player>().facedTileCoordinate_)};
+    auto worldArea = _<World>().currentWorldArea_;
+    auto facedTile = worldArea->GetTile(_<Player>().facedTileCoordinate_);
 
     if (!facedTile)
     {
         return {};
     }
 
-    auto objects{facedTile->tileObjects_->objects_};
+    auto objects = facedTile->tileObjects_->objects_;
 
     std::map<std::pair<int, int>, PositionedObject> orderedObjects;
 
     for (auto entry : objects)
     {
-        auto position{entry.first};
-        auto object{entry.second};
+        auto position = entry.first;
+        auto object = entry.second;
 
         int xPos;
         int yPos;
 
-        auto facingDirection{_<Player>().facingDirection_};
+        auto facingDirection = _<Player>().facingDirection_;
 
         switch (facingDirection)
         {
@@ -67,23 +67,23 @@ std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
 
 Point GetHoveredTilePosition(PointF mouseOffset)
 {
-    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
-    auto viewWidth{GameProperties::k_viewWidth_};
+    constexpr auto k_margin = GameProperties::k_firstPersonViewMargin_;
+    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
+    auto viewWidth = GameProperties::k_viewWidth_;
 
     auto hoveredTilePosition = Point{-1, -1};
 
-    auto anchorPosition{GetMousePosition() - mouseOffset};
+    auto anchorPosition = GetMousePosition() - mouseOffset;
 
-    auto groundTop{0.75f + k_margin.y};
-    auto groundHeight{0.25f - 2 * k_margin.y};
+    auto groundTop = 0.75f + k_margin.y;
+    auto groundHeight = 0.25f - 2 * k_margin.y;
 
-    auto relativeY{(anchorPosition.y - groundTop) / groundHeight};
+    auto relativeY = (anchorPosition.y - groundTop) / groundHeight;
 
     if (relativeY >= 0.0f && relativeY <= 1.0f)
     {
         // Bases sit on the near edge of a cell, so step just inside it.
-        auto hoveredY{static_cast<int>(relativeY * tileUnitsWidth - 0.001f)};
+        auto hoveredY = static_cast<int>(relativeY * tileUnitsWidth - 0.001f);
 
         if (hoveredY < 0)
         {
@@ -95,27 +95,27 @@ Point GetHoveredTilePosition(PointF mouseOffset)
             hoveredY = tileUnitsWidth - 1;
         }
 
-        auto tileWidth{viewWidth - 2 * k_margin.x -
-                       static_cast<float>(tileUnitsWidth - hoveredY) /
-                           tileUnitsWidth * viewWidth * 0.6f};
+        auto tileWidth = viewWidth - 2 * k_margin.x -
+                         static_cast<float>(tileUnitsWidth - hoveredY) /
+                             tileUnitsWidth * viewWidth * 0.6f;
 
-        auto tileLeft{1.0f - viewWidth + k_margin.x +
-                      static_cast<float>(tileUnitsWidth - hoveredY) /
-                          tileUnitsWidth * viewWidth * 0.3f};
+        auto tileLeft = 1.0f - viewWidth + k_margin.x +
+                        static_cast<float>(tileUnitsWidth - hoveredY) /
+                            tileUnitsWidth * viewWidth * 0.3f;
 
-        auto relativeX{(anchorPosition.x - tileLeft) / tileWidth};
+        auto relativeX = (anchorPosition.x - tileLeft) / tileWidth;
 
         if (relativeX >= 0.0f && relativeX < 1.0f)
         {
-            auto hoveredX{static_cast<int>(relativeX * tileUnitsWidth)};
+            auto hoveredX = static_cast<int>(relativeX * tileUnitsWidth);
 
             if (hoveredX >= tileUnitsWidth)
             {
                 hoveredX = tileUnitsWidth - 1;
             }
 
-            int tileX{hoveredX};
-            int tileY{hoveredY};
+            int tileX = hoveredX;
+            int tileY = hoveredY;
 
             switch (_<Player>().facingDirection_)
             {

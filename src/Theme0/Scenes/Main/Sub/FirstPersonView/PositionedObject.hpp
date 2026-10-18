@@ -8,6 +8,6 @@ class Object;
 class PositionedObject
 {
   public:
-    Point position_{-1, -1};
+    Point position_ = {-1, -1};
     std::shared_ptr<Object> object_;
 };
