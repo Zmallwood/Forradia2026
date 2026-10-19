@@ -82,10 +82,20 @@ void WorldView::Render()
             Point coordinateSouth = {xCoordinate, yCoordinate + 1};
             Point coordinateWest = {xCoordinate - 1, yCoordinate};
 
+            Point coordinateNorthEast = {xCoordinate + 1, yCoordinate - 1};
+            Point coordinateSouthEast = {xCoordinate + 1, yCoordinate + 1};
+            Point coordinateSouthWest = {xCoordinate - 1, yCoordinate + 1};
+            Point coordinateNorthWest = {xCoordinate - 1, yCoordinate - 1};
+
             auto elevationNorth = elevation;
             auto elevationEast = elevation;
             auto elevationSouth = elevation;
             auto elevationWest = elevation;
+
+            auto elevationNorthEast = elevation;
+            auto elevationSouthEast = elevation;
+            auto elevationSouthWest = elevation;
+            auto elevationNorthWest = elevation;
 
             if (worldArea->IsValidCoordinate(coordinateNorth))
             {
@@ -107,6 +117,30 @@ void WorldView::Render()
             if (worldArea->IsValidCoordinate(coordinateWest))
             {
                 elevationWest = worldArea->GetTile(coordinateWest)->elevation_;
+            }
+
+            if (worldArea->IsValidCoordinate(coordinateNorthEast))
+            {
+                elevationNorthEast =
+                    worldArea->GetTile(coordinateNorthEast)->elevation_;
+            }
+
+            if (worldArea->IsValidCoordinate(coordinateSouthEast))
+            {
+                elevationSouthEast =
+                    worldArea->GetTile(coordinateSouthEast)->elevation_;
+            }
+
+            if (worldArea->IsValidCoordinate(coordinateSouthWest))
+            {
+                elevationSouthWest =
+                    worldArea->GetTile(coordinateSouthWest)->elevation_;
+            }
+
+            if (worldArea->IsValidCoordinate(coordinateNorthWest))
+            {
+                elevationNorthWest =
+                    worldArea->GetTile(coordinateNorthWest)->elevation_;
             }
 
             auto tileX = 0.25f - tileWidth / 2 + x * tileWidth / 2 -
@@ -145,6 +179,29 @@ void WorldView::Render()
                                                  tileWidth, tileHeight * 3 / 4);
                 }
 
+                if (i >= elevationNorth && i >= elevationNorthEast &&
+                    i >= elevationEast)
+                {
+                    _<ImageRenderer>().DrawImage("ElevationEdgeRight", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
+
+                if (i >= elevationSouth && i >= elevationSouthWest &&
+                    i >= elevationWest)
+                {
+                    _<ImageRenderer>().DrawImage("ElevationEdgeLeft", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
+
+                if (i >= elevationSouth && i >= elevationEast)
+                {
+                    _<ImageRenderer>().DrawImage("ElevationEdgeMiddle", tileX,
+                                                 tileY + tileHeight / 4,
+                                                 tileWidth, tileHeight * 3 / 4);
+                }
+
                 tileY -= tileHeight / 4;
             }
 
@@ -174,25 +231,25 @@ void WorldView::Render()
                                          tileWidth + k_smallValue,
                                          tileHeight + k_smallValue);
 
-            if (elevation > elevationNorth)
+            if (elevation != elevationNorth)
             {
                 _<ImageRenderer>().DrawImage("ElevationEdgeNorth", tileX, tileY,
                                              tileWidth, tileHeight);
             }
 
-            if (elevation > elevationEast)
+            if (elevation != elevationEast)
             {
                 _<ImageRenderer>().DrawImage("ElevationEdgeEast", tileX, tileY,
                                              tileWidth, tileHeight);
             }
 
-            if (elevation > elevationSouth)
+            if (elevation != elevationSouth)
             {
                 _<ImageRenderer>().DrawImage("ElevationEdgeSouth", tileX, tileY,
                                              tileWidth, tileHeight);
             }
 
-            if (elevation > elevationWest)
+            if (elevation != elevationWest)
             {
                 _<ImageRenderer>().DrawImage("ElevationEdgeWest", tileX, tileY,
                                              tileWidth, tileHeight);
