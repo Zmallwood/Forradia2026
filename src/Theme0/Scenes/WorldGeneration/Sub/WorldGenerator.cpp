@@ -425,94 +425,48 @@ void WorldGenerator::GenerateNewWorld()
     Traverse3(fnMakeMountains);
     Traverse4(fnMakeMountains);
 
-    auto fnMakeHills = std::function<void(int, int)>(
-        [&](int x, int y)
+    auto numHills = 60 + rand() % 10;
+
+    for (auto i = 0; i < numHills; i++)
+    {
+        auto xCenter{rand() % size.width};
+        auto yCenter{rand() % size.height};
+        auto radius{3 + rand() % 14};
+
+        for (auto r = radius; r >= 0; r -= (1 + rand() % 2))
         {
-            auto tile{worldArea->GetTile(x, y)};
-
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
-            auto tileE{worldArea->GetTile(x + 1, y)};
-            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-            auto tileS{worldArea->GetTile(x, y + 1)};
-            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
-
-            auto elevationNW{tileNW->elevation_};
-            auto elevationN{tileN->elevation_};
-            auto elevationNE{tileNE->elevation_};
-            auto elevationW{tileW->elevation_};
-            auto elevationE{tileE->elevation_};
-            auto elevationSW{tileSW->elevation_};
-            auto elevationS{tileS->elevation_};
-            auto elevationSE{tileSE->elevation_};
-
-            auto elevation{tile->elevation_};
-
-            auto numElevationTiles{0};
-
-            if (tile->ground_ != Hash("GroundWater") &&
-                tile->ground_ != Hash("GroundRock"))
+            for (auto y = yCenter - radius; y <= yCenter + radius; y++)
             {
-                if (elevation <= elevationNW && elevationNW > 1)
+                for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationN && elevationN > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationNE && elevationNE > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationW && elevationW > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationE && elevationE > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationSW && elevationSW > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationS && elevationS > 1)
-                {
-                    numElevationTiles++;
-                }
-                if (elevation <= elevationSE && elevationSE > 1)
-                {
-                    numElevationTiles++;
+                    if (!worldArea->IsValidCoordinate(x, y))
+                    {
+                        continue;
+                    }
+
+                    auto dx = x - xCenter;
+                    auto dy = y - yCenter;
+
+                    if (dx * dx + dy * dy <= r * r)
+                    {
+                        auto tile{worldArea->GetTile(x, y)};
+
+                        if (tile->ground_ == Hash("GroundWater"))
+                        {
+                            continue;
+                        }
+
+                        if (tile->elevation_ >= 5)
+                        {
+                            continue;
+                        }
+
+                        tile->elevation_++;
+                    }
                 }
             }
-
-            if (numElevationTiles == 2)
-            {
-                auto increaseElevation{rand() % 1000 < 500};
-
-                if (increaseElevation)
-                {
-                    tile->elevation_++;
-                }
-            }
-            else if (numElevationTiles > 2)
-            {
-                auto increaseElevation{rand() % 1000 < 700};
-
-                if (increaseElevation)
-                {
-                    tile->elevation_++;
-                }
-            }
-        });
-
-    Traverse1(fnMakeHills);
-    Traverse2(fnMakeHills);
-    Traverse3(fnMakeHills);
-    Traverse4(fnMakeHills);
+        }
+    }
 
     for (auto y = 1; y < size.height - 1; y++)
     {
@@ -1287,28 +1241,28 @@ void WorldGenerator::GenerateCivilization()
 
 void WorldGenerator::GenerateWorldAroundPlayer()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    // auto worldArea{_<World>().currentWorldArea_};
+    // auto size{worldArea->GetSize()};
 
-    Point playerPosition{static_cast<int>(_<Player>().position_.x),
-                         static_cast<int>(_<Player>().position_.y)};
+    // Point playerPosition{static_cast<int>(_<Player>().position_.x),
+    //                      static_cast<int>(_<Player>().position_.y)};
 
-    for (auto y = playerPosition.y - 4; y <= playerPosition.y + 4; y++)
-    {
-        for (auto x = playerPosition.x - 4; x <= playerPosition.x + 4; x++)
-        {
-            auto tile{worldArea->GetTile(x, y)};
+    // for (auto y = playerPosition.y - 4; y <= playerPosition.y + 4; y++)
+    // {
+    //     for (auto x = playerPosition.x - 4; x <= playerPosition.x + 4; x++)
+    //     {
+    //         auto tile{worldArea->GetTile(x, y)};
 
-            if (!tile)
-            {
-                continue;
-            }
+    //         if (!tile)
+    //         {
+    //             continue;
+    //         }
 
-            tile->tileObjects_->Clear();
+    //         tile->tileObjects_->Clear();
 
-            tile->ground_ = Hash("GroundGrass");
+    //         tile->ground_ = Hash("GroundGrass");
 
-            tile->elevation_ = 1;
-        }
-    }
+    //         tile->elevation_ = 1;
+    //     }
+    // }
 }
