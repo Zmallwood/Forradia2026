@@ -390,7 +390,7 @@ void WorldGenerator::GenerateNewWorld()
 
                         tile->ground_ = Hash("GroundRock");
 
-                        if (rand() % 4 == 0)
+                        if (rand() % 5 == 0)
                         {
                             tile->tileObjects_->Clear();
 
@@ -1189,7 +1189,7 @@ void WorldGenerator::GenerateCreatures()
     auto size{worldArea->GetSize()};
 
     // auto numDeers{150 + rand() % 20};
-    auto numDeers{40 + rand() % 10};
+    auto numDeers{80 + rand() % 10};
 
     for (auto i = 0; i < numDeers; i++)
     {
@@ -1212,7 +1212,7 @@ void WorldGenerator::GenerateCreatures()
     }
 
     // auto numBoars{150 + rand() % 20};
-    auto numBoars{40 + rand() % 10};
+    auto numBoars{80 + rand() % 10};
 
     for (auto i = 0; i < numBoars; i++)
     {
