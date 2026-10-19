@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "Point.hpp"
+#include "POINT.HPP"
 
-Point Point::operator+(const Point &other) const
+POINT POINT::operator+(const POINT &other) const
 {
     return {x + other.x, y + other.y};
 }

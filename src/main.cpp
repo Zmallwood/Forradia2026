@@ -1,11 +1,11 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "Theme0/RunNewTheme0.hpp"
+#include "THEME_0/RUN_NEW_THEME_0.HPP"
 
 int main(int argc, char *argv[])
 {
-    RunNewTheme0();
+    RUN_NEW_THEME_0();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

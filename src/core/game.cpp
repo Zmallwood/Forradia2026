@@ -1,12 +1,12 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "Game.hpp"
-#include "Engine/Engine.hpp"
+#include "GAME.HPP"
+#include "ENGINE/ENGINE.HPP"
 
-void Game::Start()
+void GAME::START()
 {
-    _<Engine>().Start();
+    _<ENGINE>().START();
 
-    DestroySingleton<Engine>();
+    DESTROY_SINGLETON<ENGINE>();
 }

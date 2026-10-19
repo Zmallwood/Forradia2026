@@ -3,7 +3,7 @@
 
 #pragma once
 
-class Size
+class SIZE
 {
   public:
     int width = 0;

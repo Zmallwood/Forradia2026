@@ -25,7 +25,7 @@ std::shared_ptr<T> GetSingletonPtr()
 }
 
 template <class T>
-void DestroySingleton()
+void DESTROY_SINGLETON()
 {
     SingletonStorage<T>().reset();
 }

@@ -3,8 +3,8 @@
 
 #pragma once
 
-class Game
+class GAME
 {
   public:
-    void Start();
+    void START();
 };

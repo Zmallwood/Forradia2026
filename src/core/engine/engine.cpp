@@ -1,15 +1,15 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "Engine.hpp"
-#include "Core/Assets/ImageBank.hpp"
-#include "Core/MinorComponents/Cursor.hpp"
-#include "Core/MinorComponents/FPSCounter.hpp"
-#include "Core/Rendering/Text/TextRenderer.hpp"
-#include "Core/SDLDevice/SDLDevice.hpp"
-#include "Core/ScenesCore/SceneManager.hpp"
+#include "ENGINE.HPP"
+#include "CORE/ASSETS/IMAGE_BANK.HPP"
+#include "CORE/MINOR_COMPONENTS/CURSOR.HPP"
+#include "CORE/MINOR_COMPONENTS/FPS_COUNTER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SCENES_CORE/SCENE_MANAGER.HPP"
 
-void Engine::Start()
+void ENGINE::START()
 {
     srand(time(nullptr));
 
@@ -19,7 +19,7 @@ void Engine::Start()
 
     while (running_)
     {
-        PollEvents();
+        POLL_EVENTS();
 
         _<Cursor>().Reset();
 
@@ -39,7 +39,7 @@ void Engine::Start()
     }
 }
 
-void Engine::PollEvents()
+void ENGINE::POLL_EVENTS()
 {
     SDL_Event event;
 
@@ -101,7 +101,7 @@ void Engine::PollEvents()
     }
 }
 
-void Engine::Stop()
+void ENGINE::STOP()
 {
     running_ = false;
 }

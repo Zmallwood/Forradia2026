@@ -3,10 +3,10 @@
 
 #pragma once
 
-class Color
+class COLOR
 {
   public:
-    SDL_Color ToSDLColor();
+    SDL_Color TO_SDL_COLOR();
 
     float r = 0.0f;
     float g = 0.0f;

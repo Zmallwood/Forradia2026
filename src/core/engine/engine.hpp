@@ -3,15 +3,15 @@
 
 #pragma once
 
-class Engine
+class ENGINE
 {
   public:
-    void Start();
+    void START();
 
-    void Stop();
+    void STOP();
 
   private:
-    void PollEvents();
+    void POLL_EVENTS();
 
     bool running_ = true;
     int ticksLeftMouseButtonDown_ = 0;

@@ -3,12 +3,12 @@
 
 #pragma once
 
-class Point
+class POINT
 {
   public:
-    auto operator<=>(const Point &) const = default;
+    auto operator<=>(const POINT &) const = default;
 
-    Point operator+(const Point &other) const;
+    POINT operator+(const POINT &other) const;
 
     int x = 0;
     int y = 0;
