@@ -272,42 +272,42 @@ void WorldGenerator::GenerateNewWorld()
     Traverse3(fnMakeDirt);
     Traverse4(fnMakeDirt);
 
-    for (auto y = 1; y < size.height - 1; y++)
-    {
-        for (auto x = 1; x < size.width - 1; x++)
-        {
-            auto tile{worldArea->GetTile(x, y)};
+    // for (auto y = 1; y < size.height - 1; y++)
+    // {
+    //     for (auto x = 1; x < size.width - 1; x++)
+    //     {
+    //         auto tile{worldArea->GetTile(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
+    //         auto tileNW{worldArea->GetTile(x - 1, y - 1)};
+    //         auto tileN{worldArea->GetTile(x, y - 1)};
+    //         auto tileNE{worldArea->GetTile(x + 1, y - 1)};
+    //         auto tileW{worldArea->GetTile(x - 1, y)};
 
-            auto groundNW{tileNW->ground_};
-            auto groundN{tileN->ground_};
-            auto groundNE{tileNE->ground_};
-            auto groundW{tileW->ground_};
+    //         auto groundNW{tileNW->ground_};
+    //         auto groundN{tileN->ground_};
+    //         auto groundNE{tileNE->ground_};
+    //         auto groundW{tileW->ground_};
 
-            if (groundNW != Hash("GroundWater") &&
-                groundN != Hash("GroundWater") &&
-                groundNE != Hash("GroundWater") &&
-                groundW != Hash("GroundWater"))
-            {
-                auto increaseElevation{rand() % 1000 < 3};
+    //         if (groundNW != Hash("GroundWater") &&
+    //             groundN != Hash("GroundWater") &&
+    //             groundNE != Hash("GroundWater") &&
+    //             groundW != Hash("GroundWater"))
+    //         {
+    //             auto increaseElevation{rand() % 1000 < 3};
 
-                if (increaseElevation && tile->ground_ != Hash("GroundWater"))
-                {
-                    tile->elevation_++;
+    //             if (increaseElevation && tile->ground_ != Hash("GroundWater"))
+    //             {
+    //                 tile->elevation_++;
 
-                    tileW->elevation_++;
+    //                 tileW->elevation_++;
 
-                    tile->ground_ = Hash("GroundRock");
+    //                 tile->ground_ = Hash("GroundRock");
 
-                    tileW->ground_ = Hash("GroundRock");
-                }
-            }
-        }
-    }
+    //                 tileW->ground_ = Hash("GroundRock");
+    //             }
+    //         }
+    //     }
+    // }
 
     auto numHills = 60 + rand() % 10;
 
@@ -353,7 +353,7 @@ void WorldGenerator::GenerateNewWorld()
         }
     }
 
-    auto numMountains = 60 + rand() % 10;
+    auto numMountains = 40 + rand() % 10;
 
     for (auto i = 0; i < numMountains; i++)
     {
@@ -389,6 +389,13 @@ void WorldGenerator::GenerateNewWorld()
                         tile->elevation_ += elevationChange;
 
                         tile->ground_ = Hash("GroundRock");
+
+                        if (rand() % 4 == 0)
+                        {
+                            tile->tileObjects_->Clear();
+
+                            tile->tileObjects_->AddObject("ObjectStoneBoulder");
+                        }
                     }
                 }
             }
@@ -1026,6 +1033,25 @@ void WorldGenerator::GenerateLargeObjects()
         }
 
         tile->tileObjects_->AddObject("ObjectBush1");
+    }
+
+    auto numBush2s{100 + rand() % 30};
+
+    for (auto i = 0; i < numBush2s; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == Hash("GroundWater") ||
+            tile->ground_ == Hash("GroundDirt") ||
+            tile->ground_ == Hash("GroundRock"))
+        {
+            continue;
+        }
+
+        tile->tileObjects_->AddObject("ObjectBush2");
     }
 
     auto numStoneBoulders{100 + rand() % 50};

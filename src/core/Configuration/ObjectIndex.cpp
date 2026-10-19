@@ -57,8 +57,11 @@ ObjectIndex::ObjectIndex()
     AddEntry("ObjectBush1", "Bush",
              ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
 
-    AddEntry("ObjectStoneBoulder", "Stone boulder",
-             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+    AddEntry(
+        "ObjectStoneBoulder", "Stone boulder",
+        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable, {}, {}, []() {},
+        [](std::shared_ptr<Object>) {}, "", PointF{0.0f, 0.3f},
+        PointF{0.0f, 0.0f});
 
     AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
 
