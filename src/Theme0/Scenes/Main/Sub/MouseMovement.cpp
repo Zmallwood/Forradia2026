@@ -121,9 +121,9 @@ void MouseMovement::Update()
                     _<Player>().MoveEast();
                 }
             }
-            
+
             _<Player>().ticksLastMovement_ =
-                now + rand() % 2 * (InvertSpeed(_<Player>().movementSpeed_));
+                now + rand() % 3 * (InvertSpeed(_<Player>().movementSpeed_));
         }
     }
 }

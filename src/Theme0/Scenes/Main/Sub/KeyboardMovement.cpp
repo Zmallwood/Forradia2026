@@ -74,7 +74,7 @@ void KeyboardMovement::Update()
         }
 
         _<Player>().ticksLastMovement_ =
-            now + rand() % 2*(InvertSpeed(_<Player>().movementSpeed_));
+            now + rand() % 3*(InvertSpeed(_<Player>().movementSpeed_));
     }
 }
 
