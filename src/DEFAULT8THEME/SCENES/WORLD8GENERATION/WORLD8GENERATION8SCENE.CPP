@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "WORLD8GENERATION8SCENE.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "SUB/WORLD8GENERATOR.HPP"
 

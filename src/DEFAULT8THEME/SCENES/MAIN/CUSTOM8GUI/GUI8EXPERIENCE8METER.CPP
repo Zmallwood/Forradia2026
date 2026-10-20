@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "GUI8EXPERIENCE8METER.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE8MATH.HPP"
 
 namespace FORRADIA8GAME {

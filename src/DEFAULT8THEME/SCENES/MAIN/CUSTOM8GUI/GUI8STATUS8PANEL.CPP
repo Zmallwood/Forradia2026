@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "GUI8STATUS8PANEL.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE8MATH.HPP"
 #include "GUI8HEALTH8METER.HPP"

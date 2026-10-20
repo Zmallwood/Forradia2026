@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "CREATURES8MOVEMENT.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"

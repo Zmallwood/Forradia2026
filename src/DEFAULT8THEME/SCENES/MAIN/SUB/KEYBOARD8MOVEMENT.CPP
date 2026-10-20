@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "KEYBOARD8MOVEMENT.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 
 namespace FORRADIA8GAME {
     void

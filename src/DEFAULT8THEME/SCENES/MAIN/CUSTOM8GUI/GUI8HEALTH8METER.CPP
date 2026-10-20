@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "GUI8HEALTH8METER.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 
 namespace FORRADIA8GAME {
     GUI8HEALTH8METER::GUI8HEALTH8METER()

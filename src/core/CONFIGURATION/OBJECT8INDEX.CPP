@@ -6,7 +6,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "OBJECT8INDEX.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
