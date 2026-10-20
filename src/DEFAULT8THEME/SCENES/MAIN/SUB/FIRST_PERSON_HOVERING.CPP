@@ -6,7 +6,7 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
@@ -249,8 +249,8 @@ void FirstPersonHovering::Render()
             objectLabel = "?";
         }
 
-        _<TextRenderer>().DrawString(objectLabel, mousePosition.x,
-                                     mousePosition.y + kTextYOffset_);
+        _<TEXT8RENDERER>().DRAW8STRING(objectLabel, mousePosition.x,
+                                       mousePosition.y + kTextYOffset_);
     }
     else if (hoveredCreature_)
     {
@@ -262,7 +262,7 @@ void FirstPersonHovering::Render()
             creatureLabel = "?";
         }
 
-        _<TextRenderer>().DrawString(creatureLabel, mousePosition.x,
-                                     mousePosition.y + kTextYOffset_);
+        _<TEXT8RENDERER>().DRAW8STRING(creatureLabel, mousePosition.x,
+                                       mousePosition.y + kTextYOffset_);
     }
 }

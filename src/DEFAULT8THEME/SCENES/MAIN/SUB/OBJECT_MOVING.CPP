@@ -5,15 +5,16 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
-#include "FIRST_PERSON_HOVERING.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
+#include "FIRST_PERSON_HOVERING.HPP"
 #include "OBJECT_MOVING.HPP"
+
 
 void ObjectMoving::OnMouseDown(Uint8 button)
 {
@@ -121,8 +122,8 @@ void ObjectMoving::Render()
     auto imageX{mousePosition.x - draggingMouseOffset_.x - imageWidth / 2.0f};
     auto imageY{mousePosition.y - draggingMouseOffset_.y - imageHeight};
 
-    _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                 imageHeight);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY, imageWidth,
+                                   imageHeight);
 }
 
 void ObjectMoving::ClearObject()

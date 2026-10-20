@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8WINDOW.HPP"
 #include "GUI8WINDOW8TITLE8BAR.HPP"
 
@@ -65,9 +65,9 @@ void GUI8WINDOW8TITLE8BAR::RENDER8DERIVED()
 
     auto position = GET8POSITION();
 
-    _<TextRenderer>().DrawString(title_, position.x + kMargin_.x,
-                                 position.y + kMargin_.y, FontSizes::_18,
-                                 false);
+    _<TEXT8RENDERER>().DRAW8STRING(title_, position.x + kMargin_.x,
+                                   position.y + kMargin_.y, FONT8SIZES::_18,
+                                   false);
 }
 
 std::string GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE()

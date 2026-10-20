@@ -5,9 +5,10 @@
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/MINOR8COMPONENTS/FPS8COUNTER.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
+#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+
 
 void ENGINE::START()
 {
@@ -15,7 +16,7 @@ void ENGINE::START()
 
     _<IMAGE8BANK>().LOAD8IMAGES();
 
-    _<TextRenderer>().Initialize();
+    _<TEXT8RENDERER>().INITIALIZE();
 
     while (running_)
     {
@@ -97,7 +98,7 @@ void ENGINE::POLL_EVENTS()
                 clickSpeed = NOW() - ticksRightMouseButtonDown_;
                 break;
             }
-            
+
             _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
                                                     clickSpeed);
             break;

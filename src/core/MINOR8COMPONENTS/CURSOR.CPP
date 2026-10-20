@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "CURSOR.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
 CURSOR::CURSOR()
 {
@@ -34,7 +34,7 @@ void CURSOR::RENDER()
         break;
     }
 
-    _<ImageRenderer>().DrawImage(cursorImage, mousePosition.x - cursorWidth / 2,
-                                 mousePosition.y - cursorHeight / 2,
-                                 cursorWidth, cursorHeight);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(
+        cursorImage, mousePosition.x - cursorWidth / 2,
+        mousePosition.y - cursorHeight / 2, cursorWidth, cursorHeight);
 }

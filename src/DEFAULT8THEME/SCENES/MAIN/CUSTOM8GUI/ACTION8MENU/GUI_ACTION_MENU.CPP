@@ -5,7 +5,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
@@ -333,10 +333,10 @@ void GUIActionMenu::Render()
 
     auto marginY = CONVERT8WIDTH8TO8HEIGHT(kMarginX);
 
-    _<TextRenderer>().DrawString("Actions",
-                                 rightClickMousePosition_.x + marginX,
-                                 rightClickMousePosition_.y + marginY,
-                                 FontSizes::_12, false, COLORS::kGold);
+    _<TEXT8RENDERER>().DRAW8STRING("Actions",
+                                   rightClickMousePosition_.x + marginX,
+                                   rightClickMousePosition_.y + marginY,
+                                   FONT8SIZES::_12, false, COLORS::kGold);
 
     auto row = 1;
 
@@ -353,7 +353,7 @@ void GUIActionMenu::Render()
             _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
         }
 
-        _<TextRenderer>().DrawString(
+        _<TEXT8RENDERER>().DRAW8STRING(
             entry.label, rightClickMousePosition_.x + marginX,
             rightClickMousePosition_.y + marginY + row * kLineHeight);
 

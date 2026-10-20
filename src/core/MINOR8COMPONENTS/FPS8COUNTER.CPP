@@ -1,8 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "FPS8COUNTER.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+
 
 void FPS8COUNTER::UPDATE()
 {
@@ -22,5 +23,5 @@ void FPS8COUNTER::RENDER()
 {
     std::string text = "FPS: " + std::to_string(fps_);
 
-    _<TextRenderer>().DrawString(text, 0.95f, 0.03f);
+    _<TEXT8RENDERER>().DRAW8STRING(text, 0.95f, 0.03f);
 }

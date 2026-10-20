@@ -7,7 +7,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8EQUIPMENT.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
@@ -107,9 +107,9 @@ void FirstPersonView::Render()
 
     constexpr auto kMargin = GAME8PROPERTIES::kFirstPersonViewMargin_;
 
-    _<ImageRenderer>().DrawImage(groundImageName, 1.0f - viewWidth + kMargin.x,
-                                 0.75f + kMargin.y, viewWidth - 2 * kMargin.x,
-                                 0.25f - 2 * kMargin.y);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(
+        groundImageName, 1.0f - viewWidth + kMargin.x, 0.75f + kMargin.y,
+        viewWidth - 2 * kMargin.x, 0.25f - 2 * kMargin.y);
 
     auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
@@ -185,8 +185,8 @@ void FirstPersonView::Render()
 
         imageY += renderOffset.y * kTileHeight;
 
-        _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                     imageHeight);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY, imageWidth,
+                                       imageHeight);
 
         auto impactObjects = _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
 
@@ -262,8 +262,8 @@ void FirstPersonView::Render()
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
 
-        _<ImageRenderer>().DrawImage(npcType, imageX, imageY, imageWidth,
-                                     imageHeight);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(npcType, imageX, imageY, imageWidth,
+                                       imageHeight);
     }
 
     auto creature = facedTile->creature_;
@@ -287,8 +287,8 @@ void FirstPersonView::Render()
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
 
-        _<ImageRenderer>().DrawImage(creatureType, imageX, imageY, imageWidth,
-                                     imageHeight);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(creatureType, imageX, imageY, imageWidth,
+                                       imageHeight);
 
         if (now - creature->ticksLastHitOnSelf_ < kHitOtherEffectDuration_)
         {
@@ -310,8 +310,8 @@ void FirstPersonView::Render()
             auto hitEffectX = hitEffectBaseX - hitEffectWidth / 2.0f;
             auto hitEffectY = hitEffectBaseY - hitEffectHeight / 2.0f;
 
-            _<ImageRenderer>().DrawImage("HitEffect", hitEffectX, hitEffectY,
-                                         hitEffectWidth, hitEffectHeight);
+            _<IMAGE8RENDERER>().DRAW8IMAGE("HitEffect", hitEffectX, hitEffectY,
+                                           hitEffectWidth, hitEffectHeight);
         }
     }
 
@@ -382,8 +382,8 @@ void FirstPersonView::Render()
 
         imageY += renderOffset.y * kTileHeight;
 
-        _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
-                                     imageHeight);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY, imageWidth,
+                                       imageHeight);
 
         auto impactObjects = _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
 
@@ -459,8 +459,8 @@ void FirstPersonView::Render()
             auto hitEffectX = impactPointX - hitEffectWidth / 2.0f;
             auto hitEffectY = impactPointY - hitEffectHeight / 2.0f;
 
-            _<ImageRenderer>().DrawImage("HitEffect", hitEffectX, hitEffectY,
-                                         hitEffectWidth, hitEffectHeight);
+            _<IMAGE8RENDERER>().DRAW8IMAGE("HitEffect", hitEffectX, hitEffectY,
+                                           hitEffectWidth, hitEffectHeight);
         }
     }
 
@@ -505,9 +505,9 @@ void FirstPersonView::Render()
                           imageWidth / 2.0f;
         auto rightHandY = handY - imageHeight / 2.0f;
 
-        _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
-                                     rightHandY, imageWidth, imageHeight,
-                                     kHandsOpacity_);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(rightHandObject->type_, rightHandX,
+                                       rightHandY, imageWidth, imageHeight,
+                                       kHandsOpacity_);
     }
 
     if (leftHandObject)
@@ -522,15 +522,15 @@ void FirstPersonView::Render()
                          imageWidth / 2.0f;
         auto leftHandY = handY - imageHeight / 2.0f;
 
-        _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
-                                     leftHandY, imageWidth, imageHeight,
-                                     kHandsOpacity_, true);
+        _<IMAGE8RENDERER>().DRAW8IMAGE(leftHandObject->type_, leftHandX,
+                                       leftHandY, imageWidth, imageHeight,
+                                       kHandsOpacity_, true);
     }
 
-    _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
-                                 handHeight, kHandsOpacity_);
-    _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
-                                 handHeight, kHandsOpacity_);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("HandLeft", leftHandX, handY, handWidth,
+                                   handHeight, kHandsOpacity_);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("HandRight", rightHandX, handY, handWidth,
+                                   handHeight, kHandsOpacity_);
 
     _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0f, viewWidth, 1.0f,
                                   COLORS::kWhite);

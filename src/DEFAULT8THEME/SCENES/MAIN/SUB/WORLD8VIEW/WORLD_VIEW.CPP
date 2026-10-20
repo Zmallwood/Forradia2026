@@ -6,7 +6,7 @@
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
@@ -162,44 +162,44 @@ void WorldView::Render()
             {
                 if (ground == HASH("GroundRock"))
                 {
-                    _<ImageRenderer>().DrawImage("ElevationRock", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "ElevationRock", tileX, tileY + tileHeight / 4,
+                        tileWidth, tileHeight * 3 / 4);
                 }
                 else if (ground == HASH("GroundWater"))
                 {
-                    _<ImageRenderer>().DrawImage("ElevationWater", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "ElevationWater", tileX, tileY + tileHeight / 4,
+                        tileWidth, tileHeight * 3 / 4);
                 }
                 else
                 {
-                    _<ImageRenderer>().DrawImage("Elevation", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "Elevation", tileX, tileY + tileHeight / 4, tileWidth,
+                        tileHeight * 3 / 4);
                 }
 
                 if (i >= elevationNorth && i >= elevationNorthEast &&
                     i >= elevationEast)
                 {
-                    _<ImageRenderer>().DrawImage("ElevationEdgeRight", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "ElevationEdgeRight", tileX, tileY + tileHeight / 4,
+                        tileWidth, tileHeight * 3 / 4);
                 }
 
                 if (i >= elevationSouth && i >= elevationSouthWest &&
                     i >= elevationWest)
                 {
-                    _<ImageRenderer>().DrawImage("ElevationEdgeLeft", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "ElevationEdgeLeft", tileX, tileY + tileHeight / 4,
+                        tileWidth, tileHeight * 3 / 4);
                 }
 
                 if (i >= elevationSouth && i >= elevationEast)
                 {
-                    _<ImageRenderer>().DrawImage("ElevationEdgeMiddle", tileX,
-                                                 tileY + tileHeight / 4,
-                                                 tileWidth, tileHeight * 3 / 4);
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "ElevationEdgeMiddle", tileX, tileY + tileHeight / 4,
+                        tileWidth, tileHeight * 3 / 4);
                 }
 
                 tileY -= tileHeight / 4;
@@ -227,46 +227,46 @@ void WorldView::Render()
                 ground = HASH(groundImageName);
             }
 
-            _<ImageRenderer>().DrawImage(ground, tileX, tileY,
-                                         tileWidth + kSmallValue,
-                                         tileHeight + kSmallValue);
+            _<IMAGE8RENDERER>().DRAW8IMAGE(ground, tileX, tileY,
+                                           tileWidth + kSmallValue,
+                                           tileHeight + kSmallValue);
 
             if (elevation != elevationNorth)
             {
-                _<ImageRenderer>().DrawImage("ElevationEdgeNorth", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeNorth", tileX,
+                                               tileY, tileWidth, tileHeight);
             }
 
             if (elevation != elevationEast)
             {
-                _<ImageRenderer>().DrawImage("ElevationEdgeEast", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeEast", tileX,
+                                               tileY, tileWidth, tileHeight);
             }
 
             if (elevation != elevationSouth)
             {
-                _<ImageRenderer>().DrawImage("ElevationEdgeSouth", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeSouth", tileX,
+                                               tileY, tileWidth, tileHeight);
             }
 
             if (elevation != elevationWest)
             {
-                _<ImageRenderer>().DrawImage("ElevationEdgeWest", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeWest", tileX,
+                                               tileY, tileWidth, tileHeight);
             }
 
             if (xCoordinate == facedTile.x && yCoordinate == facedTile.y)
             {
-                _<ImageRenderer>().DrawImage("FacedTile", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("FacedTile", tileX, tileY,
+                                               tileWidth, tileHeight);
             }
 
             if (xCoordinate == hoveredCoordinate.x &&
                 yCoordinate == hoveredCoordinate.y)
             {
 
-                _<ImageRenderer>().DrawImage("HoveredTile", tileX, tileY,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("HoveredTile", tileX, tileY,
+                                               tileWidth, tileHeight);
             }
 
             auto objects{tile->tileObjects_->objects_};
@@ -308,8 +308,8 @@ void WorldView::Render()
                 auto objectY{tileY + tileHeight / 2 - objectHeight +
                              renderOffset.y * tileHeight};
 
-                _<ImageRenderer>().DrawImage(usedObjectType, objectX, objectY,
-                                             objectWidth, objectHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE(usedObjectType, objectX, objectY,
+                                               objectWidth, objectHeight);
             }
 
             auto tileYCopy = tileYOriginal;
@@ -328,8 +328,8 @@ void WorldView::Render()
                 auto npcX{tileX + tileWidth / 2 - npcWidth / 2};
                 auto npcY{tileY + tileHeight / 2 - npcHeight};
 
-                _<ImageRenderer>().DrawImage(npcType, npcX, npcY, npcWidth,
-                                             npcHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE(npcType, npcX, npcY, npcWidth,
+                                               npcHeight);
             }
 
             auto creature{tile->creature_};
@@ -346,8 +346,9 @@ void WorldView::Render()
                 auto creatureX{tileX + tileWidth / 2 - creatureWidth / 2};
                 auto creatureY{tileY + tileHeight / 2 - creatureHeight};
 
-                _<ImageRenderer>().DrawImage(creatureType, creatureX, creatureY,
-                                             creatureWidth, creatureHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE(creatureType, creatureX,
+                                               creatureY, creatureWidth,
+                                               creatureHeight);
             }
 
             if (xCoordinate == static_cast<int>(_<PLAYER>().position_.x) &&
@@ -359,9 +360,9 @@ void WorldView::Render()
                 auto tileYPlayer{0.5f - 5.5f * tileHeight + 5 * tileHeight / 2 +
                                  5 * tileHeight / 2};
 
-                _<ImageRenderer>().DrawImage("Player", tileXPlayer,
-                                             tileYPlayer - tileHeight,
-                                             tileWidth, tileHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE("Player", tileXPlayer,
+                                               tileYPlayer - tileHeight,
+                                               tileWidth, tileHeight);
             }
         }
     }

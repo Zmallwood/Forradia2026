@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
 #include "GUI_HEALTH_METER.HPP"
 #include "GUI_STATUS_PANEL.HPP"
@@ -16,15 +16,15 @@ void GUIStatusPanel::RENDER8DERIVED()
 {
     GUI8PANEL::RENDER8DERIVED();
 
-    _<TextRenderer>().DrawString(_<PLAYER>().name_, 0.015f, 0.01f,
-                                 FontSizes::_18, false);
+    _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().name_, 0.015f, 0.01f,
+                                   FONT8SIZES::_18, false);
 
     auto playerLevel = CalculateCurrentLevel(_<PLAYER>().experience_);
 
     std::string levelText = "Level " + std::to_string(playerLevel);
 
-    _<TextRenderer>().DrawString(levelText, 0.015f, 0.04f, FontSizes::_24,
-                                 false, COLORS::kYellowGray);
+    _<TEXT8RENDERER>().DRAW8STRING(levelText, 0.015f, 0.04f, FONT8SIZES::_24,
+                                   false, COLORS::kYellowGray);
 
     std::stringstream ssHealth;
 
@@ -32,6 +32,6 @@ void GUIStatusPanel::RENDER8DERIVED()
              << "Health: " << _<PLAYER>().health_ << "/"
              << _<PLAYER>().maxHealth_;
 
-    _<TextRenderer>().DrawString(ssHealth.str(), 0.015f, 0.08f, FontSizes::_12,
-                                 false, COLORS::kWheat);
+    _<TEXT8RENDERER>().DRAW8STRING(ssHealth.str(), 0.015f, 0.08f,
+                                   FONT8SIZES::_12, false, COLORS::kWheat);
 }

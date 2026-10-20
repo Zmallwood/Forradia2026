@@ -3,11 +3,10 @@
 
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8EQUIPMENT.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
 #include "GUI_EQUIPMENT_WINDOW.HPP"
-
 
 GUIEquipmentWindow::GUIEquipmentWindow()
     : GUI8WINDOW("Equipment", 0.45f, 0.3f, 0.2f, 0.4f)
@@ -141,42 +140,42 @@ void GUIEquipmentWindow::RENDER8DERIVED()
     auto rightHandBounds = GetRightHandSlotBounds();
     auto leftHandBounds = GetLeftHandSlotBounds();
 
-    _<ImageRenderer>().DrawImage(kHeadSlotImage_, headBounds);
-    _<ImageRenderer>().DrawImage(kChestSlotImage_, chestBounds);
-    _<ImageRenderer>().DrawImage(kLegsSlotImage_, legsBounds);
-    _<ImageRenderer>().DrawImage(kFeetSlotImage_, feetBounds);
-    _<ImageRenderer>().DrawImage(kRightHandSlotImage_, rightHandBounds);
-    _<ImageRenderer>().DrawImage(kLeftHandSlotImage_, leftHandBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kHeadSlotImage_, headBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kChestSlotImage_, chestBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kLegsSlotImage_, legsBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kFeetSlotImage_, feetBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kRightHandSlotImage_, rightHandBounds);
+    _<IMAGE8RENDERER>().DRAW8IMAGE(kLeftHandSlotImage_, leftHandBounds);
 
     if (_<PLAYER>().playerEquipment_->headObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->headObject_->type_, headBounds);
     }
     if (_<PLAYER>().playerEquipment_->chestObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->chestObject_->type_, chestBounds);
     }
     if (_<PLAYER>().playerEquipment_->legsObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->legsObject_->type_, legsBounds);
     }
     if (_<PLAYER>().playerEquipment_->feetObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->feetObject_->type_, feetBounds);
     }
     if (_<PLAYER>().playerEquipment_->rightHandObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->rightHandObject_->type_,
             rightHandBounds);
     }
     if (_<PLAYER>().playerEquipment_->leftHandObject_)
     {
-        _<ImageRenderer>().DrawImage(
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
             _<PLAYER>().playerEquipment_->leftHandObject_->type_,
             leftHandBounds);
     }

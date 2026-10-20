@@ -3,7 +3,7 @@
 
 #pragma once
 
-enum class FontSizes : int
+enum class FONT8SIZES : int
 {
     _12 = 12,
     _18 = 18,

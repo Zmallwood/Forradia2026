@@ -6,7 +6,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8INVENTORY.HPP"
 #include "CORE/GUI8CORE/WINDOWS/GUI8WINDOW8TITLE8BAR.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
 #include "GUI_INVENTORY_WINDOW.HPP"
@@ -196,16 +196,16 @@ void GUIInventoryWindow::RENDER8DERIVED()
 
             auto slotWidth = kSlotWidth_;
 
-            _<ImageRenderer>().DrawImage("GUIInventoryWindowSlotBackground",
-                                         slotX, slotY, slotWidth, slotHeight);
+            _<IMAGE8RENDERER>().DRAW8IMAGE("GUIInventoryWindowSlotBackground",
+                                           slotX, slotY, slotWidth, slotHeight);
 
             auto object =
                 _<PLAYER>().playerInventory_->GET8OBJECT(inventoryIndex);
 
             if (object)
             {
-                _<ImageRenderer>().DrawImage(object->type_, slotX, slotY,
-                                             slotWidth, slotHeight);
+                _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,
+                                               slotWidth, slotHeight);
             }
 
             ++inventoryIndex;

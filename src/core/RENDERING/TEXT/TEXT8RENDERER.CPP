@@ -2,18 +2,18 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
-#include "TEXT_RENDERER.HPP"
+#include "TEXT8RENDERER.HPP"
 
-void TextRenderer::Initialize()
+void TEXT8RENDERER::INITIALIZE()
 {
     TTF_Init();
 
-    AddFont(FontSizes::_12);
-    AddFont(FontSizes::_18);
-    AddFont(FontSizes::_24);
+    ADD8FONT(FONT8SIZES::_12);
+    ADD8FONT(FONT8SIZES::_18);
+    ADD8FONT(FONT8SIZES::_24);
 }
 
-void TextRenderer::AddFont(FontSizes fontSize)
+void TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize)
 {
     auto absFontPath = std::string(SDL_GetBasePath()) + kDefaultFontPath_;
     auto fontPath = REPLACE(absFontPath, "\\", "/");
@@ -25,8 +25,8 @@ void TextRenderer::AddFont(FontSizes fontSize)
     fonts_.insert({fontSize, newFont});
 }
 
-void TextRenderer::DrawString(std::string_view text, float x, float y,
-                              FontSizes fontSize, bool centered, COLOR color)
+void TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
+                                FONT8SIZES fontSize, bool centered, COLOR color)
 {
     if (text.empty())
     {

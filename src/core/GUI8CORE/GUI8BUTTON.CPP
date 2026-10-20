@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
-#include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8BUTTON.HPP"
 
 GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
@@ -45,9 +45,9 @@ void GUI8BUTTON::RENDER8DERIVED()
 
     auto size = size_;
 
-    _<TextRenderer>().DrawString(text_, position.x + size.width / 2,
-                                 position.y + size.height / 2, FontSizes::_12,
-                                 true);
+    _<TEXT8RENDERER>().DRAW8STRING(text_, position.x + size.width / 2,
+                                   position.y + size.height / 2,
+                                   FONT8SIZES::_12, true);
 }
 
 bool GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)

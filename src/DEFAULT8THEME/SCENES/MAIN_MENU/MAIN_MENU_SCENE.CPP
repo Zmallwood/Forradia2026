@@ -6,7 +6,7 @@
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
 #include "CORE/GUI8CORE/GUI8PANEL.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
 #include "MAIN_MENU_SCENE.HPP"
 
@@ -34,10 +34,10 @@ void MainMenuScene::OnEnterDerived()
 
 void MainMenuScene::RenderBeforeGUIDerived()
 {
-    _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
-                                 1.0f);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                   1.0f);
 
-    _<ImageRenderer>().DrawImage("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
 }
 
 void MainMenuScene::OnKeyDownDerived(SDL_Keycode key)

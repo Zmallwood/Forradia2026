@@ -1,16 +1,17 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "INTRO_SCENE.HPP"
-#include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
+#include "INTRO_SCENE.HPP"
+
 
 void IntroScene::RenderBeforeGUIDerived()
 {
-    _<ImageRenderer>().DrawImage("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
-                                 1.0f);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0f, 0.0f, 1.0f,
+                                   1.0f);
 
-    _<ImageRenderer>().DrawImage("ForradiaLogo", 0.2f, 0.2f, 0.6f, 0.2f);
+    _<IMAGE8RENDERER>().DRAW8IMAGE("ForradiaLogo", 0.2f, 0.2f, 0.6f, 0.2f);
 }
 
 void IntroScene::OnKeyDownDerived(SDL_Keycode key)
