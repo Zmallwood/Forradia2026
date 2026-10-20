@@ -35,7 +35,7 @@ namespace FORRADIA8GAME {
 
       private:
         void ADD8ENTRY(std::string_view objectName, std::string_view label,
-                       int flags, std::vector<POINT8F> impactPoints = {},
+                       int flags = 0, std::vector<POINT8F> impactPoints = {},
                        std::vector<OBJECT8IMPACT8ACTION> impactActions = {},
                        std::string_view worldViewObjectType = "",
                        POINT8F worldViewRenderOffset = POINT8F{0.0f, 0.0f},

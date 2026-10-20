@@ -19,14 +19,11 @@ namespace FORRADIA8GAME {
         : playerInventory_(std::make_shared<PLAYER8INVENTORY>()),
           playerEquipment_(std::make_shared<PLAYER8EQUIPMENT>()) {
         playerInventory_->ADD8OBJECT("ObjectRedApple");
-
         playerInventory_->ADD8OBJECT("ObjectCopperSword");
-
         playerInventory_->ADD8OBJECT("ObjectWoodAxe");
-
         playerInventory_->ADD8OBJECT("ObjectSaw");
-
         playerInventory_->ADD8OBJECT("ObjectHammer");
+        playerInventory_->ADD8OBJECT("ObjectFlintAndSteel");
     }
 
     void
