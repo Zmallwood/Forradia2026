@@ -6,9 +6,8 @@
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/MINOR8COMPONENTS/FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
-#include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
+#include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
-
 
 void ENGINE::START()
 {
@@ -24,13 +23,13 @@ void ENGINE::START()
 
         _<CURSOR>().RESET();
 
-        _<SceneManager>().UpdateCurrentScene();
+        _<SCENE8MANAGER>().UPDATE8CURRENT8SCENE();
 
         _<FPS8COUNTER>().UPDATE();
 
         _<SDLDevice>().ClearCanvas();
 
-        _<SceneManager>().RenderCurrentScene();
+        _<SCENE8MANAGER>().RENDER8CURRENT8SCENE();
 
         _<FPS8COUNTER>().RENDER();
 
@@ -60,19 +59,19 @@ void ENGINE::POLL_EVENTS()
         }
         case SDL_KEYDOWN:
         {
-            _<SceneManager>().OnKeyDownCurrentScene(event.key.keysym.sym);
+            _<SCENE8MANAGER>().ON8KEY8DOWN8CURRENT8SCENE(event.key.keysym.sym);
 
             break;
         }
         case SDL_KEYUP:
         {
-            _<SceneManager>().OnKeyUpCurrentScene(event.key.keysym.sym);
+            _<SCENE8MANAGER>().ON8KEY8UP8CURRENT8SCENE(event.key.keysym.sym);
 
             break;
         }
         case SDL_MOUSEBUTTONDOWN:
         {
-            _<SceneManager>().OnMouseDownCurrentScene(event.button.button);
+            _<SCENE8MANAGER>().ON8MOUSE8DOWN8CURRENT8SCENE(event.button.button);
 
             switch (event.button.button)
             {
@@ -99,7 +98,7 @@ void ENGINE::POLL_EVENTS()
                 break;
             }
 
-            _<SceneManager>().OnMouseUpCurrentScene(event.button.button,
+            _<SCENE8MANAGER>().ON8MOUSE8UP8CURRENT8SCENE(event.button.button,
                                                     clickSpeed);
             break;
         }

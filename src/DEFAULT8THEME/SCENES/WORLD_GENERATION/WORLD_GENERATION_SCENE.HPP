@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "CORE/SCENES8CORE/I_SCENE.HPP"
+#include "CORE/SCENES8CORE/I8SCENE.HPP"
 
-class WorldGenerationScene : public IScene
+class WorldGenerationScene : public I8SCENE
 {
   protected:
-    void OnEnterDerived() override;
+    void ON8ENTER8DERIVED() override;
 };

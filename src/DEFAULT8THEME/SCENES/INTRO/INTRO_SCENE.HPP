@@ -3,14 +3,14 @@
 
 #pragma once
 
-#include "CORE/SCENES8CORE/I_SCENE.HPP"
+#include "CORE/SCENES8CORE/I8SCENE.HPP"
 
-class IntroScene : public IScene
+class IntroScene : public I8SCENE
 {
   protected:
-    void RenderBeforeGUIDerived() override;
+    void RENDER8BEFORE8GUI8DERIVED() override;
 
-    void OnKeyDownDerived(SDL_Keycode key) override;
+    void ON8KEY8DOWN8DERIVED(SDL_Keycode key) override;
 
-    void OnMouseDownDerived(Uint8 button) override;
+    void ON8MOUSE8DOWN8DERIVED(Uint8 button) override;
 };

@@ -3,26 +3,26 @@
 
 #pragma once
 
-#include "CORE/SCENES8CORE/I_SCENE.HPP"
+#include "CORE/SCENES8CORE/I8SCENE.HPP"
 
-class MainScene : public IScene
+class MainScene : public I8SCENE
 {
   protected:
-    void InitializeDerived() override;
+    void INITIALIZE8DERIVED() override;
 
-    void OnEnterDerived() override;
+    void ON8ENTER8DERIVED() override;
 
-    void UpdateDerived() override;
+    void UPDATE8DERIVED() override;
 
-    void RenderBeforeGUIDerived() override;
+    void RENDER8BEFORE8GUI8DERIVED() override;
 
-    void RenderAfterGUIDerived() override;
+    void RENDER8AFTER8GUI8DERIVED() override;
 
-    void OnKeyDownDerived(SDL_Keycode key) override;
+    void ON8KEY8DOWN8DERIVED(SDL_Keycode key) override;
 
-    void OnKeyUpDerived(SDL_Keycode key) override;
+    void ON8KEY8UP8DERIVED(SDL_Keycode key) override;
 
-    void OnMouseDownDerived(Uint8 button) override;
+    void ON8MOUSE8DOWN8DERIVED(Uint8 button) override;
 
-    void OnMouseUpDerived(Uint8 button, int clickSpeed) override;
+    void ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed) override;
 };

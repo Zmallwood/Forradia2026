@@ -3,10 +3,10 @@
 
 #include "WORLD_GENERATION_SCENE.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
+#include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "SUB/WORLD_GENERATOR.HPP"
 
-void WorldGenerationScene::OnEnterDerived()
+void WorldGenerationScene::ON8ENTER8DERIVED()
 {
     _<WorldGenerator>().GenerateNewWorld();
 
@@ -16,5 +16,5 @@ void WorldGenerationScene::OnEnterDerived()
 
     _<WorldGenerator>().GenerateWorldAroundPlayer();
 
-    _<SceneManager>().GoToScene("MainScene");
+    _<SCENE8MANAGER>().GO8TO8SCENE("MainScene");
 }
