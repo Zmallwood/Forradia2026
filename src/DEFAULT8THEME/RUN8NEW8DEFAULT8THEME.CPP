@@ -8,7 +8,7 @@
 #include "RUN8NEW8DEFAULT8THEME.HPP"
 #include "CORE/GAME.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     RUN8NEW8DEFAULT8THEME()

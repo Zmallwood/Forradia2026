@@ -9,7 +9,7 @@
 
 #include "GUI8PANEL.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class GUI8TEXT8CONSOLE : public GUI8PANEL
     {

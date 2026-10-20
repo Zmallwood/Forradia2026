@@ -9,7 +9,7 @@
 
 #include "COMPLETED_OBJECT_IMPACT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class FirstPersonView
     {

@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class IMAGE8RENDERER
     {

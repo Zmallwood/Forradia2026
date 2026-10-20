@@ -12,7 +12,7 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUIEquipmentWindow::GUIEquipmentWindow()
         : GUI8WINDOW("Equipment", 0.45f, 0.3f, 0.2f, 0.4f)

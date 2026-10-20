@@ -9,7 +9,7 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     TILE8OBJECTS::CLEAR()

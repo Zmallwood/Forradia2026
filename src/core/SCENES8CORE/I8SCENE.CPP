@@ -8,7 +8,7 @@
 #include "I8SCENE.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     I8SCENE::I8SCENE() : gui_(std::make_shared<GUI>())
     {

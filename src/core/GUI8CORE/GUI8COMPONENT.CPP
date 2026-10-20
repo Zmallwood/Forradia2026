@@ -7,7 +7,7 @@
 
 #include "GUI8COMPONENT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8COMPONENT::GUI8COMPONENT(float x, float y) : position_(x, y)
     {

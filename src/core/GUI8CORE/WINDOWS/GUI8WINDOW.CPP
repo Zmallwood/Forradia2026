@@ -8,7 +8,7 @@
 #include "GUI8WINDOW.HPP"
 #include "GUI8WINDOW8TITLE8BAR.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8WINDOW::GUI8WINDOW(std::string_view title, float x, float y,
                            float width, float height)

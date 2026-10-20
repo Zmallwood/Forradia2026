@@ -8,7 +8,7 @@
 #include "PLAYER8INVENTORY.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)

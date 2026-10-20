@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     enum class CURSOR8STYLES
     {

@@ -8,7 +8,7 @@
 #include "IMAGE8BANK.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     IMAGE8BANK::LOAD8IMAGES()

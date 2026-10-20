@@ -7,7 +7,7 @@
 
 #include "SDL8DELETER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     SDL8DELETER::operator()(SDL_Window *window)

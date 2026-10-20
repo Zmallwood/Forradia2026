@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     SIZE GET8CANVAS8SIZE();
 

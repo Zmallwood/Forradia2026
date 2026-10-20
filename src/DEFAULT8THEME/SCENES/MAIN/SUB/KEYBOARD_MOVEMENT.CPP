@@ -8,7 +8,7 @@
 #include "KEYBOARD_MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     KeyboardMovement::Update()

@@ -8,7 +8,7 @@
 #include "TILE.HPP"
 #include "TILE8OBJECTS.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     TILE::TILE()
     {

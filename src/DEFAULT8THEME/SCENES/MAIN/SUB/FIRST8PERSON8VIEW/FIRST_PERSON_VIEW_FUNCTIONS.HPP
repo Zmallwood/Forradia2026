@@ -9,7 +9,7 @@
 
 #include "POSITIONED_OBJECT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
 

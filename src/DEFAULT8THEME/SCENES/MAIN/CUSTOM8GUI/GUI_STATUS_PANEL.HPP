@@ -7,7 +7,7 @@
 
 #include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class GUIStatusPanel : public GUI8PANEL
     {

@@ -7,7 +7,7 @@
 
 #include "FILE8PATH8UTILITIES.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     std::string
     GET8FILE8NAME8NO8EXT(std::string_view path)

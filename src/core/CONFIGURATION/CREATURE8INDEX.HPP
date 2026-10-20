@@ -9,7 +9,7 @@
 
 #include "CREATURE8INDEX8ENTRY.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class CREATURE8INDEX
     {

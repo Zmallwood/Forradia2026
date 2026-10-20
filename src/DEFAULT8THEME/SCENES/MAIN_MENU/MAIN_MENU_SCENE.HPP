@@ -9,7 +9,7 @@
 
 #include "CORE/SCENES8CORE/I8SCENE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class MainMenuScene : public I8SCENE
     {

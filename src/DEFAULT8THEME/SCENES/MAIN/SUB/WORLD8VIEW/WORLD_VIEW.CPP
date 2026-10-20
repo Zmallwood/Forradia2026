@@ -22,7 +22,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE_HOVERING.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     WorldView::Render()

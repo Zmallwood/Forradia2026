@@ -7,7 +7,7 @@
 
 #include "TIME8UTILITIES.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     int
     NOW()

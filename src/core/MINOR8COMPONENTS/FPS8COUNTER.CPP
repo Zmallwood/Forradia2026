@@ -8,7 +8,7 @@
 #include "FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     FPS8COUNTER::UPDATE()

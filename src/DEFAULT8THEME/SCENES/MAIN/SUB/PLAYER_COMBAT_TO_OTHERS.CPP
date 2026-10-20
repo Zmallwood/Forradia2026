@@ -18,7 +18,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURE_RESPAWNER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     PlayerCombatToOthers::OnMouseDown(Uint8 button)

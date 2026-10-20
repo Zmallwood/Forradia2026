@@ -8,7 +8,7 @@
 #include "TEXT8RENDERER.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     TEXT8RENDERER::INITIALIZE()

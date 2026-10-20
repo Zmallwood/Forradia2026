@@ -8,7 +8,7 @@
 #include "GUI8PANEL.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
         : GUI8COMPONENT(x, y), size_(width, height)

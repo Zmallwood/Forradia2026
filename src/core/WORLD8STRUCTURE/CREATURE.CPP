@@ -9,7 +9,7 @@
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     CREATURE::CREATURE(std::string_view typeName)
     {

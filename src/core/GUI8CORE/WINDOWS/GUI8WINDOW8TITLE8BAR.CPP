@@ -9,7 +9,7 @@
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8WINDOW.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title,
                                                float width,

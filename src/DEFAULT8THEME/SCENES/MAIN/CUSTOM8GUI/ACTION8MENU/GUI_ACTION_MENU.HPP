@@ -9,7 +9,7 @@
 
 #include "GUI_ACTION_MENU_ENTRY.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class GUIActionMenu
     {

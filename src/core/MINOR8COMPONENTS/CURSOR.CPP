@@ -8,7 +8,7 @@
 #include "CURSOR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     CURSOR::CURSOR()
     {

@@ -14,7 +14,7 @@
 #include "PLAYER8EQUIPMENT.HPP"
 #include "PLAYER8INVENTORY.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     PLAYER::PLAYER()
         : playerInventory_(std::make_shared<PLAYER8INVENTORY>()),

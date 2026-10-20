@@ -7,7 +7,7 @@
 
 #include "EXPERIENCE_MATH.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     int
     CalculateCurrentLevel(int experience)

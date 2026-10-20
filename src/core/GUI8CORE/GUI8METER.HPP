@@ -9,7 +9,7 @@
 
 #include "GUI8COMPONENT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class GUI8METER : public GUI8COMPONENT
     {

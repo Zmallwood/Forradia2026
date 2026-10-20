@@ -7,7 +7,7 @@
 
 #include "COLOR.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     SDL_Color
     COLOR::TO8SDL8COLOR()

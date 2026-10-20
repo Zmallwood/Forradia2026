@@ -10,7 +10,7 @@
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "SUB/WORLD_GENERATOR.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     WorldGenerationScene::ON8ENTER8DERIVED()

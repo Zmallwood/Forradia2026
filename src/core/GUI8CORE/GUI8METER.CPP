@@ -8,7 +8,7 @@
 #include "GUI8METER.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8METER::GUI8METER(float x, float y, float width, float height)
         : GUI8COMPONENT(x, y), size_(width, height)

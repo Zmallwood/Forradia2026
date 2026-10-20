@@ -9,7 +9,7 @@
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y, float width,

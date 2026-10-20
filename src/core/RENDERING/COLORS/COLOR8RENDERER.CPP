@@ -8,7 +8,7 @@
 #include "COLOR8RENDERER.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     COLOR8RENDERER::FILL8RECT(float x, float y, float width, float height,

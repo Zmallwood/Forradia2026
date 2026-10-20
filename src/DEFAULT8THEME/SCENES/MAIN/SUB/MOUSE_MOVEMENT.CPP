@@ -10,7 +10,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "TILE_HOVERING.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     MouseMovement::Update()

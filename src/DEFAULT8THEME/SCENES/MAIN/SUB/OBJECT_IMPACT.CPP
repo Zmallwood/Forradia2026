@@ -15,7 +15,7 @@
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     ObjectImpact::OnMouseDown(Uint8 button)

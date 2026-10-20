@@ -13,7 +13,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     std::map<std::pair<int, int>, PositionedObject>
     GetOrderedObjects()

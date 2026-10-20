@@ -11,7 +11,7 @@
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
 #include "GUI_HEALTH_METER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUIStatusPanel::GUIStatusPanel() : GUI8PANEL(0.0f, 0.0f, 0.2f, 0.2f)
     {

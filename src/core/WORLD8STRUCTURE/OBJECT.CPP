@@ -8,7 +8,7 @@
 #include "OBJECT.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     OBJECT::OBJECT(int type) : type_(type)
     {

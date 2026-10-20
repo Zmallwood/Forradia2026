@@ -9,7 +9,7 @@
 
 #include "CORE/GUI8CORE/WINDOWS/GUI8WINDOW.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class GUIInventoryWindow : public GUI8WINDOW
     {

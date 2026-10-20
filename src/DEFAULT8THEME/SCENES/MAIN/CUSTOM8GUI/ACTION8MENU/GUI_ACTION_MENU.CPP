@@ -16,7 +16,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     GUIActionMenu::OnMouseDown(Uint8 mouseButton)

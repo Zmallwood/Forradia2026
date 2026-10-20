@@ -7,7 +7,7 @@
 
 #include "CREATURE8INDEX.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     CREATURE8INDEX::CREATURE8INDEX()
     {

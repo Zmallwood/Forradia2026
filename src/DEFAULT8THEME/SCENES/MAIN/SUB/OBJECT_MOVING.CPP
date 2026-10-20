@@ -19,7 +19,7 @@
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "FIRST_PERSON_HOVERING.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     ObjectMoving::OnMouseDown(Uint8 button)

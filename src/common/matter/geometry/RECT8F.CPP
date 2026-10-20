@@ -7,7 +7,7 @@
 
 #include "RECT8F.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     bool
     RECT8F::CONTAINS(POINT8F point)

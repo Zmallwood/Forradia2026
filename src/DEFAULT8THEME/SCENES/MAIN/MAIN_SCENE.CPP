@@ -28,7 +28,7 @@
 #include "SUB/PLAYER_COMBAT_TO_OTHERS.HPP"
 #include "SUB/TILE_HOVERING.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     MainScene::INITIALIZE8DERIVED()

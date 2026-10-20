@@ -7,7 +7,7 @@
 
 #include "POINT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     POINT
     POINT::operator+(const POINT & other) const

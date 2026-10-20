@@ -7,7 +7,7 @@
 
 #include "SDL8DEVICE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     SDL8DEVICE::SDL8DEVICE()
     {

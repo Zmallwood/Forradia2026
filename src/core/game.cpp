@@ -8,7 +8,7 @@
 #include "GAME.HPP"
 #include "ENGINE/ENGINE.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     GAME::START()

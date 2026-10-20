@@ -9,7 +9,7 @@
 
 #include "FONT8SIZES.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class TEXT8RENDERER
     {

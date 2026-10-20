@@ -9,7 +9,7 @@
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
                            float height, std::function<void()> action,

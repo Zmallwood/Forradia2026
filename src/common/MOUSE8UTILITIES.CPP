@@ -7,7 +7,7 @@
 
 #include "MOUSE8UTILITIES.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     POINT8F
     GET8MOUSE8POSITION()

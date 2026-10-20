@@ -7,7 +7,7 @@
 
 #include "NUMBER8UTILITIES.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     int
     INVERT8SPEED(float speed)

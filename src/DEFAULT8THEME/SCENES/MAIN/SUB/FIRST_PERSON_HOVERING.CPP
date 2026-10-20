@@ -19,7 +19,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     void
     FirstPersonHovering::Update()

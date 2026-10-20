@@ -9,7 +9,7 @@
 
 #include "COMPLETABLE8IMPACT8POINT.HPP"
 
-namespace FORRADIA
+namespace FORRADIA8GAME
 {
     class OBJECT
     {
