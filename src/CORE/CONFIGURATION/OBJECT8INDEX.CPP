@@ -138,6 +138,30 @@ namespace FORRADIA8GAME {
             {POINT8F{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
             allImpactPointsCompletedActionObjectWoodLog);
 
+        // auto allImpactPointsCompletedActionObjectWoodLog =
+        //     [](std::shared_ptr<OBJECT> object) {
+        //         auto worldArea = _<WORLD>().currentWorldArea_;
+
+        //         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+
+        //         auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+
+        //         facedTile->tileObjects_->TRANSFORM8OBJECT(
+        //             object, "ObjectUnlitCampfire");
+
+        //         _<GUI8TEXT8CONSOLE>().PRINT8LINE(
+        //             "You have created a campfire.");
+
+        //         _<PLAYER>().ADD8EXPERIENCE(13);
+        //     };
+
+        // ADD8ENTRY(
+        //     "ObjectWoodLog", "Wood log",
+        //     OBJECT8FLAGS::kBlocksSight | OBJECT8FLAGS::kUnmovable,
+        //     {POINT8F{0.4f, 0.5f}, POINT8F{0.5f, 0.5f}, POINT8F{0.6f, 0.5f}},
+        //     {"ObjectWoodAxe"}, []() {},
+        //     allImpactPointsCompletedActionObjectWoodLog);
+
         ADD8ENTRY("ObjectWoodPlank", "Wood plank", OBJECT8FLAGS::kSmallObject);
 
         ADD8ENTRY("ObjectSaw", "Saw", OBJECT8FLAGS::kSmallObject);
