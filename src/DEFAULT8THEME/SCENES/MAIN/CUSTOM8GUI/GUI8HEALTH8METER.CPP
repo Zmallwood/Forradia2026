@@ -10,7 +10,7 @@
 
 namespace FORRADIA8GAME {
     GUI8HEALTH8METER::GUI8HEALTH8METER()
-        : GUI8METER(0.1f, 0.08f, 0.08f, 0.015f) {
+        : GUI8METER(0.11f, 0.08f, 0.08f, 0.015f) {
     }
 
     float

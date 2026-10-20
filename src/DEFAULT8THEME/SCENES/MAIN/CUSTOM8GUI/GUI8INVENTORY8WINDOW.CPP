@@ -230,7 +230,7 @@ namespace FORRADIA8GAME {
 
         if (!hoveredObjectLabel.empty()) {
             auto textSize = _<TEXT8RENDERER>().MEASURE8STRING(
-                hoveredObjectLabel, FONT8SIZES::_18);
+                hoveredObjectLabel, FONT8SIZES::_20);
 
             _<COLOR8RENDERER>().FILL8RECT(
                 mousePosition.x, mousePosition.y + textYOffset, textSize.width,
@@ -238,7 +238,7 @@ namespace FORRADIA8GAME {
 
             _<TEXT8RENDERER>().DRAW8STRING(hoveredObjectLabel, mousePosition.x,
                                            mousePosition.y + textYOffset,
-                                           FONT8SIZES::_18);
+                                           FONT8SIZES::_20);
         }
     }
 }

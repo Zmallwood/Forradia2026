@@ -316,7 +316,7 @@ namespace FORRADIA8GAME {
         _<TEXT8RENDERER>().DRAW8STRING("Actions",
                                        rightClickMousePosition_.x + marginX,
                                        rightClickMousePosition_.y + marginY,
-                                       FONT8SIZES::_12, false, COLORS::kGold);
+                                       FONT8SIZES::_15, false, COLORS::kGold);
 
         auto row = 1;
 

@@ -11,9 +11,9 @@
 namespace FORRADIA8GAME {
     void
     TEXT8RENDERER::INITIALIZE() {
-        ADD8FONT(FONT8SIZES::_12);
-        ADD8FONT(FONT8SIZES::_18);
-        ADD8FONT(FONT8SIZES::_24);
+        ADD8FONT(FONT8SIZES::_15);
+        ADD8FONT(FONT8SIZES::_20);
+        ADD8FONT(FONT8SIZES::_25);
     }
 
     void

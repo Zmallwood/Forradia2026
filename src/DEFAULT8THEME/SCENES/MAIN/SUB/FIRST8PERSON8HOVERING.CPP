@@ -248,7 +248,7 @@ namespace FORRADIA8GAME {
                 objectLabel = "?";
 
             auto textSize =
-                _<TEXT8RENDERER>().MEASURE8STRING(objectLabel, FONT8SIZES::_18);
+                _<TEXT8RENDERER>().MEASURE8STRING(objectLabel, FONT8SIZES::_20);
 
             _<COLOR8RENDERER>().FILL8RECT(
                 mousePosition.x, mousePosition.y + textYOffset, textSize.width,
@@ -256,7 +256,7 @@ namespace FORRADIA8GAME {
 
             _<TEXT8RENDERER>().DRAW8STRING(objectLabel, mousePosition.x,
                                            mousePosition.y + textYOffset,
-                                           FONT8SIZES::_18);
+                                           FONT8SIZES::_20);
         } else if (hoveredCreature_) {
             auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(
                 hoveredCreature_->type_)};
@@ -265,7 +265,7 @@ namespace FORRADIA8GAME {
                 creatureLabel = "?";
 
             auto textSize = _<TEXT8RENDERER>().MEASURE8STRING(creatureLabel,
-                                                              FONT8SIZES::_18);
+                                                              FONT8SIZES::_20);
 
             _<COLOR8RENDERER>().FILL8RECT(
                 mousePosition.x, mousePosition.y + textYOffset, textSize.width,
@@ -273,7 +273,7 @@ namespace FORRADIA8GAME {
 
             _<TEXT8RENDERER>().DRAW8STRING(creatureLabel, mousePosition.x,
                                            mousePosition.y + textYOffset,
-                                           FONT8SIZES::_18);
+                                           FONT8SIZES::_20);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace FORRADIA8GAME {
         auto position = GET8POSITION();
 
         _<TEXT8RENDERER>().DRAW8STRING(title_, position.x + kMargin_.x,
-                                       position.y + kMargin_.y, FONT8SIZES::_18,
+                                       position.y + kMargin_.y, FONT8SIZES::_20,
                                        false);
     }
 

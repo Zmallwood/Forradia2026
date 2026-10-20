@@ -21,14 +21,14 @@ namespace FORRADIA8GAME {
         GUI8PANEL::RENDER8DERIVED();
 
         _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().name_, 0.015f, 0.01f,
-                                       FONT8SIZES::_18, false);
+                                       FONT8SIZES::_20, false);
 
         auto playerLevel = CALCULATE8CURRENT8LEVEL(_<PLAYER>().experience_);
 
         std::string levelText = "Level " + std::to_string(playerLevel);
 
         _<TEXT8RENDERER>().DRAW8STRING(levelText, 0.015f, 0.04f,
-                                       FONT8SIZES::_24, false,
+                                       FONT8SIZES::_25, false,
                                        COLORS::kYellowGray);
 
         std::stringstream ssHealth;
@@ -38,6 +38,6 @@ namespace FORRADIA8GAME {
                  << _<PLAYER>().maxHealth_;
 
         _<TEXT8RENDERER>().DRAW8STRING(ssHealth.str(), 0.015f, 0.08f,
-                                       FONT8SIZES::_12, false, COLORS::kWheat);
+                                       FONT8SIZES::_15, false, COLORS::kWheat);
     }
 }

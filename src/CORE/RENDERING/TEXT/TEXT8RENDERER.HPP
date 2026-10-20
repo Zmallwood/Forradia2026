@@ -15,11 +15,11 @@ namespace FORRADIA8GAME {
         void INITIALIZE();
 
         void DRAW8STRING(std::string_view text, float x, float y,
-                         FONT8SIZES fontSize = FONT8SIZES::_12,
+                         FONT8SIZES fontSize = FONT8SIZES::_15,
                          bool centered = false, COLOR color = COLORS::kWheat);
 
         SIZE8F MEASURE8STRING(std::string_view text,
-                              FONT8SIZES fontSize = FONT8SIZES::_12);
+                              FONT8SIZES fontSize = FONT8SIZES::_15);
 
       private:
         void ADD8FONT(FONT8SIZES fontSize);

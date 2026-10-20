@@ -48,7 +48,7 @@ namespace FORRADIA8GAME {
 
         _<TEXT8RENDERER>().DRAW8STRING(text_, position.x + size.width / 2,
                                        position.y + size.height / 2,
-                                       FONT8SIZES::_12, true);
+                                       FONT8SIZES::_15, true);
     }
 
     bool
