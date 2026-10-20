@@ -10,7 +10,7 @@ class Creature
 
     Creature(int type);
 
-    void Hit(float damage, POINT_F hitPosition);
+    void Hit(float damage, POINT8F hitPosition);
 
     bool IsDead();
 
@@ -18,7 +18,7 @@ class Creature
     int ticksLastMovement_ = 0;
     float movementSpeed_ = 1.0f;
     int ticksLastHitOnSelf_ = 0;
-    POINT_F lastHitPosition_ = {-1.0f, -1.0f};
+    POINT8F lastHitPosition_ = {-1.0f, -1.0f};
     int experienceValue_ = 13;
     int respawnTimeMillis_ = 5000;
     int ticksLastHitOnOther_ = 0;

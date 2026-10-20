@@ -35,7 +35,7 @@ class Player
 
     void SpawnOnSuitableLocation();
 
-    POINT_F position_ = {0.0f, 0.0f};
+    POINT8F position_ = {0.0f, 0.0f};
     int ticksLastMovement_ = 0;
     float movementSpeed_ = 11.0f;
     float stepSize_ = 0.3f;

@@ -3,5 +3,5 @@
 
 #pragma once
 
-std::string Replace(std::string_view text, std::string_view oldValue,
+std::string REPLACE(std::string_view text, std::string_view oldValue,
                     std::string_view newValue);

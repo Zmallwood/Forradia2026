@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "ENGINE.HPP"
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/MINOR_COMPONENTS/CURSOR.HPP"
 #include "CORE/MINOR_COMPONENTS/FPS_COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
@@ -13,7 +13,7 @@ void ENGINE::START()
 {
     srand(time(nullptr));
 
-    _<ImageBank>().LoadImages();
+    _<IMAGE8BANK>().LOAD8IMAGES();
 
     _<TextRenderer>().Initialize();
 
@@ -71,10 +71,10 @@ void ENGINE::POLL_EVENTS()
             switch (event.button.button)
             {
             case SDL_BUTTON_LEFT:
-                ticksLeftMouseButtonDown_ = Now();
+                ticksLeftMouseButtonDown_ = NOW();
                 break;
             case SDL_BUTTON_RIGHT:
-                ticksRightMouseButtonDown_ = Now();
+                ticksRightMouseButtonDown_ = NOW();
                 break;
             }
             break;
@@ -86,10 +86,10 @@ void ENGINE::POLL_EVENTS()
             switch (event.button.button)
             {
             case SDL_BUTTON_LEFT:
-                clickSpeed = Now() - ticksLeftMouseButtonDown_;
+                clickSpeed = NOW() - ticksLeftMouseButtonDown_;
                 break;
             case SDL_BUTTON_RIGHT:
-                clickSpeed = Now() - ticksRightMouseButtonDown_;
+                clickSpeed = NOW() - ticksRightMouseButtonDown_;
                 break;
             }
             

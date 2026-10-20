@@ -3,4 +3,4 @@
 
 #pragma once
 
-int Now();
+std::string GET8FILE8NAME8NO8EXT(std::string_view path);

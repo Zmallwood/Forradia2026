@@ -2,39 +2,39 @@
 // SPDX-License-Identifier: MIT
 
 #include "CREATURE.HPP"
-#include "CORE/CONFIGURATION/CREATURE_INDEX.HPP"
+#include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/GUI_CORE/GUI_TEXT_CONSOLE.HPP"
 
 Creature::Creature(std::string_view typeName)
 {
-    type_ = Hash(typeName);
+    type_ = HASH(typeName);
 }
 
 Creature::Creature(int type)
 {
     type_ = type;
 
-    auto typeName = _<CreatureIndex>().GetCreatureLabel(type);
+    auto typeName = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type);
 }
 
-void Creature::Hit(float damage, POINT_F hitPosition)
+void Creature::Hit(float damage, POINT8F hitPosition)
 {
     health_ -= damage;
 
-    ticksLastHitOnSelf_ = Now();
+    ticksLastHitOnSelf_ = NOW();
 
     lastHitPosition_ = hitPosition;
 
     targetingPlayer_ = true;
 
-    auto now = Now();
+    auto now = NOW();
 
-    if (now - ticksLastHitOnOther_ > InvertSpeed(attackSpeed_))
+    if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_))
     {
         ticksLastHitOnOther_ = now;
     }
 
-    auto creatureLabel = _<CreatureIndex>().GetCreatureLabel(type_);
+    auto creatureLabel = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type_);
 
     std::stringstream ssDamage;
 

@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER_EQUIPMENT.HPP"
 #include "CORE/WORLD_STRUCTURE/OBJECT.HPP"
@@ -18,30 +18,30 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         return;
     }
 
-    auto viewWidth{GameProperties::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     if (mousePosition.x < viewWidth)
     {
         return;
     }
 
-    auto now{Now()};
+    auto now{NOW()};
 
     if (now <
-        _<Player>().ticksLastImpact_ + InvertSpeed(_<Player>().impactSpeed_))
+        _<Player>().ticksLastImpact_ + INVERT8SPEED(_<Player>().impactSpeed_))
     {
         return;
     }
 
     auto orderedObjects{GetOrderedObjects()};
 
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto tileUnitsWidth{_<GAME8PROPERTIES>().k_tileUnitsWidth_};
 
-    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
-    constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
-    constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+    constexpr auto k_margin{GAME8PROPERTIES::k_firstPersonViewMargin_};
+    constexpr auto largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
+    constexpr auto smallObjectScale{GAME8PROPERTIES::k_smallObjectScale_};
 
     auto rightHandObject{_<Player>().playerEquipment_->rightHandObject_};
     auto leftHandObject{_<Player>().playerEquipment_->leftHandObject_};
@@ -54,7 +54,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         auto object{entry.second.object_};
         auto objectType{object->type_};
 
-        auto impactObjects{_<ObjectIndex>().GetImpactObjects(objectType)};
+        auto impactObjects{_<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType)};
 
         auto canImpact{false};
 
@@ -84,12 +84,12 @@ void ObjectImpact::OnMouseDown(Uint8 button)
             continue;
         }
 
-        auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
         float imageWidth;
         float imageHeight;
 
-        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+        auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
         if (isSmallObject)
         {
@@ -97,7 +97,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               smallObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -108,7 +108,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               largeObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -131,7 +131,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         auto imageY{baseY - imageHeight};
 
         auto renderOffset{
-            _<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType)};
+            _<OBJECT8INDEX>().GET8FIRST8PERSON8VIEW8RENDER8OFFSET(objectType)};
 
         imageX += renderOffset.x * tileWidth;
 
@@ -139,8 +139,8 @@ void ObjectImpact::OnMouseDown(Uint8 button)
 
         imageY += renderOffset.y * k_tileHeight;
 
-        auto impactPointWidth{GameProperties::k_impactPointWidth_};
-        auto impactPointHeight{CONVERT_WIDTH_TO_HEIGHT(impactPointWidth)};
+        auto impactPointWidth{GAME8PROPERTIES::k_impactPointWidth_};
+        auto impactPointHeight{CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
 
         auto &impactPoints{object->impactPoints_};
 
@@ -156,7 +156,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
             auto impactPointX{impactPointCenterX - impactPointWidth / 2.0f};
             auto impactPointY{impactPointCenterY - impactPointHeight / 2.0f};
 
-            auto rect{RECT_F{impactPointX, impactPointY, impactPointWidth,
+            auto rect{RECT8F{impactPointX, impactPointY, impactPointWidth,
                              impactPointHeight}};
 
             if (rect.CONTAINS(mousePosition) && !impactPoint.completed)
@@ -168,10 +168,10 @@ void ObjectImpact::OnMouseDown(Uint8 button)
                 _<Player>().ticksLastImpact_ = now;
 
                 _<FirstPersonView>().completedObjectImpacts_.push_back(
-                    {POINT_F{impactPointCenterX, impactPointCenterY}, now});
+                    {POINT8F{impactPointCenterX, impactPointCenterY}, now});
 
                 auto singleImpactPointCompletedAction{
-                    _<ObjectIndex>().GetSingleImpactPointCompletedAction(
+                    _<OBJECT8INDEX>().GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(
                         objectType)};
 
                 singleImpactPointCompletedAction();
@@ -197,7 +197,7 @@ void ObjectImpact::OnMouseDown(Uint8 button)
         if (allImpactPointsCompleted)
         {
             auto allImpactPointsCompletedAction{
-                _<ObjectIndex>().GetAllImpactPointsCompletedAction(objectType)};
+                _<OBJECT8INDEX>().GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(objectType)};
 
             allImpactPointsCompletedAction(object);
         }

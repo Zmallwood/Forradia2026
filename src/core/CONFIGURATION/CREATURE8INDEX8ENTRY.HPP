@@ -3,7 +3,7 @@
 
 #pragma once
 
-class CreatureIndexEntry
+class CREATURE8INDEX8ENTRY
 {
   public:
     std::string label;

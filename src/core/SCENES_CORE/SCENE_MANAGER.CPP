@@ -20,7 +20,7 @@ SceneManager::SceneManager()
 
 void SceneManager::AddScene(std::string_view sceneName, IScene &scene)
 {
-    auto hash = Hash(sceneName);
+    auto hash = HASH(sceneName);
 
     scenes_.insert({hash, scene});
 
@@ -29,7 +29,7 @@ void SceneManager::AddScene(std::string_view sceneName, IScene &scene)
 
 void SceneManager::GoToScene(std::string_view sceneName)
 {
-    auto hash = Hash(sceneName);
+    auto hash = HASH(sceneName);
 
     if (scenes_.contains(hash))
     {

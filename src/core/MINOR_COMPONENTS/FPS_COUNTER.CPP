@@ -6,7 +6,7 @@
 
 void FPSCounter::Update()
 {
-    auto now = Now();
+    auto now = NOW();
 
     if (now > ticksLastUpdate_ + k_oneSecondMillis)
     {

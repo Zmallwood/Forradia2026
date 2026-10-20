@@ -10,11 +10,11 @@ SDLDevice::SDLDevice()
     window_ = std::shared_ptr<SDL_Window>(
         SDL_CreateWindow(k_windowName_.data(), SDL_WINDOWPOS_CENTERED,
                          SDL_WINDOWPOS_CENTERED, 800, 600, windowFlags),
-        SDLDeleter());
+        SDL8DELETER());
 
     renderer_ = std::shared_ptr<SDL_Renderer>(
         SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED),
-        SDLDeleter());
+        SDL8DELETER());
 }
 
 void SDLDevice::ClearCanvas()
@@ -32,7 +32,7 @@ void SDLDevice::Clip(float x, float y, float width, float height)
 {
     SDL_Rect clipRect;
 
-    auto canvasSize = GET_CANVAS_SIZE();
+    auto canvasSize = GET8CANVAS8SIZE();
 
     clipRect.x = static_cast<int>(x * canvasSize.width);
     clipRect.y = static_cast<int>(y * canvasSize.height);

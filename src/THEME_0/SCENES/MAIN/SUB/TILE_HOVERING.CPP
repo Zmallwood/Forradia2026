@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
@@ -10,7 +10,7 @@
 
 void TileHovering::Update()
 {
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     auto worldArea{_<World>().currentWorldArea_};
 
@@ -29,10 +29,10 @@ void TileHovering::Update()
 
     auto playerElevation{playerTile->elevation_};
 
-    auto tileWidth{GameProperties::k_tileWidth_};
-    auto tileHeight{CONVERT_WIDTH_TO_HEIGHT(tileWidth)};
+    auto tileWidth{GAME8PROPERTIES::k_tileWidth_};
+    auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-    auto tileGridSize{GameProperties::k_tileGridSize_};
+    auto tileGridSize{GAME8PROPERTIES::k_tileGridSize_};
 
     auto numGridRows{tileGridSize - 11};
     auto numGridColumns{tileGridSize - 11};
@@ -67,7 +67,7 @@ void TileHovering::Update()
                        playerMoveDy * tileHeight / 2};
 
             auto centerBottom{
-                POINT_F{tileX + tileWidth / 2, tileY + tileHeight / 2}};
+                POINT8F{tileX + tileWidth / 2, tileY + tileHeight / 2}};
 
             auto dxBottom{std::abs(mousePosition.x - centerBottom.x) /
                           (tileWidth / 2)};
@@ -80,8 +80,9 @@ void TileHovering::Update()
 
             auto elevationHeight{elevation * tileHeight / 4};
 
-            RECT_F elevationRect{tileX, tileY - elevationHeight + tileHeight / 2,
-                                tileWidth, elevationHeight};
+            RECT8F elevationRect{tileX,
+                                 tileY - elevationHeight + tileHeight / 2,
+                                 tileWidth, elevationHeight};
 
             if (elevationRect.CONTAINS(mousePosition))
             {
@@ -94,7 +95,7 @@ void TileHovering::Update()
             }
 
             auto centerTop{
-                POINT_F{tileX + tileWidth / 2, tileY + tileHeight / 2}};
+                POINT8F{tileX + tileWidth / 2, tileY + tileHeight / 2}};
 
             auto dxTop{std::abs(mousePosition.x - centerTop.x) /
                        (tileWidth / 2)};

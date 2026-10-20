@@ -23,7 +23,7 @@ bool GUIPanel::OnMouseDown(Uint8 mouseButton)
         return false;
     }
 
-    return GetBounds().CONTAINS(GetMousePosition());
+    return GetBounds().CONTAINS(GET8MOUSE8POSITION());
 }
 
 void GUIPanel::RenderDerived()
@@ -39,7 +39,7 @@ std::string GUIPanel::GetBackgroundImage()
     return k_defaultBackgroundImage_;
 }
 
-RECT_F GUIPanel::GetBounds()
+RECT8F GUIPanel::GetBounds()
 {
     auto position = GetPosition();
 

@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/CREATURE_INDEX.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/GUI_CORE/GUI_TEXT_CONSOLE.HPP"
 #include "CORE/WORLD_STRUCTURE/CREATURE.HPP"
@@ -14,22 +14,21 @@
 #include "CREATURE_RESPAWNER.HPP"
 #include "PLAYER_COMBAT_TO_OTHERS.HPP"
 
-
 void PlayerCombatToOthers::OnMouseDown(Uint8 button)
 {
-    auto viewWidth{GameProperties::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
 
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto tileUnitsWidth{_<GAME8PROPERTIES>().k_tileUnitsWidth_};
 
-    auto now{Now()};
+    auto now{NOW()};
 
     if (now - _<Player>().ticksLastHitOnOther_ <
-        InvertSpeed(_<Player>().attackSpeed_))
+        INVERT8SPEED(_<Player>().attackSpeed_))
     {
         return;
     }
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     if (mousePosition.x < viewWidth / 2.0f)
     {
@@ -59,16 +58,16 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
         return;
     }
 
-    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
-    constexpr auto k_largeObjectScale{GameProperties::k_largeObjectScale_};
+    constexpr auto k_margin{GAME8PROPERTIES::k_firstPersonViewMargin_};
+    constexpr auto k_largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
 
     auto creatureType{creature->type_};
 
-    auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+    auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
     auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
     auto imageHeight{imageSize.height / 60.0f *
-                     CONVERT_WIDTH_TO_HEIGHT(k_largeObjectScale)};
+                     CONVERT8WIDTH8TO8HEIGHT(k_largeObjectScale)};
 
     auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
     auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
@@ -85,14 +84,14 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
     auto x{dx / imageWidth};
     auto y{dy / imageHeight};
 
-    auto isPixelVisible{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
+    auto isPixelVisible{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
     if (!isPixelVisible)
     {
         return;
     }
 
-    creature->Hit(1.0f, POINT_F{x, y});
+    creature->Hit(1.0f, POINT8F{x, y});
 
     _<Player>().ticksLastHitOnOther_ = now;
 
@@ -100,7 +99,8 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
 
     if (creature->IsDead())
     {
-        auto corpseType{_<CreatureIndex>().GetCreatureCorpseType(creatureType)};
+        auto corpseType{
+            _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
 
         tile->tileObjects_->AddObject(corpseType,
                                       {tileUnitsWidth / 2, tileUnitsWidth / 2});
@@ -109,7 +109,8 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
 
         worldArea->creaturesMirror_.erase(creature);
 
-        auto creatureLabel{_<CreatureIndex>().GetCreatureLabel(creatureType)};
+        auto creatureLabel{
+            _<CREATURE8INDEX>().GET8CREATURE8LABEL(creatureType)};
 
         _<GUITextConsole>().PrintLine("You have killed a " + creatureLabel +
                                       ".");

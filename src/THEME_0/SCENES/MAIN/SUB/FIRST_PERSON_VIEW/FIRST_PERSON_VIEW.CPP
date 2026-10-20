@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER_EQUIPMENT.HPP"
 #include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
@@ -20,7 +20,7 @@
 
 void FirstPersonView::Update()
 {
-    auto now = Now();
+    auto now = NOW();
 
     for (auto it = completedObjectImpacts_.begin();
          it != completedObjectImpacts_.end();)
@@ -40,12 +40,12 @@ void FirstPersonView::Render()
 {
     _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
 
-    auto viewWidth = GameProperties::k_viewWidth_;
+    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
 
     _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
                                 COLORS::k_veryDarkBlue);
 
-    auto now = Now();
+    auto now = NOW();
 
     std::string groundImageName;
 
@@ -64,40 +64,40 @@ void FirstPersonView::Render()
 
     switch (groundType)
     {
-    case Hash("GroundGrass"):
+    case HASH("GroundGrass"):
     {
         groundImageName = "GroundFirstPersonGrass";
 
         break;
     }
-    case Hash("GroundWater"):
+    case HASH("GroundWater"):
     {
-        auto waterAnimIndex = (Now() % 450) / 150;
+        auto waterAnimIndex = (NOW() % 450) / 150;
 
         groundImageName =
             "GroundFirstPersonWater_" + std::to_string(waterAnimIndex);
 
         break;
     }
-    case Hash("GroundDirt"):
+    case HASH("GroundDirt"):
     {
         groundImageName = "GroundFirstPersonDirt";
 
         break;
     }
-    case Hash("GroundRock"):
+    case HASH("GroundRock"):
     {
         groundImageName = "GroundFirstPersonRock";
 
         break;
     }
-    case Hash("GroundCobblestone"):
+    case HASH("GroundCobblestone"):
     {
         groundImageName = "GroundFirstPersonCobblestone";
 
         break;
     }
-    case Hash("GroundWoodFloor"):
+    case HASH("GroundWoodFloor"):
     {
         groundImageName = "GroundFirstPersonWoodFloor";
 
@@ -105,18 +105,18 @@ void FirstPersonView::Render()
     }
     }
 
-    constexpr auto k_margin = GameProperties::k_firstPersonViewMargin_;
+    constexpr auto k_margin = GAME8PROPERTIES::k_firstPersonViewMargin_;
 
     _<ImageRenderer>().DrawImage(groundImageName, 1.0f - viewWidth + k_margin.x,
                                  0.75f + k_margin.y, viewWidth - 2 * k_margin.x,
                                  0.25f - 2 * k_margin.y);
 
-    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
 
     auto orderedObjects = GetOrderedObjects();
 
-    constexpr auto largeObjectScale = GameProperties::k_largeObjectScale_;
-    constexpr auto smallObjectScale = GameProperties::k_smallObjectScale_;
+    constexpr auto largeObjectScale = GAME8PROPERTIES::k_largeObjectScale_;
+    constexpr auto smallObjectScale = GAME8PROPERTIES::k_smallObjectScale_;
 
     for (auto entry : orderedObjects)
     {
@@ -130,12 +130,12 @@ void FirstPersonView::Render()
 
         auto objectType = entry.second.object_->type_;
 
-        auto imageSize = _<ImageBank>().GetImageSize(objectType);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(objectType);
 
         float imageWidth;
         float imageHeight;
 
-        auto isSmallObject = _<ObjectIndex>().IsSmallObject(objectType);
+        auto isSmallObject = _<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType);
 
         if (isSmallObject)
         {
@@ -143,7 +143,7 @@ void FirstPersonView::Render()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               smallObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -154,7 +154,7 @@ void FirstPersonView::Render()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               largeObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -177,7 +177,7 @@ void FirstPersonView::Render()
         auto imageY = baseY - imageHeight;
 
         auto renderOffset =
-            _<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType);
+            _<OBJECT8INDEX>().GET8FIRST8PERSON8VIEW8RENDER8OFFSET(objectType);
 
         imageX += renderOffset.x * tileWidth;
 
@@ -188,7 +188,7 @@ void FirstPersonView::Render()
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
 
-        auto impactObjects = _<ObjectIndex>().GetImpactObjects(objectType);
+        auto impactObjects = _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
 
         auto canImpact = false;
 
@@ -221,9 +221,9 @@ void FirstPersonView::Render()
 
             for (auto impactPoint : impactPoints)
             {
-                auto impactPointWidth = GameProperties::k_impactPointWidth_;
+                auto impactPointWidth = GAME8PROPERTIES::k_impactPointWidth_;
                 auto impactPointHeight =
-                    CONVERT_WIDTH_TO_HEIGHT(impactPointWidth);
+                    CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
                 auto impactPointX = imageX +
                                     impactPoint.position.x * imageWidth -
                                     impactPointWidth / 2.0f;
@@ -247,11 +247,11 @@ void FirstPersonView::Render()
     {
         auto npcType = npc->type_;
 
-        auto imageSize = _<ImageBank>().GetImageSize(npcType);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(npcType);
 
         auto imageWidth = imageSize.width / 60.0f * largeObjectScale;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT_WIDTH_TO_HEIGHT(largeObjectScale);
+                           CONVERT8WIDTH8TO8HEIGHT(largeObjectScale);
 
         auto tileWidth = viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f;
         auto tileLeft = 1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f;
@@ -272,11 +272,11 @@ void FirstPersonView::Render()
     {
         auto creatureType = creature->type_;
 
-        auto imageSize = _<ImageBank>().GetImageSize(creatureType);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType);
 
         auto imageWidth = imageSize.width / 60.0f * largeObjectScale;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT_WIDTH_TO_HEIGHT(largeObjectScale);
+                           CONVERT8WIDTH8TO8HEIGHT(largeObjectScale);
 
         auto tileWidth = viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f;
         auto tileLeft = 1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f;
@@ -295,14 +295,14 @@ void FirstPersonView::Render()
             auto lastHitPosition = creature->lastHitPosition_;
 
             auto hitEffectImageSize =
-                _<ImageBank>().GetImageSize(Hash("HitEffect"));
+                _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"));
 
             constexpr auto k_hitEffectScale = 0.1f;
 
             auto hitEffectWidth =
                 hitEffectImageSize.width / 60.0f * k_hitEffectScale;
             auto hitEffectHeight = hitEffectImageSize.height / 60.0f *
-                                   CONVERT_WIDTH_TO_HEIGHT(k_hitEffectScale);
+                                   CONVERT8WIDTH8TO8HEIGHT(k_hitEffectScale);
 
             auto hitEffectBaseX = imageX + lastHitPosition.x * imageWidth;
             auto hitEffectBaseY = imageY + lastHitPosition.y * imageHeight;
@@ -327,12 +327,12 @@ void FirstPersonView::Render()
 
         auto objectType = entry.second.object_->type_;
 
-        auto imageSize = _<ImageBank>().GetImageSize(objectType);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(objectType);
 
         float imageWidth;
         float imageHeight;
 
-        auto isSmallObject = _<ObjectIndex>().IsSmallObject(objectType);
+        auto isSmallObject = _<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType);
 
         if (isSmallObject)
         {
@@ -340,7 +340,7 @@ void FirstPersonView::Render()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               smallObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -351,7 +351,7 @@ void FirstPersonView::Render()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               largeObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -374,7 +374,7 @@ void FirstPersonView::Render()
         auto imageY = baseY - imageHeight;
 
         auto renderOffset =
-            _<ObjectIndex>().GetFirstPersonViewRenderOffset(objectType);
+            _<OBJECT8INDEX>().GET8FIRST8PERSON8VIEW8RENDER8OFFSET(objectType);
 
         imageX += renderOffset.x * tileWidth;
 
@@ -385,7 +385,7 @@ void FirstPersonView::Render()
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
 
-        auto impactObjects = _<ObjectIndex>().GetImpactObjects(objectType);
+        auto impactObjects = _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
 
         auto canImpact = false;
 
@@ -418,9 +418,9 @@ void FirstPersonView::Render()
 
             for (auto impactPoint : impactPoints)
             {
-                auto impactPointWidth = GameProperties::k_impactPointWidth_;
+                auto impactPointWidth = GAME8PROPERTIES::k_impactPointWidth_;
                 auto impactPointHeight =
-                    CONVERT_WIDTH_TO_HEIGHT(impactPointWidth);
+                    CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
                 auto impactPointX = imageX +
                                     impactPoint.position.x * imageWidth -
                                     impactPointWidth / 2.0f;
@@ -444,14 +444,14 @@ void FirstPersonView::Render()
             k_impactPointEffectDuration_)
         {
             auto hitEffectImageSize =
-                _<ImageBank>().GetImageSize(Hash("HitEffect"));
+                _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"));
 
             constexpr auto k_hitEffectScale = 0.1f;
 
             auto hitEffectWidth =
                 hitEffectImageSize.width / 60.0f * k_hitEffectScale;
             auto hitEffectHeight = hitEffectImageSize.height / 60.0f *
-                                   CONVERT_WIDTH_TO_HEIGHT(k_hitEffectScale);
+                                   CONVERT8WIDTH8TO8HEIGHT(k_hitEffectScale);
 
             auto impactPointX = completedObjectImpact.position.x;
             auto impactPointY = completedObjectImpact.position.y;
@@ -467,7 +467,7 @@ void FirstPersonView::Render()
     constexpr auto k_handScale = 0.1f;
 
     auto handWidth = k_handScale;
-    auto handHeight = CONVERT_WIDTH_TO_HEIGHT(k_handScale * 6 / 4);
+    auto handHeight = CONVERT8WIDTH8TO8HEIGHT(k_handScale * 6 / 4);
     auto handSpacing = 0.1f;
 
     auto leftHandX =
@@ -477,9 +477,9 @@ void FirstPersonView::Render()
 
     auto ticksLastMovement = _<Player>().ticksLastMovement_;
 
-    auto ticksOneStep = InvertSpeed(_<Player>().movementSpeed_);
+    auto ticksOneStep = INVERT8SPEED(_<Player>().movementSpeed_);
 
-    auto delta = Now() - ticksLastMovement;
+    auto delta = NOW() - ticksLastMovement;
 
     auto handAnimation = 0.0f;
 
@@ -495,11 +495,11 @@ void FirstPersonView::Render()
 
     if (rightHandObject)
     {
-        auto imageSize = _<ImageBank>().GetImageSize(rightHandObject->type_);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(rightHandObject->type_);
 
         auto imageWidth = imageSize.width / 60.0f * k_wieldedObjectScale_;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT_WIDTH_TO_HEIGHT(k_wieldedObjectScale_);
+                           CONVERT8WIDTH8TO8HEIGHT(k_wieldedObjectScale_);
 
         auto rightHandX = 1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
                           imageWidth / 2.0f;
@@ -512,11 +512,11 @@ void FirstPersonView::Render()
 
     if (leftHandObject)
     {
-        auto imageSize = _<ImageBank>().GetImageSize(leftHandObject->type_);
+        auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(leftHandObject->type_);
 
         auto imageWidth = imageSize.width / 60.0f * k_wieldedObjectScale_;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT_WIDTH_TO_HEIGHT(k_wieldedObjectScale_);
+                           CONVERT8WIDTH8TO8HEIGHT(k_wieldedObjectScale_);
 
         auto leftHandX = 1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
                          imageWidth / 2.0f;
@@ -542,13 +542,13 @@ void FirstPersonView::Render()
     }
 
     if (now <
-        _<Player>().ticksLastImpact_ + InvertSpeed(_<Player>().impactSpeed_))
+        _<Player>().ticksLastImpact_ + INVERT8SPEED(_<Player>().impactSpeed_))
     {
         constexpr auto k_impactReloadWidth = 0.1f;
         constexpr auto k_impactReloadHeight = 0.01f;
 
         auto progress = static_cast<float>(now - _<Player>().ticksLastImpact_) /
-                        InvertSpeed(_<Player>().impactSpeed_);
+                        INVERT8SPEED(_<Player>().impactSpeed_);
 
         auto filledWidth = k_impactReloadWidth * (1.0f - progress);
 

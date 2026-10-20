@@ -3,9 +3,13 @@
 
 #pragma once
 
-class SIZE_F
+class RECT8F
 {
   public:
+    bool CONTAINS(POINT8F point);
+
+    float x = 0.0f;
+    float y = 0.0f;
     float width = 0.0f;
     float height = 0.0f;
 };

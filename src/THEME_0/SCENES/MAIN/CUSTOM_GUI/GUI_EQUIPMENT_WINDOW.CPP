@@ -17,7 +17,7 @@ bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
 {
     auto result = GUIWindow::OnMouseDown(mouseButton);
 
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (GetHeadSlotBounds().CONTAINS(mousePosition))
     {
@@ -81,7 +81,7 @@ bool GUIEquipmentWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
 {
     GUIWindow::OnMouseUp(mouseButton, clickSpeed);
 
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (GetHeadSlotBounds().CONTAINS(mousePosition))
     {
@@ -181,7 +181,7 @@ void GUIEquipmentWindow::RenderDerived()
     }
 }
 
-RECT_F GUIEquipmentWindow::GetHeadSlotBounds()
+RECT8F GUIEquipmentWindow::GetHeadSlotBounds()
 {
     auto position = GetPosition();
 
@@ -189,7 +189,7 @@ RECT_F GUIEquipmentWindow::GetHeadSlotBounds()
     auto yCenter = size_.height / 5.0f * 1;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
@@ -197,7 +197,7 @@ RECT_F GUIEquipmentWindow::GetHeadSlotBounds()
     return {x, y, width, height};
 }
 
-RECT_F GUIEquipmentWindow::GetChestSlotBounds()
+RECT8F GUIEquipmentWindow::GetChestSlotBounds()
 {
     auto position = GetPosition();
 
@@ -205,7 +205,7 @@ RECT_F GUIEquipmentWindow::GetChestSlotBounds()
     auto yCenter = size_.height / 5.0f * 2;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
@@ -213,7 +213,7 @@ RECT_F GUIEquipmentWindow::GetChestSlotBounds()
     return {x, y, width, height};
 }
 
-RECT_F GUIEquipmentWindow::GetLegsSlotBounds()
+RECT8F GUIEquipmentWindow::GetLegsSlotBounds()
 {
     auto position = GetPosition();
 
@@ -221,7 +221,7 @@ RECT_F GUIEquipmentWindow::GetLegsSlotBounds()
     auto yCenter = size_.height / 5.0f * 3;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
@@ -229,7 +229,7 @@ RECT_F GUIEquipmentWindow::GetLegsSlotBounds()
     return {x, y, width, height};
 }
 
-RECT_F GUIEquipmentWindow::GetFeetSlotBounds()
+RECT8F GUIEquipmentWindow::GetFeetSlotBounds()
 {
     auto position = GetPosition();
 
@@ -237,7 +237,7 @@ RECT_F GUIEquipmentWindow::GetFeetSlotBounds()
     auto yCenter = size_.height / 5.0f * 4;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
@@ -245,7 +245,7 @@ RECT_F GUIEquipmentWindow::GetFeetSlotBounds()
     return {x, y, width, height};
 }
 
-RECT_F GUIEquipmentWindow::GetRightHandSlotBounds()
+RECT8F GUIEquipmentWindow::GetRightHandSlotBounds()
 {
     auto position = GetPosition();
 
@@ -253,7 +253,7 @@ RECT_F GUIEquipmentWindow::GetRightHandSlotBounds()
     auto yCenter = size_.height / 5.0f * 2;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;
@@ -261,7 +261,7 @@ RECT_F GUIEquipmentWindow::GetRightHandSlotBounds()
     return {x, y, width, height};
 }
 
-RECT_F GUIEquipmentWindow::GetLeftHandSlotBounds()
+RECT8F GUIEquipmentWindow::GetLeftHandSlotBounds()
 {
     auto position = GetPosition();
 
@@ -269,7 +269,7 @@ RECT_F GUIEquipmentWindow::GetLeftHandSlotBounds()
     auto yCenter = size_.height / 5.0f * 2;
 
     auto width = k_slotWidth_;
-    auto height = CONVERT_WIDTH_TO_HEIGHT(k_slotWidth_);
+    auto height = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
 
     auto x = position.x + xCenter - width / 2.0f;
     auto y = position.y + k_marginY_ + yCenter - height / 2.0f;

@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
@@ -22,7 +22,7 @@ void WorldView::Render()
 {
     _<SDLDevice>().Clip(0.0f, 0.0f, 0.5f, 1.0f);
 
-    auto viewWidth = GameProperties::k_viewWidth_;
+    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
 
     _<ColorRenderer>().FillRect(0.0f, 0.0f, viewWidth, 1.0f, COLORS::k_black);
 
@@ -50,10 +50,10 @@ void WorldView::Render()
 
     auto facedTile = _<Player>().facedTileCoordinate_;
 
-    auto tileWidth = _<GameProperties>().k_tileWidth_;
-    auto tileHeight = CONVERT_WIDTH_TO_HEIGHT(tileWidth);
+    auto tileWidth = _<GAME8PROPERTIES>().k_tileWidth_;
+    auto tileHeight = CONVERT8WIDTH8TO8HEIGHT(tileWidth);
 
-    auto tileGridSize = GameProperties::k_tileGridSize_;
+    auto tileGridSize = GAME8PROPERTIES::k_tileGridSize_;
 
     auto numGridRows = tileGridSize - 11;
     auto numGridColumns = tileGridSize - 11;
@@ -160,13 +160,13 @@ void WorldView::Render()
 
             for (auto i = 0; i < elevation; i++)
             {
-                if (ground == Hash("GroundRock"))
+                if (ground == HASH("GroundRock"))
                 {
                     _<ImageRenderer>().DrawImage("ElevationRock", tileX,
                                                  tileY + tileHeight / 4,
                                                  tileWidth, tileHeight * 3 / 4);
                 }
-                else if (ground == Hash("GroundWater"))
+                else if (ground == HASH("GroundWater"))
                 {
                     _<ImageRenderer>().DrawImage("ElevationWater", tileX,
                                                  tileY + tileHeight / 4,
@@ -205,18 +205,18 @@ void WorldView::Render()
                 tileY -= tileHeight / 4;
             }
 
-            if (ground == Hash("GroundWater"))
+            if (ground == HASH("GroundWater"))
             {
                 auto waterAnimIndex =
-                    ((Now() + 10 * xCoordinate * yCoordinate) % 900) / 300;
+                    ((NOW() + 10 * xCoordinate * yCoordinate) % 900) / 300;
 
                 std::string groundImageName =
                     "GroundWater_" + std::to_string(waterAnimIndex);
 
-                ground = Hash(groundImageName);
+                ground = HASH(groundImageName);
             }
 
-            if (ground == Hash("GroundGrass"))
+            if (ground == HASH("GroundGrass"))
             {
                 auto grassIndex =
                     ((10 * xCoordinate * yCoordinate) % 900) / 300;
@@ -224,7 +224,7 @@ void WorldView::Render()
                 std::string groundImageName =
                     "GroundGrass_" + std::to_string(grassIndex);
 
-                ground = Hash(groundImageName);
+                ground = HASH(groundImageName);
             }
 
             _<ImageRenderer>().DrawImage(ground, tileX, tileY,
@@ -278,7 +278,7 @@ void WorldView::Render()
                 auto objectType{object->type_};
 
                 auto worldViewObjectType{
-                    _<ObjectIndex>().GetWorldViewObjectType(objectType)};
+                    _<OBJECT8INDEX>().GET8WORLD8VIEW8OBJECT8TYPE(objectType)};
 
                 auto usedObjectType{objectType};
 
@@ -288,20 +288,20 @@ void WorldView::Render()
                 }
 
                 auto isSmallObject{
-                    _<ObjectIndex>().IsSmallObject(usedObjectType)};
+                    _<OBJECT8INDEX>().IS8SMALL8OBJECT(usedObjectType)};
 
                 if (isSmallObject)
                 {
                     continue;
                 }
 
-                auto imageSize{_<ImageBank>().GetImageSize(usedObjectType)};
+                auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
 
                 auto objectWidth{imageSize.width / 60.0f * tileWidth};
                 auto objectHeight{imageSize.height / 60.0f * tileHeight};
 
                 auto renderOffset{
-                    _<ObjectIndex>().GetWorldViewRenderOffset(objectType)};
+                    _<OBJECT8INDEX>().GET8WORLD8VIEW8RENDER8OFFSET(objectType)};
 
                 auto objectX{tileX + tileWidth / 2 - objectWidth / 2 +
                              renderOffset.x * tileWidth};
@@ -320,7 +320,7 @@ void WorldView::Render()
             {
                 auto npcType{npc->type_};
 
-                auto imageSize{_<ImageBank>().GetImageSize(npcType)};
+                auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(npcType)};
 
                 auto npcWidth{imageSize.width / 60.0f * tileWidth};
                 auto npcHeight{imageSize.height / 60.0f * tileHeight};
@@ -338,7 +338,7 @@ void WorldView::Render()
             {
                 auto creatureType{creature->type_};
 
-                auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+                auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
                 auto creatureWidth{imageSize.width / 60.0f * tileWidth};
                 auto creatureHeight{imageSize.height / 60.0f * tileHeight};

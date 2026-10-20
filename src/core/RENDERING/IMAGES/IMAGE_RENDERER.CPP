@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: MIT
 
 #include "IMAGE_RENDERER.HPP"
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 
 void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
                               float height, float opacity, bool flipHorizontal)
 {
-    auto canvasSize = GET_CANVAS_SIZE();
+    auto canvasSize = GET8CANVAS8SIZE();
 
     auto xPx = static_cast<int>(x * canvasSize.width);
     auto yPx = static_cast<int>(y * canvasSize.height);
@@ -17,7 +17,7 @@ void ImageRenderer::DrawImage(int imageNameHash, float x, float y, float width,
 
     auto rect = SDL_Rect{xPx, yPx, widthPx, heightPx};
 
-    auto image = _<ImageBank>().GetImage(imageNameHash);
+    auto image = _<IMAGE8BANK>().GET8IMAGE(imageNameHash);
 
     SDL_RendererFlip flip =
         flipHorizontal ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
@@ -36,19 +36,19 @@ void ImageRenderer::DrawImage(std::string_view imageName, float x, float y,
                               float width, float height, float opacity,
                               bool flipHorizontal)
 {
-    auto hash = Hash(imageName);
+    auto hash = HASH(imageName);
 
     DrawImage(hash, x, y, width, height, opacity, flipHorizontal);
 }
 
-void ImageRenderer::DrawImage(int imageNameHash, RECT_F bounds, float opacity,
+void ImageRenderer::DrawImage(int imageNameHash, RECT8F bounds, float opacity,
                               bool flipHorizontal)
 {
     DrawImage(imageNameHash, bounds.x, bounds.y, bounds.width, bounds.height,
               opacity, flipHorizontal);
 }
 
-void ImageRenderer::DrawImage(std::string_view imageName, RECT_F bounds,
+void ImageRenderer::DrawImage(std::string_view imageName, RECT8F bounds,
                               float opacity, bool flipHorizontal)
 {
     DrawImage(imageName, bounds.x, bounds.y, bounds.width, bounds.height,

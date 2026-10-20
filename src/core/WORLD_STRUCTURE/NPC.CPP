@@ -3,6 +3,6 @@
 
 #include "NPC.HPP"
 
-NPC::NPC(std::string_view typeName) : type_(Hash(typeName))
+NPC::NPC(std::string_view typeName) : type_(HASH(typeName))
 {
 }

@@ -24,18 +24,18 @@ class GUIWindowTitleBar : public GUIPanel
 
     virtual std::string GetBackgroundImage() override;
 
-    POINT_F GetPosition() override;
+    POINT8F GetPosition() override;
 
-    void SetPosition(POINT_F value) override;
+    void SetPosition(POINT8F value) override;
 
   private:
     inline static const std::string k_defaultBackgroundImage_ =
         "GUIWindowTitleBarBackground";
-    static constexpr POINT_F k_margin_ = {0.01F, 0.01F};
+    static constexpr POINT8F k_margin_ = {0.01F, 0.01F};
 
     GUIWindow &guiWindow_;
     std::string title_;
-    POINT_F positionStartMove_;
-    POINT_F mousePositionStartMove_;
+    POINT8F positionStartMove_;
+    POINT8F mousePositionStartMove_;
     bool isMoving_{false};
 };

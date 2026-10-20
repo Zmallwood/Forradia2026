@@ -12,7 +12,7 @@
 
 void MainMenuScene::InitializeDerived()
 {
-    gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
+    gui_->AddComponent(GET8SINGLETON8PTR<GUITextConsole>());
 
     gui_->AddComponent(std::make_shared<GUIPanel>(0.4f, 0.4f, 0.2f, 0.2f));
 

@@ -26,25 +26,25 @@
 
 void MainScene::InitializeDerived()
 {
-    gui_->AddComponent(GetSingletonPtr<GUITextConsole>());
+    gui_->AddComponent(GET8SINGLETON8PTR<GUITextConsole>());
 
-    gui_->AddComponent(GetSingletonPtr<GUIExperienceMeter>());
+    gui_->AddComponent(GET8SINGLETON8PTR<GUIExperienceMeter>());
 
     gui_->AddComponent(std::make_shared<GUIButton>(
-        "", 0.94f, 0.08f, 0.05f, CONVERT_WIDTH_TO_HEIGHT(0.05f),
+        "", 0.94f, 0.08f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
         [this]() { _<GUIInventoryWindow>().ToggleVisibility(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
     gui_->AddComponent(std::make_shared<GUIButton>(
-        "", 0.94f, 0.18f, 0.05f, CONVERT_WIDTH_TO_HEIGHT(0.05f),
+        "", 0.94f, 0.18f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
         [this]() { _<GUIEquipmentWindow>().ToggleVisibility(); },
         "GUIButtonEquipmentBackground", "GUIButtonEquipmentHoveredBackground"));
 
     gui_->AddComponent(std::make_shared<GUIStatusPanel>());
 
-    gui_->AddComponent(GetSingletonPtr<GUIInventoryWindow>());
+    gui_->AddComponent(GET8SINGLETON8PTR<GUIInventoryWindow>());
 
-    gui_->AddComponent(GetSingletonPtr<GUIEquipmentWindow>());
+    gui_->AddComponent(GET8SINGLETON8PTR<GUIEquipmentWindow>());
 }
 
 void MainScene::OnEnterDerived()

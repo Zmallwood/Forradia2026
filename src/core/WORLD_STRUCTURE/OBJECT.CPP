@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: MIT
 
 #include "OBJECT.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 
 Object::Object(int type) : type_(type)
 {
-    auto impactPoints = _<ObjectIndex>().GetImpactPoints(type);
+    auto impactPoints = _<OBJECT8INDEX>().GET8IMPACT8POINTS(type);
 
     for (auto impactPoint : impactPoints)
     {
@@ -14,6 +14,6 @@ Object::Object(int type) : type_(type)
     }
 }
 
-Object::Object(std::string_view typeName) : Object(Hash(typeName))
+Object::Object(std::string_view typeName) : Object(HASH(typeName))
 {
 }

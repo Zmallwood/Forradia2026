@@ -7,4 +7,4 @@
 
 std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects();
 
-POINT GetHoveredTilePosition(POINT_F mouseOffset);
+POINT GetHoveredTilePosition(POINT8F mouseOffset);

@@ -3,4 +3,4 @@
 
 #pragma once
 
-std::string GetFileNameNoExt(std::string_view path);
+int NOW();

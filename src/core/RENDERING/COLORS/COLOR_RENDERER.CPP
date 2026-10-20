@@ -9,7 +9,7 @@ void ColorRenderer::FillRect(float x, float y, float width, float height,
 {
     auto rect = CreateSDLRect(x, y, width, height);
 
-    auto sdlColor = color.TO_SDL_COLOR();
+    auto sdlColor = color.TO8SDL8COLOR();
 
     SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
@@ -17,7 +17,7 @@ void ColorRenderer::FillRect(float x, float y, float width, float height,
     SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
 }
 
-void ColorRenderer::FillRect(RECT_F rect, COLOR color)
+void ColorRenderer::FillRect(RECT8F rect, COLOR color)
 {
     FillRect(rect.x, rect.y, rect.width, rect.height, color);
 }
@@ -27,7 +27,7 @@ void ColorRenderer::DrawRect(float x, float y, float width, float height,
 {
     auto rect = CreateSDLRect(x, y, width, height);
 
-    auto sdlColor = color.TO_SDL_COLOR();
+    auto sdlColor = color.TO8SDL8COLOR();
 
     SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
@@ -38,14 +38,14 @@ void ColorRenderer::DrawRect(float x, float y, float width, float height,
 void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
     COLOR color)
 {
-    auto canvasSize = GET_CANVAS_SIZE();
+    auto canvasSize = GET8CANVAS8SIZE();
 
     auto destX1 = static_cast<int>(x1 * canvasSize.width);
     auto destY1 = static_cast<int>(y1 * canvasSize.height);
     auto destX2 = static_cast<int>(x2 * canvasSize.width);
     auto destY2 = static_cast<int>(y2 * canvasSize.height);
 
-    auto sdlColor = color.TO_SDL_COLOR();
+    auto sdlColor = color.TO8SDL8COLOR();
 
     SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
@@ -57,7 +57,7 @@ void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
 SDL_Rect ColorRenderer::CreateSDLRect(float x, float y, float width,
                                       float height)
 {
-    auto canvasSize = GET_CANVAS_SIZE();
+    auto canvasSize = GET8CANVAS8SIZE();
 
     auto destX = static_cast<int>(std::floor(x * canvasSize.width));
     auto destY = static_cast<int>(std::floor(y * canvasSize.height));

@@ -4,7 +4,7 @@
 #pragma once
 
 template <class T>
-std::shared_ptr<T> &SingletonStorage()
+std::shared_ptr<T> &SINGLETON8STORAGE()
 {
     static std::shared_ptr<T> instance = std::make_shared<T>();
 
@@ -12,9 +12,9 @@ std::shared_ptr<T> &SingletonStorage()
 }
 
 template <class T>
-std::shared_ptr<T> GetSingletonPtr()
+std::shared_ptr<T> GET8SINGLETON8PTR()
 {
-    auto &instance = SingletonStorage<T>();
+    auto &instance = SINGLETON8STORAGE<T>();
 
     if (!instance)
     {
@@ -25,13 +25,13 @@ std::shared_ptr<T> GetSingletonPtr()
 }
 
 template <class T>
-void DESTROY_SINGLETON()
+void DESTROY8SINGLETON()
 {
-    SingletonStorage<T>().reset();
+    SINGLETON8STORAGE<T>().reset();
 }
 
 template <class T>
 T &_()
 {
-    return *GetSingletonPtr<T>();
+    return *GET8SINGLETON8PTR<T>();
 }

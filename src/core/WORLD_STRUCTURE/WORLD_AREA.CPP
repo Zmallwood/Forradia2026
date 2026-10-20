@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 #include "WORLD_AREA.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE.HPP"
 
 WorldArea::WorldArea()
 {
-    auto size = _<GameProperties>().k_worldAreaSize_;
+    auto size = _<GAME8PROPERTIES>().k_worldAreaSize_;
 
     for (auto x = 0; x < size.width; x++)
     {

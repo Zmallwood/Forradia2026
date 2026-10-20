@@ -10,7 +10,7 @@ class GUIMeter : public GUIComponent
   public:
     GUIMeter(float x, float y, float width, float height);
 
-    SIZE_F size_;
+    SIZE8F size_;
 
   protected:
     virtual void RenderDerived() override;

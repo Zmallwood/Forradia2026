@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "STRING_UTILITIES.HPP"
+#include "STRING8UTILITIES.HPP"
 
-std::string Replace(std::string_view text, std::string_view oldValue,
+std::string REPLACE(std::string_view text, std::string_view oldValue,
                     std::string_view newValue)
 {
     std::string result(text);
@@ -13,7 +13,7 @@ std::string Replace(std::string_view text, std::string_view oldValue,
     while ((position = result.find(oldValue, position)) != std::string::npos)
     {
         result.replace(position, oldValue.length(), newValue);
-        
+
         position += newValue.length();
     }
 

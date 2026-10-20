@@ -1,10 +1,10 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CANVAS_UTILITIES.HPP"
+#include "CANVAS8UTILITIES.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 
-SIZE GET_CANVAS_SIZE()
+SIZE GET8CANVAS8SIZE()
 {
     int width = 0;
     int height = 0;
@@ -14,19 +14,19 @@ SIZE GET_CANVAS_SIZE()
     return {width, height};
 }
 
-float GET_ASPECT_RATIO()
+float GET8ASPECT8RATIO()
 {
-    auto size = GET_CANVAS_SIZE();
+    auto size = GET8CANVAS8SIZE();
 
     return static_cast<float>(size.width) / size.height;
 }
 
-float CONVERT_WIDTH_TO_HEIGHT(float width)
+float CONVERT8WIDTH8TO8HEIGHT(float width)
 {
-    return width * GET_ASPECT_RATIO();
+    return width * GET8ASPECT8RATIO();
 }
 
-float CONVERT_HEIGHT_TO_WIDTH(float height)
+float CONVERT8HEIGHT8TO8WIDTH(float height)
 {
-    return height / GET_ASPECT_RATIO();
+    return height / GET8ASPECT8RATIO();
 }

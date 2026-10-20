@@ -1,8 +1,8 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "KEYBOARD_MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "KEYBOARD_MOVEMENT.HPP"
 
 void KeyboardMovement::Update()
 {
@@ -11,10 +11,10 @@ void KeyboardMovement::Update()
     auto aPressed{pressedKeys_.contains(SDLK_a)};
     auto qPressed{pressedKeys_.contains(SDLK_q)};
 
-    auto now{Now()};
+    auto now{NOW()};
 
     if (now > _<Player>().ticksLastMovement_ +
-                  InvertSpeed(_<Player>().movementSpeed_) &&
+                  INVERT8SPEED(_<Player>().movementSpeed_) &&
         (wPressed || sPressed || aPressed || qPressed))
     {
 
@@ -74,7 +74,7 @@ void KeyboardMovement::Update()
         }
 
         _<Player>().ticksLastMovement_ =
-            now + rand() % 3*(InvertSpeed(_<Player>().movementSpeed_));
+            now + rand() % 3 * (INVERT8SPEED(_<Player>().movementSpeed_));
     }
 }
 

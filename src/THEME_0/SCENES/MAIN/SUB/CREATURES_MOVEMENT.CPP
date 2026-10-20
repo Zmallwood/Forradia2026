@@ -1,12 +1,12 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CREATURES_MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD_STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "CREATURES_MOVEMENT.HPP"
 
 void CreaturesMovement::Update()
 {
@@ -14,7 +14,7 @@ void CreaturesMovement::Update()
 
     auto playerPosition{_<Player>().position_};
 
-    auto now{Now()};
+    auto now{NOW()};
 
     auto &creatures{worldArea->creaturesMirror_};
 
@@ -24,7 +24,7 @@ void CreaturesMovement::Update()
         auto position{it->second};
 
         if (now > creature->ticksLastMovement_ +
-                      InvertSpeed(creature->movementSpeed_))
+                      INVERT8SPEED(creature->movementSpeed_))
         {
             auto direction{rand() % 4};
 
@@ -66,17 +66,17 @@ void CreaturesMovement::Update()
 
             auto newTile{worldArea->GetTile(newPosition)};
 
-            if (newTile->ground_ == Hash("GroundWater") || newTile->creature_)
+            if (newTile->ground_ == HASH("GroundWater") || newTile->creature_)
             {
                 ++it;
 
                 continue;
             }
 
-            if (creature->type_ == Hash("CreatureDeer") ||
-                creature->type_ == Hash("CreatureBoar"))
+            if (creature->type_ == HASH("CreatureDeer") ||
+                creature->type_ == HASH("CreatureBoar"))
             {
-                if (newTile->ground_ == Hash("GroundRock"))
+                if (newTile->ground_ == HASH("GroundRock"))
                 {
                     ++it;
 

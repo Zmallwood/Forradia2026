@@ -6,6 +6,6 @@
 class CompletedObjectImpact
 {
   public:
-    POINT_F position;
+    POINT8F position;
     int ticksCompleted = 0;
 };

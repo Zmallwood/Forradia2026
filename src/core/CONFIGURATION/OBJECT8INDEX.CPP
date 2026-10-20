@@ -8,20 +8,21 @@
 #include "CORE/WORLD_STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
-#include "OBJECT_FLAGS.HPP"
-#include "OBJECT_INDEX.HPP"
+#include "OBJECT8FLAGS.HPP"
+#include "OBJECT8INDEX.HPP"
 
-ObjectIndex::ObjectIndex()
+OBJECT8INDEX::OBJECT8INDEX()
 {
-    AddEntry("ObjectStone", "Stone", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectStone", "Stone", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectBranch", "Branch", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectBranch", "Branch", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectPinkFlower", "Pink flower", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectPinkFlower", "Pink flower", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectLeaf", "Leaf", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectLeaf", "Leaf", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectPoolOfBlood", "Pool of blood", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectPoolOfBlood", "Pool of blood",
+              OBJECT8FLAGS::k_smallObject);
 
     auto allImpactPointsCompletedActionObjectTree1 =
         [](std::shared_ptr<Object> object)
@@ -39,39 +40,39 @@ ObjectIndex::ObjectIndex()
         _<Player>().AddExperience(13);
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectTree1", "Tree",
-        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-        {POINT_F{0.5f, 0.95f}, POINT_F{0.55f, 0.95f}, POINT_F{0.6f, 0.95f}},
+        OBJECT8FLAGS::k_blocksSight | OBJECT8FLAGS::k_unmovable,
+        {POINT8F{0.5f, 0.95f}, POINT8F{0.55f, 0.95f}, POINT8F{0.6f, 0.95f}},
         {"ObjectWoodAxe"}, []() {}, allImpactPointsCompletedActionObjectTree1);
 
     auto allImpactPointsCompletedActionObjectTree2 =
         allImpactPointsCompletedActionObjectTree1;
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectTree2", "Tree",
-        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable,
-        {POINT_F{0.5f, 0.8f}, POINT_F{0.53f, 0.8f}, POINT_F{0.56f, 0.8f}},
+        OBJECT8FLAGS::k_blocksSight | OBJECT8FLAGS::k_unmovable,
+        {POINT8F{0.5f, 0.8f}, POINT8F{0.53f, 0.8f}, POINT8F{0.56f, 0.8f}},
         {"ObjectWoodAxe"}, []() {}, allImpactPointsCompletedActionObjectTree2);
 
-    AddEntry("ObjectBush1", "Bush",
-             ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable);
+    ADD8ENTRY("ObjectBush1", "Bush",
+              OBJECT8FLAGS::k_blocksSight | OBJECT8FLAGS::k_unmovable);
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectStoneBoulder", "Stone boulder",
-        ObjectFlags::k_blocksSight | ObjectFlags::k_unmovable, {}, {}, []() {},
-        [](std::shared_ptr<Object>) {}, "", POINT_F{0.0f, 0.3f},
-        POINT_F{0.0f, 0.0f});
+        OBJECT8FLAGS::k_blocksSight | OBJECT8FLAGS::k_unmovable, {}, {},
+        []() {}, [](std::shared_ptr<Object>) {}, "", POINT8F{0.0f, 0.3f},
+        POINT8F{0.0f, 0.0f});
 
-    AddEntry("ObjectCreatureDeerCorpse", "Deer corpse", 0);
+    ADD8ENTRY("ObjectCreatureDeerCorpse", "Deer corpse", 0);
 
-    AddEntry("ObjectCreatureBoarCorpse", "Boar corpse", 0);
+    ADD8ENTRY("ObjectCreatureBoarCorpse", "Boar corpse", 0);
 
-    AddEntry("ObjectRedApple", "Red apple", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectRedApple", "Red apple", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectCopperSword", "Copper sword", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectCopperSword", "Copper sword", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectWoodAxe", "Wood axe", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectWoodAxe", "Wood axe", OBJECT8FLAGS::k_smallObject);
 
     auto singleImpactPointCompletedActionObjectFelledTree = []()
     {
@@ -102,12 +103,12 @@ ObjectIndex::ObjectIndex()
         _<GUITextConsole>().PrintLine("You have chopped up the felled tree.");
     };
 
-    AddEntry("ObjectFelledTree", "Felled tree", ObjectFlags::k_unmovable,
-             {POINT_F{0.55f, 0.95f}, POINT_F{0.55f, 0.89f},
-              POINT_F{0.55f, 0.83f}, POINT_F{0.55f, 0.77f}},
-             {"ObjectWoodAxe"},
-             singleImpactPointCompletedActionObjectFelledTree,
-             allImpactPointsCompletedActionObjectFelledTree);
+    ADD8ENTRY("ObjectFelledTree", "Felled tree", OBJECT8FLAGS::k_unmovable,
+              {POINT8F{0.55f, 0.95f}, POINT8F{0.55f, 0.89f},
+               POINT8F{0.55f, 0.83f}, POINT8F{0.55f, 0.77f}},
+              {"ObjectWoodAxe"},
+              singleImpactPointCompletedActionObjectFelledTree,
+              allImpactPointsCompletedActionObjectFelledTree);
 
     auto allImpactPointsCompletedActionObjectWoodLog =
         [](std::shared_ptr<Object> object)
@@ -123,14 +124,14 @@ ObjectIndex::ObjectIndex()
         _<GUITextConsole>().PrintLine("You have sawed the wood log.");
     };
 
-    AddEntry(
-        "ObjectWoodLog", "Wood log", ObjectFlags::k_smallObject,
-        {POINT_F{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
+    ADD8ENTRY(
+        "ObjectWoodLog", "Wood log", OBJECT8FLAGS::k_smallObject,
+        {POINT8F{0.5f, 0.93f}}, {"ObjectSaw"}, []() {},
         allImpactPointsCompletedActionObjectWoodLog);
 
-    AddEntry("ObjectWoodPlank", "Wood plank", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectWoodPlank", "Wood plank", OBJECT8FLAGS::k_smallObject);
 
-    AddEntry("ObjectSaw", "Saw", ObjectFlags::k_smallObject);
+    ADD8ENTRY("ObjectSaw", "Saw", OBJECT8FLAGS::k_smallObject);
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
         [](std::shared_ptr<Object> object)
@@ -145,9 +146,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankNorth1");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallNorthPlank1", "Planned wood wall north, plank 1",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth1,
         "ObjectPlannedObject");
@@ -165,9 +166,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankNorth2");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallNorthPlank2", "Planned wood wall north, plank 2",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth2,
         "ObjectPlannedObject");
@@ -185,9 +186,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankNorth3");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallNorthPlank3", "Planned wood wall north, plank 3",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth3,
         "ObjectPlannedObject");
@@ -205,32 +206,32 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankNorth4");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallNorthPlank4", "Planned wood wall north, plank 1",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankNorth4,
         "ObjectPlannedObject");
 
-    AddEntry(
-        "ObjectWoodWallPlankNorth1", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankNorth1", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankNorth1WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankNorth1WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankNorth2", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankNorth2", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankNorth2WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankNorth2WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankNorth3", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankNorth3", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankNorth3WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankNorth3WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankNorth4", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankNorth4", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankNorth4WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankNorth4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast1 =
         [](std::shared_ptr<Object> object)
@@ -245,9 +246,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankEast1");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallEastPlank1", "Planned wood wall east, plank 1",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankEast1,
         "ObjectPlannedObject");
@@ -265,9 +266,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankEast2");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallEastPlank2", "Planned wood wall east, plank 2",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankEast2,
         "ObjectPlannedObject");
@@ -285,9 +286,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankEast3");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallEastPlank3", "Planned wood wall east, plank 3",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankEast3,
         "ObjectPlannedObject");
@@ -305,32 +306,32 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankEast4");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallEastPlank4", "Planned wood wall east, plank 4",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankEast4,
         "ObjectPlannedObject");
 
-    AddEntry(
-        "ObjectWoodWallPlankEast1", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankEast1", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankEast1WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankEast1WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankEast2", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankEast2", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankEast2WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankEast2WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankEast3", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankEast3", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankEast3WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankEast3WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankEast4", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankEast4", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankEast4WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankEast4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1 =
         [](std::shared_ptr<Object> object)
@@ -345,9 +346,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankSouth1");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallSouthPlank1", "Planned wood wall south, plank 1",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankSouth1,
         "ObjectPlannedObject");
@@ -365,9 +366,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankSouth2");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallSouthPlank2", "Planned wood wall south, plank 2",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankSouth2,
         "ObjectPlannedObject");
@@ -385,9 +386,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankSouth3");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallSouthPlank3", "Planned wood wall south, plank 3",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankSouth3,
         "ObjectPlannedObject");
@@ -405,32 +406,32 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankSouth4");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallSouthPlank4", "Planned wood wall south, plank 4",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankSouth4,
         "ObjectPlannedObject");
 
-    AddEntry(
-        "ObjectWoodWallPlankSouth1", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankSouth1", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankSouth1WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankSouth1WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankSouth2", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankSouth2", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankSouth2WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankSouth2WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankSouth3", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankSouth3", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankSouth3WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankSouth3WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankSouth4", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankSouth4", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankSouth4WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankSouth4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
         [](std::shared_ptr<Object> object)
@@ -445,9 +446,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankWest1");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallWestPlank1", "Planned wood wall west, plank 1",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankWest1,
         "ObjectPlannedObject");
@@ -465,9 +466,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankWest2");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallWestPlank2", "Planned wood wall west, plank 2",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankWest2,
         "ObjectPlannedObject");
@@ -485,9 +486,9 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankWest3");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallWestPlank3", "Planned wood wall west, plank 3",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankWest3,
         "ObjectPlannedObject");
@@ -505,32 +506,32 @@ ObjectIndex::ObjectIndex()
                                                  "ObjectWoodWallPlankWest4");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodWallWestPlank4", "Planned wood wall west, plank 4",
-        ObjectFlags::k_unmovable, {POINT_F{0.5f, 0.08f}, POINT_F{0.5f, 0.92f}},
+        OBJECT8FLAGS::k_unmovable, {POINT8F{0.5f, 0.08f}, POINT8F{0.5f, 0.92f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodWallPlankWest4,
         "ObjectPlannedObject");
 
-    AddEntry(
-        "ObjectWoodWallPlankWest1", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankWest1", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankWest1WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankWest1WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankWest2", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankWest2", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankWest2WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankWest2WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankWest3", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankWest3", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankWest3WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankWest3WorldView", POINT8F{0.0f, 0.5f});
 
-    AddEntry(
-        "ObjectWoodWallPlankWest4", "Wood wall", ObjectFlags::k_unmovable, {},
+    ADD8ENTRY(
+        "ObjectWoodWallPlankWest4", "Wood wall", OBJECT8FLAGS::k_unmovable, {},
         {}, []() {}, [](std::shared_ptr<Object>) {},
-        "ObjectWoodWallPlankWest4WorldView", POINT_F{0.0f, 0.5f});
+        "ObjectWoodWallPlankWest4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodFloor =
         [](std::shared_ptr<Object> object)
@@ -543,60 +544,60 @@ ObjectIndex::ObjectIndex()
 
         facedTile->tileObjects_->RemoveObject(object);
 
-        facedTile->ground_ = Hash("GroundWoodFloor");
+        facedTile->ground_ = HASH("GroundWoodFloor");
     };
 
-    AddEntry(
+    ADD8ENTRY(
         "ObjectPlannedWoodFloor", "Planned wood floor",
-        ObjectFlags::k_unmovable,
-        {POINT_F{0.25f, 0.25f}, POINT_F{0.75f, 0.25f}, POINT_F{0.25f, 0.75f},
-         POINT_F{0.75f, 0.75f}},
+        OBJECT8FLAGS::k_unmovable,
+        {POINT8F{0.25f, 0.25f}, POINT8F{0.75f, 0.25f}, POINT8F{0.25f, 0.75f},
+         POINT8F{0.75f, 0.75f}},
         {"ObjectHammer"}, []() {},
         allImpactPointsCompletedActionObjectWoodFloor, "ObjectPlannedObject",
-        POINT_F{0.0f, 0.0f}, POINT_F{0.0f, 0.3f});
+        POINT8F{0.0f, 0.0f}, POINT8F{0.0f, 0.3f});
 }
 
-void ObjectIndex::AddEntry(
+void OBJECT8INDEX::ADD8ENTRY(
     std::string_view name, std::string_view label, int flags,
-    std::vector<POINT_F> impactPoints, std::vector<std::string> impactObjects,
+    std::vector<POINT8F> impactPoints, std::vector<std::string> impactObjects,
     std::function<void()> singleImpactPointCompletedAction,
     std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction,
-    std::string_view worldViewObjectType, POINT_F worldViewRenderOffset,
-    POINT_F firstPersonViewRenderOffset)
+    std::string_view worldViewObjectType, POINT8F worldViewRenderOffset,
+    POINT8F firstPersonViewRenderOffset)
 {
     std::vector<int> impactObjectHashes;
 
     for (auto &impactObject : impactObjects)
     {
-        impactObjectHashes.push_back(Hash(impactObject));
+        impactObjectHashes.push_back(HASH(impactObject));
     }
 
     int worldViewObjectTypeHash = 0;
 
     if (worldViewObjectType != "")
     {
-        worldViewObjectTypeHash = Hash(worldViewObjectType);
+        worldViewObjectTypeHash = HASH(worldViewObjectType);
     }
 
-    entries_.insert({Hash(name),
+    entries_.insert({HASH(name),
                      {label.data(), flags, impactPoints, impactObjectHashes,
                       singleImpactPointCompletedAction,
                       allImpactPointsCompletedAction, worldViewObjectTypeHash,
                       worldViewRenderOffset, firstPersonViewRenderOffset}});
 }
 
-bool ObjectIndex::IsSmallObject(int objectHash)
+bool OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
-        return (entries_.at(objectHash).flags & ObjectFlags::k_smallObject) !=
+        return (entries_.at(objectHash).flags & OBJECT8FLAGS::k_smallObject) !=
                0;
     }
 
     return false;
 }
 
-std::string ObjectIndex::GetObjectLabel(int objectHash)
+std::string OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -606,28 +607,28 @@ std::string ObjectIndex::GetObjectLabel(int objectHash)
     return "";
 }
 
-bool ObjectIndex::ObjectBlocksSight(int objectHash)
+bool OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
-        return (entries_.at(objectHash).flags & ObjectFlags::k_blocksSight) !=
+        return (entries_.at(objectHash).flags & OBJECT8FLAGS::k_blocksSight) !=
                0;
     }
 
     return false;
 }
 
-bool ObjectIndex::ObjectUnmovable(int objectHash)
+bool OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
-        return (entries_.at(objectHash).flags & ObjectFlags::k_unmovable) != 0;
+        return (entries_.at(objectHash).flags & OBJECT8FLAGS::k_unmovable) != 0;
     }
 
     return false;
 }
 
-std::vector<POINT_F> ObjectIndex::GetImpactPoints(int objectHash)
+std::vector<POINT8F> OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -637,7 +638,7 @@ std::vector<POINT_F> ObjectIndex::GetImpactPoints(int objectHash)
     return {};
 }
 
-std::vector<int> ObjectIndex::GetImpactObjects(int objectHash)
+std::vector<int> OBJECT8INDEX::GET8IMPACT8OBJECTS(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -648,7 +649,7 @@ std::vector<int> ObjectIndex::GetImpactObjects(int objectHash)
 }
 
 std::function<void()>
-ObjectIndex::GetSingleImpactPointCompletedAction(int objectHash)
+OBJECT8INDEX::GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -659,7 +660,7 @@ ObjectIndex::GetSingleImpactPointCompletedAction(int objectHash)
 }
 
 std::function<void(std::shared_ptr<Object>)>
-ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
+OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -669,7 +670,7 @@ ObjectIndex::GetAllImpactPointsCompletedAction(int objectHash)
     return [](std::shared_ptr<Object>) {};
 }
 
-int ObjectIndex::GetWorldViewObjectType(int objectHash)
+int OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -679,22 +680,22 @@ int ObjectIndex::GetWorldViewObjectType(int objectHash)
     return 0;
 }
 
-POINT_F ObjectIndex::GetWorldViewRenderOffset(int objectHash)
+POINT8F OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
         return entries_.at(objectHash).worldViewRenderOffset;
     }
 
-    return POINT_F{0.0f, 0.0f};
+    return POINT8F{0.0f, 0.0f};
 }
 
-POINT_F ObjectIndex::GetFirstPersonViewRenderOffset(int objectHash)
+POINT8F OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
         return entries_.at(objectHash).firstPersonViewRenderOffset;
     }
 
-    return POINT_F{0.0f, 0.0f};
+    return POINT8F{0.0f, 0.0f};
 }

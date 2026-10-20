@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "TILE_OBJECTS.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
 
 void TileObjects::Clear()
@@ -14,8 +14,8 @@ void TileObjects::AddObject(int objectType, POINT position)
 {
     if (position.x == -1 || position.y == -1)
     {
-        position.x = rand() % _<GameProperties>().k_tileUnitsWidth_;
-        position.y = rand() % _<GameProperties>().k_tileUnitsWidth_;
+        position.x = rand() % _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+        position.y = rand() % _<GAME8PROPERTIES>().k_tileUnitsWidth_;
     }
 
     objects_.insert({position, std::make_shared<Object>(objectType)});
@@ -23,7 +23,7 @@ void TileObjects::AddObject(int objectType, POINT position)
 
 void TileObjects::AddObject(std::string_view objectName, POINT position)
 {
-    AddObject(Hash(objectName), position);
+    AddObject(HASH(objectName), position);
 }
 
 void TileObjects::AddObject(std::shared_ptr<Object> object, POINT position)
@@ -91,7 +91,7 @@ bool TileObjects::HasObjectOfType(std::string_view objectType)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {
-        if (it->second->type_ == Hash(objectType))
+        if (it->second->type_ == HASH(objectType))
         {
             return true;
         }

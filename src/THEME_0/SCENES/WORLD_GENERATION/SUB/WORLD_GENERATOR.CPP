@@ -1,7 +1,6 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "WORLD_GENERATOR.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD_STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD_STRUCTURE/NPC.HPP"
@@ -9,6 +8,8 @@
 #include "CORE/WORLD_STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "WORLD_GENERATOR.HPP"
+
 
 void WorldGenerator::GenerateNewWorld()
 {
@@ -42,18 +43,18 @@ void WorldGenerator::GenerateNewWorld()
             auto groundNE{tileNE->ground_};
             auto groundW{tileW->ground_};
 
-            if (groundNW == Hash("GroundGrass") &&
-                groundN == Hash("GroundGrass") &&
-                groundNE == Hash("GroundGrass") &&
-                groundW == Hash("GroundGrass"))
+            if (groundNW == HASH("GroundGrass") &&
+                groundN == HASH("GroundGrass") &&
+                groundNE == HASH("GroundGrass") &&
+                groundW == HASH("GroundGrass"))
             {
                 auto makeWater{rand() % 1000 < 3};
 
                 if (makeWater)
                 {
-                    tile->ground_ = Hash("GroundWater");
+                    tile->ground_ = HASH("GroundWater");
 
-                    tileW->ground_ = Hash("GroundWater");
+                    tileW->ground_ = HASH("GroundWater");
 
                     tile->elevation_ = 0;
                     tileW->elevation_ = 0;
@@ -87,35 +88,35 @@ void WorldGenerator::GenerateNewWorld()
 
             auto numWaterTiles{0};
 
-            if (groundNW == Hash("GroundWater"))
+            if (groundNW == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundN == Hash("GroundWater"))
+            if (groundN == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundNE == Hash("GroundWater"))
+            if (groundNE == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundW == Hash("GroundWater"))
+            if (groundW == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundE == Hash("GroundWater"))
+            if (groundE == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundSW == Hash("GroundWater"))
+            if (groundSW == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundS == Hash("GroundWater"))
+            if (groundS == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
-            if (groundSE == Hash("GroundWater"))
+            if (groundSE == HASH("GroundWater"))
             {
                 numWaterTiles++;
             }
@@ -126,7 +127,7 @@ void WorldGenerator::GenerateNewWorld()
 
                 if (makeWater)
                 {
-                    tile->ground_ = Hash("GroundWater");
+                    tile->ground_ = HASH("GroundWater");
 
                     tile->elevation_ = 0;
                 }
@@ -137,7 +138,7 @@ void WorldGenerator::GenerateNewWorld()
 
                 if (makeWater)
                 {
-                    tile->ground_ = Hash("GroundWater");
+                    tile->ground_ = HASH("GroundWater");
 
                     tile->elevation_ = 0;
                 }
@@ -165,18 +166,18 @@ void WorldGenerator::GenerateNewWorld()
             auto groundNE{tileNE->ground_};
             auto groundW{tileW->ground_};
 
-            if (groundNW == Hash("GroundGrass") &&
-                groundN == Hash("GroundGrass") &&
-                groundNE == Hash("GroundGrass") &&
-                groundW == Hash("GroundGrass"))
+            if (groundNW == HASH("GroundGrass") &&
+                groundN == HASH("GroundGrass") &&
+                groundNE == HASH("GroundGrass") &&
+                groundW == HASH("GroundGrass"))
             {
                 auto makeDirt{rand() % 1000 < 3};
 
                 if (makeDirt)
                 {
-                    tile->ground_ = Hash("GroundDirt");
+                    tile->ground_ = HASH("GroundDirt");
 
-                    tileW->ground_ = Hash("GroundDirt");
+                    tileW->ground_ = HASH("GroundDirt");
 
                     tile->elevation_ = 1;
                     tileW->elevation_ = 1;
@@ -210,35 +211,35 @@ void WorldGenerator::GenerateNewWorld()
 
             auto numDirtTiles{0};
 
-            if (groundNW == Hash("GroundDirt"))
+            if (groundNW == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundN == Hash("GroundDirt"))
+            if (groundN == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundNE == Hash("GroundDirt"))
+            if (groundNE == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundW == Hash("GroundDirt"))
+            if (groundW == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundE == Hash("GroundDirt"))
+            if (groundE == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundSW == Hash("GroundDirt"))
+            if (groundSW == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundS == Hash("GroundDirt"))
+            if (groundS == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
-            if (groundSE == Hash("GroundDirt"))
+            if (groundSE == HASH("GroundDirt"))
             {
                 numDirtTiles++;
             }
@@ -249,7 +250,7 @@ void WorldGenerator::GenerateNewWorld()
 
                 if (makeDirt)
                 {
-                    tile->ground_ = Hash("GroundDirt");
+                    tile->ground_ = HASH("GroundDirt");
 
                     tile->elevation_ = 1;
                 }
@@ -260,7 +261,7 @@ void WorldGenerator::GenerateNewWorld()
 
                 if (makeDirt)
                 {
-                    tile->ground_ = Hash("GroundDirt");
+                    tile->ground_ = HASH("GroundDirt");
 
                     tile->elevation_ = 1;
                 }
@@ -271,43 +272,6 @@ void WorldGenerator::GenerateNewWorld()
     Traverse2(fnMakeDirt);
     Traverse3(fnMakeDirt);
     Traverse4(fnMakeDirt);
-
-    // for (auto y = 1; y < size.height - 1; y++)
-    // {
-    //     for (auto x = 1; x < size.width - 1; x++)
-    //     {
-    //         auto tile{worldArea->GetTile(x, y)};
-
-    //         auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-    //         auto tileN{worldArea->GetTile(x, y - 1)};
-    //         auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-    //         auto tileW{worldArea->GetTile(x - 1, y)};
-
-    //         auto groundNW{tileNW->ground_};
-    //         auto groundN{tileN->ground_};
-    //         auto groundNE{tileNE->ground_};
-    //         auto groundW{tileW->ground_};
-
-    //         if (groundNW != Hash("GroundWater") &&
-    //             groundN != Hash("GroundWater") &&
-    //             groundNE != Hash("GroundWater") &&
-    //             groundW != Hash("GroundWater"))
-    //         {
-    //             auto increaseElevation{rand() % 1000 < 3};
-
-    //             if (increaseElevation && tile->ground_ != Hash("GroundWater"))
-    //             {
-    //                 tile->elevation_++;
-
-    //                 tileW->elevation_++;
-
-    //                 tile->ground_ = Hash("GroundRock");
-
-    //                 tileW->ground_ = Hash("GroundRock");
-    //             }
-    //         }
-    //     }
-    // }
 
     auto numHills = 60 + rand() % 10;
 
@@ -335,8 +299,8 @@ void WorldGenerator::GenerateNewWorld()
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        if (tile->ground_ == Hash("GroundWater") &&
-                            tile->ground_ != Hash("GroundRock"))
+                        if (tile->ground_ == HASH("GroundWater") &&
+                            tile->ground_ != HASH("GroundRock"))
                         {
                             continue;
                         }
@@ -381,14 +345,14 @@ void WorldGenerator::GenerateNewWorld()
                     {
                         auto tile{worldArea->GetTile(x, y)};
 
-                        if (tile->ground_ == Hash("GroundWater"))
+                        if (tile->ground_ == HASH("GroundWater"))
                         {
                             continue;
                         }
 
                         tile->elevation_ += elevationChange;
 
-                        tile->ground_ = Hash("GroundRock");
+                        tile->ground_ = HASH("GroundRock");
 
                         if (rand() % 5 == 0)
                         {
@@ -401,122 +365,6 @@ void WorldGenerator::GenerateNewWorld()
             }
         }
     }
-
-    // auto fnMakeMountains = std::function<void(int, int)>(
-    //     [&](int x, int y)
-    //     {
-    //         auto tile{worldArea->GetTile(x, y)};
-
-    //         auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-    //         auto tileN{worldArea->GetTile(x, y - 1)};
-    //         auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-    //         auto tileW{worldArea->GetTile(x - 1, y)};
-    //         auto tileE{worldArea->GetTile(x + 1, y)};
-    //         auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-    //         auto tileS{worldArea->GetTile(x, y + 1)};
-    //         auto tileSE{worldArea->GetTile(x + 1, y + 1)};
-
-    //         auto elevationNW{tileNW->elevation_};
-    //         auto elevationN{tileN->elevation_};
-    //         auto elevationNE{tileNE->elevation_};
-    //         auto elevationW{tileW->elevation_};
-    //         auto elevationE{tileE->elevation_};
-    //         auto elevationSW{tileSW->elevation_};
-    //         auto elevationS{tileS->elevation_};
-    //         auto elevationSE{tileSE->elevation_};
-
-    //         auto elevation{tile->elevation_};
-
-    //         auto numElevationTiles{0};
-
-    //         if (tile->ground_ != Hash("GroundWater"))
-    //         {
-    //             if (elevation <= elevationNW && elevationNW > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationN && elevationN > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationNE && elevationNE > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationW && elevationW > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationE && elevationE > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationSW && elevationSW > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationS && elevationS > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //             if (elevation <= elevationSE && elevationSE > 1)
-    //             {
-    //                 numElevationTiles++;
-    //             }
-    //         }
-
-    //         auto maxElevation{std::max(
-    //             elevationNW,
-    //             std::max(
-    //                 elevationN,
-    //                 std::max(
-    //                     elevationNE,
-    //                     std::max(elevationW,
-    //                              std::max(elevationE,
-    //                                       std::max(elevationSW,
-    //                                                std::max(elevationS,
-    //                                                         elevationSE)))))))};
-
-    //         auto usedElevation{elevation};
-
-    //         if (maxElevation - elevation > 0)
-    //         {
-    //             usedElevation =
-    //                 elevation + rand() % (maxElevation - elevation / 4);
-    //         }
-
-    //         usedElevation = std::max(usedElevation, elevation + 1);
-
-    //         if (numElevationTiles == 2)
-    //         {
-    //             auto increaseElevation{rand() % 1000 < 500};
-
-    //             if (increaseElevation)
-    //             {
-    //                 tile->elevation_ =
-    //                     usedElevation + std::max(0, 1 - rand() % 7);
-
-    //                 tile->ground_ = Hash("GroundRock");
-    //             }
-    //         }
-    //         else if (numElevationTiles > 2)
-    //         {
-    //             auto increaseElevation{rand() % 1000 < 700};
-
-    //             if (increaseElevation)
-    //             {
-    //                 tile->elevation_ =
-    //                     usedElevation + std::max(0, 1 - rand() % 4);
-
-    //                 tile->ground_ = Hash("GroundRock");
-    //             }
-    //         }
-    //     });
-
-    // Traverse1(fnMakeMountains);
-    // Traverse2(fnMakeMountains);
-    // Traverse3(fnMakeMountains);
-    // Traverse4(fnMakeMountains);
 
     for (auto y = 1; y < size.height - 1; y++)
     {
@@ -534,13 +382,13 @@ void WorldGenerator::GenerateNewWorld()
             auto groundNE{tileNE->ground_};
             auto groundW{tileW->ground_};
 
-            if (groundNW != Hash("GroundWater") &&
-                groundN != Hash("GroundWater") &&
-                groundNE != Hash("GroundWater") &&
-                groundW != Hash("GroundWater") &&
-                groundNW != Hash("GroundRock") &&
-                groundN != Hash("GroundRock") &&
-                groundNE != Hash("GroundRock") && groundW != Hash("GroundRock"))
+            if (groundNW != HASH("GroundWater") &&
+                groundN != HASH("GroundWater") &&
+                groundNE != HASH("GroundWater") &&
+                groundW != HASH("GroundWater") &&
+                groundNW != HASH("GroundRock") &&
+                groundN != HASH("GroundRock") &&
+                groundNE != HASH("GroundRock") && groundW != HASH("GroundRock"))
             {
                 auto makeTree{rand() % 1000 < 5};
 
@@ -608,8 +456,8 @@ void WorldGenerator::GenerateNewWorld()
 
             auto numTreeTiles{0};
 
-            if (tile->ground_ != Hash("GroundWater") &&
-                tile->ground_ != Hash("GroundRock"))
+            if (tile->ground_ != HASH("GroundWater") &&
+                tile->ground_ != HASH("GroundRock"))
             {
                 if (hasTreeNW)
                 {
@@ -772,7 +620,7 @@ void WorldGenerator::ClearWithGrass()
         {
             auto tile{worldArea->GetTile(x, y)};
 
-            tile->ground_ = Hash("GroundGrass");
+            tile->ground_ = HASH("GroundGrass");
         }
     }
 }
@@ -806,7 +654,7 @@ void WorldGenerator::ClearWithGrass()
 //                 {
 //                     auto tile{worldArea->GetTile(x, y)};
 
-//                     tile->ground_ = Hash("GroundDirt");
+//                     tile->ground_ = HASH("GroundDirt");
 //                 }
 //             }
 //         }
@@ -842,7 +690,7 @@ void WorldGenerator::ClearWithGrass()
 //                 {
 //                     auto tile{worldArea->GetTile(x, y)};
 
-//                     tile->ground_ = Hash("GroundWater");
+//                     tile->ground_ = HASH("GroundWater");
 //                 }
 //             }
 //         }
@@ -860,7 +708,7 @@ void WorldGenerator::ClearWithGrass()
 //         {
 //             auto tile{worldArea->GetTile(x, y)};
 
-//             if (tile->ground_ != Hash("GroundWater"))
+//             if (tile->ground_ != HASH("GroundWater"))
 //             {
 //                 tile->elevation_ = 1;
 //             }
@@ -893,7 +741,7 @@ void WorldGenerator::ClearWithGrass()
 //                     {
 //                         auto tile{worldArea->GetTile(x, y)};
 
-//                         if (tile->ground_ == Hash("GroundWater"))
+//                         if (tile->ground_ == HASH("GroundWater"))
 //                         {
 //                             continue;
 //                         }
@@ -937,7 +785,7 @@ void WorldGenerator::ClearWithGrass()
 
 //                     if (tile->elevation_ >= 2)
 //                     {
-//                         tile->ground_ = Hash("GroundRock");
+//                         tile->ground_ = HASH("GroundRock");
 //                     }
 //                 }
 //             }
@@ -971,8 +819,8 @@ void WorldGenerator::GenerateLargeObjects()
 
     //         auto tile{worldArea->GetTile(x, y)};
 
-    //         if (tile->ground_ == Hash("GroundWater") ||
-    //             tile->ground_ == Hash("GroundRock"))
+    //         if (tile->ground_ == HASH("GroundWater") ||
+    //             tile->ground_ == HASH("GroundRock"))
     //         {
     //             continue;
     //         }
@@ -1004,8 +852,8 @@ void WorldGenerator::GenerateLargeObjects()
 
     //         auto tile{worldArea->GetTile(x, y)};
 
-    //         if (tile->ground_ == Hash("GroundWater") ||
-    //             tile->ground_ == Hash("GroundRock"))
+    //         if (tile->ground_ == HASH("GroundWater") ||
+    //             tile->ground_ == HASH("GroundRock"))
     //         {
     //             continue;
     //         }
@@ -1025,9 +873,9 @@ void WorldGenerator::GenerateLargeObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundDirt") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundDirt") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1044,9 +892,9 @@ void WorldGenerator::GenerateLargeObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundDirt") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundDirt") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1063,8 +911,8 @@ void WorldGenerator::GenerateLargeObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundGrass") ||
-            tile->ground_ == Hash("GroundDirt"))
+        if (tile->ground_ == HASH("GroundGrass") ||
+            tile->ground_ == HASH("GroundDirt"))
         {
             continue;
         }
@@ -1081,8 +929,8 @@ void WorldGenerator::GenerateLargeObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundGrass") ||
-            tile->ground_ == Hash("GroundDirt"))
+        if (tile->ground_ == HASH("GroundGrass") ||
+            tile->ground_ == HASH("GroundDirt"))
         {
             tile->tileObjects_->AddObject("ObjectTree1");
         }
@@ -1097,8 +945,8 @@ void WorldGenerator::GenerateLargeObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundGrass") ||
-            tile->ground_ == Hash("GroundDirt"))
+        if (tile->ground_ == HASH("GroundGrass") ||
+            tile->ground_ == HASH("GroundDirt"))
         {
             tile->tileObjects_->AddObject("ObjectTree2");
         }
@@ -1119,7 +967,7 @@ void WorldGenerator::GenerateSmallObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater"))
+        if (tile->ground_ == HASH("GroundWater"))
         {
             continue;
         }
@@ -1136,8 +984,8 @@ void WorldGenerator::GenerateSmallObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1154,9 +1002,9 @@ void WorldGenerator::GenerateSmallObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundRock") ||
-            tile->ground_ == Hash("GroundDirt"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock") ||
+            tile->ground_ == HASH("GroundDirt"))
         {
             continue;
         }
@@ -1173,8 +1021,8 @@ void WorldGenerator::GenerateSmallObjects()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1198,8 +1046,8 @@ void WorldGenerator::GenerateCreatures()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1221,8 +1069,8 @@ void WorldGenerator::GenerateCreatures()
 
         auto tile{worldArea->GetTile(x, y)};
 
-        if (tile->ground_ == Hash("GroundWater") ||
-            tile->ground_ == Hash("GroundRock"))
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
         {
             continue;
         }
@@ -1248,7 +1096,7 @@ void WorldGenerator::GenerateCivilization()
 
     //     tile->tileObjects_->Clear();
 
-    //     tile->ground_ = Hash("GroundCobblestone");
+    //     tile->ground_ = HASH("GroundCobblestone");
 
     //     auto elevDifference{tile->elevation_ - prevXTileElevation};
 
@@ -1270,7 +1118,7 @@ void WorldGenerator::GenerateCivilization()
 
     //     tile->tileObjects_->Clear();
 
-    //     tile->ground_ = Hash("GroundCobblestone");
+    //     tile->ground_ = HASH("GroundCobblestone");
 
     //     auto elevDifference{tile->elevation_ - prevYTileElevation};
 
@@ -1293,7 +1141,7 @@ void WorldGenerator::GenerateCivilization()
 
     //         tile->tileObjects_->Clear();
 
-    //         tile->ground_ = Hash("GroundCobblestone");
+    //         tile->ground_ = HASH("GroundCobblestone");
     //     }
     // }
 
@@ -1329,7 +1177,7 @@ void WorldGenerator::GenerateWorldAroundPlayer()
 
     //         tile->tileObjects_->Clear();
 
-    //         tile->ground_ = Hash("GroundGrass");
+    //         tile->ground_ = HASH("GroundGrass");
 
     //         tile->elevation_ = 1;
     //     }

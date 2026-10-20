@@ -3,4 +3,4 @@
 
 #pragma once
 
-POINT_F GetMousePosition();
+POINT8F GET8MOUSE8POSITION();

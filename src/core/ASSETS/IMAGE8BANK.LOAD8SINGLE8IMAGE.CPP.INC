@@ -1,8 +1,8 @@
-std::string path = Replace(fullPath, "\\", "/");
+std::string path = REPLACE(fullPath, "\\", "/");
 
-auto pureName = GetFileNameNoExt(path);
+auto pureName = GET8FILE8NAME8NO8EXT(path);
 
-auto hash = Hash(pureName);
+auto hash = HASH(pureName);
 
 auto loaded = IMG_Load(path.c_str());
 
@@ -24,12 +24,12 @@ if (!converted)
     return;
 }
 
-auto surface = std::shared_ptr<SDL_Surface>(converted, SDLDeleter());
+auto surface = std::shared_ptr<SDL_Surface>(converted, SDL8DELETER());
 
 auto texture = std::shared_ptr<SDL_Texture>(
     SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(), surface.get()),
-    SDLDeleter());
+    SDL8DELETER());
 
-ImageEntry entry{texture, surface};
+IMAGE8ENTRY entry{texture, surface};
 
 images_.insert({hash, entry});

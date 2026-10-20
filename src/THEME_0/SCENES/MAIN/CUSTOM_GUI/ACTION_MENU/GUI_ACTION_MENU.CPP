@@ -1,8 +1,7 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "GUI_ACTION_MENU.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/MINOR_COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
@@ -11,12 +10,13 @@
 #include "CORE/WORLD_STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "GUI_ACTION_MENU.HPP"
 
 void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 {
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
-    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
 
     if (mouseButton == SDL_BUTTON_RIGHT)
     {
@@ -34,7 +34,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
         auto ground = tile->ground_;
 
-        if (ground != Hash("GroundWater"))
+        if (ground != HASH("GroundWater"))
         {
             GUIActionMenuEntry entryPlannedWoodWallNorthPlank1;
             entryPlannedWoodWallNorthPlank1.label =
@@ -298,9 +298,9 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
         for (auto &entry : entries_)
         {
-            RECT_F bounds = {rightClickMousePosition_.x,
-                            rightClickMousePosition_.y + row * k_lineHeight,
-                            k_width, k_lineHeight};
+            RECT8F bounds = {rightClickMousePosition_.x,
+                             rightClickMousePosition_.y + row * k_lineHeight,
+                             k_width, k_lineHeight};
 
             if (bounds.CONTAINS(mousePosition))
             {
@@ -321,7 +321,7 @@ void GUIActionMenu::Render()
         return;
     }
 
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     auto numEntries = entries_.size();
 
@@ -331,7 +331,7 @@ void GUIActionMenu::Render()
 
     auto marginX = k_marginX;
 
-    auto marginY = CONVERT_WIDTH_TO_HEIGHT(k_marginX);
+    auto marginY = CONVERT8WIDTH8TO8HEIGHT(k_marginX);
 
     _<TextRenderer>().DrawString("Actions",
                                  rightClickMousePosition_.x + marginX,
@@ -342,9 +342,9 @@ void GUIActionMenu::Render()
 
     for (auto &entry : entries_)
     {
-        RECT_F bounds = {rightClickMousePosition_.x,
-                        rightClickMousePosition_.y + row * k_lineHeight,
-                        k_width, k_lineHeight};
+        RECT8F bounds = {rightClickMousePosition_.x,
+                         rightClickMousePosition_.y + row * k_lineHeight,
+                         k_width, k_lineHeight};
 
         if (bounds.CONTAINS(mousePosition))
         {

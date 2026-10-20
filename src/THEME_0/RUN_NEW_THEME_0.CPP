@@ -8,5 +8,5 @@ void RUN_NEW_THEME_0()
 {
     _<GAME>().START();
 
-    DESTROY_SINGLETON<GAME>();
+    DESTROY8SINGLETON<GAME>();
 }

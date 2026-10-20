@@ -9,7 +9,7 @@
 
 void CreatureRespawner::Update()
 {
-    auto now{Now()};
+    auto now{NOW()};
 
     auto worldArea{_<World>().currentWorldArea_};
 
@@ -34,8 +34,8 @@ void CreatureRespawner::Update()
                 y = rand() % size.height;
 
                 tile = worldArea->GetTile({x, y});
-            } while (tile->ground_ == Hash("GroundWater") ||
-                     tile->ground_ == Hash("GroundDirt"));
+            } while (tile->ground_ == HASH("GroundWater") ||
+                     tile->ground_ == HASH("GroundDirt"));
 
             if (tile)
             {
@@ -55,7 +55,7 @@ void CreatureRespawner::Update()
 
 void CreatureRespawner::RespawnCreature(int creatureType, int respawnTimeMillis)
 {
-    auto creatureRespawnTime{Now() + respawnTimeMillis};
+    auto creatureRespawnTime{NOW() + respawnTimeMillis};
 
     creatureRespawns_.insert({creatureRespawnTime, creatureType});
 }

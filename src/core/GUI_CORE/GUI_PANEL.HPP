@@ -10,7 +10,7 @@ class GUIPanel : public GUIComponent
   public:
     GUIPanel(float x, float y, float width, float height);
 
-    SIZE_F size_{0.0f, 0.0f};
+    SIZE8F size_{0.0f, 0.0f};
 
   protected:
     virtual bool OnMouseDown(Uint8 mouseButton) override;
@@ -19,7 +19,7 @@ class GUIPanel : public GUIComponent
 
     virtual std::string GetBackgroundImage();
 
-    RECT_F GetBounds();
+    RECT8F GetBounds();
 
   private:
     inline static const std::string k_defaultBackgroundImage_ =

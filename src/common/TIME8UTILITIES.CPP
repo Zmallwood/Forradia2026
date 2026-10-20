@@ -1,6 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#pragma once
+#include "TIME8UTILITIES.HPP"
 
-int InvertSpeed(float speed);
+int NOW()
+{
+    return SDL_GetTicks();
+}

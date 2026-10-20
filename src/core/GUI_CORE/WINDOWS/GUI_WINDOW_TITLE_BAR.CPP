@@ -15,7 +15,7 @@ void GUIWindowTitleBar::UpdateDerived()
 {
     GUIPanel::UpdateDerived();
 
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (isMoving_)
     {
@@ -29,13 +29,13 @@ void GUIWindowTitleBar::UpdateDerived()
 
 bool GUIWindowTitleBar::OnMouseDown(Uint8 mouseButton)
 {
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (GetBounds().CONTAINS(mousePosition))
     {
         positionStartMove_ = GetPosition();
 
-        mousePositionStartMove_ = GetMousePosition();
+        mousePositionStartMove_ = GET8MOUSE8POSITION();
 
         isMoving_ = true;
 
@@ -47,7 +47,7 @@ bool GUIWindowTitleBar::OnMouseDown(Uint8 mouseButton)
 
 bool GUIWindowTitleBar::OnMouseUp(Uint8 mouseButton, int clickSpeed)
 {
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (GetBounds().CONTAINS(mousePosition))
     {
@@ -75,12 +75,12 @@ std::string GUIWindowTitleBar::GetBackgroundImage()
     return k_defaultBackgroundImage_;
 }
 
-POINT_F GUIWindowTitleBar::GetPosition()
+POINT8F GUIWindowTitleBar::GetPosition()
 {
     return guiWindow_.GetPosition();
 }
 
-void GUIWindowTitleBar::SetPosition(POINT_F value)
+void GUIWindowTitleBar::SetPosition(POINT8F value)
 {
     guiWindow_.SetPosition(value);
 }

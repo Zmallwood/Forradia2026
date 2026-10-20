@@ -16,10 +16,10 @@ void Cursor::Reset()
 
 void Cursor::Render()
 {
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     auto cursorWidth = k_cursorSize_;
-    auto cursorHeight = CONVERT_WIDTH_TO_HEIGHT(cursorWidth);
+    auto cursorHeight = CONVERT8WIDTH8TO8HEIGHT(cursorWidth);
 
     std::string cursorImage;
 

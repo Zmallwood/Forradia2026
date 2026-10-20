@@ -23,9 +23,9 @@ void GUIButton::UpdateDerived()
 
     auto size = size_;
 
-    auto rect = RECT_F{position.x, position.y, size.width, size.height};
+    auto rect = RECT8F{position.x, position.y, size.width, size.height};
 
-    if (rect.CONTAINS(GetMousePosition()))
+    if (rect.CONTAINS(GET8MOUSE8POSITION()))
     {
         hovered_ = true;
 
@@ -57,7 +57,7 @@ bool GUIButton::OnMouseDown(Uint8 mouseButton)
         return false;
     }
 
-    auto mousePosition = GetMousePosition();
+    auto mousePosition = GET8MOUSE8POSITION();
 
     if (GetBounds().CONTAINS(mousePosition))
     {

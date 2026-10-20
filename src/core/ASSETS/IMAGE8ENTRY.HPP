@@ -3,7 +3,7 @@
 
 #pragma once
 
-class ImageEntry
+class IMAGE8ENTRY
 {
   public:
     std::shared_ptr<SDL_Texture> texture;

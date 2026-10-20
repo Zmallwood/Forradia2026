@@ -1,15 +1,15 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CREATURES_COMBAT_TO_PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD_STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "CREATURES_COMBAT_TO_PLAYER.HPP"
 
 void CreaturesCombatToPlayer::Update()
 {
-    auto now{Now()};
+    auto now{NOW()};
 
     auto playerPosition{_<Player>().position_};
 
@@ -33,7 +33,7 @@ void CreaturesCombatToPlayer::Update()
             if ((absDx <= 1 && absDy == 0) || (absDx == 0 && absDy <= 1))
             {
                 if (now > creature->ticksLastHitOnOther_ +
-                              InvertSpeed(creature->attackSpeed_))
+                              INVERT8SPEED(creature->attackSpeed_))
                 {
                     _<Player>().Hit(1.0f);
 

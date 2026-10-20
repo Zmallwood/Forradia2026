@@ -9,7 +9,7 @@ class ColorRenderer
     void FillRect(float x, float y, float width, float height,
                   COLOR color = COLORS::k_black);
 
-    void FillRect(RECT_F rect, COLOR color = COLORS::k_black);
+    void FillRect(RECT8F rect, COLOR color = COLORS::k_black);
 
     void DrawRect(float x, float y, float width, float height,
                   COLOR color = COLORS::k_black);

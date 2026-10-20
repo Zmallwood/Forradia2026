@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "FILE_PATH_UTILITIES.HPP"
+#include "FILE8PATH8UTILITIES.HPP"
 
-std::string GetFileNameNoExt(std::string_view path)
+std::string GET8FILE8NAME8NO8EXT(std::string_view path)
 {
     auto fileName = std::filesystem::path(path).filename().string();
 

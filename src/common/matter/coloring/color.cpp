@@ -3,7 +3,7 @@
 
 #include "COLOR.HPP"
 
-SDL_Color COLOR::TO_SDL_COLOR()
+SDL_Color COLOR::TO8SDL8COLOR()
 {
     return {static_cast<Uint8>(r * 255), static_cast<Uint8>(g * 255),
             static_cast<Uint8>(b * 255), static_cast<Uint8>(a * 255)};

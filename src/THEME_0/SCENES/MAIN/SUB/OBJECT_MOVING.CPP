@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
 #include "CORE/WORLD_STRUCTURE/OBJECT.HPP"
@@ -15,7 +15,6 @@
 #include "FIRST_PERSON_VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "OBJECT_MOVING.HPP"
 
-
 void ObjectMoving::OnMouseDown(Uint8 button)
 {
     if (button != SDL_BUTTON_LEFT)
@@ -23,9 +22,9 @@ void ObjectMoving::OnMouseDown(Uint8 button)
         return;
     }
 
-    auto viewWidth{GameProperties::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     if (mousePosition.x < viewWidth)
     {
@@ -39,7 +38,7 @@ void ObjectMoving::OnMouseDown(Uint8 button)
         return;
     }
 
-    if (_<ObjectIndex>().ObjectUnmovable(hoveredObject->type_))
+    if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_))
     {
         return;
     }
@@ -69,9 +68,9 @@ void ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
         return;
     }
 
-    auto viewWidth{GameProperties::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     auto hoveredTilePosition{GetHoveredTilePosition(draggingMouseOffset_)};
 
@@ -103,21 +102,21 @@ void ObjectMoving::Render()
         return;
     }
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     auto objectType{objectInAir_->type_};
 
-    auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+    auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
-    constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
-    constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+    constexpr auto largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
+    constexpr auto smallObjectScale{GAME8PROPERTIES::k_smallObjectScale_};
 
-    auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+    auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
     auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
 
     auto imageWidth{imageSize.width / 60.0f * scale};
-    auto imageHeight{imageSize.height / 60.0f * CONVERT_WIDTH_TO_HEIGHT(scale)};
+    auto imageHeight{imageSize.height / 60.0f * CONVERT8WIDTH8TO8HEIGHT(scale)};
 
     auto imageX{mousePosition.x - draggingMouseOffset_.x - imageWidth / 2.0f};
     auto imageY{mousePosition.y - draggingMouseOffset_.y - imageHeight};

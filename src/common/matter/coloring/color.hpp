@@ -6,7 +6,7 @@
 class COLOR
 {
   public:
-    SDL_Color TO_SDL_COLOR();
+    SDL_Color TO8SDL8COLOR();
 
     float r = 0.0f;
     float g = 0.0f;

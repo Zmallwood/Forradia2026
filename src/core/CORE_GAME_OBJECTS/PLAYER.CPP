@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "PLAYER.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/GUI_CORE/GUI_TEXT_CONSOLE.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
@@ -37,7 +37,7 @@ void Player::SpawnOnSuitableLocation()
     auto tile = worldArea->GetTile(static_cast<int>(position_.x),
                                    static_cast<int>(position_.y));
 
-    while (tile->ground_ == Hash("GroundWater"))
+    while (tile->ground_ == HASH("GroundWater"))
     {
         position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
                      4.0f + (rand() % (worldAreaSize.height - 5))};
@@ -59,7 +59,7 @@ void Player::MoveNorth()
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
-        (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
+        (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
     {
         return;
     }
@@ -81,7 +81,7 @@ void Player::MoveEast()
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
-        (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
+        (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
     {
         return;
     }
@@ -103,7 +103,7 @@ void Player::MoveSouth()
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
-        (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
+        (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
     {
         return;
     }
@@ -125,7 +125,7 @@ void Player::MoveWest()
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
-        (newTile->ground_ == Hash("GroundWater") || newTile->creature_))
+        (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
     {
         return;
     }
@@ -182,7 +182,7 @@ void Player::Hit(float damage)
 {
     health_ -= damage;
 
-    ticksLastHitOnSelf_ = Now();
+    ticksLastHitOnSelf_ = NOW();
 
     std::stringstream ssDamage;
     

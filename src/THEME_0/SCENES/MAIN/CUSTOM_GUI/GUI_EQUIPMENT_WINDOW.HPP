@@ -18,17 +18,17 @@ class GUIEquipmentWindow : public GUIWindow
     void RenderDerived() override;
 
   private:
-    RECT_F GetHeadSlotBounds();
+    RECT8F GetHeadSlotBounds();
 
-    RECT_F GetChestSlotBounds();
+    RECT8F GetChestSlotBounds();
 
-    RECT_F GetLegsSlotBounds();
+    RECT8F GetLegsSlotBounds();
 
-    RECT_F GetFeetSlotBounds();
+    RECT8F GetFeetSlotBounds();
 
-    RECT_F GetRightHandSlotBounds();
+    RECT8F GetRightHandSlotBounds();
 
-    RECT_F GetLeftHandSlotBounds();
+    RECT8F GetLeftHandSlotBounds();
 
     static constexpr float k_slotWidth_ = 0.037f;
     static constexpr float k_marginY_ = 0.02f;

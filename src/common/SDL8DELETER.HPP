@@ -3,7 +3,7 @@
 
 #pragma once
 
-class SDLDeleter
+class SDL8DELETER
 {
   public:
     void operator()(SDL_Window *window);

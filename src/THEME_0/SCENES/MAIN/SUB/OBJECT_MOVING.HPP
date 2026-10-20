@@ -26,7 +26,7 @@ class ObjectMoving
         objectInAir_ = value;
     }
 
-    POINT_F draggingMouseOffset_;
+    POINT8F draggingMouseOffset_;
 
   private:
     std::shared_ptr<Object> objectInAir_;

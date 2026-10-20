@@ -6,6 +6,6 @@
 class CompletableImpactPoint
 {
   public:
-    POINT_F position;
+    POINT8F position;
     bool completed = false;
 };

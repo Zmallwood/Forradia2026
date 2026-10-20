@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace ObjectFlags
+namespace OBJECT8FLAGS
 {
     constexpr int k_smallObject = 1 << 0;
     constexpr int k_blocksSight = 1 << 1;

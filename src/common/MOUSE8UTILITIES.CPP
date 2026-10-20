@@ -1,11 +1,11 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "MOUSE_UTILITIES.HPP"
+#include "MOUSE8UTILITIES.HPP"
 
-POINT_F GetMousePosition()
+POINT8F GET8MOUSE8POSITION()
 {
-    auto canvasSize = GET_CANVAS_SIZE();
+    auto canvasSize = GET8CANVAS8SIZE();
 
     int x;
     int y;

@@ -1,17 +1,18 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE.HPP"
 #include "CORE/WORLD_STRUCTURE/TILE_OBJECTS.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
+
 
 std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
 {
-    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
 
     auto worldArea = _<World>().currentWorldArea_;
     auto facedTile = worldArea->GetTile(_<Player>().facedTileCoordinate_);
@@ -65,15 +66,15 @@ std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
     return orderedObjects;
 }
 
-POINT GetHoveredTilePosition(POINT_F mouseOffset)
+POINT GetHoveredTilePosition(POINT8F mouseOffset)
 {
-    constexpr auto k_margin = GameProperties::k_firstPersonViewMargin_;
-    auto tileUnitsWidth = _<GameProperties>().k_tileUnitsWidth_;
-    auto viewWidth = GameProperties::k_viewWidth_;
+    constexpr auto k_margin = GAME8PROPERTIES::k_firstPersonViewMargin_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
 
     auto hoveredTilePosition = POINT{-1, -1};
 
-    auto anchorPosition = GetMousePosition() - mouseOffset;
+    auto anchorPosition = GET8MOUSE8POSITION() - mouseOffset;
 
     auto groundTop = 0.75f + k_margin.y;
     auto groundHeight = 0.25f - 2 * k_margin.y;

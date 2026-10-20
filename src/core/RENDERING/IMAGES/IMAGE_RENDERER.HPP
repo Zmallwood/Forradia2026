@@ -14,9 +14,9 @@ class ImageRenderer
                    float height, float opacity = 1.0f,
                    bool flipHorizontal = false);
 
-    void DrawImage(int imageNameHash, RECT_F bounds, float opacity = 1.0f,
+    void DrawImage(int imageNameHash, RECT8F bounds, float opacity = 1.0f,
                    bool flipHorizontal = false);
 
-    void DrawImage(std::string_view imageName, RECT_F bounds,
+    void DrawImage(std::string_view imageName, RECT8F bounds,
                    float opacity = 1.0f, bool flipHorizontal = false);
 };

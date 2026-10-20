@@ -25,11 +25,11 @@ class GUIComponent
     std::shared_ptr<GUIComponent>
     AddComponent(std::shared_ptr<GUIComponent> component);
 
-    virtual POINT_F GetPosition();
+    virtual POINT8F GetPosition();
 
     void SetYPosition(float y);
 
-    virtual void SetPosition(POINT_F value)
+    virtual void SetPosition(POINT8F value)
     {
         position_ = value;
     }
@@ -48,6 +48,6 @@ class GUIComponent
 
   private:
     std::vector<std::shared_ptr<GUIComponent>> components_;
-    POINT_F position_ = {0.0f, 0.0f};
+    POINT8F position_ = {0.0f, 0.0f};
     GUIComponent *parent_ = {nullptr};
 };

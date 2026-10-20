@@ -1,10 +1,10 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/ASSETS/IMAGE_BANK.HPP"
-#include "CORE/CONFIGURATION/CREATURE_INDEX.HPP"
-#include "CORE/CONFIGURATION/GAME_PROPERTIES.HPP"
-#include "CORE/CONFIGURATION/OBJECT_INDEX.HPP"
+#include "CORE/ASSETS/IMAGE8BANK.HPP"
+#include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
+#include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
+#include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
 #include "CORE/WORLD_STRUCTURE/CREATURE.HPP"
@@ -20,15 +20,15 @@ void FirstPersonHovering::Update()
     hoveredObject_ = nullptr;
     hoveredCreature_ = nullptr;
 
-    auto viewWidth{GameProperties::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
 
-    auto tileUnitsWidth{_<GameProperties>().k_tileUnitsWidth_};
+    auto tileUnitsWidth{_<GAME8PROPERTIES>().k_tileUnitsWidth_};
 
-    constexpr auto k_margin{GameProperties::k_firstPersonViewMargin_};
+    constexpr auto k_margin{GAME8PROPERTIES::k_firstPersonViewMargin_};
 
     auto orderedObjects{GetOrderedObjects()};
 
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     auto worldArea{_<World>().currentWorldArea_};
     auto facedTile{worldArea->GetTile(_<Player>().facedTileCoordinate_)};
@@ -41,8 +41,8 @@ void FirstPersonHovering::Update()
         return;
     }
 
-    constexpr auto largeObjectScale{GameProperties::k_largeObjectScale_};
-    constexpr auto smallObjectScale{GameProperties::k_smallObjectScale_};
+    constexpr auto largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
+    constexpr auto smallObjectScale{GAME8PROPERTIES::k_smallObjectScale_};
 
     for (auto entry : orderedObjects)
     {
@@ -56,19 +56,19 @@ void FirstPersonHovering::Update()
 
         auto objectType = entry.second.object_->type_;
 
-        auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
         float imageWidth;
         float imageHeight;
 
-        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+        auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
         if (isSmallObject)
         {
             imageWidth = imageSize.width / 60.0f * smallObjectScale *
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               smallObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -79,7 +79,7 @@ void FirstPersonHovering::Update()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               largeObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -106,7 +106,7 @@ void FirstPersonHovering::Update()
         auto x{(mousePosition.x - imageX) / imageWidth};
         auto y{(mousePosition.y - imageY) / imageHeight};
 
-        auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+        auto isHovered{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(objectType, x, y)};
 
         if (isHovered)
         {
@@ -125,11 +125,11 @@ void FirstPersonHovering::Update()
     {
         auto creatureType{creature->type_};
 
-        auto imageSize{_<ImageBank>().GetImageSize(creatureType)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
         auto imageWidth{imageSize.width / 60.0f * largeObjectScale};
         auto imageHeight{imageSize.height / 60.0f *
-                         CONVERT_WIDTH_TO_HEIGHT(largeObjectScale)};
+                         CONVERT8WIDTH8TO8HEIGHT(largeObjectScale)};
 
         auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
         auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
@@ -145,7 +145,7 @@ void FirstPersonHovering::Update()
         auto x{(mousePosition.x - imageX) / imageWidth};
         auto y{(mousePosition.y - imageY) / imageHeight};
 
-        auto isHovered{_<ImageBank>().IsPixelVisible(creatureType, x, y)};
+        auto isHovered{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
         if (isHovered)
         {
@@ -170,12 +170,12 @@ void FirstPersonHovering::Update()
 
         auto objectType = entry.second.object_->type_;
 
-        auto imageSize{_<ImageBank>().GetImageSize(objectType)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
         float imageWidth;
         float imageHeight;
 
-        auto isSmallObject{_<ObjectIndex>().IsSmallObject(objectType)};
+        auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
         if (isSmallObject)
         {
@@ -183,7 +183,7 @@ void FirstPersonHovering::Update()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               smallObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -194,7 +194,7 @@ void FirstPersonHovering::Update()
                          (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                          tileUnitsWidth;
             imageHeight = imageSize.height / 60.0f *
-                          CONVERT_WIDTH_TO_HEIGHT(
+                          CONVERT8WIDTH8TO8HEIGHT(
                               largeObjectScale *
                               (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                               tileUnitsWidth);
@@ -221,7 +221,7 @@ void FirstPersonHovering::Update()
         auto x{(mousePosition.x - imageX) / imageWidth};
         auto y{(mousePosition.y - imageY) / imageHeight};
 
-        auto isHovered{_<ImageBank>().IsPixelVisible(objectType, x, y)};
+        auto isHovered{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(objectType, x, y)};
 
         if (isHovered)
         {
@@ -237,12 +237,12 @@ void FirstPersonHovering::Update()
 
 void FirstPersonHovering::Render()
 {
-    auto mousePosition{GetMousePosition()};
+    auto mousePosition{GET8MOUSE8POSITION()};
 
     if (hoveredObject_)
     {
         auto objectLabel{
-            _<ObjectIndex>().GetObjectLabel(hoveredObject_->type_)};
+            _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->type_)};
 
         if (objectLabel.empty())
         {
@@ -255,7 +255,7 @@ void FirstPersonHovering::Render()
     else if (hoveredCreature_)
     {
         auto creatureLabel{
-            _<CreatureIndex>().GetCreatureLabel(hoveredCreature_->type_)};
+            _<CREATURE8INDEX>().GET8CREATURE8LABEL(hoveredCreature_->type_)};
 
         if (creatureLabel.empty())
         {
