@@ -53,9 +53,8 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton) {
-        if (!isVisible_) {
+        if (!isVisible_)
             return false;
-        }
 
         auto mousePosition = GET8MOUSE8POSITION();
 

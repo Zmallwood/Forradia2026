@@ -28,9 +28,8 @@ namespace FORRADIA8GAME {
 
     std::shared_ptr<OBJECT>
     PLAYER8INVENTORY::GET8OBJECT(int index) {
-        if (objects_.contains(index)) {
+        if (objects_.contains(index))
             return objects_.at(index);
-        }
 
         return nullptr;
     }

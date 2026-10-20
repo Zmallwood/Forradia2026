@@ -22,18 +22,16 @@ namespace FORRADIA8GAME {
 
     std::string
     CREATURE8INDEX::GET8CREATURE8LABEL(int creatureHash) {
-        if (entries_.contains(creatureHash)) {
+        if (entries_.contains(creatureHash))
             return entries_[creatureHash].label;
-        }
 
         return "";
     }
 
     int
     CREATURE8INDEX::GET8CREATURE8CORPSE8TYPE(int creatureHash) {
-        if (entries_.contains(creatureHash)) {
+        if (entries_.contains(creatureHash))
             return entries_[creatureHash].corpseType;
-        }
 
         return 0;
     }

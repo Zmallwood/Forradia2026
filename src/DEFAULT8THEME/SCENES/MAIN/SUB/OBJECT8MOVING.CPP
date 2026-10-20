@@ -22,27 +22,23 @@
 namespace FORRADIA8GAME {
     void
     OBJECT8MOVING::ON8MOUSE8DOWN(Uint8 button) {
-        if (button != SDL_BUTTON_LEFT) {
+        if (button != SDL_BUTTON_LEFT)
             return;
-        }
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth) {
+        if (mousePosition.x < viewWidth)
             return;
-        }
 
         auto hoveredObject{_<FIRST8PERSON8HOVERING>().hoveredObject_};
 
-        if (!hoveredObject) {
+        if (!hoveredObject)
             return;
-        }
 
-        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_)) {
+        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_))
             return;
-        }
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
@@ -60,13 +56,11 @@ namespace FORRADIA8GAME {
 
     void
     OBJECT8MOVING::ON8MOUSE8UP(Uint8 button, int clickSpeed) {
-        if (!objectInAir_) {
+        if (!objectInAir_)
             return;
-        }
 
-        if (button != SDL_BUTTON_LEFT) {
+        if (button != SDL_BUTTON_LEFT)
             return;
-        }
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
@@ -75,13 +69,11 @@ namespace FORRADIA8GAME {
         auto hoveredTilePosition{
             GET8HOVERED8TILE8POSITION(draggingMouseOffset_)};
 
-        if (mousePosition.x < viewWidth) {
+        if (mousePosition.x < viewWidth)
             hoveredTilePosition = pickedPosition_;
-        }
 
-        if (hoveredTilePosition == POINT{-1, -1}) {
+        if (hoveredTilePosition == POINT{-1, -1})
             hoveredTilePosition = pickedPosition_;
-        }
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
@@ -96,9 +88,8 @@ namespace FORRADIA8GAME {
 
     void
     OBJECT8MOVING::RENDER() {
-        if (!objectInAir_) {
+        if (!objectInAir_)
             return;
-        }
 
         auto mousePosition{GET8MOUSE8POSITION()};
 

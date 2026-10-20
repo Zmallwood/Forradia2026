@@ -12,7 +12,6 @@ namespace FORRADIA8GAME {
     void
     RUN8NEW8DEFAULT8THEME() {
         _<GAME>().START();
-
         DESTROY8SINGLETON<GAME>();
     }
 }

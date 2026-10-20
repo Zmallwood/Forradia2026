@@ -105,9 +105,8 @@ namespace FORRADIA8GAME {
     GUI8INVENTORY8WINDOW::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) {
         GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
-        if (!_<OBJECT8MOVING>().GET8OBJECT8IN8AIR()) {
+        if (!_<OBJECT8MOVING>().GET8OBJECT8IN8AIR())
             return false;
-        }
 
         auto mousePosition = GET8MOUSE8POSITION();
 
@@ -200,10 +199,9 @@ namespace FORRADIA8GAME {
                 auto object =
                     _<PLAYER>().playerInventory_->GET8OBJECT(inventoryIndex);
 
-                if (object) {
+                if (object)
                     _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,
                                                    slotWidth, slotHeight);
-                }
 
                 ++inventoryIndex;
             }

@@ -29,11 +29,10 @@ namespace FORRADIA8GAME {
 
         for (auto it = completedObjectImpacts_.begin();
              it != completedObjectImpacts_.end();) {
-            if (now > it->ticksCompleted + kImpactPointEffectDuration_) {
+            if (now > it->ticksCompleted + kImpactPointEffectDuration_)
                 it = completedObjectImpacts_.erase(it);
-            } else {
+            else
                 ++it;
-            }
         }
     }
 
@@ -53,9 +52,8 @@ namespace FORRADIA8GAME {
         auto worldArea = _<WORLD>().currentWorldArea_;
         auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
-        if (!facedTile) {
+        if (!facedTile)
             return;
-        }
 
         auto rightHandObject = _<PLAYER>().playerEquipment_->rightHandObject_;
         auto leftHandObject = _<PLAYER>().playerEquipment_->leftHandObject_;
@@ -116,9 +114,8 @@ namespace FORRADIA8GAME {
             auto yPos = entry.second.position_.y;
 
             if (yPos * tileUnitsWidth + xPos >=
-                tileUnitsWidth * tileUnitsWidth / 2) {
+                tileUnitsWidth * tileUnitsWidth / 2)
                 break;
-            }
 
             auto objectType = entry.second.object_->type_;
 
@@ -309,9 +306,8 @@ namespace FORRADIA8GAME {
             auto yPos = entry.second.position_.y;
 
             if (yPos * tileUnitsWidth + xPos <
-                tileUnitsWidth * tileUnitsWidth / 2) {
+                tileUnitsWidth * tileUnitsWidth / 2)
                 continue;
-            }
 
             auto objectType = entry.second.object_->type_;
 
@@ -464,11 +460,10 @@ namespace FORRADIA8GAME {
 
         auto handAnimation = 0.0f;
 
-        if (delta < ticksOneStep) {
+        if (delta < ticksOneStep)
             handAnimation =
                 std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) *
                 0.02f;
-        }
 
         auto handYOffset = 0.07f;
 
@@ -516,10 +511,9 @@ namespace FORRADIA8GAME {
         _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0f, viewWidth, 1.0f,
                                       COLORS::kWhite);
 
-        if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_) {
+        if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_)
             _<COLOR8RENDERER>().FILL8RECT(viewWidth, 0.0f, viewWidth, 1.0f,
                                           COLORS::kRed);
-        }
 
         if (now < _<PLAYER>().ticksLastImpact_ +
                       INVERT8SPEED(_<PLAYER>().impactSpeed_)) {

@@ -28,15 +28,13 @@ namespace FORRADIA8GAME {
         auto now{NOW()};
 
         if (now - _<PLAYER>().ticksLastHitOnOther_ <
-            INVERT8SPEED(_<PLAYER>().attackSpeed_)) {
+            INVERT8SPEED(_<PLAYER>().attackSpeed_))
             return;
-        }
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth / 2.0f) {
+        if (mousePosition.x < viewWidth / 2.0f)
             return;
-        }
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
@@ -44,19 +42,16 @@ namespace FORRADIA8GAME {
 
         auto tile{worldArea->GET8TILE(facedTile)};
 
-        if (!tile) {
+        if (!tile)
             return;
-        }
 
         auto creature{tile->creature_};
 
-        if (!creature) {
+        if (!creature)
             return;
-        }
 
-        if (creature->IS8DEAD()) {
+        if (creature->IS8DEAD())
             return;
-        }
 
         constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
         constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
@@ -87,9 +82,8 @@ namespace FORRADIA8GAME {
         auto isPixelVisible{
             _<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
-        if (!isPixelVisible) {
+        if (!isPixelVisible)
             return;
-        }
 
         creature->HIT(1.0f, POINT8F{x, y});
 

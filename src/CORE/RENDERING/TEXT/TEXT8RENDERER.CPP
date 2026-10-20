@@ -34,9 +34,8 @@ namespace FORRADIA8GAME {
     TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
                                FONT8SIZES fontSize, bool centered,
                                COLOR color) {
-        if (text.empty()) {
+        if (text.empty())
             return;
-        }
 
         auto font = fonts_[fontSize];
 

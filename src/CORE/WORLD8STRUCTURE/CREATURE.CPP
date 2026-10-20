@@ -32,9 +32,8 @@ namespace FORRADIA8GAME {
 
         auto now = NOW();
 
-        if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_)) {
+        if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_))
             ticksLastHitOnOther_ = now;
-        }
 
         auto creatureLabel = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type_);
 

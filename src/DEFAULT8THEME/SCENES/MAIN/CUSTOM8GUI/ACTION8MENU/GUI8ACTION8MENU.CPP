@@ -298,9 +298,8 @@ namespace FORRADIA8GAME {
 
     void
     GUI8ACTION8MENU::RENDER() {
-        if (!visible_) {
+        if (!visible_)
             return;
-        }
 
         auto mousePosition = GET8MOUSE8POSITION();
 

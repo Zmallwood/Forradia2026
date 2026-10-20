@@ -62,9 +62,8 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
             return;
-        }
 
         position_ = {newX, newY};
 
@@ -83,9 +82,8 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
             return;
-        }
 
         position_ = {newX, newY};
 
@@ -104,9 +102,8 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
             return;
-        }
 
         position_ = {newX, newY};
 
@@ -125,9 +122,8 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
             return;
-        }
 
         position_ = {newX, newY};
 

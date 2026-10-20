@@ -12,7 +12,6 @@ namespace FORRADIA8GAME {
     void
     GAME::START() {
         _<ENGINE>().START();
-
         DESTROY8SINGLETON<ENGINE>();
     }
 }

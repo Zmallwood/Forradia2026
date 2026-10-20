@@ -10,7 +10,8 @@
 namespace FORRADIA8GAME {
     SDL_Color
     COLOR::TO8SDL8COLOR() {
-        return {static_cast<Uint8>(r * 255), static_cast<Uint8>(g * 255),
-                static_cast<Uint8>(b * 255), static_cast<Uint8>(a * 255)};
+        return {static_cast<Uint8>(red * 255), static_cast<Uint8>(green * 255),
+                static_cast<Uint8>(blue * 255),
+                static_cast<Uint8>(alpha * 255)};
     }
 }

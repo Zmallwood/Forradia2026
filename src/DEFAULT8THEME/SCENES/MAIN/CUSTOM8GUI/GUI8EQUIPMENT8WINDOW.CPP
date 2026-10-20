@@ -129,32 +129,31 @@ namespace FORRADIA8GAME {
         _<IMAGE8RENDERER>().DRAW8IMAGE(kRightHandSlotImage_, rightHandBounds);
         _<IMAGE8RENDERER>().DRAW8IMAGE(kLeftHandSlotImage_, leftHandBounds);
 
-        if (_<PLAYER>().playerEquipment_->headObject_) {
+        if (_<PLAYER>().playerEquipment_->headObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->headObject_->type_, headBounds);
-        }
-        if (_<PLAYER>().playerEquipment_->chestObject_) {
+
+        if (_<PLAYER>().playerEquipment_->chestObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->chestObject_->type_, chestBounds);
-        }
-        if (_<PLAYER>().playerEquipment_->legsObject_) {
+
+        if (_<PLAYER>().playerEquipment_->legsObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->legsObject_->type_, legsBounds);
-        }
-        if (_<PLAYER>().playerEquipment_->feetObject_) {
+
+        if (_<PLAYER>().playerEquipment_->feetObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->feetObject_->type_, feetBounds);
-        }
-        if (_<PLAYER>().playerEquipment_->rightHandObject_) {
+
+        if (_<PLAYER>().playerEquipment_->rightHandObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->rightHandObject_->type_,
                 rightHandBounds);
-        }
-        if (_<PLAYER>().playerEquipment_->leftHandObject_) {
+
+        if (_<PLAYER>().playerEquipment_->leftHandObject_)
             _<IMAGE8RENDERER>().DRAW8IMAGE(
                 _<PLAYER>().playerEquipment_->leftHandObject_->type_,
                 leftHandBounds);
-        }
     }
 
     RECT8F

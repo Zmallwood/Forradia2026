@@ -16,9 +16,8 @@ namespace FORRADIA8GAME {
         for (auto x = 0; x < size.width; x++) {
             tiles_.push_back(std::vector<std::shared_ptr<TILE>>());
 
-            for (auto y = 0; y < size.height; y++) {
+            for (auto y = 0; y < size.height; y++)
                 tiles_.at(x).push_back(std::make_shared<TILE>());
-            }
         }
     }
 
@@ -27,9 +26,8 @@ namespace FORRADIA8GAME {
         auto width = static_cast<int>(tiles_.size());
         auto height = 0;
 
-        if (width) {
+        if (width)
             height = static_cast<int>(tiles_.at(0).size());
-        }
 
         return {width, height};
     }
@@ -48,9 +46,8 @@ namespace FORRADIA8GAME {
 
     std::shared_ptr<TILE>
     WORLD8AREA::GET8TILE(int x, int y) {
-        if (IS8VALID8COORDINATE(x, y)) {
+        if (IS8VALID8COORDINATE(x, y))
             return tiles_.at(x).at(y);
-        }
 
         return nullptr;
     }

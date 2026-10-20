@@ -44,7 +44,6 @@ namespace FORRADIA8GAME {
     MAIN8MENU8SCENE::RENDER8BEFORE8GUI8DERIVED() {
         _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0f, 0.0f,
                                        1.0f, 1.0f);
-
         _<IMAGE8RENDERER>().DRAW8IMAGE("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
     }
 

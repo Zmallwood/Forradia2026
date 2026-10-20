@@ -18,24 +18,21 @@
 namespace FORRADIA8GAME {
     void
     OBJECT8IMPACT::ON8MOUSE8DOWN(Uint8 button) {
-        if (button != SDL_BUTTON_LEFT) {
+        if (button != SDL_BUTTON_LEFT)
             return;
-        }
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth) {
+        if (mousePosition.x < viewWidth)
             return;
-        }
 
         auto now{NOW()};
 
         if (now < _<PLAYER>().ticksLastImpact_ +
-                      INVERT8SPEED(_<PLAYER>().impactSpeed_)) {
+                      INVERT8SPEED(_<PLAYER>().impactSpeed_))
             return;
-        }
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
@@ -76,9 +73,8 @@ namespace FORRADIA8GAME {
                 }
             }
 
-            if (!canImpact) {
+            if (!canImpact)
                 continue;
-            }
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
@@ -174,9 +170,8 @@ namespace FORRADIA8GAME {
                 }
             }
 
-            if (!completedImpactPointThisClick) {
+            if (!completedImpactPointThisClick)
                 continue;
-            }
 
             auto allImpactPointsCompleted{!impactPoints.empty()};
 

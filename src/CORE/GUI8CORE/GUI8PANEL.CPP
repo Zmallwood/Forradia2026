@@ -17,13 +17,11 @@ namespace FORRADIA8GAME {
     GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
 
-        if (result) {
+        if (result)
             return true;
-        }
 
-        if (!isVisible_ || !isEnabled_) {
+        if (!isVisible_ || !isEnabled_)
             return false;
-        }
 
         return GET8BOUNDS().CONTAINS(GET8MOUSE8POSITION());
     }

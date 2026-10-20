@@ -36,53 +36,45 @@ namespace FORRADIA8GAME {
                 }
 
                 if (dy < 0 && absDy > absDx) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8NORTH();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8NORTH();
-                    }
                 } else if (dy > 0 && absDy > absDx) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8SOUTH();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8SOUTH();
-                    }
                 } else if (dx < 0 && absDx > absDy) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8WEST();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8WEST();
-                    }
                 } else if (dx > 0 && absDx > absDy) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8EAST();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8EAST();
-                    }
                 } else if (dy < 0) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8NORTH();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8NORTH();
-                    }
                 } else if (dy > 0) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8SOUTH();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8SOUTH();
-                    }
                 } else if (dx < 0) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8WEST();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8WEST();
-                    }
                 } else if (dx > 0) {
-                    if (ctrlKeyDown_) {
+                    if (ctrlKeyDown_)
                         _<PLAYER>().TURN8EAST();
-                    } else {
+                    else
                         _<PLAYER>().MOVE8EAST();
-                    }
                 }
 
                 _<PLAYER>().ticksLastMovement_ =
@@ -94,16 +86,14 @@ namespace FORRADIA8GAME {
 
     void
     MOUSE8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key) {
-        if (key == SDLK_LCTRL || key == SDLK_RCTRL) {
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
             ctrlKeyDown_ = true;
-        }
     }
 
     void
     MOUSE8MOVEMENT::ON8KEY8UP(SDL_Keycode key) {
-        if (key == SDLK_LCTRL || key == SDLK_RCTRL) {
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
             ctrlKeyDown_ = false;
-        }
     }
 
     void
@@ -112,12 +102,10 @@ namespace FORRADIA8GAME {
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x > viewWidth) {
+        if (mousePosition.x > viewWidth)
             return;
-        }
 
-        if (button == SDL_BUTTON_LEFT) {
+        if (button == SDL_BUTTON_LEFT)
             _<PLAYER>().destination_ = _<TILE8HOVERING>().hoveredCoordinate_;
-        }
     }
 }

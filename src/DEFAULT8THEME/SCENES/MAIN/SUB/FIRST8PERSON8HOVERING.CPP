@@ -241,9 +241,8 @@ namespace FORRADIA8GAME {
             auto objectLabel{
                 _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->type_)};
 
-            if (objectLabel.empty()) {
+            if (objectLabel.empty())
                 objectLabel = "?";
-            }
 
             _<TEXT8RENDERER>().DRAW8STRING(objectLabel, mousePosition.x,
                                            mousePosition.y + kTextYOffset_);
@@ -251,9 +250,8 @@ namespace FORRADIA8GAME {
             auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(
                 hoveredCreature_->type_)};
 
-            if (creatureLabel.empty()) {
+            if (creatureLabel.empty())
                 creatureLabel = "?";
-            }
 
             _<TEXT8RENDERER>().DRAW8STRING(creatureLabel, mousePosition.x,
                                            mousePosition.y + kTextYOffset_);

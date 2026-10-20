@@ -21,9 +21,8 @@ namespace FORRADIA8GAME {
         auto worldArea = _<WORLD>().currentWorldArea_;
         auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
-        if (!facedTile) {
+        if (!facedTile)
             return {};
-        }
 
         auto objects = facedTile->tileObjects_->objects_;
 
@@ -87,13 +86,11 @@ namespace FORRADIA8GAME {
             auto hoveredY =
                 static_cast<int>(relativeY * tileUnitsWidth - 0.001f);
 
-            if (hoveredY < 0) {
+            if (hoveredY < 0)
                 hoveredY = 0;
-            }
 
-            if (hoveredY >= tileUnitsWidth) {
+            if (hoveredY >= tileUnitsWidth)
                 hoveredY = tileUnitsWidth - 1;
-            }
 
             auto tileWidth = viewWidth - 2 * kMargin.x -
                              static_cast<float>(tileUnitsWidth - hoveredY) /
@@ -108,9 +105,8 @@ namespace FORRADIA8GAME {
             if (relativeX >= 0.0f && relativeX < 1.0f) {
                 auto hoveredX = static_cast<int>(relativeX * tileUnitsWidth);
 
-                if (hoveredX >= tileUnitsWidth) {
+                if (hoveredX >= tileUnitsWidth)
                     hoveredX = tileUnitsWidth - 1;
-                }
 
                 int tileX = hoveredX;
                 int tileY = hoveredY;

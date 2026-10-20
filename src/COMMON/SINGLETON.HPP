@@ -21,9 +21,8 @@ namespace FORRADIA8GAME {
     GET8SINGLETON8PTR() {
         auto &instance = SINGLETON8STORAGE<T>();
 
-        if (!instance) {
+        if (!instance)
             instance = std::make_shared<T>();
-        }
 
         return instance;
     }

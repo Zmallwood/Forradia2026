@@ -12,9 +12,9 @@ namespace FORRADIA8GAME {
       public:
         SDL_Color TO8SDL8COLOR();
 
-        float r = 0.0f;
-        float g = 0.0f;
-        float b = 0.0f;
-        float a = 1.0f;
+        float red = 0.0f;
+        float green = 0.0f;
+        float blue = 0.0f;
+        float alpha = 1.0f;
     };
 }

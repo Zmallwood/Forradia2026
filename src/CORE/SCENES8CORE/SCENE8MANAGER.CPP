@@ -18,7 +18,6 @@ namespace FORRADIA8GAME {
         ADD8SCENE("MainMenuScene", _<MAIN8MENU8SCENE>());
         ADD8SCENE("WorldGenerationScene", _<WORLD8GENERATION8SCENE>());
         ADD8SCENE("MainScene", _<MAIN8SCENE>());
-
         GO8TO8SCENE("IntroScene");
     }
 
@@ -44,43 +43,37 @@ namespace FORRADIA8GAME {
 
     void
     SCENE8MANAGER::UPDATE8CURRENT8SCENE() {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).UPDATE();
-        }
     }
 
     void
     SCENE8MANAGER::RENDER8CURRENT8SCENE() {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).RENDER();
-        }
     }
 
     void
     SCENE8MANAGER::ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key) {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).ON8KEY8DOWN(key);
-        }
     }
 
     void
     SCENE8MANAGER::ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key) {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).ON8KEY8UP(key);
-        }
     }
 
     void
     SCENE8MANAGER::ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button) {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).ON8MOUSE8DOWN(button);
-        }
     }
 
     void
     SCENE8MANAGER::ON8MOUSE8UP8CURRENT8SCENE(Uint8 button, int clickSpeed) {
-        if (scenes_.contains(currentScene_)) {
+        if (scenes_.contains(currentScene_))
             scenes_.at(currentScene_).ON8MOUSE8UP(button, clickSpeed);
-        }
     }
 }

@@ -20,10 +20,6 @@ namespace FORRADIA8GAME {
 
     void
     GUI8WINDOW::TOGGLE8VISIBILITY() {
-        if (isVisible_) {
-            isVisible_ = false;
-        } else {
-            isVisible_ = true;
-        }
+        isVisible_ = !isVisible_;
     }
 }

@@ -19,23 +19,54 @@ namespace FORRADIA8GAME {
         auto rdi =
             std::filesystem::recursive_directory_iterator(imagesDirectory);
 
-        for (const auto &entry : rdi) {
-            if (entry.is_regular_file() && entry.path().extension() == ".png") {
+        for (const auto &entry : rdi)
+            if (entry.is_regular_file() && entry.path().extension() == ".png")
                 LOAD8SINGLE8IMAGE(entry.path().string());
-            }
-        }
     }
 
     void
     IMAGE8BANK::LOAD8SINGLE8IMAGE(std::string_view fullPath) {
-#include "IMAGE8BANK.LOAD8SINGLE8IMAGE.CPP.INC"
+        std::string path = REPLACE(fullPath, "\\", "/");
+
+        auto pureName = GET8FILE8NAME8NO8EXT(path);
+
+        auto hash = HASH(pureName);
+
+        auto loaded = IMG_Load(path.c_str());
+
+        if (!loaded) {
+            std::cout << "Failed to load image " << path << ": "
+                      << IMG_GetError() << std::endl;
+            return;
+        }
+
+        auto converted =
+            SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32, 0);
+
+        SDL_FreeSurface(loaded);
+
+        if (!converted) {
+            std::cout << "Failed to convert image " << path << ": "
+                      << SDL_GetError() << std::endl;
+            return;
+        }
+
+        auto surface = std::shared_ptr<SDL_Surface>(converted, SDL8DELETER());
+
+        auto texture = std::shared_ptr<SDL_Texture>(
+            SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
+                                         surface.get()),
+            SDL8DELETER());
+
+        IMAGE8ENTRY entry{texture, surface};
+
+        images_.insert({hash, entry});
     }
 
     std::shared_ptr<SDL_Texture>
     IMAGE8BANK::GET8IMAGE(int imageNameHash) {
-        if (images_.contains(imageNameHash)) {
+        if (images_.contains(imageNameHash))
             return images_.at(imageNameHash).texture;
-        }
 
         return nullptr;
     }
@@ -45,10 +76,9 @@ namespace FORRADIA8GAME {
         auto width = 0;
         auto height = 0;
 
-        if (images_.contains(imageNameHash)) {
+        if (images_.contains(imageNameHash))
             SDL_QueryTexture(images_.at(imageNameHash).texture.get(), nullptr,
                              nullptr, &width, &height);
-        }
 
         return {width, height};
     }
@@ -60,28 +90,23 @@ namespace FORRADIA8GAME {
 
             if (!surface || !surface->pixels || surface->w <= 0 ||
                 surface->h <= 0 || x < 0.0f || y < 0.0f || x >= 1.0f ||
-                y >= 1.0f) {
+                y >= 1.0f)
                 return false;
-            }
 
             auto xPx = static_cast<int>(x * static_cast<float>(surface->w));
             auto yPx = static_cast<int>(y * static_cast<float>(surface->h));
 
-            if (xPx < 0) {
+            if (xPx < 0)
                 xPx = 0;
-            }
 
-            if (yPx < 0) {
+            if (yPx < 0)
                 yPx = 0;
-            }
 
-            if (xPx >= surface->w) {
+            if (xPx >= surface->w)
                 xPx = surface->w - 1;
-            }
 
-            if (yPx >= surface->h) {
+            if (yPx >= surface->h)
                 yPx = surface->h - 1;
-            }
 
             auto pixels = static_cast<Uint8 *>(surface->pixels);
             auto alpha = pixels[yPx * surface->pitch + xPx * 4 + 3];

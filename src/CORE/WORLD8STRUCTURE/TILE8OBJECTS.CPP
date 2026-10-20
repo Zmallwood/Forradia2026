@@ -68,9 +68,8 @@ namespace FORRADIA8GAME {
             }
         }
 
-        if (position != POINT{-1, -1}) {
+        if (position != POINT{-1, -1})
             ADD8OBJECT(newObjectType, position);
-        }
     }
 
     void
@@ -86,11 +85,9 @@ namespace FORRADIA8GAME {
 
     bool
     TILE8OBJECTS::HAS8OBJECT8OF8TYPE(std::string_view objectType) {
-        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
-            if (it->second->type_ == HASH(objectType)) {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it)
+            if (it->second->type_ == HASH(objectType))
                 return true;
-            }
-        }
 
         return false;
     }

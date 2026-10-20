@@ -17,28 +17,18 @@ namespace FORRADIA8GAME {
     void
     ENGINE::START() {
         RANDOMIZE();
-
         _<IMAGE8BANK>().LOAD8IMAGES();
-
         _<TEXT8RENDERER>().INITIALIZE();
 
         while (running_) {
             POLL_EVENTS();
-
             _<CURSOR>().RESET();
-
             _<SCENE8MANAGER>().UPDATE8CURRENT8SCENE();
-
             _<FPS8COUNTER>().UPDATE();
-
             _<SDL8DEVICE>().CLEAR8CANVAS();
-
             _<SCENE8MANAGER>().RENDER8CURRENT8SCENE();
-
             _<FPS8COUNTER>().RENDER();
-
             _<CURSOR>().RENDER();
-
             _<SDL8DEVICE>().PRESENT8CANVAS();
         }
     }

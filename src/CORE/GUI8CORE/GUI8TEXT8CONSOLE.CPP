@@ -33,9 +33,8 @@ namespace FORRADIA8GAME {
         auto rowIndex = 0;
 
         for (auto line = iStart; line < lines_.size(); line++) {
-            if (line > lines_.size() - 1) {
+            if (line > lines_.size() - 1)
                 break;
-            }
 
             auto text = lines_[line];
 

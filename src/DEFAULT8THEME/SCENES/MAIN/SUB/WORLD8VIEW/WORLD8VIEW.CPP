@@ -47,9 +47,8 @@ namespace FORRADIA8GAME {
 
         auto playerElevation = 0;
 
-        if (playerTile) {
+        if (playerTile)
             playerElevation = playerTile->elevation_;
-        }
 
         auto hoveredCoordinate = _<TILE8HOVERING>().hoveredCoordinate_;
 
@@ -71,9 +70,8 @@ namespace FORRADIA8GAME {
                 auto xCoordinate = playerPosition.x - 5 + x;
                 auto yCoordinate = playerPosition.y - 5 + y;
 
-                if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate)) {
+                if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate))
                     continue;
-                }
 
                 auto tile = worldArea->GET8TILE(xCoordinate, yCoordinate);
 
@@ -99,45 +97,37 @@ namespace FORRADIA8GAME {
                 auto elevationSouthWest = elevation;
                 auto elevationNorthWest = elevation;
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateNorth)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateNorth))
                     elevationNorth =
                         worldArea->GET8TILE(coordinateNorth)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateEast)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateEast))
                     elevationEast =
                         worldArea->GET8TILE(coordinateEast)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateSouth)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateSouth))
                     elevationSouth =
                         worldArea->GET8TILE(coordinateSouth)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateWest)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateWest))
                     elevationWest =
                         worldArea->GET8TILE(coordinateWest)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateNorthEast)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateNorthEast))
                     elevationNorthEast =
                         worldArea->GET8TILE(coordinateNorthEast)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateSouthEast)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateSouthEast))
                     elevationSouthEast =
                         worldArea->GET8TILE(coordinateSouthEast)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateSouthWest)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateSouthWest))
                     elevationSouthWest =
                         worldArea->GET8TILE(coordinateSouthWest)->elevation_;
-                }
 
-                if (worldArea->IS8VALID8COORDINATE(coordinateNorthWest)) {
+                if (worldArea->IS8VALID8COORDINATE(coordinateNorthWest))
                     elevationNorthWest =
                         worldArea->GET8TILE(coordinateNorthWest)->elevation_;
-                }
 
                 auto tileX = 0.25f - tileWidth / 2 + x * tileWidth / 2 -
                              y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
@@ -156,40 +146,36 @@ namespace FORRADIA8GAME {
                 auto ground = tile->ground_;
 
                 for (auto i = 0; i < elevation; i++) {
-                    if (ground == HASH("GroundRock")) {
+                    if (ground == HASH("GroundRock"))
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationRock", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);
-                    } else if (ground == HASH("GroundWater")) {
+                    else if (ground == HASH("GroundWater"))
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationWater", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);
-                    } else {
+                    else
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "Elevation", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);
-                    }
 
                     if (i >= elevationNorth && i >= elevationNorthEast &&
-                        i >= elevationEast) {
+                        i >= elevationEast)
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationEdgeRight", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);
-                    }
 
                     if (i >= elevationSouth && i >= elevationSouthWest &&
-                        i >= elevationWest) {
+                        i >= elevationWest)
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationEdgeLeft", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);
-                    }
 
-                    if (i >= elevationSouth && i >= elevationEast) {
+                    if (i >= elevationSouth && i >= elevationEast)
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationEdgeMiddle", tileX,
                             tileY + tileHeight / 4, tileWidth,
                             tileHeight * 3 / 4);
-                    }
 
                     tileY -= tileHeight / 4;
                 }
@@ -218,41 +204,35 @@ namespace FORRADIA8GAME {
                                                tileWidth + kSmallValue,
                                                tileHeight + kSmallValue);
 
-                if (elevation != elevationNorth) {
+                if (elevation != elevationNorth)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeNorth", tileX,
                                                    tileY, tileWidth,
                                                    tileHeight);
-                }
 
-                if (elevation != elevationEast) {
+                if (elevation != elevationEast)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeEast", tileX,
                                                    tileY, tileWidth,
                                                    tileHeight);
-                }
 
-                if (elevation != elevationSouth) {
+                if (elevation != elevationSouth)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeSouth", tileX,
                                                    tileY, tileWidth,
                                                    tileHeight);
-                }
 
-                if (elevation != elevationWest) {
+                if (elevation != elevationWest)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeWest", tileX,
                                                    tileY, tileWidth,
                                                    tileHeight);
-                }
 
-                if (xCoordinate == facedTile.x && yCoordinate == facedTile.y) {
+                if (xCoordinate == facedTile.x && yCoordinate == facedTile.y)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("FacedTile", tileX, tileY,
                                                    tileWidth, tileHeight);
-                }
 
                 if (xCoordinate == hoveredCoordinate.x &&
-                    yCoordinate == hoveredCoordinate.y) {
+                    yCoordinate == hoveredCoordinate.y)
 
                     _<IMAGE8RENDERER>().DRAW8IMAGE("HoveredTile", tileX, tileY,
                                                    tileWidth, tileHeight);
-                }
 
                 auto objects{tile->tileObjects_->objects_};
 
@@ -267,16 +247,14 @@ namespace FORRADIA8GAME {
 
                     auto usedObjectType{objectType};
 
-                    if (worldViewObjectType != 0) {
+                    if (worldViewObjectType != 0)
                         usedObjectType = worldViewObjectType;
-                    }
 
                     auto isSmallObject{
                         _<OBJECT8INDEX>().IS8SMALL8OBJECT(usedObjectType)};
 
-                    if (isSmallObject) {
+                    if (isSmallObject)
                         continue;
-                    }
 
                     auto imageSize{
                         _<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
