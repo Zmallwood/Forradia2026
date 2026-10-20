@@ -1092,6 +1092,26 @@ WorldGenerator::GenerateCreatures()
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
+    
+    auto numButterflies{80 + rand() % 10};
+
+    for (auto i = 0; i < numButterflies; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
+        {
+            continue;
+        }
+
+        auto newCreature{std::make_shared<CREATURE>("CreatureButterfly")};
+
+        worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+    }
 }
 
 void
