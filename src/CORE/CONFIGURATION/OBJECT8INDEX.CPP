@@ -142,6 +142,8 @@ namespace FORRADIA8GAME {
 
         ADD8ENTRY("ObjectSaw", "Saw", OBJECT8FLAGS::kSmallObject);
 
+        ADD8ENTRY("ObjectHammer", "Hammer", OBJECT8FLAGS::kSmallObject);
+
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
             [](std::shared_ptr<OBJECT> object) {
                 auto worldArea = _<WORLD>().currentWorldArea_;

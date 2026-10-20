@@ -18,6 +18,9 @@ namespace FORRADIA8GAME {
                          FONT8SIZES fontSize = FONT8SIZES::_12,
                          bool centered = false, COLOR color = COLORS::kWheat);
 
+        SIZE8F MEASURE8STRING(std::string_view text,
+                              FONT8SIZES fontSize = FONT8SIZES::_12);
+
       private:
         void ADD8FONT(FONT8SIZES fontSize);
 

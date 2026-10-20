@@ -20,8 +20,5 @@ namespace FORRADIA8GAME {
         std::shared_ptr<OBJECT> hoveredObject_;
         std::shared_ptr<CREATURE> hoveredCreature_;
         POINT8F hoveredThingMouseOffset_;
-
-      private:
-        static constexpr float kTextYOffset_{-0.03f};
     };
 }

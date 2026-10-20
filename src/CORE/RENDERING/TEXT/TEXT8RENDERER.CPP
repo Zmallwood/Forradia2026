@@ -62,4 +62,21 @@ namespace FORRADIA8GAME {
         SDL_RenderCopy(_<SDL8DEVICE>().renderer_.get(), texture.get(), nullptr,
                        &rect);
     }
+
+    SIZE8F
+    TEXT8RENDERER::MEASURE8STRING(std::string_view text, FONT8SIZES fontSize) {
+        auto font = fonts_.at(fontSize);
+
+        int widthPx;
+        int heightPx;
+
+        TTF_SizeUTF8(font.get(), text.data(), &widthPx, &heightPx);
+
+        auto canvasSize = GET8CANVAS8SIZE();
+
+        auto width = static_cast<float>(widthPx) / canvasSize.width;
+        auto height = static_cast<float>(heightPx) / canvasSize.height;
+
+        return {width, height};
+    }
 }

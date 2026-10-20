@@ -12,6 +12,7 @@
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
@@ -237,6 +238,8 @@ namespace FORRADIA8GAME {
     FIRST8PERSON8HOVERING::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
+        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset_};
+
         if (hoveredObject_) {
             auto objectLabel{
                 _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->type_)};
@@ -244,8 +247,16 @@ namespace FORRADIA8GAME {
             if (objectLabel.empty())
                 objectLabel = "?";
 
+            auto textSize =
+                _<TEXT8RENDERER>().MEASURE8STRING(objectLabel, FONT8SIZES::_18);
+
+            _<COLOR8RENDERER>().FILL8RECT(
+                mousePosition.x, mousePosition.y + textYOffset, textSize.width,
+                textSize.height, COLORS::kDarkBlue);
+
             _<TEXT8RENDERER>().DRAW8STRING(objectLabel, mousePosition.x,
-                                           mousePosition.y + kTextYOffset_);
+                                           mousePosition.y + textYOffset,
+                                           FONT8SIZES::_18);
         } else if (hoveredCreature_) {
             auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(
                 hoveredCreature_->type_)};
@@ -253,8 +264,16 @@ namespace FORRADIA8GAME {
             if (creatureLabel.empty())
                 creatureLabel = "?";
 
+            auto textSize = _<TEXT8RENDERER>().MEASURE8STRING(creatureLabel,
+                                                              FONT8SIZES::_18);
+
+            _<COLOR8RENDERER>().FILL8RECT(
+                mousePosition.x, mousePosition.y + textYOffset, textSize.width,
+                textSize.height, COLORS::kDarkBlue);
+
             _<TEXT8RENDERER>().DRAW8STRING(creatureLabel, mousePosition.x,
-                                           mousePosition.y + kTextYOffset_);
+                                           mousePosition.y + textYOffset,
+                                           FONT8SIZES::_18);
         }
     }
 }

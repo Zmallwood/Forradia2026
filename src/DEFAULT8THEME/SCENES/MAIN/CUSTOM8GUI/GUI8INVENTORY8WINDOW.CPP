@@ -12,6 +12,8 @@
 #include "CORE/CORE8GAME8OBJECTS/PLAYER8INVENTORY.HPP"
 #include "CORE/GUI8CORE/WINDOWS/GUI8WINDOW8TITLE8BAR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT8MOVING.HPP"
 
@@ -164,7 +166,11 @@ namespace FORRADIA8GAME {
     GUI8INVENTORY8WINDOW::RENDER8DERIVED() {
         GUI8WINDOW::RENDER8DERIVED();
 
+        auto mousePosition = GET8MOUSE8POSITION();
+
         auto position = GET8POSITION();
+
+        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset_};
 
         auto size = size_;
 
@@ -181,6 +187,8 @@ namespace FORRADIA8GAME {
                                         (slotHeight + slotMarginY));
 
         auto inventoryIndex = 0;
+
+        std::string hoveredObjectLabel;
 
         for (auto y = 0; y < numRows; y++) {
             for (auto x = 0; x < numCols; x++) {
@@ -199,12 +207,38 @@ namespace FORRADIA8GAME {
                 auto object =
                     _<PLAYER>().playerInventory_->GET8OBJECT(inventoryIndex);
 
-                if (object)
+                if (object) {
                     _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,
                                                    slotWidth, slotHeight);
 
+                    RECT8F objectBounds = {slotX, slotY, slotWidth, slotHeight};
+
+                    if (objectBounds.CONTAINS(mousePosition)) {
+                        auto objectLabel{
+                            _<OBJECT8INDEX>().GET8OBJECT8LABEL(object->type_)};
+
+                        hoveredObjectLabel = objectLabel;
+
+                        if (hoveredObjectLabel.empty())
+                            hoveredObjectLabel = "?";
+                    }
+                }
+
                 ++inventoryIndex;
             }
+        }
+
+        if (!hoveredObjectLabel.empty()) {
+            auto textSize = _<TEXT8RENDERER>().MEASURE8STRING(
+                hoveredObjectLabel, FONT8SIZES::_18);
+
+            _<COLOR8RENDERER>().FILL8RECT(
+                mousePosition.x, mousePosition.y + textYOffset, textSize.width,
+                textSize.height, COLORS::kDarkBlue);
+
+            _<TEXT8RENDERER>().DRAW8STRING(hoveredObjectLabel, mousePosition.x,
+                                           mousePosition.y + textYOffset,
+                                           FONT8SIZES::_18);
         }
     }
 }
