@@ -3,7 +3,7 @@
 
 #pragma once
 
-class Object;
+class OBJECT;
 
 class ObjectMoving
 {
@@ -21,7 +21,7 @@ class ObjectMoving
         return objectInAir_;
     }
 
-    void SetObjectInAir(std::shared_ptr<Object> value)
+    void SetObjectInAir(std::shared_ptr<OBJECT> value)
     {
         objectInAir_ = value;
     }
@@ -29,6 +29,6 @@ class ObjectMoving
     POINT8F draggingMouseOffset_;
 
   private:
-    std::shared_ptr<Object> objectInAir_;
+    std::shared_ptr<OBJECT> objectInAir_;
     POINT pickedPosition_;
 };

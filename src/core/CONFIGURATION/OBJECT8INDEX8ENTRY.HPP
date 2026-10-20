@@ -3,7 +3,7 @@
 
 #pragma once
 
-class Object;
+class OBJECT;
 
 class OBJECT8INDEX8ENTRY
 {
@@ -13,7 +13,7 @@ class OBJECT8INDEX8ENTRY
     std::vector<POINT8F> impactPoints;
     std::vector<int> impactObjects;
     std::function<void()> singleImpactPointCompletedAction;
-    std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction;
+    std::function<void(std::shared_ptr<OBJECT>)> allImpactPointsCompletedAction;
     int worldViewObjectType = 0;
     POINT8F worldViewRenderOffset = {0.0f, 0.0f};
     POINT8F firstPersonViewRenderOffset = {0.0f, 0.0f};

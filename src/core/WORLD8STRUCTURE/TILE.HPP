@@ -3,7 +3,7 @@
 
 #pragma once
 
-class TileObjects;
+class TILE8OBJECTS;
 class CREATURE;
 class NPC;
 
@@ -14,7 +14,7 @@ class Tile
 
     int ground_ = 0;
     int elevation_ = 0;
-    std::shared_ptr<TileObjects> tileObjects_;
+    std::shared_ptr<TILE8OBJECTS> tileObjects_;
     std::shared_ptr<CREATURE> creature_;
     std::shared_ptr<NPC> npc_;
 };

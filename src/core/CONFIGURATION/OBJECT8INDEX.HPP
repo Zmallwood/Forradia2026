@@ -25,7 +25,7 @@ class OBJECT8INDEX
     std::function<void()>
     GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(int objectHash);
 
-    std::function<void(std::shared_ptr<Object>)>
+    std::function<void(std::shared_ptr<OBJECT>)>
     GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash);
 
     int GET8WORLD8VIEW8OBJECT8TYPE(int objectHash);
@@ -40,8 +40,8 @@ class OBJECT8INDEX
         std::vector<POINT8F> impactPoints = {},
         std::vector<std::string> impactObjects = {},
         std::function<void()> singleImpactPointCompletedAction = []() {},
-        std::function<void(std::shared_ptr<Object>)>
-            allImpactPointsCompletedAction = [](std::shared_ptr<Object>) {},
+        std::function<void(std::shared_ptr<OBJECT>)>
+            allImpactPointsCompletedAction = [](std::shared_ptr<OBJECT>) {},
         std::string_view worldViewObjectType = "",
         POINT8F worldViewRenderOffset = POINT8F{0.0f, 0.0f},
         POINT8F firstPersonViewRenderOffset = POINT8F{0.0f, 0.0f});

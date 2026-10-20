@@ -5,7 +5,7 @@
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "WORLD_GENERATOR.HPP"
@@ -356,9 +356,10 @@ WorldGenerator::GenerateNewWorld()
 
                         if (rand() % 5 == 0)
                         {
-                            tile->tileObjects_->Clear();
+                            tile->tileObjects_->CLEAR();
 
-                            tile->tileObjects_->AddObject("ObjectStoneBoulder");
+                            tile->tileObjects_->ADD8OBJECT(
+                                "ObjectStoneBoulder");
                         }
                     }
                 }
@@ -396,23 +397,23 @@ WorldGenerator::GenerateNewWorld()
                 {
                     if (rand() % 2)
                     {
-                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->CLEAR();
 
-                        tile->tileObjects_->AddObject("ObjectTree1");
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree1");
 
-                        tileW->tileObjects_->Clear();
+                        tileW->tileObjects_->CLEAR();
 
-                        tileW->tileObjects_->AddObject("ObjectTree1");
+                        tileW->tileObjects_->ADD8OBJECT("ObjectTree1");
                     }
                     else
                     {
-                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->CLEAR();
 
-                        tile->tileObjects_->AddObject("ObjectTree2");
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree2");
 
-                        tileW->tileObjects_->Clear();
+                        tileW->tileObjects_->CLEAR();
 
-                        tileW->tileObjects_->AddObject("ObjectTree2");
+                        tileW->tileObjects_->ADD8OBJECT("ObjectTree2");
                     }
                 }
             }
@@ -434,25 +435,29 @@ WorldGenerator::GenerateNewWorld()
             auto tileSE{worldArea->GetTile(x + 1, y + 1)};
 
             auto hasTreeNW{
-                tileNW->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                tileNW->tileObjects_->HasObjectOfType("ObjectTree2")};
-            auto hasTreeN{tileN->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                          tileN->tileObjects_->HasObjectOfType("ObjectTree2")};
+                tileNW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileNW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeN{
+                tileN->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileN->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
             auto hasTreeNE{
-                tileNE->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                tileNE->tileObjects_->HasObjectOfType("ObjectTree2")};
-            auto hasTreeW{tileW->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                          tileW->tileObjects_->HasObjectOfType("ObjectTree2")};
-            auto hasTreeE{tileE->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                          tileE->tileObjects_->HasObjectOfType("ObjectTree2")};
+                tileNE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileNE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeW{
+                tileW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeE{
+                tileE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
             auto hasTreeSW{
-                tileSW->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                tileSW->tileObjects_->HasObjectOfType("ObjectTree2")};
-            auto hasTreeS{tileS->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                          tileS->tileObjects_->HasObjectOfType("ObjectTree2")};
+                tileSW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileSW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeS{
+                tileS->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileS->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
             auto hasTreeSE{
-                tileSE->tileObjects_->HasObjectOfType("ObjectTree1") ||
-                tileSE->tileObjects_->HasObjectOfType("ObjectTree2")};
+                tileSE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileSE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
 
             auto numTreeTiles{0};
 
@@ -501,15 +506,15 @@ WorldGenerator::GenerateNewWorld()
                 {
                     if (rand() % 2 % 2)
                     {
-                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->CLEAR();
 
-                        tile->tileObjects_->AddObject("ObjectTree1");
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree1");
                     }
                     else if (rand() % 2)
                     {
-                        tile->tileObjects_->Clear();
+                        tile->tileObjects_->CLEAR();
 
-                        tile->tileObjects_->AddObject("ObjectTree2");
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree2");
                     }
                 }
             }
@@ -521,13 +526,13 @@ WorldGenerator::GenerateNewWorld()
                 {
                     if (rand() % 2)
                     {
-                        tile->tileObjects_->Clear();
-                        tile->tileObjects_->AddObject("ObjectTree1");
+                        tile->tileObjects_->CLEAR();
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree1");
                     }
                     else if (rand() % 2)
                     {
-                        tile->tileObjects_->Clear();
-                        tile->tileObjects_->AddObject("ObjectTree2");
+                        tile->tileObjects_->CLEAR();
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree2");
                     }
                 }
             }
@@ -831,9 +836,9 @@ WorldGenerator::GenerateLargeObjects()
     //             continue;
     //         }
 
-    //         tile->tileObjects_->Clear();
+    //         tile->tileObjects_->CLEAR();
 
-    //         tile->tileObjects_->AddObject("ObjectTree2");
+    //         tile->tileObjects_->ADD8OBJECT("ObjectTree2");
     //     }
     // }
 
@@ -864,9 +869,9 @@ WorldGenerator::GenerateLargeObjects()
     //             continue;
     //         }
 
-    //         tile->tileObjects_->Clear();
+    //         tile->tileObjects_->CLEAR();
 
-    //         tile->tileObjects_->AddObject("ObjectTree1");
+    //         tile->tileObjects_->ADD8OBJECT("ObjectTree1");
     //     }
     // }
 
@@ -886,7 +891,7 @@ WorldGenerator::GenerateLargeObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectBush1");
+        tile->tileObjects_->ADD8OBJECT("ObjectBush1");
     }
 
     auto numBush2s{100 + rand() % 30};
@@ -905,7 +910,7 @@ WorldGenerator::GenerateLargeObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectBush2");
+        tile->tileObjects_->ADD8OBJECT("ObjectBush2");
     }
 
     auto numStoneBoulders{100 + rand() % 50};
@@ -923,7 +928,7 @@ WorldGenerator::GenerateLargeObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectStoneBoulder");
+        tile->tileObjects_->ADD8OBJECT("ObjectStoneBoulder");
     }
 
     auto numTree1s{100 + rand() % 50};
@@ -938,7 +943,7 @@ WorldGenerator::GenerateLargeObjects()
         if (tile->ground_ == HASH("GroundGrass") ||
             tile->ground_ == HASH("GroundDirt"))
         {
-            tile->tileObjects_->AddObject("ObjectTree1");
+            tile->tileObjects_->ADD8OBJECT("ObjectTree1");
         }
     }
 
@@ -954,7 +959,7 @@ WorldGenerator::GenerateLargeObjects()
         if (tile->ground_ == HASH("GroundGrass") ||
             tile->ground_ == HASH("GroundDirt"))
         {
-            tile->tileObjects_->AddObject("ObjectTree2");
+            tile->tileObjects_->ADD8OBJECT("ObjectTree2");
         }
     }
 }
@@ -979,7 +984,7 @@ WorldGenerator::GenerateSmallObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectStone");
+        tile->tileObjects_->ADD8OBJECT("ObjectStone");
     }
 
     auto numBranches{500 + rand() % 50};
@@ -997,7 +1002,7 @@ WorldGenerator::GenerateSmallObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectBranch");
+        tile->tileObjects_->ADD8OBJECT("ObjectBranch");
     }
 
     auto numPinkFlowers{500 + rand() % 50};
@@ -1016,7 +1021,7 @@ WorldGenerator::GenerateSmallObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectPinkFlower");
+        tile->tileObjects_->ADD8OBJECT("ObjectPinkFlower");
     }
 
     auto numLeaves{500 + rand() % 50};
@@ -1034,7 +1039,7 @@ WorldGenerator::GenerateSmallObjects()
             continue;
         }
 
-        tile->tileObjects_->AddObject("ObjectLeaf");
+        tile->tileObjects_->ADD8OBJECT("ObjectLeaf");
     }
 }
 
@@ -1103,7 +1108,7 @@ WorldGenerator::GenerateCivilization()
     // {
     //     auto tile{worldArea->GetTile(x, playerPosition.y)};
 
-    //     tile->tileObjects_->Clear();
+    //     tile->tileObjects_->CLEAR();
 
     //     tile->ground_ = HASH("GroundCobblestone");
 
@@ -1125,7 +1130,7 @@ WorldGenerator::GenerateCivilization()
     // {
     //     auto tile{worldArea->GetTile(playerPosition.x, y)};
 
-    //     tile->tileObjects_->Clear();
+    //     tile->tileObjects_->CLEAR();
 
     //     tile->ground_ = HASH("GroundCobblestone");
 
@@ -1148,7 +1153,7 @@ WorldGenerator::GenerateCivilization()
     //     {
     //         auto tile{worldArea->GetTile(x, y)};
 
-    //         tile->tileObjects_->Clear();
+    //         tile->tileObjects_->CLEAR();
 
     //         tile->ground_ = HASH("GroundCobblestone");
     //     }
@@ -1185,7 +1190,7 @@ WorldGenerator::GenerateWorldAroundPlayer()
     //             continue;
     //         }
 
-    //         tile->tileObjects_->Clear();
+    //         tile->tileObjects_->CLEAR();
 
     //         tile->ground_ = HASH("GroundGrass");
 

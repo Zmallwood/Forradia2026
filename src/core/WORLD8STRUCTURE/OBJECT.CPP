@@ -4,7 +4,7 @@
 #include "OBJECT.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 
-Object::Object(int type) : type_(type)
+OBJECT::OBJECT(int type) : type_(type)
 {
     auto impactPoints = _<OBJECT8INDEX>().GET8IMPACT8POINTS(type);
 
@@ -14,6 +14,6 @@ Object::Object(int type) : type_(type)
     }
 }
 
-Object::Object(std::string_view typeName) : Object(HASH(typeName))
+OBJECT::OBJECT(std::string_view typeName) : OBJECT(HASH(typeName))
 {
 }

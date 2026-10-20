@@ -5,12 +5,12 @@
 
 #include "COMPLETABLE8IMPACT8POINT.HPP"
 
-class Object
+class OBJECT
 {
   public:
-    Object(int type);
+    OBJECT(int type);
 
-    Object(std::string_view typeName);
+    OBJECT(std::string_view typeName);
 
     int type_ = 0;
     int quantity_ = 1;

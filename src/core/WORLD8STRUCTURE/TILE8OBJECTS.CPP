@@ -3,16 +3,16 @@
 
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
-#include "TILE_OBJECTS.HPP"
+#include "TILE8OBJECTS.HPP"
 
 void
-TileObjects::Clear()
+TILE8OBJECTS::CLEAR()
 {
     objects_.clear();
 }
 
 void
-TileObjects::AddObject(int objectType, POINT position)
+TILE8OBJECTS::ADD8OBJECT(int objectType, POINT position)
 {
     if (position.x == -1 || position.y == -1)
     {
@@ -20,29 +20,29 @@ TileObjects::AddObject(int objectType, POINT position)
         position.y = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
     }
 
-    objects_.insert({position, std::make_shared<Object>(objectType)});
+    objects_.insert({position, std::make_shared<OBJECT>(objectType)});
 }
 
 void
-TileObjects::AddObject(std::string_view objectName, POINT position)
+TILE8OBJECTS::ADD8OBJECT(std::string_view objectName, POINT position)
 {
-    AddObject(HASH(objectName), position);
+    ADD8OBJECT(HASH(objectName), position);
 }
 
 void
-TileObjects::AddObject(std::shared_ptr<Object> object, POINT position)
+TILE8OBJECTS::ADD8OBJECT(std::shared_ptr<OBJECT> object, POINT position)
 {
     objects_.insert({position, object});
 }
 
 int
-TileObjects::Count()
+TILE8OBJECTS::COUNT()
 {
     return objects_.size();
 }
 
-std::shared_ptr<Object>
-TileObjects::PickObject(std::shared_ptr<Object> object)
+std::shared_ptr<OBJECT>
+TILE8OBJECTS::PICK8OBJECT(std::shared_ptr<OBJECT> object)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {
@@ -58,8 +58,8 @@ TileObjects::PickObject(std::shared_ptr<Object> object)
 }
 
 void
-TileObjects::TransformObject(std::shared_ptr<Object> object,
-                             std::string_view newObjectType)
+TILE8OBJECTS::TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
+                               std::string_view newObjectType)
 {
     POINT position = {-1, -1};
 
@@ -77,12 +77,12 @@ TileObjects::TransformObject(std::shared_ptr<Object> object,
 
     if (position != POINT{-1, -1})
     {
-        AddObject(newObjectType, position);
+        ADD8OBJECT(newObjectType, position);
     }
 }
 
 void
-TileObjects::RemoveObject(std::shared_ptr<Object> object)
+TILE8OBJECTS::REMOVE8OBJECT(std::shared_ptr<OBJECT> object)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {
@@ -96,7 +96,7 @@ TileObjects::RemoveObject(std::shared_ptr<Object> object)
 }
 
 bool
-TileObjects::HasObjectOfType(std::string_view objectType)
+TILE8OBJECTS::HAS8OBJECT8OF8TYPE(std::string_view objectType)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {

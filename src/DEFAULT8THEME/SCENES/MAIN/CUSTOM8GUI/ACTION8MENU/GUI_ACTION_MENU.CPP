@@ -7,7 +7,7 @@
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "GUI_ACTION_MENU.HPP"
@@ -44,7 +44,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallNorthPlank1",
                     {tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8, 0});
             };
@@ -58,7 +58,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallNorthPlank2",
                     {tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8, 0});
             };
@@ -72,7 +72,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallNorthPlank3",
                     {tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8, 0});
             };
@@ -86,7 +86,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallNorthPlank4",
                     {tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8, 0});
             };
@@ -100,7 +100,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallEastPlank1",
                     {tileUnitsWidth - 1,
                      tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
@@ -115,7 +115,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallEastPlank2",
                     {tileUnitsWidth - 1,
                      tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
@@ -130,7 +130,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallEastPlank3",
                     {tileUnitsWidth - 1,
                      tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
@@ -145,7 +145,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallEastPlank4",
                     {tileUnitsWidth - 1,
                      tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
@@ -160,7 +160,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallSouthPlank1",
                     {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                          tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8,
@@ -176,7 +176,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallSouthPlank2",
                     {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                          tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8,
@@ -192,7 +192,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallSouthPlank3",
                     {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                          tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8,
@@ -208,7 +208,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallSouthPlank4",
                     {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                          tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8,
@@ -224,7 +224,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallWestPlank1",
                     {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                             tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
@@ -239,7 +239,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallWestPlank2",
                     {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                             tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
@@ -254,7 +254,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallWestPlank3",
                     {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                             tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
@@ -269,7 +269,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodWallWestPlank4",
                     {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
                             tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
@@ -283,7 +283,7 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
             {
                 auto tileObjects = tile->tileObjects_;
 
-                tileObjects->AddObject(
+                tileObjects->ADD8OBJECT(
                     "ObjectPlannedWoodFloor",
                     {tileUnitsWidth / 2, tileUnitsWidth / 2});
             };

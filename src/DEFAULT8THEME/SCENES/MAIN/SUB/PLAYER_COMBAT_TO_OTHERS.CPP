@@ -8,7 +8,7 @@
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "CREATURE_RESPAWNER.HPP"
@@ -96,14 +96,14 @@ PlayerCombatToOthers::OnMouseDown(Uint8 button)
 
     _<PLAYER>().ticksLastHitOnOther_ = now;
 
-    tile->tileObjects_->AddObject("ObjectPoolOfBlood");
+    tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
 
     if (creature->IS8DEAD())
     {
         auto corpseType{
             _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
 
-        tile->tileObjects_->AddObject(corpseType,
+        tile->tileObjects_->ADD8OBJECT(corpseType,
                                       {tileUnitsWidth / 2, tileUnitsWidth / 2});
 
         tile->creature_ = nullptr;

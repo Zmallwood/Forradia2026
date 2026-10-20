@@ -3,11 +3,11 @@
 
 #pragma once
 
-class Object;
+class OBJECT;
 
 class PositionedObject
 {
   public:
     POINT position_ = {-1, -1};
-    std::shared_ptr<Object> object_;
+    std::shared_ptr<OBJECT> object_;
 };

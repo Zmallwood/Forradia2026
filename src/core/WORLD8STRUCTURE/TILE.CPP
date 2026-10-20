@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 #include "TILE.HPP"
-#include "TILE_OBJECTS.HPP"
+#include "TILE8OBJECTS.HPP"
 
 Tile::Tile()
 {
-    tileObjects_ = std::make_shared<TileObjects>();
+    tileObjects_ = std::make_shared<TILE8OBJECTS>();
 }

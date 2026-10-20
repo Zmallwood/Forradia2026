@@ -3,15 +3,15 @@
 
 #pragma once
 
-class Object;
+class OBJECT;
 
 class PLAYER8EQUIPMENT
 {
   public:
-    std::shared_ptr<Object> headObject_;
-    std::shared_ptr<Object> chestObject_;
-    std::shared_ptr<Object> legsObject_;
-    std::shared_ptr<Object> feetObject_;
-    std::shared_ptr<Object> rightHandObject_;
-    std::shared_ptr<Object> leftHandObject_;
+    std::shared_ptr<OBJECT> headObject_;
+    std::shared_ptr<OBJECT> chestObject_;
+    std::shared_ptr<OBJECT> legsObject_;
+    std::shared_ptr<OBJECT> feetObject_;
+    std::shared_ptr<OBJECT> rightHandObject_;
+    std::shared_ptr<OBJECT> leftHandObject_;
 };

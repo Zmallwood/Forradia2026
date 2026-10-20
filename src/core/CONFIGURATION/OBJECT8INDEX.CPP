@@ -5,7 +5,7 @@
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "OBJECT8FLAGS.HPP"
@@ -24,7 +24,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     ADD8ENTRY("ObjectPoolOfBlood", "Pool of blood", OBJECT8FLAGS::kSmallObject);
 
     auto allImpactPointsCompletedActionObjectTree1 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -32,7 +32,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object, "ObjectFelledTree");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectFelledTree");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have felled the tree.");
 
@@ -60,7 +60,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     ADD8ENTRY(
         "ObjectStoneBoulder", "Stone boulder",
         OBJECT8FLAGS::kBlocksSight | OBJECT8FLAGS::kUnmovable, {}, {}, []() {},
-        [](std::shared_ptr<Object>) {}, "", POINT8F{0.0f, 0.3f},
+        [](std::shared_ptr<OBJECT>) {}, "", POINT8F{0.0f, 0.3f},
         POINT8F{0.0f, 0.0f});
 
     ADD8ENTRY("ObjectCreatureDeerCorpse", "Deer corpse", 0);
@@ -81,7 +81,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->AddObject("ObjectWoodLog");
+        facedTile->tileObjects_->ADD8OBJECT("ObjectWoodLog");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have chopped some wood logs.");
 
@@ -89,7 +89,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     };
 
     auto allImpactPointsCompletedActionObjectFelledTree =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -97,7 +97,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->RemoveObject(object);
+        facedTile->tileObjects_->REMOVE8OBJECT(object);
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE(
             "You have chopped up the felled tree.");
@@ -111,7 +111,7 @@ OBJECT8INDEX::OBJECT8INDEX()
               allImpactPointsCompletedActionObjectFelledTree);
 
     auto allImpactPointsCompletedActionObjectWoodLog =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -119,7 +119,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object, "ObjectWoodPlank");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectWoodPlank");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have sawed the wood log.");
     };
@@ -134,7 +134,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     ADD8ENTRY("ObjectSaw", "Saw", OBJECT8FLAGS::kSmallObject);
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -142,8 +142,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankNorth1");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankNorth1");
     };
 
     ADD8ENTRY(
@@ -154,7 +154,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -162,8 +162,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankNorth2");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankNorth2");
     };
 
     ADD8ENTRY(
@@ -174,7 +174,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -182,8 +182,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankNorth3");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankNorth3");
     };
 
     ADD8ENTRY(
@@ -194,7 +194,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -202,8 +202,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankNorth4");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankNorth4");
     };
 
     ADD8ENTRY(
@@ -215,26 +215,26 @@ OBJECT8INDEX::OBJECT8INDEX()
 
     ADD8ENTRY(
         "ObjectWoodWallPlankNorth1", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankNorth1WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankNorth2", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankNorth2WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankNorth3", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankNorth3WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankNorth4", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankNorth4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast1 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -242,8 +242,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankEast1");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankEast1");
     };
 
     ADD8ENTRY(
@@ -254,7 +254,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast2 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -262,8 +262,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankEast2");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankEast2");
     };
 
     ADD8ENTRY(
@@ -274,7 +274,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast3 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -282,8 +282,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankEast3");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankEast3");
     };
 
     ADD8ENTRY(
@@ -294,7 +294,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast4 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -302,8 +302,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankEast4");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankEast4");
     };
 
     ADD8ENTRY(
@@ -315,26 +315,26 @@ OBJECT8INDEX::OBJECT8INDEX()
 
     ADD8ENTRY(
         "ObjectWoodWallPlankEast1", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankEast1WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankEast2", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankEast2WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankEast3", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankEast3WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankEast4", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankEast4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -342,8 +342,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankSouth1");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankSouth1");
     };
 
     ADD8ENTRY(
@@ -354,7 +354,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -362,8 +362,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankSouth2");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankSouth2");
     };
 
     ADD8ENTRY(
@@ -374,7 +374,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -382,8 +382,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankSouth3");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankSouth3");
     };
 
     ADD8ENTRY(
@@ -394,7 +394,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -402,8 +402,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankSouth4");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankSouth4");
     };
 
     ADD8ENTRY(
@@ -415,26 +415,26 @@ OBJECT8INDEX::OBJECT8INDEX()
 
     ADD8ENTRY(
         "ObjectWoodWallPlankSouth1", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankSouth1WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankSouth2", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankSouth2WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankSouth3", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankSouth3WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankSouth4", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankSouth4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -442,8 +442,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankWest1");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankWest1");
     };
 
     ADD8ENTRY(
@@ -454,7 +454,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest2 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -462,8 +462,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankWest2");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankWest2");
     };
 
     ADD8ENTRY(
@@ -474,7 +474,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest3 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -482,8 +482,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankWest3");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankWest3");
     };
 
     ADD8ENTRY(
@@ -494,7 +494,7 @@ OBJECT8INDEX::OBJECT8INDEX()
         "ObjectPlannedObject");
 
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest4 =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -502,8 +502,8 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->TransformObject(object,
-                                                 "ObjectWoodWallPlankWest4");
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectWoodWallPlankWest4");
     };
 
     ADD8ENTRY(
@@ -515,26 +515,26 @@ OBJECT8INDEX::OBJECT8INDEX()
 
     ADD8ENTRY(
         "ObjectWoodWallPlankWest1", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankWest1WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankWest2", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankWest2WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankWest3", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankWest3WorldView", POINT8F{0.0f, 0.5f});
 
     ADD8ENTRY(
         "ObjectWoodWallPlankWest4", "Wood wall", OBJECT8FLAGS::kUnmovable, {},
-        {}, []() {}, [](std::shared_ptr<Object>) {},
+        {}, []() {}, [](std::shared_ptr<OBJECT>) {},
         "ObjectWoodWallPlankWest4WorldView", POINT8F{0.0f, 0.5f});
 
     auto allImpactPointsCompletedActionObjectWoodFloor =
-        [](std::shared_ptr<Object> object)
+        [](std::shared_ptr<OBJECT> object)
     {
         auto worldArea = _<World>().currentWorldArea_;
 
@@ -542,7 +542,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
-        facedTile->tileObjects_->RemoveObject(object);
+        facedTile->tileObjects_->REMOVE8OBJECT(object);
 
         facedTile->ground_ = HASH("GroundWoodFloor");
     };
@@ -562,7 +562,7 @@ OBJECT8INDEX::ADD8ENTRY(
     std::string_view name, std::string_view label, int flags,
     std::vector<POINT8F> impactPoints, std::vector<std::string> impactObjects,
     std::function<void()> singleImpactPointCompletedAction,
-    std::function<void(std::shared_ptr<Object>)> allImpactPointsCompletedAction,
+    std::function<void(std::shared_ptr<OBJECT>)> allImpactPointsCompletedAction,
     std::string_view worldViewObjectType, POINT8F worldViewRenderOffset,
     POINT8F firstPersonViewRenderOffset)
 {
@@ -666,7 +666,7 @@ OBJECT8INDEX::GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(int objectHash)
     return []() {};
 }
 
-std::function<void(std::shared_ptr<Object>)>
+std::function<void(std::shared_ptr<OBJECT>)>
 OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash)
 {
     if (entries_.contains(objectHash))
@@ -674,7 +674,7 @@ OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash)
         return entries_.at(objectHash).allImpactPointsCompletedAction;
     }
 
-    return [](std::shared_ptr<Object>) {};
+    return [](std::shared_ptr<OBJECT>) {};
 }
 
 int

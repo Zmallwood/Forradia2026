@@ -8,7 +8,7 @@
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
@@ -50,7 +50,7 @@ ObjectMoving::OnMouseDown(Uint8 button)
 
     auto tile{worldArea->GetTile(facedTileCoordinate)};
 
-    objectInAir_ = tile->tileObjects_->PickObject(hoveredObject);
+    objectInAir_ = tile->tileObjects_->PICK8OBJECT(hoveredObject);
 
     draggingMouseOffset_ = _<FirstPersonHovering>().hoveredThingMouseOffset_;
 
@@ -92,7 +92,7 @@ ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
 
     auto tile{worldArea->GetTile(facedTileCoordinate)};
 
-    tile->tileObjects_->AddObject(objectInAir_, hoveredTilePosition);
+    tile->tileObjects_->ADD8OBJECT(objectInAir_, hoveredTilePosition);
 
     ClearObject();
 }
