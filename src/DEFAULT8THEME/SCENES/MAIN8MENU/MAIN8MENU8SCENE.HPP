@@ -5,24 +5,23 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "WORLD_GENERATION_SCENE.HPP"
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
-#include "SUB/WORLD_GENERATOR.HPP"
+#pragma once
+
+#include "CORE/SCENES8CORE/I8SCENE.HPP"
 
 namespace FORRADIA8GAME
 {
-    void
-    WorldGenerationScene::ON8ENTER8DERIVED()
+    class MAIN8MENU8SCENE : public I8SCENE
     {
-        _<WorldGenerator>().GenerateNewWorld();
+      protected:
+        void INITIALIZE8DERIVED() override;
 
-        _<PLAYER>().SPAWN8ONSUITABLE8LOCATION();
+        void ON8ENTER8DERIVED() override;
 
-        _<WorldGenerator>().GenerateCivilization();
+        void RENDER8BEFORE8GUI8DERIVED() override;
 
-        _<WorldGenerator>().GenerateWorldAroundPlayer();
+        void ON8KEY8DOWN8DERIVED(SDL_Keycode key) override;
 
-        _<SCENE8MANAGER>().GO8TO8SCENE("MainScene");
-    }
+        void ON8MOUSE8DOWN8DERIVED(Uint8 button) override;
+    };
 }

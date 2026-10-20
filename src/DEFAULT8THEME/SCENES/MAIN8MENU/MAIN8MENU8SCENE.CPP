@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "MAIN_MENU_SCENE.HPP"
+#include "MAIN8MENU8SCENE.HPP"
 #include "CORE/ENGINE/ENGINE.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
@@ -17,7 +17,7 @@
 namespace FORRADIA8GAME
 {
     void
-    MainMenuScene::INITIALIZE8DERIVED()
+    MAIN8MENU8SCENE::INITIALIZE8DERIVED()
     {
         gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
@@ -34,7 +34,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainMenuScene::ON8ENTER8DERIVED()
+    MAIN8MENU8SCENE::ON8ENTER8DERIVED()
     {
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("Starting game.");
 
@@ -43,7 +43,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainMenuScene::RENDER8BEFORE8GUI8DERIVED()
+    MAIN8MENU8SCENE::RENDER8BEFORE8GUI8DERIVED()
     {
         _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0f, 0.0f,
                                        1.0f, 1.0f);
@@ -52,12 +52,12 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainMenuScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
+    MAIN8MENU8SCENE::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
     {
     }
 
     void
-    MainMenuScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
+    MAIN8MENU8SCENE::ON8MOUSE8DOWN8DERIVED(Uint8 button)
     {
     }
 }

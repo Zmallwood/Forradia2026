@@ -5,12 +5,12 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "EXPERIENCE_MATH.HPP"
+#include "EXPERIENCE8MATH.HPP"
 
 namespace FORRADIA8GAME
 {
     int
-    CalculateCurrentLevel(int experience)
+    CALCULATE8CURRENT8LEVEL(int experience)
     {
         auto level{std::trunc(log2f(pow(experience + 70, 2) / 5000)) + 1};
 
@@ -18,7 +18,7 @@ namespace FORRADIA8GAME
     }
 
     int
-    CalculateExperienceForLevel(int level)
+    CALCULATE8EXPERIENCE8FOR8LEVEL(int level)
     {
         auto experience{std::max(sqrtf(powf(2, level - 1) * 5000) - 70, 0.0F)};
 
@@ -26,45 +26,46 @@ namespace FORRADIA8GAME
     }
 
     int
-    CalculateExperienceDifferenceToNextLevel(int experience)
+    CALCULATE8EXPERIENCE8DIFFERENCE8TO8NEXT8LEVEL(int experience)
     {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+        auto currentLevel{CALCULATE8CURRENT8LEVEL(experience)};
 
         auto nextLevel{currentLevel + 1};
 
         auto totalExperienceForCurrentLevel{
-            CalculateExperienceForLevel(currentLevel)};
+            CALCULATE8EXPERIENCE8FOR8LEVEL(currentLevel)};
 
         auto totalExperienceForNextLevel{
-            CalculateExperienceForLevel(nextLevel)};
+            CALCULATE8EXPERIENCE8FOR8LEVEL(nextLevel)};
 
         return totalExperienceForNextLevel - totalExperienceForCurrentLevel;
     }
 
     int
-    CalculateExperienceRequiredForCurrentLevelStart(int experience)
+    CALCULATE8EXPERIENCE8REQUIRED8FOR8CURRENT8LEVEL8START(int experience)
     {
-        auto currentLevel{CalculateCurrentLevel(experience)};
+        auto currentLevel{CALCULATE8CURRENT8LEVEL(experience)};
 
-        return CalculateExperienceForLevel(currentLevel);
+        return CALCULATE8EXPERIENCE8FOR8LEVEL(currentLevel);
     }
 
     int
-    CalculateExperienceGainedSinceLevelStart(int experience)
+    CALCULATE8EXPERIENCE8GAINED8SINCE8LEVEL8START(int experience)
     {
         return experience -
-               CalculateExperienceRequiredForCurrentLevelStart(experience);
+               CALCULATE8EXPERIENCE8REQUIRED8FOR8CURRENT8LEVEL8START(
+                   experience);
     }
 
     float
-    CalculateFractionalExperienceProgress(int experience)
+    CALCULATE8FRACTIONAL8EXPERIENCE8PROGRESS(int experience)
     {
         auto experienceGain{
             experience -
-            CalculateExperienceRequiredForCurrentLevelStart(experience)};
+            CALCULATE8EXPERIENCE8REQUIRED8FOR8CURRENT8LEVEL8START(experience)};
 
         auto experienceDiff{
-            CalculateExperienceDifferenceToNextLevel(experience)};
+            CALCULATE8EXPERIENCE8DIFFERENCE8TO8NEXT8LEVEL(experience)};
 
         return static_cast<float>(experienceGain) / experienceDiff;
     }

@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "WORLD_GENERATOR.HPP"
+#include "WORLD8GENERATOR.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
@@ -17,9 +17,9 @@
 namespace FORRADIA8GAME
 {
     void
-    WorldGenerator::GenerateNewWorld()
+    WORLD8GENERATOR::GENERATE8NEW8WORLD()
     {
-        ClearWithGrass();
+        CLEAR8WITH8GRASS();
 
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -151,10 +151,10 @@ namespace FORRADIA8GAME
                 }
             });
 
-        Traverse1(fnMakeWater);
-        Traverse2(fnMakeWater);
-        Traverse3(fnMakeWater);
-        Traverse4(fnMakeWater);
+        TRAVERSE81(fnMakeWater);
+        TRAVERSE82(fnMakeWater);
+        TRAVERSE83(fnMakeWater);
+        TRAVERSE84(fnMakeWater);
 
         for (auto y = 1; y < size.height - 1; y++)
         {
@@ -274,10 +274,10 @@ namespace FORRADIA8GAME
                 }
             });
 
-        Traverse1(fnMakeDirt);
-        Traverse2(fnMakeDirt);
-        Traverse3(fnMakeDirt);
-        Traverse4(fnMakeDirt);
+        TRAVERSE81(fnMakeDirt);
+        TRAVERSE82(fnMakeDirt);
+        TRAVERSE83(fnMakeDirt);
+        TRAVERSE84(fnMakeDirt);
 
         auto numHills = 60 + rand() % 10;
 
@@ -545,28 +545,28 @@ namespace FORRADIA8GAME
                 }
             });
 
-        Traverse1(fnMakeTrees);
-        Traverse2(fnMakeTrees);
-        Traverse3(fnMakeTrees);
-        Traverse4(fnMakeTrees);
+        TRAVERSE81(fnMakeTrees);
+        TRAVERSE82(fnMakeTrees);
+        TRAVERSE83(fnMakeTrees);
+        TRAVERSE84(fnMakeTrees);
 
-        // GenerateDirt();
+        // GENERATE8DIRT();
 
-        // GenerateWater();
+        // GENERATE8WATER();
 
-        // GenerateElevation();
+        // GENERATE8ELEVATION();
 
-        // GenerateRock();
+        // GENERATE8ROCK();
 
-        GenerateLargeObjects();
+        GENERATE8LARGE8OBJECTS();
 
-        GenerateSmallObjects();
+        GENERATE8SMALL8OBJECTS();
 
-        GenerateCreatures();
+        GENERATE8CREATURES();
     }
 
     void
-    WorldGenerator::Traverse1(std::function<void(int, int)> callback)
+    WORLD8GENERATOR::TRAVERSE81(std::function<void(int, int)> callback)
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -581,7 +581,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::Traverse2(std::function<void(int, int)> callback)
+    WORLD8GENERATOR::TRAVERSE82(std::function<void(int, int)> callback)
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -596,7 +596,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::Traverse3(std::function<void(int, int)> callback)
+    WORLD8GENERATOR::TRAVERSE83(std::function<void(int, int)> callback)
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -611,7 +611,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::Traverse4(std::function<void(int, int)> callback)
+    WORLD8GENERATOR::TRAVERSE84(std::function<void(int, int)> callback)
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -626,7 +626,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::ClearWithGrass()
+    WORLD8GENERATOR::CLEAR8WITH8GRASS()
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -642,7 +642,7 @@ namespace FORRADIA8GAME
         }
     }
 
-    // void WorldGenerator::GenerateDirt()
+    // void WORLD8GENERATOR::GENERATE8DIRT()
     // {
     //     auto worldArea{_<WORLD>().currentWorldArea_};
     //     auto size{worldArea->GET8SIZE()};
@@ -678,7 +678,7 @@ namespace FORRADIA8GAME
     //     }
     // }
 
-    // void WorldGenerator::GenerateWater()
+    // void WORLD8GENERATOR::GENERATE8WATER()
     // {
     //     auto worldArea{_<WORLD>().currentWorldArea_};
     //     auto size{worldArea->GET8SIZE()};
@@ -714,7 +714,7 @@ namespace FORRADIA8GAME
     //     }
     // }
 
-    // void WorldGenerator::GenerateElevation()
+    // void WORLD8GENERATOR::GENERATE8ELEVATION()
     // {
     //     auto worldArea{_<WORLD>().currentWorldArea_};
     //     auto size{worldArea->GET8SIZE()};
@@ -771,7 +771,7 @@ namespace FORRADIA8GAME
     //     }
     // }
 
-    // void WorldGenerator::GenerateRock()
+    // void WORLD8GENERATOR::GENERATE8ROCK()
     // {
     //     auto worldArea{_<WORLD>().currentWorldArea_};
     //     auto size{worldArea->GET8SIZE()};
@@ -811,7 +811,7 @@ namespace FORRADIA8GAME
     // }
 
     void
-    WorldGenerator::GenerateLargeObjects()
+    WORLD8GENERATOR::GENERATE8LARGE8OBJECTS()
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -972,7 +972,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::GenerateSmallObjects()
+    WORLD8GENERATOR::GENERATE8SMALL8OBJECTS()
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -1051,7 +1051,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::GenerateCreatures()
+    WORLD8GENERATOR::GENERATE8CREATURES()
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
@@ -1162,7 +1162,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::GenerateCivilization()
+    WORLD8GENERATOR::GENERATEA8CIVILIZATION()
     {
         // auto worldArea{_<WORLD>().currentWorldArea_};
         // auto size{worldArea->GET8SIZE()};
@@ -1238,7 +1238,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    WorldGenerator::GenerateWorldAroundPlayer()
+    WORLD8GENERATOR::GENERATE8WORLD8AROUND8PLAYER()
     {
         // auto worldArea{_<WORLD>().currentWorldArea_};
         // auto size{worldArea->GET8SIZE()};

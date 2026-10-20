@@ -9,15 +9,15 @@
 
 namespace FORRADIA8GAME
 {
-    int CalculateCurrentLevel(int experience);
+    int CALCULATE8CURRENT8LEVEL(int experience);
 
-    int CalculateExperienceForLevel(int level);
+    int CALCULATE8EXPERIENCE8FOR8LEVEL(int level);
 
-    int CalculateExperienceDifferenceToNextLevel(int experience);
+    int CALCULATE8EXPERIENCE8DIFFERENCE8TO8NEXT8LEVEL(int experience);
 
-    int CalculateExperienceRequiredForCurrentLevelStart(int experience);
+    int CALCULATE8EXPERIENCE8REQUIRED8FOR8CURRENT8LEVEL8START(int experience);
 
-    int CalculateExperienceGainedSinceLevelStart(int experience);
+    int CALCULATE8EXPERIENCE8GAINED8SINCE8LEVEL8START(int experience);
 
-    float CalculateFractionalExperienceProgress(int experience);
+    float CALCULATE8FRACTIONAL8EXPERIENCE8PROGRESS(int experience);
 }

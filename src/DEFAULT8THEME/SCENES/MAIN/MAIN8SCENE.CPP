@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "MAIN_SCENE.HPP"
+#include "MAIN8SCENE.HPP"
 #include "SUB/WORLD8VIEW/WORLD8VIEW.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
@@ -31,7 +31,7 @@
 namespace FORRADIA8GAME
 {
     void
-    MainScene::INITIALIZE8DERIVED()
+    MAIN8SCENE::INITIALIZE8DERIVED()
     {
         gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
@@ -57,7 +57,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::ON8ENTER8DERIVED()
+    MAIN8SCENE::ON8ENTER8DERIVED()
     {
         _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(
             1.0f - _<GUI8TEXT8CONSOLE>().size_.height -
@@ -67,7 +67,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::UPDATE8DERIVED()
+    MAIN8SCENE::UPDATE8DERIVED()
     {
         _<CREATURES8MOVEMENT>().UPDATE();
 
@@ -87,7 +87,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::RENDER8BEFORE8GUI8DERIVED()
+    MAIN8SCENE::RENDER8BEFORE8GUI8DERIVED()
     {
         _<WORLD8VIEW>().RENDER();
 
@@ -99,13 +99,13 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::RENDER8AFTER8GUI8DERIVED()
+    MAIN8SCENE::RENDER8AFTER8GUI8DERIVED()
     {
         _<OBJECT8MOVING>().RENDER();
     }
 
     void
-    MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
+    MAIN8SCENE::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
     {
         _<KEYBOARD8MOVEMENT>().ON8KEY8DOWN(key);
 
@@ -115,7 +115,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
+    MAIN8SCENE::ON8KEY8UP8DERIVED(SDL_Keycode key)
     {
         _<KEYBOARD8MOVEMENT>().ON8KEY8UP(key);
 
@@ -123,7 +123,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
+    MAIN8SCENE::ON8MOUSE8DOWN8DERIVED(Uint8 button)
     {
         _<PLAYER8COMBAT8TO8OTHERS>().ON8MOUSE8DOWN(button);
 
@@ -137,7 +137,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
+    MAIN8SCENE::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
     {
         _<OBJECT8MOVING>().ON8MOUSE8UP(button, clickSpeed);
     }

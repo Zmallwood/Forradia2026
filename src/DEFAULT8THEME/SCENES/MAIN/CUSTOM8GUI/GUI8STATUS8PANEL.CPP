@@ -8,7 +8,7 @@
 #include "GUI8STATUS8PANEL.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
-#include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
+#include "DEFAULT8THEME/THEME8MATH/EXPERIENCE8MATH.HPP"
 #include "GUI8HEALTH8METER.HPP"
 
 namespace FORRADIA8GAME
@@ -26,7 +26,7 @@ namespace FORRADIA8GAME
         _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().name_, 0.015f, 0.01f,
                                        FONT8SIZES::_18, false);
 
-        auto playerLevel = CalculateCurrentLevel(_<PLAYER>().experience_);
+        auto playerLevel = CALCULATE8CURRENT8LEVEL(_<PLAYER>().experience_);
 
         std::string levelText = "Level " + std::to_string(playerLevel);
 

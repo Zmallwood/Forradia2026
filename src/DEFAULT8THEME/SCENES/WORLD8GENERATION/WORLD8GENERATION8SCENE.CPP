@@ -1,0 +1,28 @@
+//////////////////////////////////////////////////////////////////////////
+//                               Forradia                               //
+//                                                                      //
+// Copyright (c) 2026 Andreas Åkerberg                                  //
+// SPDX-License-Identifier: MIT                                         //
+//////////////////////////////////////////////////////////////////////////
+
+#include "WORLD8GENERATION8SCENE.HPP"
+#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
+#include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
+#include "SUB/WORLD8GENERATOR.HPP"
+
+namespace FORRADIA8GAME
+{
+    void
+    WORLD8GENERATION8SCENE::ON8ENTER8DERIVED()
+    {
+        _<WORLD8GENERATOR>().GENERATE8NEW8WORLD();
+
+        _<PLAYER>().SPAWN8ONSUITABLE8LOCATION();
+
+        _<WORLD8GENERATOR>().GENERATEA8CIVILIZATION();
+
+        _<WORLD8GENERATOR>().GENERATE8WORLD8AROUND8PLAYER();
+
+        _<SCENE8MANAGER>().GO8TO8SCENE("MainScene");
+    }
+}

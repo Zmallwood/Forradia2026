@@ -7,7 +7,7 @@
 
 #include "GUI8EXPERIENCE8METER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
+#include "DEFAULT8THEME/THEME8MATH/EXPERIENCE8MATH.HPP"
 
 namespace FORRADIA8GAME
 {
@@ -21,7 +21,7 @@ namespace FORRADIA8GAME
     {
         auto experience = _<PLAYER>().experience_;
 
-        auto progress = CalculateFractionalExperienceProgress(experience);
+        auto progress = CALCULATE8FRACTIONAL8EXPERIENCE8PROGRESS(experience);
 
         return progress;
     }

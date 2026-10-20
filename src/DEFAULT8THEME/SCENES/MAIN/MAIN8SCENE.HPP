@@ -11,7 +11,7 @@
 
 namespace FORRADIA8GAME
 {
-    class MainScene : public I8SCENE
+    class MAIN8SCENE : public I8SCENE
     {
       protected:
         void INITIALIZE8DERIVED() override;
