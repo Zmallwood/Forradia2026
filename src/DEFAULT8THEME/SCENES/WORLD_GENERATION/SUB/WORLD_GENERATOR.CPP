@@ -1112,6 +1112,46 @@ WorldGenerator::GenerateCreatures()
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
+    
+    auto numRedBirds{80 + rand() % 10};
+
+    for (auto i = 0; i < numRedBirds; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
+        {
+            continue;
+        }
+
+        auto newCreature{std::make_shared<CREATURE>("CreatureRedBird")};
+
+        worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+    }
+    
+    auto numWhiteRabbits{80 + rand() % 10};
+
+    for (auto i = 0; i < numWhiteRabbits; i++)
+    {
+        auto x{rand() % size.width};
+        auto y{rand() % size.height};
+
+        auto tile{worldArea->GetTile(x, y)};
+
+        if (tile->ground_ == HASH("GroundWater") ||
+            tile->ground_ == HASH("GroundRock"))
+        {
+            continue;
+        }
+
+        auto newCreature{std::make_shared<CREATURE>("CreatureWhiteRabbit")};
+
+        worldArea->creaturesMirror_.insert({newCreature, {x, y}});
+    }
 }
 
 void
