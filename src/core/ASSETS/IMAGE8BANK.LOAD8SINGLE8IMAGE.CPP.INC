@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////////
+//                               Forradia                               //
+//                                                                      //
+// Copyright (c) 2026 Andreas Åkerberg                                  //
+// SPDX-License-Identifier: MIT                                         //
+//////////////////////////////////////////////////////////////////////////
+
 std::string path = REPLACE(fullPath, "\\", "/");
 
 auto pureName = GET8FILE8NAME8NO8EXT(path);

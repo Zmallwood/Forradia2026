@@ -19,7 +19,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE
-    src/STD_AFX.HPP
+    src/STD8AFX.HPP
 )
 
 find_package(SDL2 REQUIRED)

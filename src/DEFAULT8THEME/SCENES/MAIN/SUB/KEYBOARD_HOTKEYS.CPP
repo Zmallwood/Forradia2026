@@ -1,5 +1,9 @@
-// Copyright (c) 2026 Andreas Åkerberg
-// SPDX-License-Identifier: MIT
+//////////////////////////////////////////////////////////////////////////
+//                               Forradia                               //
+//                                                                      //
+// Copyright (c) 2026 Andreas Åkerberg                                  //
+// SPDX-License-Identifier: MIT                                         //
+//////////////////////////////////////////////////////////////////////////
 
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_EQUIPMENT_WINDOW.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"

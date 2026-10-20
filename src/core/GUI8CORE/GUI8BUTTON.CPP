@@ -1,5 +1,9 @@
-// Copyright (c) 2026 Andreas Åkerberg
-// SPDX-License-Identifier: MIT
+//////////////////////////////////////////////////////////////////////////
+//                               Forradia                               //
+//                                                                      //
+// Copyright (c) 2026 Andreas Åkerberg                                  //
+// SPDX-License-Identifier: MIT                                         //
+//////////////////////////////////////////////////////////////////////////
 
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
