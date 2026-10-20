@@ -7,7 +7,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "OBJECT8FLAGS.HPP"
 #include "OBJECT8INDEX.HPP"
 
@@ -26,11 +26,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectTree1 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectFelledTree");
 
@@ -75,11 +75,11 @@ OBJECT8INDEX::OBJECT8INDEX()
 
     auto singleImpactPointCompletedActionObjectFelledTree = []()
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->ADD8OBJECT("ObjectWoodLog");
 
@@ -91,11 +91,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectFelledTree =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->REMOVE8OBJECT(object);
 
@@ -113,11 +113,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodLog =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectWoodPlank");
 
@@ -136,11 +136,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth1");
@@ -156,11 +156,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth2");
@@ -176,11 +176,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth3");
@@ -196,11 +196,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth4");
@@ -236,11 +236,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast1 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast1");
@@ -256,11 +256,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast2 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast2");
@@ -276,11 +276,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast3 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast3");
@@ -296,11 +296,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankEast4 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast4");
@@ -336,11 +336,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth1");
@@ -356,11 +356,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth2");
@@ -376,11 +376,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth3");
@@ -396,11 +396,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth4");
@@ -436,11 +436,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest1");
@@ -456,11 +456,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest2 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest2");
@@ -476,11 +476,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest3 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest3");
@@ -496,11 +496,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodWallPlankWest4 =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest4");
@@ -536,11 +536,11 @@ OBJECT8INDEX::OBJECT8INDEX()
     auto allImpactPointsCompletedActionObjectWoodFloor =
         [](std::shared_ptr<OBJECT> object)
     {
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto facedTile = worldArea->GetTile(facedTileCoordinate);
+        auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
         facedTile->tileObjects_->REMOVE8OBJECT(object);
 

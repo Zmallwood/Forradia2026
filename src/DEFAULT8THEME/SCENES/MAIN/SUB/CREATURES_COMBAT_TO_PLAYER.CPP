@@ -4,7 +4,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURES_COMBAT_TO_PLAYER.HPP"
 
 void
@@ -14,7 +14,7 @@ CreaturesCombatToPlayer::Update()
 
     auto playerPosition{_<PLAYER>().position_};
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     auto &creatures{worldArea->creaturesMirror_};
 

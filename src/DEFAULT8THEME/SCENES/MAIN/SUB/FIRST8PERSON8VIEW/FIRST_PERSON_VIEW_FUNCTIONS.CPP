@@ -6,7 +6,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
 std::map<std::pair<int, int>, PositionedObject>
@@ -14,8 +14,8 @@ GetOrderedObjects()
 {
     auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
-    auto worldArea = _<World>().currentWorldArea_;
-    auto facedTile = worldArea->GetTile(_<PLAYER>().facedTileCoordinate_);
+    auto worldArea = _<WORLD>().currentWorldArea_;
+    auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
     if (!facedTile)
     {
@@ -38,19 +38,19 @@ GetOrderedObjects()
 
         switch (facingDirection)
         {
-        case WorldDirections::North:
+        case WORLD8DIRECTIONS::North:
             xPos = position.x;
             yPos = position.y;
             break;
-        case WorldDirections::East:
+        case WORLD8DIRECTIONS::East:
             xPos = position.y;
             yPos = tileUnitsWidth - 1 - position.x;
             break;
-        case WorldDirections::South:
+        case WORLD8DIRECTIONS::South:
             xPos = tileUnitsWidth - 1 - position.x;
             yPos = tileUnitsWidth - 1 - position.y;
             break;
-        case WorldDirections::West:
+        case WORLD8DIRECTIONS::West:
             xPos = tileUnitsWidth - 1 - position.y;
             yPos = position.x;
             break;
@@ -121,17 +121,17 @@ GetHoveredTilePosition(POINT8F mouseOffset)
 
             switch (_<PLAYER>().facingDirection_)
             {
-            case WorldDirections::North:
+            case WORLD8DIRECTIONS::North:
                 break;
-            case WorldDirections::East:
+            case WORLD8DIRECTIONS::East:
                 tileX = tileUnitsWidth - 1 - hoveredY;
                 tileY = hoveredX;
                 break;
-            case WorldDirections::South:
+            case WORLD8DIRECTIONS::South:
                 tileX = tileUnitsWidth - 1 - hoveredX;
                 tileY = tileUnitsWidth - 1 - hoveredY;
                 break;
-            case WorldDirections::West:
+            case WORLD8DIRECTIONS::West:
                 tileX = hoveredY;
                 tileY = tileUnitsWidth - 1 - hoveredX;
                 break;

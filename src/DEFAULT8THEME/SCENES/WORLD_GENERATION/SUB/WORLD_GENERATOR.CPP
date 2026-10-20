@@ -7,7 +7,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "WORLD_GENERATOR.HPP"
 
 void
@@ -15,14 +15,14 @@ WorldGenerator::GenerateNewWorld()
 {
     ClearWithGrass();
 
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto y = 0; y < size.height; y++)
     {
         for (auto x = 0; x < size.width; x++)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
             tile->elevation_ = 1;
         }
     }
@@ -31,12 +31,12 @@ WorldGenerator::GenerateNewWorld()
     {
         for (auto x = 1; x < size.width - 1; x++)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
 
             auto groundNW{tileNW->ground_};
             auto groundN{tileN->ground_};
@@ -66,16 +66,16 @@ WorldGenerator::GenerateNewWorld()
     auto fnMakeWater = std::function<void(int, int)>(
         [&](int x, int y)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
-            auto tileE{worldArea->GetTile(x + 1, y)};
-            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-            auto tileS{worldArea->GetTile(x, y + 1)};
-            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
+            auto tileE{worldArea->GET8TILE(x + 1, y)};
+            auto tileSW{worldArea->GET8TILE(x - 1, y + 1)};
+            auto tileS{worldArea->GET8TILE(x, y + 1)};
+            auto tileSE{worldArea->GET8TILE(x + 1, y + 1)};
 
             auto groundNW{tileNW->ground_};
             auto groundN{tileN->ground_};
@@ -154,12 +154,12 @@ WorldGenerator::GenerateNewWorld()
     {
         for (auto x = 1; x < size.width - 1; x++)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
 
             auto groundNW{tileNW->ground_};
             auto groundN{tileN->ground_};
@@ -189,16 +189,16 @@ WorldGenerator::GenerateNewWorld()
     auto fnMakeDirt = std::function<void(int, int)>(
         [&](int x, int y)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
-            auto tileE{worldArea->GetTile(x + 1, y)};
-            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-            auto tileS{worldArea->GetTile(x, y + 1)};
-            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
+            auto tileE{worldArea->GET8TILE(x + 1, y)};
+            auto tileSW{worldArea->GET8TILE(x - 1, y + 1)};
+            auto tileS{worldArea->GET8TILE(x, y + 1)};
+            auto tileSE{worldArea->GET8TILE(x + 1, y + 1)};
 
             auto groundNW{tileNW->ground_};
             auto groundN{tileN->ground_};
@@ -287,7 +287,7 @@ WorldGenerator::GenerateNewWorld()
             {
                 for (auto x = xCenter - radius; x <= xCenter + radius; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->IS8VALID8COORDINATE(x, y))
                     {
                         continue;
                     }
@@ -297,7 +297,7 @@ WorldGenerator::GenerateNewWorld()
 
                     if (dx * dx + dy * dy <= r * r)
                     {
-                        auto tile{worldArea->GetTile(x, y)};
+                        auto tile{worldArea->GET8TILE(x, y)};
 
                         if (tile->ground_ == HASH("GroundWater") &&
                             tile->ground_ != HASH("GroundRock"))
@@ -333,7 +333,7 @@ WorldGenerator::GenerateNewWorld()
             {
                 for (auto x = xCenter - r; x <= xCenter + r; x++)
                 {
-                    if (!worldArea->IsValidCoordinate(x, y))
+                    if (!worldArea->IS8VALID8COORDINATE(x, y))
                     {
                         continue;
                     }
@@ -343,7 +343,7 @@ WorldGenerator::GenerateNewWorld()
 
                     if (dx * dx + dy * dy <= r * r)
                     {
-                        auto tile{worldArea->GetTile(x, y)};
+                        auto tile{worldArea->GET8TILE(x, y)};
 
                         if (tile->ground_ == HASH("GroundWater"))
                         {
@@ -371,12 +371,12 @@ WorldGenerator::GenerateNewWorld()
     {
         for (auto x = 1; x < size.width - 1; x++)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
 
             auto groundNW{tileNW->ground_};
             auto groundN{tileN->ground_};
@@ -423,16 +423,16 @@ WorldGenerator::GenerateNewWorld()
     auto fnMakeTrees = std::function<void(int, int)>(
         [&](int x, int y)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
-            auto tileNW{worldArea->GetTile(x - 1, y - 1)};
-            auto tileN{worldArea->GetTile(x, y - 1)};
-            auto tileNE{worldArea->GetTile(x + 1, y - 1)};
-            auto tileW{worldArea->GetTile(x - 1, y)};
-            auto tileE{worldArea->GetTile(x + 1, y)};
-            auto tileSW{worldArea->GetTile(x - 1, y + 1)};
-            auto tileS{worldArea->GetTile(x, y + 1)};
-            auto tileSE{worldArea->GetTile(x + 1, y + 1)};
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
+            auto tileE{worldArea->GET8TILE(x + 1, y)};
+            auto tileSW{worldArea->GET8TILE(x - 1, y + 1)};
+            auto tileS{worldArea->GET8TILE(x, y + 1)};
+            auto tileSE{worldArea->GET8TILE(x + 1, y + 1)};
 
             auto hasTreeNW{
                 tileNW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
@@ -561,8 +561,8 @@ WorldGenerator::GenerateNewWorld()
 void
 WorldGenerator::Traverse1(std::function<void(int, int)> callback)
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto y = 1; y < size.height - 1; y++)
     {
@@ -576,8 +576,8 @@ WorldGenerator::Traverse1(std::function<void(int, int)> callback)
 void
 WorldGenerator::Traverse2(std::function<void(int, int)> callback)
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto x = 1; x < size.width - 1; x++)
     {
@@ -591,8 +591,8 @@ WorldGenerator::Traverse2(std::function<void(int, int)> callback)
 void
 WorldGenerator::Traverse3(std::function<void(int, int)> callback)
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto y = size.height - 2; y > 0; y--)
     {
@@ -606,8 +606,8 @@ WorldGenerator::Traverse3(std::function<void(int, int)> callback)
 void
 WorldGenerator::Traverse4(std::function<void(int, int)> callback)
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto x = size.width - 2; x > 0; x--)
     {
@@ -621,14 +621,14 @@ WorldGenerator::Traverse4(std::function<void(int, int)> callback)
 void
 WorldGenerator::ClearWithGrass()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto y = 0; y < size.height; y++)
     {
         for (auto x = 0; x < size.width; x++)
         {
-            auto tile{worldArea->GetTile(x, y)};
+            auto tile{worldArea->GET8TILE(x, y)};
 
             tile->ground_ = HASH("GroundGrass");
         }
@@ -637,8 +637,8 @@ WorldGenerator::ClearWithGrass()
 
 // void WorldGenerator::GenerateDirt()
 // {
-//     auto worldArea{_<World>().currentWorldArea_};
-//     auto size{worldArea->GetSize()};
+//     auto worldArea{_<WORLD>().currentWorldArea_};
+//     auto size{worldArea->GET8SIZE()};
 
 //     auto numDirtPatches{15 + rand() % 8};
 
@@ -652,7 +652,7 @@ WorldGenerator::ClearWithGrass()
 //         {
 //             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
 //             {
-//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 if (!worldArea->IS8VALID8COORDINATE(x, y))
 //                 {
 //                     continue;
 //                 }
@@ -662,7 +662,7 @@ WorldGenerator::ClearWithGrass()
 
 //                 if (dx * dx + dy * dy <= radius * radius)
 //                 {
-//                     auto tile{worldArea->GetTile(x, y)};
+//                     auto tile{worldArea->GET8TILE(x, y)};
 
 //                     tile->ground_ = HASH("GroundDirt");
 //                 }
@@ -673,8 +673,8 @@ WorldGenerator::ClearWithGrass()
 
 // void WorldGenerator::GenerateWater()
 // {
-//     auto worldArea{_<World>().currentWorldArea_};
-//     auto size{worldArea->GetSize()};
+//     auto worldArea{_<WORLD>().currentWorldArea_};
+//     auto size{worldArea->GET8SIZE()};
 
 //     auto numLakes{40 + rand() % 20};
 
@@ -688,7 +688,7 @@ WorldGenerator::ClearWithGrass()
 //         {
 //             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
 //             {
-//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 if (!worldArea->IS8VALID8COORDINATE(x, y))
 //                 {
 //                     continue;
 //                 }
@@ -698,7 +698,7 @@ WorldGenerator::ClearWithGrass()
 
 //                 if (dx * dx + dy * dy <= radius * radius)
 //                 {
-//                     auto tile{worldArea->GetTile(x, y)};
+//                     auto tile{worldArea->GET8TILE(x, y)};
 
 //                     tile->ground_ = HASH("GroundWater");
 //                 }
@@ -709,14 +709,14 @@ WorldGenerator::ClearWithGrass()
 
 // void WorldGenerator::GenerateElevation()
 // {
-//     auto worldArea{_<World>().currentWorldArea_};
-//     auto size{worldArea->GetSize()};
+//     auto worldArea{_<WORLD>().currentWorldArea_};
+//     auto size{worldArea->GET8SIZE()};
 
 //     for (auto y = 0; y < size.height; y++)
 //     {
 //         for (auto x = 0; x < size.width; x++)
 //         {
-//             auto tile{worldArea->GetTile(x, y)};
+//             auto tile{worldArea->GET8TILE(x, y)};
 
 //             if (tile->ground_ != HASH("GroundWater"))
 //             {
@@ -739,7 +739,7 @@ WorldGenerator::ClearWithGrass()
 //             {
 //                 for (auto x = xCenter - r; x <= xCenter + r; x++)
 //                 {
-//                     if (!worldArea->IsValidCoordinate(x, y))
+//                     if (!worldArea->IS8VALID8COORDINATE(x, y))
 //                     {
 //                         continue;
 //                     }
@@ -749,7 +749,7 @@ WorldGenerator::ClearWithGrass()
 
 //                     if (dx * dx + dy * dy <= r * r)
 //                     {
-//                         auto tile{worldArea->GetTile(x, y)};
+//                         auto tile{worldArea->GET8TILE(x, y)};
 
 //                         if (tile->ground_ == HASH("GroundWater"))
 //                         {
@@ -766,8 +766,8 @@ WorldGenerator::ClearWithGrass()
 
 // void WorldGenerator::GenerateRock()
 // {
-//     auto worldArea{_<World>().currentWorldArea_};
-//     auto size{worldArea->GetSize()};
+//     auto worldArea{_<WORLD>().currentWorldArea_};
+//     auto size{worldArea->GET8SIZE()};
 
 //     auto numRockPatches{60 + rand() % 5};
 
@@ -781,7 +781,7 @@ WorldGenerator::ClearWithGrass()
 //         {
 //             for (auto x = xCenter - radius; x <= xCenter + radius; x++)
 //             {
-//                 if (!worldArea->IsValidCoordinate(x, y))
+//                 if (!worldArea->IS8VALID8COORDINATE(x, y))
 //                 {
 //                     continue;
 //                 }
@@ -791,7 +791,7 @@ WorldGenerator::ClearWithGrass()
 
 //                 if (dx * dx + dy * dy <= radius * radius)
 //                 {
-//                     auto tile{worldArea->GetTile(x, y)};
+//                     auto tile{worldArea->GET8TILE(x, y)};
 
 //                     if (tile->elevation_ >= 2)
 //                     {
@@ -806,8 +806,8 @@ WorldGenerator::ClearWithGrass()
 void
 WorldGenerator::GenerateLargeObjects()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     // auto numTree2Groups{100 + rand() % 10};
 
@@ -823,12 +823,12 @@ WorldGenerator::GenerateLargeObjects()
     //         x += rand() % 3 - rand() % 3;
     //         y += rand() % 3 - rand() % 3;
 
-    //         if (!worldArea->IsValidCoordinate(x, y))
+    //         if (!worldArea->IS8VALID8COORDINATE(x, y))
     //         {
     //             continue;
     //         }
 
-    //         auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GET8TILE(x, y)};
 
     //         if (tile->ground_ == HASH("GroundWater") ||
     //             tile->ground_ == HASH("GroundRock"))
@@ -856,12 +856,12 @@ WorldGenerator::GenerateLargeObjects()
     //         x += rand() % 3 - rand() % 3;
     //         y += rand() % 3 - rand() % 3;
 
-    //         if (!worldArea->IsValidCoordinate(x, y))
+    //         if (!worldArea->IS8VALID8COORDINATE(x, y))
     //         {
     //             continue;
     //         }
 
-    //         auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GET8TILE(x, y)};
 
     //         if (tile->ground_ == HASH("GroundWater") ||
     //             tile->ground_ == HASH("GroundRock"))
@@ -882,7 +882,7 @@ WorldGenerator::GenerateLargeObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundDirt") ||
@@ -901,7 +901,7 @@ WorldGenerator::GenerateLargeObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundDirt") ||
@@ -920,7 +920,7 @@ WorldGenerator::GenerateLargeObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundGrass") ||
             tile->ground_ == HASH("GroundDirt"))
@@ -938,7 +938,7 @@ WorldGenerator::GenerateLargeObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundGrass") ||
             tile->ground_ == HASH("GroundDirt"))
@@ -954,7 +954,7 @@ WorldGenerator::GenerateLargeObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundGrass") ||
             tile->ground_ == HASH("GroundDirt"))
@@ -967,8 +967,8 @@ WorldGenerator::GenerateLargeObjects()
 void
 WorldGenerator::GenerateSmallObjects()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     auto numStones{500 + rand() % 50};
 
@@ -977,7 +977,7 @@ WorldGenerator::GenerateSmallObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater"))
         {
@@ -994,7 +994,7 @@ WorldGenerator::GenerateSmallObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1012,7 +1012,7 @@ WorldGenerator::GenerateSmallObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock") ||
@@ -1031,7 +1031,7 @@ WorldGenerator::GenerateSmallObjects()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1046,8 +1046,8 @@ WorldGenerator::GenerateSmallObjects()
 void
 WorldGenerator::GenerateCreatures()
 {
-    auto worldArea{_<World>().currentWorldArea_};
-    auto size{worldArea->GetSize()};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto size{worldArea->GET8SIZE()};
 
     // auto numDeers{150 + rand() % 20};
     auto numDeers{80 + rand() % 10};
@@ -1057,7 +1057,7 @@ WorldGenerator::GenerateCreatures()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1080,7 +1080,7 @@ WorldGenerator::GenerateCreatures()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1092,7 +1092,7 @@ WorldGenerator::GenerateCreatures()
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
-    
+
     auto numButterflies{80 + rand() % 10};
 
     for (auto i = 0; i < numButterflies; i++)
@@ -1100,7 +1100,7 @@ WorldGenerator::GenerateCreatures()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1112,7 +1112,7 @@ WorldGenerator::GenerateCreatures()
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
-    
+
     auto numRedBirds{80 + rand() % 10};
 
     for (auto i = 0; i < numRedBirds; i++)
@@ -1120,7 +1120,7 @@ WorldGenerator::GenerateCreatures()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1132,7 +1132,7 @@ WorldGenerator::GenerateCreatures()
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
-    
+
     auto numWhiteRabbits{80 + rand() % 10};
 
     for (auto i = 0; i < numWhiteRabbits; i++)
@@ -1140,7 +1140,7 @@ WorldGenerator::GenerateCreatures()
         auto x{rand() % size.width};
         auto y{rand() % size.height};
 
-        auto tile{worldArea->GetTile(x, y)};
+        auto tile{worldArea->GET8TILE(x, y)};
 
         if (tile->ground_ == HASH("GroundWater") ||
             tile->ground_ == HASH("GroundRock"))
@@ -1157,8 +1157,8 @@ WorldGenerator::GenerateCreatures()
 void
 WorldGenerator::GenerateCivilization()
 {
-    // auto worldArea{_<World>().currentWorldArea_};
-    // auto size{worldArea->GetSize()};
+    // auto worldArea{_<WORLD>().currentWorldArea_};
+    // auto size{worldArea->GET8SIZE()};
 
     // auto playerPosition{_<PLAYER>().position_};
 
@@ -1166,7 +1166,7 @@ WorldGenerator::GenerateCivilization()
 
     // for (auto x = 0; x < size.width; x++)
     // {
-    //     auto tile{worldArea->GetTile(x, playerPosition.y)};
+    //     auto tile{worldArea->GET8TILE(x, playerPosition.y)};
 
     //     tile->tileObjects_->CLEAR();
 
@@ -1188,7 +1188,7 @@ WorldGenerator::GenerateCivilization()
 
     // for (auto y = 0; y < size.height; y++)
     // {
-    //     auto tile{worldArea->GetTile(playerPosition.x, y)};
+    //     auto tile{worldArea->GET8TILE(playerPosition.x, y)};
 
     //     tile->tileObjects_->CLEAR();
 
@@ -1211,7 +1211,7 @@ WorldGenerator::GenerateCivilization()
     //     for (auto x = playerPosition.x - 1; x <= playerPosition.x + 1;
     //     x++)
     //     {
-    //         auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GET8TILE(x, y)};
 
     //         tile->tileObjects_->CLEAR();
 
@@ -1220,12 +1220,12 @@ WorldGenerator::GenerateCivilization()
     // }
 
     // auto tileNorthWest{
-    //     worldArea->GetTile(playerPosition.x - 1, playerPosition.y - 1)};
+    //     worldArea->GET8TILE(playerPosition.x - 1, playerPosition.y - 1)};
 
     // tileNorthWest->npc_ = std::make_shared<NPC>("NPC0");
 
     // auto tileNorthEast{
-    //     worldArea->GetTile(playerPosition.x + 1, playerPosition.y - 1)};
+    //     worldArea->GET8TILE(playerPosition.x + 1, playerPosition.y - 1)};
 
     // tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
 }
@@ -1233,8 +1233,8 @@ WorldGenerator::GenerateCivilization()
 void
 WorldGenerator::GenerateWorldAroundPlayer()
 {
-    // auto worldArea{_<World>().currentWorldArea_};
-    // auto size{worldArea->GetSize()};
+    // auto worldArea{_<WORLD>().currentWorldArea_};
+    // auto size{worldArea->GET8SIZE()};
 
     // POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
     //                      static_cast<int>(_<PLAYER>().position_.y)};
@@ -1243,7 +1243,7 @@ WorldGenerator::GenerateWorldAroundPlayer()
     // {
     //     for (auto x = playerPosition.x - 4; x <= playerPosition.x + 4; x++)
     //     {
-    //         auto tile{worldArea->GetTile(x, y)};
+    //         auto tile{worldArea->GET8TILE(x, y)};
 
     //         if (!tile)
     //         {

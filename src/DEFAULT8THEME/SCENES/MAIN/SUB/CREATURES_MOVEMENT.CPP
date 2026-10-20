@@ -5,13 +5,13 @@
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURES_MOVEMENT.HPP"
 
 void
 CreaturesMovement::Update()
 {
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     auto playerPosition{_<PLAYER>().position_};
 
@@ -50,7 +50,7 @@ CreaturesMovement::Update()
 
             auto newPosition{position + POINT{dx, dy}};
 
-            if (!worldArea->IsValidCoordinate(newPosition))
+            if (!worldArea->IS8VALID8COORDINATE(newPosition))
             {
                 ++it;
 
@@ -65,7 +65,7 @@ CreaturesMovement::Update()
                 continue;
             }
 
-            auto newTile{worldArea->GetTile(newPosition)};
+            auto newTile{worldArea->GET8TILE(newPosition)};
 
             if (newTile->ground_ == HASH("GroundWater") || newTile->creature_)
             {
@@ -85,7 +85,7 @@ CreaturesMovement::Update()
                 }
             }
 
-            auto oldTile{worldArea->GetTile(position)};
+            auto oldTile{worldArea->GET8TILE(position)};
 
             newTile->creature_ = creature;
             oldTile->creature_ = nullptr;

@@ -14,7 +14,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE_HOVERING.HPP"
 #include "WORLD_VIEW.HPP"
 
@@ -27,7 +27,7 @@ WorldView::Render()
 
     _<COLOR8RENDERER>().FILL8RECT(0.0f, 0.0f, viewWidth, 1.0f, COLORS::kBlack);
 
-    auto worldArea = _<World>().currentWorldArea_;
+    auto worldArea = _<WORLD>().currentWorldArea_;
 
     POINT playerPosition = {static_cast<int>(_<PLAYER>().position_.x),
                             static_cast<int>(_<PLAYER>().position_.y)};
@@ -38,7 +38,7 @@ WorldView::Render()
     auto playerMoveDx = _<PLAYER>().position_.x - playerPosition.x;
     auto playerMoveDy = _<PLAYER>().position_.y - playerPosition.y;
 
-    auto playerTile = worldArea->GetTile(playerPosition);
+    auto playerTile = worldArea->GET8TILE(playerPosition);
 
     auto playerElevation = 0;
 
@@ -69,12 +69,12 @@ WorldView::Render()
             auto xCoordinate = playerPosition.x - 5 + x;
             auto yCoordinate = playerPosition.y - 5 + y;
 
-            if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+            if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate))
             {
                 continue;
             }
 
-            auto tile = worldArea->GetTile(xCoordinate, yCoordinate);
+            auto tile = worldArea->GET8TILE(xCoordinate, yCoordinate);
 
             auto elevation = tile->elevation_;
 
@@ -98,50 +98,50 @@ WorldView::Render()
             auto elevationSouthWest = elevation;
             auto elevationNorthWest = elevation;
 
-            if (worldArea->IsValidCoordinate(coordinateNorth))
+            if (worldArea->IS8VALID8COORDINATE(coordinateNorth))
             {
                 elevationNorth =
-                    worldArea->GetTile(coordinateNorth)->elevation_;
+                    worldArea->GET8TILE(coordinateNorth)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateEast))
+            if (worldArea->IS8VALID8COORDINATE(coordinateEast))
             {
-                elevationEast = worldArea->GetTile(coordinateEast)->elevation_;
+                elevationEast = worldArea->GET8TILE(coordinateEast)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateSouth))
+            if (worldArea->IS8VALID8COORDINATE(coordinateSouth))
             {
                 elevationSouth =
-                    worldArea->GetTile(coordinateSouth)->elevation_;
+                    worldArea->GET8TILE(coordinateSouth)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateWest))
+            if (worldArea->IS8VALID8COORDINATE(coordinateWest))
             {
-                elevationWest = worldArea->GetTile(coordinateWest)->elevation_;
+                elevationWest = worldArea->GET8TILE(coordinateWest)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateNorthEast))
+            if (worldArea->IS8VALID8COORDINATE(coordinateNorthEast))
             {
                 elevationNorthEast =
-                    worldArea->GetTile(coordinateNorthEast)->elevation_;
+                    worldArea->GET8TILE(coordinateNorthEast)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateSouthEast))
+            if (worldArea->IS8VALID8COORDINATE(coordinateSouthEast))
             {
                 elevationSouthEast =
-                    worldArea->GetTile(coordinateSouthEast)->elevation_;
+                    worldArea->GET8TILE(coordinateSouthEast)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateSouthWest))
+            if (worldArea->IS8VALID8COORDINATE(coordinateSouthWest))
             {
                 elevationSouthWest =
-                    worldArea->GetTile(coordinateSouthWest)->elevation_;
+                    worldArea->GET8TILE(coordinateSouthWest)->elevation_;
             }
 
-            if (worldArea->IsValidCoordinate(coordinateNorthWest))
+            if (worldArea->IS8VALID8COORDINATE(coordinateNorthWest))
             {
                 elevationNorthWest =
-                    worldArea->GetTile(coordinateNorthWest)->elevation_;
+                    worldArea->GET8TILE(coordinateNorthWest)->elevation_;
             }
 
             auto tileX = 0.25f - tileWidth / 2 + x * tileWidth / 2 -

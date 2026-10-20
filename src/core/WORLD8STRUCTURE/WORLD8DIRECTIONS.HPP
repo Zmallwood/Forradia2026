@@ -3,7 +3,7 @@
 
 #pragma once
 
-enum class WorldDirections
+enum class WORLD8DIRECTIONS
 {
     North,
     East,

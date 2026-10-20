@@ -4,7 +4,7 @@
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURE_RESPAWNER.HPP"
 
 
@@ -13,9 +13,9 @@ CreatureRespawner::Update()
 {
     auto now{NOW()};
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
-    auto size{worldArea->GetSize()};
+    auto size{worldArea->GET8SIZE()};
 
     for (auto it = creatureRespawns_.begin(); it != creatureRespawns_.end();)
     {
@@ -28,14 +28,14 @@ CreatureRespawner::Update()
 
             int x;
             int y;
-            std::shared_ptr<Tile> tile;
+            std::shared_ptr<TILE> tile;
 
             do
             {
                 x = rand() % size.width;
                 y = rand() % size.height;
 
-                tile = worldArea->GetTile({x, y});
+                tile = worldArea->GET8TILE({x, y});
             } while (tile->ground_ == HASH("GroundWater") ||
                      tile->ground_ == HASH("GroundDirt"));
 

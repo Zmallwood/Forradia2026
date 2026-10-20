@@ -11,7 +11,7 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "FIRST_PERSON_HOVERING.HPP"
 
@@ -31,8 +31,8 @@ FirstPersonHovering::Update()
 
     auto mousePosition{GET8MOUSE8POSITION()};
 
-    auto worldArea{_<World>().currentWorldArea_};
-    auto facedTile{worldArea->GetTile(_<PLAYER>().facedTileCoordinate_)};
+    auto worldArea{_<WORLD>().currentWorldArea_};
+    auto facedTile{worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_)};
 
     if (!facedTile)
     {

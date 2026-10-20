@@ -5,7 +5,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "TILE_HOVERING.HPP"
 
 void
@@ -13,7 +13,7 @@ TileHovering::Update()
 {
     auto mousePosition{GET8MOUSE8POSITION()};
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
                          static_cast<int>(_<PLAYER>().position_.y)};
@@ -21,7 +21,7 @@ TileHovering::Update()
     auto playerMoveDx{_<PLAYER>().position_.x - playerPosition.x};
     auto playerMoveDy{_<PLAYER>().position_.y - playerPosition.y};
 
-    auto playerTile{worldArea->GetTile(playerPosition)};
+    auto playerTile{worldArea->GET8TILE(playerPosition)};
 
     if (!playerTile)
     {
@@ -49,12 +49,12 @@ TileHovering::Update()
             auto xCoordinate{playerPosition.x - 5 + x};
             auto yCoordinate{playerPosition.y - 5 + y};
 
-            if (!worldArea->IsValidCoordinate(xCoordinate, yCoordinate))
+            if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate))
             {
                 continue;
             }
 
-            auto tile{worldArea->GetTile(xCoordinate, yCoordinate)};
+            auto tile{worldArea->GET8TILE(xCoordinate, yCoordinate)};
 
             auto elevation{tile->elevation_};
 

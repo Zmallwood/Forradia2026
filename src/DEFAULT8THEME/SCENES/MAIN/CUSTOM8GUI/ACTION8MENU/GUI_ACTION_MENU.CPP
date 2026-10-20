@@ -9,7 +9,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "GUI_ACTION_MENU.HPP"
 
 void
@@ -27,11 +27,11 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
         rightClickMousePosition_ = mousePosition;
 
-        auto worldArea = _<World>().currentWorldArea_;
+        auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-        auto tile = worldArea->GetTile(facedTileCoordinate);
+        auto tile = worldArea->GET8TILE(facedTileCoordinate);
 
         auto ground = tile->ground_;
 

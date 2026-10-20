@@ -10,7 +10,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURE_RESPAWNER.HPP"
 #include "PLAYER_COMBAT_TO_OTHERS.HPP"
 
@@ -36,11 +36,11 @@ PlayerCombatToOthers::OnMouseDown(Uint8 button)
         return;
     }
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     auto facedTile{_<PLAYER>().facedTileCoordinate_};
 
-    auto tile{worldArea->GetTile(facedTile)};
+    auto tile{worldArea->GET8TILE(facedTile)};
 
     if (!tile)
     {

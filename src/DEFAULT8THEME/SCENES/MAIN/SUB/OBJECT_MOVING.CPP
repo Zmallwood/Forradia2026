@@ -10,7 +10,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "FIRST_PERSON_HOVERING.HPP"
 #include "OBJECT_MOVING.HPP"
@@ -44,11 +44,11 @@ ObjectMoving::OnMouseDown(Uint8 button)
         return;
     }
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
 
-    auto tile{worldArea->GetTile(facedTileCoordinate)};
+    auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
     objectInAir_ = tile->tileObjects_->PICK8OBJECT(hoveredObject);
 
@@ -86,11 +86,11 @@ ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
         hoveredTilePosition = pickedPosition_;
     }
 
-    auto worldArea{_<World>().currentWorldArea_};
+    auto worldArea{_<WORLD>().currentWorldArea_};
 
     auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
 
-    auto tile{worldArea->GetTile(facedTileCoordinate)};
+    auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
     tile->tileObjects_->ADD8OBJECT(objectInAir_, hoveredTilePosition);
 

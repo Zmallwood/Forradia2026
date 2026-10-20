@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "CORE/WORLD8STRUCTURE/WORLD_DIRECTIONS.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8DIRECTIONS.HPP"
 
 class PLAYER8INVENTORY;
 class PLAYER8EQUIPMENT;
@@ -41,7 +41,7 @@ class PLAYER
     float stepSize_ = 0.3f;
     POINT destination_ = {-1, -1};
     POINT facedTileCoordinate_ = {-1, -1};
-    WorldDirections facingDirection_ = WorldDirections::South;
+    WORLD8DIRECTIONS facingDirection_ = WORLD8DIRECTIONS::South;
     int ticksLastHitOnOther_ = 0;
     float attackSpeed_ = 2.0f;
     std::string name_ = "Unnamed player";

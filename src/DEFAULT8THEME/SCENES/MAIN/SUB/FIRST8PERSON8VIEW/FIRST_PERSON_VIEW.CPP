@@ -14,7 +14,7 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST_PERSON_VIEW.HPP"
 #include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
@@ -51,8 +51,8 @@ FirstPersonView::Render()
 
     std::string groundImageName;
 
-    auto worldArea = _<World>().currentWorldArea_;
-    auto facedTile = worldArea->GetTile(_<PLAYER>().facedTileCoordinate_);
+    auto worldArea = _<WORLD>().currentWorldArea_;
+    auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
     if (!facedTile)
     {

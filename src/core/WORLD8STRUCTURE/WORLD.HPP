@@ -3,12 +3,12 @@
 
 #pragma once
 
-class WorldArea;
+class WORLD8AREA;
 
-class World
+class WORLD
 {
   public:
-    World();
+    WORLD();
 
-    std::shared_ptr<WorldArea> currentWorldArea_;
+    std::shared_ptr<WORLD8AREA> currentWorldArea_;
 };

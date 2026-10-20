@@ -6,7 +6,7 @@
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "PLAYER8EQUIPMENT.HPP"
 #include "PLAYER8INVENTORY.HPP"
 
@@ -28,23 +28,23 @@ PLAYER::PLAYER()
 void
 PLAYER::SPAWN8ONSUITABLE8LOCATION()
 {
-    auto worldArea = _<World>().currentWorldArea_;
+    auto worldArea = _<WORLD>().currentWorldArea_;
 
-    auto worldAreaSize = worldArea->GetSize();
+    auto worldAreaSize = worldArea->GET8SIZE();
 
     position_ = {4.0f + (worldAreaSize.width - 5.0f) / 2,
                  4.0f + (worldAreaSize.height - 5.0f) / 2};
 
-    auto tile = worldArea->GetTile(static_cast<int>(position_.x),
-                                   static_cast<int>(position_.y));
+    auto tile = worldArea->GET8TILE(static_cast<int>(position_.x),
+                                    static_cast<int>(position_.y));
 
     while (tile->ground_ == HASH("GroundWater"))
     {
         position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
                      4.0f + (rand() % (worldAreaSize.height - 5))};
 
-        tile = worldArea->GetTile(static_cast<int>(position_.x),
-                                  static_cast<int>(position_.y));
+        tile = worldArea->GET8TILE(static_cast<int>(position_.x),
+                                   static_cast<int>(position_.y));
     }
 
     facedTileCoordinate_ = {static_cast<int>(position_.x),
@@ -57,7 +57,7 @@ PLAYER::MOVE8NORTH()
     auto newX = position_.x;
     auto newY = position_.y - stepSize_;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile(
+    auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
@@ -71,7 +71,7 @@ PLAYER::MOVE8NORTH()
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) - 1};
 
-    facingDirection_ = WorldDirections::North;
+    facingDirection_ = WORLD8DIRECTIONS::North;
 }
 
 void
@@ -80,7 +80,7 @@ PLAYER::MOVE8EAST()
     auto newX = position_.x + stepSize_;
     auto newY = position_.y;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile(
+    auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
@@ -94,7 +94,7 @@ PLAYER::MOVE8EAST()
     facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
                             static_cast<int>(position_.y)};
 
-    facingDirection_ = WorldDirections::East;
+    facingDirection_ = WORLD8DIRECTIONS::East;
 }
 
 void
@@ -103,7 +103,7 @@ PLAYER::MOVE8SOUTH()
     auto newX = position_.x;
     auto newY = position_.y + stepSize_;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile(
+    auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
@@ -117,7 +117,7 @@ PLAYER::MOVE8SOUTH()
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) + 1};
 
-    facingDirection_ = WorldDirections::South;
+    facingDirection_ = WORLD8DIRECTIONS::South;
 }
 
 void
@@ -126,7 +126,7 @@ PLAYER::MOVE8WEST()
     auto newX = position_.x - stepSize_;
     auto newY = position_.y;
 
-    auto newTile = _<World>().currentWorldArea_->GetTile(
+    auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
         {static_cast<int>(newX), static_cast<int>(newY)});
 
     if (newTile &&
@@ -140,7 +140,7 @@ PLAYER::MOVE8WEST()
     facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
                             static_cast<int>(position_.y)};
 
-    facingDirection_ = WorldDirections::West;
+    facingDirection_ = WORLD8DIRECTIONS::West;
 }
 
 void
@@ -149,7 +149,7 @@ PLAYER::TURN8NORTH()
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) - 1};
 
-    facingDirection_ = WorldDirections::North;
+    facingDirection_ = WORLD8DIRECTIONS::North;
 }
 
 void
@@ -158,7 +158,7 @@ PLAYER::TURN8EAST()
     facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
                             static_cast<int>(position_.y)};
 
-    facingDirection_ = WorldDirections::East;
+    facingDirection_ = WORLD8DIRECTIONS::East;
 }
 
 void
@@ -167,7 +167,7 @@ PLAYER::TURN8SOUTH()
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) + 1};
 
-    facingDirection_ = WorldDirections::South;
+    facingDirection_ = WORLD8DIRECTIONS::South;
 }
 
 void
@@ -176,7 +176,7 @@ PLAYER::TURN8WEST()
     facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
                             static_cast<int>(position_.y)};
 
-    facingDirection_ = WorldDirections::West;
+    facingDirection_ = WORLD8DIRECTIONS::West;
 }
 
 void

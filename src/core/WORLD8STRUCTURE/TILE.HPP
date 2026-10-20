@@ -7,10 +7,10 @@ class TILE8OBJECTS;
 class CREATURE;
 class NPC;
 
-class Tile
+class TILE
 {
   public:
-    Tile();
+    TILE();
 
     int ground_ = 0;
     int elevation_ = 0;

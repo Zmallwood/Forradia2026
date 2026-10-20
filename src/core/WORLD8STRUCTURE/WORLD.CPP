@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 #include "WORLD.HPP"
-#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-World::World()
+WORLD::WORLD()
 {
-    currentWorldArea_ = std::make_shared<WorldArea>();
+    currentWorldArea_ = std::make_shared<WORLD8AREA>();
 }

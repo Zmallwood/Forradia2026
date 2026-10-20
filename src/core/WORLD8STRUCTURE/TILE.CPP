@@ -4,7 +4,7 @@
 #include "TILE.HPP"
 #include "TILE8OBJECTS.HPP"
 
-Tile::Tile()
+TILE::TILE()
 {
     tileObjects_ = std::make_shared<TILE8OBJECTS>();
 }
