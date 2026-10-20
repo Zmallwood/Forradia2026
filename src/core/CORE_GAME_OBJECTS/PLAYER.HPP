@@ -3,37 +3,37 @@
 
 #pragma once
 
-#include "CORE/WORLD_STRUCTURE/WORLD_DIRECTIONS.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD_DIRECTIONS.HPP"
 
-class PlayerInventory;
-class PlayerEquipment;
+class PLAYER8INVENTORY;
+class PLAYER8EQUIPMENT;
 
-class Player
+class PLAYER
 {
   public:
-    Player();
+    PLAYER();
 
-    void MoveNorth();
+    void MOVE8NORTH();
 
-    void MoveEast();
+    void MOVE8EAST();
 
-    void MoveSouth();
+    void MOVE8SOUTH();
 
-    void MoveWest();
+    void MOVE8WEST();
 
-    void TurnNorth();
+    void TURN8NORTH();
 
-    void TurnEast();
+    void TURN8EAST();
 
-    void TurnSouth();
+    void TURN8SOUTH();
 
-    void TurnWest();
+    void TURN8WEST();
 
-    void AddExperience(int amount);
+    void ADD8EXPERIENCE(int amount);
 
-    void Hit(float damage);
+    void HIT(float damage);
 
-    void SpawnOnSuitableLocation();
+    void SPAWN8ONSUITABLE8LOCATION();
 
     POINT8F position_ = {0.0f, 0.0f};
     int ticksLastMovement_ = 0;
@@ -46,11 +46,11 @@ class Player
     float attackSpeed_ = 2.0f;
     std::string name_ = "Unnamed player";
     int experience_ = 0;
-    std::shared_ptr<PlayerInventory> playerInventory_;
+    std::shared_ptr<PLAYER8INVENTORY> playerInventory_;
     float health_ = 10.0f;
     float maxHealth_ = 10.0f;
     int ticksLastHitOnSelf_ = 0;
-    std::shared_ptr<PlayerEquipment> playerEquipment_;
+    std::shared_ptr<PLAYER8EQUIPMENT> playerEquipment_;
     int ticksLastImpact_ = 0;
     float impactSpeed_ = 1.0f;
 };

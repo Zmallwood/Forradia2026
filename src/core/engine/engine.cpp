@@ -3,15 +3,15 @@
 
 #include "ENGINE.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
-#include "CORE/MINOR_COMPONENTS/CURSOR.HPP"
-#include "CORE/MINOR_COMPONENTS/FPS_COUNTER.HPP"
+#include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
+#include "CORE/MINOR8COMPONENTS/FPS_COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
-#include "CORE/SCENES_CORE/SCENE_MANAGER.HPP"
+#include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
 
 void ENGINE::START()
 {
-    srand(time(nullptr));
+    RANDOMIZE();
 
     _<IMAGE8BANK>().LOAD8IMAGES();
 
@@ -37,6 +37,11 @@ void ENGINE::START()
 
         _<SDLDevice>().PresentCanvas();
     }
+}
+
+void ENGINE::RANDOMIZE()
+{
+    srand(time(nullptr));
 }
 
 void ENGINE::POLL_EVENTS()

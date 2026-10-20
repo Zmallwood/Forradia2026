@@ -11,6 +11,8 @@ class ENGINE
     void STOP();
 
   private:
+    void RANDOMIZE();
+
     void POLL_EVENTS();
 
     bool running_ = true;

@@ -3,29 +3,29 @@
 
 #include "PLAYER.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
-#include "CORE/GUI_CORE/GUI_TEXT_CONSOLE.HPP"
-#include "CORE/WORLD_STRUCTURE/TILE.HPP"
-#include "CORE/WORLD_STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
-#include "PLAYER_EQUIPMENT.HPP"
-#include "PLAYER_INVENTORY.HPP"
+#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "PLAYER8EQUIPMENT.HPP"
+#include "PLAYER8INVENTORY.HPP"
 
-Player::Player()
-    : playerInventory_(std::make_shared<PlayerInventory>()),
-      playerEquipment_(std::make_shared<PlayerEquipment>())
+PLAYER::PLAYER()
+    : playerInventory_(std::make_shared<PLAYER8INVENTORY>()),
+      playerEquipment_(std::make_shared<PLAYER8EQUIPMENT>())
 {
-    playerInventory_->AddObject("ObjectRedApple");
+    playerInventory_->ADD8OBJECT("ObjectRedApple");
 
-    playerInventory_->AddObject("ObjectCopperSword");
+    playerInventory_->ADD8OBJECT("ObjectCopperSword");
 
-    playerInventory_->AddObject("ObjectWoodAxe");
+    playerInventory_->ADD8OBJECT("ObjectWoodAxe");
 
-    playerInventory_->AddObject("ObjectSaw");
+    playerInventory_->ADD8OBJECT("ObjectSaw");
 
-    playerInventory_->AddObject("ObjectHammer");
+    playerInventory_->ADD8OBJECT("ObjectHammer");
 }
 
-void Player::SpawnOnSuitableLocation()
+void PLAYER::SPAWN8ONSUITABLE8LOCATION()
 {
     auto worldArea = _<World>().currentWorldArea_;
 
@@ -50,7 +50,7 @@ void Player::SpawnOnSuitableLocation()
                             static_cast<int>(position_.y) + 1};
 }
 
-void Player::MoveNorth()
+void PLAYER::MOVE8NORTH()
 {
     auto newX = position_.x;
     auto newY = position_.y - stepSize_;
@@ -72,7 +72,7 @@ void Player::MoveNorth()
     facingDirection_ = WorldDirections::North;
 }
 
-void Player::MoveEast()
+void PLAYER::MOVE8EAST()
 {
     auto newX = position_.x + stepSize_;
     auto newY = position_.y;
@@ -94,7 +94,7 @@ void Player::MoveEast()
     facingDirection_ = WorldDirections::East;
 }
 
-void Player::MoveSouth()
+void PLAYER::MOVE8SOUTH()
 {
     auto newX = position_.x;
     auto newY = position_.y + stepSize_;
@@ -116,7 +116,7 @@ void Player::MoveSouth()
     facingDirection_ = WorldDirections::South;
 }
 
-void Player::MoveWest()
+void PLAYER::MOVE8WEST()
 {
     auto newX = position_.x - stepSize_;
     auto newY = position_.y;
@@ -138,7 +138,7 @@ void Player::MoveWest()
     facingDirection_ = WorldDirections::West;
 }
 
-void Player::TurnNorth()
+void PLAYER::TURN8NORTH()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) - 1};
@@ -146,7 +146,7 @@ void Player::TurnNorth()
     facingDirection_ = WorldDirections::North;
 }
 
-void Player::TurnEast()
+void PLAYER::TURN8EAST()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
                             static_cast<int>(position_.y)};
@@ -154,7 +154,7 @@ void Player::TurnEast()
     facingDirection_ = WorldDirections::East;
 }
 
-void Player::TurnSouth()
+void PLAYER::TURN8SOUTH()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) + 1};
@@ -162,7 +162,7 @@ void Player::TurnSouth()
     facingDirection_ = WorldDirections::South;
 }
 
-void Player::TurnWest()
+void PLAYER::TURN8WEST()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
                             static_cast<int>(position_.y)};
@@ -170,7 +170,7 @@ void Player::TurnWest()
     facingDirection_ = WorldDirections::West;
 }
 
-void Player::AddExperience(int amount)
+void PLAYER::ADD8EXPERIENCE(int amount)
 {
     experience_ += amount;
 
@@ -178,14 +178,14 @@ void Player::AddExperience(int amount)
                                   " experience points.");
 }
 
-void Player::Hit(float damage)
+void PLAYER::HIT(float damage)
 {
     health_ -= damage;
 
     ticksLastHitOnSelf_ = NOW();
 
     std::stringstream ssDamage;
-    
+
     ssDamage << std::fixed << std::setprecision(1) << damage;
 
     _<GUITextConsole>().PrintLine("You took " + ssDamage.str() + " damage.");

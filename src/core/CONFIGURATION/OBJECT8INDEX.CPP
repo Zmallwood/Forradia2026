@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/GUI_CORE/GUI_TEXT_CONSOLE.HPP"
-#include "CORE/WORLD_STRUCTURE/OBJECT.HPP"
-#include "CORE/WORLD_STRUCTURE/TILE.HPP"
-#include "CORE/WORLD_STRUCTURE/TILE_OBJECTS.HPP"
-#include "CORE/WORLD_STRUCTURE/WORLD.HPP"
-#include "CORE/WORLD_STRUCTURE/WORLD_AREA.HPP"
+#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE.HPP"
+#include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD.HPP"
+#include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "OBJECT8FLAGS.HPP"
 #include "OBJECT8INDEX.HPP"
 
@@ -29,7 +29,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -37,7 +37,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         _<GUITextConsole>().PrintLine("You have felled the tree.");
 
-        _<Player>().AddExperience(13);
+        _<PLAYER>().ADD8EXPERIENCE(13);
     };
 
     ADD8ENTRY(
@@ -78,7 +78,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -86,7 +86,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         _<GUITextConsole>().PrintLine("You have chopped some wood logs.");
 
-        _<Player>().AddExperience(7);
+        _<PLAYER>().ADD8EXPERIENCE(7);
     };
 
     auto allImpactPointsCompletedActionObjectFelledTree =
@@ -94,7 +94,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -115,7 +115,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -138,7 +138,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -158,7 +158,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -178,7 +178,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -198,7 +198,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -238,7 +238,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -258,7 +258,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -278,7 +278,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -298,7 +298,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -338,7 +338,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -358,7 +358,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -378,7 +378,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -398,7 +398,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -438,7 +438,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -458,7 +458,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -478,7 +478,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -498,7 +498,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
@@ -538,7 +538,7 @@ OBJECT8INDEX::OBJECT8INDEX()
     {
         auto worldArea = _<World>().currentWorldArea_;
 
-        auto facedTileCoordinate = _<Player>().facedTileCoordinate_;
+        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
         auto facedTile = worldArea->GetTile(facedTileCoordinate);
 
