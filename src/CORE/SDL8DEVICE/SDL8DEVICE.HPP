@@ -12,6 +12,8 @@ namespace FORRADIA8GAME {
       public:
         SDL8DEVICE();
 
+        ~SDL8DEVICE();
+
         void CLEAR8CANVAS();
 
         void PRESENT8CANVAS();
@@ -25,5 +27,6 @@ namespace FORRADIA8GAME {
 
       private:
         static constexpr std::string_view kWindowName_ = "Forradia";
+        bool initialized_ = false;
     };
 }

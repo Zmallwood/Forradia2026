@@ -17,6 +17,12 @@ namespace FORRADIA8GAME {
     void
     ENGINE::START() {
         RANDOMIZE();
+
+        // Constructed before every other runtime singleton so textures, fonts,
+        // and the world are released while SDL is still initialized.
+        if (!_<SDL8DEVICE>().renderer_)
+            return;
+
         _<IMAGE8BANK>().LOAD8IMAGES();
         _<TEXT8RENDERER>().INITIALIZE();
 

@@ -9,6 +9,22 @@
 
 namespace FORRADIA8GAME {
     SDL8DEVICE::SDL8DEVICE() {
+        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+            std::cout << "Failed to initialize SDL: " << SDL_GetError()
+                      << std::endl;
+
+            return;
+        }
+        
+        if (TTF_Init() < 0) {
+            std::cout << "Failed to initialize TTF: " << TTF_GetError()
+                      << std::endl;
+
+            return;
+        }
+
+        initialized_ = true;
+
         auto windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
 
         window_ = std::shared_ptr<SDL_Window>(
@@ -19,6 +35,28 @@ namespace FORRADIA8GAME {
         renderer_ = std::shared_ptr<SDL_Renderer>(
             SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED),
             SDL8DELETER());
+    }
+
+    SDL8DEVICE::~SDL8DEVICE() {
+        if (window_)
+            SDL_SetWindowFullscreen(window_.get(), 0);
+
+        if (initialized_) {
+            SDL_Event event;
+
+            while (SDL_PollEvent(&event)) {
+            }
+        }
+
+        renderer_.reset();
+        window_.reset();
+
+        if (!initialized_)
+            return;
+
+        TTF_Quit();
+        IMG_Quit();
+        SDL_Quit();
     }
 
     void
