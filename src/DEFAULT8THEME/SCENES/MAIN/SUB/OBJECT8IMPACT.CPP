@@ -52,22 +52,28 @@ namespace FORRADIA8GAME {
             auto object{entry.second.object_};
             auto objectType{object->type_};
 
-            auto impactObjects{
-                _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType)};
+            auto impactActions{
+                _<OBJECT8INDEX>().GET8OBJECT8IMPACT8ACTIONS(objectType)};
+
+            OBJECT8IMPACT8ACTION *impactAction{nullptr};
 
             auto canImpact{false};
 
-            for (auto impactObject : impactObjects) {
+            for (auto &impactActionEntry : impactActions) {
                 if (rightHandObject) {
-                    if (impactObject == rightHandObject->type_) {
+                    if (HASH(impactActionEntry.objectName) ==
+                        rightHandObject->type_) {
                         canImpact = true;
+                        impactAction = &impactActionEntry;
                         break;
                     }
                 }
 
                 if (leftHandObject) {
-                    if (impactObject == leftHandObject->type_) {
+                    if (HASH(impactActionEntry.objectName) ==
+                        leftHandObject->type_) {
                         canImpact = true;
+                        impactAction = &impactActionEntry;
                         break;
                     }
                 }
@@ -161,12 +167,7 @@ namespace FORRADIA8GAME {
                     _<FIRST8PERSON8VIEW>().completedObjectImpacts_.push_back(
                         {POINT8F{impactPointCenterX, impactPointCenterY}, now});
 
-                    auto singleImpactPointCompletedAction{
-                        _<OBJECT8INDEX>()
-                            .GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(
-                                objectType)};
-
-                    singleImpactPointCompletedAction();
+                    impactAction->singleImpactPointCompletedAction();
                 }
             }
 
@@ -182,13 +183,8 @@ namespace FORRADIA8GAME {
                 }
             }
 
-            if (allImpactPointsCompleted) {
-                auto allImpactPointsCompletedAction{
-                    _<OBJECT8INDEX>().GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(
-                        objectType)};
-
-                allImpactPointsCompletedAction(object);
-            }
+            if (allImpactPointsCompleted)
+                impactAction->allImpactPointsCompletedAction(object);
         }
     }
 }

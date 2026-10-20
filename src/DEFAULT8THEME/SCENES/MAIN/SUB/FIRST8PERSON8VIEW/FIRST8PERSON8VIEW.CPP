@@ -177,14 +177,15 @@ namespace FORRADIA8GAME {
             _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY,
                                            imageWidth, imageHeight);
 
-            auto impactObjects =
-                _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
+            auto impactActions =
+                _<OBJECT8INDEX>().GET8OBJECT8IMPACT8ACTIONS(objectType);
 
             auto canImpact = false;
 
-            for (auto impactObject : impactObjects) {
+            for (auto impactAction : impactActions) {
                 if (rightHandObject) {
-                    if (impactObject == rightHandObject->type_) {
+                    if (HASH(impactAction.objectName) ==
+                        rightHandObject->type_) {
                         canImpact = true;
 
                         break;
@@ -192,7 +193,8 @@ namespace FORRADIA8GAME {
                 }
 
                 if (leftHandObject) {
-                    if (impactObject == leftHandObject->type_) {
+                    if (HASH(impactAction.objectName) ==
+                        leftHandObject->type_) {
                         canImpact = true;
 
                         break;
@@ -369,14 +371,15 @@ namespace FORRADIA8GAME {
             _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY,
                                            imageWidth, imageHeight);
 
-            auto impactObjects =
-                _<OBJECT8INDEX>().GET8IMPACT8OBJECTS(objectType);
+            auto impactActions =
+                _<OBJECT8INDEX>().GET8OBJECT8IMPACT8ACTIONS(objectType);
 
             auto canImpact = false;
 
-            for (auto impactObject : impactObjects) {
+            for (auto impactAction : impactActions) {
                 if (rightHandObject) {
-                    if (impactObject == rightHandObject->type_) {
+                    if (HASH(impactAction.objectName) ==
+                        rightHandObject->type_) {
                         canImpact = true;
 
                         break;
@@ -384,7 +387,8 @@ namespace FORRADIA8GAME {
                 }
 
                 if (leftHandObject) {
-                    if (impactObject == leftHandObject->type_) {
+                    if (HASH(impactAction.objectName) ==
+                        leftHandObject->type_) {
                         canImpact = true;
 
                         break;
