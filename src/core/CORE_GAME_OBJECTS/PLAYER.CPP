@@ -25,7 +25,8 @@ PLAYER::PLAYER()
     playerInventory_->ADD8OBJECT("ObjectHammer");
 }
 
-void PLAYER::SPAWN8ONSUITABLE8LOCATION()
+void
+PLAYER::SPAWN8ONSUITABLE8LOCATION()
 {
     auto worldArea = _<World>().currentWorldArea_;
 
@@ -50,7 +51,8 @@ void PLAYER::SPAWN8ONSUITABLE8LOCATION()
                             static_cast<int>(position_.y) + 1};
 }
 
-void PLAYER::MOVE8NORTH()
+void
+PLAYER::MOVE8NORTH()
 {
     auto newX = position_.x;
     auto newY = position_.y - stepSize_;
@@ -72,7 +74,8 @@ void PLAYER::MOVE8NORTH()
     facingDirection_ = WorldDirections::North;
 }
 
-void PLAYER::MOVE8EAST()
+void
+PLAYER::MOVE8EAST()
 {
     auto newX = position_.x + stepSize_;
     auto newY = position_.y;
@@ -94,7 +97,8 @@ void PLAYER::MOVE8EAST()
     facingDirection_ = WorldDirections::East;
 }
 
-void PLAYER::MOVE8SOUTH()
+void
+PLAYER::MOVE8SOUTH()
 {
     auto newX = position_.x;
     auto newY = position_.y + stepSize_;
@@ -116,7 +120,8 @@ void PLAYER::MOVE8SOUTH()
     facingDirection_ = WorldDirections::South;
 }
 
-void PLAYER::MOVE8WEST()
+void
+PLAYER::MOVE8WEST()
 {
     auto newX = position_.x - stepSize_;
     auto newY = position_.y;
@@ -138,7 +143,8 @@ void PLAYER::MOVE8WEST()
     facingDirection_ = WorldDirections::West;
 }
 
-void PLAYER::TURN8NORTH()
+void
+PLAYER::TURN8NORTH()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) - 1};
@@ -146,7 +152,8 @@ void PLAYER::TURN8NORTH()
     facingDirection_ = WorldDirections::North;
 }
 
-void PLAYER::TURN8EAST()
+void
+PLAYER::TURN8EAST()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
                             static_cast<int>(position_.y)};
@@ -154,7 +161,8 @@ void PLAYER::TURN8EAST()
     facingDirection_ = WorldDirections::East;
 }
 
-void PLAYER::TURN8SOUTH()
+void
+PLAYER::TURN8SOUTH()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x),
                             static_cast<int>(position_.y) + 1};
@@ -162,7 +170,8 @@ void PLAYER::TURN8SOUTH()
     facingDirection_ = WorldDirections::South;
 }
 
-void PLAYER::TURN8WEST()
+void
+PLAYER::TURN8WEST()
 {
     facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
                             static_cast<int>(position_.y)};
@@ -170,7 +179,8 @@ void PLAYER::TURN8WEST()
     facingDirection_ = WorldDirections::West;
 }
 
-void PLAYER::ADD8EXPERIENCE(int amount)
+void
+PLAYER::ADD8EXPERIENCE(int amount)
 {
     experience_ += amount;
 
@@ -178,7 +188,8 @@ void PLAYER::ADD8EXPERIENCE(int amount)
                                      " experience points.");
 }
 
-void PLAYER::HIT(float damage)
+void
+PLAYER::HIT(float damage)
 {
     health_ -= damage;
 

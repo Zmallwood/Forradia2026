@@ -15,7 +15,8 @@
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "FIRST_PERSON_HOVERING.HPP"
 
-void FirstPersonHovering::Update()
+void
+FirstPersonHovering::Update()
 {
     hoveredObject_ = nullptr;
     hoveredCreature_ = nullptr;
@@ -235,7 +236,8 @@ void FirstPersonHovering::Update()
     }
 }
 
-void FirstPersonHovering::Render()
+void
+FirstPersonHovering::Render()
 {
     auto mousePosition{GET8MOUSE8POSITION()};
 

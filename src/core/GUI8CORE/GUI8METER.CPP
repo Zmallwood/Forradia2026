@@ -9,7 +9,8 @@ GUI8METER::GUI8METER(float x, float y, float width, float height)
 {
 }
 
-void GUI8METER::RENDER8DERIVED()
+void
+GUI8METER::RENDER8DERIVED()
 {
     auto position = GET8POSITION();
 
@@ -26,12 +27,14 @@ void GUI8METER::RENDER8DERIVED()
                                   size.height, COLORS::kBlack);
 }
 
-float GUI8METER::GET8METER8PROGRESS()
+float
+GUI8METER::GET8METER8PROGRESS()
 {
     return 0.0f;
 }
 
-COLOR GUI8METER::GET8FILLED8COLOR()
+COLOR
+GUI8METER::GET8FILLED8COLOR()
 {
     return COLORS::kYellowGray;
 }

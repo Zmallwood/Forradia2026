@@ -1,10 +1,11 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "IMAGE8BANK.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 
-void IMAGE8BANK::LOAD8IMAGES()
+void
+IMAGE8BANK::LOAD8IMAGES()
 {
     auto imagesDirectory =
         SDL_GetBasePath() + std::string(kRelativeImagesDirectory_);
@@ -22,12 +23,14 @@ void IMAGE8BANK::LOAD8IMAGES()
     }
 }
 
-void IMAGE8BANK::LOAD8SINGLE8IMAGE(std::string_view fullPath)
+void
+IMAGE8BANK::LOAD8SINGLE8IMAGE(std::string_view fullPath)
 {
 #include "IMAGE8BANK.LOAD8SINGLE8IMAGE.CPP.INC"
 }
 
-std::shared_ptr<SDL_Texture> IMAGE8BANK::GET8IMAGE(int imageNameHash)
+std::shared_ptr<SDL_Texture>
+IMAGE8BANK::GET8IMAGE(int imageNameHash)
 {
     if (images_.contains(imageNameHash))
     {
@@ -37,7 +40,8 @@ std::shared_ptr<SDL_Texture> IMAGE8BANK::GET8IMAGE(int imageNameHash)
     return nullptr;
 }
 
-SIZE IMAGE8BANK::GET8IMAGE8SIZE(int imageNameHash)
+SIZE
+IMAGE8BANK::GET8IMAGE8SIZE(int imageNameHash)
 {
     auto width = 0;
     auto height = 0;
@@ -51,7 +55,8 @@ SIZE IMAGE8BANK::GET8IMAGE8SIZE(int imageNameHash)
     return {width, height};
 }
 
-bool IMAGE8BANK::IS8PIXEL8VISIBLE(int imageNameHash, float x, float y)
+bool
+IMAGE8BANK::IS8PIXEL8VISIBLE(int imageNameHash, float x, float y)
 {
     if (images_.contains(imageNameHash))
     {

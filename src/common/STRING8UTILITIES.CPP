@@ -3,8 +3,9 @@
 
 #include "STRING8UTILITIES.HPP"
 
-std::string REPLACE(std::string_view text, std::string_view oldValue,
-                    std::string_view newValue)
+std::string
+REPLACE(std::string_view text, std::string_view oldValue,
+        std::string_view newValue)
 {
     std::string result(text);
 

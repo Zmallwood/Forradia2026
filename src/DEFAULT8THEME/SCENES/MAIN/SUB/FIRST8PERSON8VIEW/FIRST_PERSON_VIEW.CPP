@@ -8,7 +8,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8EQUIPMENT.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
@@ -18,7 +18,8 @@
 #include "FIRST_PERSON_VIEW.HPP"
 #include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
-void FirstPersonView::Update()
+void
+FirstPersonView::Update()
 {
     auto now = NOW();
 
@@ -36,9 +37,10 @@ void FirstPersonView::Update()
     }
 }
 
-void FirstPersonView::Render()
+void
+FirstPersonView::Render()
 {
-    _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
+    _<SDL8DEVICE>().CLIP(0.5f, 0.0f, 0.5f, 1.0f);
 
     auto viewWidth = GAME8PROPERTIES::kViewWidth_;
 
@@ -562,5 +564,5 @@ void FirstPersonView::Render()
                                       COLORS::kGold);
     }
 
-    _<SDLDevice>().ResetClip();
+    _<SDL8DEVICE>().RESET8CLIP();
 }

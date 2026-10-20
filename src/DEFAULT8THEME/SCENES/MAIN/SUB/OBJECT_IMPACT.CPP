@@ -11,7 +11,8 @@
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "OBJECT_IMPACT.HPP"
 
-void ObjectImpact::OnMouseDown(Uint8 button)
+void
+ObjectImpact::OnMouseDown(Uint8 button)
 {
     if (button != SDL_BUTTON_LEFT)
     {

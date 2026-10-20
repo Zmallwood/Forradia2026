@@ -12,7 +12,8 @@ GUIStatusPanel::GUIStatusPanel() : GUI8PANEL(0.0f, 0.0f, 0.2f, 0.2f)
     ADD8COMPONENT(std::make_shared<GUIHealthMeter>());
 }
 
-void GUIStatusPanel::RENDER8DERIVED()
+void
+GUIStatusPanel::RENDER8DERIVED()
 {
     GUI8PANEL::RENDER8DERIVED();
 

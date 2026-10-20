@@ -1,10 +1,11 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "TEXT8RENDERER.HPP"
 
-void TEXT8RENDERER::INITIALIZE()
+void
+TEXT8RENDERER::INITIALIZE()
 {
     TTF_Init();
 
@@ -13,7 +14,8 @@ void TEXT8RENDERER::INITIALIZE()
     ADD8FONT(FONT8SIZES::_24);
 }
 
-void TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize)
+void
+TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize)
 {
     auto absFontPath = std::string(SDL_GetBasePath()) + kDefaultFontPath_;
     auto fontPath = REPLACE(absFontPath, "\\", "/");
@@ -25,8 +27,9 @@ void TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize)
     fonts_.insert({fontSize, newFont});
 }
 
-void TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
-                                FONT8SIZES fontSize, bool centered, COLOR color)
+void
+TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
+                           FONT8SIZES fontSize, bool centered, COLOR color)
 {
     if (text.empty())
     {
@@ -41,7 +44,7 @@ void TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
         TTF_RenderText_Solid(font.get(), text.data(), sdlColor), SDL8DELETER());
 
     auto texture = std::shared_ptr<SDL_Texture>(
-        SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(),
+        SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
                                      surface.get()),
         SDL8DELETER());
 
@@ -57,6 +60,6 @@ void TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
         rect.y -= surface->h / 2;
     }
 
-    SDL_RenderCopy(_<SDLDevice>().renderer_.get(), texture.get(), nullptr,
+    SDL_RenderCopy(_<SDL8DEVICE>().renderer_.get(), texture.get(), nullptr,
                    &rect);
 }

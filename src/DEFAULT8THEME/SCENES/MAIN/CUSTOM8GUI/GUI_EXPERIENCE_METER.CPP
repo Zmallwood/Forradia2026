@@ -9,7 +9,8 @@ GUIExperienceMeter::GUIExperienceMeter() : GUI8METER(0.0f, 0.985f, 1.0f, 0.015f)
 {
 }
 
-float GUIExperienceMeter::GET8METER8PROGRESS()
+float
+GUIExperienceMeter::GET8METER8PROGRESS()
 {
     auto experience = _<PLAYER>().experience_;
 

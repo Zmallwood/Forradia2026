@@ -10,7 +10,7 @@ Object::Object(int type) : type_(type)
 
     for (auto impactPoint : impactPoints)
     {
-        impactPoints_.push_back(CompletableImpactPoint{impactPoint});
+        impactPoints_.push_back(COMPLETABLE8IMPACT8POINT{impactPoint});
     }
 }
 

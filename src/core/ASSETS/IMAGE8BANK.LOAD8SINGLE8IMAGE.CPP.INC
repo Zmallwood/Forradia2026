@@ -27,7 +27,8 @@ if (!converted)
 auto surface = std::shared_ptr<SDL_Surface>(converted, SDL8DELETER());
 
 auto texture = std::shared_ptr<SDL_Texture>(
-    SDL_CreateTextureFromSurface(_<SDLDevice>().renderer_.get(), surface.get()),
+    SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
+                                 surface.get()),
     SDL8DELETER());
 
 IMAGE8ENTRY entry{texture, surface};

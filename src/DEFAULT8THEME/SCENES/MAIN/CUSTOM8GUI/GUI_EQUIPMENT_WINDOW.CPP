@@ -13,7 +13,8 @@ GUIEquipmentWindow::GUIEquipmentWindow()
 {
 }
 
-bool GUIEquipmentWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
+bool
+GUIEquipmentWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     auto result = GUI8WINDOW::ON8MOUSE8DOWN(mouseButton);
 
@@ -77,7 +78,8 @@ bool GUIEquipmentWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
     return result;
 }
 
-bool GUIEquipmentWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
+bool
+GUIEquipmentWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
     GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
@@ -129,7 +131,8 @@ bool GUIEquipmentWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-void GUIEquipmentWindow::RENDER8DERIVED()
+void
+GUIEquipmentWindow::RENDER8DERIVED()
 {
     GUI8WINDOW::RENDER8DERIVED();
 
@@ -181,7 +184,8 @@ void GUIEquipmentWindow::RENDER8DERIVED()
     }
 }
 
-RECT8F GUIEquipmentWindow::GetHeadSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetHeadSlotBounds()
 {
     auto position = GET8POSITION();
 
@@ -197,7 +201,8 @@ RECT8F GUIEquipmentWindow::GetHeadSlotBounds()
     return {x, y, width, height};
 }
 
-RECT8F GUIEquipmentWindow::GetChestSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetChestSlotBounds()
 {
     auto position = GET8POSITION();
 
@@ -213,7 +218,8 @@ RECT8F GUIEquipmentWindow::GetChestSlotBounds()
     return {x, y, width, height};
 }
 
-RECT8F GUIEquipmentWindow::GetLegsSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetLegsSlotBounds()
 {
     auto position = GET8POSITION();
 
@@ -229,7 +235,8 @@ RECT8F GUIEquipmentWindow::GetLegsSlotBounds()
     return {x, y, width, height};
 }
 
-RECT8F GUIEquipmentWindow::GetFeetSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetFeetSlotBounds()
 {
     auto position = GET8POSITION();
 
@@ -245,7 +252,8 @@ RECT8F GUIEquipmentWindow::GetFeetSlotBounds()
     return {x, y, width, height};
 }
 
-RECT8F GUIEquipmentWindow::GetRightHandSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetRightHandSlotBounds()
 {
     auto position = GET8POSITION();
 
@@ -261,7 +269,8 @@ RECT8F GUIEquipmentWindow::GetRightHandSlotBounds()
     return {x, y, width, height};
 }
 
-RECT8F GUIEquipmentWindow::GetLeftHandSlotBounds()
+RECT8F
+GUIEquipmentWindow::GetLeftHandSlotBounds()
 {
     auto position = GET8POSITION();
 

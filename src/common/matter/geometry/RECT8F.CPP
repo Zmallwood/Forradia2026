@@ -3,7 +3,8 @@
 
 #include "RECT8F.HPP"
 
-bool RECT8F::CONTAINS(POINT8F point)
+bool
+RECT8F::CONTAINS(POINT8F point)
 {
     return point.x >= x && point.x <= x + width && point.y >= y &&
            point.y <= y + height;

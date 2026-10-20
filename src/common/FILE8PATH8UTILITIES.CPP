@@ -3,7 +3,8 @@
 
 #include "FILE8PATH8UTILITIES.HPP"
 
-std::string GET8FILE8NAME8NO8EXT(std::string_view path)
+std::string
+GET8FILE8NAME8NO8EXT(std::string_view path)
 {
     auto fileName = std::filesystem::path(path).filename().string();
 

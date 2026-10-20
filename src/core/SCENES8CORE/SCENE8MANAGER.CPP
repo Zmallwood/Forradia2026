@@ -18,7 +18,8 @@ SCENE8MANAGER::SCENE8MANAGER()
     GO8TO8SCENE("IntroScene");
 }
 
-void SCENE8MANAGER::ADD8SCENE(std::string_view sceneName, I8SCENE &scene)
+void
+SCENE8MANAGER::ADD8SCENE(std::string_view sceneName, I8SCENE &scene)
 {
     auto hash = HASH(sceneName);
 
@@ -27,7 +28,8 @@ void SCENE8MANAGER::ADD8SCENE(std::string_view sceneName, I8SCENE &scene)
     scene.INITIALIZE();
 }
 
-void SCENE8MANAGER::GO8TO8SCENE(std::string_view sceneName)
+void
+SCENE8MANAGER::GO8TO8SCENE(std::string_view sceneName)
 {
     auto hash = HASH(sceneName);
 
@@ -39,7 +41,8 @@ void SCENE8MANAGER::GO8TO8SCENE(std::string_view sceneName)
     }
 }
 
-void SCENE8MANAGER::UPDATE8CURRENT8SCENE()
+void
+SCENE8MANAGER::UPDATE8CURRENT8SCENE()
 {
     if (scenes_.contains(currentScene_))
     {
@@ -47,7 +50,8 @@ void SCENE8MANAGER::UPDATE8CURRENT8SCENE()
     }
 }
 
-void SCENE8MANAGER::RENDER8CURRENT8SCENE()
+void
+SCENE8MANAGER::RENDER8CURRENT8SCENE()
 {
     if (scenes_.contains(currentScene_))
     {
@@ -55,7 +59,8 @@ void SCENE8MANAGER::RENDER8CURRENT8SCENE()
     }
 }
 
-void SCENE8MANAGER::ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key)
+void
+SCENE8MANAGER::ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key)
 {
     if (scenes_.contains(currentScene_))
     {
@@ -63,7 +68,8 @@ void SCENE8MANAGER::ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key)
     }
 }
 
-void SCENE8MANAGER::ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key)
+void
+SCENE8MANAGER::ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key)
 {
     if (scenes_.contains(currentScene_))
     {
@@ -71,7 +77,8 @@ void SCENE8MANAGER::ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key)
     }
 }
 
-void SCENE8MANAGER::ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button)
+void
+SCENE8MANAGER::ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button)
 {
     if (scenes_.contains(currentScene_))
     {
@@ -79,7 +86,8 @@ void SCENE8MANAGER::ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button)
     }
 }
 
-void SCENE8MANAGER::ON8MOUSE8UP8CURRENT8SCENE(Uint8 button, int clickSpeed)
+void
+SCENE8MANAGER::ON8MOUSE8UP8CURRENT8SCENE(Uint8 button, int clickSpeed)
 {
     if (scenes_.contains(currentScene_))
     {

@@ -10,8 +10,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "WORLD_GENERATOR.HPP"
 
-
-void WorldGenerator::GenerateNewWorld()
+void
+WorldGenerator::GenerateNewWorld()
 {
     ClearWithGrass();
 
@@ -553,7 +553,8 @@ void WorldGenerator::GenerateNewWorld()
     GenerateCreatures();
 }
 
-void WorldGenerator::Traverse1(std::function<void(int, int)> callback)
+void
+WorldGenerator::Traverse1(std::function<void(int, int)> callback)
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -567,7 +568,8 @@ void WorldGenerator::Traverse1(std::function<void(int, int)> callback)
     }
 }
 
-void WorldGenerator::Traverse2(std::function<void(int, int)> callback)
+void
+WorldGenerator::Traverse2(std::function<void(int, int)> callback)
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -581,7 +583,8 @@ void WorldGenerator::Traverse2(std::function<void(int, int)> callback)
     }
 }
 
-void WorldGenerator::Traverse3(std::function<void(int, int)> callback)
+void
+WorldGenerator::Traverse3(std::function<void(int, int)> callback)
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -595,7 +598,8 @@ void WorldGenerator::Traverse3(std::function<void(int, int)> callback)
     }
 }
 
-void WorldGenerator::Traverse4(std::function<void(int, int)> callback)
+void
+WorldGenerator::Traverse4(std::function<void(int, int)> callback)
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -609,7 +613,8 @@ void WorldGenerator::Traverse4(std::function<void(int, int)> callback)
     }
 }
 
-void WorldGenerator::ClearWithGrass()
+void
+WorldGenerator::ClearWithGrass()
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -793,7 +798,8 @@ void WorldGenerator::ClearWithGrass()
 //     }
 // }
 
-void WorldGenerator::GenerateLargeObjects()
+void
+WorldGenerator::GenerateLargeObjects()
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -953,7 +959,8 @@ void WorldGenerator::GenerateLargeObjects()
     }
 }
 
-void WorldGenerator::GenerateSmallObjects()
+void
+WorldGenerator::GenerateSmallObjects()
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -1031,7 +1038,8 @@ void WorldGenerator::GenerateSmallObjects()
     }
 }
 
-void WorldGenerator::GenerateCreatures()
+void
+WorldGenerator::GenerateCreatures()
 {
     auto worldArea{_<World>().currentWorldArea_};
     auto size{worldArea->GetSize()};
@@ -1052,7 +1060,7 @@ void WorldGenerator::GenerateCreatures()
             continue;
         }
 
-        auto newCreature{std::make_shared<Creature>("CreatureDeer")};
+        auto newCreature{std::make_shared<CREATURE>("CreatureDeer")};
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
 
@@ -1075,13 +1083,14 @@ void WorldGenerator::GenerateCreatures()
             continue;
         }
 
-        auto newCreature{std::make_shared<Creature>("CreatureBoar")};
+        auto newCreature{std::make_shared<CREATURE>("CreatureBoar")};
 
         worldArea->creaturesMirror_.insert({newCreature, {x, y}});
     }
 }
 
-void WorldGenerator::GenerateCivilization()
+void
+WorldGenerator::GenerateCivilization()
 {
     // auto worldArea{_<World>().currentWorldArea_};
     // auto size{worldArea->GetSize()};
@@ -1156,7 +1165,8 @@ void WorldGenerator::GenerateCivilization()
     // tileNorthEast->npc_ = std::make_shared<NPC>("NPC1");
 }
 
-void WorldGenerator::GenerateWorldAroundPlayer()
+void
+WorldGenerator::GenerateWorldAroundPlayer()
 {
     // auto worldArea{_<World>().currentWorldArea_};
     // auto size{worldArea->GetSize()};

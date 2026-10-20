@@ -8,7 +8,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "CREATURES_MOVEMENT.HPP"
 
-void CreaturesMovement::Update()
+void
+CreaturesMovement::Update()
 {
     auto worldArea{_<World>().currentWorldArea_};
 

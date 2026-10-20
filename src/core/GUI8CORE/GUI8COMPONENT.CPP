@@ -7,7 +7,8 @@ GUI8COMPONENT::GUI8COMPONENT(float x, float y) : position_(x, y)
 {
 }
 
-void GUI8COMPONENT::UPDATE()
+void
+GUI8COMPONENT::UPDATE()
 {
     if (!isEnabled_)
     {
@@ -27,7 +28,8 @@ void GUI8COMPONENT::UPDATE()
     }
 }
 
-void GUI8COMPONENT::RENDER()
+void
+GUI8COMPONENT::RENDER()
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -47,7 +49,8 @@ void GUI8COMPONENT::RENDER()
     }
 }
 
-bool GUI8COMPONENT::ON8MOUSE8DOWN(Uint8 mouseButton)
+bool
+GUI8COMPONENT::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -69,7 +72,8 @@ bool GUI8COMPONENT::ON8MOUSE8DOWN(Uint8 mouseButton)
     return false;
 }
 
-bool GUI8COMPONENT::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
+bool
+GUI8COMPONENT::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -91,7 +95,8 @@ bool GUI8COMPONENT::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-bool GUI8COMPONENT::ON8KEY8DOWN(SDL_Keycode key)
+bool
+GUI8COMPONENT::ON8KEY8DOWN(SDL_Keycode key)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -113,7 +118,8 @@ bool GUI8COMPONENT::ON8KEY8DOWN(SDL_Keycode key)
     return false;
 }
 
-bool GUI8COMPONENT::ON8KEY8UP(SDL_Keycode key)
+bool
+GUI8COMPONENT::ON8KEY8UP(SDL_Keycode key)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -145,7 +151,8 @@ GUI8COMPONENT::ADD8COMPONENT(std::shared_ptr<GUI8COMPONENT> component)
     return component;
 }
 
-POINT8F GUI8COMPONENT::GET8POSITION()
+POINT8F
+GUI8COMPONENT::GET8POSITION()
 {
     POINT8F finalPosition = {0.0f, 0.0f};
 
@@ -159,7 +166,8 @@ POINT8F GUI8COMPONENT::GET8POSITION()
     return finalPosition;
 }
 
-void GUI8COMPONENT::SET8Y8POSITION(float y)
+void
+GUI8COMPONENT::SET8Y8POSITION(float y)
 {
     position_.y = y;
 }

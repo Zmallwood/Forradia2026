@@ -3,7 +3,8 @@
 
 #pragma once
 
-constexpr auto HASH(std::string_view text) -> int
+constexpr auto
+HASH(std::string_view text) -> int
 {
     // Use djb2 algorithm by Daniel J. Bernstein.
     unsigned long hash = 5381;

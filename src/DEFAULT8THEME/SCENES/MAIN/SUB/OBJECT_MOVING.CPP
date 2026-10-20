@@ -15,8 +15,8 @@
 #include "FIRST_PERSON_HOVERING.HPP"
 #include "OBJECT_MOVING.HPP"
 
-
-void ObjectMoving::OnMouseDown(Uint8 button)
+void
+ObjectMoving::OnMouseDown(Uint8 button)
 {
     if (button != SDL_BUTTON_LEFT)
     {
@@ -57,7 +57,8 @@ void ObjectMoving::OnMouseDown(Uint8 button)
     pickedPosition_ = GetHoveredTilePosition(draggingMouseOffset_);
 }
 
-void ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
+void
+ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
 {
     if (!objectInAir_)
     {
@@ -96,7 +97,8 @@ void ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
     ClearObject();
 }
 
-void ObjectMoving::Render()
+void
+ObjectMoving::Render()
 {
     if (!objectInAir_)
     {
@@ -126,7 +128,8 @@ void ObjectMoving::Render()
                                    imageHeight);
 }
 
-void ObjectMoving::ClearObject()
+void
+ObjectMoving::ClearObject()
 {
     objectInAir_ = nullptr;
 

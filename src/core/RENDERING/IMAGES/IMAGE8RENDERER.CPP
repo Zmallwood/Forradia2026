@@ -2,13 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "IMAGE8RENDERER.HPP"
 
-
-void IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y,
-                                float width, float height, float opacity,
-                                bool flipHorizontal)
+void
+IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y, float width,
+                           float height, float opacity, bool flipHorizontal)
 {
     auto canvasSize = GET8CANVAS8SIZE();
 
@@ -28,30 +27,33 @@ void IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y,
 
     SDL_SetTextureAlphaMod(image.get(), opacityInt);
 
-    SDL_RenderCopyEx(_<SDLDevice>().renderer_.get(), image.get(), nullptr,
+    SDL_RenderCopyEx(_<SDL8DEVICE>().renderer_.get(), image.get(), nullptr,
                      &rect, 0, nullptr, flip);
 
     SDL_SetTextureAlphaMod(image.get(), 255);
 }
 
-void IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, float x, float y,
-                                float width, float height, float opacity,
-                                bool flipHorizontal)
+void
+IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, float x, float y,
+                           float width, float height, float opacity,
+                           bool flipHorizontal)
 {
     auto hash = HASH(imageName);
 
     DRAW8IMAGE(hash, x, y, width, height, opacity, flipHorizontal);
 }
 
-void IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity,
-                                bool flipHorizontal)
+void
+IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity,
+                           bool flipHorizontal)
 {
     DRAW8IMAGE(imageNameHash, bounds.x, bounds.y, bounds.width, bounds.height,
                opacity, flipHorizontal);
 }
 
-void IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
-                                float opacity, bool flipHorizontal)
+void
+IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
+                           float opacity, bool flipHorizontal)
 {
     DRAW8IMAGE(imageName, bounds.x, bounds.y, bounds.width, bounds.height,
                opacity, flipHorizontal);

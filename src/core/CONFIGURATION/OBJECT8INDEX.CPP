@@ -557,7 +557,8 @@ OBJECT8INDEX::OBJECT8INDEX()
         POINT8F{0.0f, 0.0f}, POINT8F{0.0f, 0.3f});
 }
 
-void OBJECT8INDEX::ADD8ENTRY(
+void
+OBJECT8INDEX::ADD8ENTRY(
     std::string_view name, std::string_view label, int flags,
     std::vector<POINT8F> impactPoints, std::vector<std::string> impactObjects,
     std::function<void()> singleImpactPointCompletedAction,
@@ -586,7 +587,8 @@ void OBJECT8INDEX::ADD8ENTRY(
                       worldViewRenderOffset, firstPersonViewRenderOffset}});
 }
 
-bool OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash)
+bool
+OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -597,7 +599,8 @@ bool OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash)
     return false;
 }
 
-std::string OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash)
+std::string
+OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -607,7 +610,8 @@ std::string OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash)
     return "";
 }
 
-bool OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash)
+bool
+OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -618,7 +622,8 @@ bool OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash)
     return false;
 }
 
-bool OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash)
+bool
+OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -628,7 +633,8 @@ bool OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash)
     return false;
 }
 
-std::vector<POINT8F> OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash)
+std::vector<POINT8F>
+OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -638,7 +644,8 @@ std::vector<POINT8F> OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash)
     return {};
 }
 
-std::vector<int> OBJECT8INDEX::GET8IMPACT8OBJECTS(int objectHash)
+std::vector<int>
+OBJECT8INDEX::GET8IMPACT8OBJECTS(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -670,7 +677,8 @@ OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash)
     return [](std::shared_ptr<Object>) {};
 }
 
-int OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash)
+int
+OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -680,7 +688,8 @@ int OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash)
     return 0;
 }
 
-POINT8F OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash)
+POINT8F
+OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash)
 {
     if (entries_.contains(objectHash))
     {
@@ -690,7 +699,8 @@ POINT8F OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash)
     return POINT8F{0.0f, 0.0f};
 }
 
-POINT8F OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash)
+POINT8F
+OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash)
 {
     if (entries_.contains(objectHash))
     {

@@ -8,12 +8,14 @@ GUI8TEXT8CONSOLE::GUI8TEXT8CONSOLE() : GUI8PANEL(0.0f, 0.8f, 0.4f, 0.2f)
 {
 }
 
-void GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line)
+void
+GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line)
 {
     lines_.push_back(line.data());
 }
 
-void GUI8TEXT8CONSOLE::RENDER8DERIVED()
+void
+GUI8TEXT8CONSOLE::RENDER8DERIVED()
 {
     GUI8PANEL::RENDER8DERIVED();
 

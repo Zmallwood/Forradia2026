@@ -7,7 +7,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "CREATURES_COMBAT_TO_PLAYER.HPP"
 
-void CreaturesCombatToPlayer::Update()
+void
+CreaturesCombatToPlayer::Update()
 {
     auto now{NOW()};
 

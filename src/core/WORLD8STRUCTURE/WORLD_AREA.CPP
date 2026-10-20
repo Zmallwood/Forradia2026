@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "WORLD_AREA.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
+#include "WORLD_AREA.HPP"
 
 WorldArea::WorldArea()
 {
@@ -20,7 +20,8 @@ WorldArea::WorldArea()
     }
 }
 
-SIZE WorldArea::GetSize()
+SIZE
+WorldArea::GetSize()
 {
     auto width = static_cast<int>(tiles_.size());
     auto height = 0;
@@ -33,19 +34,22 @@ SIZE WorldArea::GetSize()
     return {width, height};
 }
 
-bool WorldArea::IsValidCoordinate(int x, int y)
+bool
+WorldArea::IsValidCoordinate(int x, int y)
 {
     auto size = GetSize();
 
     return x >= 0 && x < size.width && y >= 0 && y < size.height;
 }
 
-bool WorldArea::IsValidCoordinate(POINT coordinate)
+bool
+WorldArea::IsValidCoordinate(POINT coordinate)
 {
     return IsValidCoordinate(coordinate.x, coordinate.y);
 }
 
-std::shared_ptr<Tile> WorldArea::GetTile(int x, int y)
+std::shared_ptr<Tile>
+WorldArea::GetTile(int x, int y)
 {
     if (IsValidCoordinate(x, y))
     {
@@ -55,7 +59,8 @@ std::shared_ptr<Tile> WorldArea::GetTile(int x, int y)
     return nullptr;
 }
 
-std::shared_ptr<Tile> WorldArea::GetTile(POINT coordinate)
+std::shared_ptr<Tile>
+WorldArea::GetTile(POINT coordinate)
 {
     return GetTile(coordinate.x, coordinate.y);
 }

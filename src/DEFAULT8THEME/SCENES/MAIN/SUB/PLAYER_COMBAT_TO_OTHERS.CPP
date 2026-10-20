@@ -14,7 +14,8 @@
 #include "CREATURE_RESPAWNER.HPP"
 #include "PLAYER_COMBAT_TO_OTHERS.HPP"
 
-void PlayerCombatToOthers::OnMouseDown(Uint8 button)
+void
+PlayerCombatToOthers::OnMouseDown(Uint8 button)
 {
     auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
@@ -53,7 +54,7 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
         return;
     }
 
-    if (creature->IsDead())
+    if (creature->IS8DEAD())
     {
         return;
     }
@@ -91,13 +92,13 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
         return;
     }
 
-    creature->Hit(1.0f, POINT8F{x, y});
+    creature->HIT(1.0f, POINT8F{x, y});
 
     _<PLAYER>().ticksLastHitOnOther_ = now;
 
     tile->tileObjects_->AddObject("ObjectPoolOfBlood");
 
-    if (creature->IsDead())
+    if (creature->IS8DEAD())
     {
         auto corpseType{
             _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};

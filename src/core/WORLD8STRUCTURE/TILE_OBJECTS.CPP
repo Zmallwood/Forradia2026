@@ -1,16 +1,18 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "TILE_OBJECTS.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
+#include "TILE_OBJECTS.HPP"
 
-void TileObjects::Clear()
+void
+TileObjects::Clear()
 {
     objects_.clear();
 }
 
-void TileObjects::AddObject(int objectType, POINT position)
+void
+TileObjects::AddObject(int objectType, POINT position)
 {
     if (position.x == -1 || position.y == -1)
     {
@@ -21,22 +23,26 @@ void TileObjects::AddObject(int objectType, POINT position)
     objects_.insert({position, std::make_shared<Object>(objectType)});
 }
 
-void TileObjects::AddObject(std::string_view objectName, POINT position)
+void
+TileObjects::AddObject(std::string_view objectName, POINT position)
 {
     AddObject(HASH(objectName), position);
 }
 
-void TileObjects::AddObject(std::shared_ptr<Object> object, POINT position)
+void
+TileObjects::AddObject(std::shared_ptr<Object> object, POINT position)
 {
     objects_.insert({position, object});
 }
 
-int TileObjects::Count()
+int
+TileObjects::Count()
 {
     return objects_.size();
 }
 
-std::shared_ptr<Object> TileObjects::PickObject(std::shared_ptr<Object> object)
+std::shared_ptr<Object>
+TileObjects::PickObject(std::shared_ptr<Object> object)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {
@@ -51,8 +57,9 @@ std::shared_ptr<Object> TileObjects::PickObject(std::shared_ptr<Object> object)
     return nullptr;
 }
 
-void TileObjects::TransformObject(std::shared_ptr<Object> object,
-                                  std::string_view newObjectType)
+void
+TileObjects::TransformObject(std::shared_ptr<Object> object,
+                             std::string_view newObjectType)
 {
     POINT position = {-1, -1};
 
@@ -74,7 +81,8 @@ void TileObjects::TransformObject(std::shared_ptr<Object> object,
     }
 }
 
-void TileObjects::RemoveObject(std::shared_ptr<Object> object)
+void
+TileObjects::RemoveObject(std::shared_ptr<Object> object)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {
@@ -87,7 +95,8 @@ void TileObjects::RemoveObject(std::shared_ptr<Object> object)
     }
 }
 
-bool TileObjects::HasObjectOfType(std::string_view objectType)
+bool
+TileObjects::HasObjectOfType(std::string_view objectType)
 {
     for (auto it = objects_.begin(); it != objects_.end(); ++it)
     {

@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "SDL_DEVICE.HPP"
+#include "SDL8DEVICE.HPP"
 
-SDLDevice::SDLDevice()
+SDL8DEVICE::SDL8DEVICE()
 {
     auto windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
 
@@ -17,18 +17,21 @@ SDLDevice::SDLDevice()
         SDL8DELETER());
 }
 
-void SDLDevice::ClearCanvas()
+void
+SDL8DEVICE::CLEAR8CANVAS()
 {
     SDL_SetRenderDrawColor(renderer_.get(), 0, 150, 255, 255);
     SDL_RenderClear(renderer_.get());
 }
 
-void SDLDevice::PresentCanvas()
+void
+SDL8DEVICE::PRESENT8CANVAS()
 {
     SDL_RenderPresent(renderer_.get());
 }
 
-void SDLDevice::Clip(float x, float y, float width, float height)
+void
+SDL8DEVICE::CLIP(float x, float y, float width, float height)
 {
     SDL_Rect clipRect;
 
@@ -42,7 +45,8 @@ void SDLDevice::Clip(float x, float y, float width, float height)
     SDL_RenderSetClipRect(renderer_.get(), &clipRect);
 }
 
-void SDLDevice::ResetClip()
+void
+SDL8DEVICE::RESET8CLIP()
 {
     SDL_RenderSetClipRect(renderer_.get(), nullptr);
 }

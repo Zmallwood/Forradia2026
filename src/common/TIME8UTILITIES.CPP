@@ -3,7 +3,8 @@
 
 #include "TIME8UTILITIES.HPP"
 
-int NOW()
+int
+NOW()
 {
     return SDL_GetTicks();
 }

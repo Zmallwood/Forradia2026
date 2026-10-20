@@ -6,7 +6,8 @@
 #include "MOUSE_MOVEMENT.HPP"
 #include "TILE_HOVERING.HPP"
 
-void MouseMovement::Update()
+void
+MouseMovement::Update()
 {
     auto destination{_<PLAYER>().destination_};
 
@@ -128,7 +129,8 @@ void MouseMovement::Update()
     }
 }
 
-void MouseMovement::OnKeyDown(SDL_Keycode key)
+void
+MouseMovement::OnKeyDown(SDL_Keycode key)
 {
     if (key == SDLK_LCTRL || key == SDLK_RCTRL)
     {
@@ -136,7 +138,8 @@ void MouseMovement::OnKeyDown(SDL_Keycode key)
     }
 }
 
-void MouseMovement::OnKeyUp(SDL_Keycode key)
+void
+MouseMovement::OnKeyUp(SDL_Keycode key)
 {
     if (key == SDLK_LCTRL || key == SDLK_RCTRL)
     {
@@ -144,7 +147,8 @@ void MouseMovement::OnKeyUp(SDL_Keycode key)
     }
 }
 
-void MouseMovement::OnMouseDown(Uint8 button)
+void
+MouseMovement::OnMouseDown(Uint8 button)
 {
     auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 

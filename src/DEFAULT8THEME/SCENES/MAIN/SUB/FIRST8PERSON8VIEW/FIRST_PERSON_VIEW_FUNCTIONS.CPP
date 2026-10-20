@@ -9,7 +9,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
-std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
+std::map<std::pair<int, int>, PositionedObject>
+GetOrderedObjects()
 {
     auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
@@ -65,7 +66,8 @@ std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
     return orderedObjects;
 }
 
-POINT GetHoveredTilePosition(POINT8F mouseOffset)
+POINT
+GetHoveredTilePosition(POINT8F mouseOffset)
 {
     constexpr auto kMargin = GAME8PROPERTIES::kFirstPersonViewMargin_;
     auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;

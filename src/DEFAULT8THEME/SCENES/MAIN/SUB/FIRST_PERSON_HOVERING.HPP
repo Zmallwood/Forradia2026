@@ -4,7 +4,7 @@
 #pragma once
 
 class Object;
-class Creature;
+class CREATURE;
 
 class FirstPersonHovering
 {
@@ -14,7 +14,7 @@ class FirstPersonHovering
     void Render();
 
     std::shared_ptr<Object> hoveredObject_;
-    std::shared_ptr<Creature> hoveredCreature_;
+    std::shared_ptr<CREATURE> hoveredCreature_;
     POINT8F hoveredThingMouseOffset_;
 
   private:

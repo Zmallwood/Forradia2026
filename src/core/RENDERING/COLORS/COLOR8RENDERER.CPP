@@ -2,41 +2,44 @@
 // SPDX-License-Identifier: MIT
 
 #include "COLOR8RENDERER.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-void COLOR8RENDERER::FILL8RECT(float x, float y, float width, float height,
-                               COLOR color)
+void
+COLOR8RENDERER::FILL8RECT(float x, float y, float width, float height,
+                          COLOR color)
 {
     auto rect = CREATE8SDL8RECT(x, y, width, height);
 
     auto sdlColor = color.TO8SDL8COLOR();
 
-    SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+    SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
 
-    SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
+    SDL_RenderFillRect(_<SDL8DEVICE>().renderer_.get(), &rect);
 }
 
-void COLOR8RENDERER::FILL8RECT(RECT8F rect, COLOR color)
+void
+COLOR8RENDERER::FILL8RECT(RECT8F rect, COLOR color)
 {
     FILL8RECT(rect.x, rect.y, rect.width, rect.height, color);
 }
 
-void COLOR8RENDERER::DRAW8RECT(float x, float y, float width, float height,
-                               COLOR color)
+void
+COLOR8RENDERER::DRAW8RECT(float x, float y, float width, float height,
+                          COLOR color)
 {
     auto rect = CREATE8SDL8RECT(x, y, width, height);
 
     auto sdlColor = color.TO8SDL8COLOR();
 
-    SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+    SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
 
-    SDL_RenderDrawRect(_<SDLDevice>().renderer_.get(), &rect);
+    SDL_RenderDrawRect(_<SDL8DEVICE>().renderer_.get(), &rect);
 }
 
-void COLOR8RENDERER::DRAW8LINE(float x1, float y1, float x2, float y2,
-                               COLOR color)
+void
+COLOR8RENDERER::DRAW8LINE(float x1, float y1, float x2, float y2, COLOR color)
 {
     auto canvasSize = GET8CANVAS8SIZE();
 
@@ -47,15 +50,15 @@ void COLOR8RENDERER::DRAW8LINE(float x1, float y1, float x2, float y2,
 
     auto sdlColor = color.TO8SDL8COLOR();
 
-    SDL_SetRenderDrawColor(_<SDLDevice>().renderer_.get(), sdlColor.r,
+    SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
                            sdlColor.g, sdlColor.b, sdlColor.a);
 
-    SDL_RenderDrawLine(_<SDLDevice>().renderer_.get(), destX1, destY1, destX2,
+    SDL_RenderDrawLine(_<SDL8DEVICE>().renderer_.get(), destX1, destY1, destX2,
                        destY2);
 }
 
-SDL_Rect COLOR8RENDERER::CREATE8SDL8RECT(float x, float y, float width,
-                                         float height)
+SDL_Rect
+COLOR8RENDERER::CREATE8SDL8RECT(float x, float y, float width, float height)
 {
     auto canvasSize = GET8CANVAS8SIZE();
 

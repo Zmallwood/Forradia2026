@@ -1,13 +1,15 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CREATURE_RESPAWNER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
+#include "CREATURE_RESPAWNER.HPP"
 
-void CreatureRespawner::Update()
+
+void
+CreatureRespawner::Update()
 {
     auto now{NOW()};
 
@@ -22,7 +24,7 @@ void CreatureRespawner::Update()
 
         if (now >= creatureRespawnTime)
         {
-            auto newCreature{std::make_shared<Creature>(creatureType)};
+            auto newCreature{std::make_shared<CREATURE>(creatureType)};
 
             int x;
             int y;
@@ -53,7 +55,8 @@ void CreatureRespawner::Update()
     }
 }
 
-void CreatureRespawner::RespawnCreature(int creatureType, int respawnTimeMillis)
+void
+CreatureRespawner::RespawnCreature(int creatureType, int respawnTimeMillis)
 {
     auto creatureRespawnTime{NOW() + respawnTimeMillis};
 

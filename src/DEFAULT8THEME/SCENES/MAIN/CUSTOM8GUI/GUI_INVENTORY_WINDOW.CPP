@@ -16,7 +16,8 @@ GUIInventoryWindow::GUIInventoryWindow()
 {
 }
 
-bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
+bool
+GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     auto result = GUI8WINDOW::ON8MOUSE8DOWN(mouseButton);
 
@@ -101,7 +102,8 @@ bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
     return result;
 }
 
-bool GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
+bool
+GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
     GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
@@ -163,7 +165,8 @@ bool GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-void GUIInventoryWindow::RENDER8DERIVED()
+void
+GUIInventoryWindow::RENDER8DERIVED()
 {
     GUI8WINDOW::RENDER8DERIVED();
 

@@ -3,7 +3,8 @@
 
 #include "NUMBER8UTILITIES.HPP"
 
-int INVERT8SPEED(float speed)
+int
+INVERT8SPEED(float speed)
 {
     return static_cast<int>(1000 / speed);
 }

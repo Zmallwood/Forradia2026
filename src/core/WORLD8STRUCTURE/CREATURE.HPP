@@ -3,16 +3,16 @@
 
 #pragma once
 
-class Creature
+class CREATURE
 {
   public:
-    Creature(std::string_view typeName);
+    CREATURE(std::string_view typeName);
 
-    Creature(int type);
+    CREATURE(int type);
 
-    void Hit(float damage, POINT8F hitPosition);
+    void HIT(float damage, POINT8F hitPosition);
 
-    bool IsDead();
+    bool IS8DEAD();
 
     int type_ = 0;
     int ticksLastMovement_ = 0;

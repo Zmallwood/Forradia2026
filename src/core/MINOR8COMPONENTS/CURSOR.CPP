@@ -9,12 +9,14 @@ CURSOR::CURSOR()
     SDL_ShowCursor(SDL_DISABLE);
 }
 
-void CURSOR::RESET()
+void
+CURSOR::RESET()
 {
     cursorStyle_ = CURSOR8STYLES::Default;
 }
 
-void CURSOR::RENDER()
+void
+CURSOR::RENDER()
 {
     auto mousePosition = GET8MOUSE8POSITION();
 

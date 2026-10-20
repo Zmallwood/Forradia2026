@@ -4,8 +4,8 @@
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "FPS8COUNTER.HPP"
 
-
-void FPS8COUNTER::UPDATE()
+void
+FPS8COUNTER::UPDATE()
 {
     auto now = NOW();
 
@@ -19,7 +19,8 @@ void FPS8COUNTER::UPDATE()
     ++framesCounter_;
 }
 
-void FPS8COUNTER::RENDER()
+void
+FPS8COUNTER::RENDER()
 {
     std::string text = "FPS: " + std::to_string(fps_);
 

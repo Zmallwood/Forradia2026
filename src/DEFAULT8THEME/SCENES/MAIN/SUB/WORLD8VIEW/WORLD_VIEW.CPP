@@ -7,7 +7,7 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
@@ -18,9 +18,10 @@
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE_HOVERING.HPP"
 #include "WORLD_VIEW.HPP"
 
-void WorldView::Render()
+void
+WorldView::Render()
 {
-    _<SDLDevice>().Clip(0.0f, 0.0f, 0.5f, 1.0f);
+    _<SDL8DEVICE>().CLIP(0.0f, 0.0f, 0.5f, 1.0f);
 
     auto viewWidth = GAME8PROPERTIES::kViewWidth_;
 
@@ -367,5 +368,5 @@ void WorldView::Render()
         }
     }
 
-    _<SDLDevice>().ResetClip();
+    _<SDL8DEVICE>().RESET8CLIP();
 }

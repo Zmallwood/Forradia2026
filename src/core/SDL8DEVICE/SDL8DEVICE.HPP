@@ -3,18 +3,18 @@
 
 #pragma once
 
-class SDLDevice
+class SDL8DEVICE
 {
   public:
-    SDLDevice();
+    SDL8DEVICE();
 
-    void ClearCanvas();
+    void CLEAR8CANVAS();
 
-    void PresentCanvas();
+    void PRESENT8CANVAS();
 
-    void Clip(float x, float y, float width, float height);
+    void CLIP(float x, float y, float width, float height);
 
-    void ResetClip();
+    void RESET8CLIP();
 
     std::shared_ptr<SDL_Window> window_;
     std::shared_ptr<SDL_Renderer> renderer_;

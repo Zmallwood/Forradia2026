@@ -1,10 +1,11 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "PLAYER8INVENTORY.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
+#include "PLAYER8INVENTORY.HPP"
 
-void PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
+void
+PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
 {
     for (auto i = 0; i < kMaxObjects_; i++)
     {
@@ -17,12 +18,14 @@ void PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
     }
 }
 
-void PLAYER8INVENTORY::ADD8OBJECT(std::shared_ptr<Object> object, int slotIndex)
+void
+PLAYER8INVENTORY::ADD8OBJECT(std::shared_ptr<Object> object, int slotIndex)
 {
     objects_.insert({slotIndex, object});
 }
 
-std::shared_ptr<Object> PLAYER8INVENTORY::GET8OBJECT(int index)
+std::shared_ptr<Object>
+PLAYER8INVENTORY::GET8OBJECT(int index)
 {
     if (objects_.contains(index))
     {
@@ -32,7 +35,8 @@ std::shared_ptr<Object> PLAYER8INVENTORY::GET8OBJECT(int index)
     return nullptr;
 }
 
-std::shared_ptr<Object> PLAYER8INVENTORY::PICK8OBJECT(int index)
+std::shared_ptr<Object>
+PLAYER8INVENTORY::PICK8OBJECT(int index)
 {
     for (auto it = objects_.begin(); it != objects_.end();)
     {
@@ -51,7 +55,8 @@ std::shared_ptr<Object> PLAYER8INVENTORY::PICK8OBJECT(int index)
     return nullptr;
 }
 
-bool PLAYER8INVENTORY::HAS8OBJECT(int index)
+bool
+PLAYER8INVENTORY::HAS8OBJECT(int index)
 {
     return objects_.contains(index);
 }

@@ -24,7 +24,8 @@
 #include "SUB/TILE_HOVERING.HPP"
 #include "SUB/WORLD8VIEW/WORLD_VIEW.HPP"
 
-void MainScene::INITIALIZE8DERIVED()
+void
+MainScene::INITIALIZE8DERIVED()
 {
     gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
@@ -47,7 +48,8 @@ void MainScene::INITIALIZE8DERIVED()
     gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIEquipmentWindow>());
 }
 
-void MainScene::ON8ENTER8DERIVED()
+void
+MainScene::ON8ENTER8DERIVED()
 {
     _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(1.0f -
                                          _<GUI8TEXT8CONSOLE>().size_.height -
@@ -56,7 +58,8 @@ void MainScene::ON8ENTER8DERIVED()
     _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
 }
 
-void MainScene::UPDATE8DERIVED()
+void
+MainScene::UPDATE8DERIVED()
 {
     _<CreaturesMovement>().Update();
 
@@ -75,7 +78,8 @@ void MainScene::UPDATE8DERIVED()
     _<FirstPersonView>().Update();
 }
 
-void MainScene::RENDER8BEFORE8GUI8DERIVED()
+void
+MainScene::RENDER8BEFORE8GUI8DERIVED()
 {
     _<WorldView>().Render();
 
@@ -86,12 +90,14 @@ void MainScene::RENDER8BEFORE8GUI8DERIVED()
     _<GUIActionMenu>().Render();
 }
 
-void MainScene::RENDER8AFTER8GUI8DERIVED()
+void
+MainScene::RENDER8AFTER8GUI8DERIVED()
 {
     _<ObjectMoving>().Render();
 }
 
-void MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
+void
+MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
 {
     _<KeyboardMovement>().OnKeyDown(key);
 
@@ -100,14 +106,16 @@ void MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
     _<KeyboardHotkeys>().OnKeyDown(key);
 }
 
-void MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
+void
+MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
 {
     _<KeyboardMovement>().OnKeyUp(key);
 
     _<MouseMovement>().OnKeyUp(key);
 }
 
-void MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
+void
+MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
 {
     _<PlayerCombatToOthers>().OnMouseDown(button);
 
@@ -120,7 +128,8 @@ void MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
     _<GUIActionMenu>().OnMouseDown(button);
 }
 
-void MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
+void
+MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
 {
     _<ObjectMoving>().OnMouseUp(button, clickSpeed);
 }

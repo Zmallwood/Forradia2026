@@ -3,7 +3,8 @@
 
 #include "POINT.HPP"
 
-POINT POINT::operator+(const POINT &other) const
+POINT
+POINT::operator+(const POINT &other) const
 {
     return {x + other.x, y + other.y};
 }

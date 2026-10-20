@@ -5,19 +5,20 @@
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 
-Creature::Creature(std::string_view typeName)
+CREATURE::CREATURE(std::string_view typeName)
 {
     type_ = HASH(typeName);
 }
 
-Creature::Creature(int type)
+CREATURE::CREATURE(int type)
 {
     type_ = type;
 
     auto typeName = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type);
 }
 
-void Creature::Hit(float damage, POINT8F hitPosition)
+void
+CREATURE::HIT(float damage, POINT8F hitPosition)
 {
     health_ -= damage;
 
@@ -44,7 +45,8 @@ void Creature::Hit(float damage, POINT8F hitPosition)
                                      ssDamage.str() + " damage.");
 }
 
-bool Creature::IsDead()
+bool
+CREATURE::IS8DEAD()
 {
     return health_ <= 0.0f;
 }

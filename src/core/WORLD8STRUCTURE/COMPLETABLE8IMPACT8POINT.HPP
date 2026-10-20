@@ -3,7 +3,7 @@
 
 #pragma once
 
-class CompletableImpactPoint
+class COMPLETABLE8IMPACT8POINT
 {
   public:
     POINT8F position;

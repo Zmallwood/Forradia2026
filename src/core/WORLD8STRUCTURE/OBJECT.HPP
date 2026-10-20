@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "COMPLETABLE_IMPACT_POINT.HPP"
+#include "COMPLETABLE8IMPACT8POINT.HPP"
 
 class Object
 {
@@ -14,5 +14,5 @@ class Object
 
     int type_ = 0;
     int quantity_ = 1;
-    std::vector<CompletableImpactPoint> impactPoints_;
+    std::vector<COMPLETABLE8IMPACT8POINT> impactPoints_;
 };

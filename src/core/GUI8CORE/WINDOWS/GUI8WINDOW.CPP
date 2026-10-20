@@ -14,7 +14,8 @@ GUI8WINDOW::GUI8WINDOW(std::string_view title, float x, float y, float width,
         std::make_shared<GUI8WINDOW8TITLE8BAR>(title, width, *this)));
 }
 
-void GUI8WINDOW::TOGGLE8VISIBILITY()
+void
+GUI8WINDOW::TOGGLE8VISIBILITY()
 {
     if (isVisible_)
     {

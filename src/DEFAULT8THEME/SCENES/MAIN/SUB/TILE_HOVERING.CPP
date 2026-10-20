@@ -8,7 +8,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "TILE_HOVERING.HPP"
 
-void TileHovering::Update()
+void
+TileHovering::Update()
 {
     auto mousePosition{GET8MOUSE8POSITION()};
 

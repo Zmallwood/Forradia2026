@@ -4,7 +4,8 @@
 #include "GAME.HPP"
 #include "ENGINE/ENGINE.HPP"
 
-void GAME::START()
+void
+GAME::START()
 {
     _<ENGINE>().START();
 

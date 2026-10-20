@@ -4,7 +4,8 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "KEYBOARD_MOVEMENT.HPP"
 
-void KeyboardMovement::Update()
+void
+KeyboardMovement::Update()
 {
     auto wPressed{pressedKeys_.contains(SDLK_w)};
     auto sPressed{pressedKeys_.contains(SDLK_s)};
@@ -78,12 +79,14 @@ void KeyboardMovement::Update()
     }
 }
 
-void KeyboardMovement::OnKeyDown(SDL_Keycode key)
+void
+KeyboardMovement::OnKeyDown(SDL_Keycode key)
 {
     pressedKeys_.insert(key);
 }
 
-void KeyboardMovement::OnKeyUp(SDL_Keycode key)
+void
+KeyboardMovement::OnKeyUp(SDL_Keycode key)
 {
     pressedKeys_.erase(key);
 }

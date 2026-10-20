@@ -12,7 +12,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "GUI_ACTION_MENU.HPP"
 
-void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
+void
+GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 {
     auto mousePosition = GET8MOUSE8POSITION();
 
@@ -314,7 +315,8 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
     }
 }
 
-void GUIActionMenu::Render()
+void
+GUIActionMenu::Render()
 {
     if (!visible_)
     {

@@ -7,9 +7,10 @@
 #include "CORE/MINOR8COMPONENTS/FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
-#include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-void ENGINE::START()
+void
+ENGINE::START()
 {
     RANDOMIZE();
 
@@ -27,7 +28,7 @@ void ENGINE::START()
 
         _<FPS8COUNTER>().UPDATE();
 
-        _<SDLDevice>().ClearCanvas();
+        _<SDL8DEVICE>().CLEAR8CANVAS();
 
         _<SCENE8MANAGER>().RENDER8CURRENT8SCENE();
 
@@ -35,16 +36,18 @@ void ENGINE::START()
 
         _<CURSOR>().RENDER();
 
-        _<SDLDevice>().PresentCanvas();
+        _<SDL8DEVICE>().PRESENT8CANVAS();
     }
 }
 
-void ENGINE::RANDOMIZE()
+void
+ENGINE::RANDOMIZE()
 {
     srand(time(nullptr));
 }
 
-void ENGINE::POLL_EVENTS()
+void
+ENGINE::POLL_EVENTS()
 {
     SDL_Event event;
 
@@ -99,14 +102,15 @@ void ENGINE::POLL_EVENTS()
             }
 
             _<SCENE8MANAGER>().ON8MOUSE8UP8CURRENT8SCENE(event.button.button,
-                                                    clickSpeed);
+                                                         clickSpeed);
             break;
         }
         }
     }
 }
 
-void ENGINE::STOP()
+void
+ENGINE::STOP()
 {
     running_ = false;
 }

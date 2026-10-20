@@ -9,7 +9,8 @@ GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
 {
 }
 
-bool GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
+bool
+GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
 
@@ -26,7 +27,8 @@ bool GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
     return GET8BOUNDS().CONTAINS(GET8MOUSE8POSITION());
 }
 
-void GUI8PANEL::RENDER8DERIVED()
+void
+GUI8PANEL::RENDER8DERIVED()
 {
     auto position = GET8POSITION();
 
@@ -34,12 +36,14 @@ void GUI8PANEL::RENDER8DERIVED()
                                    position.y, size_.width, size_.height);
 }
 
-std::string GUI8PANEL::GET8BACKGROUND8IMAGE()
+std::string
+GUI8PANEL::GET8BACKGROUND8IMAGE()
 {
     return kDefaultBackgroundImage_;
 }
 
-RECT8F GUI8PANEL::GET8BOUNDS()
+RECT8F
+GUI8PANEL::GET8BOUNDS()
 {
     auto position = GET8POSITION();
 

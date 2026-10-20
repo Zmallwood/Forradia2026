@@ -4,7 +4,7 @@
 #pragma once
 
 class Tile;
-class Creature;
+class CREATURE;
 
 class WorldArea
 {
@@ -21,7 +21,7 @@ class WorldArea
 
     std::shared_ptr<Tile> GetTile(POINT coordinate);
 
-    std::unordered_map<std::shared_ptr<Creature>, POINT> creaturesMirror_;
+    std::unordered_map<std::shared_ptr<CREATURE>, POINT> creaturesMirror_;
 
   private:
     std::vector<std::vector<std::shared_ptr<Tile>>> tiles_;

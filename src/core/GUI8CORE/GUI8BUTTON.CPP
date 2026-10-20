@@ -15,7 +15,8 @@ GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
 {
 }
 
-void GUI8BUTTON::UPDATE8DERIVED()
+void
+GUI8BUTTON::UPDATE8DERIVED()
 {
     GUI8PANEL::UPDATE8DERIVED();
 
@@ -37,7 +38,8 @@ void GUI8BUTTON::UPDATE8DERIVED()
     }
 }
 
-void GUI8BUTTON::RENDER8DERIVED()
+void
+GUI8BUTTON::RENDER8DERIVED()
 {
     GUI8PANEL::RENDER8DERIVED();
 
@@ -50,7 +52,8 @@ void GUI8BUTTON::RENDER8DERIVED()
                                    FONT8SIZES::_12, true);
 }
 
-bool GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)
+bool
+GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     if (!isVisible_)
     {
@@ -69,7 +72,8 @@ bool GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)
     return false;
 }
 
-std::string GUI8BUTTON::GET8BACKGROUND8IMAGE()
+std::string
+GUI8BUTTON::GET8BACKGROUND8IMAGE()
 {
     return hovered_ ? kHoveredBackgroundImage_ : kBackgroundImage_;
 }
