@@ -6,17 +6,17 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "SCENE8MANAGER.HPP"
-#include "DEFAULT8THEME/SCENES/INTRO/INTRO_SCENE.HPP"
+#include "DEFAULT8THEME/SCENES/INTRO/INTRO8SCENE.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/MAIN_SCENE.HPP"
-#include "DEFAULT8THEME/SCENES/MAIN_MENU/MAIN_MENU_SCENE.HPP"
-#include "DEFAULT8THEME/SCENES/WORLD_GENERATION/WORLD_GENERATION_SCENE.HPP"
+#include "DEFAULT8THEME/SCENES/MAIN8MENU/MAIN_MENU_SCENE.HPP"
+#include "DEFAULT8THEME/SCENES/WORLD8GENERATION/WORLD_GENERATION_SCENE.HPP"
 #include "I8SCENE.HPP"
 
 namespace FORRADIA8GAME
 {
     SCENE8MANAGER::SCENE8MANAGER()
     {
-        ADD8SCENE("IntroScene", _<IntroScene>());
+        ADD8SCENE("IntroScene", _<INTRO8SCENE>());
         ADD8SCENE("MainMenuScene", _<MainMenuScene>());
         ADD8SCENE("WorldGenerationScene", _<WorldGenerationScene>());
         ADD8SCENE("MainScene", _<MainScene>());

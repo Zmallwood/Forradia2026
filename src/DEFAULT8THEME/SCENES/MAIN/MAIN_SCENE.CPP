@@ -6,25 +6,25 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "MAIN_SCENE.HPP"
-#include "SUB/WORLD8VIEW/WORLD_VIEW.HPP"
+#include "SUB/WORLD8VIEW/WORLD8VIEW.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
-#include "CUSTOM8GUI/ACTION8MENU/GUI_ACTION_MENU.HPP"
-#include "CUSTOM8GUI/GUI_EQUIPMENT_WINDOW.HPP"
-#include "CUSTOM8GUI/GUI_EXPERIENCE_METER.HPP"
-#include "CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"
-#include "CUSTOM8GUI/GUI_STATUS_PANEL.HPP"
-#include "SUB/CREATURES_COMBAT_TO_PLAYER.HPP"
+#include "CUSTOM8GUI/ACTION8MENU/GUI8ACTION8MENU.HPP"
+#include "CUSTOM8GUI/GUI8EQUIPMENT8WINDOW.HPP"
+#include "CUSTOM8GUI/GUI8EXPERIENCE8METER.HPP"
+#include "CUSTOM8GUI/GUI8INVENTORY8WINDOW.HPP"
+#include "CUSTOM8GUI/GUI8STATUS8PANEL.HPP"
+#include "SUB/CREATURES8COMBAT8TO8PLAYER.HPP"
 #include "SUB/CREATURES_MOVEMENT.HPP"
-#include "SUB/CREATURE_RESPAWNER.HPP"
-#include "SUB/FIRST8PERSON8VIEW/FIRST_PERSON_VIEW.HPP"
-#include "SUB/FIRST_PERSON_HOVERING.HPP"
-#include "SUB/KEYBOARD_HOTKEYS.HPP"
+#include "SUB/CREATURE8RESPAWNER.HPP"
+#include "SUB/FIRST8PERSON8VIEW/FIRST8PERSON8VIEW.HPP"
+#include "SUB/FIRST8PERSON8HOVERING.HPP"
+#include "SUB/KEYBOARD8HOTKEYS.HPP"
 #include "SUB/KEYBOARD_MOVEMENT.HPP"
 #include "SUB/MOUSE_MOVEMENT.HPP"
-#include "SUB/OBJECT_IMPACT.HPP"
-#include "SUB/OBJECT_MOVING.HPP"
+#include "SUB/OBJECT8IMPACT.HPP"
+#include "SUB/OBJECT8MOVING.HPP"
 #include "SUB/PLAYER_COMBAT_TO_OTHERS.HPP"
 #include "SUB/TILE_HOVERING.HPP"
 
@@ -35,25 +35,25 @@ namespace FORRADIA8GAME
     {
         gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIExperienceMeter>());
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EXPERIENCE8METER>());
 
         gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
             "", 0.94f, 0.08f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-            [this]() { _<GUIInventoryWindow>().TOGGLE8VISIBILITY(); },
+            [this]() { _<GUI8INVENTORY8WINDOW>().TOGGLE8VISIBILITY(); },
             "GUIButtonInventoryBackground",
             "GUIButtonInventoryHoveredBackground"));
 
         gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
             "", 0.94f, 0.18f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-            [this]() { _<GUIEquipmentWindow>().TOGGLE8VISIBILITY(); },
+            [this]() { _<GUI8EQUIPMENT8WINDOW>().TOGGLE8VISIBILITY(); },
             "GUIButtonEquipmentBackground",
             "GUIButtonEquipmentHoveredBackground"));
 
-        gui_->ADD8COMPONENT(std::make_shared<GUIStatusPanel>());
+        gui_->ADD8COMPONENT(std::make_shared<GUI8STATUS8PANEL>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIInventoryWindow>());
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8INVENTORY8WINDOW>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIEquipmentWindow>());
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EQUIPMENT8WINDOW>());
     }
 
     void
@@ -61,7 +61,7 @@ namespace FORRADIA8GAME
     {
         _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(
             1.0f - _<GUI8TEXT8CONSOLE>().size_.height -
-            _<GUIExperienceMeter>().size_.height);
+            _<GUI8EXPERIENCE8METER>().size_.height);
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
     }
@@ -77,31 +77,31 @@ namespace FORRADIA8GAME
 
         _<TileHovering>().Update();
 
-        _<FirstPersonHovering>().Update();
+        _<FIRST8PERSON8HOVERING>().UPDATE();
 
-        _<CreatureRespawner>().Update();
+        _<CREATURE8RESPAWNER>().UPDATE();
 
-        _<CreaturesCombatToPlayer>().Update();
+        _<CREATURES8COMBAT8TO8PLAYER>().UPDATE();
 
-        _<FirstPersonView>().Update();
+        _<FIRST8PERSON8VIEW>().UPDATE();
     }
 
     void
     MainScene::RENDER8BEFORE8GUI8DERIVED()
     {
-        _<WorldView>().Render();
+        _<WORLD8VIEW>().RENDER();
 
-        _<FirstPersonView>().Render();
+        _<FIRST8PERSON8VIEW>().RENDER();
 
-        _<FirstPersonHovering>().Render();
+        _<FIRST8PERSON8HOVERING>().RENDER();
 
-        _<GUIActionMenu>().Render();
+        _<GUI8ACTION8MENU>().Render();
     }
 
     void
     MainScene::RENDER8AFTER8GUI8DERIVED()
     {
-        _<ObjectMoving>().Render();
+        _<OBJECT8MOVING>().RENDER();
     }
 
     void
@@ -111,7 +111,7 @@ namespace FORRADIA8GAME
 
         _<MouseMovement>().OnKeyDown(key);
 
-        _<KeyboardHotkeys>().OnKeyDown(key);
+        _<KEYBOARD8HOTKEYS>().ON8KEY8DOWN(key);
     }
 
     void
@@ -129,16 +129,16 @@ namespace FORRADIA8GAME
 
         _<MouseMovement>().OnMouseDown(button);
 
-        _<ObjectImpact>().OnMouseDown(button);
+        _<OBJECT8IMPACT>().ON8MOUSE8DOWN(button);
 
-        _<ObjectMoving>().OnMouseDown(button);
+        _<OBJECT8MOVING>().ON8MOUSE8DOWN(button);
 
-        _<GUIActionMenu>().OnMouseDown(button);
+        _<GUI8ACTION8MENU>().OnMouseDown(button);
     }
 
     void
     MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
     {
-        _<ObjectMoving>().OnMouseUp(button, clickSpeed);
+        _<OBJECT8MOVING>().ON8MOUSE8UP(button, clickSpeed);
     }
 }

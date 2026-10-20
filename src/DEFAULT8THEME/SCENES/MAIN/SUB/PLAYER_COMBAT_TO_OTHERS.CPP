@@ -16,7 +16,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
-#include "CREATURE_RESPAWNER.HPP"
+#include "CREATURE8RESPAWNER.HPP"
 
 namespace FORRADIA8GAME
 {
@@ -125,7 +125,7 @@ namespace FORRADIA8GAME
 
             _<PLAYER>().ADD8EXPERIENCE(creature->experienceValue_);
 
-            _<CreatureRespawner>().RespawnCreature(
+            _<CREATURE8RESPAWNER>().RESPAWN8CREATURE(
                 creatureType, creature->respawnTimeMillis_);
         }
     }
