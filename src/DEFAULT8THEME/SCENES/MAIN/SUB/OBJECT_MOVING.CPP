@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "OBJECT_MOVING.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
@@ -17,7 +18,6 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 #include "FIRST_PERSON_HOVERING.HPP"
-#include "OBJECT_MOVING.HPP"
 
 void
 ObjectMoving::OnMouseDown(Uint8 button)

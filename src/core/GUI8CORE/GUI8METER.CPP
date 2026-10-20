@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "GUI8METER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 
 GUI8METER::GUI8METER(float x, float y, float width, float height)
     : GUI8COMPONENT(x, y), size_(width, height)

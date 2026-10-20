@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI_INVENTORY_WINDOW.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
@@ -13,7 +14,6 @@
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
-#include "GUI_INVENTORY_WINDOW.HPP"
 
 GUIInventoryWindow::GUIInventoryWindow()
     : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f)

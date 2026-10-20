@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "FIRST_PERSON_HOVERING.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
@@ -17,7 +18,6 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
-#include "FIRST_PERSON_HOVERING.HPP"
 
 void
 FirstPersonHovering::Update()

@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "KEYBOARD_HOTKEYS.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_EQUIPMENT_WINDOW.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"
-#include "KEYBOARD_HOTKEYS.HPP"
 
 void
 KeyboardHotkeys::OnKeyDown(SDL_Keycode key)

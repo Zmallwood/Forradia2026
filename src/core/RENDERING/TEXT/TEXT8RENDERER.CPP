@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 #include "TEXT8RENDERER.HPP"
+#include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
 void
 TEXT8RENDERER::INITIALIZE()

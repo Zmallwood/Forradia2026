@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/GUI8CORE/GUI.HPP"
 #include "I8SCENE.HPP"
+#include "CORE/GUI8CORE/GUI.HPP"
 
 I8SCENE::I8SCENE() : gui_(std::make_shared<GUI>())
 {

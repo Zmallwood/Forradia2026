@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "FPS8COUNTER.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
 void
 FPS8COUNTER::UPDATE()

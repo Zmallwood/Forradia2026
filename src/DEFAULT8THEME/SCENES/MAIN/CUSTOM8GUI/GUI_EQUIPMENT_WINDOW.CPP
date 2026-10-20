@@ -5,12 +5,12 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI_EQUIPMENT_WINDOW.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8EQUIPMENT.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
-#include "GUI_EQUIPMENT_WINDOW.HPP"
 
 GUIEquipmentWindow::GUIEquipmentWindow()
     : GUI8WINDOW("Equipment", 0.45f, 0.3f, 0.2f, 0.4f)

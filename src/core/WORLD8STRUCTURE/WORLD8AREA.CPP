@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "WORLD8AREA.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
-#include "WORLD8AREA.HPP"
 
 WORLD8AREA::WORLD8AREA()
 {

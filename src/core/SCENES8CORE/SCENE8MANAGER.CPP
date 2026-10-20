@@ -5,12 +5,12 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "SCENE8MANAGER.HPP"
 #include "DEFAULT8THEME/SCENES/INTRO/INTRO_SCENE.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/MAIN_SCENE.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN_MENU/MAIN_MENU_SCENE.HPP"
 #include "DEFAULT8THEME/SCENES/WORLD_GENERATION/WORLD_GENERATION_SCENE.HPP"
 #include "I8SCENE.HPP"
-#include "SCENE8MANAGER.HPP"
 
 SCENE8MANAGER::SCENE8MANAGER()
 {

@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI_ACTION_MENU.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
@@ -14,7 +15,6 @@
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
-#include "GUI_ACTION_MENU.HPP"
 
 void
 GUIActionMenu::OnMouseDown(Uint8 mouseButton)

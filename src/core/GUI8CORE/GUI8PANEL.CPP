@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "GUI8PANEL.HPP"
+#include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
 GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
     : GUI8COMPONENT(x, y), size_(width, height)

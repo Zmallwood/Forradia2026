@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "GUI_HEALTH_METER.HPP"
+#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 
 GUIHealthMeter::GUIHealthMeter() : GUI8METER(0.1f, 0.08f, 0.08f, 0.015f)
 {

@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "WORLD_VIEW.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
@@ -20,7 +21,6 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE_HOVERING.HPP"
-#include "WORLD_VIEW.HPP"
 
 void
 WorldView::Render()

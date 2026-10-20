@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "OBJECT_IMPACT.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
@@ -13,7 +14,6 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
-#include "OBJECT_IMPACT.HPP"
 
 void
 ObjectImpact::OnMouseDown(Uint8 button)

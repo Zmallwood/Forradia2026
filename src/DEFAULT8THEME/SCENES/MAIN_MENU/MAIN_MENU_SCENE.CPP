@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "MAIN_MENU_SCENE.HPP"
 #include "CORE/ENGINE/ENGINE.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
@@ -12,7 +13,6 @@
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
-#include "MAIN_MENU_SCENE.HPP"
 
 void
 MainMenuScene::INITIALIZE8DERIVED()

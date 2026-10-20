@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8TEXT8CONSOLE.HPP"
+#include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
 GUI8TEXT8CONSOLE::GUI8TEXT8CONSOLE() : GUI8PANEL(0.0f, 0.8f, 0.4f, 0.2f)
 {

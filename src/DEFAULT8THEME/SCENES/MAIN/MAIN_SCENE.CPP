@@ -5,6 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "MAIN_SCENE.HPP"
+#include "SUB/WORLD8VIEW/WORLD_VIEW.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 #include "CORE/GUI8CORE/GUI8BUTTON.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
@@ -13,7 +15,6 @@
 #include "CUSTOM8GUI/GUI_EXPERIENCE_METER.HPP"
 #include "CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"
 #include "CUSTOM8GUI/GUI_STATUS_PANEL.HPP"
-#include "MAIN_SCENE.HPP"
 #include "SUB/CREATURES_COMBAT_TO_PLAYER.HPP"
 #include "SUB/CREATURES_MOVEMENT.HPP"
 #include "SUB/CREATURE_RESPAWNER.HPP"
@@ -26,7 +27,6 @@
 #include "SUB/OBJECT_MOVING.HPP"
 #include "SUB/PLAYER_COMBAT_TO_OTHERS.HPP"
 #include "SUB/TILE_HOVERING.HPP"
-#include "SUB/WORLD8VIEW/WORLD_VIEW.HPP"
 
 void
 MainScene::INITIALIZE8DERIVED()

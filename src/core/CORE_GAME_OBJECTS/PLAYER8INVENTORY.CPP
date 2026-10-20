@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "PLAYER8INVENTORY.HPP"
+#include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 
 void
 PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)

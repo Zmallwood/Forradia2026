@@ -5,11 +5,11 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI_STATUS_PANEL.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
 #include "GUI_HEALTH_METER.HPP"
-#include "GUI_STATUS_PANEL.HPP"
 
 GUIStatusPanel::GUIStatusPanel() : GUI8PANEL(0.0f, 0.0f, 0.2f, 0.2f)
 {

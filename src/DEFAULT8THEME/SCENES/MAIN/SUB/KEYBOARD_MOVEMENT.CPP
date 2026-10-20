@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "KEYBOARD_MOVEMENT.HPP"
+#include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 
 void
 KeyboardMovement::Update()

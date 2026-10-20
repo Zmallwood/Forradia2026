@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI8BUTTON.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
-#include "GUI8BUTTON.HPP"
 
 GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
                        float height, std::function<void()> action,

@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "INTRO_SCENE.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
-#include "INTRO_SCENE.HPP"
 
 void
 IntroScene::RENDER8BEFORE8GUI8DERIVED()

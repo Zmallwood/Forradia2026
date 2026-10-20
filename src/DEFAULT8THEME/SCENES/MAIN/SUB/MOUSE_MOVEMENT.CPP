@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "MOUSE_MOVEMENT.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "MOUSE_MOVEMENT.HPP"
 #include "TILE_HOVERING.HPP"
 
 void

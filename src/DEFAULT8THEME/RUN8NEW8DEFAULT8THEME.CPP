@@ -5,8 +5,8 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CORE/GAME.HPP"
 #include "RUN8NEW8DEFAULT8THEME.HPP"
+#include "CORE/GAME.HPP"
 
 void
 RUN8NEW8DEFAULT8THEME()

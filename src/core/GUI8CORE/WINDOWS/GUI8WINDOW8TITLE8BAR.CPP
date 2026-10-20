@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI8WINDOW8TITLE8BAR.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8WINDOW.HPP"
-#include "GUI8WINDOW8TITLE8BAR.HPP"
 
 GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title, float width,
                                            GUI8WINDOW &guiWindow)

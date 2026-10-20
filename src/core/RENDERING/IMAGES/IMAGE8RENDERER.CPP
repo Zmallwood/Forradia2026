@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "IMAGE8RENDERER.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
-#include "IMAGE8RENDERER.HPP"
 
 void
 IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y, float width,

@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "TILE8OBJECTS.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
-#include "TILE8OBJECTS.HPP"
 
 void
 TILE8OBJECTS::CLEAR()

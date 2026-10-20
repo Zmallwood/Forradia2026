@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
+#include "GUI_EXPERIENCE_METER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
-#include "GUI_EXPERIENCE_METER.HPP"
 
 GUIExperienceMeter::GUIExperienceMeter() : GUI8METER(0.0f, 0.985f, 1.0f, 0.015f)
 {
