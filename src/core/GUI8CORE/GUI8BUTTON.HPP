@@ -24,8 +24,8 @@ class GUI8BUTTON : public GUI8PANEL
     std::string GET8BACKGROUND8IMAGE() override;
 
   private:
-    const std::string k_backgroundImage_ = "GUIButtonBackground";
-    const std::string k_hoveredBackgroundImage_ = "GUIButtonHoveredBackground";
+    const std::string kBackgroundImage_ = "GUIButtonBackground";
+    const std::string kHoveredBackgroundImage_ = "GUIButtonHoveredBackground";
 
     std::string text_;
     std::function<void()> action_;

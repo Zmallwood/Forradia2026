@@ -6,7 +6,7 @@
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER8EQUIPMENT.HPP"
-#include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
@@ -25,7 +25,7 @@ void FirstPersonView::Update()
     for (auto it = completedObjectImpacts_.begin();
          it != completedObjectImpacts_.end();)
     {
-        if (now > it->ticksCompleted + k_impactPointEffectDuration_)
+        if (now > it->ticksCompleted + kImpactPointEffectDuration_)
         {
             it = completedObjectImpacts_.erase(it);
         }
@@ -40,10 +40,10 @@ void FirstPersonView::Render()
 {
     _<SDLDevice>().Clip(0.5f, 0.0f, 0.5f, 1.0f);
 
-    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
+    auto viewWidth = GAME8PROPERTIES::kViewWidth_;
 
-    _<ColorRenderer>().FillRect(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
-                                COLORS::k_veryDarkBlue);
+    _<COLOR8RENDERER>().FILL8RECT(1.0f - viewWidth, 0.0f, viewWidth, 1.0f,
+                                  COLORS::kVeryDarkBlue);
 
     auto now = NOW();
 
@@ -105,18 +105,18 @@ void FirstPersonView::Render()
     }
     }
 
-    constexpr auto k_margin = GAME8PROPERTIES::k_firstPersonViewMargin_;
+    constexpr auto kMargin = GAME8PROPERTIES::kFirstPersonViewMargin_;
 
-    _<ImageRenderer>().DrawImage(groundImageName, 1.0f - viewWidth + k_margin.x,
-                                 0.75f + k_margin.y, viewWidth - 2 * k_margin.x,
-                                 0.25f - 2 * k_margin.y);
+    _<ImageRenderer>().DrawImage(groundImageName, 1.0f - viewWidth + kMargin.x,
+                                 0.75f + kMargin.y, viewWidth - 2 * kMargin.x,
+                                 0.25f - 2 * kMargin.y);
 
-    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
     auto orderedObjects = GetOrderedObjects();
 
-    constexpr auto largeObjectScale = GAME8PROPERTIES::k_largeObjectScale_;
-    constexpr auto smallObjectScale = GAME8PROPERTIES::k_smallObjectScale_;
+    constexpr auto largeObjectScale = GAME8PROPERTIES::kLargeObjectScale_;
+    constexpr auto smallObjectScale = GAME8PROPERTIES::kSmallObjectScale_;
 
     for (auto entry : orderedObjects)
     {
@@ -160,18 +160,18 @@ void FirstPersonView::Render()
                               tileUnitsWidth);
         }
 
-        auto tileWidth = viewWidth - 2 * k_margin.x -
+        auto tileWidth = viewWidth - 2 * kMargin.x -
                          static_cast<float>(tileUnitsWidth - yPos) /
                              tileUnitsWidth * viewWidth * 0.6f;
-        auto tileLeft = 1.0f - viewWidth + k_margin.x +
+        auto tileLeft = 1.0f - viewWidth + kMargin.x +
                         static_cast<float>(tileUnitsWidth - yPos) /
                             tileUnitsWidth * viewWidth * 0.3f;
 
         auto baseX =
             tileLeft + static_cast<float>(xPos) / tileUnitsWidth * tileWidth;
-        auto baseY = 0.75f + k_margin.y +
+        auto baseY = 0.75f + kMargin.y +
                      static_cast<float>(yPos + 1) / tileUnitsWidth *
-                         (0.25f - 2 * k_margin.y);
+                         (0.25f - 2 * kMargin.y);
 
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
@@ -181,9 +181,9 @@ void FirstPersonView::Render()
 
         imageX += renderOffset.x * tileWidth;
 
-        constexpr auto k_tileHeight{0.25f};
+        constexpr auto kTileHeight{0.25f};
 
-        imageY += renderOffset.y * k_tileHeight;
+        imageY += renderOffset.y * kTileHeight;
 
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
@@ -221,7 +221,7 @@ void FirstPersonView::Render()
 
             for (auto impactPoint : impactPoints)
             {
-                auto impactPointWidth = GAME8PROPERTIES::k_impactPointWidth_;
+                auto impactPointWidth = GAME8PROPERTIES::kImpactPointWidth_;
                 auto impactPointHeight =
                     CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
                 auto impactPointX = imageX +
@@ -232,11 +232,11 @@ void FirstPersonView::Render()
                                     impactPointHeight / 2.0f;
 
                 auto color =
-                    impactPoint.completed ? COLORS::k_green : COLORS::k_red;
+                    impactPoint.completed ? COLORS::kGreen : COLORS::kRed;
 
-                _<ColorRenderer>().FillRect(impactPointX, impactPointY,
-                                            impactPointWidth, impactPointHeight,
-                                            color);
+                _<COLOR8RENDERER>().FILL8RECT(impactPointX, impactPointY,
+                                              impactPointWidth,
+                                              impactPointHeight, color);
             }
         }
     }
@@ -253,11 +253,11 @@ void FirstPersonView::Render()
         auto imageHeight = imageSize.height / 60.0f *
                            CONVERT8WIDTH8TO8HEIGHT(largeObjectScale);
 
-        auto tileWidth = viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f;
-        auto tileLeft = 1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f;
+        auto tileWidth = viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f;
+        auto tileLeft = 1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f;
 
         auto baseX = tileLeft + 0.5f * tileWidth;
-        auto baseY = 0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y);
+        auto baseY = 0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y);
 
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
@@ -278,11 +278,11 @@ void FirstPersonView::Render()
         auto imageHeight = imageSize.height / 60.0f *
                            CONVERT8WIDTH8TO8HEIGHT(largeObjectScale);
 
-        auto tileWidth = viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f;
-        auto tileLeft = 1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f;
+        auto tileWidth = viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f;
+        auto tileLeft = 1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f;
 
         auto baseX = tileLeft + 0.5f * tileWidth;
-        auto baseY = 0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y);
+        auto baseY = 0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y);
 
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
@@ -290,19 +290,19 @@ void FirstPersonView::Render()
         _<ImageRenderer>().DrawImage(creatureType, imageX, imageY, imageWidth,
                                      imageHeight);
 
-        if (now - creature->ticksLastHitOnSelf_ < k_hitOtherEffectDuration_)
+        if (now - creature->ticksLastHitOnSelf_ < kHitOtherEffectDuration_)
         {
             auto lastHitPosition = creature->lastHitPosition_;
 
             auto hitEffectImageSize =
                 _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"));
 
-            constexpr auto k_hitEffectScale = 0.1f;
+            constexpr auto kHitEffectScale = 0.1f;
 
             auto hitEffectWidth =
-                hitEffectImageSize.width / 60.0f * k_hitEffectScale;
+                hitEffectImageSize.width / 60.0f * kHitEffectScale;
             auto hitEffectHeight = hitEffectImageSize.height / 60.0f *
-                                   CONVERT8WIDTH8TO8HEIGHT(k_hitEffectScale);
+                                   CONVERT8WIDTH8TO8HEIGHT(kHitEffectScale);
 
             auto hitEffectBaseX = imageX + lastHitPosition.x * imageWidth;
             auto hitEffectBaseY = imageY + lastHitPosition.y * imageHeight;
@@ -357,18 +357,18 @@ void FirstPersonView::Render()
                               tileUnitsWidth);
         }
 
-        auto tileWidth = viewWidth - 2 * k_margin.x -
+        auto tileWidth = viewWidth - 2 * kMargin.x -
                          static_cast<float>(tileUnitsWidth - yPos) /
                              tileUnitsWidth * viewWidth * 0.6f;
-        auto tileLeft = 1.0f - viewWidth + k_margin.x +
+        auto tileLeft = 1.0f - viewWidth + kMargin.x +
                         static_cast<float>(tileUnitsWidth - yPos) /
                             tileUnitsWidth * viewWidth * 0.3f;
 
         auto baseX =
             tileLeft + static_cast<float>(xPos) / tileUnitsWidth * tileWidth;
-        auto baseY = 0.75f + k_margin.y +
+        auto baseY = 0.75f + kMargin.y +
                      static_cast<float>(yPos + 1) / tileUnitsWidth *
-                         (0.25f - 2 * k_margin.y);
+                         (0.25f - 2 * kMargin.y);
 
         auto imageX = baseX - imageWidth / 2.0f;
         auto imageY = baseY - imageHeight;
@@ -378,9 +378,9 @@ void FirstPersonView::Render()
 
         imageX += renderOffset.x * tileWidth;
 
-        constexpr auto k_tileHeight = 0.25f;
+        constexpr auto kTileHeight = 0.25f;
 
-        imageY += renderOffset.y * k_tileHeight;
+        imageY += renderOffset.y * kTileHeight;
 
         _<ImageRenderer>().DrawImage(objectType, imageX, imageY, imageWidth,
                                      imageHeight);
@@ -418,7 +418,7 @@ void FirstPersonView::Render()
 
             for (auto impactPoint : impactPoints)
             {
-                auto impactPointWidth = GAME8PROPERTIES::k_impactPointWidth_;
+                auto impactPointWidth = GAME8PROPERTIES::kImpactPointWidth_;
                 auto impactPointHeight =
                     CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
                 auto impactPointX = imageX +
@@ -429,11 +429,11 @@ void FirstPersonView::Render()
                                     impactPointHeight / 2.0f;
 
                 auto color =
-                    impactPoint.completed ? COLORS::k_green : COLORS::k_red;
+                    impactPoint.completed ? COLORS::kGreen : COLORS::kRed;
 
-                _<ColorRenderer>().FillRect(impactPointX, impactPointY,
-                                            impactPointWidth, impactPointHeight,
-                                            color);
+                _<COLOR8RENDERER>().FILL8RECT(impactPointX, impactPointY,
+                                              impactPointWidth,
+                                              impactPointHeight, color);
             }
         }
     }
@@ -441,17 +441,17 @@ void FirstPersonView::Render()
     for (auto completedObjectImpact : completedObjectImpacts_)
     {
         if (now - completedObjectImpact.ticksCompleted <
-            k_impactPointEffectDuration_)
+            kImpactPointEffectDuration_)
         {
             auto hitEffectImageSize =
                 _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"));
 
-            constexpr auto k_hitEffectScale = 0.1f;
+            constexpr auto kHitEffectScale = 0.1f;
 
             auto hitEffectWidth =
-                hitEffectImageSize.width / 60.0f * k_hitEffectScale;
+                hitEffectImageSize.width / 60.0f * kHitEffectScale;
             auto hitEffectHeight = hitEffectImageSize.height / 60.0f *
-                                   CONVERT8WIDTH8TO8HEIGHT(k_hitEffectScale);
+                                   CONVERT8WIDTH8TO8HEIGHT(kHitEffectScale);
 
             auto impactPointX = completedObjectImpact.position.x;
             auto impactPointY = completedObjectImpact.position.y;
@@ -464,10 +464,10 @@ void FirstPersonView::Render()
         }
     }
 
-    constexpr auto k_handScale = 0.1f;
+    constexpr auto kHandScale = 0.1f;
 
-    auto handWidth = k_handScale;
-    auto handHeight = CONVERT8WIDTH8TO8HEIGHT(k_handScale * 6 / 4);
+    auto handWidth = kHandScale;
+    auto handHeight = CONVERT8WIDTH8TO8HEIGHT(kHandScale * 6 / 4);
     auto handSpacing = 0.1f;
 
     auto leftHandX =
@@ -497,9 +497,9 @@ void FirstPersonView::Render()
     {
         auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(rightHandObject->type_);
 
-        auto imageWidth = imageSize.width / 60.0f * k_wieldedObjectScale_;
+        auto imageWidth = imageSize.width / 60.0f * kWieldedObjectScale_;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT8WIDTH8TO8HEIGHT(k_wieldedObjectScale_);
+                           CONVERT8WIDTH8TO8HEIGHT(kWieldedObjectScale_);
 
         auto rightHandX = 1.0f - viewWidth + 0.5f * viewWidth + handSpacing -
                           imageWidth / 2.0f;
@@ -507,16 +507,16 @@ void FirstPersonView::Render()
 
         _<ImageRenderer>().DrawImage(rightHandObject->type_, rightHandX,
                                      rightHandY, imageWidth, imageHeight,
-                                     k_handsOpacity_);
+                                     kHandsOpacity_);
     }
 
     if (leftHandObject)
     {
         auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(leftHandObject->type_);
 
-        auto imageWidth = imageSize.width / 60.0f * k_wieldedObjectScale_;
+        auto imageWidth = imageSize.width / 60.0f * kWieldedObjectScale_;
         auto imageHeight = imageSize.height / 60.0f *
-                           CONVERT8WIDTH8TO8HEIGHT(k_wieldedObjectScale_);
+                           CONVERT8WIDTH8TO8HEIGHT(kWieldedObjectScale_);
 
         auto leftHandX = 1.0f - viewWidth + 0.5f * viewWidth - handSpacing -
                          imageWidth / 2.0f;
@@ -524,42 +524,42 @@ void FirstPersonView::Render()
 
         _<ImageRenderer>().DrawImage(leftHandObject->type_, leftHandX,
                                      leftHandY, imageWidth, imageHeight,
-                                     k_handsOpacity_, true);
+                                     kHandsOpacity_, true);
     }
 
     _<ImageRenderer>().DrawImage("HandLeft", leftHandX, handY, handWidth,
-                                 handHeight, k_handsOpacity_);
+                                 handHeight, kHandsOpacity_);
     _<ImageRenderer>().DrawImage("HandRight", rightHandX, handY, handWidth,
-                                 handHeight, k_handsOpacity_);
+                                 handHeight, kHandsOpacity_);
 
-    _<ColorRenderer>().DrawLine(viewWidth, 0.0f, viewWidth, 1.0f,
-                                COLORS::k_white);
+    _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0f, viewWidth, 1.0f,
+                                  COLORS::kWhite);
 
-    if (now < _<PLAYER>().ticksLastHitOnSelf_ + k_hitSelfEffectDuration_)
+    if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_)
     {
-        _<ColorRenderer>().FillRect(viewWidth, 0.0f, viewWidth, 1.0f,
-                                    COLORS::k_red);
+        _<COLOR8RENDERER>().FILL8RECT(viewWidth, 0.0f, viewWidth, 1.0f,
+                                      COLORS::kRed);
     }
 
     if (now <
         _<PLAYER>().ticksLastImpact_ + INVERT8SPEED(_<PLAYER>().impactSpeed_))
     {
-        constexpr auto k_impactReloadWidth = 0.1f;
-        constexpr auto k_impactReloadHeight = 0.01f;
+        constexpr auto kImpactReloadWidth = 0.1f;
+        constexpr auto kImpactReloadHeight = 0.01f;
 
         auto progress = static_cast<float>(now - _<PLAYER>().ticksLastImpact_) /
                         INVERT8SPEED(_<PLAYER>().impactSpeed_);
 
-        auto filledWidth = k_impactReloadWidth * (1.0f - progress);
+        auto filledWidth = kImpactReloadWidth * (1.0f - progress);
 
-        auto x = 1.0f - viewWidth + 0.25f - k_impactReloadWidth / 2;
-        auto y = 0.5f - k_impactReloadHeight / 2;
+        auto x = 1.0f - viewWidth + 0.25f - kImpactReloadWidth / 2;
+        auto y = 0.5f - kImpactReloadHeight / 2;
 
-        _<ColorRenderer>().FillRect(x, y, k_impactReloadWidth,
-                                    k_impactReloadHeight, COLORS::k_black);
+        _<COLOR8RENDERER>().FILL8RECT(x, y, kImpactReloadWidth,
+                                      kImpactReloadHeight, COLORS::kBlack);
 
-        _<ColorRenderer>().FillRect(x, y, filledWidth, k_impactReloadHeight,
-                                    COLORS::k_gold);
+        _<COLOR8RENDERER>().FILL8RECT(x, y, filledWidth, kImpactReloadHeight,
+                                      COLORS::kGold);
     }
 
     _<SDLDevice>().ResetClip();

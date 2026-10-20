@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "GUI8METER.HPP"
 
 GUI8METER::GUI8METER(float x, float y, float width, float height)
@@ -15,15 +15,15 @@ void GUI8METER::RENDER8DERIVED()
 
     auto size = size_;
 
-    _<ColorRenderer>().FillRect(position.x, position.y, size.width, size.height,
-                                COLORS::k_darkBlue);
+    _<COLOR8RENDERER>().FILL8RECT(position.x, position.y, size.width,
+                                  size.height, COLORS::kDarkBlue);
 
-    _<ColorRenderer>().FillRect(position.x, position.y,
-                                GET8METER8PROGRESS() * size.width, size.height,
-                                GET8FILLED8COLOR());
+    _<COLOR8RENDERER>().FILL8RECT(position.x, position.y,
+                                  GET8METER8PROGRESS() * size.width,
+                                  size.height, GET8FILLED8COLOR());
 
-    _<ColorRenderer>().DrawRect(position.x, position.y, size.width, size.height,
-                                COLORS::k_black);
+    _<COLOR8RENDERER>().DRAW8RECT(position.x, position.y, size.width,
+                                  size.height, COLORS::kBlack);
 }
 
 float GUI8METER::GET8METER8PROGRESS()
@@ -33,5 +33,5 @@ float GUI8METER::GET8METER8PROGRESS()
 
 COLOR GUI8METER::GET8FILLED8COLOR()
 {
-    return COLORS::k_yellowGray;
+    return COLORS::kYellowGray;
 }

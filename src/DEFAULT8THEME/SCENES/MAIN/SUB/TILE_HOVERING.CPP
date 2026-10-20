@@ -29,10 +29,10 @@ void TileHovering::Update()
 
     auto playerElevation{playerTile->elevation_};
 
-    auto tileWidth{GAME8PROPERTIES::k_tileWidth_};
+    auto tileWidth{GAME8PROPERTIES::kTileWidth_};
     auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-    auto tileGridSize{GAME8PROPERTIES::k_tileGridSize_};
+    auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
 
     auto numGridRows{tileGridSize - 11};
     auto numGridColumns{tileGridSize - 11};

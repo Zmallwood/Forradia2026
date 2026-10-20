@@ -24,7 +24,7 @@ void GUIStatusPanel::RENDER8DERIVED()
     std::string levelText = "Level " + std::to_string(playerLevel);
 
     _<TextRenderer>().DrawString(levelText, 0.015f, 0.04f, FontSizes::_24,
-                                 false, COLORS::k_yellowGray);
+                                 false, COLORS::kYellowGray);
 
     std::stringstream ssHealth;
 
@@ -33,5 +33,5 @@ void GUIStatusPanel::RENDER8DERIVED()
              << _<PLAYER>().maxHealth_;
 
     _<TextRenderer>().DrawString(ssHealth.str(), 0.015f, 0.08f, FontSizes::_12,
-                                 false, COLORS::k_wheat);
+                                 false, COLORS::kWheat);
 }

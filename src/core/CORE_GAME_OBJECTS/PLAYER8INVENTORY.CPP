@@ -6,7 +6,7 @@
 
 void PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
 {
-    for (auto i = 0; i < k_maxObjects_; i++)
+    for (auto i = 0; i < kMaxObjects_; i++)
     {
         if (!objects_.contains(i))
         {

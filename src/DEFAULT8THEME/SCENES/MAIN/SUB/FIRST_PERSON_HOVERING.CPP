@@ -12,19 +12,19 @@
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
-#include "FIRST_PERSON_HOVERING.HPP"
 #include "FIRST8PERSON8VIEW/FIRST_PERSON_VIEW_FUNCTIONS.HPP"
+#include "FIRST_PERSON_HOVERING.HPP"
 
 void FirstPersonHovering::Update()
 {
     hoveredObject_ = nullptr;
     hoveredCreature_ = nullptr;
 
-    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-    auto tileUnitsWidth{_<GAME8PROPERTIES>().k_tileUnitsWidth_};
+    auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
 
-    constexpr auto k_margin{GAME8PROPERTIES::k_firstPersonViewMargin_};
+    constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
 
     auto orderedObjects{GetOrderedObjects()};
 
@@ -41,8 +41,8 @@ void FirstPersonHovering::Update()
         return;
     }
 
-    constexpr auto largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
-    constexpr auto smallObjectScale{GAME8PROPERTIES::k_smallObjectScale_};
+    constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
+    constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
 
     for (auto entry : orderedObjects)
     {
@@ -85,18 +85,18 @@ void FirstPersonHovering::Update()
                               tileUnitsWidth);
         }
 
-        auto tileWidth{viewWidth - 2 * k_margin.x -
+        auto tileWidth{viewWidth - 2 * kMargin.x -
                        static_cast<float>(tileUnitsWidth - yPos) /
                            tileUnitsWidth * viewWidth * 0.6f};
-        auto tileLeft{1.0f - viewWidth + k_margin.x +
+        auto tileLeft{1.0f - viewWidth + kMargin.x +
                       static_cast<float>(tileUnitsWidth - yPos) /
                           tileUnitsWidth * viewWidth * 0.3f};
 
         auto baseX{tileLeft +
                    static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-        auto baseY{0.75f + k_margin.y +
+        auto baseY{0.75f + kMargin.y +
                    static_cast<float>(yPos + 1) / tileUnitsWidth *
-                       (0.25f - 2 * k_margin.y)};
+                       (0.25f - 2 * kMargin.y)};
 
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
@@ -131,11 +131,11 @@ void FirstPersonHovering::Update()
         auto imageHeight{imageSize.height / 60.0f *
                          CONVERT8WIDTH8TO8HEIGHT(largeObjectScale)};
 
-        auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
-        auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
+        auto tileWidth{viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f};
 
         auto baseX{tileLeft + 0.5f * tileWidth};
-        auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
+        auto baseY{0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y)};
 
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
@@ -200,18 +200,18 @@ void FirstPersonHovering::Update()
                               tileUnitsWidth);
         }
 
-        auto tileWidth{viewWidth - 2 * k_margin.x -
+        auto tileWidth{viewWidth - 2 * kMargin.x -
                        static_cast<float>(tileUnitsWidth - yPos) /
                            tileUnitsWidth * viewWidth * 0.6f};
-        auto tileLeft{1.0f - viewWidth + k_margin.x +
+        auto tileLeft{1.0f - viewWidth + kMargin.x +
                       static_cast<float>(tileUnitsWidth - yPos) /
                           tileUnitsWidth * viewWidth * 0.3f};
 
         auto baseX{tileLeft +
                    static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-        auto baseY{0.75f + k_margin.y +
+        auto baseY{0.75f + kMargin.y +
                    static_cast<float>(yPos + 1) / tileUnitsWidth *
-                       (0.25f - 2 * k_margin.y)};
+                       (0.25f - 2 * kMargin.y)};
 
         auto imageX{baseX - imageWidth / 2.0f};
         auto imageY{baseY - imageHeight};
@@ -250,7 +250,7 @@ void FirstPersonHovering::Render()
         }
 
         _<TextRenderer>().DrawString(objectLabel, mousePosition.x,
-                                     mousePosition.y + k_textYOffset_);
+                                     mousePosition.y + kTextYOffset_);
     }
     else if (hoveredCreature_)
     {
@@ -263,6 +263,6 @@ void FirstPersonHovering::Render()
         }
 
         _<TextRenderer>().DrawString(creatureLabel, mousePosition.x,
-                                     mousePosition.y + k_textYOffset_);
+                                     mousePosition.y + kTextYOffset_);
     }
 }

@@ -7,7 +7,7 @@
 void IMAGE8BANK::LOAD8IMAGES()
 {
     auto imagesDirectory =
-        SDL_GetBasePath() + std::string(k_relativeImagesDirectory_);
+        SDL_GetBasePath() + std::string(kRelativeImagesDirectory_);
 
     imagesDirectory = REPLACE(imagesDirectory, "\\", "/");
 

@@ -4,31 +4,31 @@
 #include "CURSOR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
 
-Cursor::Cursor()
+CURSOR::CURSOR()
 {
     SDL_ShowCursor(SDL_DISABLE);
 }
 
-void Cursor::Reset()
+void CURSOR::RESET()
 {
-    cursorStyle_ = CursorStyles::Default;
+    cursorStyle_ = CURSOR8STYLES::Default;
 }
 
-void Cursor::Render()
+void CURSOR::RENDER()
 {
     auto mousePosition = GET8MOUSE8POSITION();
 
-    auto cursorWidth = k_cursorSize_;
+    auto cursorWidth = kCursorSize_;
     auto cursorHeight = CONVERT8WIDTH8TO8HEIGHT(cursorWidth);
 
     std::string cursorImage;
 
     switch (cursorStyle_)
     {
-    case CursorStyles::Hovering:
+    case CURSOR8STYLES::Hovering:
         cursorImage = "CursorHovering";
         break;
-    case CursorStyles::Default:
+    case CURSOR8STYLES::Default:
     default:
         cursorImage = "CursorDefault";
         break;

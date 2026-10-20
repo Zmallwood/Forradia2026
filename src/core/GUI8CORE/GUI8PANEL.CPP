@@ -36,7 +36,7 @@ void GUI8PANEL::RENDER8DERIVED()
 
 std::string GUI8PANEL::GET8BACKGROUND8IMAGE()
 {
-    return k_defaultBackgroundImage_;
+    return kDefaultBackgroundImage_;
 }
 
 RECT8F GUI8PANEL::GET8BOUNDS()

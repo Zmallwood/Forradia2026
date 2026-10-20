@@ -30,18 +30,18 @@ class GUIEquipmentWindow : public GUI8WINDOW
 
     RECT8F GetLeftHandSlotBounds();
 
-    static constexpr float k_slotWidth_ = 0.037f;
-    static constexpr float k_marginY_ = 0.02f;
-    static constexpr std::string_view k_headSlotImage_ =
+    static constexpr float kSlotWidth_ = 0.037f;
+    static constexpr float kMarginY_ = 0.02f;
+    static constexpr std::string_view kHeadSlotImage_ =
         "GUIEquipmentWindowHeadSlotBackground";
-    static constexpr std::string_view k_chestSlotImage_ =
+    static constexpr std::string_view kChestSlotImage_ =
         "GUIEquipmentWindowChestSlotBackground";
-    static constexpr std::string_view k_legsSlotImage_ =
+    static constexpr std::string_view kLegsSlotImage_ =
         "GUIEquipmentWindowLegsSlotBackground";
-    static constexpr std::string_view k_feetSlotImage_ =
+    static constexpr std::string_view kFeetSlotImage_ =
         "GUIEquipmentWindowFeetSlotBackground";
-    static constexpr std::string_view k_rightHandSlotImage_ =
+    static constexpr std::string_view kRightHandSlotImage_ =
         "GUIEquipmentWindowRightHandSlotBackground";
-    static constexpr std::string_view k_leftHandSlotImage_ =
+    static constexpr std::string_view kLeftHandSlotImage_ =
         "GUIEquipmentWindowLeftHandSlotBackground";
 };

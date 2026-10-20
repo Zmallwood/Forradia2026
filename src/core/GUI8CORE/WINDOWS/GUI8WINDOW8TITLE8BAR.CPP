@@ -65,14 +65,14 @@ void GUI8WINDOW8TITLE8BAR::RENDER8DERIVED()
 
     auto position = GET8POSITION();
 
-    _<TextRenderer>().DrawString(title_, position.x + k_margin_.x,
-                                 position.y + k_margin_.y, FontSizes::_18,
+    _<TextRenderer>().DrawString(title_, position.x + kMargin_.x,
+                                 position.y + kMargin_.y, FontSizes::_18,
                                  false);
 }
 
 std::string GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE()
 {
-    return k_defaultBackgroundImage_;
+    return kDefaultBackgroundImage_;
 }
 
 POINT8F GUI8WINDOW8TITLE8BAR::GET8POSITION()

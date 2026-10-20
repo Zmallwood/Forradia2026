@@ -5,7 +5,7 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
@@ -22,9 +22,9 @@ void WorldView::Render()
 {
     _<SDLDevice>().Clip(0.0f, 0.0f, 0.5f, 1.0f);
 
-    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
+    auto viewWidth = GAME8PROPERTIES::kViewWidth_;
 
-    _<ColorRenderer>().FillRect(0.0f, 0.0f, viewWidth, 1.0f, COLORS::k_black);
+    _<COLOR8RENDERER>().FILL8RECT(0.0f, 0.0f, viewWidth, 1.0f, COLORS::kBlack);
 
     auto worldArea = _<World>().currentWorldArea_;
 
@@ -50,10 +50,10 @@ void WorldView::Render()
 
     auto facedTile = _<PLAYER>().facedTileCoordinate_;
 
-    auto tileWidth = _<GAME8PROPERTIES>().k_tileWidth_;
+    auto tileWidth = _<GAME8PROPERTIES>().kTileWidth_;
     auto tileHeight = CONVERT8WIDTH8TO8HEIGHT(tileWidth);
 
-    auto tileGridSize = GAME8PROPERTIES::k_tileGridSize_;
+    auto tileGridSize = GAME8PROPERTIES::kTileGridSize_;
 
     auto numGridRows = tileGridSize - 11;
     auto numGridColumns = tileGridSize - 11;
@@ -228,8 +228,8 @@ void WorldView::Render()
             }
 
             _<ImageRenderer>().DrawImage(ground, tileX, tileY,
-                                         tileWidth + k_smallValue,
-                                         tileHeight + k_smallValue);
+                                         tileWidth + kSmallValue,
+                                         tileHeight + kSmallValue);
 
             if (elevation != elevationNorth)
             {

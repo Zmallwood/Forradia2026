@@ -20,5 +20,5 @@ class SDLDevice
     std::shared_ptr<SDL_Renderer> renderer_;
 
   private:
-    static constexpr std::string_view k_windowName_ = "Forradia";
+    static constexpr std::string_view kWindowName_ = "Forradia";
 };

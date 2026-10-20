@@ -1,14 +1,14 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "FPS_COUNTER.HPP"
+#include "FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
 
-void FPSCounter::Update()
+void FPS8COUNTER::UPDATE()
 {
     auto now = NOW();
 
-    if (now > ticksLastUpdate_ + k_oneSecondMillis)
+    if (now > ticksLastUpdate_ + kOneSecondMillis)
     {
         fps_ = framesCounter_;
         framesCounter_ = 0;
@@ -18,7 +18,7 @@ void FPSCounter::Update()
     ++framesCounter_;
 }
 
-void FPSCounter::Render()
+void FPS8COUNTER::RENDER()
 {
     std::string text = "FPS: " + std::to_string(fps_);
 

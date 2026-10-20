@@ -21,7 +21,7 @@ void GUI8TEXT8CONSOLE::RENDER8DERIVED()
 
     auto size = size_;
 
-    auto maxNumLines = static_cast<int>(size.height / k_lineHeight_) - 1;
+    auto maxNumLines = static_cast<int>(size.height / kLineHeight_) - 1;
 
     auto iStart = std::max(0, static_cast<int>(lines_.size() - maxNumLines));
 
@@ -38,7 +38,7 @@ void GUI8TEXT8CONSOLE::RENDER8DERIVED()
 
         _<TextRenderer>().DrawString(text, position.x + 0.01F,
                                      position.y + 0.01F +
-                                         rowIndex * k_lineHeight_);
+                                         rowIndex * kLineHeight_);
 
         rowIndex++;
     }

@@ -15,5 +15,5 @@ float GUIHealthMeter::GET8METER8PROGRESS()
 
 COLOR GUIHealthMeter::GET8FILLED8COLOR()
 {
-    return COLORS::k_red;
+    return COLORS::kRed;
 }

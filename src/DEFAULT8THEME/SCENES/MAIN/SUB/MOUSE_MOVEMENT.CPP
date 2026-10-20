@@ -146,7 +146,7 @@ void MouseMovement::OnKeyUp(SDL_Keycode key)
 
 void MouseMovement::OnMouseDown(Uint8 button)
 {
-    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
     auto mousePosition{GET8MOUSE8POSITION()};
 

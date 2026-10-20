@@ -19,7 +19,7 @@ class IMAGE8BANK
   private:
     void LOAD8SINGLE8IMAGE(std::string_view fullPath);
 
-    static constexpr std::string_view k_relativeImagesDirectory_ =
+    static constexpr std::string_view kRelativeImagesDirectory_ =
         "resources/Images/";
     std::unordered_map<int, IMAGE8ENTRY> images_;
 };

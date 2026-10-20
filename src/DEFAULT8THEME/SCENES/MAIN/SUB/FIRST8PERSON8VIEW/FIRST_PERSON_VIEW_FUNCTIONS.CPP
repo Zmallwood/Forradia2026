@@ -9,10 +9,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
 #include "FIRST_PERSON_VIEW_FUNCTIONS.HPP"
 
-
 std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
 {
-    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
     auto worldArea = _<World>().currentWorldArea_;
     auto facedTile = worldArea->GetTile(_<PLAYER>().facedTileCoordinate_);
@@ -68,16 +67,16 @@ std::map<std::pair<int, int>, PositionedObject> GetOrderedObjects()
 
 POINT GetHoveredTilePosition(POINT8F mouseOffset)
 {
-    constexpr auto k_margin = GAME8PROPERTIES::k_firstPersonViewMargin_;
-    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
-    auto viewWidth = GAME8PROPERTIES::k_viewWidth_;
+    constexpr auto kMargin = GAME8PROPERTIES::kFirstPersonViewMargin_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
+    auto viewWidth = GAME8PROPERTIES::kViewWidth_;
 
     auto hoveredTilePosition = POINT{-1, -1};
 
     auto anchorPosition = GET8MOUSE8POSITION() - mouseOffset;
 
-    auto groundTop = 0.75f + k_margin.y;
-    auto groundHeight = 0.25f - 2 * k_margin.y;
+    auto groundTop = 0.75f + kMargin.y;
+    auto groundHeight = 0.25f - 2 * kMargin.y;
 
     auto relativeY = (anchorPosition.y - groundTop) / groundHeight;
 
@@ -96,11 +95,11 @@ POINT GetHoveredTilePosition(POINT8F mouseOffset)
             hoveredY = tileUnitsWidth - 1;
         }
 
-        auto tileWidth = viewWidth - 2 * k_margin.x -
+        auto tileWidth = viewWidth - 2 * kMargin.x -
                          static_cast<float>(tileUnitsWidth - hoveredY) /
                              tileUnitsWidth * viewWidth * 0.6f;
 
-        auto tileLeft = 1.0f - viewWidth + k_margin.x +
+        auto tileLeft = 1.0f - viewWidth + kMargin.x +
                         static_cast<float>(tileUnitsWidth - hoveredY) /
                             tileUnitsWidth * viewWidth * 0.3f;
 

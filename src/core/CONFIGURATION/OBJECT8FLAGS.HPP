@@ -5,7 +5,7 @@
 
 namespace OBJECT8FLAGS
 {
-    constexpr int k_smallObject = 1 << 0;
-    constexpr int k_blocksSight = 1 << 1;
-    constexpr int k_unmovable = 1 << 2;
+    constexpr int kSmallObject = 1 << 0;
+    constexpr int kBlocksSight = 1 << 1;
+    constexpr int kUnmovable = 1 << 2;
 }

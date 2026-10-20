@@ -18,5 +18,5 @@ class FirstPersonHovering
     POINT8F hoveredThingMouseOffset_;
 
   private:
-    static constexpr float k_textYOffset_{-0.03f};
+    static constexpr float kTextYOffset_{-0.03f};
 };

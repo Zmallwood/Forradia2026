@@ -19,6 +19,6 @@ class PLAYER8INVENTORY
     bool HAS8OBJECT(int index);
 
   private:
-    static constexpr int k_maxObjects_ = 1000;
+    static constexpr int kMaxObjects_ = 1000;
     std::unordered_map<int, std::shared_ptr<Object>> objects_;
 };

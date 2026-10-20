@@ -11,7 +11,6 @@
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
 #include "GUI_INVENTORY_WINDOW.HPP"
 
-
 GUIInventoryWindow::GUIInventoryWindow()
     : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f)
 {
@@ -35,11 +34,11 @@ bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
         auto titleBarHeight = titleBar_->size_.height;
 
         auto numCols =
-            static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
+            static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_));
 
-        auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
+        auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_);
 
-        auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(k_slotMarginX_);
+        auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(kSlotMarginX_);
 
         auto numRows = static_cast<int>((size.height - titleBarHeight) /
                                         (slotHeight + slotMarginY));
@@ -50,13 +49,13 @@ bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
         {
             for (auto x = 0; x < numCols; x++)
             {
-                auto slotX = position.x + k_slotMarginX_ +
-                             x * (k_slotWidth_ + k_slotMarginX_);
+                auto slotX = position.x + kSlotMarginX_ +
+                             x * (kSlotWidth_ + kSlotMarginX_);
 
                 auto slotY = position.y + titleBarHeight +
                              y * (slotHeight + slotMarginY);
 
-                auto slotWidth = k_slotWidth_;
+                auto slotWidth = kSlotWidth_;
 
                 RECT8F slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
@@ -70,9 +69,9 @@ bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
                         _<ObjectMoving>().SetObjectInAir(object);
 
                         constexpr auto largeObjectScale =
-                            GAME8PROPERTIES::k_largeObjectScale_;
+                            GAME8PROPERTIES::kLargeObjectScale_;
                         constexpr auto smallObjectScale =
-                            GAME8PROPERTIES::k_smallObjectScale_;
+                            GAME8PROPERTIES::kSmallObjectScale_;
 
                         auto isSmallObject =
                             _<OBJECT8INDEX>().IS8SMALL8OBJECT(object->type_);
@@ -82,10 +81,10 @@ bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
 
                         auto offsetX = (mousePosition.x -
                                         (slotBounds.x + slotWidth / 2.0f)) *
-                                       scale / k_slotWidth_;
+                                       scale / kSlotWidth_;
                         auto offsetY =
                             (mousePosition.y - (slotBounds.y + slotHeight)) *
-                            scale / k_slotWidth_;
+                            scale / kSlotWidth_;
 
                         _<ObjectMoving>().draggingMouseOffset_ = {offsetX,
                                                                   offsetY};
@@ -119,12 +118,11 @@ bool GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 
     auto titleBarHeight = titleBar_->size_.height;
 
-    auto numCols =
-        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
+    auto numCols = static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_));
 
-    auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
+    auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_);
 
-    auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(k_slotMarginX_);
+    auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(kSlotMarginX_);
 
     auto numRows = static_cast<int>((size.height - titleBarHeight) /
                                     (slotHeight + slotMarginY));
@@ -135,13 +133,13 @@ bool GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
     {
         for (auto x = 0; x < numCols; x++)
         {
-            auto slotX = position.x + k_slotMarginX_ +
-                         x * (k_slotWidth_ + k_slotMarginX_);
+            auto slotX =
+                position.x + kSlotMarginX_ + x * (kSlotWidth_ + kSlotMarginX_);
 
             auto slotY =
                 position.y + titleBarHeight + y * (slotHeight + slotMarginY);
 
-            auto slotWidth = k_slotWidth_;
+            auto slotWidth = kSlotWidth_;
 
             RECT8F slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
@@ -175,12 +173,11 @@ void GUIInventoryWindow::RENDER8DERIVED()
 
     auto titleBarHeight = titleBar_->size_.height;
 
-    auto numCols =
-        static_cast<int>(size.width / (k_slotWidth_ + k_slotMarginX_));
+    auto numCols = static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_));
 
-    auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(k_slotWidth_);
+    auto slotHeight = CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_);
 
-    auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(k_slotMarginX_);
+    auto slotMarginY = CONVERT8WIDTH8TO8HEIGHT(kSlotMarginX_);
 
     auto numRows = static_cast<int>((size.height - titleBarHeight) /
                                     (slotHeight + slotMarginY));
@@ -191,13 +188,13 @@ void GUIInventoryWindow::RENDER8DERIVED()
     {
         for (auto x = 0; x < numCols; x++)
         {
-            auto slotX = position.x + k_slotMarginX_ +
-                         x * (k_slotWidth_ + k_slotMarginX_);
+            auto slotX =
+                position.x + kSlotMarginX_ + x * (kSlotWidth_ + kSlotMarginX_);
 
             auto slotY =
                 position.y + titleBarHeight + y * (slotHeight + slotMarginY);
 
-            auto slotWidth = k_slotWidth_;
+            auto slotWidth = kSlotWidth_;
 
             _<ImageRenderer>().DrawImage("GUIInventoryWindowSlotBackground",
                                          slotX, slotY, slotWidth, slotHeight);

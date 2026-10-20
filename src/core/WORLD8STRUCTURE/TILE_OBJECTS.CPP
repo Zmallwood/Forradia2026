@@ -14,8 +14,8 @@ void TileObjects::AddObject(int objectType, POINT position)
 {
     if (position.x == -1 || position.y == -1)
     {
-        position.x = rand() % _<GAME8PROPERTIES>().k_tileUnitsWidth_;
-        position.y = rand() % _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+        position.x = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
+        position.y = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
     }
 
     objects_.insert({position, std::make_shared<Object>(objectType)});

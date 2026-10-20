@@ -1,13 +1,13 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "COLOR_RENDERER.HPP"
+#include "COLOR8RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 
-void ColorRenderer::FillRect(float x, float y, float width, float height,
-    COLOR color)
+void COLOR8RENDERER::FILL8RECT(float x, float y, float width, float height,
+                               COLOR color)
 {
-    auto rect = CreateSDLRect(x, y, width, height);
+    auto rect = CREATE8SDL8RECT(x, y, width, height);
 
     auto sdlColor = color.TO8SDL8COLOR();
 
@@ -17,15 +17,15 @@ void ColorRenderer::FillRect(float x, float y, float width, float height,
     SDL_RenderFillRect(_<SDLDevice>().renderer_.get(), &rect);
 }
 
-void ColorRenderer::FillRect(RECT8F rect, COLOR color)
+void COLOR8RENDERER::FILL8RECT(RECT8F rect, COLOR color)
 {
-    FillRect(rect.x, rect.y, rect.width, rect.height, color);
+    FILL8RECT(rect.x, rect.y, rect.width, rect.height, color);
 }
 
-void ColorRenderer::DrawRect(float x, float y, float width, float height,
-    COLOR color)
+void COLOR8RENDERER::DRAW8RECT(float x, float y, float width, float height,
+                               COLOR color)
 {
-    auto rect = CreateSDLRect(x, y, width, height);
+    auto rect = CREATE8SDL8RECT(x, y, width, height);
 
     auto sdlColor = color.TO8SDL8COLOR();
 
@@ -35,8 +35,8 @@ void ColorRenderer::DrawRect(float x, float y, float width, float height,
     SDL_RenderDrawRect(_<SDLDevice>().renderer_.get(), &rect);
 }
 
-void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
-    COLOR color)
+void COLOR8RENDERER::DRAW8LINE(float x1, float y1, float x2, float y2,
+                               COLOR color)
 {
     auto canvasSize = GET8CANVAS8SIZE();
 
@@ -54,8 +54,8 @@ void ColorRenderer::DrawLine(float x1, float y1, float x2, float y2,
                        destY2);
 }
 
-SDL_Rect ColorRenderer::CreateSDLRect(float x, float y, float width,
-                                      float height)
+SDL_Rect COLOR8RENDERER::CREATE8SDL8RECT(float x, float y, float width,
+                                         float height)
 {
     auto canvasSize = GET8CANVAS8SIZE();
 

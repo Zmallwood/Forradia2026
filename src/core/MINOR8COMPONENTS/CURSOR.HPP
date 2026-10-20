@@ -3,19 +3,19 @@
 
 #pragma once
 
-#include "CURSOR_STYLES.HPP"
+#include "CURSOR8STYLES.HPP"
 
-class Cursor
+class CURSOR
 {
   public:
-    Cursor();
+    CURSOR();
 
-    void Reset();
+    void RESET();
 
-    void Render();
+    void RENDER();
 
-    CursorStyles cursorStyle_ = CursorStyles::Default;
+    CURSOR8STYLES cursorStyle_ = CURSOR8STYLES::Default;
 
   private:
-    static constexpr float k_cursorSize_ = 0.05f;
+    static constexpr float kCursorSize_ = 0.05f;
 };

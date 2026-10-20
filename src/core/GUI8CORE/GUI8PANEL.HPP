@@ -22,6 +22,6 @@ class GUI8PANEL : public GUI8COMPONENT
     RECT8F GET8BOUNDS();
 
   private:
-    inline static const std::string k_defaultBackgroundImage_ =
+    inline static const std::string kDefaultBackgroundImage_ =
         "GUIPanelBackground";
 };

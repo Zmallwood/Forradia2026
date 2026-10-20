@@ -4,7 +4,7 @@
 #include "ENGINE.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
-#include "CORE/MINOR8COMPONENTS/FPS_COUNTER.HPP"
+#include "CORE/MINOR8COMPONENTS/FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
 #include "CORE/SDL_DEVICE/SDL_DEVICE.HPP"
 #include "CORE/SCENES8CORE/SCENE_MANAGER.HPP"
@@ -21,19 +21,19 @@ void ENGINE::START()
     {
         POLL_EVENTS();
 
-        _<Cursor>().Reset();
+        _<CURSOR>().RESET();
 
         _<SceneManager>().UpdateCurrentScene();
 
-        _<FPSCounter>().Update();
+        _<FPS8COUNTER>().UPDATE();
 
         _<SDLDevice>().ClearCanvas();
 
         _<SceneManager>().RenderCurrentScene();
 
-        _<FPSCounter>().Render();
+        _<FPS8COUNTER>().RENDER();
 
-        _<Cursor>().Render();
+        _<CURSOR>().RENDER();
 
         _<SDLDevice>().PresentCanvas();
     }

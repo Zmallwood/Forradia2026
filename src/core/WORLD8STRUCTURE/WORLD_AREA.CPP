@@ -7,7 +7,7 @@
 
 WorldArea::WorldArea()
 {
-    auto size = _<GAME8PROPERTIES>().k_worldAreaSize_;
+    auto size = _<GAME8PROPERTIES>().kWorldAreaSize_;
 
     for (auto x = 0; x < size.width; x++)
     {

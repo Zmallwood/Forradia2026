@@ -10,8 +10,8 @@ GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
                        std::string_view backgroundImage,
                        std::string_view hoveredBackgroundImage)
     : GUI8PANEL(x, y, width, height), text_(text), action_(action),
-      k_backgroundImage_(backgroundImage),
-      k_hoveredBackgroundImage_(hoveredBackgroundImage)
+      kBackgroundImage_(backgroundImage),
+      kHoveredBackgroundImage_(hoveredBackgroundImage)
 {
 }
 
@@ -29,7 +29,7 @@ void GUI8BUTTON::UPDATE8DERIVED()
     {
         hovered_ = true;
 
-        _<Cursor>().cursorStyle_ = CursorStyles::Hovering;
+        _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
     }
     else
     {
@@ -71,5 +71,5 @@ bool GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)
 
 std::string GUI8BUTTON::GET8BACKGROUND8IMAGE()
 {
-    return hovered_ ? k_hoveredBackgroundImage_ : k_backgroundImage_;
+    return hovered_ ? kHoveredBackgroundImage_ : kBackgroundImage_;
 }

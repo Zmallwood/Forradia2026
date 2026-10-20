@@ -29,9 +29,9 @@ class GUI8WINDOW8TITLE8BAR : public GUI8PANEL
     void SET8POSITION(POINT8F value) override;
 
   private:
-    inline static const std::string k_defaultBackgroundImage_ =
+    inline static const std::string kDefaultBackgroundImage_ =
         "GUIWindowTitleBarBackground";
-    static constexpr POINT8F k_margin_ = {0.01F, 0.01F};
+    static constexpr POINT8F kMargin_ = {0.01F, 0.01F};
 
     GUI8WINDOW &guiWindow_;
     std::string title_;

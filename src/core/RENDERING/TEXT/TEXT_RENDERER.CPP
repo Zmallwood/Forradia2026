@@ -15,7 +15,7 @@ void TextRenderer::Initialize()
 
 void TextRenderer::AddFont(FontSizes fontSize)
 {
-    auto absFontPath = std::string(SDL_GetBasePath()) + k_defaultFontPath_;
+    auto absFontPath = std::string(SDL_GetBasePath()) + kDefaultFontPath_;
     auto fontPath = REPLACE(absFontPath, "\\", "/");
     auto fontSizeN = static_cast<int>(fontSize);
 

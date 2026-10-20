@@ -8,7 +8,7 @@ SDLDevice::SDLDevice()
     auto windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
 
     window_ = std::shared_ptr<SDL_Window>(
-        SDL_CreateWindow(k_windowName_.data(), SDL_WINDOWPOS_CENTERED,
+        SDL_CreateWindow(kWindowName_.data(), SDL_WINDOWPOS_CENTERED,
                          SDL_WINDOWPOS_CENTERED, 800, 600, windowFlags),
         SDL8DELETER());
 

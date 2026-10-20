@@ -3,7 +3,7 @@
 
 #pragma once
 
-enum class CursorStyles
+enum class CURSOR8STYLES
 {
     Default,
     Hovering

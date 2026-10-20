@@ -16,9 +16,9 @@
 
 void PlayerCombatToOthers::OnMouseDown(Uint8 button)
 {
-    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-    auto tileUnitsWidth{_<GAME8PROPERTIES>().k_tileUnitsWidth_};
+    auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
 
     auto now{NOW()};
 
@@ -58,22 +58,22 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
         return;
     }
 
-    constexpr auto k_margin{GAME8PROPERTIES::k_firstPersonViewMargin_};
-    constexpr auto k_largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
+    constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
+    constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
 
     auto creatureType{creature->type_};
 
     auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
-    auto imageWidth{imageSize.width / 60.0f * k_largeObjectScale};
+    auto imageWidth{imageSize.width / 60.0f * kLargeObjectScale};
     auto imageHeight{imageSize.height / 60.0f *
-                     CONVERT8WIDTH8TO8HEIGHT(k_largeObjectScale)};
+                     CONVERT8WIDTH8TO8HEIGHT(kLargeObjectScale)};
 
-    auto tileWidth{viewWidth - 2 * k_margin.x - 0.5f * viewWidth * 0.6f};
-    auto tileLeft{1.0f - viewWidth + k_margin.x + 0.5f * viewWidth * 0.3f};
+    auto tileWidth{viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f};
+    auto tileLeft{1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f};
 
     auto baseX{tileLeft + 0.5f * tileWidth};
-    auto baseY{0.75f + k_margin.y + 0.5f * (0.25f - 2 * k_margin.y)};
+    auto baseY{0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y)};
 
     auto imageX{baseX - imageWidth / 2.0f};
     auto imageY{baseY - imageHeight};

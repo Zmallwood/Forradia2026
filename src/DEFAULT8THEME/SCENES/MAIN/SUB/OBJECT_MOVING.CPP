@@ -22,7 +22,7 @@ void ObjectMoving::OnMouseDown(Uint8 button)
         return;
     }
 
-    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
     auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -68,7 +68,7 @@ void ObjectMoving::OnMouseUp(Uint8 button, int clickSpeed)
         return;
     }
 
-    auto viewWidth{GAME8PROPERTIES::k_viewWidth_};
+    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
     auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -108,8 +108,8 @@ void ObjectMoving::Render()
 
     auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
-    constexpr auto largeObjectScale{GAME8PROPERTIES::k_largeObjectScale_};
-    constexpr auto smallObjectScale{GAME8PROPERTIES::k_smallObjectScale_};
+    constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
+    constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
 
     auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 

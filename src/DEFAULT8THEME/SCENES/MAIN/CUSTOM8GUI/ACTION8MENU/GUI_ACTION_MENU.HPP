@@ -13,9 +13,9 @@ class GUIActionMenu
     void Render();
 
   private:
-    static constexpr float k_width = 0.1f;
-    static constexpr float k_lineHeight = 0.02f;
-    static constexpr float k_marginX = 0.002f;
+    static constexpr float kWidth = 0.1f;
+    static constexpr float kLineHeight = 0.02f;
+    static constexpr float kMarginX = 0.002f;
     POINT8F rightClickMousePosition_;
     std::vector<GUIActionMenuEntry> entries_;
     bool visible_ = false;

@@ -3,12 +3,12 @@
 
 #pragma once
 
-class FPSCounter
+class FPS8COUNTER
 {
   public:
-    void Update();
+    void UPDATE();
 
-    void Render();
+    void RENDER();
 
   private:
     int fps_ = 0;

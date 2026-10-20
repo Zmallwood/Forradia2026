@@ -15,9 +15,9 @@ class FirstPersonView
     std::vector<CompletedObjectImpact> completedObjectImpacts_;
 
   private:
-    static constexpr int k_hitOtherEffectDuration_ = 100;
-    static constexpr int k_hitSelfEffectDuration_ = 100;
-    static constexpr int k_impactPointEffectDuration_ = 100;
-    static constexpr float k_wieldedObjectScale_ = 0.15f;
-    static constexpr float k_handsOpacity_ = 0.5f;
+    static constexpr int kHitOtherEffectDuration_ = 100;
+    static constexpr int kHitSelfEffectDuration_ = 100;
+    static constexpr int kImpactPointEffectDuration_ = 100;
+    static constexpr float kWieldedObjectScale_ = 0.15f;
+    static constexpr float kHandsOpacity_ = 0.5f;
 };

@@ -4,7 +4,7 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
-#include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
+#include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
@@ -16,7 +16,7 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 {
     auto mousePosition = GET8MOUSE8POSITION();
 
-    auto tileUnitsWidth = _<GAME8PROPERTIES>().k_tileUnitsWidth_;
+    auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
     if (mouseButton == SDL_BUTTON_RIGHT)
     {
@@ -299,8 +299,8 @@ void GUIActionMenu::OnMouseDown(Uint8 mouseButton)
         for (auto &entry : entries_)
         {
             RECT8F bounds = {rightClickMousePosition_.x,
-                             rightClickMousePosition_.y + row * k_lineHeight,
-                             k_width, k_lineHeight};
+                             rightClickMousePosition_.y + row * kLineHeight,
+                             kWidth, kLineHeight};
 
             if (bounds.CONTAINS(mousePosition))
             {
@@ -325,37 +325,37 @@ void GUIActionMenu::Render()
 
     auto numEntries = entries_.size();
 
-    _<ColorRenderer>().FillRect(
-        rightClickMousePosition_.x, rightClickMousePosition_.y, k_width,
-        k_lineHeight * (numEntries + 1), COLORS::k_darkBlueGray);
+    _<COLOR8RENDERER>().FILL8RECT(
+        rightClickMousePosition_.x, rightClickMousePosition_.y, kWidth,
+        kLineHeight * (numEntries + 1), COLORS::kDarkBlueGray);
 
-    auto marginX = k_marginX;
+    auto marginX = kMarginX;
 
-    auto marginY = CONVERT8WIDTH8TO8HEIGHT(k_marginX);
+    auto marginY = CONVERT8WIDTH8TO8HEIGHT(kMarginX);
 
     _<TextRenderer>().DrawString("Actions",
                                  rightClickMousePosition_.x + marginX,
                                  rightClickMousePosition_.y + marginY,
-                                 FontSizes::_12, false, COLORS::k_gold);
+                                 FontSizes::_12, false, COLORS::kGold);
 
     auto row = 1;
 
     for (auto &entry : entries_)
     {
         RECT8F bounds = {rightClickMousePosition_.x,
-                         rightClickMousePosition_.y + row * k_lineHeight,
-                         k_width, k_lineHeight};
+                         rightClickMousePosition_.y + row * kLineHeight, kWidth,
+                         kLineHeight};
 
         if (bounds.CONTAINS(mousePosition))
         {
-            _<ColorRenderer>().FillRect(bounds, COLORS::k_blueGray);
+            _<COLOR8RENDERER>().FILL8RECT(bounds, COLORS::kBlueGray);
 
-            _<Cursor>().cursorStyle_ = CursorStyles::Hovering;
+            _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
         }
 
         _<TextRenderer>().DrawString(
             entry.label, rightClickMousePosition_.x + marginX,
-            rightClickMousePosition_.y + marginY + row * k_lineHeight);
+            rightClickMousePosition_.y + marginY + row * kLineHeight);
 
         ++row;
     }
