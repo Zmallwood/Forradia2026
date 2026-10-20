@@ -20,7 +20,7 @@
 #include "CORE/WORLD8STRUCTURE/TILE8OBJECTS.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
-#include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE_HOVERING.HPP"
+#include "DEFAULT8THEME/SCENES/MAIN/SUB/TILE8HOVERING.HPP"
 
 namespace FORRADIA8GAME
 {
@@ -54,7 +54,7 @@ namespace FORRADIA8GAME
             playerElevation = playerTile->elevation_;
         }
 
-        auto hoveredCoordinate = _<TileHovering>().hoveredCoordinate_;
+        auto hoveredCoordinate = _<TILE8HOVERING>().hoveredCoordinate_;
 
         auto facedTile = _<PLAYER>().facedTileCoordinate_;
 

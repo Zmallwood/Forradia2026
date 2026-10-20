@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "PLAYER_COMBAT_TO_OTHERS.HPP"
+#include "PLAYER8COMBAT8TO8OTHERS.HPP"
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
@@ -21,7 +21,7 @@
 namespace FORRADIA8GAME
 {
     void
-    PlayerCombatToOthers::OnMouseDown(Uint8 button)
+    PLAYER8COMBAT8TO8OTHERS::ON8MOUSE8DOWN(Uint8 button)
     {
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 

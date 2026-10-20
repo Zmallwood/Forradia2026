@@ -9,16 +9,18 @@
 
 namespace FORRADIA8GAME
 {
-    class KeyboardMovement
+    class MOUSE8MOVEMENT
     {
       public:
-        void Update();
+        void UPDATE();
 
-        void OnKeyDown(SDL_Keycode key);
+        void ON8KEY8DOWN(SDL_Keycode key);
 
-        void OnKeyUp(SDL_Keycode key);
+        void ON8KEY8UP(SDL_Keycode key);
+
+        void ON8MOUSE8DOWN(Uint8 button);
 
       private:
-        std::set<SDL_Keycode> pressedKeys_;
+        bool ctrlKeyDown_{false};
     };
 }

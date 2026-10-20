@@ -9,9 +9,9 @@
 
 namespace FORRADIA8GAME
 {
-    class CreaturesMovement
+    class PLAYER8COMBAT8TO8OTHERS
     {
       public:
-        void Update();
+        void ON8MOUSE8DOWN(Uint8 button);
     };
 }

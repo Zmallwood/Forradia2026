@@ -16,17 +16,17 @@
 #include "CUSTOM8GUI/GUI8INVENTORY8WINDOW.HPP"
 #include "CUSTOM8GUI/GUI8STATUS8PANEL.HPP"
 #include "SUB/CREATURES8COMBAT8TO8PLAYER.HPP"
-#include "SUB/CREATURES_MOVEMENT.HPP"
+#include "SUB/CREATURES8MOVEMENT.HPP"
 #include "SUB/CREATURE8RESPAWNER.HPP"
 #include "SUB/FIRST8PERSON8VIEW/FIRST8PERSON8VIEW.HPP"
 #include "SUB/FIRST8PERSON8HOVERING.HPP"
 #include "SUB/KEYBOARD8HOTKEYS.HPP"
-#include "SUB/KEYBOARD_MOVEMENT.HPP"
-#include "SUB/MOUSE_MOVEMENT.HPP"
+#include "SUB/KEYBOARD8MOVEMENT.HPP"
+#include "SUB/MOUSE8MOVEMENT.HPP"
 #include "SUB/OBJECT8IMPACT.HPP"
 #include "SUB/OBJECT8MOVING.HPP"
-#include "SUB/PLAYER_COMBAT_TO_OTHERS.HPP"
-#include "SUB/TILE_HOVERING.HPP"
+#include "SUB/PLAYER8COMBAT8TO8OTHERS.HPP"
+#include "SUB/TILE8HOVERING.HPP"
 
 namespace FORRADIA8GAME
 {
@@ -69,13 +69,13 @@ namespace FORRADIA8GAME
     void
     MainScene::UPDATE8DERIVED()
     {
-        _<CreaturesMovement>().Update();
+        _<CREATURES8MOVEMENT>().UPDATE();
 
-        _<KeyboardMovement>().Update();
+        _<KEYBOARD8MOVEMENT>().UPDATE();
 
-        _<MouseMovement>().Update();
+        _<MOUSE8MOVEMENT>().UPDATE();
 
-        _<TileHovering>().Update();
+        _<TILE8HOVERING>().UPDATE();
 
         _<FIRST8PERSON8HOVERING>().UPDATE();
 
@@ -107,9 +107,9 @@ namespace FORRADIA8GAME
     void
     MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
     {
-        _<KeyboardMovement>().OnKeyDown(key);
+        _<KEYBOARD8MOVEMENT>().ON8KEY8DOWN(key);
 
-        _<MouseMovement>().OnKeyDown(key);
+        _<MOUSE8MOVEMENT>().ON8KEY8DOWN(key);
 
         _<KEYBOARD8HOTKEYS>().ON8KEY8DOWN(key);
     }
@@ -117,17 +117,17 @@ namespace FORRADIA8GAME
     void
     MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
     {
-        _<KeyboardMovement>().OnKeyUp(key);
+        _<KEYBOARD8MOVEMENT>().ON8KEY8UP(key);
 
-        _<MouseMovement>().OnKeyUp(key);
+        _<MOUSE8MOVEMENT>().ON8KEY8UP(key);
     }
 
     void
     MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
     {
-        _<PlayerCombatToOthers>().OnMouseDown(button);
+        _<PLAYER8COMBAT8TO8OTHERS>().ON8MOUSE8DOWN(button);
 
-        _<MouseMovement>().OnMouseDown(button);
+        _<MOUSE8MOVEMENT>().ON8MOUSE8DOWN(button);
 
         _<OBJECT8IMPACT>().ON8MOUSE8DOWN(button);
 

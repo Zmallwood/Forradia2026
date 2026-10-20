@@ -5,15 +5,15 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "MOUSE_MOVEMENT.HPP"
+#include "MOUSE8MOVEMENT.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "TILE_HOVERING.HPP"
+#include "TILE8HOVERING.HPP"
 
 namespace FORRADIA8GAME
 {
     void
-    MouseMovement::Update()
+    MOUSE8MOVEMENT::UPDATE()
     {
         auto destination{_<PLAYER>().destination_};
 
@@ -137,7 +137,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MouseMovement::OnKeyDown(SDL_Keycode key)
+    MOUSE8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key)
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
@@ -146,7 +146,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MouseMovement::OnKeyUp(SDL_Keycode key)
+    MOUSE8MOVEMENT::ON8KEY8UP(SDL_Keycode key)
     {
         if (key == SDLK_LCTRL || key == SDLK_RCTRL)
         {
@@ -155,7 +155,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    MouseMovement::OnMouseDown(Uint8 button)
+    MOUSE8MOVEMENT::ON8MOUSE8DOWN(Uint8 button)
     {
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
@@ -168,7 +168,7 @@ namespace FORRADIA8GAME
 
         if (button == SDL_BUTTON_LEFT)
         {
-            _<PLAYER>().destination_ = _<TileHovering>().hoveredCoordinate_;
+            _<PLAYER>().destination_ = _<TILE8HOVERING>().hoveredCoordinate_;
         }
     }
 }

@@ -5,13 +5,13 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "KEYBOARD_MOVEMENT.HPP"
+#include "KEYBOARD8MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 
 namespace FORRADIA8GAME
 {
     void
-    KeyboardMovement::Update()
+    KEYBOARD8MOVEMENT::UPDATE()
     {
         auto wPressed{pressedKeys_.contains(SDLK_w)};
         auto sPressed{pressedKeys_.contains(SDLK_s)};
@@ -86,13 +86,13 @@ namespace FORRADIA8GAME
     }
 
     void
-    KeyboardMovement::OnKeyDown(SDL_Keycode key)
+    KEYBOARD8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key)
     {
         pressedKeys_.insert(key);
     }
 
     void
-    KeyboardMovement::OnKeyUp(SDL_Keycode key)
+    KEYBOARD8MOVEMENT::ON8KEY8UP(SDL_Keycode key)
     {
         pressedKeys_.erase(key);
     }

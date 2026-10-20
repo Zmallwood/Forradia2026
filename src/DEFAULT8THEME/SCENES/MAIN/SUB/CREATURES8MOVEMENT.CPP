@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CREATURES_MOVEMENT.HPP"
+#include "CREATURES8MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
@@ -15,7 +15,7 @@
 namespace FORRADIA8GAME
 {
     void
-    CreaturesMovement::Update()
+    CREATURES8MOVEMENT::UPDATE()
     {
         auto worldArea{_<WORLD>().currentWorldArea_};
 

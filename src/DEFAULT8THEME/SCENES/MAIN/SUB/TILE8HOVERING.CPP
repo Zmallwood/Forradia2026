@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "TILE_HOVERING.HPP"
+#include "TILE8HOVERING.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
@@ -15,7 +15,7 @@
 namespace FORRADIA8GAME
 {
     void
-    TileHovering::Update()
+    TILE8HOVERING::UPDATE()
     {
         auto mousePosition{GET8MOUSE8POSITION()};
 

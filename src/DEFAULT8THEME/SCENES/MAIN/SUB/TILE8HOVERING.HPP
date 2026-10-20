@@ -9,18 +9,11 @@
 
 namespace FORRADIA8GAME
 {
-    class MouseMovement
+    class TILE8HOVERING
     {
       public:
-        void Update();
+        void UPDATE();
 
-        void OnKeyDown(SDL_Keycode key);
-
-        void OnKeyUp(SDL_Keycode key);
-
-        void OnMouseDown(Uint8 button);
-
-      private:
-        bool ctrlKeyDown_{false};
+        POINT hoveredCoordinate_{-1, -1};
     };
 }

@@ -9,11 +9,16 @@
 
 namespace FORRADIA8GAME
 {
-    class TileHovering
+    class KEYBOARD8MOVEMENT
     {
       public:
-        void Update();
+        void UPDATE();
 
-        POINT hoveredCoordinate_{-1, -1};
+        void ON8KEY8DOWN(SDL_Keycode key);
+
+        void ON8KEY8UP(SDL_Keycode key);
+
+      private:
+        std::set<SDL_Keycode> pressedKeys_;
     };
 }
