@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class POSITIONED8OBJECT
-    {
+    class POSITIONED8OBJECT {
       public:
         POINT position_ = {-1, -1};
         std::shared_ptr<OBJECT> object_;

@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class ENGINE
-    {
+namespace FORRADIA8GAME {
+    class ENGINE {
       public:
         void START();
 

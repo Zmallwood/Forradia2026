@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class WORLD8GENERATOR
-    {
+namespace FORRADIA8GAME {
+    class WORLD8GENERATOR {
       public:
         void GENERATE8NEW8WORLD();
 

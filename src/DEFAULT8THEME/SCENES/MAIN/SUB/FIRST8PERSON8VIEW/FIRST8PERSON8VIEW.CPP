@@ -22,30 +22,23 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW8FUNCTIONS.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    FIRST8PERSON8VIEW::UPDATE()
-    {
+    FIRST8PERSON8VIEW::UPDATE() {
         auto now = NOW();
 
         for (auto it = completedObjectImpacts_.begin();
-             it != completedObjectImpacts_.end();)
-        {
-            if (now > it->ticksCompleted + kImpactPointEffectDuration_)
-            {
+             it != completedObjectImpacts_.end();) {
+            if (now > it->ticksCompleted + kImpactPointEffectDuration_) {
                 it = completedObjectImpacts_.erase(it);
-            }
-            else
-            {
+            } else {
                 ++it;
             }
         }
     }
 
     void
-    FIRST8PERSON8VIEW::RENDER()
-    {
+    FIRST8PERSON8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.5f, 0.0f, 0.5f, 1.0f);
 
         auto viewWidth = GAME8PROPERTIES::kViewWidth_;
@@ -60,8 +53,7 @@ namespace FORRADIA8GAME
         auto worldArea = _<WORLD>().currentWorldArea_;
         auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
-        if (!facedTile)
-        {
+        if (!facedTile) {
             return;
         }
 
@@ -70,16 +62,13 @@ namespace FORRADIA8GAME
 
         auto groundType = facedTile->ground_;
 
-        switch (groundType)
-        {
-        case HASH("GroundGrass"):
-        {
+        switch (groundType) {
+        case HASH("GroundGrass"): {
             groundImageName = "GroundFirstPersonGrass";
 
             break;
         }
-        case HASH("GroundWater"):
-        {
+        case HASH("GroundWater"): {
             auto waterAnimIndex = (NOW() % 450) / 150;
 
             groundImageName =
@@ -87,26 +76,22 @@ namespace FORRADIA8GAME
 
             break;
         }
-        case HASH("GroundDirt"):
-        {
+        case HASH("GroundDirt"): {
             groundImageName = "GroundFirstPersonDirt";
 
             break;
         }
-        case HASH("GroundRock"):
-        {
+        case HASH("GroundRock"): {
             groundImageName = "GroundFirstPersonRock";
 
             break;
         }
-        case HASH("GroundCobblestone"):
-        {
+        case HASH("GroundCobblestone"): {
             groundImageName = "GroundFirstPersonCobblestone";
 
             break;
         }
-        case HASH("GroundWoodFloor"):
-        {
+        case HASH("GroundWoodFloor"): {
             groundImageName = "GroundFirstPersonWoodFloor";
 
             break;
@@ -126,14 +111,12 @@ namespace FORRADIA8GAME
         constexpr auto largeObjectScale = GAME8PROPERTIES::kLargeObjectScale_;
         constexpr auto smallObjectScale = GAME8PROPERTIES::kSmallObjectScale_;
 
-        for (auto entry : orderedObjects)
-        {
+        for (auto entry : orderedObjects) {
             auto xPos = entry.second.position_.x;
             auto yPos = entry.second.position_.y;
 
             if (yPos * tileUnitsWidth + xPos >=
-                tileUnitsWidth * tileUnitsWidth / 2)
-            {
+                tileUnitsWidth * tileUnitsWidth / 2) {
                 break;
             }
 
@@ -146,8 +129,7 @@ namespace FORRADIA8GAME
 
             auto isSmallObject = _<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType);
 
-            if (isSmallObject)
-            {
+            if (isSmallObject) {
                 imageWidth = imageSize.width / 60.0f * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -157,9 +139,7 @@ namespace FORRADIA8GAME
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
-            }
-            else
-            {
+            } else {
                 imageWidth = imageSize.width / 60.0f * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -205,22 +185,17 @@ namespace FORRADIA8GAME
 
             auto canImpact = false;
 
-            for (auto impactObject : impactObjects)
-            {
-                if (rightHandObject)
-                {
-                    if (impactObject == rightHandObject->type_)
-                    {
+            for (auto impactObject : impactObjects) {
+                if (rightHandObject) {
+                    if (impactObject == rightHandObject->type_) {
                         canImpact = true;
 
                         break;
                     }
                 }
 
-                if (leftHandObject)
-                {
-                    if (impactObject == leftHandObject->type_)
-                    {
+                if (leftHandObject) {
+                    if (impactObject == leftHandObject->type_) {
                         canImpact = true;
 
                         break;
@@ -228,12 +203,10 @@ namespace FORRADIA8GAME
                 }
             }
 
-            if (canImpact)
-            {
+            if (canImpact) {
                 auto impactPoints = entry.second.object_->impactPoints_;
 
-                for (auto impactPoint : impactPoints)
-                {
+                for (auto impactPoint : impactPoints) {
                     auto impactPointWidth = GAME8PROPERTIES::kImpactPointWidth_;
                     auto impactPointHeight =
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
@@ -256,8 +229,7 @@ namespace FORRADIA8GAME
 
         auto npc = facedTile->npc_;
 
-        if (npc)
-        {
+        if (npc) {
             auto npcType = npc->type_;
 
             auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(npcType);
@@ -283,8 +255,7 @@ namespace FORRADIA8GAME
 
         auto creature = facedTile->creature_;
 
-        if (creature)
-        {
+        if (creature) {
             auto creatureType = creature->type_;
 
             auto imageSize = _<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType);
@@ -307,8 +278,8 @@ namespace FORRADIA8GAME
             _<IMAGE8RENDERER>().DRAW8IMAGE(creatureType, imageX, imageY,
                                            imageWidth, imageHeight);
 
-            if (now - creature->ticksLastHitOnSelf_ < kHitOtherEffectDuration_)
-            {
+            if (now - creature->ticksLastHitOnSelf_ <
+                kHitOtherEffectDuration_) {
                 auto lastHitPosition = creature->lastHitPosition_;
 
                 auto hitEffectImageSize =
@@ -333,14 +304,12 @@ namespace FORRADIA8GAME
             }
         }
 
-        for (auto entry : orderedObjects)
-        {
+        for (auto entry : orderedObjects) {
             auto xPos = entry.second.position_.x;
             auto yPos = entry.second.position_.y;
 
             if (yPos * tileUnitsWidth + xPos <
-                tileUnitsWidth * tileUnitsWidth / 2)
-            {
+                tileUnitsWidth * tileUnitsWidth / 2) {
                 continue;
             }
 
@@ -353,8 +322,7 @@ namespace FORRADIA8GAME
 
             auto isSmallObject = _<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType);
 
-            if (isSmallObject)
-            {
+            if (isSmallObject) {
                 imageWidth = imageSize.width / 60.0f * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -364,9 +332,7 @@ namespace FORRADIA8GAME
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
-            }
-            else
-            {
+            } else {
                 imageWidth = imageSize.width / 60.0f * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -412,22 +378,17 @@ namespace FORRADIA8GAME
 
             auto canImpact = false;
 
-            for (auto impactObject : impactObjects)
-            {
-                if (rightHandObject)
-                {
-                    if (impactObject == rightHandObject->type_)
-                    {
+            for (auto impactObject : impactObjects) {
+                if (rightHandObject) {
+                    if (impactObject == rightHandObject->type_) {
                         canImpact = true;
 
                         break;
                     }
                 }
 
-                if (leftHandObject)
-                {
-                    if (impactObject == leftHandObject->type_)
-                    {
+                if (leftHandObject) {
+                    if (impactObject == leftHandObject->type_) {
                         canImpact = true;
 
                         break;
@@ -435,12 +396,10 @@ namespace FORRADIA8GAME
                 }
             }
 
-            if (canImpact)
-            {
+            if (canImpact) {
                 auto impactPoints = entry.second.object_->impactPoints_;
 
-                for (auto impactPoint : impactPoints)
-                {
+                for (auto impactPoint : impactPoints) {
                     auto impactPointWidth = GAME8PROPERTIES::kImpactPointWidth_;
                     auto impactPointHeight =
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth);
@@ -461,11 +420,9 @@ namespace FORRADIA8GAME
             }
         }
 
-        for (auto completedObjectImpact : completedObjectImpacts_)
-        {
+        for (auto completedObjectImpact : completedObjectImpacts_) {
             if (now - completedObjectImpact.ticksCompleted <
-                kImpactPointEffectDuration_)
-            {
+                kImpactPointEffectDuration_) {
                 auto hitEffectImageSize =
                     _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"));
 
@@ -507,8 +464,7 @@ namespace FORRADIA8GAME
 
         auto handAnimation = 0.0f;
 
-        if (delta < ticksOneStep)
-        {
+        if (delta < ticksOneStep) {
             handAnimation =
                 std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) *
                 0.02f;
@@ -518,8 +474,7 @@ namespace FORRADIA8GAME
 
         auto handY = 1.0f - handHeight + handYOffset + handAnimation;
 
-        if (rightHandObject)
-        {
+        if (rightHandObject) {
             auto imageSize =
                 _<IMAGE8BANK>().GET8IMAGE8SIZE(rightHandObject->type_);
 
@@ -536,8 +491,7 @@ namespace FORRADIA8GAME
                                            kHandsOpacity_);
         }
 
-        if (leftHandObject)
-        {
+        if (leftHandObject) {
             auto imageSize =
                 _<IMAGE8BANK>().GET8IMAGE8SIZE(leftHandObject->type_);
 
@@ -562,15 +516,13 @@ namespace FORRADIA8GAME
         _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0f, viewWidth, 1.0f,
                                       COLORS::kWhite);
 
-        if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_)
-        {
+        if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_) {
             _<COLOR8RENDERER>().FILL8RECT(viewWidth, 0.0f, viewWidth, 1.0f,
                                           COLORS::kRed);
         }
 
         if (now < _<PLAYER>().ticksLastImpact_ +
-                      INVERT8SPEED(_<PLAYER>().impactSpeed_))
-        {
+                      INVERT8SPEED(_<PLAYER>().impactSpeed_)) {
             constexpr auto kImpactReloadWidth = 0.1f;
             constexpr auto kImpactReloadHeight = 0.01f;
 

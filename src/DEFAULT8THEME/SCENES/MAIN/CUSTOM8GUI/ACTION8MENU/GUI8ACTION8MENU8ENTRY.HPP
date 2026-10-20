@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class GUI8ACTION8MENU8ENTRY
-    {
+namespace FORRADIA8GAME {
+    class GUI8ACTION8MENU8ENTRY {
       public:
         std::string label;
         std::function<void()> action;

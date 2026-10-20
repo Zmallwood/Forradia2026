@@ -9,10 +9,8 @@
 
 #include "CREATURE8INDEX8ENTRY.HPP"
 
-namespace FORRADIA8GAME
-{
-    class CREATURE8INDEX
-    {
+namespace FORRADIA8GAME {
+    class CREATURE8INDEX {
       public:
         CREATURE8INDEX();
 

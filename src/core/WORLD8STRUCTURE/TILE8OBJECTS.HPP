@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class TILE8OBJECTS
-    {
+    class TILE8OBJECTS {
       public:
         void CLEAR();
 

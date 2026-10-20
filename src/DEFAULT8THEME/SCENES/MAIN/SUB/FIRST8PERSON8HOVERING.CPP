@@ -19,11 +19,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW8FUNCTIONS.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    FIRST8PERSON8HOVERING::UPDATE()
-    {
+    FIRST8PERSON8HOVERING::UPDATE() {
         hoveredObject_ = nullptr;
         hoveredCreature_ = nullptr;
 
@@ -40,8 +38,7 @@ namespace FORRADIA8GAME
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto facedTile{worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_)};
 
-        if (!facedTile)
-        {
+        if (!facedTile) {
             hoveredObject_ = nullptr;
             hoveredCreature_ = nullptr;
 
@@ -51,14 +48,12 @@ namespace FORRADIA8GAME
         constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
         constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
 
-        for (auto entry : orderedObjects)
-        {
+        for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
             auto yPos{entry.second.position_.y};
 
             if (yPos * tileUnitsWidth + xPos >=
-                tileUnitsWidth * tileUnitsWidth / 2)
-            {
+                tileUnitsWidth * tileUnitsWidth / 2) {
                 break;
             }
 
@@ -70,8 +65,7 @@ namespace FORRADIA8GAME
             float imageHeight;
 
             auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
-            if (isSmallObject)
-            {
+            if (isSmallObject) {
                 imageWidth = imageSize.width / 60.0f * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -81,9 +75,7 @@ namespace FORRADIA8GAME
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
-            }
-            else
-            {
+            } else {
                 imageWidth = imageSize.width / 60.0f * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -118,8 +110,7 @@ namespace FORRADIA8GAME
 
             auto isHovered{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(objectType, x, y)};
 
-            if (isHovered)
-            {
+            if (isHovered) {
                 hoveredObject_ = entry.second.object_;
 
                 hoveredCreature_ = nullptr;
@@ -131,8 +122,7 @@ namespace FORRADIA8GAME
 
         auto creature{facedTile->creature_};
 
-        if (creature)
-        {
+        if (creature) {
             auto creatureType{creature->type_};
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
@@ -159,8 +149,7 @@ namespace FORRADIA8GAME
             auto isHovered{
                 _<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
-            if (isHovered)
-            {
+            if (isHovered) {
                 hoveredObject_ = nullptr;
 
                 hoveredCreature_ = creature;
@@ -170,14 +159,12 @@ namespace FORRADIA8GAME
             }
         }
 
-        for (auto entry : orderedObjects)
-        {
+        for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
             auto yPos{entry.second.position_.y};
 
             if (yPos * tileUnitsWidth + xPos <
-                tileUnitsWidth * tileUnitsWidth / 2)
-            {
+                tileUnitsWidth * tileUnitsWidth / 2) {
                 continue;
             }
 
@@ -190,8 +177,7 @@ namespace FORRADIA8GAME
 
             auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
-            if (isSmallObject)
-            {
+            if (isSmallObject) {
                 imageWidth = imageSize.width / 60.0f * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -201,9 +187,7 @@ namespace FORRADIA8GAME
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
-            }
-            else
-            {
+            } else {
                 imageWidth = imageSize.width / 60.0f * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -238,8 +222,7 @@ namespace FORRADIA8GAME
 
             auto isHovered{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(objectType, x, y)};
 
-            if (isHovered)
-            {
+            if (isHovered) {
                 hoveredObject_ = entry.second.object_;
 
                 hoveredCreature_ = nullptr;
@@ -251,30 +234,24 @@ namespace FORRADIA8GAME
     }
 
     void
-    FIRST8PERSON8HOVERING::RENDER()
-    {
+    FIRST8PERSON8HOVERING::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (hoveredObject_)
-        {
+        if (hoveredObject_) {
             auto objectLabel{
                 _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->type_)};
 
-            if (objectLabel.empty())
-            {
+            if (objectLabel.empty()) {
                 objectLabel = "?";
             }
 
             _<TEXT8RENDERER>().DRAW8STRING(objectLabel, mousePosition.x,
                                            mousePosition.y + kTextYOffset_);
-        }
-        else if (hoveredCreature_)
-        {
+        } else if (hoveredCreature_) {
             auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(
                 hoveredCreature_->type_)};
 
-            if (creatureLabel.empty())
-            {
+            if (creatureLabel.empty()) {
                 creatureLabel = "?";
             }
 

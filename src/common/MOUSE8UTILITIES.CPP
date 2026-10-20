@@ -7,11 +7,9 @@
 
 #include "MOUSE8UTILITIES.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     POINT8F
-    GET8MOUSE8POSITION()
-    {
+    GET8MOUSE8POSITION() {
         auto canvasSize = GET8CANVAS8SIZE();
 
         int x;

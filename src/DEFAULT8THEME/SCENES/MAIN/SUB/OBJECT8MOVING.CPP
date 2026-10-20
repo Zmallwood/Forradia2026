@@ -19,13 +19,10 @@
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW8FUNCTIONS.HPP"
 #include "FIRST8PERSON8HOVERING.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    OBJECT8MOVING::ON8MOUSE8DOWN(Uint8 button)
-    {
-        if (button != SDL_BUTTON_LEFT)
-        {
+    OBJECT8MOVING::ON8MOUSE8DOWN(Uint8 button) {
+        if (button != SDL_BUTTON_LEFT) {
             return;
         }
 
@@ -33,20 +30,17 @@ namespace FORRADIA8GAME
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth)
-        {
+        if (mousePosition.x < viewWidth) {
             return;
         }
 
         auto hoveredObject{_<FIRST8PERSON8HOVERING>().hoveredObject_};
 
-        if (!hoveredObject)
-        {
+        if (!hoveredObject) {
             return;
         }
 
-        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_))
-        {
+        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_)) {
             return;
         }
 
@@ -65,15 +59,12 @@ namespace FORRADIA8GAME
     }
 
     void
-    OBJECT8MOVING::ON8MOUSE8UP(Uint8 button, int clickSpeed)
-    {
-        if (!objectInAir_)
-        {
+    OBJECT8MOVING::ON8MOUSE8UP(Uint8 button, int clickSpeed) {
+        if (!objectInAir_) {
             return;
         }
 
-        if (button != SDL_BUTTON_LEFT)
-        {
+        if (button != SDL_BUTTON_LEFT) {
             return;
         }
 
@@ -81,15 +72,14 @@ namespace FORRADIA8GAME
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto hoveredTilePosition{GET8HOVERED8TILE8POSITION(draggingMouseOffset_)};
+        auto hoveredTilePosition{
+            GET8HOVERED8TILE8POSITION(draggingMouseOffset_)};
 
-        if (mousePosition.x < viewWidth)
-        {
+        if (mousePosition.x < viewWidth) {
             hoveredTilePosition = pickedPosition_;
         }
 
-        if (hoveredTilePosition == POINT{-1, -1})
-        {
+        if (hoveredTilePosition == POINT{-1, -1}) {
             hoveredTilePosition = pickedPosition_;
         }
 
@@ -105,10 +95,8 @@ namespace FORRADIA8GAME
     }
 
     void
-    OBJECT8MOVING::RENDER()
-    {
-        if (!objectInAir_)
-        {
+    OBJECT8MOVING::RENDER() {
+        if (!objectInAir_) {
             return;
         }
 
@@ -138,8 +126,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    OBJECT8MOVING::CLEAR8OBJECT()
-    {
+    OBJECT8MOVING::CLEAR8OBJECT() {
         objectInAir_ = nullptr;
 
         draggingMouseOffset_ = {0.0f, 0.0f};

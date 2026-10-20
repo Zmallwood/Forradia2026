@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    enum class CURSOR8STYLES
-    {
+namespace FORRADIA8GAME {
+    enum class CURSOR8STYLES {
         Default,
         Hovering
     };

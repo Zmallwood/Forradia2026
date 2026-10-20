@@ -9,10 +9,8 @@
 
 #include "GUI8COMPONENT.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8PANEL : public GUI8COMPONENT
-    {
+namespace FORRADIA8GAME {
+    class GUI8PANEL : public GUI8COMPONENT {
       public:
         GUI8PANEL(float x, float y, float width, float height);
 

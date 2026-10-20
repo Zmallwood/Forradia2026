@@ -8,12 +8,10 @@
 #include "COLOR8RENDERER.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
     COLOR8RENDERER::FILL8RECT(float x, float y, float width, float height,
-                              COLOR color)
-    {
+                              COLOR color) {
         auto rect = CREATE8SDL8RECT(x, y, width, height);
 
         auto sdlColor = color.TO8SDL8COLOR();
@@ -25,15 +23,13 @@ namespace FORRADIA8GAME
     }
 
     void
-    COLOR8RENDERER::FILL8RECT(RECT8F rect, COLOR color)
-    {
+    COLOR8RENDERER::FILL8RECT(RECT8F rect, COLOR color) {
         FILL8RECT(rect.x, rect.y, rect.width, rect.height, color);
     }
 
     void
     COLOR8RENDERER::DRAW8RECT(float x, float y, float width, float height,
-                              COLOR color)
-    {
+                              COLOR color) {
         auto rect = CREATE8SDL8RECT(x, y, width, height);
 
         auto sdlColor = color.TO8SDL8COLOR();
@@ -46,8 +42,7 @@ namespace FORRADIA8GAME
 
     void
     COLOR8RENDERER::DRAW8LINE(float x1, float y1, float x2, float y2,
-                              COLOR color)
-    {
+                              COLOR color) {
         auto canvasSize = GET8CANVAS8SIZE();
 
         auto destX1 = static_cast<int>(x1 * canvasSize.width);
@@ -65,8 +60,8 @@ namespace FORRADIA8GAME
     }
 
     SDL_Rect
-    COLOR8RENDERER::CREATE8SDL8RECT(float x, float y, float width, float height)
-    {
+    COLOR8RENDERER::CREATE8SDL8RECT(float x, float y, float width,
+                                    float height) {
         auto canvasSize = GET8CANVAS8SIZE();
 
         auto destX = static_cast<int>(std::floor(x * canvasSize.width));

@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class PLAYER8INVENTORY
-    {
+    class PLAYER8INVENTORY {
       public:
         void ADD8OBJECT(std::string_view objectName);
 

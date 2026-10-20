@@ -9,10 +9,8 @@
 
 #include "CORE/GUI8CORE/WINDOWS/GUI8WINDOW.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8INVENTORY8WINDOW : public GUI8WINDOW
-    {
+namespace FORRADIA8GAME {
+    class GUI8INVENTORY8WINDOW : public GUI8WINDOW {
       public:
         GUI8INVENTORY8WINDOW();
 

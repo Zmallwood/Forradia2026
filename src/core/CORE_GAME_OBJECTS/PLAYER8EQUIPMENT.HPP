@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class PLAYER8EQUIPMENT
-    {
+    class PLAYER8EQUIPMENT {
       public:
         std::shared_ptr<OBJECT> headObject_;
         std::shared_ptr<OBJECT> chestObject_;

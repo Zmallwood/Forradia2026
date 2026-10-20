@@ -9,10 +9,8 @@
 
 #include "CURSOR8STYLES.HPP"
 
-namespace FORRADIA8GAME
-{
-    class CURSOR
-    {
+namespace FORRADIA8GAME {
+    class CURSOR {
       public:
         CURSOR();
 

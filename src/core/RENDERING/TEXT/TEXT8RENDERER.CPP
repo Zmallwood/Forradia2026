@@ -8,11 +8,9 @@
 #include "TEXT8RENDERER.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    TEXT8RENDERER::INITIALIZE()
-    {
+    TEXT8RENDERER::INITIALIZE() {
         TTF_Init();
 
         ADD8FONT(FONT8SIZES::_12);
@@ -21,8 +19,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize)
-    {
+    TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize) {
         auto absFontPath = std::string(SDL_GetBasePath()) + kDefaultFontPath_;
         auto fontPath = REPLACE(absFontPath, "\\", "/");
         auto fontSizeN = static_cast<int>(fontSize);
@@ -35,10 +32,9 @@ namespace FORRADIA8GAME
 
     void
     TEXT8RENDERER::DRAW8STRING(std::string_view text, float x, float y,
-                               FONT8SIZES fontSize, bool centered, COLOR color)
-    {
-        if (text.empty())
-        {
+                               FONT8SIZES fontSize, bool centered,
+                               COLOR color) {
+        if (text.empty()) {
             return;
         }
 
@@ -61,8 +57,7 @@ namespace FORRADIA8GAME
                          static_cast<int>(y * canvasSize.height), surface->w,
                          surface->h};
 
-        if (centered)
-        {
+        if (centered) {
             rect.x -= surface->w / 2;
             rect.y -= surface->h / 2;
         }

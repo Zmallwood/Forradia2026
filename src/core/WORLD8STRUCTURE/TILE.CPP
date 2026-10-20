@@ -8,10 +8,8 @@
 #include "TILE.HPP"
 #include "TILE8OBJECTS.HPP"
 
-namespace FORRADIA8GAME
-{
-    TILE::TILE()
-    {
+namespace FORRADIA8GAME {
+    TILE::TILE() {
         tileObjects_ = std::make_shared<TILE8OBJECTS>();
     }
 }

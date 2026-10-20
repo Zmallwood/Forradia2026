@@ -7,11 +7,9 @@
 
 #include "TIME8UTILITIES.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     int
-    NOW()
-    {
+    NOW() {
         return SDL_GetTicks();
     }
 }

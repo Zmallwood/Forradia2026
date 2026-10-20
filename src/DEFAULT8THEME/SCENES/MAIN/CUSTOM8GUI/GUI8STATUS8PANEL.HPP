@@ -7,10 +7,8 @@
 
 #include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8STATUS8PANEL : public GUI8PANEL
-    {
+namespace FORRADIA8GAME {
+    class GUI8STATUS8PANEL : public GUI8PANEL {
       public:
         GUI8STATUS8PANEL();
 

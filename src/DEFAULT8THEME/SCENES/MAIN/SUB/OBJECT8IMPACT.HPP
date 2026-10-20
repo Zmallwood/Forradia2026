@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class OBJECT8IMPACT
-    {
+namespace FORRADIA8GAME {
+    class OBJECT8IMPACT {
       public:
         void ON8MOUSE8DOWN(Uint8 button);
     };

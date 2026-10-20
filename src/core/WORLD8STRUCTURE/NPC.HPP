@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class NPC
-    {
+namespace FORRADIA8GAME {
+    class NPC {
       public:
         NPC(std::string_view typeName);
 

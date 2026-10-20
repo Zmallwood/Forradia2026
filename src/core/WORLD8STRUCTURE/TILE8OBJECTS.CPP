@@ -9,19 +9,15 @@
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "OBJECT.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    TILE8OBJECTS::CLEAR()
-    {
+    TILE8OBJECTS::CLEAR() {
         objects_.clear();
     }
 
     void
-    TILE8OBJECTS::ADD8OBJECT(int objectType, POINT position)
-    {
-        if (position.x == -1 || position.y == -1)
-        {
+    TILE8OBJECTS::ADD8OBJECT(int objectType, POINT position) {
+        if (position.x == -1 || position.y == -1) {
             position.x = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
             position.y = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
         }
@@ -30,30 +26,24 @@ namespace FORRADIA8GAME
     }
 
     void
-    TILE8OBJECTS::ADD8OBJECT(std::string_view objectName, POINT position)
-    {
+    TILE8OBJECTS::ADD8OBJECT(std::string_view objectName, POINT position) {
         ADD8OBJECT(HASH(objectName), position);
     }
 
     void
-    TILE8OBJECTS::ADD8OBJECT(std::shared_ptr<OBJECT> object, POINT position)
-    {
+    TILE8OBJECTS::ADD8OBJECT(std::shared_ptr<OBJECT> object, POINT position) {
         objects_.insert({position, object});
     }
 
     int
-    TILE8OBJECTS::COUNT()
-    {
+    TILE8OBJECTS::COUNT() {
         return objects_.size();
     }
 
     std::shared_ptr<OBJECT>
-    TILE8OBJECTS::PICK8OBJECT(std::shared_ptr<OBJECT> object)
-    {
-        for (auto it = objects_.begin(); it != objects_.end(); ++it)
-        {
-            if (it->second == object)
-            {
+    TILE8OBJECTS::PICK8OBJECT(std::shared_ptr<OBJECT> object) {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if (it->second == object) {
                 objects_.erase(it);
 
                 return object;
@@ -65,14 +55,11 @@ namespace FORRADIA8GAME
 
     void
     TILE8OBJECTS::TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
-                                   std::string_view newObjectType)
-    {
+                                   std::string_view newObjectType) {
         POINT position = {-1, -1};
 
-        for (auto it = objects_.begin(); it != objects_.end(); ++it)
-        {
-            if (it->second == object)
-            {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if (it->second == object) {
                 position = it->first;
 
                 objects_.erase(it);
@@ -81,19 +68,15 @@ namespace FORRADIA8GAME
             }
         }
 
-        if (position != POINT{-1, -1})
-        {
+        if (position != POINT{-1, -1}) {
             ADD8OBJECT(newObjectType, position);
         }
     }
 
     void
-    TILE8OBJECTS::REMOVE8OBJECT(std::shared_ptr<OBJECT> object)
-    {
-        for (auto it = objects_.begin(); it != objects_.end(); ++it)
-        {
-            if (it->second == object)
-            {
+    TILE8OBJECTS::REMOVE8OBJECT(std::shared_ptr<OBJECT> object) {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if (it->second == object) {
                 objects_.erase(it);
 
                 return;
@@ -102,12 +85,9 @@ namespace FORRADIA8GAME
     }
 
     bool
-    TILE8OBJECTS::HAS8OBJECT8OF8TYPE(std::string_view objectType)
-    {
-        for (auto it = objects_.begin(); it != objects_.end(); ++it)
-        {
-            if (it->second->type_ == HASH(objectType))
-            {
+    TILE8OBJECTS::HAS8OBJECT8OF8TYPE(std::string_view objectType) {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if (it->second->type_ == HASH(objectType)) {
                 return true;
             }
         }

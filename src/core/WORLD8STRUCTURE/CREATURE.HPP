@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class CREATURE
-    {
+namespace FORRADIA8GAME {
+    class CREATURE {
       public:
         CREATURE(std::string_view typeName);
 

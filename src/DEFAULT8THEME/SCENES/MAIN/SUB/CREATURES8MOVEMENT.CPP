@@ -12,11 +12,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    CREATURES8MOVEMENT::UPDATE()
-    {
+    CREATURES8MOVEMENT::UPDATE() {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
         auto playerPosition{_<PLAYER>().position_};
@@ -25,21 +23,18 @@ namespace FORRADIA8GAME
 
         auto &creatures{worldArea->creaturesMirror_};
 
-        for (auto it = creatures.begin(); it != creatures.end();)
-        {
+        for (auto it = creatures.begin(); it != creatures.end();) {
             auto creature{it->first};
             auto position{it->second};
 
             if (now > creature->ticksLastMovement_ +
-                          INVERT8SPEED(creature->movementSpeed_))
-            {
+                          INVERT8SPEED(creature->movementSpeed_)) {
                 auto direction{rand() % 4};
 
                 auto dx{0};
                 auto dy{0};
 
-                switch (direction)
-                {
+                switch (direction) {
                 case 0:
                     dy = -1;
                     break;
@@ -56,16 +51,14 @@ namespace FORRADIA8GAME
 
                 auto newPosition{position + POINT{dx, dy}};
 
-                if (!worldArea->IS8VALID8COORDINATE(newPosition))
-                {
+                if (!worldArea->IS8VALID8COORDINATE(newPosition)) {
                     ++it;
 
                     continue;
                 }
 
                 if (newPosition.x == static_cast<int>(playerPosition.x) &&
-                    newPosition.y == static_cast<int>(playerPosition.y))
-                {
+                    newPosition.y == static_cast<int>(playerPosition.y)) {
                     ++it;
 
                     continue;
@@ -74,18 +67,15 @@ namespace FORRADIA8GAME
                 auto newTile{worldArea->GET8TILE(newPosition)};
 
                 if (newTile->ground_ == HASH("GroundWater") ||
-                    newTile->creature_)
-                {
+                    newTile->creature_) {
                     ++it;
 
                     continue;
                 }
 
                 if (creature->type_ == HASH("CreatureDeer") ||
-                    creature->type_ == HASH("CreatureBoar"))
-                {
-                    if (newTile->ground_ == HASH("GroundRock"))
-                    {
+                    creature->type_ == HASH("CreatureBoar")) {
+                    if (newTile->ground_ == HASH("GroundRock")) {
                         ++it;
 
                         continue;

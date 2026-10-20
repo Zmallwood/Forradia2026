@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class CREATURE8RESPAWNER
-    {
+namespace FORRADIA8GAME {
+    class CREATURE8RESPAWNER {
       public:
         void UPDATE();
 

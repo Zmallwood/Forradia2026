@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class COMPLETABLE8IMPACT8POINT
-    {
+namespace FORRADIA8GAME {
+    class COMPLETABLE8IMPACT8POINT {
       public:
         POINT8F position;
         bool completed = false;

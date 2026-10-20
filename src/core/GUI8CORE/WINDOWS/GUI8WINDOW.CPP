@@ -8,12 +8,10 @@
 #include "GUI8WINDOW.HPP"
 #include "GUI8WINDOW8TITLE8BAR.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     GUI8WINDOW::GUI8WINDOW(std::string_view title, float x, float y,
                            float width, float height)
-        : GUI8PANEL(x, y, width, height)
-    {
+        : GUI8PANEL(x, y, width, height) {
         isVisible_ = false;
 
         titleBar_ = dynamic_pointer_cast<GUI8WINDOW8TITLE8BAR>(ADD8COMPONENT(
@@ -21,14 +19,10 @@ namespace FORRADIA8GAME
     }
 
     void
-    GUI8WINDOW::TOGGLE8VISIBILITY()
-    {
-        if (isVisible_)
-        {
+    GUI8WINDOW::TOGGLE8VISIBILITY() {
+        if (isVisible_) {
             isVisible_ = false;
-        }
-        else
-        {
+        } else {
             isVisible_ = true;
         }
     }

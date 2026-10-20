@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class I8SCENE;
 
-    class SCENE8MANAGER
-    {
+    class SCENE8MANAGER {
       public:
         SCENE8MANAGER();
 

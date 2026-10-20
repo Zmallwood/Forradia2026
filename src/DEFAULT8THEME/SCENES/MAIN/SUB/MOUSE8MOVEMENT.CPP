@@ -10,121 +10,77 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "TILE8HOVERING.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    MOUSE8MOVEMENT::UPDATE()
-    {
+    MOUSE8MOVEMENT::UPDATE() {
         auto destination{_<PLAYER>().destination_};
 
         POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
                              static_cast<int>(_<PLAYER>().position_.y)};
 
-        if (destination.x != -1 && destination.y != -1)
-        {
+        if (destination.x != -1 && destination.y != -1) {
             auto now{NOW()};
 
             if (now > _<PLAYER>().ticksLastMovement_ +
-                          INVERT8SPEED(_<PLAYER>().movementSpeed_))
-            {
+                          INVERT8SPEED(_<PLAYER>().movementSpeed_)) {
                 auto dx{destination.x - playerPosition.x};
                 auto dy{destination.y - playerPosition.y};
 
                 auto absDx{std::abs(dx)};
                 auto absDy{std::abs(dy)};
 
-                if (dx == 0 && dy == 0)
-                {
+                if (dx == 0 && dy == 0) {
                     _<PLAYER>().destination_ = {-1, -1};
 
                     return;
                 }
 
-                if (dy < 0 && absDy > absDx)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                if (dy < 0 && absDy > absDx) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8NORTH();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8NORTH();
                     }
-                }
-                else if (dy > 0 && absDy > absDx)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dy > 0 && absDy > absDx) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8SOUTH();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8SOUTH();
                     }
-                }
-                else if (dx < 0 && absDx > absDy)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dx < 0 && absDx > absDy) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8WEST();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8WEST();
                     }
-                }
-                else if (dx > 0 && absDx > absDy)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dx > 0 && absDx > absDy) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8EAST();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8EAST();
                     }
-                }
-                else if (dy < 0)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dy < 0) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8NORTH();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8NORTH();
                     }
-                }
-                else if (dy > 0)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dy > 0) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8SOUTH();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8SOUTH();
                     }
-                }
-                else if (dx < 0)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dx < 0) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8WEST();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8WEST();
                     }
-                }
-                else if (dx > 0)
-                {
-                    if (ctrlKeyDown_)
-                    {
+                } else if (dx > 0) {
+                    if (ctrlKeyDown_) {
                         _<PLAYER>().TURN8EAST();
-                    }
-                    else
-                    {
+                    } else {
                         _<PLAYER>().MOVE8EAST();
                     }
                 }
@@ -137,37 +93,30 @@ namespace FORRADIA8GAME
     }
 
     void
-    MOUSE8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key)
-    {
-        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
-        {
+    MOUSE8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key) {
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL) {
             ctrlKeyDown_ = true;
         }
     }
 
     void
-    MOUSE8MOVEMENT::ON8KEY8UP(SDL_Keycode key)
-    {
-        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
-        {
+    MOUSE8MOVEMENT::ON8KEY8UP(SDL_Keycode key) {
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL) {
             ctrlKeyDown_ = false;
         }
     }
 
     void
-    MOUSE8MOVEMENT::ON8MOUSE8DOWN(Uint8 button)
-    {
+    MOUSE8MOVEMENT::ON8MOUSE8DOWN(Uint8 button) {
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x > viewWidth)
-        {
+        if (mousePosition.x > viewWidth) {
             return;
         }
 
-        if (button == SDL_BUTTON_LEFT)
-        {
+        if (button == SDL_BUTTON_LEFT) {
             _<PLAYER>().destination_ = _<TILE8HOVERING>().hoveredCoordinate_;
         }
     }

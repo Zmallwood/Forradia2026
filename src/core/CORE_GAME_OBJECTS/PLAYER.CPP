@@ -14,12 +14,10 @@
 #include "PLAYER8EQUIPMENT.HPP"
 #include "PLAYER8INVENTORY.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     PLAYER::PLAYER()
         : playerInventory_(std::make_shared<PLAYER8INVENTORY>()),
-          playerEquipment_(std::make_shared<PLAYER8EQUIPMENT>())
-    {
+          playerEquipment_(std::make_shared<PLAYER8EQUIPMENT>()) {
         playerInventory_->ADD8OBJECT("ObjectRedApple");
 
         playerInventory_->ADD8OBJECT("ObjectCopperSword");
@@ -32,8 +30,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::SPAWN8ONSUITABLE8LOCATION()
-    {
+    PLAYER::SPAWN8ONSUITABLE8LOCATION() {
         auto worldArea = _<WORLD>().currentWorldArea_;
 
         auto worldAreaSize = worldArea->GET8SIZE();
@@ -44,8 +41,7 @@ namespace FORRADIA8GAME
         auto tile = worldArea->GET8TILE(static_cast<int>(position_.x),
                                         static_cast<int>(position_.y));
 
-        while (tile->ground_ == HASH("GroundWater"))
-        {
+        while (tile->ground_ == HASH("GroundWater")) {
             position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
                          4.0f + (rand() % (worldAreaSize.height - 5))};
 
@@ -58,8 +54,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::MOVE8NORTH()
-    {
+    PLAYER::MOVE8NORTH() {
         auto newX = position_.x;
         auto newY = position_.y - stepSize_;
 
@@ -67,8 +62,7 @@ namespace FORRADIA8GAME
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
-        {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
             return;
         }
 
@@ -81,8 +75,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::MOVE8EAST()
-    {
+    PLAYER::MOVE8EAST() {
         auto newX = position_.x + stepSize_;
         auto newY = position_.y;
 
@@ -90,8 +83,7 @@ namespace FORRADIA8GAME
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
-        {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
             return;
         }
 
@@ -104,8 +96,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::MOVE8SOUTH()
-    {
+    PLAYER::MOVE8SOUTH() {
         auto newX = position_.x;
         auto newY = position_.y + stepSize_;
 
@@ -113,8 +104,7 @@ namespace FORRADIA8GAME
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
-        {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
             return;
         }
 
@@ -127,8 +117,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::MOVE8WEST()
-    {
+    PLAYER::MOVE8WEST() {
         auto newX = position_.x - stepSize_;
         auto newY = position_.y;
 
@@ -136,8 +125,7 @@ namespace FORRADIA8GAME
             {static_cast<int>(newX), static_cast<int>(newY)});
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
-        {
+            (newTile->ground_ == HASH("GroundWater") || newTile->creature_)) {
             return;
         }
 
@@ -150,8 +138,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::TURN8NORTH()
-    {
+    PLAYER::TURN8NORTH() {
         facedTileCoordinate_ = {static_cast<int>(position_.x),
                                 static_cast<int>(position_.y) - 1};
 
@@ -159,8 +146,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::TURN8EAST()
-    {
+    PLAYER::TURN8EAST() {
         facedTileCoordinate_ = {static_cast<int>(position_.x) + 1,
                                 static_cast<int>(position_.y)};
 
@@ -168,8 +154,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::TURN8SOUTH()
-    {
+    PLAYER::TURN8SOUTH() {
         facedTileCoordinate_ = {static_cast<int>(position_.x),
                                 static_cast<int>(position_.y) + 1};
 
@@ -177,8 +162,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::TURN8WEST()
-    {
+    PLAYER::TURN8WEST() {
         facedTileCoordinate_ = {static_cast<int>(position_.x) - 1,
                                 static_cast<int>(position_.y)};
 
@@ -186,8 +170,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::ADD8EXPERIENCE(int amount)
-    {
+    PLAYER::ADD8EXPERIENCE(int amount) {
         experience_ += amount;
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE(
@@ -195,8 +178,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    PLAYER::HIT(float damage)
-    {
+    PLAYER::HIT(float damage) {
         health_ -= damage;
 
         ticksLastHitOnSelf_ = NOW();

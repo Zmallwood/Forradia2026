@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class RECT8F
-    {
+namespace FORRADIA8GAME {
+    class RECT8F {
       public:
         bool CONTAINS(POINT8F point);
 

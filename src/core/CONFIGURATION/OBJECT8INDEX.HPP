@@ -9,10 +9,8 @@
 
 #include "OBJECT8INDEX8ENTRY.HPP"
 
-namespace FORRADIA8GAME
-{
-    class OBJECT8INDEX
-    {
+namespace FORRADIA8GAME {
+    class OBJECT8INDEX {
       public:
         OBJECT8INDEX();
 

@@ -9,23 +9,19 @@
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 
-namespace FORRADIA8GAME
-{
-    CREATURE::CREATURE(std::string_view typeName)
-    {
+namespace FORRADIA8GAME {
+    CREATURE::CREATURE(std::string_view typeName) {
         type_ = HASH(typeName);
     }
 
-    CREATURE::CREATURE(int type)
-    {
+    CREATURE::CREATURE(int type) {
         type_ = type;
 
         auto typeName = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type);
     }
 
     void
-    CREATURE::HIT(float damage, POINT8F hitPosition)
-    {
+    CREATURE::HIT(float damage, POINT8F hitPosition) {
         health_ -= damage;
 
         ticksLastHitOnSelf_ = NOW();
@@ -36,8 +32,7 @@ namespace FORRADIA8GAME
 
         auto now = NOW();
 
-        if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_))
-        {
+        if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_)) {
             ticksLastHitOnOther_ = now;
         }
 
@@ -52,8 +47,7 @@ namespace FORRADIA8GAME
     }
 
     bool
-    CREATURE::IS8DEAD()
-    {
+    CREATURE::IS8DEAD() {
         return health_ <= 0.0f;
     }
 }

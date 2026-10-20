@@ -9,10 +9,8 @@
 
 #include "COMPLETED8OBJECT8IMPACT.HPP"
 
-namespace FORRADIA8GAME
-{
-    class FIRST8PERSON8VIEW
-    {
+namespace FORRADIA8GAME {
+    class FIRST8PERSON8VIEW {
       public:
         void UPDATE();
 

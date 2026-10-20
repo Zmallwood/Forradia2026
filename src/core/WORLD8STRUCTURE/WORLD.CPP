@@ -8,10 +8,8 @@
 #include "WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
-    WORLD::WORLD()
-    {
+namespace FORRADIA8GAME {
+    WORLD::WORLD() {
         currentWorldArea_ = std::make_shared<WORLD8AREA>();
     }
 }

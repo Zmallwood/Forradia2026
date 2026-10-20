@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    namespace OBJECT8FLAGS
-    {
+namespace FORRADIA8GAME {
+    namespace OBJECT8FLAGS {
         constexpr int kSmallObject = 1 << 0;
         constexpr int kBlocksSight = 1 << 1;
         constexpr int kUnmovable = 1 << 2;

@@ -9,12 +9,11 @@
 #include "CORE/ASSETS/IMAGE8BANK.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
     IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, float x, float y, float width,
-                               float height, float opacity, bool flipHorizontal)
-    {
+                               float height, float opacity,
+                               bool flipHorizontal) {
         auto canvasSize = GET8CANVAS8SIZE();
 
         auto xPx = static_cast<int>(x * canvasSize.width);
@@ -42,8 +41,7 @@ namespace FORRADIA8GAME
     void
     IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, float x, float y,
                                float width, float height, float opacity,
-                               bool flipHorizontal)
-    {
+                               bool flipHorizontal) {
         auto hash = HASH(imageName);
 
         DRAW8IMAGE(hash, x, y, width, height, opacity, flipHorizontal);
@@ -51,16 +49,14 @@ namespace FORRADIA8GAME
 
     void
     IMAGE8RENDERER::DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity,
-                               bool flipHorizontal)
-    {
+                               bool flipHorizontal) {
         DRAW8IMAGE(imageNameHash, bounds.x, bounds.y, bounds.width,
                    bounds.height, opacity, flipHorizontal);
     }
 
     void
     IMAGE8RENDERER::DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
-                               float opacity, bool flipHorizontal)
-    {
+                               float opacity, bool flipHorizontal) {
         DRAW8IMAGE(imageName, bounds.x, bounds.y, bounds.width, bounds.height,
                    opacity, flipHorizontal);
     }

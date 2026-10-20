@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class WORLD8VIEW
-    {
+namespace FORRADIA8GAME {
+    class WORLD8VIEW {
       public:
         void RENDER();
     };

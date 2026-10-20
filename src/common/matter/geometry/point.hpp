@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class POINT
-    {
+namespace FORRADIA8GAME {
+    class POINT {
       public:
         auto operator<=>(const POINT &) const = default;
 

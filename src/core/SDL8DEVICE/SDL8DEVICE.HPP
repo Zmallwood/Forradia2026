@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class SDL8DEVICE
-    {
+namespace FORRADIA8GAME {
+    class SDL8DEVICE {
       public:
         SDL8DEVICE();
 

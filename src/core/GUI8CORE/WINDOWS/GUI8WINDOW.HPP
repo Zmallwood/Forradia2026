@@ -9,12 +9,10 @@
 
 #include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class GUI8WINDOW8TITLE8BAR;
 
-    class GUI8WINDOW : public GUI8PANEL
-    {
+    class GUI8WINDOW : public GUI8PANEL {
       public:
         GUI8WINDOW(std::string_view title, float x, float y, float width,
                    float height);

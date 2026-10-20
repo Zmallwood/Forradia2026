@@ -16,17 +16,14 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    GUI8ACTION8MENU::OnMouseDown(Uint8 mouseButton)
-    {
+    GUI8ACTION8MENU::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto mousePosition = GET8MOUSE8POSITION();
 
         auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
-        if (mouseButton == SDL_BUTTON_RIGHT)
-        {
+        if (mouseButton == SDL_BUTTON_RIGHT) {
             visible_ = true;
 
             entries_.clear();
@@ -41,13 +38,11 @@ namespace FORRADIA8GAME
 
             auto ground = tile->ground_;
 
-            if (ground != HASH("GroundWater"))
-            {
+            if (ground != HASH("GroundWater")) {
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallNorthPlank1;
                 entryPlannedWoodWallNorthPlank1.label =
                     "Plan wood wall north, plank 1";
-                entryPlannedWoodWallNorthPlank1.action = [=]()
-                {
+                entryPlannedWoodWallNorthPlank1.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -60,8 +55,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallNorthPlank2;
                 entryPlannedWoodWallNorthPlank2.label =
                     "Plan wood wall north, plank 2";
-                entryPlannedWoodWallNorthPlank2.action = [=]()
-                {
+                entryPlannedWoodWallNorthPlank2.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -74,8 +68,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallNorthPlank3;
                 entryPlannedWoodWallNorthPlank3.label =
                     "Plan wood wall north, plank 3";
-                entryPlannedWoodWallNorthPlank3.action = [=]()
-                {
+                entryPlannedWoodWallNorthPlank3.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -88,8 +81,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallNorthPlank4;
                 entryPlannedWoodWallNorthPlank4.label =
                     "Plan wood wall north, plank 4";
-                entryPlannedWoodWallNorthPlank4.action = [=]()
-                {
+                entryPlannedWoodWallNorthPlank4.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -102,8 +94,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallEastPlank1;
                 entryPlannedWoodWallEastPlank1.label =
                     "Plan wood wall east, plank 1";
-                entryPlannedWoodWallEastPlank1.action = [=]()
-                {
+                entryPlannedWoodWallEastPlank1.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -117,8 +108,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallEastPlank2;
                 entryPlannedWoodWallEastPlank2.label =
                     "Plan wood wall east, plank 2";
-                entryPlannedWoodWallEastPlank2.action = [=]()
-                {
+                entryPlannedWoodWallEastPlank2.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -132,8 +122,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallEastPlank3;
                 entryPlannedWoodWallEastPlank3.label =
                     "Plan wood wall east, plank 3";
-                entryPlannedWoodWallEastPlank3.action = [=]()
-                {
+                entryPlannedWoodWallEastPlank3.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -147,8 +136,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallEastPlank4;
                 entryPlannedWoodWallEastPlank4.label =
                     "Plan wood wall east, plank 4";
-                entryPlannedWoodWallEastPlank4.action = [=]()
-                {
+                entryPlannedWoodWallEastPlank4.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -162,8 +150,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallSouthPlank1;
                 entryPlannedWoodWallSouthPlank1.label =
                     "Plan wood wall south, plank 1";
-                entryPlannedWoodWallSouthPlank1.action = [=]()
-                {
+                entryPlannedWoodWallSouthPlank1.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -178,8 +165,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallSouthPlank2;
                 entryPlannedWoodWallSouthPlank2.label =
                     "Plan wood wall south, plank 2";
-                entryPlannedWoodWallSouthPlank2.action = [=]()
-                {
+                entryPlannedWoodWallSouthPlank2.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -194,8 +180,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallSouthPlank3;
                 entryPlannedWoodWallSouthPlank3.label =
                     "Plan wood wall south, plank 3";
-                entryPlannedWoodWallSouthPlank3.action = [=]()
-                {
+                entryPlannedWoodWallSouthPlank3.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -210,8 +195,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallSouthPlank4;
                 entryPlannedWoodWallSouthPlank4.label =
                     "Plan wood wall south, plank 4";
-                entryPlannedWoodWallSouthPlank4.action = [=]()
-                {
+                entryPlannedWoodWallSouthPlank4.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -226,8 +210,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallWestPlank1;
                 entryPlannedWoodWallWestPlank1.label =
                     "Plan wood wall west, plank 1";
-                entryPlannedWoodWallWestPlank1.action = [=]()
-                {
+                entryPlannedWoodWallWestPlank1.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -241,8 +224,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallWestPlank2;
                 entryPlannedWoodWallWestPlank2.label =
                     "Plan wood wall west, plank 2";
-                entryPlannedWoodWallWestPlank2.action = [=]()
-                {
+                entryPlannedWoodWallWestPlank2.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -256,8 +238,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallWestPlank3;
                 entryPlannedWoodWallWestPlank3.label =
                     "Plan wood wall west, plank 3";
-                entryPlannedWoodWallWestPlank3.action = [=]()
-                {
+                entryPlannedWoodWallWestPlank3.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -271,8 +252,7 @@ namespace FORRADIA8GAME
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodWallWestPlank4;
                 entryPlannedWoodWallWestPlank4.label =
                     "Plan wood wall west, plank 4";
-                entryPlannedWoodWallWestPlank4.action = [=]()
-                {
+                entryPlannedWoodWallWestPlank4.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -285,8 +265,7 @@ namespace FORRADIA8GAME
 
                 GUI8ACTION8MENU8ENTRY entryPlannedWoodFloor;
                 entryPlannedWoodFloor.label = "Plan wood floor";
-                entryPlannedWoodFloor.action = [=]()
-                {
+                entryPlannedWoodFloor.action = [=]() {
                     auto tileObjects = tile->tileObjects_;
 
                     tileObjects->ADD8OBJECT(
@@ -296,21 +275,17 @@ namespace FORRADIA8GAME
 
                 entries_.push_back(entryPlannedWoodFloor);
             }
-        }
-        else if (mouseButton == SDL_BUTTON_LEFT && visible_)
-        {
+        } else if (mouseButton == SDL_BUTTON_LEFT && visible_) {
             visible_ = false;
 
             auto row = 1;
 
-            for (auto &entry : entries_)
-            {
+            for (auto &entry : entries_) {
                 RECT8F bounds = {rightClickMousePosition_.x,
                                  rightClickMousePosition_.y + row * kLineHeight,
                                  kWidth, kLineHeight};
 
-                if (bounds.CONTAINS(mousePosition))
-                {
+                if (bounds.CONTAINS(mousePosition)) {
                     auto action = entry.action;
 
                     action();
@@ -322,10 +297,8 @@ namespace FORRADIA8GAME
     }
 
     void
-    GUI8ACTION8MENU::Render()
-    {
-        if (!visible_)
-        {
+    GUI8ACTION8MENU::RENDER() {
+        if (!visible_) {
             return;
         }
 
@@ -348,14 +321,12 @@ namespace FORRADIA8GAME
 
         auto row = 1;
 
-        for (auto &entry : entries_)
-        {
+        for (auto &entry : entries_) {
             RECT8F bounds = {rightClickMousePosition_.x,
                              rightClickMousePosition_.y + row * kLineHeight,
                              kWidth, kLineHeight};
 
-            if (bounds.CONTAINS(mousePosition))
-            {
+            if (bounds.CONTAINS(mousePosition)) {
                 _<COLOR8RENDERER>().FILL8RECT(bounds, COLORS::kBlueGray);
 
                 _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;

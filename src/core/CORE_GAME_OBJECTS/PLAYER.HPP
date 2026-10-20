@@ -9,13 +9,11 @@
 
 #include "CORE/WORLD8STRUCTURE/WORLD8DIRECTIONS.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class PLAYER8INVENTORY;
     class PLAYER8EQUIPMENT;
 
-    class PLAYER
-    {
+    class PLAYER {
       public:
         PLAYER();
 

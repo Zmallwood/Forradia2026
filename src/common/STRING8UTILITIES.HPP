@@ -7,8 +7,7 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     std::string REPLACE(std::string_view text, std::string_view oldValue,
                         std::string_view newValue);
 }

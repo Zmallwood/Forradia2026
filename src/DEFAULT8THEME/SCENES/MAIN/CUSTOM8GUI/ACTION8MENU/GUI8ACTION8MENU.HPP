@@ -9,14 +9,12 @@
 
 #include "GUI8ACTION8MENU8ENTRY.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8ACTION8MENU
-    {
+namespace FORRADIA8GAME {
+    class GUI8ACTION8MENU {
       public:
-        void OnMouseDown(Uint8 mouseButton);
+        void ON8MOUSE8DOWN(Uint8 mouseButton);
 
-        void Render();
+        void RENDER();
 
       private:
         static constexpr float kWidth = 0.1f;

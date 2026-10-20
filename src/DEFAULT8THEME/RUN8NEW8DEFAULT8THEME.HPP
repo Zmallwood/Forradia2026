@@ -7,7 +7,6 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void RUN8NEW8DEFAULT8THEME();
 }

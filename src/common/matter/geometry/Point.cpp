@@ -7,11 +7,9 @@
 
 #include "POINT.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     POINT
-    POINT::operator+(const POINT & other) const
-    {
+    POINT::operator+(const POINT & other) const {
         return {x + other.x, y + other.y};
     }
 }

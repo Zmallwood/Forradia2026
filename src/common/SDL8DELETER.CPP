@@ -7,35 +7,29 @@
 
 #include "SDL8DELETER.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    SDL8DELETER::operator()(SDL_Window *window)
-    {
+    SDL8DELETER::operator()(SDL_Window *window) {
         SDL_DestroyWindow(window);
     }
 
     void
-    SDL8DELETER::operator()(SDL_Renderer *renderer)
-    {
+    SDL8DELETER::operator()(SDL_Renderer *renderer) {
         SDL_DestroyRenderer(renderer);
     }
 
     void
-    SDL8DELETER::operator()(SDL_Surface *surface)
-    {
+    SDL8DELETER::operator()(SDL_Surface *surface) {
         SDL_FreeSurface(surface);
     }
 
     void
-    SDL8DELETER::operator()(SDL_Texture *texture)
-    {
+    SDL8DELETER::operator()(SDL_Texture *texture) {
         SDL_DestroyTexture(texture);
     }
 
     void
-    SDL8DELETER::operator()(TTF_Font *font)
-    {
+    SDL8DELETER::operator()(TTF_Font *font) {
         TTF_CloseFont(font);
     }
 }

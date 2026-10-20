@@ -13,18 +13,15 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     std::map<std::pair<int, int>, POSITIONED8OBJECT>
-    GET8ORDERED8OBJECTS()
-    {
+    GET8ORDERED8OBJECTS() {
         auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
         auto worldArea = _<WORLD>().currentWorldArea_;
         auto facedTile = worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_);
 
-        if (!facedTile)
-        {
+        if (!facedTile) {
             return {};
         }
 
@@ -32,8 +29,7 @@ namespace FORRADIA8GAME
 
         std::map<std::pair<int, int>, POSITIONED8OBJECT> orderedObjects;
 
-        for (auto entry : objects)
-        {
+        for (auto entry : objects) {
             auto position = entry.first;
             auto object = entry.second;
 
@@ -42,8 +38,7 @@ namespace FORRADIA8GAME
 
             auto facingDirection = _<PLAYER>().facingDirection_;
 
-            switch (facingDirection)
-            {
+            switch (facingDirection) {
             case WORLD8DIRECTIONS::North:
                 xPos = position.x;
                 yPos = position.y;
@@ -73,8 +68,7 @@ namespace FORRADIA8GAME
     }
 
     POINT
-    GET8HOVERED8TILE8POSITION(POINT8F mouseOffset)
-    {
+    GET8HOVERED8TILE8POSITION(POINT8F mouseOffset) {
         constexpr auto kMargin = GAME8PROPERTIES::kFirstPersonViewMargin_;
         auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
         auto viewWidth = GAME8PROPERTIES::kViewWidth_;
@@ -88,19 +82,16 @@ namespace FORRADIA8GAME
 
         auto relativeY = (anchorPosition.y - groundTop) / groundHeight;
 
-        if (relativeY >= 0.0f && relativeY <= 1.0f)
-        {
+        if (relativeY >= 0.0f && relativeY <= 1.0f) {
             // Bases sit on the near edge of a cell, so step just inside it.
             auto hoveredY =
                 static_cast<int>(relativeY * tileUnitsWidth - 0.001f);
 
-            if (hoveredY < 0)
-            {
+            if (hoveredY < 0) {
                 hoveredY = 0;
             }
 
-            if (hoveredY >= tileUnitsWidth)
-            {
+            if (hoveredY >= tileUnitsWidth) {
                 hoveredY = tileUnitsWidth - 1;
             }
 
@@ -114,20 +105,17 @@ namespace FORRADIA8GAME
 
             auto relativeX = (anchorPosition.x - tileLeft) / tileWidth;
 
-            if (relativeX >= 0.0f && relativeX < 1.0f)
-            {
+            if (relativeX >= 0.0f && relativeX < 1.0f) {
                 auto hoveredX = static_cast<int>(relativeX * tileUnitsWidth);
 
-                if (hoveredX >= tileUnitsWidth)
-                {
+                if (hoveredX >= tileUnitsWidth) {
                     hoveredX = tileUnitsWidth - 1;
                 }
 
                 int tileX = hoveredX;
                 int tileY = hoveredY;
 
-                switch (_<PLAYER>().facingDirection_)
-                {
+                switch (_<PLAYER>().facingDirection_) {
                 case WORLD8DIRECTIONS::North:
                     break;
                 case WORLD8DIRECTIONS::East:

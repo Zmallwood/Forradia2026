@@ -11,11 +11,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    CREATURE8RESPAWNER::UPDATE()
-    {
+    CREATURE8RESPAWNER::UPDATE() {
         auto now{NOW()};
 
         auto worldArea{_<WORLD>().currentWorldArea_};
@@ -23,21 +21,18 @@ namespace FORRADIA8GAME
         auto size{worldArea->GET8SIZE()};
 
         for (auto it = creatureRespawns_.begin();
-             it != creatureRespawns_.end();)
-        {
+             it != creatureRespawns_.end();) {
             auto creatureRespawnTime{it->first};
             auto creatureType{it->second};
 
-            if (now >= creatureRespawnTime)
-            {
+            if (now >= creatureRespawnTime) {
                 auto newCreature{std::make_shared<CREATURE>(creatureType)};
 
                 int x;
                 int y;
                 std::shared_ptr<TILE> tile;
 
-                do
-                {
+                do {
                     x = rand() % size.width;
                     y = rand() % size.height;
 
@@ -45,8 +40,7 @@ namespace FORRADIA8GAME
                 } while (tile->ground_ == HASH("GroundWater") ||
                          tile->ground_ == HASH("GroundDirt"));
 
-                if (tile)
-                {
+                if (tile) {
                     tile->creature_ = newCreature;
 
                     worldArea->creaturesMirror_.insert({newCreature, {x, y}});
@@ -63,8 +57,7 @@ namespace FORRADIA8GAME
 
     void
     CREATURE8RESPAWNER::RESPAWN8CREATURE(int creatureType,
-                                         int respawnTimeMillis)
-    {
+                                         int respawnTimeMillis) {
         auto creatureRespawnTime{NOW() + respawnTimeMillis};
 
         creatureRespawns_.insert({creatureRespawnTime, creatureType});

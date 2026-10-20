@@ -7,13 +7,11 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
     class CREATURE;
 
-    class FIRST8PERSON8HOVERING
-    {
+    class FIRST8PERSON8HOVERING {
       public:
         void UPDATE();
 

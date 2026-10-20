@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class FPS8COUNTER
-    {
+namespace FORRADIA8GAME {
+    class FPS8COUNTER {
       public:
         void UPDATE();
 

@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class OBJECT8INDEX8ENTRY
-    {
+    class OBJECT8INDEX8ENTRY {
       public:
         std::string label;
         int flags = 0;

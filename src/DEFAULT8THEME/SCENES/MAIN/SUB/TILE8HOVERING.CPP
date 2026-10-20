@@ -12,11 +12,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    TILE8HOVERING::UPDATE()
-    {
+    TILE8HOVERING::UPDATE() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
         auto worldArea{_<WORLD>().currentWorldArea_};
@@ -29,8 +27,7 @@ namespace FORRADIA8GAME
 
         auto playerTile{worldArea->GET8TILE(playerPosition)};
 
-        if (!playerTile)
-        {
+        if (!playerTile) {
             return;
         }
 
@@ -48,15 +45,12 @@ namespace FORRADIA8GAME
         // {
         //     for (auto x = -6; x < 11 + 6; x++)
         //     {
-        for (auto y = -numGridRows; y < 11 + numGridRows; y++)
-        {
-            for (auto x = -numGridColumns; x < 11 + numGridColumns; x++)
-            {
+        for (auto y = -numGridRows; y < 11 + numGridRows; y++) {
+            for (auto x = -numGridColumns; x < 11 + numGridColumns; x++) {
                 auto xCoordinate{playerPosition.x - 5 + x};
                 auto yCoordinate{playerPosition.y - 5 + y};
 
-                if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate))
-                {
+                if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate)) {
                     continue;
                 }
 
@@ -81,8 +75,7 @@ namespace FORRADIA8GAME
                               (tileWidth / 2)};
                 auto dyBottom{std::abs(mousePosition.y - centerBottom.y) /
                               (tileHeight / 2)};
-                if (dxBottom + dyBottom <= 1.0f)
-                {
+                if (dxBottom + dyBottom <= 1.0f) {
                     hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
 
@@ -92,13 +85,11 @@ namespace FORRADIA8GAME
                                      tileY - elevationHeight + tileHeight / 2,
                                      tileWidth, elevationHeight};
 
-                if (elevationRect.CONTAINS(mousePosition))
-                {
+                if (elevationRect.CONTAINS(mousePosition)) {
                     hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
 
-                for (auto i = 0; i < elevation; i++)
-                {
+                for (auto i = 0; i < elevation; i++) {
                     tileY -= tileHeight / 4;
                 }
 
@@ -109,8 +100,7 @@ namespace FORRADIA8GAME
                            (tileWidth / 2)};
                 auto dyTop{std::abs(mousePosition.y - centerTop.y) /
                            (tileHeight / 2)};
-                if (dxTop + dyTop <= 1.0f)
-                {
+                if (dxTop + dyTop <= 1.0f) {
                     hoveredCoordinate_ = {xCoordinate, yCoordinate};
                 }
             }

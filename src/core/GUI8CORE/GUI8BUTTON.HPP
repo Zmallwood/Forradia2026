@@ -9,10 +9,8 @@
 
 #include "GUI8PANEL.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8BUTTON : public GUI8PANEL
-    {
+namespace FORRADIA8GAME {
+    class GUI8BUTTON : public GUI8PANEL {
       public:
         GUI8BUTTON(std::string_view text, float x, float y, float width,
                    float height, std::function<void()> action,

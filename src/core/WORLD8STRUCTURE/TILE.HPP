@@ -7,14 +7,12 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class TILE8OBJECTS;
     class CREATURE;
     class NPC;
 
-    class TILE
-    {
+    class TILE {
       public:
         TILE();
 

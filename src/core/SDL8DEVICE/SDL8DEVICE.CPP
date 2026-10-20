@@ -7,10 +7,8 @@
 
 #include "SDL8DEVICE.HPP"
 
-namespace FORRADIA8GAME
-{
-    SDL8DEVICE::SDL8DEVICE()
-    {
+namespace FORRADIA8GAME {
+    SDL8DEVICE::SDL8DEVICE() {
         auto windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP;
 
         window_ = std::shared_ptr<SDL_Window>(
@@ -24,21 +22,18 @@ namespace FORRADIA8GAME
     }
 
     void
-    SDL8DEVICE::CLEAR8CANVAS()
-    {
+    SDL8DEVICE::CLEAR8CANVAS() {
         SDL_SetRenderDrawColor(renderer_.get(), 0, 150, 255, 255);
         SDL_RenderClear(renderer_.get());
     }
 
     void
-    SDL8DEVICE::PRESENT8CANVAS()
-    {
+    SDL8DEVICE::PRESENT8CANVAS() {
         SDL_RenderPresent(renderer_.get());
     }
 
     void
-    SDL8DEVICE::CLIP(float x, float y, float width, float height)
-    {
+    SDL8DEVICE::CLIP(float x, float y, float width, float height) {
         SDL_Rect clipRect;
 
         auto canvasSize = GET8CANVAS8SIZE();
@@ -52,8 +47,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    SDL8DEVICE::RESET8CLIP()
-    {
+    SDL8DEVICE::RESET8CLIP() {
         SDL_RenderSetClipRect(renderer_.get(), nullptr);
     }
 }

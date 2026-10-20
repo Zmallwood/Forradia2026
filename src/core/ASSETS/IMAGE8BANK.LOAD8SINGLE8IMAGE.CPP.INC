@@ -13,8 +13,7 @@ auto hash = HASH(pureName);
 
 auto loaded = IMG_Load(path.c_str());
 
-if (!loaded)
-{
+if (!loaded) {
     std::cout << "Failed to load image " << path << ": " << IMG_GetError()
               << std::endl;
     return;
@@ -24,8 +23,7 @@ auto converted = SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32, 0);
 
 SDL_FreeSurface(loaded);
 
-if (!converted)
-{
+if (!converted) {
     std::cout << "Failed to convert image " << path << ": " << SDL_GetError()
               << std::endl;
     return;

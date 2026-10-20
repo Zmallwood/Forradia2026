@@ -9,10 +9,8 @@
 
 #include "CORE/GUI8CORE/GUI8METER.HPP"
 
-namespace FORRADIA8GAME
-{
-    class GUI8HEALTH8METER : public GUI8METER
-    {
+namespace FORRADIA8GAME {
+    class GUI8HEALTH8METER : public GUI8METER {
       public:
         GUI8HEALTH8METER();
 

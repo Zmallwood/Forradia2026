@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class IMAGE8RENDERER
-    {
+namespace FORRADIA8GAME {
+    class IMAGE8RENDERER {
       public:
         void DRAW8IMAGE(int imageNameHash, float x, float y, float width,
                         float height, float opacity = 1.0f,

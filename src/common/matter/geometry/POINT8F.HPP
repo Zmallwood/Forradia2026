@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class POINT8F
-    {
+namespace FORRADIA8GAME {
+    class POINT8F {
       public:
         void operator+=(const POINT8F &other);
 

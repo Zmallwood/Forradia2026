@@ -7,11 +7,9 @@
 
 #include "RECT8F.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     bool
-    RECT8F::CONTAINS(POINT8F point)
-    {
+    RECT8F::CONTAINS(POINT8F point) {
         return point.x >= x && point.x <= x + width && point.y >= y &&
                point.y <= y + height;
     }

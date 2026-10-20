@@ -7,7 +7,6 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     POINT8F GET8MOUSE8POSITION();
 }

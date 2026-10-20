@@ -15,10 +15,8 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "OBJECT8FLAGS.HPP"
 
-namespace FORRADIA8GAME
-{
-    OBJECT8INDEX::OBJECT8INDEX()
-    {
+namespace FORRADIA8GAME {
+    OBJECT8INDEX::OBJECT8INDEX() {
         ADD8ENTRY("ObjectStone", "Stone", OBJECT8FLAGS::kSmallObject);
 
         ADD8ENTRY("ObjectBranch", "Branch", OBJECT8FLAGS::kSmallObject);
@@ -32,21 +30,20 @@ namespace FORRADIA8GAME
                   OBJECT8FLAGS::kSmallObject);
 
         auto allImpactPointsCompletedActionObjectTree1 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(object,
-                                                      "ObjectFelledTree");
+                facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                          "ObjectFelledTree");
 
-            _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have felled the tree.");
+                _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have felled the tree.");
 
-            _<PLAYER>().ADD8EXPERIENCE(13);
-        };
+                _<PLAYER>().ADD8EXPERIENCE(13);
+            };
 
         ADD8ENTRY(
             "ObjectTree1", "Tree",
@@ -85,8 +82,7 @@ namespace FORRADIA8GAME
 
         ADD8ENTRY("ObjectWoodAxe", "Wood axe", OBJECT8FLAGS::kSmallObject);
 
-        auto singleImpactPointCompletedActionObjectFelledTree = []()
-        {
+        auto singleImpactPointCompletedActionObjectFelledTree = []() {
             auto worldArea = _<WORLD>().currentWorldArea_;
 
             auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
@@ -102,19 +98,18 @@ namespace FORRADIA8GAME
         };
 
         auto allImpactPointsCompletedActionObjectFelledTree =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->REMOVE8OBJECT(object);
+                facedTile->tileObjects_->REMOVE8OBJECT(object);
 
-            _<GUI8TEXT8CONSOLE>().PRINT8LINE(
-                "You have chopped up the felled tree.");
-        };
+                _<GUI8TEXT8CONSOLE>().PRINT8LINE(
+                    "You have chopped up the felled tree.");
+            };
 
         ADD8ENTRY("ObjectFelledTree", "Felled tree", OBJECT8FLAGS::kUnmovable,
                   {POINT8F{0.55f, 0.95f}, POINT8F{0.55f, 0.89f},
@@ -124,19 +119,19 @@ namespace FORRADIA8GAME
                   allImpactPointsCompletedActionObjectFelledTree);
 
         auto allImpactPointsCompletedActionObjectWoodLog =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(object,
-                                                      "ObjectWoodPlank");
+                facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                          "ObjectWoodPlank");
 
-            _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have sawed the wood log.");
-        };
+                _<GUI8TEXT8CONSOLE>().PRINT8LINE(
+                    "You have sawed the wood log.");
+            };
 
         ADD8ENTRY(
             "ObjectWoodLog", "Wood log", OBJECT8FLAGS::kSmallObject,
@@ -148,17 +143,16 @@ namespace FORRADIA8GAME
         ADD8ENTRY("ObjectSaw", "Saw", OBJECT8FLAGS::kSmallObject);
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankNorth1");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankNorth1");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallNorthPlank1",
@@ -168,17 +162,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankNorth2");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankNorth2");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallNorthPlank2",
@@ -188,17 +181,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankNorth3");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankNorth3");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallNorthPlank3",
@@ -208,17 +200,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankNorth4");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankNorth4");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallNorthPlank4",
@@ -248,17 +239,16 @@ namespace FORRADIA8GAME
             "ObjectWoodWallPlankNorth4WorldView", POINT8F{0.0f, 0.5f});
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankEast1 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankEast1");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankEast1");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallEastPlank1",
@@ -268,17 +258,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankEast2 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankEast2");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankEast2");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallEastPlank2",
@@ -288,17 +277,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankEast3 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankEast3");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankEast3");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallEastPlank3",
@@ -308,17 +296,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankEast4 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankEast4");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankEast4");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallEastPlank4",
@@ -348,17 +335,16 @@ namespace FORRADIA8GAME
             "ObjectWoodWallPlankEast4WorldView", POINT8F{0.0f, 0.5f});
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankSouth1");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankSouth1");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallSouthPlank1",
@@ -368,17 +354,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankSouth2");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankSouth2");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallSouthPlank2",
@@ -388,17 +373,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankSouth3");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankSouth3");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallSouthPlank3",
@@ -408,17 +392,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankSouth4");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankSouth4");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallSouthPlank4",
@@ -448,17 +431,16 @@ namespace FORRADIA8GAME
             "ObjectWoodWallPlankSouth4WorldView", POINT8F{0.0f, 0.5f});
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankWest1 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankWest1");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankWest1");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallWestPlank1",
@@ -468,17 +450,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankWest2 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankWest2");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankWest2");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallWestPlank2",
@@ -488,17 +469,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankWest3 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankWest3");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankWest3");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallWestPlank3",
@@ -508,17 +488,16 @@ namespace FORRADIA8GAME
             "ObjectPlannedObject");
 
         auto allImpactPointsCompletedActionObjectWoodWallPlankWest4 =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->TRANSFORM8OBJECT(
-                object, "ObjectWoodWallPlankWest4");
-        };
+                facedTile->tileObjects_->TRANSFORM8OBJECT(
+                    object, "ObjectWoodWallPlankWest4");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodWallWestPlank4",
@@ -548,18 +527,17 @@ namespace FORRADIA8GAME
             "ObjectWoodWallPlankWest4WorldView", POINT8F{0.0f, 0.5f});
 
         auto allImpactPointsCompletedActionObjectWoodFloor =
-            [](std::shared_ptr<OBJECT> object)
-        {
-            auto worldArea = _<WORLD>().currentWorldArea_;
+            [](std::shared_ptr<OBJECT> object) {
+                auto worldArea = _<WORLD>().currentWorldArea_;
 
-            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+                auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
 
-            auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
+                auto facedTile = worldArea->GET8TILE(facedTileCoordinate);
 
-            facedTile->tileObjects_->REMOVE8OBJECT(object);
+                facedTile->tileObjects_->REMOVE8OBJECT(object);
 
-            facedTile->ground_ = HASH("GroundWoodFloor");
-        };
+                facedTile->ground_ = HASH("GroundWoodFloor");
+            };
 
         ADD8ENTRY(
             "ObjectPlannedWoodFloor", "Planned wood floor",
@@ -580,19 +558,16 @@ namespace FORRADIA8GAME
         std::function<void(std::shared_ptr<OBJECT>)>
             allImpactPointsCompletedAction,
         std::string_view worldViewObjectType, POINT8F worldViewRenderOffset,
-        POINT8F firstPersonViewRenderOffset)
-    {
+        POINT8F firstPersonViewRenderOffset) {
         std::vector<int> impactObjectHashes;
 
-        for (auto &impactObject : impactObjects)
-        {
+        for (auto &impactObject : impactObjects) {
             impactObjectHashes.push_back(HASH(impactObject));
         }
 
         int worldViewObjectTypeHash = 0;
 
-        if (worldViewObjectType != "")
-        {
+        if (worldViewObjectType != "") {
             worldViewObjectTypeHash = HASH(worldViewObjectType);
         }
 
@@ -605,10 +580,8 @@ namespace FORRADIA8GAME
     }
 
     bool
-    OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return (entries_.at(objectHash).flags &
                     OBJECT8FLAGS::kSmallObject) != 0;
         }
@@ -617,10 +590,8 @@ namespace FORRADIA8GAME
     }
 
     std::string
-    OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).label;
         }
 
@@ -628,10 +599,8 @@ namespace FORRADIA8GAME
     }
 
     bool
-    OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return (entries_.at(objectHash).flags &
                     OBJECT8FLAGS::kBlocksSight) != 0;
         }
@@ -640,10 +609,8 @@ namespace FORRADIA8GAME
     }
 
     bool
-    OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return (entries_.at(objectHash).flags & OBJECT8FLAGS::kUnmovable) !=
                    0;
         }
@@ -652,10 +619,8 @@ namespace FORRADIA8GAME
     }
 
     std::vector<POINT8F>
-    OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).impactPoints;
         }
 
@@ -663,10 +628,8 @@ namespace FORRADIA8GAME
     }
 
     std::vector<int>
-    OBJECT8INDEX::GET8IMPACT8OBJECTS(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8IMPACT8OBJECTS(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).impactObjects;
         }
 
@@ -674,10 +637,8 @@ namespace FORRADIA8GAME
     }
 
     std::function<void()>
-    OBJECT8INDEX::GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8SINGLE8IMPACT8POINT8COMPLETED8ACTION(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).singleImpactPointCompletedAction;
         }
 
@@ -685,10 +646,8 @@ namespace FORRADIA8GAME
     }
 
     std::function<void(std::shared_ptr<OBJECT>)>
-    OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).allImpactPointsCompletedAction;
         }
 
@@ -696,10 +655,8 @@ namespace FORRADIA8GAME
     }
 
     int
-    OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).worldViewObjectType;
         }
 
@@ -707,10 +664,8 @@ namespace FORRADIA8GAME
     }
 
     POINT8F
-    OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).worldViewRenderOffset;
         }
 
@@ -718,10 +673,8 @@ namespace FORRADIA8GAME
     }
 
     POINT8F
-    OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash)
-    {
-        if (entries_.contains(objectHash))
-        {
+    OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash) {
+        if (entries_.contains(objectHash)) {
             return entries_.at(objectHash).firstPersonViewRenderOffset;
         }
 

@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class IMAGE8ENTRY
-    {
+namespace FORRADIA8GAME {
+    class IMAGE8ENTRY {
       public:
         std::shared_ptr<SDL_Texture> texture;
         std::shared_ptr<SDL_Surface> surface;

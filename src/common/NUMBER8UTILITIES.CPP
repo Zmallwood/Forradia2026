@@ -7,11 +7,9 @@
 
 #include "NUMBER8UTILITIES.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     int
-    INVERT8SPEED(float speed)
-    {
+    INVERT8SPEED(float speed) {
         return static_cast<int>(1000 / speed);
     }
 }

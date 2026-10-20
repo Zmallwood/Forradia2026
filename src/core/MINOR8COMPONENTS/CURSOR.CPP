@@ -8,22 +8,18 @@
 #include "CURSOR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-namespace FORRADIA8GAME
-{
-    CURSOR::CURSOR()
-    {
+namespace FORRADIA8GAME {
+    CURSOR::CURSOR() {
         SDL_ShowCursor(SDL_DISABLE);
     }
 
     void
-    CURSOR::RESET()
-    {
+    CURSOR::RESET() {
         cursorStyle_ = CURSOR8STYLES::Default;
     }
 
     void
-    CURSOR::RENDER()
-    {
+    CURSOR::RENDER() {
         auto mousePosition = GET8MOUSE8POSITION();
 
         auto cursorWidth = kCursorSize_;
@@ -31,8 +27,7 @@ namespace FORRADIA8GAME
 
         std::string cursorImage;
 
-        switch (cursorStyle_)
-        {
+        switch (cursorStyle_) {
         case CURSOR8STYLES::Hovering:
             cursorImage = "CursorHovering";
             break;

@@ -8,16 +8,13 @@
 #include "GUI8METER.HPP"
 #include "CORE/RENDERING/COLORS/COLOR8RENDERER.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     GUI8METER::GUI8METER(float x, float y, float width, float height)
-        : GUI8COMPONENT(x, y), size_(width, height)
-    {
+        : GUI8COMPONENT(x, y), size_(width, height) {
     }
 
     void
-    GUI8METER::RENDER8DERIVED()
-    {
+    GUI8METER::RENDER8DERIVED() {
         auto position = GET8POSITION();
 
         auto size = size_;
@@ -34,14 +31,12 @@ namespace FORRADIA8GAME
     }
 
     float
-    GUI8METER::GET8METER8PROGRESS()
-    {
+    GUI8METER::GET8METER8PROGRESS() {
         return 0.0f;
     }
 
     COLOR
-    GUI8METER::GET8FILLED8COLOR()
-    {
+    GUI8METER::GET8FILLED8COLOR() {
         return COLORS::kYellowGray;
     }
 }

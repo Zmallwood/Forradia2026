@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class KEYBOARD8HOTKEYS
-    {
+namespace FORRADIA8GAME {
+    class KEYBOARD8HOTKEYS {
       public:
         void ON8KEY8DOWN(SDL_Keycode key);
     };

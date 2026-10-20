@@ -8,21 +8,17 @@
 #include "GUI8TEXT8CONSOLE.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
-namespace FORRADIA8GAME
-{
-    GUI8TEXT8CONSOLE::GUI8TEXT8CONSOLE() : GUI8PANEL(0.0f, 0.8f, 0.4f, 0.2f)
-    {
+namespace FORRADIA8GAME {
+    GUI8TEXT8CONSOLE::GUI8TEXT8CONSOLE() : GUI8PANEL(0.0f, 0.8f, 0.4f, 0.2f) {
     }
 
     void
-    GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line)
-    {
+    GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line) {
         lines_.push_back(line.data());
     }
 
     void
-    GUI8TEXT8CONSOLE::RENDER8DERIVED()
-    {
+    GUI8TEXT8CONSOLE::RENDER8DERIVED() {
         GUI8PANEL::RENDER8DERIVED();
 
         auto position = GET8POSITION();
@@ -36,10 +32,8 @@ namespace FORRADIA8GAME
 
         auto rowIndex = 0;
 
-        for (auto line = iStart; line < lines_.size(); line++)
-        {
-            if (line > lines_.size() - 1)
-            {
+        for (auto line = iStart; line < lines_.size(); line++) {
+            if (line > lines_.size() - 1) {
                 break;
             }
 

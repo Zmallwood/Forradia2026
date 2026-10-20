@@ -8,8 +8,7 @@
 #include "DEFAULT8THEME/RUN8NEW8DEFAULT8THEME.HPP"
 
 int
-main(int argc, char *argv[])
-{
+main(int argc, char *argv[]) {
     using namespace FORRADIA8GAME;
 
     RUN8NEW8DEFAULT8THEME();

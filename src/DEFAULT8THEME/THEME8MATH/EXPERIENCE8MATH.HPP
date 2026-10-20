@@ -7,8 +7,7 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     int CALCULATE8CURRENT8LEVEL(int experience);
 
     int CALCULATE8EXPERIENCE8FOR8LEVEL(int level);

@@ -8,25 +8,20 @@
 #include "GUI8PANEL.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
-        : GUI8COMPONENT(x, y), size_(width, height)
-    {
+        : GUI8COMPONENT(x, y), size_(width, height) {
     }
 
     bool
-    GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
-    {
+    GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
 
-        if (result)
-        {
+        if (result) {
             return true;
         }
 
-        if (!isVisible_ || !isEnabled_)
-        {
+        if (!isVisible_ || !isEnabled_) {
             return false;
         }
 
@@ -34,8 +29,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    GUI8PANEL::RENDER8DERIVED()
-    {
+    GUI8PANEL::RENDER8DERIVED() {
         auto position = GET8POSITION();
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(GET8BACKGROUND8IMAGE(), position.x,
@@ -43,14 +37,12 @@ namespace FORRADIA8GAME
     }
 
     std::string
-    GUI8PANEL::GET8BACKGROUND8IMAGE()
-    {
+    GUI8PANEL::GET8BACKGROUND8IMAGE() {
         return kDefaultBackgroundImage_;
     }
 
     RECT8F
-    GUI8PANEL::GET8BOUNDS()
-    {
+    GUI8PANEL::GET8BOUNDS() {
         auto position = GET8POSITION();
 
         return {position.x, position.y, size_.width, size_.height};

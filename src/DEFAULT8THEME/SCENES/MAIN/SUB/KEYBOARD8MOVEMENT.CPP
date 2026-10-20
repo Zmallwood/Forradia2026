@@ -8,11 +8,9 @@
 #include "KEYBOARD8MOVEMENT.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    KEYBOARD8MOVEMENT::UPDATE()
-    {
+    KEYBOARD8MOVEMENT::UPDATE() {
         auto wPressed{pressedKeys_.contains(SDLK_w)};
         auto sPressed{pressedKeys_.contains(SDLK_s)};
         auto aPressed{pressedKeys_.contains(SDLK_a)};
@@ -22,59 +20,39 @@ namespace FORRADIA8GAME
 
         if (now > _<PLAYER>().ticksLastMovement_ +
                       INVERT8SPEED(_<PLAYER>().movementSpeed_) &&
-            (wPressed || sPressed || aPressed || qPressed))
-        {
+            (wPressed || sPressed || aPressed || qPressed)) {
 
             _<PLAYER>().destination_ = {-1, -1};
 
-            if (wPressed)
-            {
+            if (wPressed) {
                 if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
+                    pressedKeys_.contains(SDLK_RCTRL)) {
                     _<PLAYER>().TURN8NORTH();
-                }
-                else
-                {
+                } else {
                     _<PLAYER>().TURN8NORTH();
                     _<PLAYER>().MOVE8NORTH();
                 }
-            }
-            else if (sPressed)
-            {
+            } else if (sPressed) {
                 if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
+                    pressedKeys_.contains(SDLK_RCTRL)) {
                     _<PLAYER>().TURN8EAST();
-                }
-                else
-                {
+                } else {
                     _<PLAYER>().TURN8EAST();
                     _<PLAYER>().MOVE8EAST();
                 }
-            }
-            else if (aPressed)
-            {
+            } else if (aPressed) {
                 if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
+                    pressedKeys_.contains(SDLK_RCTRL)) {
                     _<PLAYER>().TURN8SOUTH();
-                }
-                else
-                {
+                } else {
                     _<PLAYER>().TURN8SOUTH();
                     _<PLAYER>().MOVE8SOUTH();
                 }
-            }
-            else if (qPressed)
-            {
+            } else if (qPressed) {
                 if (pressedKeys_.contains(SDLK_LCTRL) ||
-                    pressedKeys_.contains(SDLK_RCTRL))
-                {
+                    pressedKeys_.contains(SDLK_RCTRL)) {
                     _<PLAYER>().TURN8WEST();
-                }
-                else
-                {
+                } else {
                     _<PLAYER>().TURN8WEST();
                     _<PLAYER>().MOVE8WEST();
                 }
@@ -86,14 +64,12 @@ namespace FORRADIA8GAME
     }
 
     void
-    KEYBOARD8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key)
-    {
+    KEYBOARD8MOVEMENT::ON8KEY8DOWN(SDL_Keycode key) {
         pressedKeys_.insert(key);
     }
 
     void
-    KEYBOARD8MOVEMENT::ON8KEY8UP(SDL_Keycode key)
-    {
+    KEYBOARD8MOVEMENT::ON8KEY8UP(SDL_Keycode key) {
         pressedKeys_.erase(key);
     }
 }

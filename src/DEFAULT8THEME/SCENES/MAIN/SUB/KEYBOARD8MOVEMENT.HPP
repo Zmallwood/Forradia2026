@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class KEYBOARD8MOVEMENT
-    {
+namespace FORRADIA8GAME {
+    class KEYBOARD8MOVEMENT {
       public:
         void UPDATE();
 

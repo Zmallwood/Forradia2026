@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class CREATURES8COMBAT8TO8PLAYER
-    {
+namespace FORRADIA8GAME {
+    class CREATURES8COMBAT8TO8PLAYER {
       public:
         void UPDATE();
     };

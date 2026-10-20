@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class COLOR
-    {
+namespace FORRADIA8GAME {
+    class COLOR {
       public:
         SDL_Color TO8SDL8COLOR();
 

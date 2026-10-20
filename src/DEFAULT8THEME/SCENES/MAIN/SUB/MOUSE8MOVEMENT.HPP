@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class MOUSE8MOVEMENT
-    {
+namespace FORRADIA8GAME {
+    class MOUSE8MOVEMENT {
       public:
         void UPDATE();
 

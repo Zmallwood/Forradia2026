@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class GUI;
 
-    class I8SCENE
-    {
+    class I8SCENE {
       public:
         I8SCENE();
 
@@ -34,48 +32,39 @@ namespace FORRADIA8GAME
 
       protected:
         virtual void
-        INITIALIZE8DERIVED()
-        {
+        INITIALIZE8DERIVED() {
         }
 
         virtual void
-        ON8ENTER8DERIVED()
-        {
+        ON8ENTER8DERIVED() {
         }
 
         virtual void
-        UPDATE8DERIVED()
-        {
+        UPDATE8DERIVED() {
         }
 
         virtual void
-        RENDER8BEFORE8GUI8DERIVED()
-        {
+        RENDER8BEFORE8GUI8DERIVED() {
         }
 
         virtual void
-        RENDER8AFTER8GUI8DERIVED()
-        {
+        RENDER8AFTER8GUI8DERIVED() {
         }
 
         virtual void
-        ON8KEY8DOWN8DERIVED(SDL_Keycode key)
-        {
+        ON8KEY8DOWN8DERIVED(SDL_Keycode key) {
         }
 
         virtual void
-        ON8KEY8UP8DERIVED(SDL_Keycode key)
-        {
+        ON8KEY8UP8DERIVED(SDL_Keycode key) {
         }
 
         virtual void
-        ON8MOUSE8DOWN8DERIVED(Uint8 button)
-        {
+        ON8MOUSE8DOWN8DERIVED(Uint8 button) {
         }
 
         virtual void
-        ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
-        {
+        ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed) {
         }
 
         std::shared_ptr<GUI> gui_;

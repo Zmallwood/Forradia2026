@@ -15,13 +15,10 @@
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW.HPP"
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW8FUNCTIONS.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    OBJECT8IMPACT::ON8MOUSE8DOWN(Uint8 button)
-    {
-        if (button != SDL_BUTTON_LEFT)
-        {
+    OBJECT8IMPACT::ON8MOUSE8DOWN(Uint8 button) {
+        if (button != SDL_BUTTON_LEFT) {
             return;
         }
 
@@ -29,16 +26,14 @@ namespace FORRADIA8GAME
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth)
-        {
+        if (mousePosition.x < viewWidth) {
             return;
         }
 
         auto now{NOW()};
 
         if (now < _<PLAYER>().ticksLastImpact_ +
-                      INVERT8SPEED(_<PLAYER>().impactSpeed_))
-        {
+                      INVERT8SPEED(_<PLAYER>().impactSpeed_)) {
             return;
         }
 
@@ -53,8 +48,7 @@ namespace FORRADIA8GAME
         auto rightHandObject{_<PLAYER>().playerEquipment_->rightHandObject_};
         auto leftHandObject{_<PLAYER>().playerEquipment_->leftHandObject_};
 
-        for (auto &entry : orderedObjects)
-        {
+        for (auto &entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
             auto yPos{entry.second.position_.y};
 
@@ -66,29 +60,23 @@ namespace FORRADIA8GAME
 
             auto canImpact{false};
 
-            for (auto impactObject : impactObjects)
-            {
-                if (rightHandObject)
-                {
-                    if (impactObject == rightHandObject->type_)
-                    {
+            for (auto impactObject : impactObjects) {
+                if (rightHandObject) {
+                    if (impactObject == rightHandObject->type_) {
                         canImpact = true;
                         break;
                     }
                 }
 
-                if (leftHandObject)
-                {
-                    if (impactObject == leftHandObject->type_)
-                    {
+                if (leftHandObject) {
+                    if (impactObject == leftHandObject->type_) {
                         canImpact = true;
                         break;
                     }
                 }
             }
 
-            if (!canImpact)
-            {
+            if (!canImpact) {
                 continue;
             }
 
@@ -99,8 +87,7 @@ namespace FORRADIA8GAME
 
             auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
-            if (isSmallObject)
-            {
+            if (isSmallObject) {
                 imageWidth = imageSize.width / 60.0f * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -110,9 +97,7 @@ namespace FORRADIA8GAME
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
-            }
-            else
-            {
+            } else {
                 imageWidth = imageSize.width / 60.0f * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
@@ -157,8 +142,7 @@ namespace FORRADIA8GAME
 
             auto completedImpactPointThisClick{false};
 
-            for (auto &impactPoint : impactPoints)
-            {
+            for (auto &impactPoint : impactPoints) {
                 auto impactPointCenterX{imageX +
                                         impactPoint.position.x * imageWidth};
                 auto impactPointCenterY{imageY +
@@ -171,8 +155,7 @@ namespace FORRADIA8GAME
                 auto rect{RECT8F{impactPointX, impactPointY, impactPointWidth,
                                  impactPointHeight}};
 
-                if (rect.CONTAINS(mousePosition) && !impactPoint.completed)
-                {
+                if (rect.CONTAINS(mousePosition) && !impactPoint.completed) {
                     impactPoint.completed = true;
 
                     completedImpactPointThisClick = true;
@@ -191,24 +174,20 @@ namespace FORRADIA8GAME
                 }
             }
 
-            if (!completedImpactPointThisClick)
-            {
+            if (!completedImpactPointThisClick) {
                 continue;
             }
 
             auto allImpactPointsCompleted{!impactPoints.empty()};
 
-            for (auto &impactPoint : impactPoints)
-            {
-                if (!impactPoint.completed)
-                {
+            for (auto &impactPoint : impactPoints) {
+                if (!impactPoint.completed) {
                     allImpactPointsCompleted = false;
                     break;
                 }
             }
 
-            if (allImpactPointsCompleted)
-            {
+            if (allImpactPointsCompleted) {
                 auto allImpactPointsCompletedAction{
                     _<OBJECT8INDEX>().GET8ALL8IMPACT8POINTS8COMPLETED8ACTION(
                         objectType)};

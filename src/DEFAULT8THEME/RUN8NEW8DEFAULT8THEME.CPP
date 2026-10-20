@@ -8,11 +8,9 @@
 #include "RUN8NEW8DEFAULT8THEME.HPP"
 #include "CORE/GAME.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    RUN8NEW8DEFAULT8THEME()
-    {
+    RUN8NEW8DEFAULT8THEME() {
         _<GAME>().START();
 
         DESTROY8SINGLETON<GAME>();

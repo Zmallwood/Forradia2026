@@ -9,25 +9,21 @@
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 #include "GUI8WINDOW.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title,
                                                float width,
                                                GUI8WINDOW &guiWindow)
         : GUI8PANEL(0.0f, 0.0f, width, 0.05f), title_(title),
-          guiWindow_(guiWindow)
-    {
+          guiWindow_(guiWindow) {
     }
 
     void
-    GUI8WINDOW8TITLE8BAR::UPDATE8DERIVED()
-    {
+    GUI8WINDOW8TITLE8BAR::UPDATE8DERIVED() {
         GUI8PANEL::UPDATE8DERIVED();
 
         auto mousePosition = GET8MOUSE8POSITION();
 
-        if (isMoving_)
-        {
+        if (isMoving_) {
             auto delta = mousePosition - mousePositionStartMove_;
 
             auto newPosition = positionStartMove_ + delta;
@@ -37,12 +33,10 @@ namespace FORRADIA8GAME
     }
 
     bool
-    GUI8WINDOW8TITLE8BAR::ON8MOUSE8DOWN(Uint8 mouseButton)
-    {
+    GUI8WINDOW8TITLE8BAR::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto mousePosition = GET8MOUSE8POSITION();
 
-        if (GET8BOUNDS().CONTAINS(mousePosition))
-        {
+        if (GET8BOUNDS().CONTAINS(mousePosition)) {
             positionStartMove_ = GET8POSITION();
 
             mousePositionStartMove_ = GET8MOUSE8POSITION();
@@ -56,12 +50,10 @@ namespace FORRADIA8GAME
     }
 
     bool
-    GUI8WINDOW8TITLE8BAR::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
-    {
+    GUI8WINDOW8TITLE8BAR::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) {
         auto mousePosition = GET8MOUSE8POSITION();
 
-        if (GET8BOUNDS().CONTAINS(mousePosition))
-        {
+        if (GET8BOUNDS().CONTAINS(mousePosition)) {
             isMoving_ = false;
 
             return true;
@@ -71,8 +63,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    GUI8WINDOW8TITLE8BAR::RENDER8DERIVED()
-    {
+    GUI8WINDOW8TITLE8BAR::RENDER8DERIVED() {
         GUI8PANEL::RENDER8DERIVED();
 
         auto position = GET8POSITION();
@@ -83,20 +74,17 @@ namespace FORRADIA8GAME
     }
 
     std::string
-    GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE()
-    {
+    GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE() {
         return kDefaultBackgroundImage_;
     }
 
     POINT8F
-    GUI8WINDOW8TITLE8BAR::GET8POSITION()
-    {
+    GUI8WINDOW8TITLE8BAR::GET8POSITION() {
         return guiWindow_.GET8POSITION();
     }
 
     void
-    GUI8WINDOW8TITLE8BAR::SET8POSITION(POINT8F value)
-    {
+    GUI8WINDOW8TITLE8BAR::SET8POSITION(POINT8F value) {
         guiWindow_.SET8POSITION(value);
     }
 }

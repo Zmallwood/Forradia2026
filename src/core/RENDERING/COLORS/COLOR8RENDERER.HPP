@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class COLOR8RENDERER
-    {
+namespace FORRADIA8GAME {
+    class COLOR8RENDERER {
       public:
         void FILL8RECT(float x, float y, float width, float height,
                        COLOR color = COLORS::kBlack);

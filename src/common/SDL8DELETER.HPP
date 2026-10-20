@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class SDL8DELETER
-    {
+namespace FORRADIA8GAME {
+    class SDL8DELETER {
       public:
         void operator()(SDL_Window *window);
 

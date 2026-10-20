@@ -9,10 +9,8 @@
 
 #include "COMPLETABLE8IMPACT8POINT.HPP"
 
-namespace FORRADIA8GAME
-{
-    class OBJECT
-    {
+namespace FORRADIA8GAME {
+    class OBJECT {
       public:
         OBJECT(int type);
 

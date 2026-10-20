@@ -8,11 +8,9 @@
 #include "GAME.HPP"
 #include "ENGINE/ENGINE.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    GAME::START()
-    {
+    GAME::START() {
         _<ENGINE>().START();
 
         DESTROY8SINGLETON<ENGINE>();

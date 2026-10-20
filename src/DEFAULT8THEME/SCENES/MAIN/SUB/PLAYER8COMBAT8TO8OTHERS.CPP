@@ -18,11 +18,9 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURE8RESPAWNER.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     void
-    PLAYER8COMBAT8TO8OTHERS::ON8MOUSE8DOWN(Uint8 button)
-    {
+    PLAYER8COMBAT8TO8OTHERS::ON8MOUSE8DOWN(Uint8 button) {
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
         auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
@@ -30,15 +28,13 @@ namespace FORRADIA8GAME
         auto now{NOW()};
 
         if (now - _<PLAYER>().ticksLastHitOnOther_ <
-            INVERT8SPEED(_<PLAYER>().attackSpeed_))
-        {
+            INVERT8SPEED(_<PLAYER>().attackSpeed_)) {
             return;
         }
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth / 2.0f)
-        {
+        if (mousePosition.x < viewWidth / 2.0f) {
             return;
         }
 
@@ -48,20 +44,17 @@ namespace FORRADIA8GAME
 
         auto tile{worldArea->GET8TILE(facedTile)};
 
-        if (!tile)
-        {
+        if (!tile) {
             return;
         }
 
         auto creature{tile->creature_};
 
-        if (!creature)
-        {
+        if (!creature) {
             return;
         }
 
-        if (creature->IS8DEAD())
-        {
+        if (creature->IS8DEAD()) {
             return;
         }
 
@@ -94,8 +87,7 @@ namespace FORRADIA8GAME
         auto isPixelVisible{
             _<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
-        if (!isPixelVisible)
-        {
+        if (!isPixelVisible) {
             return;
         }
 
@@ -105,8 +97,7 @@ namespace FORRADIA8GAME
 
         tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
 
-        if (creature->IS8DEAD())
-        {
+        if (creature->IS8DEAD()) {
             auto corpseType{
                 _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
 

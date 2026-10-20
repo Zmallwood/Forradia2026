@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class TILE8HOVERING
-    {
+namespace FORRADIA8GAME {
+    class TILE8HOVERING {
       public:
         void UPDATE();
 

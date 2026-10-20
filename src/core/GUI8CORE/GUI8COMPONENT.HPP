@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class GUI8COMPONENT
-    {
+namespace FORRADIA8GAME {
+    class GUI8COMPONENT {
       public:
         GUI8COMPONENT() = default;
 
@@ -36,8 +34,7 @@ namespace FORRADIA8GAME
         void SET8Y8POSITION(float y);
 
         virtual void
-        SET8POSITION(POINT8F value)
-        {
+        SET8POSITION(POINT8F value) {
             position_ = value;
         }
 
@@ -46,13 +43,11 @@ namespace FORRADIA8GAME
 
       protected:
         virtual void
-        UPDATE8DERIVED()
-        {
+        UPDATE8DERIVED() {
         }
 
         virtual void
-        RENDER8DERIVED()
-        {
+        RENDER8DERIVED() {
         }
 
       private:

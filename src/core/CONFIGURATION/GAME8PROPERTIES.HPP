@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class GAME8PROPERTIES
-    {
+namespace FORRADIA8GAME {
+    class GAME8PROPERTIES {
       public:
         static constexpr SIZE kWorldAreaSize_ = {100, 100};
         static constexpr float kTileWidth_ = 0.07f;

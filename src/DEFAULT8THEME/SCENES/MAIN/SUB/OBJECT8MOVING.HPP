@@ -7,12 +7,10 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     class OBJECT;
 
-    class OBJECT8MOVING
-    {
+    class OBJECT8MOVING {
       public:
         void ON8MOUSE8DOWN(Uint8 button);
 
@@ -23,14 +21,12 @@ namespace FORRADIA8GAME
         void CLEAR8OBJECT();
 
         auto
-        GET8OBJECT8IN8AIR()
-        {
+        GET8OBJECT8IN8AIR() {
             return objectInAir_;
         }
 
         void
-        SET8OBJECT8IN8AIR(std::shared_ptr<OBJECT> value)
-        {
+        SET8OBJECT8IN8AIR(std::shared_ptr<OBJECT> value) {
             objectInAir_ = value;
         }
 

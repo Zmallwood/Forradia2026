@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class SIZE8F
-    {
+namespace FORRADIA8GAME {
+    class SIZE8F {
       public:
         float width = 0.0f;
         float height = 0.0f;

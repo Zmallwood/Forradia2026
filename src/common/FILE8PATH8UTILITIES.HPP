@@ -7,7 +7,6 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     std::string GET8FILE8NAME8NO8EXT(std::string_view path);
 }

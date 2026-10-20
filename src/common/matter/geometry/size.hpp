@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    class SIZE
-    {
+namespace FORRADIA8GAME {
+    class SIZE {
       public:
         int width = 0;
         int height = 0;

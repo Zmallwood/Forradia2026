@@ -15,16 +15,13 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT8MOVING.HPP"
 
-namespace FORRADIA8GAME
-{
+namespace FORRADIA8GAME {
     GUI8INVENTORY8WINDOW::GUI8INVENTORY8WINDOW()
-        : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f)
-    {
+        : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f) {
     }
 
     bool
-    GUI8INVENTORY8WINDOW::ON8MOUSE8DOWN(Uint8 mouseButton)
-    {
+    GUI8INVENTORY8WINDOW::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto result = GUI8WINDOW::ON8MOUSE8DOWN(mouseButton);
 
         auto mousePosition = GET8MOUSE8POSITION();
@@ -32,8 +29,7 @@ namespace FORRADIA8GAME
         auto bounds = GET8BOUNDS();
 
         if (mouseButton == SDL_BUTTON_LEFT && bounds.CONTAINS(mousePosition) &&
-            isVisible_ && isEnabled_)
-        {
+            isVisible_ && isEnabled_) {
             auto position = GET8POSITION();
 
             auto size = size_;
@@ -52,10 +48,8 @@ namespace FORRADIA8GAME
 
             auto inventoryIndex = 0;
 
-            for (auto y = 0; y < numRows; y++)
-            {
-                for (auto x = 0; x < numCols; x++)
-                {
+            for (auto y = 0; y < numRows; y++) {
+                for (auto x = 0; x < numCols; x++) {
                     auto slotX = position.x + kSlotMarginX_ +
                                  x * (kSlotWidth_ + kSlotMarginX_);
 
@@ -66,13 +60,11 @@ namespace FORRADIA8GAME
 
                     RECT8F slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
-                    if (slotBounds.CONTAINS(mousePosition))
-                    {
+                    if (slotBounds.CONTAINS(mousePosition)) {
                         auto object = _<PLAYER>().playerInventory_->PICK8OBJECT(
                             inventoryIndex);
 
-                        if (object)
-                        {
+                        if (object) {
                             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(object);
 
                             constexpr auto largeObjectScale =
@@ -95,7 +87,7 @@ namespace FORRADIA8GAME
                                            scale / kSlotWidth_;
 
                             _<OBJECT8MOVING>().draggingMouseOffset_ = {offsetX,
-                                                                      offsetY};
+                                                                       offsetY};
                         }
                     }
 
@@ -110,12 +102,10 @@ namespace FORRADIA8GAME
     }
 
     bool
-    GUI8INVENTORY8WINDOW::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
-    {
+    GUI8INVENTORY8WINDOW::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) {
         GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
-        if (!_<OBJECT8MOVING>().GET8OBJECT8IN8AIR())
-        {
+        if (!_<OBJECT8MOVING>().GET8OBJECT8IN8AIR()) {
             return false;
         }
 
@@ -139,10 +129,8 @@ namespace FORRADIA8GAME
 
         auto inventoryIndex = 0;
 
-        for (auto y = 0; y < numRows; y++)
-        {
-            for (auto x = 0; x < numCols; x++)
-            {
+        for (auto y = 0; y < numRows; y++) {
+            for (auto x = 0; x < numCols; x++) {
                 auto slotX = position.x + kSlotMarginX_ +
                              x * (kSlotWidth_ + kSlotMarginX_);
 
@@ -153,13 +141,12 @@ namespace FORRADIA8GAME
 
                 RECT8F slotBounds = {slotX, slotY, slotWidth, slotHeight};
 
-                if (slotBounds.CONTAINS(mousePosition))
-                {
+                if (slotBounds.CONTAINS(mousePosition)) {
                     if (!_<PLAYER>().playerInventory_->HAS8OBJECT(
-                            inventoryIndex))
-                    {
+                            inventoryIndex)) {
                         _<PLAYER>().playerInventory_->ADD8OBJECT(
-                            _<OBJECT8MOVING>().GET8OBJECT8IN8AIR(), inventoryIndex);
+                            _<OBJECT8MOVING>().GET8OBJECT8IN8AIR(),
+                            inventoryIndex);
 
                         _<OBJECT8MOVING>().CLEAR8OBJECT();
 
@@ -175,8 +162,7 @@ namespace FORRADIA8GAME
     }
 
     void
-    GUI8INVENTORY8WINDOW::RENDER8DERIVED()
-    {
+    GUI8INVENTORY8WINDOW::RENDER8DERIVED() {
         GUI8WINDOW::RENDER8DERIVED();
 
         auto position = GET8POSITION();
@@ -197,10 +183,8 @@ namespace FORRADIA8GAME
 
         auto inventoryIndex = 0;
 
-        for (auto y = 0; y < numRows; y++)
-        {
-            for (auto x = 0; x < numCols; x++)
-            {
+        for (auto y = 0; y < numRows; y++) {
+            for (auto x = 0; x < numCols; x++) {
                 auto slotX = position.x + kSlotMarginX_ +
                              x * (kSlotWidth_ + kSlotMarginX_);
 
@@ -216,8 +200,7 @@ namespace FORRADIA8GAME
                 auto object =
                     _<PLAYER>().playerInventory_->GET8OBJECT(inventoryIndex);
 
-                if (object)
-                {
+                if (object) {
                     _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,
                                                    slotWidth, slotHeight);
                 }

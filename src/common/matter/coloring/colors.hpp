@@ -7,10 +7,8 @@
 
 #pragma once
 
-namespace FORRADIA8GAME
-{
-    namespace COLORS
-    {
+namespace FORRADIA8GAME {
+    namespace COLORS {
         inline static constexpr COLOR kBlack = {0.0f, 0.0f, 0.0f, 1.0f};
         inline static constexpr COLOR kWhite = {1.0f, 1.0f, 1.0f, 1.0f};
         inline static constexpr COLOR kGold = {1.0f, 0.84f, 0.0f, 1.0f};
