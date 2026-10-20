@@ -7,65 +7,77 @@
 
 #pragma once
 
-class GUI;
-
-class I8SCENE
+namespace FORRADIA
 {
-  public:
-    I8SCENE();
+    class GUI;
 
-    void INITIALIZE();
-
-    void UPDATE();
-
-    void RENDER();
-
-    void ON8ENTER();
-
-    void ON8KEY8DOWN(SDL_Keycode key);
-
-    void ON8KEY8UP(SDL_Keycode key);
-
-    void ON8MOUSE8DOWN(Uint8 button);
-
-    void ON8MOUSE8UP(Uint8 button, int clickSpeed);
-
-  protected:
-    virtual void INITIALIZE8DERIVED()
+    class I8SCENE
     {
-    }
+      public:
+        I8SCENE();
 
-    virtual void ON8ENTER8DERIVED()
-    {
-    }
+        void INITIALIZE();
 
-    virtual void UPDATE8DERIVED()
-    {
-    }
+        void UPDATE();
 
-    virtual void RENDER8BEFORE8GUI8DERIVED()
-    {
-    }
+        void RENDER();
 
-    virtual void RENDER8AFTER8GUI8DERIVED()
-    {
-    }
+        void ON8ENTER();
 
-    virtual void ON8KEY8DOWN8DERIVED(SDL_Keycode key)
-    {
-    }
+        void ON8KEY8DOWN(SDL_Keycode key);
 
-    virtual void ON8KEY8UP8DERIVED(SDL_Keycode key)
-    {
-    }
+        void ON8KEY8UP(SDL_Keycode key);
 
-    virtual void ON8MOUSE8DOWN8DERIVED(Uint8 button)
-    {
-    }
+        void ON8MOUSE8DOWN(Uint8 button);
 
-    virtual void ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
-    {
-    }
+        void ON8MOUSE8UP(Uint8 button, int clickSpeed);
 
-    std::shared_ptr<GUI> gui_;
-};
+      protected:
+        virtual void
+        INITIALIZE8DERIVED()
+        {
+        }
+
+        virtual void
+        ON8ENTER8DERIVED()
+        {
+        }
+
+        virtual void
+        UPDATE8DERIVED()
+        {
+        }
+
+        virtual void
+        RENDER8BEFORE8GUI8DERIVED()
+        {
+        }
+
+        virtual void
+        RENDER8AFTER8GUI8DERIVED()
+        {
+        }
+
+        virtual void
+        ON8KEY8DOWN8DERIVED(SDL_Keycode key)
+        {
+        }
+
+        virtual void
+        ON8KEY8UP8DERIVED(SDL_Keycode key)
+        {
+        }
+
+        virtual void
+        ON8MOUSE8DOWN8DERIVED(Uint8 button)
+        {
+        }
+
+        virtual void
+        ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
+        {
+        }
+
+        std::shared_ptr<GUI> gui_;
+    };
+}

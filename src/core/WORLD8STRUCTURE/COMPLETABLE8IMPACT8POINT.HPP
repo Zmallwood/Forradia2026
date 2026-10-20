@@ -7,9 +7,12 @@
 
 #pragma once
 
-class COMPLETABLE8IMPACT8POINT
+namespace FORRADIA
 {
-  public:
-    POINT8F position;
-    bool completed = false;
-};
+    class COMPLETABLE8IMPACT8POINT
+    {
+      public:
+        POINT8F position;
+        bool completed = false;
+    };
+}

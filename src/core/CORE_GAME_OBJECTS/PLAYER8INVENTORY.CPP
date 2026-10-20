@@ -8,59 +8,62 @@
 #include "PLAYER8INVENTORY.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 
-void
-PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
+namespace FORRADIA
 {
-    for (auto i = 0; i < kMaxObjects_; i++)
+    void
+    PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName)
     {
-        if (!objects_.contains(i))
+        for (auto i = 0; i < kMaxObjects_; i++)
         {
-            objects_[i] = std::make_shared<OBJECT>(objectName);
+            if (!objects_.contains(i))
+            {
+                objects_[i] = std::make_shared<OBJECT>(objectName);
 
-            return;
+                return;
+            }
         }
     }
-}
 
-void
-PLAYER8INVENTORY::ADD8OBJECT(std::shared_ptr<OBJECT> object, int slotIndex)
-{
-    objects_.insert({slotIndex, object});
-}
-
-std::shared_ptr<OBJECT>
-PLAYER8INVENTORY::GET8OBJECT(int index)
-{
-    if (objects_.contains(index))
+    void
+    PLAYER8INVENTORY::ADD8OBJECT(std::shared_ptr<OBJECT> object, int slotIndex)
     {
-        return objects_.at(index);
+        objects_.insert({slotIndex, object});
     }
 
-    return nullptr;
-}
-
-std::shared_ptr<OBJECT>
-PLAYER8INVENTORY::PICK8OBJECT(int index)
-{
-    for (auto it = objects_.begin(); it != objects_.end();)
+    std::shared_ptr<OBJECT>
+    PLAYER8INVENTORY::GET8OBJECT(int index)
     {
-        if (it->first == index)
+        if (objects_.contains(index))
         {
-            auto result = it->second;
-
-            objects_.erase(it++);
-
-            return result;
+            return objects_.at(index);
         }
 
-        ++it;
+        return nullptr;
     }
 
-    return nullptr;
-}
+    std::shared_ptr<OBJECT>
+    PLAYER8INVENTORY::PICK8OBJECT(int index)
+    {
+        for (auto it = objects_.begin(); it != objects_.end();)
+        {
+            if (it->first == index)
+            {
+                auto result = it->second;
 
-bool
-PLAYER8INVENTORY::HAS8OBJECT(int index)
-{
-    return objects_.contains(index);
+                objects_.erase(it++);
+
+                return result;
+            }
+
+            ++it;
+        }
+
+        return nullptr;
+    }
+
+    bool
+    PLAYER8INVENTORY::HAS8OBJECT(int index)
+    {
+        return objects_.contains(index);
+    }
 }

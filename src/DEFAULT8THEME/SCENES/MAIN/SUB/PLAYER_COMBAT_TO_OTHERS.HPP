@@ -7,8 +7,11 @@
 
 #pragma once
 
-class PlayerCombatToOthers
+namespace FORRADIA
 {
-  public:
-    void OnMouseDown(Uint8 button);
-};
+    class PlayerCombatToOthers
+    {
+      public:
+        void OnMouseDown(Uint8 button);
+    };
+}

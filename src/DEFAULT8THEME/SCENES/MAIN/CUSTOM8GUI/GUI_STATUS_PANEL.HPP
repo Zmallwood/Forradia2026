@@ -7,11 +7,14 @@
 
 #include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
-class GUIStatusPanel : public GUI8PANEL
+namespace FORRADIA
 {
-  public:
-    GUIStatusPanel();
+    class GUIStatusPanel : public GUI8PANEL
+    {
+      public:
+        GUIStatusPanel();
 
-  protected:
-    void RENDER8DERIVED() override;
-};
+      protected:
+        void RENDER8DERIVED() override;
+    };
+}

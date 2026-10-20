@@ -7,17 +7,20 @@
 
 #pragma once
 
-class MouseMovement
+namespace FORRADIA
 {
-  public:
-    void Update();
+    class MouseMovement
+    {
+      public:
+        void Update();
 
-    void OnKeyDown(SDL_Keycode key);
+        void OnKeyDown(SDL_Keycode key);
 
-    void OnKeyUp(SDL_Keycode key);
+        void OnKeyUp(SDL_Keycode key);
 
-    void OnMouseDown(Uint8 button);
+        void OnMouseDown(Uint8 button);
 
-  private:
-    bool ctrlKeyDown_{false};
-};
+      private:
+        bool ctrlKeyDown_{false};
+    };
+}

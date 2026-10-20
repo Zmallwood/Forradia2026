@@ -7,9 +7,12 @@
 
 #pragma once
 
-class CREATURE8INDEX8ENTRY
+namespace FORRADIA
 {
-  public:
-    std::string label;
-    int corpseType = 0;
-};
+    class CREATURE8INDEX8ENTRY
+    {
+      public:
+        std::string label;
+        int corpseType = 0;
+    };
+}

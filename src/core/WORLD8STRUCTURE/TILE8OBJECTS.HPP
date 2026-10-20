@@ -7,29 +7,33 @@
 
 #pragma once
 
-class OBJECT;
-
-class TILE8OBJECTS
+namespace FORRADIA
 {
-  public:
-    void CLEAR();
+    class OBJECT;
 
-    void ADD8OBJECT(int objectType, POINT position = {-1, -1});
+    class TILE8OBJECTS
+    {
+      public:
+        void CLEAR();
 
-    void ADD8OBJECT(std::string_view objectName, POINT position = {-1, -1});
+        void ADD8OBJECT(int objectType, POINT position = {-1, -1});
 
-    void ADD8OBJECT(std::shared_ptr<OBJECT> object, POINT position = {-1, -1});
+        void ADD8OBJECT(std::string_view objectName, POINT position = {-1, -1});
 
-    int COUNT();
+        void ADD8OBJECT(std::shared_ptr<OBJECT> object,
+                        POINT position = {-1, -1});
 
-    void TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
-                          std::string_view newObjectType);
+        int COUNT();
 
-    std::shared_ptr<OBJECT> PICK8OBJECT(std::shared_ptr<OBJECT> object);
+        void TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
+                              std::string_view newObjectType);
 
-    void REMOVE8OBJECT(std::shared_ptr<OBJECT> object);
+        std::shared_ptr<OBJECT> PICK8OBJECT(std::shared_ptr<OBJECT> object);
 
-    bool HAS8OBJECT8OF8TYPE(std::string_view objectType);
+        void REMOVE8OBJECT(std::shared_ptr<OBJECT> object);
 
-    std::map<POINT, std::shared_ptr<OBJECT>> objects_;
-};
+        bool HAS8OBJECT8OF8TYPE(std::string_view objectType);
+
+        std::map<POINT, std::shared_ptr<OBJECT>> objects_;
+    };
+}

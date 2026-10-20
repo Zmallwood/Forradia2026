@@ -7,10 +7,13 @@
 
 #pragma once
 
-class NPC
+namespace FORRADIA
 {
-  public:
-    NPC(std::string_view typeName);
+    class NPC
+    {
+      public:
+        NPC(std::string_view typeName);
 
-    int type_ = 0;
-};
+        int type_ = 0;
+    };
+}

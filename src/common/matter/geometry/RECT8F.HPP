@@ -7,13 +7,16 @@
 
 #pragma once
 
-class RECT8F
+namespace FORRADIA
 {
-  public:
-    bool CONTAINS(POINT8F point);
+    class RECT8F
+    {
+      public:
+        bool CONTAINS(POINT8F point);
 
-    float x = 0.0f;
-    float y = 0.0f;
-    float width = 0.0f;
-    float height = 0.0f;
-};
+        float x = 0.0f;
+        float y = 0.0f;
+        float width = 0.0f;
+        float height = 0.0f;
+    };
+}

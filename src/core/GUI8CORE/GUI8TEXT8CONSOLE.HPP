@@ -9,18 +9,21 @@
 
 #include "GUI8PANEL.HPP"
 
-class GUI8TEXT8CONSOLE : public GUI8PANEL
+namespace FORRADIA
 {
-  public:
-    GUI8TEXT8CONSOLE();
+    class GUI8TEXT8CONSOLE : public GUI8PANEL
+    {
+      public:
+        GUI8TEXT8CONSOLE();
 
-    void PRINT8LINE(std::string_view line);
+        void PRINT8LINE(std::string_view line);
 
-  protected:
-    void RENDER8DERIVED() override;
+      protected:
+        void RENDER8DERIVED() override;
 
-  private:
-    static constexpr float kLineHeight_ = 0.02f;
+      private:
+        static constexpr float kLineHeight_ = 0.02f;
 
-    std::vector<std::string> lines_;
-};
+        std::vector<std::string> lines_;
+    };
+}

@@ -7,37 +7,40 @@
 
 #pragma once
 
-class WorldGenerator
+namespace FORRADIA
 {
-  public:
-    void GenerateNewWorld();
+    class WorldGenerator
+    {
+      public:
+        void GenerateNewWorld();
 
-    void GenerateCivilization();
+        void GenerateCivilization();
 
-    void GenerateWorldAroundPlayer();
+        void GenerateWorldAroundPlayer();
 
-  private:
-    void ClearWithGrass();
+      private:
+        void ClearWithGrass();
 
-    void Traverse1(std::function<void(int, int)> callback);
+        void Traverse1(std::function<void(int, int)> callback);
 
-    void Traverse2(std::function<void(int, int)> callback);
+        void Traverse2(std::function<void(int, int)> callback);
 
-    void Traverse3(std::function<void(int, int)> callback);
+        void Traverse3(std::function<void(int, int)> callback);
 
-    void Traverse4(std::function<void(int, int)> callback);
+        void Traverse4(std::function<void(int, int)> callback);
 
-    // void GenerateDirt();
+        // void GenerateDirt();
 
-    // void GenerateWater();
+        // void GenerateWater();
 
-    // void GenerateElevation();
+        // void GenerateElevation();
 
-    // void GenerateRock();
+        // void GenerateRock();
 
-    void GenerateLargeObjects();
+        void GenerateLargeObjects();
 
-    void GenerateSmallObjects();
+        void GenerateSmallObjects();
 
-    void GenerateCreatures();
-};
+        void GenerateCreatures();
+    };
+}

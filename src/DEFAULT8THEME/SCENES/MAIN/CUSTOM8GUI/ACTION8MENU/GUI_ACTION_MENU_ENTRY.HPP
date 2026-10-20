@@ -7,9 +7,12 @@
 
 #pragma once
 
-class GUIActionMenuEntry
+namespace FORRADIA
 {
-  public:
-    std::string label;
-    std::function<void()> action;
-};
+    class GUIActionMenuEntry
+    {
+      public:
+        std::string label;
+        std::function<void()> action;
+    };
+}

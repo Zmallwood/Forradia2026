@@ -9,8 +9,11 @@
 
 #include "GUI8COMPONENT.HPP"
 
-class GUI : public GUI8COMPONENT
+namespace FORRADIA
 {
-  public:
-    using GUI8COMPONENT::GUI8COMPONENT;
-};
+    class GUI : public GUI8COMPONENT
+    {
+      public:
+        using GUI8COMPONENT::GUI8COMPONENT;
+    };
+}

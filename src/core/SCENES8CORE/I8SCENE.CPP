@@ -8,80 +8,83 @@
 #include "I8SCENE.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
 
-I8SCENE::I8SCENE() : gui_(std::make_shared<GUI>())
+namespace FORRADIA
 {
-}
-
-void
-I8SCENE::INITIALIZE()
-{
-    INITIALIZE8DERIVED();
-}
-
-void
-I8SCENE::ON8ENTER()
-{
-    ON8ENTER8DERIVED();
-}
-
-void
-I8SCENE::UPDATE()
-{
-    gui_->UPDATE();
-
-    UPDATE8DERIVED();
-}
-
-void
-I8SCENE::RENDER()
-{
-    RENDER8BEFORE8GUI8DERIVED();
-
-    gui_->RENDER();
-
-    RENDER8AFTER8GUI8DERIVED();
-}
-
-void
-I8SCENE::ON8KEY8DOWN(SDL_Keycode key)
-{
-    if (gui_->ON8KEY8DOWN(key))
+    I8SCENE::I8SCENE() : gui_(std::make_shared<GUI>())
     {
-        return;
     }
 
-    ON8KEY8DOWN8DERIVED(key);
-}
-
-void
-I8SCENE::ON8KEY8UP(SDL_Keycode key)
-{
-    if (gui_->ON8KEY8UP(key))
+    void
+    I8SCENE::INITIALIZE()
     {
-        return;
+        INITIALIZE8DERIVED();
     }
 
-    ON8KEY8UP8DERIVED(key);
-}
-
-void
-I8SCENE::ON8MOUSE8DOWN(Uint8 button)
-{
-    if (gui_->ON8MOUSE8DOWN(button))
+    void
+    I8SCENE::ON8ENTER()
     {
-        return;
+        ON8ENTER8DERIVED();
     }
 
-    ON8MOUSE8DOWN8DERIVED(button);
-}
-
-void
-I8SCENE::ON8MOUSE8UP(Uint8 button, int clickSpeed)
-{
-    if (gui_->ON8MOUSE8UP(button, clickSpeed))
+    void
+    I8SCENE::UPDATE()
     {
-        return;
+        gui_->UPDATE();
+
+        UPDATE8DERIVED();
     }
 
-    ON8MOUSE8UP8DERIVED(button, clickSpeed);
+    void
+    I8SCENE::RENDER()
+    {
+        RENDER8BEFORE8GUI8DERIVED();
+
+        gui_->RENDER();
+
+        RENDER8AFTER8GUI8DERIVED();
+    }
+
+    void
+    I8SCENE::ON8KEY8DOWN(SDL_Keycode key)
+    {
+        if (gui_->ON8KEY8DOWN(key))
+        {
+            return;
+        }
+
+        ON8KEY8DOWN8DERIVED(key);
+    }
+
+    void
+    I8SCENE::ON8KEY8UP(SDL_Keycode key)
+    {
+        if (gui_->ON8KEY8UP(key))
+        {
+            return;
+        }
+
+        ON8KEY8UP8DERIVED(key);
+    }
+
+    void
+    I8SCENE::ON8MOUSE8DOWN(Uint8 button)
+    {
+        if (gui_->ON8MOUSE8DOWN(button))
+        {
+            return;
+        }
+
+        ON8MOUSE8DOWN8DERIVED(button);
+    }
+
+    void
+    I8SCENE::ON8MOUSE8UP(Uint8 button, int clickSpeed)
+    {
+        if (gui_->ON8MOUSE8UP(button, clickSpeed))
+        {
+            return;
+        }
+
+        ON8MOUSE8UP8DERIVED(button, clickSpeed);
+    }
 }

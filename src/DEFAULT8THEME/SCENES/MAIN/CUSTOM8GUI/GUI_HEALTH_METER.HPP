@@ -9,13 +9,16 @@
 
 #include "CORE/GUI8CORE/GUI8METER.HPP"
 
-class GUIHealthMeter : public GUI8METER
+namespace FORRADIA
 {
-  public:
-    GUIHealthMeter();
+    class GUIHealthMeter : public GUI8METER
+    {
+      public:
+        GUIHealthMeter();
 
-  protected:
-    virtual float GET8METER8PROGRESS() override;
+      protected:
+        virtual float GET8METER8PROGRESS() override;
 
-    virtual COLOR GET8FILLED8COLOR() override;
-};
+        virtual COLOR GET8FILLED8COLOR() override;
+    };
+}

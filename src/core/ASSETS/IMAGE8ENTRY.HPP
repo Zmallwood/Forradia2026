@@ -7,9 +7,12 @@
 
 #pragma once
 
-class IMAGE8ENTRY
+namespace FORRADIA
 {
-  public:
-    std::shared_ptr<SDL_Texture> texture;
-    std::shared_ptr<SDL_Surface> surface;
-};
+    class IMAGE8ENTRY
+    {
+      public:
+        std::shared_ptr<SDL_Texture> texture;
+        std::shared_ptr<SDL_Surface> surface;
+    };
+}

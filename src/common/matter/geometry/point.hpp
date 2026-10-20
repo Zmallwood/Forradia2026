@@ -7,13 +7,16 @@
 
 #pragma once
 
-class POINT
+namespace FORRADIA
 {
-  public:
-    auto operator<=>(const POINT &) const = default;
+    class POINT
+    {
+      public:
+        auto operator<=>(const POINT &) const = default;
 
-    POINT operator+(const POINT &other) const;
+        POINT operator+(const POINT &other) const;
 
-    int x = 0;
-    int y = 0;
-};
+        int x = 0;
+        int y = 0;
+    };
+}

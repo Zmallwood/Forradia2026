@@ -7,26 +7,29 @@
 
 #pragma once
 
-class TILE;
-class CREATURE;
-
-class WORLD8AREA
+namespace FORRADIA
 {
-  public:
-    WORLD8AREA();
+    class TILE;
+    class CREATURE;
 
-    SIZE GET8SIZE();
+    class WORLD8AREA
+    {
+      public:
+        WORLD8AREA();
 
-    bool IS8VALID8COORDINATE(int x, int y);
+        SIZE GET8SIZE();
 
-    bool IS8VALID8COORDINATE(POINT coordinate);
+        bool IS8VALID8COORDINATE(int x, int y);
 
-    std::shared_ptr<TILE> GET8TILE(int x, int y);
+        bool IS8VALID8COORDINATE(POINT coordinate);
 
-    std::shared_ptr<TILE> GET8TILE(POINT coordinate);
+        std::shared_ptr<TILE> GET8TILE(int x, int y);
 
-    std::unordered_map<std::shared_ptr<CREATURE>, POINT> creaturesMirror_;
+        std::shared_ptr<TILE> GET8TILE(POINT coordinate);
 
-  private:
-    std::vector<std::vector<std::shared_ptr<TILE>>> tiles_;
-};
+        std::unordered_map<std::shared_ptr<CREATURE>, POINT> creaturesMirror_;
+
+      private:
+        std::vector<std::vector<std::shared_ptr<TILE>>> tiles_;
+    };
+}

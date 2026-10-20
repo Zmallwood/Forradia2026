@@ -7,22 +7,25 @@
 
 #pragma once
 
-class SDL8DEVICE
+namespace FORRADIA
 {
-  public:
-    SDL8DEVICE();
+    class SDL8DEVICE
+    {
+      public:
+        SDL8DEVICE();
 
-    void CLEAR8CANVAS();
+        void CLEAR8CANVAS();
 
-    void PRESENT8CANVAS();
+        void PRESENT8CANVAS();
 
-    void CLIP(float x, float y, float width, float height);
+        void CLIP(float x, float y, float width, float height);
 
-    void RESET8CLIP();
+        void RESET8CLIP();
 
-    std::shared_ptr<SDL_Window> window_;
-    std::shared_ptr<SDL_Renderer> renderer_;
+        std::shared_ptr<SDL_Window> window_;
+        std::shared_ptr<SDL_Renderer> renderer_;
 
-  private:
-    static constexpr std::string_view kWindowName_ = "Forradia";
-};
+      private:
+        static constexpr std::string_view kWindowName_ = "Forradia";
+    };
+}

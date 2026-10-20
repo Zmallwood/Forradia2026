@@ -7,10 +7,13 @@
 
 #pragma once
 
-enum class WORLD8DIRECTIONS
+namespace FORRADIA
 {
-    North,
-    East,
-    South,
-    West,
-};
+    enum class WORLD8DIRECTIONS
+    {
+        North,
+        East,
+        South,
+        West,
+    };
+}

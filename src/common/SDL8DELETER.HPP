@@ -7,16 +7,19 @@
 
 #pragma once
 
-class SDL8DELETER
+namespace FORRADIA
 {
-  public:
-    void operator()(SDL_Window *window);
+    class SDL8DELETER
+    {
+      public:
+        void operator()(SDL_Window *window);
 
-    void operator()(SDL_Renderer *renderer);
+        void operator()(SDL_Renderer *renderer);
 
-    void operator()(SDL_Surface *surface);
+        void operator()(SDL_Surface *surface);
 
-    void operator()(SDL_Texture *texture);
+        void operator()(SDL_Texture *texture);
 
-    void operator()(TTF_Font *font);
-};
+        void operator()(TTF_Font *font);
+    };
+}

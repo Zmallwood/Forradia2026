@@ -7,9 +7,12 @@
 
 #pragma once
 
-enum class FONT8SIZES : int
+namespace FORRADIA
 {
-    _12 = 12,
-    _18 = 18,
-    _24 = 24,
-};
+    enum class FONT8SIZES : int
+    {
+        _12 = 12,
+        _18 = 18,
+        _24 = 24,
+    };
+}

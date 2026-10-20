@@ -10,16 +10,19 @@
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "SUB/WORLD_GENERATOR.HPP"
 
-void
-WorldGenerationScene::ON8ENTER8DERIVED()
+namespace FORRADIA
 {
-    _<WorldGenerator>().GenerateNewWorld();
+    void
+    WorldGenerationScene::ON8ENTER8DERIVED()
+    {
+        _<WorldGenerator>().GenerateNewWorld();
 
-    _<PLAYER>().SPAWN8ONSUITABLE8LOCATION();
+        _<PLAYER>().SPAWN8ONSUITABLE8LOCATION();
 
-    _<WorldGenerator>().GenerateCivilization();
+        _<WorldGenerator>().GenerateCivilization();
 
-    _<WorldGenerator>().GenerateWorldAroundPlayer();
+        _<WorldGenerator>().GenerateWorldAroundPlayer();
 
-    _<SCENE8MANAGER>().GO8TO8SCENE("MainScene");
+        _<SCENE8MANAGER>().GO8TO8SCENE("MainScene");
+    }
 }

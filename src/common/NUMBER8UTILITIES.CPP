@@ -7,8 +7,11 @@
 
 #include "NUMBER8UTILITIES.HPP"
 
-int
-INVERT8SPEED(float speed)
+namespace FORRADIA
 {
-    return static_cast<int>(1000 / speed);
+    int
+    INVERT8SPEED(float speed)
+    {
+        return static_cast<int>(1000 / speed);
+    }
 }

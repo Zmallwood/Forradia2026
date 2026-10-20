@@ -16,288 +16,335 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-void
-GUIActionMenu::OnMouseDown(Uint8 mouseButton)
+namespace FORRADIA
 {
-    auto mousePosition = GET8MOUSE8POSITION();
-
-    auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
-
-    if (mouseButton == SDL_BUTTON_RIGHT)
+    void
+    GUIActionMenu::OnMouseDown(Uint8 mouseButton)
     {
-        visible_ = true;
+        auto mousePosition = GET8MOUSE8POSITION();
 
-        entries_.clear();
+        auto tileUnitsWidth = _<GAME8PROPERTIES>().kTileUnitsWidth_;
 
-        rightClickMousePosition_ = mousePosition;
-
-        auto worldArea = _<WORLD>().currentWorldArea_;
-
-        auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
-
-        auto tile = worldArea->GET8TILE(facedTileCoordinate);
-
-        auto ground = tile->ground_;
-
-        if (ground != HASH("GroundWater"))
+        if (mouseButton == SDL_BUTTON_RIGHT)
         {
-            GUIActionMenuEntry entryPlannedWoodWallNorthPlank1;
-            entryPlannedWoodWallNorthPlank1.label =
-                "Plan wood wall north, plank 1";
-            entryPlannedWoodWallNorthPlank1.action = [=]()
+            visible_ = true;
+
+            entries_.clear();
+
+            rightClickMousePosition_ = mousePosition;
+
+            auto worldArea = _<WORLD>().currentWorldArea_;
+
+            auto facedTileCoordinate = _<PLAYER>().facedTileCoordinate_;
+
+            auto tile = worldArea->GET8TILE(facedTileCoordinate);
+
+            auto ground = tile->ground_;
+
+            if (ground != HASH("GroundWater"))
             {
-                auto tileObjects = tile->tileObjects_;
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank1;
+                entryPlannedWoodWallNorthPlank1.label =
+                    "Plan wood wall north, plank 1";
+                entryPlannedWoodWallNorthPlank1.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
 
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallNorthPlank1",
-                    {tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8, 0});
-            };
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallNorthPlank1",
+                        {tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8, 0});
+                };
 
-            entries_.push_back(entryPlannedWoodWallNorthPlank1);
+                entries_.push_back(entryPlannedWoodWallNorthPlank1);
 
-            GUIActionMenuEntry entryPlannedWoodWallNorthPlank2;
-            entryPlannedWoodWallNorthPlank2.label =
-                "Plan wood wall north, plank 2";
-            entryPlannedWoodWallNorthPlank2.action = [=]()
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank2;
+                entryPlannedWoodWallNorthPlank2.label =
+                    "Plan wood wall north, plank 2";
+                entryPlannedWoodWallNorthPlank2.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallNorthPlank2",
+                        {tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank2);
+
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank3;
+                entryPlannedWoodWallNorthPlank3.label =
+                    "Plan wood wall north, plank 3";
+                entryPlannedWoodWallNorthPlank3.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallNorthPlank3",
+                        {tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank3);
+
+                GUIActionMenuEntry entryPlannedWoodWallNorthPlank4;
+                entryPlannedWoodWallNorthPlank4.label =
+                    "Plan wood wall north, plank 4";
+                entryPlannedWoodWallNorthPlank4.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallNorthPlank4",
+                        {tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8, 0});
+                };
+
+                entries_.push_back(entryPlannedWoodWallNorthPlank4);
+
+                GUIActionMenuEntry entryPlannedWoodWallEastPlank1;
+                entryPlannedWoodWallEastPlank1.label =
+                    "Plan wood wall east, plank 1";
+                entryPlannedWoodWallEastPlank1.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallEastPlank1",
+                        {tileUnitsWidth - 1,
+                         tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallEastPlank1);
+
+                GUIActionMenuEntry entryPlannedWoodWallEastPlank2;
+                entryPlannedWoodWallEastPlank2.label =
+                    "Plan wood wall east, plank 2";
+                entryPlannedWoodWallEastPlank2.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallEastPlank2",
+                        {tileUnitsWidth - 1,
+                         tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallEastPlank2);
+
+                GUIActionMenuEntry entryPlannedWoodWallEastPlank3;
+                entryPlannedWoodWallEastPlank3.label =
+                    "Plan wood wall east, plank 3";
+                entryPlannedWoodWallEastPlank3.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallEastPlank3",
+                        {tileUnitsWidth - 1,
+                         tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallEastPlank3);
+
+                GUIActionMenuEntry entryPlannedWoodWallEastPlank4;
+                entryPlannedWoodWallEastPlank4.label =
+                    "Plan wood wall east, plank 4";
+                entryPlannedWoodWallEastPlank4.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallEastPlank4",
+                        {tileUnitsWidth - 1,
+                         tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallEastPlank4);
+
+                GUIActionMenuEntry entryPlannedWoodWallSouthPlank1;
+                entryPlannedWoodWallSouthPlank1.label =
+                    "Plan wood wall south, plank 1";
+                entryPlannedWoodWallSouthPlank1.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallSouthPlank1",
+                        {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                             tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8,
+                         tileUnitsWidth - 1});
+                };
+
+                entries_.push_back(entryPlannedWoodWallSouthPlank1);
+
+                GUIActionMenuEntry entryPlannedWoodWallSouthPlank2;
+                entryPlannedWoodWallSouthPlank2.label =
+                    "Plan wood wall south, plank 2";
+                entryPlannedWoodWallSouthPlank2.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallSouthPlank2",
+                        {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                             tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8,
+                         tileUnitsWidth - 1});
+                };
+
+                entries_.push_back(entryPlannedWoodWallSouthPlank2);
+
+                GUIActionMenuEntry entryPlannedWoodWallSouthPlank3;
+                entryPlannedWoodWallSouthPlank3.label =
+                    "Plan wood wall south, plank 3";
+                entryPlannedWoodWallSouthPlank3.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallSouthPlank3",
+                        {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                             tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8,
+                         tileUnitsWidth - 1});
+                };
+
+                entries_.push_back(entryPlannedWoodWallSouthPlank3);
+
+                GUIActionMenuEntry entryPlannedWoodWallSouthPlank4;
+                entryPlannedWoodWallSouthPlank4.label =
+                    "Plan wood wall south, plank 4";
+                entryPlannedWoodWallSouthPlank4.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallSouthPlank4",
+                        {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                             tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8,
+                         tileUnitsWidth - 1});
+                };
+
+                entries_.push_back(entryPlannedWoodWallSouthPlank4);
+
+                GUIActionMenuEntry entryPlannedWoodWallWestPlank1;
+                entryPlannedWoodWallWestPlank1.label =
+                    "Plan wood wall west, plank 1";
+                entryPlannedWoodWallWestPlank1.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallWestPlank1",
+                        {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                                tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallWestPlank1);
+
+                GUIActionMenuEntry entryPlannedWoodWallWestPlank2;
+                entryPlannedWoodWallWestPlank2.label =
+                    "Plan wood wall west, plank 2";
+                entryPlannedWoodWallWestPlank2.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallWestPlank2",
+                        {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                                tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallWestPlank2);
+
+                GUIActionMenuEntry entryPlannedWoodWallWestPlank3;
+                entryPlannedWoodWallWestPlank3.label =
+                    "Plan wood wall west, plank 3";
+                entryPlannedWoodWallWestPlank3.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallWestPlank3",
+                        {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                                tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallWestPlank3);
+
+                GUIActionMenuEntry entryPlannedWoodWallWestPlank4;
+                entryPlannedWoodWallWestPlank4.label =
+                    "Plan wood wall west, plank 4";
+                entryPlannedWoodWallWestPlank4.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodWallWestPlank4",
+                        {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
+                                tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
+                };
+
+                entries_.push_back(entryPlannedWoodWallWestPlank4);
+
+                GUIActionMenuEntry entryPlannedWoodFloor;
+                entryPlannedWoodFloor.label = "Plan wood floor";
+                entryPlannedWoodFloor.action = [=]()
+                {
+                    auto tileObjects = tile->tileObjects_;
+
+                    tileObjects->ADD8OBJECT(
+                        "ObjectPlannedWoodFloor",
+                        {tileUnitsWidth / 2, tileUnitsWidth / 2});
+                };
+
+                entries_.push_back(entryPlannedWoodFloor);
+            }
+        }
+        else if (mouseButton == SDL_BUTTON_LEFT && visible_)
+        {
+            visible_ = false;
+
+            auto row = 1;
+
+            for (auto &entry : entries_)
             {
-                auto tileObjects = tile->tileObjects_;
+                RECT8F bounds = {rightClickMousePosition_.x,
+                                 rightClickMousePosition_.y + row * kLineHeight,
+                                 kWidth, kLineHeight};
 
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallNorthPlank2",
-                    {tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8, 0});
-            };
+                if (bounds.CONTAINS(mousePosition))
+                {
+                    auto action = entry.action;
 
-            entries_.push_back(entryPlannedWoodWallNorthPlank2);
+                    action();
+                }
 
-            GUIActionMenuEntry entryPlannedWoodWallNorthPlank3;
-            entryPlannedWoodWallNorthPlank3.label =
-                "Plan wood wall north, plank 3";
-            entryPlannedWoodWallNorthPlank3.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallNorthPlank3",
-                    {tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8, 0});
-            };
-
-            entries_.push_back(entryPlannedWoodWallNorthPlank3);
-
-            GUIActionMenuEntry entryPlannedWoodWallNorthPlank4;
-            entryPlannedWoodWallNorthPlank4.label =
-                "Plan wood wall north, plank 4";
-            entryPlannedWoodWallNorthPlank4.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallNorthPlank4",
-                    {tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8, 0});
-            };
-
-            entries_.push_back(entryPlannedWoodWallNorthPlank4);
-
-            GUIActionMenuEntry entryPlannedWoodWallEastPlank1;
-            entryPlannedWoodWallEastPlank1.label =
-                "Plan wood wall east, plank 1";
-            entryPlannedWoodWallEastPlank1.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallEastPlank1",
-                    {tileUnitsWidth - 1,
-                     tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallEastPlank1);
-
-            GUIActionMenuEntry entryPlannedWoodWallEastPlank2;
-            entryPlannedWoodWallEastPlank2.label =
-                "Plan wood wall east, plank 2";
-            entryPlannedWoodWallEastPlank2.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallEastPlank2",
-                    {tileUnitsWidth - 1,
-                     tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallEastPlank2);
-
-            GUIActionMenuEntry entryPlannedWoodWallEastPlank3;
-            entryPlannedWoodWallEastPlank3.label =
-                "Plan wood wall east, plank 3";
-            entryPlannedWoodWallEastPlank3.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallEastPlank3",
-                    {tileUnitsWidth - 1,
-                     tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallEastPlank3);
-
-            GUIActionMenuEntry entryPlannedWoodWallEastPlank4;
-            entryPlannedWoodWallEastPlank4.label =
-                "Plan wood wall east, plank 4";
-            entryPlannedWoodWallEastPlank4.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallEastPlank4",
-                    {tileUnitsWidth - 1,
-                     tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallEastPlank4);
-
-            GUIActionMenuEntry entryPlannedWoodWallSouthPlank1;
-            entryPlannedWoodWallSouthPlank1.label =
-                "Plan wood wall south, plank 1";
-            entryPlannedWoodWallSouthPlank1.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallSouthPlank1",
-                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                         tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8,
-                     tileUnitsWidth - 1});
-            };
-
-            entries_.push_back(entryPlannedWoodWallSouthPlank1);
-
-            GUIActionMenuEntry entryPlannedWoodWallSouthPlank2;
-            entryPlannedWoodWallSouthPlank2.label =
-                "Plan wood wall south, plank 2";
-            entryPlannedWoodWallSouthPlank2.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallSouthPlank2",
-                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                         tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8,
-                     tileUnitsWidth - 1});
-            };
-
-            entries_.push_back(entryPlannedWoodWallSouthPlank2);
-
-            GUIActionMenuEntry entryPlannedWoodWallSouthPlank3;
-            entryPlannedWoodWallSouthPlank3.label =
-                "Plan wood wall south, plank 3";
-            entryPlannedWoodWallSouthPlank3.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallSouthPlank3",
-                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                         tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8,
-                     tileUnitsWidth - 1});
-            };
-
-            entries_.push_back(entryPlannedWoodWallSouthPlank3);
-
-            GUIActionMenuEntry entryPlannedWoodWallSouthPlank4;
-            entryPlannedWoodWallSouthPlank4.label =
-                "Plan wood wall south, plank 4";
-            entryPlannedWoodWallSouthPlank4.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallSouthPlank4",
-                    {tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                         tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8,
-                     tileUnitsWidth - 1});
-            };
-
-            entries_.push_back(entryPlannedWoodWallSouthPlank4);
-
-            GUIActionMenuEntry entryPlannedWoodWallWestPlank1;
-            entryPlannedWoodWallWestPlank1.label =
-                "Plan wood wall west, plank 1";
-            entryPlannedWoodWallWestPlank1.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallWestPlank1",
-                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                            tileUnitsWidth / 4 * 0 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallWestPlank1);
-
-            GUIActionMenuEntry entryPlannedWoodWallWestPlank2;
-            entryPlannedWoodWallWestPlank2.label =
-                "Plan wood wall west, plank 2";
-            entryPlannedWoodWallWestPlank2.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallWestPlank2",
-                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                            tileUnitsWidth / 4 * 1 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallWestPlank2);
-
-            GUIActionMenuEntry entryPlannedWoodWallWestPlank3;
-            entryPlannedWoodWallWestPlank3.label =
-                "Plan wood wall west, plank 3";
-            entryPlannedWoodWallWestPlank3.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallWestPlank3",
-                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                            tileUnitsWidth / 4 * 2 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallWestPlank3);
-
-            GUIActionMenuEntry entryPlannedWoodWallWestPlank4;
-            entryPlannedWoodWallWestPlank4.label =
-                "Plan wood wall west, plank 4";
-            entryPlannedWoodWallWestPlank4.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodWallWestPlank4",
-                    {0, tileUnitsWidth - 1 - tileUnitsWidth / 4 -
-                            tileUnitsWidth / 4 * 3 + tileUnitsWidth / 8});
-            };
-
-            entries_.push_back(entryPlannedWoodWallWestPlank4);
-
-            GUIActionMenuEntry entryPlannedWoodFloor;
-            entryPlannedWoodFloor.label = "Plan wood floor";
-            entryPlannedWoodFloor.action = [=]()
-            {
-                auto tileObjects = tile->tileObjects_;
-
-                tileObjects->ADD8OBJECT(
-                    "ObjectPlannedWoodFloor",
-                    {tileUnitsWidth / 2, tileUnitsWidth / 2});
-            };
-
-            entries_.push_back(entryPlannedWoodFloor);
+                ++row;
+            }
         }
     }
-    else if (mouseButton == SDL_BUTTON_LEFT && visible_)
+
+    void
+    GUIActionMenu::Render()
     {
-        visible_ = false;
+        if (!visible_)
+        {
+            return;
+        }
+
+        auto mousePosition = GET8MOUSE8POSITION();
+
+        auto numEntries = entries_.size();
+
+        _<COLOR8RENDERER>().FILL8RECT(
+            rightClickMousePosition_.x, rightClickMousePosition_.y, kWidth,
+            kLineHeight * (numEntries + 1), COLORS::kDarkBlueGray);
+
+        auto marginX = kMarginX;
+
+        auto marginY = CONVERT8WIDTH8TO8HEIGHT(kMarginX);
+
+        _<TEXT8RENDERER>().DRAW8STRING("Actions",
+                                       rightClickMousePosition_.x + marginX,
+                                       rightClickMousePosition_.y + marginY,
+                                       FONT8SIZES::_12, false, COLORS::kGold);
 
         auto row = 1;
 
@@ -309,60 +356,16 @@ GUIActionMenu::OnMouseDown(Uint8 mouseButton)
 
             if (bounds.CONTAINS(mousePosition))
             {
-                auto action = entry.action;
+                _<COLOR8RENDERER>().FILL8RECT(bounds, COLORS::kBlueGray);
 
-                action();
+                _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
             }
+
+            _<TEXT8RENDERER>().DRAW8STRING(
+                entry.label, rightClickMousePosition_.x + marginX,
+                rightClickMousePosition_.y + marginY + row * kLineHeight);
 
             ++row;
         }
-    }
-}
-
-void
-GUIActionMenu::Render()
-{
-    if (!visible_)
-    {
-        return;
-    }
-
-    auto mousePosition = GET8MOUSE8POSITION();
-
-    auto numEntries = entries_.size();
-
-    _<COLOR8RENDERER>().FILL8RECT(
-        rightClickMousePosition_.x, rightClickMousePosition_.y, kWidth,
-        kLineHeight * (numEntries + 1), COLORS::kDarkBlueGray);
-
-    auto marginX = kMarginX;
-
-    auto marginY = CONVERT8WIDTH8TO8HEIGHT(kMarginX);
-
-    _<TEXT8RENDERER>().DRAW8STRING("Actions",
-                                   rightClickMousePosition_.x + marginX,
-                                   rightClickMousePosition_.y + marginY,
-                                   FONT8SIZES::_12, false, COLORS::kGold);
-
-    auto row = 1;
-
-    for (auto &entry : entries_)
-    {
-        RECT8F bounds = {rightClickMousePosition_.x,
-                         rightClickMousePosition_.y + row * kLineHeight, kWidth,
-                         kLineHeight};
-
-        if (bounds.CONTAINS(mousePosition))
-        {
-            _<COLOR8RENDERER>().FILL8RECT(bounds, COLORS::kBlueGray);
-
-            _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
-        }
-
-        _<TEXT8RENDERER>().DRAW8STRING(
-            entry.label, rightClickMousePosition_.x + marginX,
-            rightClickMousePosition_.y + marginY + row * kLineHeight);
-
-        ++row;
     }
 }

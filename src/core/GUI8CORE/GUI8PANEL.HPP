@@ -9,23 +9,26 @@
 
 #include "GUI8COMPONENT.HPP"
 
-class GUI8PANEL : public GUI8COMPONENT
+namespace FORRADIA
 {
-  public:
-    GUI8PANEL(float x, float y, float width, float height);
+    class GUI8PANEL : public GUI8COMPONENT
+    {
+      public:
+        GUI8PANEL(float x, float y, float width, float height);
 
-    SIZE8F size_{0.0f, 0.0f};
+        SIZE8F size_{0.0f, 0.0f};
 
-  protected:
-    virtual bool ON8MOUSE8DOWN(Uint8 mouseButton) override;
+      protected:
+        virtual bool ON8MOUSE8DOWN(Uint8 mouseButton) override;
 
-    virtual void RENDER8DERIVED() override;
+        virtual void RENDER8DERIVED() override;
 
-    virtual std::string GET8BACKGROUND8IMAGE();
+        virtual std::string GET8BACKGROUND8IMAGE();
 
-    RECT8F GET8BOUNDS();
+        RECT8F GET8BOUNDS();
 
-  private:
-    inline static const std::string kDefaultBackgroundImage_ =
-        "GUIPanelBackground";
-};
+      private:
+        inline static const std::string kDefaultBackgroundImage_ =
+            "GUIPanelBackground";
+    };
+}

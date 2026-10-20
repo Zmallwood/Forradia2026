@@ -7,39 +7,42 @@
 
 #pragma once
 
-template <class T>
-std::shared_ptr<T> &
-SINGLETON8STORAGE()
+namespace FORRADIA
 {
-    static std::shared_ptr<T> instance = std::make_shared<T>();
-
-    return instance;
-}
-
-template <class T>
-std::shared_ptr<T>
-GET8SINGLETON8PTR()
-{
-    auto &instance = SINGLETON8STORAGE<T>();
-
-    if (!instance)
+    template <class T>
+    std::shared_ptr<T> &
+    SINGLETON8STORAGE()
     {
-        instance = std::make_shared<T>();
+        static std::shared_ptr<T> instance = std::make_shared<T>();
+
+        return instance;
     }
 
-    return instance;
-}
+    template <class T>
+    std::shared_ptr<T>
+    GET8SINGLETON8PTR()
+    {
+        auto &instance = SINGLETON8STORAGE<T>();
 
-template <class T>
-void
-DESTROY8SINGLETON()
-{
-    SINGLETON8STORAGE<T>().reset();
-}
+        if (!instance)
+        {
+            instance = std::make_shared<T>();
+        }
 
-template <class T>
-T &
-_()
-{
-    return *GET8SINGLETON8PTR<T>();
+        return instance;
+    }
+
+    template <class T>
+    void
+    DESTROY8SINGLETON()
+    {
+        SINGLETON8STORAGE<T>().reset();
+    }
+
+    template <class T>
+    T &
+    _()
+    {
+        return *GET8SINGLETON8PTR<T>();
+    }
 }

@@ -8,48 +8,51 @@
 #include "GUI8PANEL.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
-    : GUI8COMPONENT(x, y), size_(width, height)
+namespace FORRADIA
 {
-}
-
-bool
-GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
-{
-    auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
-
-    if (result)
+    GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
+        : GUI8COMPONENT(x, y), size_(width, height)
     {
-        return true;
     }
 
-    if (!isVisible_ || !isEnabled_)
+    bool
+    GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton)
     {
-        return false;
+        auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
+
+        if (result)
+        {
+            return true;
+        }
+
+        if (!isVisible_ || !isEnabled_)
+        {
+            return false;
+        }
+
+        return GET8BOUNDS().CONTAINS(GET8MOUSE8POSITION());
     }
 
-    return GET8BOUNDS().CONTAINS(GET8MOUSE8POSITION());
-}
+    void
+    GUI8PANEL::RENDER8DERIVED()
+    {
+        auto position = GET8POSITION();
 
-void
-GUI8PANEL::RENDER8DERIVED()
-{
-    auto position = GET8POSITION();
+        _<IMAGE8RENDERER>().DRAW8IMAGE(GET8BACKGROUND8IMAGE(), position.x,
+                                       position.y, size_.width, size_.height);
+    }
 
-    _<IMAGE8RENDERER>().DRAW8IMAGE(GET8BACKGROUND8IMAGE(), position.x,
-                                   position.y, size_.width, size_.height);
-}
+    std::string
+    GUI8PANEL::GET8BACKGROUND8IMAGE()
+    {
+        return kDefaultBackgroundImage_;
+    }
 
-std::string
-GUI8PANEL::GET8BACKGROUND8IMAGE()
-{
-    return kDefaultBackgroundImage_;
-}
+    RECT8F
+    GUI8PANEL::GET8BOUNDS()
+    {
+        auto position = GET8POSITION();
 
-RECT8F
-GUI8PANEL::GET8BOUNDS()
-{
-    auto position = GET8POSITION();
-
-    return {position.x, position.y, size_.width, size_.height};
+        return {position.x, position.y, size_.width, size_.height};
+    }
 }

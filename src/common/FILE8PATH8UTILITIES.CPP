@@ -7,10 +7,13 @@
 
 #include "FILE8PATH8UTILITIES.HPP"
 
-std::string
-GET8FILE8NAME8NO8EXT(std::string_view path)
+namespace FORRADIA
 {
-    auto fileName = std::filesystem::path(path).filename().string();
+    std::string
+    GET8FILE8NAME8NO8EXT(std::string_view path)
+    {
+        auto fileName = std::filesystem::path(path).filename().string();
 
-    return fileName.substr(0, fileName.find_last_of("."));
+        return fileName.substr(0, fileName.find_last_of("."));
+    }
 }

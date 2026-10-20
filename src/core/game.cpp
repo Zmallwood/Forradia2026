@@ -8,10 +8,13 @@
 #include "GAME.HPP"
 #include "ENGINE/ENGINE.HPP"
 
-void
-GAME::START()
+namespace FORRADIA
 {
-    _<ENGINE>().START();
+    void
+    GAME::START()
+    {
+        _<ENGINE>().START();
 
-    DESTROY8SINGLETON<ENGINE>();
+        DESTROY8SINGLETON<ENGINE>();
+    }
 }

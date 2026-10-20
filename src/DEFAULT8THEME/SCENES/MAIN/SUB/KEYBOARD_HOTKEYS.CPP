@@ -9,15 +9,18 @@
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_EQUIPMENT_WINDOW.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"
 
-void
-KeyboardHotkeys::OnKeyDown(SDL_Keycode key)
+namespace FORRADIA
 {
-    if (key == SDLK_b)
+    void
+    KeyboardHotkeys::OnKeyDown(SDL_Keycode key)
     {
-        _<GUIInventoryWindow>().TOGGLE8VISIBILITY();
-    }
-    else if (key == SDLK_e)
-    {
-        _<GUIEquipmentWindow>().TOGGLE8VISIBILITY();
+        if (key == SDLK_b)
+        {
+            _<GUIInventoryWindow>().TOGGLE8VISIBILITY();
+        }
+        else if (key == SDLK_e)
+        {
+            _<GUIEquipmentWindow>().TOGGLE8VISIBILITY();
+        }
     }
 }

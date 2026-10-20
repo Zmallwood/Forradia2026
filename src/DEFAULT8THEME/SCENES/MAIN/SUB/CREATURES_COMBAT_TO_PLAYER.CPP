@@ -11,38 +11,41 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
-void
-CreaturesCombatToPlayer::Update()
+namespace FORRADIA
 {
-    auto now{NOW()};
-
-    auto playerPosition{_<PLAYER>().position_};
-
-    auto worldArea{_<WORLD>().currentWorldArea_};
-
-    auto &creatures{worldArea->creaturesMirror_};
-
-    for (auto entry : creatures)
+    void
+    CreaturesCombatToPlayer::Update()
     {
-        auto creature{entry.first};
-        auto position{entry.second};
+        auto now{NOW()};
 
-        if (creature->targetingPlayer_)
+        auto playerPosition{_<PLAYER>().position_};
+
+        auto worldArea{_<WORLD>().currentWorldArea_};
+
+        auto &creatures{worldArea->creaturesMirror_};
+
+        for (auto entry : creatures)
         {
-            auto dx{position.x - static_cast<int>(playerPosition.x)};
-            auto dy{position.y - static_cast<int>(playerPosition.y)};
+            auto creature{entry.first};
+            auto position{entry.second};
 
-            auto absDx{std::abs(dx)};
-            auto absDy{std::abs(dy)};
-
-            if ((absDx <= 1 && absDy == 0) || (absDx == 0 && absDy <= 1))
+            if (creature->targetingPlayer_)
             {
-                if (now > creature->ticksLastHitOnOther_ +
-                              INVERT8SPEED(creature->attackSpeed_))
-                {
-                    _<PLAYER>().HIT(1.0f);
+                auto dx{position.x - static_cast<int>(playerPosition.x)};
+                auto dy{position.y - static_cast<int>(playerPosition.y)};
 
-                    creature->ticksLastHitOnOther_ = now;
+                auto absDx{std::abs(dx)};
+                auto absDy{std::abs(dy)};
+
+                if ((absDx <= 1 && absDy == 0) || (absDx == 0 && absDy <= 1))
+                {
+                    if (now > creature->ticksLastHitOnOther_ +
+                                  INVERT8SPEED(creature->attackSpeed_))
+                    {
+                        _<PLAYER>().HIT(1.0f);
+
+                        creature->ticksLastHitOnOther_ = now;
+                    }
                 }
             }
         }

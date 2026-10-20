@@ -7,22 +7,25 @@
 
 #pragma once
 
-class OBJECT;
-
-class PLAYER8INVENTORY
+namespace FORRADIA
 {
-  public:
-    void ADD8OBJECT(std::string_view objectName);
+    class OBJECT;
 
-    void ADD8OBJECT(std::shared_ptr<OBJECT> object, int slotIndex);
+    class PLAYER8INVENTORY
+    {
+      public:
+        void ADD8OBJECT(std::string_view objectName);
 
-    std::shared_ptr<OBJECT> GET8OBJECT(int index);
+        void ADD8OBJECT(std::shared_ptr<OBJECT> object, int slotIndex);
 
-    std::shared_ptr<OBJECT> PICK8OBJECT(int index);
+        std::shared_ptr<OBJECT> GET8OBJECT(int index);
 
-    bool HAS8OBJECT(int index);
+        std::shared_ptr<OBJECT> PICK8OBJECT(int index);
 
-  private:
-    static constexpr int kMaxObjects_ = 1000;
-    std::unordered_map<int, std::shared_ptr<OBJECT>> objects_;
-};
+        bool HAS8OBJECT(int index);
+
+      private:
+        static constexpr int kMaxObjects_ = 1000;
+        std::unordered_map<int, std::shared_ptr<OBJECT>> objects_;
+    };
+}

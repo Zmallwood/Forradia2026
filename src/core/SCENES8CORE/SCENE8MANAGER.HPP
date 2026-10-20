@@ -7,30 +7,33 @@
 
 #pragma once
 
-class I8SCENE;
-
-class SCENE8MANAGER
+namespace FORRADIA
 {
-  public:
-    SCENE8MANAGER();
+    class I8SCENE;
 
-    void GO8TO8SCENE(std::string_view sceneName);
+    class SCENE8MANAGER
+    {
+      public:
+        SCENE8MANAGER();
 
-    void UPDATE8CURRENT8SCENE();
+        void GO8TO8SCENE(std::string_view sceneName);
 
-    void RENDER8CURRENT8SCENE();
+        void UPDATE8CURRENT8SCENE();
 
-    void ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key);
+        void RENDER8CURRENT8SCENE();
 
-    void ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key);
+        void ON8KEY8DOWN8CURRENT8SCENE(SDL_Keycode key);
 
-    void ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button);
+        void ON8KEY8UP8CURRENT8SCENE(SDL_Keycode key);
 
-    void ON8MOUSE8UP8CURRENT8SCENE(Uint8 button, int clickSpeed);
+        void ON8MOUSE8DOWN8CURRENT8SCENE(Uint8 button);
 
-  private:
-    void ADD8SCENE(std::string_view sceneName, I8SCENE &scene);
+        void ON8MOUSE8UP8CURRENT8SCENE(Uint8 button, int clickSpeed);
 
-    int currentScene_ = 0;
-    std::unordered_map<int, I8SCENE &> scenes_;
-};
+      private:
+        void ADD8SCENE(std::string_view sceneName, I8SCENE &scene);
+
+        int currentScene_ = 0;
+        std::unordered_map<int, I8SCENE &> scenes_;
+    };
+}

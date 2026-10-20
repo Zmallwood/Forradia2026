@@ -7,8 +7,11 @@
 
 #pragma once
 
-class CreaturesCombatToPlayer
+namespace FORRADIA
 {
-  public:
-    void Update();
-};
+    class CreaturesCombatToPlayer
+    {
+      public:
+        void Update();
+    };
+}

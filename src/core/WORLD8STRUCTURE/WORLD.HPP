@@ -7,12 +7,15 @@
 
 #pragma once
 
-class WORLD8AREA;
-
-class WORLD
+namespace FORRADIA
 {
-  public:
-    WORLD();
+    class WORLD8AREA;
 
-    std::shared_ptr<WORLD8AREA> currentWorldArea_;
-};
+    class WORLD
+    {
+      public:
+        WORLD();
+
+        std::shared_ptr<WORLD8AREA> currentWorldArea_;
+    };
+}

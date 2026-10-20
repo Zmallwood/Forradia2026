@@ -7,15 +7,18 @@
 
 #pragma once
 
-class FPS8COUNTER
+namespace FORRADIA
 {
-  public:
-    void UPDATE();
+    class FPS8COUNTER
+    {
+      public:
+        void UPDATE();
 
-    void RENDER();
+        void RENDER();
 
-  private:
-    int fps_ = 0;
-    int framesCounter_ = 0;
-    int ticksLastUpdate_ = 0;
-};
+      private:
+        int fps_ = 0;
+        int framesCounter_ = 0;
+        int ticksLastUpdate_ = 0;
+    };
+}

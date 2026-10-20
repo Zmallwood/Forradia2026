@@ -7,4 +7,7 @@
 
 #pragma once
 
-void RUN8NEW8DEFAULT8THEME();
+namespace FORRADIA
+{
+    void RUN8NEW8DEFAULT8THEME();
+}

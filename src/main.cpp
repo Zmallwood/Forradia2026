@@ -10,6 +10,8 @@
 int
 main(int argc, char *argv[])
 {
+    using namespace FORRADIA;
+    
     RUN8NEW8DEFAULT8THEME();
 
     return EXIT_SUCCESS;

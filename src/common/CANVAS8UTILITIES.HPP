@@ -7,10 +7,13 @@
 
 #pragma once
 
-SIZE GET8CANVAS8SIZE();
+namespace FORRADIA
+{
+    SIZE GET8CANVAS8SIZE();
 
-float GET8ASPECT8RATIO();
+    float GET8ASPECT8RATIO();
 
-float CONVERT8WIDTH8TO8HEIGHT(float width);
+    float CONVERT8WIDTH8TO8HEIGHT(float width);
 
-float CONVERT8HEIGHT8TO8WIDTH(float height);
+    float CONVERT8HEIGHT8TO8WIDTH(float height);
+}

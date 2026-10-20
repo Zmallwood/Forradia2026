@@ -7,18 +7,21 @@
 
 #pragma once
 
-constexpr auto
-HASH(std::string_view text) -> int
+namespace FORRADIA
 {
-    // Use djb2 algorithm by Daniel J. Bernstein.
-    unsigned long hash = 5381;
-
-    for (char chr : text)
+    constexpr auto
+    HASH(std::string_view text) -> int
     {
-        constexpr unsigned long algorithmFactor = 33;
+        // Use djb2 algorithm by Daniel J. Bernstein.
+        unsigned long hash = 5381;
 
-        hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
+        for (char chr : text)
+        {
+            constexpr unsigned long algorithmFactor = 33;
+
+            hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
+        }
+
+        return static_cast<int>(hash);
     }
-
-    return static_cast<int>(hash);
 }

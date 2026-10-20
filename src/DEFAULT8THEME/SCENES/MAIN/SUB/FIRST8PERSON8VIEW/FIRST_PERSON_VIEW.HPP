@@ -9,19 +9,22 @@
 
 #include "COMPLETED_OBJECT_IMPACT.HPP"
 
-class FirstPersonView
+namespace FORRADIA
 {
-  public:
-    void Update();
+    class FirstPersonView
+    {
+      public:
+        void Update();
 
-    void Render();
+        void Render();
 
-    std::vector<CompletedObjectImpact> completedObjectImpacts_;
+        std::vector<CompletedObjectImpact> completedObjectImpacts_;
 
-  private:
-    static constexpr int kHitOtherEffectDuration_ = 100;
-    static constexpr int kHitSelfEffectDuration_ = 100;
-    static constexpr int kImpactPointEffectDuration_ = 100;
-    static constexpr float kWieldedObjectScale_ = 0.15f;
-    static constexpr float kHandsOpacity_ = 0.5f;
-};
+      private:
+        static constexpr int kHitOtherEffectDuration_ = 100;
+        static constexpr int kHitSelfEffectDuration_ = 100;
+        static constexpr int kImpactPointEffectDuration_ = 100;
+        static constexpr float kWieldedObjectScale_ = 0.15f;
+        static constexpr float kHandsOpacity_ = 0.5f;
+    };
+}

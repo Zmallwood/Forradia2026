@@ -9,17 +9,20 @@
 
 #include "GUI8COMPONENT.HPP"
 
-class GUI8METER : public GUI8COMPONENT
+namespace FORRADIA
 {
-  public:
-    GUI8METER(float x, float y, float width, float height);
+    class GUI8METER : public GUI8COMPONENT
+    {
+      public:
+        GUI8METER(float x, float y, float width, float height);
 
-    SIZE8F size_;
+        SIZE8F size_;
 
-  protected:
-    virtual void RENDER8DERIVED() override;
+      protected:
+        virtual void RENDER8DERIVED() override;
 
-    virtual float GET8METER8PROGRESS();
+        virtual float GET8METER8PROGRESS();
 
-    virtual COLOR GET8FILLED8COLOR();
-};
+        virtual COLOR GET8FILLED8COLOR();
+    };
+}

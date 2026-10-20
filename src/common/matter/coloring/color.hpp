@@ -7,13 +7,16 @@
 
 #pragma once
 
-class COLOR
+namespace FORRADIA
 {
-  public:
-    SDL_Color TO8SDL8COLOR();
+    class COLOR
+    {
+      public:
+        SDL_Color TO8SDL8COLOR();
 
-    float r = 0.0f;
-    float g = 0.0f;
-    float b = 0.0f;
-    float a = 1.0f;
-};
+        float r = 0.0f;
+        float g = 0.0f;
+        float b = 0.0f;
+        float a = 1.0f;
+    };
+}

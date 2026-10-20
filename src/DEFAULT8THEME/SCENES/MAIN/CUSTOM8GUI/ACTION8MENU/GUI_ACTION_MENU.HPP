@@ -9,18 +9,21 @@
 
 #include "GUI_ACTION_MENU_ENTRY.HPP"
 
-class GUIActionMenu
+namespace FORRADIA
 {
-  public:
-    void OnMouseDown(Uint8 mouseButton);
+    class GUIActionMenu
+    {
+      public:
+        void OnMouseDown(Uint8 mouseButton);
 
-    void Render();
+        void Render();
 
-  private:
-    static constexpr float kWidth = 0.1f;
-    static constexpr float kLineHeight = 0.02f;
-    static constexpr float kMarginX = 0.002f;
-    POINT8F rightClickMousePosition_;
-    std::vector<GUIActionMenuEntry> entries_;
-    bool visible_ = false;
-};
+      private:
+        static constexpr float kWidth = 0.1f;
+        static constexpr float kLineHeight = 0.02f;
+        static constexpr float kMarginX = 0.002f;
+        POINT8F rightClickMousePosition_;
+        std::vector<GUIActionMenuEntry> entries_;
+        bool visible_ = false;
+    };
+}

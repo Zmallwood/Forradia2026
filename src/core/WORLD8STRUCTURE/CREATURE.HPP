@@ -7,29 +7,32 @@
 
 #pragma once
 
-class CREATURE
+namespace FORRADIA
 {
-  public:
-    CREATURE(std::string_view typeName);
+    class CREATURE
+    {
+      public:
+        CREATURE(std::string_view typeName);
 
-    CREATURE(int type);
+        CREATURE(int type);
 
-    void HIT(float damage, POINT8F hitPosition);
+        void HIT(float damage, POINT8F hitPosition);
 
-    bool IS8DEAD();
+        bool IS8DEAD();
 
-    int type_ = 0;
-    int ticksLastMovement_ = 0;
-    float movementSpeed_ = 1.0f;
-    int ticksLastHitOnSelf_ = 0;
-    POINT8F lastHitPosition_ = {-1.0f, -1.0f};
-    int experienceValue_ = 13;
-    int respawnTimeMillis_ = 5000;
-    int ticksLastHitOnOther_ = 0;
-    float attackSpeed_ = 0.5f;
-    bool targetingPlayer_ = false;
+        int type_ = 0;
+        int ticksLastMovement_ = 0;
+        float movementSpeed_ = 1.0f;
+        int ticksLastHitOnSelf_ = 0;
+        POINT8F lastHitPosition_ = {-1.0f, -1.0f};
+        int experienceValue_ = 13;
+        int respawnTimeMillis_ = 5000;
+        int ticksLastHitOnOther_ = 0;
+        float attackSpeed_ = 0.5f;
+        bool targetingPlayer_ = false;
 
-  private:
-    float health_ = 5.0f;
-    float maxHealth_ = 5.0f;
-};
+      private:
+        float health_ = 5.0f;
+        float maxHealth_ = 5.0f;
+    };
+}

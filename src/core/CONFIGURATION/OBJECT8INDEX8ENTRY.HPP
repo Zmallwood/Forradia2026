@@ -7,18 +7,22 @@
 
 #pragma once
 
-class OBJECT;
-
-class OBJECT8INDEX8ENTRY
+namespace FORRADIA
 {
-  public:
-    std::string label;
-    int flags = 0;
-    std::vector<POINT8F> impactPoints;
-    std::vector<int> impactObjects;
-    std::function<void()> singleImpactPointCompletedAction;
-    std::function<void(std::shared_ptr<OBJECT>)> allImpactPointsCompletedAction;
-    int worldViewObjectType = 0;
-    POINT8F worldViewRenderOffset = {0.0f, 0.0f};
-    POINT8F firstPersonViewRenderOffset = {0.0f, 0.0f};
-};
+    class OBJECT;
+
+    class OBJECT8INDEX8ENTRY
+    {
+      public:
+        std::string label;
+        int flags = 0;
+        std::vector<POINT8F> impactPoints;
+        std::vector<int> impactObjects;
+        std::function<void()> singleImpactPointCompletedAction;
+        std::function<void(std::shared_ptr<OBJECT>)>
+            allImpactPointsCompletedAction;
+        int worldViewObjectType = 0;
+        POINT8F worldViewRenderOffset = {0.0f, 0.0f};
+        POINT8F firstPersonViewRenderOffset = {0.0f, 0.0f};
+    };
+}

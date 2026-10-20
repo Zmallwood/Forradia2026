@@ -7,20 +7,23 @@
 
 #pragma once
 
-class IMAGE8RENDERER
+namespace FORRADIA
 {
-  public:
-    void DRAW8IMAGE(int imageNameHash, float x, float y, float width,
-                    float height, float opacity = 1.0f,
-                    bool flipHorizontal = false);
+    class IMAGE8RENDERER
+    {
+      public:
+        void DRAW8IMAGE(int imageNameHash, float x, float y, float width,
+                        float height, float opacity = 1.0f,
+                        bool flipHorizontal = false);
 
-    void DRAW8IMAGE(std::string_view imageName, float x, float y, float width,
-                    float height, float opacity = 1.0f,
-                    bool flipHorizontal = false);
+        void DRAW8IMAGE(std::string_view imageName, float x, float y,
+                        float width, float height, float opacity = 1.0f,
+                        bool flipHorizontal = false);
 
-    void DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity = 1.0f,
-                    bool flipHorizontal = false);
+        void DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity = 1.0f,
+                        bool flipHorizontal = false);
 
-    void DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
-                    float opacity = 1.0f, bool flipHorizontal = false);
-};
+        void DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
+                        float opacity = 1.0f, bool flipHorizontal = false);
+    };
+}

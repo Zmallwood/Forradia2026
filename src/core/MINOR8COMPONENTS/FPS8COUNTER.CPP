@@ -8,25 +8,28 @@
 #include "FPS8COUNTER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
-void
-FPS8COUNTER::UPDATE()
+namespace FORRADIA
 {
-    auto now = NOW();
-
-    if (now > ticksLastUpdate_ + kOneSecondMillis)
+    void
+    FPS8COUNTER::UPDATE()
     {
-        fps_ = framesCounter_;
-        framesCounter_ = 0;
-        ticksLastUpdate_ = now;
+        auto now = NOW();
+
+        if (now > ticksLastUpdate_ + kOneSecondMillis)
+        {
+            fps_ = framesCounter_;
+            framesCounter_ = 0;
+            ticksLastUpdate_ = now;
+        }
+
+        ++framesCounter_;
     }
 
-    ++framesCounter_;
-}
+    void
+    FPS8COUNTER::RENDER()
+    {
+        std::string text = "FPS: " + std::to_string(fps_);
 
-void
-FPS8COUNTER::RENDER()
-{
-    std::string text = "FPS: " + std::to_string(fps_);
-
-    _<TEXT8RENDERER>().DRAW8STRING(text, 0.95f, 0.03f);
+        _<TEXT8RENDERER>().DRAW8STRING(text, 0.95f, 0.03f);
+    }
 }

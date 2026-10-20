@@ -7,5 +7,8 @@
 
 #pragma once
 
-constexpr float kSmallValue = 0.0005f;
-constexpr int kOneSecondMillis = 1000;
+namespace FORRADIA
+{
+    constexpr float kSmallValue = 0.0005f;
+    constexpr int kOneSecondMillis = 1000;
+}

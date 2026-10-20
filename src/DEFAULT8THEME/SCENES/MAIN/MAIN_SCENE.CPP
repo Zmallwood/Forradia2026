@@ -28,112 +28,117 @@
 #include "SUB/PLAYER_COMBAT_TO_OTHERS.HPP"
 #include "SUB/TILE_HOVERING.HPP"
 
-void
-MainScene::INITIALIZE8DERIVED()
+namespace FORRADIA
 {
-    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
+    void
+    MainScene::INITIALIZE8DERIVED()
+    {
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
-    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIExperienceMeter>());
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIExperienceMeter>());
 
-    gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
-        "", 0.94f, 0.08f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-        [this]() { _<GUIInventoryWindow>().TOGGLE8VISIBILITY(); },
-        "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
+        gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
+            "", 0.94f, 0.08f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
+            [this]() { _<GUIInventoryWindow>().TOGGLE8VISIBILITY(); },
+            "GUIButtonInventoryBackground",
+            "GUIButtonInventoryHoveredBackground"));
 
-    gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
-        "", 0.94f, 0.18f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-        [this]() { _<GUIEquipmentWindow>().TOGGLE8VISIBILITY(); },
-        "GUIButtonEquipmentBackground", "GUIButtonEquipmentHoveredBackground"));
+        gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
+            "", 0.94f, 0.18f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
+            [this]() { _<GUIEquipmentWindow>().TOGGLE8VISIBILITY(); },
+            "GUIButtonEquipmentBackground",
+            "GUIButtonEquipmentHoveredBackground"));
 
-    gui_->ADD8COMPONENT(std::make_shared<GUIStatusPanel>());
+        gui_->ADD8COMPONENT(std::make_shared<GUIStatusPanel>());
 
-    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIInventoryWindow>());
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIInventoryWindow>());
 
-    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIEquipmentWindow>());
-}
+        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIEquipmentWindow>());
+    }
 
-void
-MainScene::ON8ENTER8DERIVED()
-{
-    _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(1.0f -
-                                         _<GUI8TEXT8CONSOLE>().size_.height -
-                                         _<GUIExperienceMeter>().size_.height);
+    void
+    MainScene::ON8ENTER8DERIVED()
+    {
+        _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(
+            1.0f - _<GUI8TEXT8CONSOLE>().size_.height -
+            _<GUIExperienceMeter>().size_.height);
 
-    _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
-}
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
+    }
 
-void
-MainScene::UPDATE8DERIVED()
-{
-    _<CreaturesMovement>().Update();
+    void
+    MainScene::UPDATE8DERIVED()
+    {
+        _<CreaturesMovement>().Update();
 
-    _<KeyboardMovement>().Update();
+        _<KeyboardMovement>().Update();
 
-    _<MouseMovement>().Update();
+        _<MouseMovement>().Update();
 
-    _<TileHovering>().Update();
+        _<TileHovering>().Update();
 
-    _<FirstPersonHovering>().Update();
+        _<FirstPersonHovering>().Update();
 
-    _<CreatureRespawner>().Update();
+        _<CreatureRespawner>().Update();
 
-    _<CreaturesCombatToPlayer>().Update();
+        _<CreaturesCombatToPlayer>().Update();
 
-    _<FirstPersonView>().Update();
-}
+        _<FirstPersonView>().Update();
+    }
 
-void
-MainScene::RENDER8BEFORE8GUI8DERIVED()
-{
-    _<WorldView>().Render();
+    void
+    MainScene::RENDER8BEFORE8GUI8DERIVED()
+    {
+        _<WorldView>().Render();
 
-    _<FirstPersonView>().Render();
+        _<FirstPersonView>().Render();
 
-    _<FirstPersonHovering>().Render();
+        _<FirstPersonHovering>().Render();
 
-    _<GUIActionMenu>().Render();
-}
+        _<GUIActionMenu>().Render();
+    }
 
-void
-MainScene::RENDER8AFTER8GUI8DERIVED()
-{
-    _<ObjectMoving>().Render();
-}
+    void
+    MainScene::RENDER8AFTER8GUI8DERIVED()
+    {
+        _<ObjectMoving>().Render();
+    }
 
-void
-MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
-{
-    _<KeyboardMovement>().OnKeyDown(key);
+    void
+    MainScene::ON8KEY8DOWN8DERIVED(SDL_Keycode key)
+    {
+        _<KeyboardMovement>().OnKeyDown(key);
 
-    _<MouseMovement>().OnKeyDown(key);
+        _<MouseMovement>().OnKeyDown(key);
 
-    _<KeyboardHotkeys>().OnKeyDown(key);
-}
+        _<KeyboardHotkeys>().OnKeyDown(key);
+    }
 
-void
-MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
-{
-    _<KeyboardMovement>().OnKeyUp(key);
+    void
+    MainScene::ON8KEY8UP8DERIVED(SDL_Keycode key)
+    {
+        _<KeyboardMovement>().OnKeyUp(key);
 
-    _<MouseMovement>().OnKeyUp(key);
-}
+        _<MouseMovement>().OnKeyUp(key);
+    }
 
-void
-MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
-{
-    _<PlayerCombatToOthers>().OnMouseDown(button);
+    void
+    MainScene::ON8MOUSE8DOWN8DERIVED(Uint8 button)
+    {
+        _<PlayerCombatToOthers>().OnMouseDown(button);
 
-    _<MouseMovement>().OnMouseDown(button);
+        _<MouseMovement>().OnMouseDown(button);
 
-    _<ObjectImpact>().OnMouseDown(button);
+        _<ObjectImpact>().OnMouseDown(button);
 
-    _<ObjectMoving>().OnMouseDown(button);
+        _<ObjectMoving>().OnMouseDown(button);
 
-    _<GUIActionMenu>().OnMouseDown(button);
-}
+        _<GUIActionMenu>().OnMouseDown(button);
+    }
 
-void
-MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
-{
-    _<ObjectMoving>().OnMouseUp(button, clickSpeed);
+    void
+    MainScene::ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed)
+    {
+        _<ObjectMoving>().OnMouseUp(button, clickSpeed);
+    }
 }

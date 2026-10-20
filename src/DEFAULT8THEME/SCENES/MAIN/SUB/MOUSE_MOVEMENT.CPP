@@ -10,161 +10,165 @@
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "TILE_HOVERING.HPP"
 
-void
-MouseMovement::Update()
+namespace FORRADIA
 {
-    auto destination{_<PLAYER>().destination_};
-
-    POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
-                         static_cast<int>(_<PLAYER>().position_.y)};
-
-    if (destination.x != -1 && destination.y != -1)
+    void
+    MouseMovement::Update()
     {
-        auto now{NOW()};
+        auto destination{_<PLAYER>().destination_};
 
-        if (now > _<PLAYER>().ticksLastMovement_ +
-                      INVERT8SPEED(_<PLAYER>().movementSpeed_))
+        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
+                             static_cast<int>(_<PLAYER>().position_.y)};
+
+        if (destination.x != -1 && destination.y != -1)
         {
-            auto dx{destination.x - playerPosition.x};
-            auto dy{destination.y - playerPosition.y};
+            auto now{NOW()};
 
-            auto absDx{std::abs(dx)};
-            auto absDy{std::abs(dy)};
+            if (now > _<PLAYER>().ticksLastMovement_ +
+                          INVERT8SPEED(_<PLAYER>().movementSpeed_))
+            {
+                auto dx{destination.x - playerPosition.x};
+                auto dy{destination.y - playerPosition.y};
 
-            if (dx == 0 && dy == 0)
-            {
-                _<PLAYER>().destination_ = {-1, -1};
+                auto absDx{std::abs(dx)};
+                auto absDy{std::abs(dy)};
 
-                return;
-            }
+                if (dx == 0 && dy == 0)
+                {
+                    _<PLAYER>().destination_ = {-1, -1};
 
-            if (dy < 0 && absDy > absDx)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8NORTH();
+                    return;
                 }
-                else
-                {
-                    _<PLAYER>().MOVE8NORTH();
-                }
-            }
-            else if (dy > 0 && absDy > absDx)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8SOUTH();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8SOUTH();
-                }
-            }
-            else if (dx < 0 && absDx > absDy)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8WEST();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8WEST();
-                }
-            }
-            else if (dx > 0 && absDx > absDy)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8EAST();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8EAST();
-                }
-            }
-            else if (dy < 0)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8NORTH();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8NORTH();
-                }
-            }
-            else if (dy > 0)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8SOUTH();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8SOUTH();
-                }
-            }
-            else if (dx < 0)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8WEST();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8WEST();
-                }
-            }
-            else if (dx > 0)
-            {
-                if (ctrlKeyDown_)
-                {
-                    _<PLAYER>().TURN8EAST();
-                }
-                else
-                {
-                    _<PLAYER>().MOVE8EAST();
-                }
-            }
 
-            _<PLAYER>().ticksLastMovement_ =
-                now + rand() % 3 * (INVERT8SPEED(_<PLAYER>().movementSpeed_));
+                if (dy < 0 && absDy > absDx)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8NORTH();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8NORTH();
+                    }
+                }
+                else if (dy > 0 && absDy > absDx)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8SOUTH();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8SOUTH();
+                    }
+                }
+                else if (dx < 0 && absDx > absDy)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8WEST();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8WEST();
+                    }
+                }
+                else if (dx > 0 && absDx > absDy)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8EAST();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8EAST();
+                    }
+                }
+                else if (dy < 0)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8NORTH();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8NORTH();
+                    }
+                }
+                else if (dy > 0)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8SOUTH();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8SOUTH();
+                    }
+                }
+                else if (dx < 0)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8WEST();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8WEST();
+                    }
+                }
+                else if (dx > 0)
+                {
+                    if (ctrlKeyDown_)
+                    {
+                        _<PLAYER>().TURN8EAST();
+                    }
+                    else
+                    {
+                        _<PLAYER>().MOVE8EAST();
+                    }
+                }
+
+                _<PLAYER>().ticksLastMovement_ =
+                    now +
+                    rand() % 3 * (INVERT8SPEED(_<PLAYER>().movementSpeed_));
+            }
         }
     }
-}
 
-void
-MouseMovement::OnKeyDown(SDL_Keycode key)
-{
-    if (key == SDLK_LCTRL || key == SDLK_RCTRL)
+    void
+    MouseMovement::OnKeyDown(SDL_Keycode key)
     {
-        ctrlKeyDown_ = true;
-    }
-}
-
-void
-MouseMovement::OnKeyUp(SDL_Keycode key)
-{
-    if (key == SDLK_LCTRL || key == SDLK_RCTRL)
-    {
-        ctrlKeyDown_ = false;
-    }
-}
-
-void
-MouseMovement::OnMouseDown(Uint8 button)
-{
-    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
-
-    auto mousePosition{GET8MOUSE8POSITION()};
-
-    if (mousePosition.x > viewWidth)
-    {
-        return;
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
+        {
+            ctrlKeyDown_ = true;
+        }
     }
 
-    if (button == SDL_BUTTON_LEFT)
+    void
+    MouseMovement::OnKeyUp(SDL_Keycode key)
     {
-        _<PLAYER>().destination_ = _<TileHovering>().hoveredCoordinate_;
+        if (key == SDLK_LCTRL || key == SDLK_RCTRL)
+        {
+            ctrlKeyDown_ = false;
+        }
+    }
+
+    void
+    MouseMovement::OnMouseDown(Uint8 button)
+    {
+        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+
+        auto mousePosition{GET8MOUSE8POSITION()};
+
+        if (mousePosition.x > viewWidth)
+        {
+            return;
+        }
+
+        if (button == SDL_BUTTON_LEFT)
+        {
+            _<PLAYER>().destination_ = _<TileHovering>().hoveredCoordinate_;
+        }
     }
 }

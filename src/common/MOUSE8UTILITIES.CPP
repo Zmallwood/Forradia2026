@@ -7,16 +7,19 @@
 
 #include "MOUSE8UTILITIES.HPP"
 
-POINT8F
-GET8MOUSE8POSITION()
+namespace FORRADIA
 {
-    auto canvasSize = GET8CANVAS8SIZE();
+    POINT8F
+    GET8MOUSE8POSITION()
+    {
+        auto canvasSize = GET8CANVAS8SIZE();
 
-    int x;
-    int y;
+        int x;
+        int y;
 
-    SDL_GetMouseState(&x, &y);
+        SDL_GetMouseState(&x, &y);
 
-    return {static_cast<float>(x) / canvasSize.width,
-            static_cast<float>(y) / canvasSize.height};
+        return {static_cast<float>(x) / canvasSize.width,
+                static_cast<float>(y) / canvasSize.height};
+    }
 }

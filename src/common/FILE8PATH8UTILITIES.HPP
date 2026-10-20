@@ -7,4 +7,7 @@
 
 #pragma once
 
-std::string GET8FILE8NAME8NO8EXT(std::string_view path);
+namespace FORRADIA
+{
+    std::string GET8FILE8NAME8NO8EXT(std::string_view path);
+}

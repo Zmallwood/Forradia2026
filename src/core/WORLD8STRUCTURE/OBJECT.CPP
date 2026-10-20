@@ -8,16 +8,19 @@
 #include "OBJECT.HPP"
 #include "CORE/CONFIGURATION/OBJECT8INDEX.HPP"
 
-OBJECT::OBJECT(int type) : type_(type)
+namespace FORRADIA
 {
-    auto impactPoints = _<OBJECT8INDEX>().GET8IMPACT8POINTS(type);
-
-    for (auto impactPoint : impactPoints)
+    OBJECT::OBJECT(int type) : type_(type)
     {
-        impactPoints_.push_back(COMPLETABLE8IMPACT8POINT{impactPoint});
-    }
-}
+        auto impactPoints = _<OBJECT8INDEX>().GET8IMPACT8POINTS(type);
 
-OBJECT::OBJECT(std::string_view typeName) : OBJECT(HASH(typeName))
-{
+        for (auto impactPoint : impactPoints)
+        {
+            impactPoints_.push_back(COMPLETABLE8IMPACT8POINT{impactPoint});
+        }
+    }
+
+    OBJECT::OBJECT(std::string_view typeName) : OBJECT(HASH(typeName))
+    {
+    }
 }

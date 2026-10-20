@@ -7,9 +7,12 @@
 
 #pragma once
 
-class CompletedObjectImpact
+namespace FORRADIA
 {
-  public:
-    POINT8F position;
-    int ticksCompleted = 0;
-};
+    class CompletedObjectImpact
+    {
+      public:
+        POINT8F position;
+        int ticksCompleted = 0;
+    };
+}

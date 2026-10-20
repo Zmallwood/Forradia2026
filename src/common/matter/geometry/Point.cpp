@@ -7,8 +7,11 @@
 
 #include "POINT.HPP"
 
-POINT
-POINT::operator+(const POINT &other) const
+namespace FORRADIA
 {
-    return {x + other.x, y + other.y};
+    POINT
+    POINT::operator+(const POINT & other) const
+    {
+        return {x + other.x, y + other.y};
+    }
 }

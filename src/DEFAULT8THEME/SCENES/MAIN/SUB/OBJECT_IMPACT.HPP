@@ -7,8 +7,11 @@
 
 #pragma once
 
-class ObjectImpact
+namespace FORRADIA
 {
-  public:
-    void OnMouseDown(Uint8 button);
-};
+    class ObjectImpact
+    {
+      public:
+        void OnMouseDown(Uint8 button);
+    };
+}

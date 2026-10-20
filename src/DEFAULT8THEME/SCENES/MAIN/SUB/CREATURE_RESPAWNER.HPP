@@ -7,13 +7,16 @@
 
 #pragma once
 
-class CreatureRespawner
+namespace FORRADIA
 {
-  public:
-    void Update();
+    class CreatureRespawner
+    {
+      public:
+        void Update();
 
-    void RespawnCreature(int creatureType, int respawnTimeMillis);
+        void RespawnCreature(int creatureType, int respawnTimeMillis);
 
-  private:
-    std::unordered_multimap<int, int> creatureRespawns_;
-};
+      private:
+        std::unordered_multimap<int, int> creatureRespawns_;
+    };
+}

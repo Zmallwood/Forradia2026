@@ -9,8 +9,11 @@
 
 #include "CORE/SCENES8CORE/I8SCENE.HPP"
 
-class WorldGenerationScene : public I8SCENE
+namespace FORRADIA
 {
-  protected:
-    void ON8ENTER8DERIVED() override;
-};
+    class WorldGenerationScene : public I8SCENE
+    {
+      protected:
+        void ON8ENTER8DERIVED() override;
+    };
+}

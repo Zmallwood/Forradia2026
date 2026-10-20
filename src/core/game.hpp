@@ -7,8 +7,11 @@
 
 #pragma once
 
-class GAME
+namespace FORRADIA
 {
-  public:
-    void START();
-};
+    class GAME
+    {
+      public:
+        void START();
+    };
+}

@@ -8,39 +8,42 @@
 #include "CURSOR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE8RENDERER.HPP"
 
-CURSOR::CURSOR()
+namespace FORRADIA
 {
-    SDL_ShowCursor(SDL_DISABLE);
-}
-
-void
-CURSOR::RESET()
-{
-    cursorStyle_ = CURSOR8STYLES::Default;
-}
-
-void
-CURSOR::RENDER()
-{
-    auto mousePosition = GET8MOUSE8POSITION();
-
-    auto cursorWidth = kCursorSize_;
-    auto cursorHeight = CONVERT8WIDTH8TO8HEIGHT(cursorWidth);
-
-    std::string cursorImage;
-
-    switch (cursorStyle_)
+    CURSOR::CURSOR()
     {
-    case CURSOR8STYLES::Hovering:
-        cursorImage = "CursorHovering";
-        break;
-    case CURSOR8STYLES::Default:
-    default:
-        cursorImage = "CursorDefault";
-        break;
+        SDL_ShowCursor(SDL_DISABLE);
     }
 
-    _<IMAGE8RENDERER>().DRAW8IMAGE(
-        cursorImage, mousePosition.x - cursorWidth / 2,
-        mousePosition.y - cursorHeight / 2, cursorWidth, cursorHeight);
+    void
+    CURSOR::RESET()
+    {
+        cursorStyle_ = CURSOR8STYLES::Default;
+    }
+
+    void
+    CURSOR::RENDER()
+    {
+        auto mousePosition = GET8MOUSE8POSITION();
+
+        auto cursorWidth = kCursorSize_;
+        auto cursorHeight = CONVERT8WIDTH8TO8HEIGHT(cursorWidth);
+
+        std::string cursorImage;
+
+        switch (cursorStyle_)
+        {
+        case CURSOR8STYLES::Hovering:
+            cursorImage = "CursorHovering";
+            break;
+        case CURSOR8STYLES::Default:
+        default:
+            cursorImage = "CursorDefault";
+            break;
+        }
+
+        _<IMAGE8RENDERER>().DRAW8IMAGE(
+            cursorImage, mousePosition.x - cursorWidth / 2,
+            mousePosition.y - cursorHeight / 2, cursorWidth, cursorHeight);
+    }
 }

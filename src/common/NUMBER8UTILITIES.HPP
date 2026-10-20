@@ -7,4 +7,7 @@
 
 #pragma once
 
-int INVERT8SPEED(float speed);
+namespace FORRADIA
+{
+    int INVERT8SPEED(float speed);
+}

@@ -18,111 +18,115 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "CREATURE_RESPAWNER.HPP"
 
-void
-PlayerCombatToOthers::OnMouseDown(Uint8 button)
+namespace FORRADIA
 {
-    auto viewWidth{GAME8PROPERTIES::kViewWidth_};
-
-    auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
-
-    auto now{NOW()};
-
-    if (now - _<PLAYER>().ticksLastHitOnOther_ <
-        INVERT8SPEED(_<PLAYER>().attackSpeed_))
+    void
+    PlayerCombatToOthers::OnMouseDown(Uint8 button)
     {
-        return;
-    }
+        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-    auto mousePosition{GET8MOUSE8POSITION()};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
 
-    if (mousePosition.x < viewWidth / 2.0f)
-    {
-        return;
-    }
+        auto now{NOW()};
 
-    auto worldArea{_<WORLD>().currentWorldArea_};
+        if (now - _<PLAYER>().ticksLastHitOnOther_ <
+            INVERT8SPEED(_<PLAYER>().attackSpeed_))
+        {
+            return;
+        }
 
-    auto facedTile{_<PLAYER>().facedTileCoordinate_};
+        auto mousePosition{GET8MOUSE8POSITION()};
 
-    auto tile{worldArea->GET8TILE(facedTile)};
+        if (mousePosition.x < viewWidth / 2.0f)
+        {
+            return;
+        }
 
-    if (!tile)
-    {
-        return;
-    }
+        auto worldArea{_<WORLD>().currentWorldArea_};
 
-    auto creature{tile->creature_};
+        auto facedTile{_<PLAYER>().facedTileCoordinate_};
 
-    if (!creature)
-    {
-        return;
-    }
+        auto tile{worldArea->GET8TILE(facedTile)};
 
-    if (creature->IS8DEAD())
-    {
-        return;
-    }
+        if (!tile)
+        {
+            return;
+        }
 
-    constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
-    constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
+        auto creature{tile->creature_};
 
-    auto creatureType{creature->type_};
+        if (!creature)
+        {
+            return;
+        }
 
-    auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
+        if (creature->IS8DEAD())
+        {
+            return;
+        }
 
-    auto imageWidth{imageSize.width / 60.0f * kLargeObjectScale};
-    auto imageHeight{imageSize.height / 60.0f *
-                     CONVERT8WIDTH8TO8HEIGHT(kLargeObjectScale)};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
+        constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
 
-    auto tileWidth{viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f};
-    auto tileLeft{1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f};
+        auto creatureType{creature->type_};
 
-    auto baseX{tileLeft + 0.5f * tileWidth};
-    auto baseY{0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
-    auto imageX{baseX - imageWidth / 2.0f};
-    auto imageY{baseY - imageHeight};
+        auto imageWidth{imageSize.width / 60.0f * kLargeObjectScale};
+        auto imageHeight{imageSize.height / 60.0f *
+                         CONVERT8WIDTH8TO8HEIGHT(kLargeObjectScale)};
 
-    auto dx{mousePosition.x - imageX};
-    auto dy{mousePosition.y - imageY};
+        auto tileWidth{viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f};
+        auto tileLeft{1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f};
 
-    auto x{dx / imageWidth};
-    auto y{dy / imageHeight};
+        auto baseX{tileLeft + 0.5f * tileWidth};
+        auto baseY{0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y)};
 
-    auto isPixelVisible{_<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
+        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageY{baseY - imageHeight};
 
-    if (!isPixelVisible)
-    {
-        return;
-    }
+        auto dx{mousePosition.x - imageX};
+        auto dy{mousePosition.y - imageY};
 
-    creature->HIT(1.0f, POINT8F{x, y});
+        auto x{dx / imageWidth};
+        auto y{dy / imageHeight};
 
-    _<PLAYER>().ticksLastHitOnOther_ = now;
+        auto isPixelVisible{
+            _<IMAGE8BANK>().IS8PIXEL8VISIBLE(creatureType, x, y)};
 
-    tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
+        if (!isPixelVisible)
+        {
+            return;
+        }
 
-    if (creature->IS8DEAD())
-    {
-        auto corpseType{
-            _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
+        creature->HIT(1.0f, POINT8F{x, y});
 
-        tile->tileObjects_->ADD8OBJECT(corpseType,
-                                      {tileUnitsWidth / 2, tileUnitsWidth / 2});
+        _<PLAYER>().ticksLastHitOnOther_ = now;
 
-        tile->creature_ = nullptr;
+        tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
 
-        worldArea->creaturesMirror_.erase(creature);
+        if (creature->IS8DEAD())
+        {
+            auto corpseType{
+                _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
 
-        auto creatureLabel{
-            _<CREATURE8INDEX>().GET8CREATURE8LABEL(creatureType)};
+            tile->tileObjects_->ADD8OBJECT(
+                corpseType, {tileUnitsWidth / 2, tileUnitsWidth / 2});
 
-        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have killed a " + creatureLabel +
-                                         ".");
+            tile->creature_ = nullptr;
 
-        _<PLAYER>().ADD8EXPERIENCE(creature->experienceValue_);
+            worldArea->creaturesMirror_.erase(creature);
 
-        _<CreatureRespawner>().RespawnCreature(creatureType,
-                                               creature->respawnTimeMillis_);
+            auto creatureLabel{
+                _<CREATURE8INDEX>().GET8CREATURE8LABEL(creatureType)};
+
+            _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have killed a " +
+                                             creatureLabel + ".");
+
+            _<PLAYER>().ADD8EXPERIENCE(creature->experienceValue_);
+
+            _<CreatureRespawner>().RespawnCreature(
+                creatureType, creature->respawnTimeMillis_);
+        }
     }
 }

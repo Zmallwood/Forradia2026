@@ -7,4 +7,7 @@
 
 #pragma once
 
-POINT8F GET8MOUSE8POSITION();
+namespace FORRADIA
+{
+    POINT8F GET8MOUSE8POSITION();
+}

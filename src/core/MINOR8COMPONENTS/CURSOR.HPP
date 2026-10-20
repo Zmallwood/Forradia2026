@@ -9,17 +9,20 @@
 
 #include "CURSOR8STYLES.HPP"
 
-class CURSOR
+namespace FORRADIA
 {
-  public:
-    CURSOR();
+    class CURSOR
+    {
+      public:
+        CURSOR();
 
-    void RESET();
+        void RESET();
 
-    void RENDER();
+        void RENDER();
 
-    CURSOR8STYLES cursorStyle_ = CURSOR8STYLES::Default;
+        CURSOR8STYLES cursorStyle_ = CURSOR8STYLES::Default;
 
-  private:
-    static constexpr float kCursorSize_ = 0.05f;
-};
+      private:
+        static constexpr float kCursorSize_ = 0.05f;
+    };
+}

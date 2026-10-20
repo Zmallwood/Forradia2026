@@ -7,20 +7,24 @@
 
 #include "STRING8UTILITIES.HPP"
 
-std::string
-REPLACE(std::string_view text, std::string_view oldValue,
-        std::string_view newValue)
+namespace FORRADIA
 {
-    std::string result(text);
-
-    size_t position = 0;
-
-    while ((position = result.find(oldValue, position)) != std::string::npos)
+    std::string
+    REPLACE(std::string_view text, std::string_view oldValue,
+            std::string_view newValue)
     {
-        result.replace(position, oldValue.length(), newValue);
+        std::string result(text);
 
-        position += newValue.length();
+        size_t position = 0;
+
+        while ((position = result.find(oldValue, position)) !=
+               std::string::npos)
+        {
+            result.replace(position, oldValue.length(), newValue);
+
+            position += newValue.length();
+        }
+
+        return result;
     }
-
-    return result;
 }

@@ -13,108 +13,114 @@
 #include "CORE/SCENES8CORE/SCENE8MANAGER.HPP"
 #include "CORE/SDL8DEVICE/SDL8DEVICE.HPP"
 
-void
-ENGINE::START()
+namespace FORRADIA
 {
-    RANDOMIZE();
-
-    _<IMAGE8BANK>().LOAD8IMAGES();
-
-    _<TEXT8RENDERER>().INITIALIZE();
-
-    while (running_)
+    void
+    ENGINE::START()
     {
-        POLL_EVENTS();
+        RANDOMIZE();
 
-        _<CURSOR>().RESET();
+        _<IMAGE8BANK>().LOAD8IMAGES();
 
-        _<SCENE8MANAGER>().UPDATE8CURRENT8SCENE();
+        _<TEXT8RENDERER>().INITIALIZE();
 
-        _<FPS8COUNTER>().UPDATE();
-
-        _<SDL8DEVICE>().CLEAR8CANVAS();
-
-        _<SCENE8MANAGER>().RENDER8CURRENT8SCENE();
-
-        _<FPS8COUNTER>().RENDER();
-
-        _<CURSOR>().RENDER();
-
-        _<SDL8DEVICE>().PRESENT8CANVAS();
-    }
-}
-
-void
-ENGINE::RANDOMIZE()
-{
-    srand(time(nullptr));
-}
-
-void
-ENGINE::POLL_EVENTS()
-{
-    SDL_Event event;
-
-    while (SDL_PollEvent(&event))
-    {
-        switch (event.type)
+        while (running_)
         {
-        case SDL_QUIT:
-        {
-            running_ = false;
-            break;
-        }
-        case SDL_KEYDOWN:
-        {
-            _<SCENE8MANAGER>().ON8KEY8DOWN8CURRENT8SCENE(event.key.keysym.sym);
+            POLL_EVENTS();
 
-            break;
-        }
-        case SDL_KEYUP:
-        {
-            _<SCENE8MANAGER>().ON8KEY8UP8CURRENT8SCENE(event.key.keysym.sym);
+            _<CURSOR>().RESET();
 
-            break;
-        }
-        case SDL_MOUSEBUTTONDOWN:
-        {
-            _<SCENE8MANAGER>().ON8MOUSE8DOWN8CURRENT8SCENE(event.button.button);
+            _<SCENE8MANAGER>().UPDATE8CURRENT8SCENE();
 
-            switch (event.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                ticksLeftMouseButtonDown_ = NOW();
-                break;
-            case SDL_BUTTON_RIGHT:
-                ticksRightMouseButtonDown_ = NOW();
-                break;
-            }
-            break;
-        }
-        case SDL_MOUSEBUTTONUP:
-        {
-            auto clickSpeed = 0;
+            _<FPS8COUNTER>().UPDATE();
 
-            switch (event.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                clickSpeed = NOW() - ticksLeftMouseButtonDown_;
-                break;
-            case SDL_BUTTON_RIGHT:
-                clickSpeed = NOW() - ticksRightMouseButtonDown_;
-                break;
-            }
+            _<SDL8DEVICE>().CLEAR8CANVAS();
 
-            _<SCENE8MANAGER>().ON8MOUSE8UP8CURRENT8SCENE(event.button.button,
-                                                         clickSpeed);
-            break;
-        }
+            _<SCENE8MANAGER>().RENDER8CURRENT8SCENE();
+
+            _<FPS8COUNTER>().RENDER();
+
+            _<CURSOR>().RENDER();
+
+            _<SDL8DEVICE>().PRESENT8CANVAS();
         }
     }
-}
 
-void
-ENGINE::STOP()
-{
-    running_ = false;
+    void
+    ENGINE::RANDOMIZE()
+    {
+        srand(time(nullptr));
+    }
+
+    void
+    ENGINE::POLL_EVENTS()
+    {
+        SDL_Event event;
+
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+            case SDL_QUIT:
+            {
+                running_ = false;
+                break;
+            }
+            case SDL_KEYDOWN:
+            {
+                _<SCENE8MANAGER>().ON8KEY8DOWN8CURRENT8SCENE(
+                    event.key.keysym.sym);
+
+                break;
+            }
+            case SDL_KEYUP:
+            {
+                _<SCENE8MANAGER>().ON8KEY8UP8CURRENT8SCENE(
+                    event.key.keysym.sym);
+
+                break;
+            }
+            case SDL_MOUSEBUTTONDOWN:
+            {
+                _<SCENE8MANAGER>().ON8MOUSE8DOWN8CURRENT8SCENE(
+                    event.button.button);
+
+                switch (event.button.button)
+                {
+                case SDL_BUTTON_LEFT:
+                    ticksLeftMouseButtonDown_ = NOW();
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    ticksRightMouseButtonDown_ = NOW();
+                    break;
+                }
+                break;
+            }
+            case SDL_MOUSEBUTTONUP:
+            {
+                auto clickSpeed = 0;
+
+                switch (event.button.button)
+                {
+                case SDL_BUTTON_LEFT:
+                    clickSpeed = NOW() - ticksLeftMouseButtonDown_;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    clickSpeed = NOW() - ticksRightMouseButtonDown_;
+                    break;
+                }
+
+                _<SCENE8MANAGER>().ON8MOUSE8UP8CURRENT8SCENE(
+                    event.button.button, clickSpeed);
+                break;
+            }
+            }
+        }
+    }
+
+    void
+    ENGINE::STOP()
+    {
+        running_ = false;
+    }
 }
