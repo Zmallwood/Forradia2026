@@ -1,20 +1,20 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "GUI_STATUS_PANEL.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
-#include "GUI_HEALTH_METER.HPP"
 #include "DEFAULT8THEME/THEME8MATH/EXPERIENCE_MATH.HPP"
+#include "GUI_HEALTH_METER.HPP"
+#include "GUI_STATUS_PANEL.HPP"
 
-GUIStatusPanel::GUIStatusPanel() : GUIPanel(0.0f, 0.0f, 0.2f, 0.2f)
+GUIStatusPanel::GUIStatusPanel() : GUI8PANEL(0.0f, 0.0f, 0.2f, 0.2f)
 {
-    AddComponent(std::make_shared<GUIHealthMeter>());
+    ADD8COMPONENT(std::make_shared<GUIHealthMeter>());
 }
 
-void GUIStatusPanel::RenderDerived()
+void GUIStatusPanel::RENDER8DERIVED()
 {
-    GUIPanel::RenderDerived();
+    GUI8PANEL::RENDER8DERIVED();
 
     _<TextRenderer>().DrawString(_<PLAYER>().name_, 0.015f, 0.01f,
                                  FontSizes::_18, false);

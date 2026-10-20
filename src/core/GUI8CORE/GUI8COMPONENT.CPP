@@ -1,13 +1,13 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "GUI_COMPONENT.HPP"
+#include "GUI8COMPONENT.HPP"
 
-GUIComponent::GUIComponent(float x, float y) : position_(x, y)
+GUI8COMPONENT::GUI8COMPONENT(float x, float y) : position_(x, y)
 {
 }
 
-void GUIComponent::Update()
+void GUI8COMPONENT::UPDATE()
 {
     if (!isEnabled_)
     {
@@ -19,15 +19,15 @@ void GUIComponent::Update()
         return;
     }
 
-    UpdateDerived();
+    UPDATE8DERIVED();
 
     for (const auto &component : components_)
     {
-        component->Update();
+        component->UPDATE();
     }
 }
 
-void GUIComponent::Render()
+void GUI8COMPONENT::RENDER()
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -39,15 +39,15 @@ void GUIComponent::Render()
         return;
     }
 
-    RenderDerived();
+    RENDER8DERIVED();
 
     for (const auto &component : components_)
     {
-        component->Render();
+        component->RENDER();
     }
 }
 
-bool GUIComponent::OnMouseDown(Uint8 mouseButton)
+bool GUI8COMPONENT::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -60,8 +60,8 @@ bool GUIComponent::OnMouseDown(Uint8 mouseButton)
     }
 
     if (std::any_of(components_.rbegin(), components_.rend(),
-                    [=](const std::shared_ptr<GUIComponent> &comp)
-                    { return comp->OnMouseDown(mouseButton); }))
+                    [=](const std::shared_ptr<GUI8COMPONENT> &comp)
+                    { return comp->ON8MOUSE8DOWN(mouseButton); }))
     {
         return true;
     }
@@ -69,7 +69,7 @@ bool GUIComponent::OnMouseDown(Uint8 mouseButton)
     return false;
 }
 
-bool GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed)
+bool GUI8COMPONENT::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -82,8 +82,8 @@ bool GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed)
     }
 
     if (std::any_of(components_.rbegin(), components_.rend(),
-                    [=](const std::shared_ptr<GUIComponent> &comp)
-                    { return comp->OnMouseUp(mouseButton, clickSpeed); }))
+                    [=](const std::shared_ptr<GUI8COMPONENT> &comp)
+                    { return comp->ON8MOUSE8UP(mouseButton, clickSpeed); }))
     {
         return true;
     }
@@ -91,7 +91,7 @@ bool GUIComponent::OnMouseUp(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-bool GUIComponent::OnKeyDown(SDL_Keycode key)
+bool GUI8COMPONENT::ON8KEY8DOWN(SDL_Keycode key)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -104,8 +104,8 @@ bool GUIComponent::OnKeyDown(SDL_Keycode key)
     }
 
     if (std::any_of(components_.rbegin(), components_.rend(),
-                    [=](const std::shared_ptr<GUIComponent> &comp)
-                    { return comp->OnKeyDown(key); }))
+                    [=](const std::shared_ptr<GUI8COMPONENT> &comp)
+                    { return comp->ON8KEY8DOWN(key); }))
     {
         return true;
     }
@@ -113,7 +113,7 @@ bool GUIComponent::OnKeyDown(SDL_Keycode key)
     return false;
 }
 
-bool GUIComponent::OnKeyUp(SDL_Keycode key)
+bool GUI8COMPONENT::ON8KEY8UP(SDL_Keycode key)
 {
     if (!isVisible_ || !isEnabled_)
     {
@@ -126,8 +126,8 @@ bool GUIComponent::OnKeyUp(SDL_Keycode key)
     }
 
     if (std::any_of(components_.rbegin(), components_.rend(),
-                    [=](const std::shared_ptr<GUIComponent> &comp)
-                    { return comp->OnKeyUp(key); }))
+                    [=](const std::shared_ptr<GUI8COMPONENT> &comp)
+                    { return comp->ON8KEY8UP(key); }))
     {
         return true;
     }
@@ -135,8 +135,8 @@ bool GUIComponent::OnKeyUp(SDL_Keycode key)
     return false;
 }
 
-std::shared_ptr<GUIComponent>
-GUIComponent::AddComponent(std::shared_ptr<GUIComponent> component)
+std::shared_ptr<GUI8COMPONENT>
+GUI8COMPONENT::ADD8COMPONENT(std::shared_ptr<GUI8COMPONENT> component)
 {
     component->parent_ = this;
 
@@ -145,13 +145,13 @@ GUIComponent::AddComponent(std::shared_ptr<GUIComponent> component)
     return component;
 }
 
-POINT8F GUIComponent::GetPosition()
+POINT8F GUI8COMPONENT::GET8POSITION()
 {
     POINT8F finalPosition = {0.0f, 0.0f};
 
     if (parent_)
     {
-        finalPosition += parent_->GetPosition();
+        finalPosition += parent_->GET8POSITION();
     }
 
     finalPosition += position_;
@@ -159,7 +159,7 @@ POINT8F GUIComponent::GetPosition()
     return finalPosition;
 }
 
-void GUIComponent::SetYPosition(float y)
+void GUI8COMPONENT::SET8Y8POSITION(float y)
 {
     position_.y = y;
 }

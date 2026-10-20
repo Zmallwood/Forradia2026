@@ -5,16 +5,15 @@
 #include "GUI8WINDOW.HPP"
 #include "GUI8WINDOW8TITLE8BAR.HPP"
 
-
 GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title, float width,
                                            GUI8WINDOW &guiWindow)
-    : GUIPanel(0.0f, 0.0f, width, 0.05f), title_(title), guiWindow_(guiWindow)
+    : GUI8PANEL(0.0f, 0.0f, width, 0.05f), title_(title), guiWindow_(guiWindow)
 {
 }
 
-void GUI8WINDOW8TITLE8BAR::UpdateDerived()
+void GUI8WINDOW8TITLE8BAR::UPDATE8DERIVED()
 {
-    GUIPanel::UpdateDerived();
+    GUI8PANEL::UPDATE8DERIVED();
 
     auto mousePosition = GET8MOUSE8POSITION();
 
@@ -24,17 +23,17 @@ void GUI8WINDOW8TITLE8BAR::UpdateDerived()
 
         auto newPosition = positionStartMove_ + delta;
 
-        SetPosition(newPosition);
+        SET8POSITION(newPosition);
     }
 }
 
-bool GUI8WINDOW8TITLE8BAR::OnMouseDown(Uint8 mouseButton)
+bool GUI8WINDOW8TITLE8BAR::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     auto mousePosition = GET8MOUSE8POSITION();
 
-    if (GetBounds().CONTAINS(mousePosition))
+    if (GET8BOUNDS().CONTAINS(mousePosition))
     {
-        positionStartMove_ = GetPosition();
+        positionStartMove_ = GET8POSITION();
 
         mousePositionStartMove_ = GET8MOUSE8POSITION();
 
@@ -46,11 +45,11 @@ bool GUI8WINDOW8TITLE8BAR::OnMouseDown(Uint8 mouseButton)
     return false;
 }
 
-bool GUI8WINDOW8TITLE8BAR::OnMouseUp(Uint8 mouseButton, int clickSpeed)
+bool GUI8WINDOW8TITLE8BAR::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
     auto mousePosition = GET8MOUSE8POSITION();
 
-    if (GetBounds().CONTAINS(mousePosition))
+    if (GET8BOUNDS().CONTAINS(mousePosition))
     {
         isMoving_ = false;
 
@@ -60,28 +59,28 @@ bool GUI8WINDOW8TITLE8BAR::OnMouseUp(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-void GUI8WINDOW8TITLE8BAR::RenderDerived()
+void GUI8WINDOW8TITLE8BAR::RENDER8DERIVED()
 {
-    GUIPanel::RenderDerived();
+    GUI8PANEL::RENDER8DERIVED();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     _<TextRenderer>().DrawString(title_, position.x + k_margin_.x,
                                  position.y + k_margin_.y, FontSizes::_18,
                                  false);
 }
 
-std::string GUI8WINDOW8TITLE8BAR::GetBackgroundImage()
+std::string GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE()
 {
     return k_defaultBackgroundImage_;
 }
 
-POINT8F GUI8WINDOW8TITLE8BAR::GetPosition()
+POINT8F GUI8WINDOW8TITLE8BAR::GET8POSITION()
 {
-    return guiWindow_.GetPosition();
+    return guiWindow_.GET8POSITION();
 }
 
-void GUI8WINDOW8TITLE8BAR::SetPosition(POINT8F value)
+void GUI8WINDOW8TITLE8BAR::SET8POSITION(POINT8F value)
 {
-    guiWindow_.SetPosition(value);
+    guiWindow_.SET8POSITION(value);
 }

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
@@ -35,7 +35,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         facedTile->tileObjects_->TransformObject(object, "ObjectFelledTree");
 
-        _<GUITextConsole>().PrintLine("You have felled the tree.");
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have felled the tree.");
 
         _<PLAYER>().ADD8EXPERIENCE(13);
     };
@@ -84,7 +84,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         facedTile->tileObjects_->AddObject("ObjectWoodLog");
 
-        _<GUITextConsole>().PrintLine("You have chopped some wood logs.");
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have chopped some wood logs.");
 
         _<PLAYER>().ADD8EXPERIENCE(7);
     };
@@ -100,7 +100,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         facedTile->tileObjects_->RemoveObject(object);
 
-        _<GUITextConsole>().PrintLine("You have chopped up the felled tree.");
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have chopped up the felled tree.");
     };
 
     ADD8ENTRY("ObjectFelledTree", "Felled tree", OBJECT8FLAGS::k_unmovable,
@@ -121,7 +121,7 @@ OBJECT8INDEX::OBJECT8INDEX()
 
         facedTile->tileObjects_->TransformObject(object, "ObjectWoodPlank");
 
-        _<GUITextConsole>().PrintLine("You have sawed the wood log.");
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have sawed the wood log.");
     };
 
     ADD8ENTRY(

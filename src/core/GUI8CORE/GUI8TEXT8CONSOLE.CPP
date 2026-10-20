@@ -1,23 +1,23 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "GUI_TEXT_CONSOLE.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "GUI8TEXT8CONSOLE.HPP"
 
-GUITextConsole::GUITextConsole() : GUIPanel(0.0f, 0.8f, 0.4f, 0.2f)
+GUI8TEXT8CONSOLE::GUI8TEXT8CONSOLE() : GUI8PANEL(0.0f, 0.8f, 0.4f, 0.2f)
 {
 }
 
-void GUITextConsole::PrintLine(std::string_view line)
+void GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line)
 {
     lines_.push_back(line.data());
 }
 
-void GUITextConsole::RenderDerived()
+void GUI8TEXT8CONSOLE::RENDER8DERIVED()
 {
-    GUIPanel::RenderDerived();
+    GUI8PANEL::RENDER8DERIVED();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 

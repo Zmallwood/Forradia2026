@@ -3,30 +3,30 @@
 
 #pragma once
 
-#include "CORE/GUI8CORE/GUI_PANEL.HPP"
+#include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
 class GUI8WINDOW;
 
-class GUI8WINDOW8TITLE8BAR : public GUIPanel
+class GUI8WINDOW8TITLE8BAR : public GUI8PANEL
 {
   public:
     GUI8WINDOW8TITLE8BAR(std::string_view title, float width,
                          GUI8WINDOW &guiWindow);
 
   protected:
-    void UpdateDerived() override;
+    void UPDATE8DERIVED() override;
 
-    void RenderDerived() override;
+    void RENDER8DERIVED() override;
 
-    bool OnMouseDown(Uint8 mouseButton) override;
+    bool ON8MOUSE8DOWN(Uint8 mouseButton) override;
 
-    bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
+    bool ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) override;
 
-    virtual std::string GetBackgroundImage() override;
+    virtual std::string GET8BACKGROUND8IMAGE() override;
 
-    POINT8F GetPosition() override;
+    POINT8F GET8POSITION() override;
 
-    void SetPosition(POINT8F value) override;
+    void SET8POSITION(POINT8F value) override;
 
   private:
     inline static const std::string k_defaultBackgroundImage_ =

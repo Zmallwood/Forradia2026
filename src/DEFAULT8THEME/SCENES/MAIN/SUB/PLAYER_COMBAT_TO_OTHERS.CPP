@@ -5,7 +5,7 @@
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
 #include "CORE/CORE_GAME_OBJECTS/PLAYER.HPP"
-#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE_OBJECTS.HPP"
@@ -112,8 +112,8 @@ void PlayerCombatToOthers::OnMouseDown(Uint8 button)
         auto creatureLabel{
             _<CREATURE8INDEX>().GET8CREATURE8LABEL(creatureType)};
 
-        _<GUITextConsole>().PrintLine("You have killed a " + creatureLabel +
-                                      ".");
+        _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have killed a " + creatureLabel +
+                                         ".");
 
         _<PLAYER>().ADD8EXPERIENCE(creature->experienceValue_);
 

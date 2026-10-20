@@ -11,11 +11,11 @@ class GUIEquipmentWindow : public GUI8WINDOW
     GUIEquipmentWindow();
 
   protected:
-    bool OnMouseDown(Uint8 mouseButton) override;
+    bool ON8MOUSE8DOWN(Uint8 mouseButton) override;
 
-    bool OnMouseUp(Uint8 mouseButton, int clickSpeed) override;
+    bool ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) override;
 
-    void RenderDerived() override;
+    void RENDER8DERIVED() override;
 
   private:
     RECT8F GetHeadSlotBounds();

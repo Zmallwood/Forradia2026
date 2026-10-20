@@ -3,15 +3,15 @@
 
 #pragma once
 
-#include "CORE/GUI8CORE/GUI_METER.HPP"
+#include "CORE/GUI8CORE/GUI8METER.HPP"
 
-class GUIHealthMeter : public GUIMeter
+class GUIHealthMeter : public GUI8METER
 {
   public:
     GUIHealthMeter();
 
   protected:
-    virtual float GetMeterProgress() override;
+    virtual float GET8METER8PROGRESS() override;
 
-    virtual COLOR GetFilledColor() override;
+    virtual COLOR GET8FILLED8COLOR() override;
 };

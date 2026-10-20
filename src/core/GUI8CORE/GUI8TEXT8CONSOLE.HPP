@@ -3,17 +3,17 @@
 
 #pragma once
 
-#include "GUI_PANEL.HPP"
+#include "GUI8PANEL.HPP"
 
-class GUITextConsole : public GUIPanel
+class GUI8TEXT8CONSOLE : public GUI8PANEL
 {
   public:
-    GUITextConsole();
+    GUI8TEXT8CONSOLE();
 
-    void PrintLine(std::string_view line);
+    void PRINT8LINE(std::string_view line);
 
   protected:
-    void RenderDerived() override;
+    void RENDER8DERIVED() override;
 
   private:
     static constexpr float k_lineHeight_ = 0.02f;

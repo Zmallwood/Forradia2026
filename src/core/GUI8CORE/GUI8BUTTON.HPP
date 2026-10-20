@@ -3,25 +3,25 @@
 
 #pragma once
 
-#include "GUI_PANEL.HPP"
+#include "GUI8PANEL.HPP"
 
-class GUIButton : public GUIPanel
+class GUI8BUTTON : public GUI8PANEL
 {
   public:
-    GUIButton(
+    GUI8BUTTON(
         std::string_view text, float x, float y, float width, float height,
         std::function<void()> action,
         std::string_view backgroundImage = "GUIButtonBackground",
         std::string_view hoveredBackgroundImage = "GUIButtonHoveredBackground");
 
   protected:
-    void UpdateDerived() override;
+    void UPDATE8DERIVED() override;
 
-    void RenderDerived() override;
+    void RENDER8DERIVED() override;
 
-    bool OnMouseDown(Uint8 mouseButton) override;
+    bool ON8MOUSE8DOWN(Uint8 mouseButton) override;
 
-    std::string GetBackgroundImage() override;
+    std::string GET8BACKGROUND8IMAGE() override;
 
   private:
     const std::string k_backgroundImage_ = "GUIButtonBackground";

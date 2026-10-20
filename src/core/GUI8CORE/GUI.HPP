@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "GUI_COMPONENT.HPP"
+#include "GUI8COMPONENT.HPP"
 
-class GUI : public GUIComponent
+class GUI : public GUI8COMPONENT
 {
   public:
-    using GUIComponent::GUIComponent;
+    using GUI8COMPONENT::GUI8COMPONENT;
 };

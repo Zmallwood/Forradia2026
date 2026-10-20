@@ -20,7 +20,7 @@ void IScene::OnEnter()
 
 void IScene::Update()
 {
-    gui_->Update();
+    gui_->UPDATE();
 
     UpdateDerived();
 }
@@ -29,14 +29,14 @@ void IScene::Render()
 {
     RenderBeforeGUIDerived();
 
-    gui_->Render();
+    gui_->RENDER();
 
     RenderAfterGUIDerived();
 }
 
 void IScene::OnKeyDown(SDL_Keycode key)
 {
-    if (gui_->OnKeyDown(key))
+    if (gui_->ON8KEY8DOWN(key))
     {
         return;
     }
@@ -46,7 +46,7 @@ void IScene::OnKeyDown(SDL_Keycode key)
 
 void IScene::OnKeyUp(SDL_Keycode key)
 {
-    if (gui_->OnKeyUp(key))
+    if (gui_->ON8KEY8UP(key))
     {
         return;
     }
@@ -56,7 +56,7 @@ void IScene::OnKeyUp(SDL_Keycode key)
 
 void IScene::OnMouseDown(Uint8 button)
 {
-    if (gui_->OnMouseDown(button))
+    if (gui_->ON8MOUSE8DOWN(button))
     {
         return;
     }
@@ -66,7 +66,7 @@ void IScene::OnMouseDown(Uint8 button)
 
 void IScene::OnMouseUp(Uint8 button, int clickSpeed)
 {
-    if (gui_->OnMouseUp(button, clickSpeed))
+    if (gui_->ON8MOUSE8UP(button, clickSpeed))
     {
         return;
     }

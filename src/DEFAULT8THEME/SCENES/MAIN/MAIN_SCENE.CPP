@@ -1,20 +1,20 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "MAIN_SCENE.HPP"
 #include "CORE/GUI8CORE/GUI.HPP"
-#include "CORE/GUI8CORE/GUI_BUTTON.HPP"
-#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/GUI8CORE/GUI8BUTTON.HPP"
+#include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CUSTOM8GUI/ACTION8MENU/GUI_ACTION_MENU.HPP"
 #include "CUSTOM8GUI/GUI_EQUIPMENT_WINDOW.HPP"
 #include "CUSTOM8GUI/GUI_EXPERIENCE_METER.HPP"
 #include "CUSTOM8GUI/GUI_INVENTORY_WINDOW.HPP"
 #include "CUSTOM8GUI/GUI_STATUS_PANEL.HPP"
-#include "SUB/CREATURE_RESPAWNER.HPP"
+#include "MAIN_SCENE.HPP"
 #include "SUB/CREATURES_COMBAT_TO_PLAYER.HPP"
 #include "SUB/CREATURES_MOVEMENT.HPP"
-#include "SUB/FIRST_PERSON_HOVERING.HPP"
+#include "SUB/CREATURE_RESPAWNER.HPP"
 #include "SUB/FIRST8PERSON8VIEW/FIRST_PERSON_VIEW.HPP"
+#include "SUB/FIRST_PERSON_HOVERING.HPP"
 #include "SUB/KEYBOARD_HOTKEYS.HPP"
 #include "SUB/KEYBOARD_MOVEMENT.HPP"
 #include "SUB/MOUSE_MOVEMENT.HPP"
@@ -26,33 +26,34 @@
 
 void MainScene::InitializeDerived()
 {
-    gui_->AddComponent(GET8SINGLETON8PTR<GUITextConsole>());
+    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
-    gui_->AddComponent(GET8SINGLETON8PTR<GUIExperienceMeter>());
+    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIExperienceMeter>());
 
-    gui_->AddComponent(std::make_shared<GUIButton>(
+    gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
         "", 0.94f, 0.08f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-        [this]() { _<GUIInventoryWindow>().ToggleVisibility(); },
+        [this]() { _<GUIInventoryWindow>().TOGGLE8VISIBILITY(); },
         "GUIButtonInventoryBackground", "GUIButtonInventoryHoveredBackground"));
 
-    gui_->AddComponent(std::make_shared<GUIButton>(
+    gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
         "", 0.94f, 0.18f, 0.05f, CONVERT8WIDTH8TO8HEIGHT(0.05f),
-        [this]() { _<GUIEquipmentWindow>().ToggleVisibility(); },
+        [this]() { _<GUIEquipmentWindow>().TOGGLE8VISIBILITY(); },
         "GUIButtonEquipmentBackground", "GUIButtonEquipmentHoveredBackground"));
 
-    gui_->AddComponent(std::make_shared<GUIStatusPanel>());
+    gui_->ADD8COMPONENT(std::make_shared<GUIStatusPanel>());
 
-    gui_->AddComponent(GET8SINGLETON8PTR<GUIInventoryWindow>());
+    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIInventoryWindow>());
 
-    gui_->AddComponent(GET8SINGLETON8PTR<GUIEquipmentWindow>());
+    gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUIEquipmentWindow>());
 }
 
 void MainScene::OnEnterDerived()
 {
-    _<GUITextConsole>().SetYPosition(1.0f - _<GUITextConsole>().size_.height -
-                                     _<GUIExperienceMeter>().size_.height);
+    _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(1.0f -
+                                         _<GUI8TEXT8CONSOLE>().size_.height -
+                                         _<GUIExperienceMeter>().size_.height);
 
-    _<GUITextConsole>().PrintLine("You have entered the world.");
+    _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
 }
 
 void MainScene::UpdateDerived()

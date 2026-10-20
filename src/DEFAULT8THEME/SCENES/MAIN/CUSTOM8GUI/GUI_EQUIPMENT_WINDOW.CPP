@@ -13,9 +13,9 @@ GUIEquipmentWindow::GUIEquipmentWindow()
 {
 }
 
-bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
+bool GUIEquipmentWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
-    auto result = GUI8WINDOW::OnMouseDown(mouseButton);
+    auto result = GUI8WINDOW::ON8MOUSE8DOWN(mouseButton);
 
     auto mousePosition = GET8MOUSE8POSITION();
 
@@ -77,9 +77,9 @@ bool GUIEquipmentWindow::OnMouseDown(Uint8 mouseButton)
     return result;
 }
 
-bool GUIEquipmentWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
+bool GUIEquipmentWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
-    GUI8WINDOW::OnMouseUp(mouseButton, clickSpeed);
+    GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
     auto mousePosition = GET8MOUSE8POSITION();
 
@@ -129,9 +129,9 @@ bool GUIEquipmentWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-void GUIEquipmentWindow::RenderDerived()
+void GUIEquipmentWindow::RENDER8DERIVED()
 {
-    GUI8WINDOW::RenderDerived();
+    GUI8WINDOW::RENDER8DERIVED();
 
     auto headBounds = GetHeadSlotBounds();
     auto chestBounds = GetChestSlotBounds();
@@ -183,7 +183,7 @@ void GUIEquipmentWindow::RenderDerived()
 
 RECT8F GUIEquipmentWindow::GetHeadSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 2.0f;
     auto yCenter = size_.height / 5.0f * 1;
@@ -199,7 +199,7 @@ RECT8F GUIEquipmentWindow::GetHeadSlotBounds()
 
 RECT8F GUIEquipmentWindow::GetChestSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 2.0f;
     auto yCenter = size_.height / 5.0f * 2;
@@ -215,7 +215,7 @@ RECT8F GUIEquipmentWindow::GetChestSlotBounds()
 
 RECT8F GUIEquipmentWindow::GetLegsSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 2.0f;
     auto yCenter = size_.height / 5.0f * 3;
@@ -231,7 +231,7 @@ RECT8F GUIEquipmentWindow::GetLegsSlotBounds()
 
 RECT8F GUIEquipmentWindow::GetFeetSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 2.0f;
     auto yCenter = size_.height / 5.0f * 4;
@@ -247,7 +247,7 @@ RECT8F GUIEquipmentWindow::GetFeetSlotBounds()
 
 RECT8F GUIEquipmentWindow::GetRightHandSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 4.0f * 1;
     auto yCenter = size_.height / 5.0f * 2;
@@ -263,7 +263,7 @@ RECT8F GUIEquipmentWindow::GetRightHandSlotBounds()
 
 RECT8F GUIEquipmentWindow::GetLeftHandSlotBounds()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto xCenter = size_.width / 4.0f * 3;
     auto yCenter = size_.height / 5.0f * 2;

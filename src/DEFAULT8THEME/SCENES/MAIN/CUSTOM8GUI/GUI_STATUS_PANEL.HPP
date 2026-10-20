@@ -1,13 +1,13 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "CORE/GUI8CORE/GUI_PANEL.HPP"
+#include "CORE/GUI8CORE/GUI8PANEL.HPP"
 
-class GUIStatusPanel : public GUIPanel
+class GUIStatusPanel : public GUI8PANEL
 {
   public:
     GUIStatusPanel();
 
   protected:
-    void RenderDerived() override;
+    void RENDER8DERIVED() override;
 };

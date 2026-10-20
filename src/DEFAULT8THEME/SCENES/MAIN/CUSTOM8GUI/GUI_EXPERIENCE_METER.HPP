@@ -3,13 +3,13 @@
 
 #pragma once
 
-#include "CORE/GUI8CORE/GUI_METER.HPP"
+#include "CORE/GUI8CORE/GUI8METER.HPP"
 
-class GUIExperienceMeter : public GUIMeter
+class GUIExperienceMeter : public GUI8METER
 {
   public:
     GUIExperienceMeter();
 
   protected:
-    virtual float GetMeterProgress() override;
+    virtual float GET8METER8PROGRESS() override;
 };

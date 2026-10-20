@@ -2,17 +2,16 @@
 // SPDX-License-Identifier: MIT
 
 #include "CORE/RENDERING/COLORS/COLOR_RENDERER.HPP"
-#include "GUI_METER.HPP"
+#include "GUI8METER.HPP"
 
-
-GUIMeter::GUIMeter(float x, float y, float width, float height)
-    : GUIComponent(x, y), size_(width, height)
+GUI8METER::GUI8METER(float x, float y, float width, float height)
+    : GUI8COMPONENT(x, y), size_(width, height)
 {
 }
 
-void GUIMeter::RenderDerived()
+void GUI8METER::RENDER8DERIVED()
 {
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 
@@ -20,19 +19,19 @@ void GUIMeter::RenderDerived()
                                 COLORS::k_darkBlue);
 
     _<ColorRenderer>().FillRect(position.x, position.y,
-                                GetMeterProgress() * size.width, size.height,
-                                GetFilledColor());
+                                GET8METER8PROGRESS() * size.width, size.height,
+                                GET8FILLED8COLOR());
 
     _<ColorRenderer>().DrawRect(position.x, position.y, size.width, size.height,
                                 COLORS::k_black);
 }
 
-float GUIMeter::GetMeterProgress()
+float GUI8METER::GET8METER8PROGRESS()
 {
     return 0.0f;
 }
 
-COLOR GUIMeter::GetFilledColor()
+COLOR GUI8METER::GET8FILLED8COLOR()
 {
     return COLORS::k_yellowGray;
 }

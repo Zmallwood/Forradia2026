@@ -8,26 +8,27 @@
 #include "CORE/GUI8CORE/WINDOWS/GUI8WINDOW8TITLE8BAR.HPP"
 #include "CORE/RENDERING/IMAGES/IMAGE_RENDERER.HPP"
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
-#include "GUI_INVENTORY_WINDOW.HPP"
 #include "DEFAULT8THEME/SCENES/MAIN/SUB/OBJECT_MOVING.HPP"
+#include "GUI_INVENTORY_WINDOW.HPP"
+
 
 GUIInventoryWindow::GUIInventoryWindow()
     : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f)
 {
 }
 
-bool GUIInventoryWindow::OnMouseDown(Uint8 mouseButton)
+bool GUIInventoryWindow::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
-    auto result = GUI8WINDOW::OnMouseDown(mouseButton);
+    auto result = GUI8WINDOW::ON8MOUSE8DOWN(mouseButton);
 
     auto mousePosition = GET8MOUSE8POSITION();
 
-    auto bounds = GetBounds();
+    auto bounds = GET8BOUNDS();
 
     if (mouseButton == SDL_BUTTON_LEFT && bounds.CONTAINS(mousePosition) &&
         isVisible_ && isEnabled_)
     {
-        auto position = GetPosition();
+        auto position = GET8POSITION();
 
         auto size = size_;
 
@@ -101,9 +102,9 @@ bool GUIInventoryWindow::OnMouseDown(Uint8 mouseButton)
     return result;
 }
 
-bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
+bool GUIInventoryWindow::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed)
 {
-    GUI8WINDOW::OnMouseUp(mouseButton, clickSpeed);
+    GUI8WINDOW::ON8MOUSE8UP(mouseButton, clickSpeed);
 
     if (!_<ObjectMoving>().GetObjectInAir())
     {
@@ -112,7 +113,7 @@ bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
 
     auto mousePosition = GET8MOUSE8POSITION();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 
@@ -164,11 +165,11 @@ bool GUIInventoryWindow::OnMouseUp(Uint8 mouseButton, int clickSpeed)
     return false;
 }
 
-void GUIInventoryWindow::RenderDerived()
+void GUIInventoryWindow::RENDER8DERIVED()
 {
-    GUI8WINDOW::RenderDerived();
+    GUI8WINDOW::RENDER8DERIVED();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 

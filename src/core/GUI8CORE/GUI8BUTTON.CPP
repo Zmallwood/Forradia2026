@@ -1,25 +1,25 @@
 // Copyright (c) 2026 Andreas Åkerberg
 // SPDX-License-Identifier: MIT
 
-#include "GUI_BUTTON.HPP"
 #include "CORE/MINOR8COMPONENTS/CURSOR.HPP"
 #include "CORE/RENDERING/TEXT/TEXT_RENDERER.HPP"
+#include "GUI8BUTTON.HPP"
 
-GUIButton::GUIButton(std::string_view text, float x, float y, float width,
-                     float height, std::function<void()> action,
-                     std::string_view backgroundImage,
-                     std::string_view hoveredBackgroundImage)
-    : GUIPanel(x, y, width, height), text_(text), action_(action),
+GUI8BUTTON::GUI8BUTTON(std::string_view text, float x, float y, float width,
+                       float height, std::function<void()> action,
+                       std::string_view backgroundImage,
+                       std::string_view hoveredBackgroundImage)
+    : GUI8PANEL(x, y, width, height), text_(text), action_(action),
       k_backgroundImage_(backgroundImage),
       k_hoveredBackgroundImage_(hoveredBackgroundImage)
 {
 }
 
-void GUIButton::UpdateDerived()
+void GUI8BUTTON::UPDATE8DERIVED()
 {
-    GUIPanel::UpdateDerived();
+    GUI8PANEL::UPDATE8DERIVED();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 
@@ -37,11 +37,11 @@ void GUIButton::UpdateDerived()
     }
 }
 
-void GUIButton::RenderDerived()
+void GUI8BUTTON::RENDER8DERIVED()
 {
-    GUIPanel::RenderDerived();
+    GUI8PANEL::RENDER8DERIVED();
 
-    auto position = GetPosition();
+    auto position = GET8POSITION();
 
     auto size = size_;
 
@@ -50,7 +50,7 @@ void GUIButton::RenderDerived()
                                  true);
 }
 
-bool GUIButton::OnMouseDown(Uint8 mouseButton)
+bool GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton)
 {
     if (!isVisible_)
     {
@@ -59,7 +59,7 @@ bool GUIButton::OnMouseDown(Uint8 mouseButton)
 
     auto mousePosition = GET8MOUSE8POSITION();
 
-    if (GetBounds().CONTAINS(mousePosition))
+    if (GET8BOUNDS().CONTAINS(mousePosition))
     {
         action_();
 
@@ -69,7 +69,7 @@ bool GUIButton::OnMouseDown(Uint8 mouseButton)
     return false;
 }
 
-std::string GUIButton::GetBackgroundImage()
+std::string GUI8BUTTON::GET8BACKGROUND8IMAGE()
 {
     return hovered_ ? k_hoveredBackgroundImage_ : k_backgroundImage_;
 }

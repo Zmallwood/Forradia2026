@@ -3,7 +3,7 @@
 
 #include "PLAYER.HPP"
 #include "CORE/CONFIGURATION/GAME8PROPERTIES.HPP"
-#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD_AREA.HPP"
@@ -174,8 +174,8 @@ void PLAYER::ADD8EXPERIENCE(int amount)
 {
     experience_ += amount;
 
-    _<GUITextConsole>().PrintLine("You gained " + std::to_string(amount) +
-                                  " experience points.");
+    _<GUI8TEXT8CONSOLE>().PRINT8LINE("You gained " + std::to_string(amount) +
+                                     " experience points.");
 }
 
 void PLAYER::HIT(float damage)
@@ -188,5 +188,5 @@ void PLAYER::HIT(float damage)
 
     ssDamage << std::fixed << std::setprecision(1) << damage;
 
-    _<GUITextConsole>().PrintLine("You took " + ssDamage.str() + " damage.");
+    _<GUI8TEXT8CONSOLE>().PRINT8LINE("You took " + ssDamage.str() + " damage.");
 }

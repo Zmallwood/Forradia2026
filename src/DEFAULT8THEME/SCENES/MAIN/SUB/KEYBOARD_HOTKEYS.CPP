@@ -9,10 +9,10 @@ void KeyboardHotkeys::OnKeyDown(SDL_Keycode key)
 {
     if (key == SDLK_b)
     {
-        _<GUIInventoryWindow>().ToggleVisibility();
+        _<GUIInventoryWindow>().TOGGLE8VISIBILITY();
     }
     else if (key == SDLK_e)
     {
-        _<GUIEquipmentWindow>().ToggleVisibility();
+        _<GUIEquipmentWindow>().TOGGLE8VISIBILITY();
     }
 }

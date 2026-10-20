@@ -3,7 +3,7 @@
 
 #include "CREATURE.HPP"
 #include "CORE/CONFIGURATION/CREATURE8INDEX.HPP"
-#include "CORE/GUI8CORE/GUI_TEXT_CONSOLE.HPP"
+#include "CORE/GUI8CORE/GUI8TEXT8CONSOLE.HPP"
 
 Creature::Creature(std::string_view typeName)
 {
@@ -40,8 +40,8 @@ void Creature::Hit(float damage, POINT8F hitPosition)
 
     ssDamage << std::fixed << std::setprecision(1) << damage;
 
-    _<GUITextConsole>().PrintLine("You hit a " + creatureLabel + " for " +
-                                  ssDamage.str() + " damage.");
+    _<GUI8TEXT8CONSOLE>().PRINT8LINE("You hit a " + creatureLabel + " for " +
+                                     ssDamage.str() + " damage.");
 }
 
 bool Creature::IsDead()
