@@ -27,75 +27,75 @@ namespace FORRADIA8GAME {
     WORLD8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.0f, 0.0f, 0.5f, 1.0f);
 
-        auto viewWidth = GAME8PROPERTIES::kViewWidth_;
+        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
         _<COLOR8RENDERER>().FILL8RECT(0.0f, 0.0f, viewWidth, 1.0f,
                                       COLORS::kBlack);
 
-        auto worldArea = _<WORLD>().currentWorldArea_;
+        auto worldArea{_<WORLD>().currentWorldArea_};
 
-        POINT playerPosition = {static_cast<int>(_<PLAYER>().position_.x),
-                                static_cast<int>(_<PLAYER>().position_.y)};
+        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
+                             static_cast<int>(_<PLAYER>().position_.y)};
 
-        auto playerXInt = static_cast<int>(_<PLAYER>().position_.x);
-        auto playerYInt = static_cast<int>(_<PLAYER>().position_.y);
+        auto playerXInt{static_cast<int>(_<PLAYER>().position_.x)};
+        auto playerYInt{static_cast<int>(_<PLAYER>().position_.y)};
 
-        auto playerMoveDx = _<PLAYER>().position_.x - playerPosition.x;
-        auto playerMoveDy = _<PLAYER>().position_.y - playerPosition.y;
+        auto playerMoveDx{_<PLAYER>().position_.x - playerPosition.x};
+        auto playerMoveDy{_<PLAYER>().position_.y - playerPosition.y};
 
-        auto playerTile = worldArea->GET8TILE(playerPosition);
+        auto playerTile{worldArea->GET8TILE(playerPosition)};
 
-        auto playerElevation = 0;
+        auto playerElevation{0};
 
         if (playerTile)
             playerElevation = playerTile->elevation_;
 
-        auto hoveredCoordinate = _<TILE8HOVERING>().hoveredCoordinate_;
+        auto hoveredCoordinate{_<TILE8HOVERING>().hoveredCoordinate_};
 
-        auto facedTile = _<PLAYER>().facedTileCoordinate_;
+        auto facedTile{_<PLAYER>().facedTileCoordinate_};
 
-        auto tileWidth = _<GAME8PROPERTIES>().kTileWidth_;
-        auto tileHeight = CONVERT8WIDTH8TO8HEIGHT(tileWidth);
+        auto tileWidth{_<GAME8PROPERTIES>().kTileWidth_};
+        auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-        auto tileGridSize = GAME8PROPERTIES::kTileGridSize_;
+        auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
 
-        auto numGridRows = tileGridSize - 11;
-        auto numGridColumns = tileGridSize - 11;
+        auto numGridRows{tileGridSize - 11};
+        auto numGridColumns{tileGridSize - 11};
 
-        auto playerLoopX = 5;
-        auto playerLoopY = 5;
+        auto playerLoopX{5};
+        auto playerLoopY{5};
 
         for (auto y = -numGridRows; y < 11 + numGridRows; y++) {
             for (auto x = -numGridColumns; x < 11 + numGridColumns; x++) {
-                auto xCoordinate = playerPosition.x - 5 + x;
-                auto yCoordinate = playerPosition.y - 5 + y;
+                auto xCoordinate{playerPosition.x - 5 + x};
+                auto yCoordinate{playerPosition.y - 5 + y};
 
                 if (!worldArea->IS8VALID8COORDINATE(xCoordinate, yCoordinate))
                     continue;
 
-                auto tile = worldArea->GET8TILE(xCoordinate, yCoordinate);
+                auto tile{worldArea->GET8TILE(xCoordinate, yCoordinate)};
 
-                auto elevation = tile->elevation_;
+                auto elevation{tile->elevation_};
 
-                POINT coordinateNorth = {xCoordinate, yCoordinate - 1};
-                POINT coordinateEast = {xCoordinate + 1, yCoordinate};
-                POINT coordinateSouth = {xCoordinate, yCoordinate + 1};
-                POINT coordinateWest = {xCoordinate - 1, yCoordinate};
+                POINT coordinateNorth{xCoordinate, yCoordinate - 1};
+                POINT coordinateEast{xCoordinate + 1, yCoordinate};
+                POINT coordinateSouth{xCoordinate, yCoordinate + 1};
+                POINT coordinateWest{xCoordinate - 1, yCoordinate};
 
-                POINT coordinateNorthEast = {xCoordinate + 1, yCoordinate - 1};
-                POINT coordinateSouthEast = {xCoordinate + 1, yCoordinate + 1};
-                POINT coordinateSouthWest = {xCoordinate - 1, yCoordinate + 1};
-                POINT coordinateNorthWest = {xCoordinate - 1, yCoordinate - 1};
+                POINT coordinateNorthEast{xCoordinate + 1, yCoordinate - 1};
+                POINT coordinateSouthEast{xCoordinate + 1, yCoordinate + 1};
+                POINT coordinateSouthWest{xCoordinate - 1, yCoordinate + 1};
+                POINT coordinateNorthWest{xCoordinate - 1, yCoordinate - 1};
 
-                auto elevationNorth = elevation;
-                auto elevationEast = elevation;
-                auto elevationSouth = elevation;
-                auto elevationWest = elevation;
+                auto elevationNorth{elevation};
+                auto elevationEast{elevation};
+                auto elevationSouth{elevation};
+                auto elevationWest{elevation};
 
-                auto elevationNorthEast = elevation;
-                auto elevationSouthEast = elevation;
-                auto elevationSouthWest = elevation;
-                auto elevationNorthWest = elevation;
+                auto elevationNorthEast{elevation};
+                auto elevationSouthEast{elevation};
+                auto elevationSouthWest{elevation};
+                auto elevationNorthWest{elevation};
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateNorth))
                     elevationNorth =
@@ -129,21 +129,21 @@ namespace FORRADIA8GAME {
                     elevationNorthWest =
                         worldArea->GET8TILE(coordinateNorthWest)->elevation_;
 
-                auto tileX = 0.25f - tileWidth / 2 + x * tileWidth / 2 -
-                             y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
-                             playerMoveDy * tileWidth / 2;
+                auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
+                           y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
+                           playerMoveDy * tileWidth / 2};
 
-                auto tileYOriginal = 0.5f - 5.5f * tileHeight +
-                                     x * tileHeight / 2 + y * tileHeight / 2 +
-                                     playerElevation * tileHeight / 4 -
-                                     playerMoveDx * tileHeight / 2 -
-                                     playerMoveDy * tileHeight / 2;
+                auto tileYOriginal{0.5f - 5.5f * tileHeight +
+                                   x * tileHeight / 2 + y * tileHeight / 2 +
+                                   playerElevation * tileHeight / 4 -
+                                   playerMoveDx * tileHeight / 2 -
+                                   playerMoveDy * tileHeight / 2};
 
-                auto tileY = tileYOriginal;
+                auto tileY{tileYOriginal};
 
                 tileY = tileYOriginal;
 
-                auto ground = tile->ground_;
+                auto ground{tile->ground_};
 
                 for (auto i = 0; i < elevation; i++) {
                     if (ground == HASH("GroundRock"))
@@ -186,21 +186,21 @@ namespace FORRADIA8GAME {
                 }
 
                 if (ground == HASH("GroundWater")) {
-                    auto waterAnimIndex =
-                        ((NOW() + 10 * xCoordinate * yCoordinate) % 900) / 300;
+                    auto waterAnimIndex{
+                        ((NOW() + 10 * xCoordinate * yCoordinate) % 900) / 300};
 
-                    std::string groundImageName =
-                        "GroundWater_" + std::to_string(waterAnimIndex);
+                    std::string groundImageName{"GroundWater_" +
+                                                std::to_string(waterAnimIndex)};
 
                     ground = HASH(groundImageName);
                 }
 
                 if (ground == HASH("GroundGrass")) {
-                    auto grassIndex =
-                        ((10 * xCoordinate * yCoordinate) % 900) / 300;
+                    auto grassIndex{((10 * xCoordinate * yCoordinate) % 900) /
+                                    300};
 
-                    std::string groundImageName =
-                        "GroundGrass_" + std::to_string(grassIndex);
+                    std::string groundImageName{"GroundGrass_" +
+                                                std::to_string(grassIndex)};
 
                     ground = HASH(groundImageName);
                 }
@@ -281,7 +281,7 @@ namespace FORRADIA8GAME {
                                                    objectHeight);
                 }
 
-                auto tileYCopy = tileYOriginal;
+                auto tileYCopy{tileYOriginal};
 
                 auto npc{tile->npc_};
 

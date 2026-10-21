@@ -18,7 +18,19 @@ namespace FORRADIA8GAME {
     void
     WORLD8GENERATOR::GENERATE8NEW8WORLD() {
         CLEAR8WITH8GRASS();
+        SET8BASE8ELEVATION();
+        GENERATE8WATER();
+        GENERATE8DIRT();
+        GENERATE8HILLS();
+        GENERATE8MOUNTAINS();
+        GENERATE8FORESTS();
+        GENERATE8LARGE8OBJECTS();
+        GENERATE8SMALL8OBJECTS();
+        GENERATE8CREATURES();
+    }
 
+    void
+    WORLD8GENERATOR::SET8BASE8ELEVATION() {
         auto worldArea{_<WORLD>().currentWorldArea_};
         auto size{worldArea->GET8SIZE()};
 
@@ -28,6 +40,12 @@ namespace FORRADIA8GAME {
                 tile->elevation_ = 1;
             }
         }
+    }
+
+    void
+    WORLD8GENERATOR::GENERATE8WATER() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
             for (auto x = 1; x < size.width - 1; x++) {
@@ -124,6 +142,12 @@ namespace FORRADIA8GAME {
         TRAVERSE82(fnMakeWater);
         TRAVERSE83(fnMakeWater);
         TRAVERSE84(fnMakeWater);
+    }
+
+    void
+    WORLD8GENERATOR::GENERATE8DIRT() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
             for (auto x = 1; x < size.width - 1; x++) {
@@ -220,6 +244,12 @@ namespace FORRADIA8GAME {
         TRAVERSE82(fnMakeDirt);
         TRAVERSE83(fnMakeDirt);
         TRAVERSE84(fnMakeDirt);
+    }
+
+    void
+    WORLD8GENERATOR::GENERATE8HILLS() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
 
         auto numHills = 60 + rand() % 10;
 
@@ -254,6 +284,13 @@ namespace FORRADIA8GAME {
                 }
             }
         }
+    }
+
+    void
+    WORLD8GENERATOR::GENERATE8MOUNTAINS() {
+
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
 
         auto numMountains = 40 + rand() % 10;
 
@@ -294,6 +331,12 @@ namespace FORRADIA8GAME {
                 }
             }
         }
+    }
+
+    void
+    WORLD8GENERATOR::GENERATE8FORESTS() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
             for (auto x = 1; x < size.width - 1; x++) {
@@ -434,12 +477,6 @@ namespace FORRADIA8GAME {
         TRAVERSE82(fnMakeTrees);
         TRAVERSE83(fnMakeTrees);
         TRAVERSE84(fnMakeTrees);
-
-        GENERATE8LARGE8OBJECTS();
-
-        GENERATE8SMALL8OBJECTS();
-
-        GENERATE8CREATURES();
     }
 
     void

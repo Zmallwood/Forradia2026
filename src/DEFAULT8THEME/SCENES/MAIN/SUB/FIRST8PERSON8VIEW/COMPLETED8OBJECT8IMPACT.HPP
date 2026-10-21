@@ -11,6 +11,6 @@ namespace FORRADIA8GAME {
     class COMPLETED8OBJECT8IMPACT {
       public:
         POINT8F position;
-        int ticksCompleted = 0;
+        int ticksCompleted{0};
     };
 }

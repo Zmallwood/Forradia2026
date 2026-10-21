@@ -12,7 +12,7 @@ namespace FORRADIA8GAME {
 
     class POSITIONED8OBJECT {
       public:
-        POINT position_ = {-1, -1};
+        POINT position_{-1, -1};
         std::shared_ptr<OBJECT> object_;
     };
 }

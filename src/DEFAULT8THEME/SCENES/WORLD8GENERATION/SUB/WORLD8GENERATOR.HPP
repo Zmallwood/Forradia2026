@@ -15,6 +15,18 @@ namespace FORRADIA8GAME {
       private:
         void CLEAR8WITH8GRASS();
 
+        void SET8BASE8ELEVATION();
+
+        void GENERATE8WATER();
+
+        void GENERATE8DIRT();
+
+        void GENERATE8HILLS();
+
+        void GENERATE8MOUNTAINS();
+
+        void GENERATE8FORESTS();
+
         void TRAVERSE81(std::function<void(int, int)> callback);
 
         void TRAVERSE82(std::function<void(int, int)> callback);

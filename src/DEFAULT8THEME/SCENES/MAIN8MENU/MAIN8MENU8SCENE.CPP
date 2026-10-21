@@ -20,15 +20,18 @@ namespace FORRADIA8GAME {
         gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
         gui_->ADD8COMPONENT(
-            std::make_shared<GUI8PANEL>(0.4f, 0.4f, 0.2f, 0.2f));
+            std::make_shared<GUI8PANEL>(0.4f, 0.4f, 0.2f, 0.3f));
 
         gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
             "Play", 0.45f, 0.44f, 0.1f, 0.04f, [this]() {
                 _<SCENE8MANAGER>().GO8TO8SCENE("WorldGenerationScene");
             }));
 
+        gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
+            "Editor ", 0.45f, 0.52f, 0.1f, 0.04f, [this]() {}));
+
         gui_->ADD8COMPONENT(
-            std::make_shared<GUI8BUTTON>("Quit ", 0.45f, 0.52f, 0.1f, 0.04f,
+            std::make_shared<GUI8BUTTON>("Quit ", 0.45f, 0.6f, 0.1f, 0.04f,
                                          [this]() { _<ENGINE>().STOP(); }));
     }
 
