@@ -26,16 +26,18 @@ namespace FORRADIA8GAME {
                             std::vector<OBJECT8IMPACT8ACTION> impactActions,
                             std::string_view worldViewObjectType,
                             POINT8F worldViewRenderOffset,
-                            POINT8F firstPersonViewRenderOffset) {
+                            POINT8F firstPersonViewRenderOffset,
+                            int animationFames) {
         int worldViewObjectTypeHash{0};
 
         if (worldViewObjectType != "")
             worldViewObjectTypeHash = HASH(worldViewObjectType);
 
-        entries_.insert({HASH(name),
-                         {label.data(), flags, impactPoints, impactActions,
-                          worldViewObjectTypeHash, worldViewRenderOffset,
-                          firstPersonViewRenderOffset}});
+        entries_.insert(
+            {HASH(name),
+             {name.data(), label.data(), flags, impactPoints, impactActions,
+              worldViewObjectTypeHash, worldViewRenderOffset,
+              firstPersonViewRenderOffset, animationFames}});
     }
 
     bool
@@ -102,5 +104,19 @@ namespace FORRADIA8GAME {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).firstPersonViewRenderOffset;
         return {0.0F, 0.0F};
+    }
+
+    int
+    OBJECT8INDEX::GET8ANIMATION8FRAMES(int objectHash) {
+        if (entries_.contains(objectHash))
+            return entries_.at(objectHash).animationFames;
+        return 0;
+    }
+
+    std::string
+    OBJECT8INDEX::GET8OBJECT8NAME(int objectHash) {
+        if (entries_.contains(objectHash))
+            return entries_.at(objectHash).objectName;
+        return "";
     }
 }

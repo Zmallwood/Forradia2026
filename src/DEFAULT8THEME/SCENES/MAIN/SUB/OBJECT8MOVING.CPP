@@ -119,7 +119,6 @@ namespace FORRADIA8GAME {
     void
     OBJECT8MOVING::CLEAR8OBJECT() {
         objectInAir_ = nullptr;
-
         draggingMouseOffset_ = {0.0F, 0.0F};
     }
 }

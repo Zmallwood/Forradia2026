@@ -261,6 +261,23 @@ namespace FORRADIA8GAME {
                     if (isSmallObject)
                         continue;
 
+                    auto animationFrames{
+                        _<OBJECT8INDEX>().GET8ANIMATION8FRAMES(usedObjectType)};
+
+                    if (animationFrames) {
+                        auto objectName{
+                            _<OBJECT8INDEX>().GET8OBJECT8NAME(usedObjectType)};
+
+                        auto animationIndex{
+                            (NOW() / 2 + 10 * xCoordinate * yCoordinate) %
+                            (animationFrames * 100) / 100};
+
+                        std::string animationName{
+                            objectName + "_" + std::to_string(animationIndex)};
+
+                        usedObjectType = HASH(animationName);
+                    }
+
                     auto imageSize{
                         _<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
 

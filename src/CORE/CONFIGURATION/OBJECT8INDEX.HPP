@@ -33,6 +33,10 @@ namespace FORRADIA8GAME {
 
         POINT8F GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash);
 
+        int GET8ANIMATION8FRAMES(int objectHash);
+
+        std::string GET8OBJECT8NAME(int objectHash);
+
       private:
         void ADD8ENTRY(std::string_view objectName, std::string_view label,
                        int flags = 0, std::vector<POINT8F> impactPoints = {},
@@ -40,7 +44,8 @@ namespace FORRADIA8GAME {
                        std::string_view worldViewObjectType = "",
                        POINT8F worldViewRenderOffset = POINT8F{0.0F, 0.0F},
                        POINT8F firstPersonViewRenderOffset = POINT8F{0.0F,
-                                                                     0.0F});
+                                                                     0.0F},
+                       int animationFames = 0);
 
         std::unordered_map<int, OBJECT8INDEX8ENTRY> entries_;
     };

@@ -50,7 +50,8 @@ namespace FORRADIA8GAME {
         std::string groundImageName;
 
         auto worldArea{_<WORLD>().currentWorldArea_};
-        auto facedTile{worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_)};
+        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
         if (!facedTile)
             return;
@@ -119,7 +120,26 @@ namespace FORRADIA8GAME {
 
             auto objectType{entry.second.object_->type_};
 
-            auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
+            auto usedObjectType{objectType};
+
+            auto animationFrames{
+                _<OBJECT8INDEX>().GET8ANIMATION8FRAMES(usedObjectType)};
+
+            if (animationFrames) {
+                auto objectName{
+                    _<OBJECT8INDEX>().GET8OBJECT8NAME(usedObjectType)};
+
+                auto animationIndex{(NOW() / 2 + 10 * facedTileCoordinate.x *
+                                                      facedTileCoordinate.y) %
+                                    (animationFrames * 100) / 100};
+
+                std::string animationName{objectName + "_" +
+                                          std::to_string(animationIndex)};
+
+                usedObjectType = HASH(animationName);
+            }
+
+            auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
 
             float imageWidth;
             float imageHeight;
@@ -174,7 +194,7 @@ namespace FORRADIA8GAME {
 
             imageY += renderOffset.y * kTileHeight;
 
-            _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY,
+            _<IMAGE8RENDERER>().DRAW8IMAGE(usedObjectType, imageX, imageY,
                                            imageWidth, imageHeight);
 
             auto impactActions{
@@ -309,7 +329,26 @@ namespace FORRADIA8GAME {
 
             auto objectType{entry.second.object_->type_};
 
-            auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
+            auto usedObjectType{objectType};
+
+            auto animationFrames{
+                _<OBJECT8INDEX>().GET8ANIMATION8FRAMES(usedObjectType)};
+
+            if (animationFrames) {
+                auto objectName{
+                    _<OBJECT8INDEX>().GET8OBJECT8NAME(usedObjectType)};
+
+                auto animationIndex{(NOW() / 2 + 10 * facedTileCoordinate.x *
+                                                      facedTileCoordinate.y) %
+                                    (animationFrames * 100) / 100};
+
+                std::string animationName{objectName + "_" +
+                                          std::to_string(animationIndex)};
+
+                usedObjectType = HASH(animationName);
+            }
+
+            auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
 
             float imageWidth;
             float imageHeight;
@@ -364,7 +403,7 @@ namespace FORRADIA8GAME {
 
             imageY += renderOffset.y * kTileHeight;
 
-            _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY,
+            _<IMAGE8RENDERER>().DRAW8IMAGE(usedObjectType, imageX, imageY,
                                            imageWidth, imageHeight);
 
             auto impactActions{

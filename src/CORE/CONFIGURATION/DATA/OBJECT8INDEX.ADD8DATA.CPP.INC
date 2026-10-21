@@ -126,8 +126,6 @@ ADD8ENTRY("ObjectWoodLog", "Wood log", OBJECT8FLAGS::kSmallObject,
            {"ObjectWoodAxe", []() {},
             allImpactPointsCompletedActionObjectWoodLogUsingWoodAxe}});
 
-ADD8ENTRY("ObjectUnlitCampfire", "Unlit campfire");
-
 ADD8ENTRY("ObjectFlintAndSteel", "Flint and steel", OBJECT8FLAGS::kSmallObject);
 
 ADD8ENTRY("ObjectWoodPlank", "Wood plank", OBJECT8FLAGS::kSmallObject);
@@ -524,3 +522,23 @@ ADD8ENTRY("ObjectPlannedWoodFloor", "Planned wood floor",
           {{"ObjectHammer", []() {},
             allImpactPointsCompletedActionObjectWoodFloor}},
           "ObjectPlannedObject", POINT8F{0.0F, 0.0F}, POINT8F{0.0F, 0.3F});
+
+auto allImpactPointsCompletedActionObjectUnlitCampfire{
+    [](std::shared_ptr<OBJECT> object) {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+
+        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+
+        auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
+
+        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+                                                  "ObjectLitCampfire");
+    }};
+
+ADD8ENTRY("ObjectUnlitCampfire", "Unlit campfire", OBJECT8FLAGS::kUnmovable,
+          {POINT8F{0.5F, 0.8F}},
+          {{"ObjectFlintAndSteel", []() {},
+            allImpactPointsCompletedActionObjectUnlitCampfire}});
+
+ADD8ENTRY("ObjectLitCampfire", "Lit campfire", OBJECT8FLAGS::kUnmovable, {}, {},
+          "", POINT8F{0.0F, 0.0F}, POINT8F{0.0F, 0.3F}, 3);
