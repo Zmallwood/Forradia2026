@@ -32,15 +32,15 @@ namespace FORRADIA8GAME {
 
         auto worldAreaSize{worldArea->GET8SIZE()};
 
-        position_ = {4.0f + (worldAreaSize.width - 5.0f) / 2,
-                     4.0f + (worldAreaSize.height - 5.0f) / 2};
+        position_ = {4.0F + (worldAreaSize.width - 5.0F) / 2,
+                     4.0F + (worldAreaSize.height - 5.0F) / 2};
 
         auto tile{worldArea->GET8TILE(static_cast<int>(position_.x),
                                       static_cast<int>(position_.y))};
 
         while (tile->ground_ == HASH("GroundWater")) {
-            position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
-                         4.0f + (rand() % (worldAreaSize.height - 5))};
+            position_ = {4.0F + (rand() % (worldAreaSize.width - 5)),
+                         4.0F + (rand() % (worldAreaSize.height - 5))};
 
             tile = worldArea->GET8TILE(static_cast<int>(position_.x),
                                        static_cast<int>(position_.y));

@@ -11,12 +11,8 @@ namespace FORRADIA8GAME {
     POINT8F
     GET8MOUSE8POSITION() {
         auto canvasSize{GET8CANVAS8SIZE()};
-
-        int x;
-        int y;
-
+        int x, y;
         SDL_GetMouseState(&x, &y);
-
         return {static_cast<float>(x) / canvasSize.width,
                 static_cast<float>(y) / canvasSize.height};
     }

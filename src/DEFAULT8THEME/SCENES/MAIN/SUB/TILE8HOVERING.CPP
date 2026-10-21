@@ -52,11 +52,11 @@ namespace FORRADIA8GAME {
 
                 auto elevation{tile->elevation_};
 
-                auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
+                auto tileX{0.25F - tileWidth / 2 + x * tileWidth / 2 -
                            y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
                            playerMoveDy * tileWidth / 2};
 
-                auto tileY{0.5f - 5.5f * tileHeight + x * tileHeight / 2 +
+                auto tileY{0.5F - 5.5F * tileHeight + x * tileHeight / 2 +
                            y * tileHeight / 2 +
                            playerElevation * tileHeight / 4 -
                            playerMoveDx * tileHeight / 2 -
@@ -69,7 +69,7 @@ namespace FORRADIA8GAME {
                               (tileWidth / 2)};
                 auto dyBottom{std::abs(mousePosition.y - centerBottom.y) /
                               (tileHeight / 2)};
-                if (dxBottom + dyBottom <= 1.0f)
+                if (dxBottom + dyBottom <= 1.0F)
                     hoveredCoordinate_ = {xCoordinate, yCoordinate};
 
                 auto elevationHeight{elevation * tileHeight / 4};
@@ -91,7 +91,7 @@ namespace FORRADIA8GAME {
                            (tileWidth / 2)};
                 auto dyTop{std::abs(mousePosition.y - centerTop.y) /
                            (tileHeight / 2)};
-                if (dxTop + dyTop <= 1.0f)
+                if (dxTop + dyTop <= 1.0F)
                     hoveredCoordinate_ = {xCoordinate, yCoordinate};
             }
         }

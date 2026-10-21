@@ -14,7 +14,6 @@ namespace FORRADIA8GAME {
         for (auto i = 0; i < kMaxObjects_; i++) {
             if (!objects_.contains(i)) {
                 objects_[i] = std::make_shared<OBJECT>(objectName);
-
                 return;
             }
         }
@@ -38,15 +37,11 @@ namespace FORRADIA8GAME {
         for (auto it = objects_.begin(); it != objects_.end();) {
             if (it->first == index) {
                 auto result{it->second};
-
                 objects_.erase(it++);
-
                 return result;
             }
-
             ++it;
         }
-
         return nullptr;
     }
 

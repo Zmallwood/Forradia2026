@@ -39,23 +39,23 @@ namespace FORRADIA8GAME {
 
         void SPAWN8ONSUITABLE8LOCATION();
 
-        POINT8F position_{0.0f, 0.0f};
+        POINT8F position_{0.0F, 0.0F};
         int ticksLastMovement_{0};
-        float movementSpeed_{11.0f};
-        float stepSize_{0.3f};
+        float movementSpeed_{11.0F};
+        float stepSize_{0.3F};
         POINT destination_{-1, -1};
         POINT facedTileCoordinate_{-1, -1};
         WORLD8DIRECTIONS facingDirection_{WORLD8DIRECTIONS::South};
         int ticksLastHitOnOther_{0};
-        float attackSpeed_{2.0f};
+        float attackSpeed_{2.0F};
         std::string name_{"Unnamed player"};
         int experience_{0};
         std::shared_ptr<PLAYER8INVENTORY> playerInventory_;
-        float health_{10.0f};
-        float maxHealth_{10.0f};
+        float health_{10.0F};
+        float maxHealth_{10.0F};
         int ticksLastHitOnSelf_{0};
         std::shared_ptr<PLAYER8EQUIPMENT> playerEquipment_;
         int ticksLastImpact_{0};
-        float impactSpeed_{1.0f};
+        float impactSpeed_{1.0F};
     };
 }

@@ -13,7 +13,6 @@ namespace FORRADIA8GAME {
                            float width, float height)
         : GUI8PANEL(x, y, width, height) {
         isVisible_ = false;
-
         titleBar_ = dynamic_pointer_cast<GUI8WINDOW8TITLE8BAR>(ADD8COMPONENT(
             std::make_shared<GUI8WINDOW8TITLE8BAR>(title, width, *this)));
     }

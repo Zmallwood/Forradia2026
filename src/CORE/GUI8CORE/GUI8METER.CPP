@@ -31,7 +31,7 @@ namespace FORRADIA8GAME {
 
     float
     GUI8METER::GET8METER8PROGRESS() {
-        return 0.0f;
+        return 0.0F;
     }
 
     COLOR

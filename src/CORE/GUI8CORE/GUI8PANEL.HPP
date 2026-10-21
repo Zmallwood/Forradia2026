@@ -14,7 +14,7 @@ namespace FORRADIA8GAME {
       public:
         GUI8PANEL(float x, float y, float width, float height);
 
-        SIZE8F size_{0.0f, 0.0f};
+        SIZE8F size_{0.0F, 0.0F};
 
       protected:
         virtual bool ON8MOUSE8DOWN(Uint8 mouseButton) override;

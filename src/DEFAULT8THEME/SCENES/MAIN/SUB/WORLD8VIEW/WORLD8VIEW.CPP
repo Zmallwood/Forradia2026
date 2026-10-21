@@ -25,11 +25,11 @@
 namespace FORRADIA8GAME {
     void
     WORLD8VIEW::RENDER() {
-        _<SDL8DEVICE>().CLIP(0.0f, 0.0f, 0.5f, 1.0f);
+        _<SDL8DEVICE>().CLIP(0.0F, 0.0F, 0.5F, 1.0F);
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-        _<COLOR8RENDERER>().FILL8RECT(0.0f, 0.0f, viewWidth, 1.0f,
+        _<COLOR8RENDERER>().FILL8RECT(0.0F, 0.0F, viewWidth, 1.0F,
                                       COLORS::kBlack);
 
         auto worldArea{_<WORLD>().currentWorldArea_};
@@ -129,11 +129,11 @@ namespace FORRADIA8GAME {
                     elevationNorthWest =
                         worldArea->GET8TILE(coordinateNorthWest)->elevation_;
 
-                auto tileX{0.25f - tileWidth / 2 + x * tileWidth / 2 -
+                auto tileX{0.25F - tileWidth / 2 + x * tileWidth / 2 -
                            y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
                            playerMoveDy * tileWidth / 2};
 
-                auto tileYOriginal{0.5f - 5.5f * tileHeight +
+                auto tileYOriginal{0.5F - 5.5F * tileHeight +
                                    x * tileHeight / 2 + y * tileHeight / 2 +
                                    playerElevation * tileHeight / 4 -
                                    playerMoveDx * tileHeight / 2 -
@@ -264,8 +264,8 @@ namespace FORRADIA8GAME {
                     auto imageSize{
                         _<IMAGE8BANK>().GET8IMAGE8SIZE(usedObjectType)};
 
-                    auto objectWidth{imageSize.width / 60.0f * tileWidth};
-                    auto objectHeight{imageSize.height / 60.0f * tileHeight};
+                    auto objectWidth{imageSize.width / 60.0F * tileWidth};
+                    auto objectHeight{imageSize.height / 60.0F * tileHeight};
 
                     auto renderOffset{
                         _<OBJECT8INDEX>().GET8WORLD8VIEW8RENDER8OFFSET(
@@ -290,8 +290,8 @@ namespace FORRADIA8GAME {
 
                     auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(npcType)};
 
-                    auto npcWidth{imageSize.width / 60.0f * tileWidth};
-                    auto npcHeight{imageSize.height / 60.0f * tileHeight};
+                    auto npcWidth{imageSize.width / 60.0F * tileWidth};
+                    auto npcHeight{imageSize.height / 60.0F * tileHeight};
 
                     auto npcX{tileX + tileWidth / 2 - npcWidth / 2};
                     auto npcY{tileY + tileHeight / 2 - npcHeight};
@@ -308,8 +308,8 @@ namespace FORRADIA8GAME {
                     auto imageSize{
                         _<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
-                    auto creatureWidth{imageSize.width / 60.0f * tileWidth};
-                    auto creatureHeight{imageSize.height / 60.0f * tileHeight};
+                    auto creatureWidth{imageSize.width / 60.0F * tileWidth};
+                    auto creatureHeight{imageSize.height / 60.0F * tileHeight};
 
                     auto creatureX{tileX + tileWidth / 2 - creatureWidth / 2};
                     auto creatureY{tileY + tileHeight / 2 - creatureHeight};
@@ -321,10 +321,10 @@ namespace FORRADIA8GAME {
 
                 if (xCoordinate == static_cast<int>(_<PLAYER>().position_.x) &&
                     yCoordinate == static_cast<int>(_<PLAYER>().position_.y)) {
-                    auto tileXPlayer{0.25f - tileWidth / 2 + 5 * tileWidth / 2 -
+                    auto tileXPlayer{0.25F - tileWidth / 2 + 5 * tileWidth / 2 -
                                      5 * tileWidth / 2};
 
-                    auto tileYPlayer{0.5f - 5.5f * tileHeight +
+                    auto tileYPlayer{0.5F - 5.5F * tileHeight +
                                      5 * tileHeight / 2 + 5 * tileHeight / 2};
 
                     _<IMAGE8RENDERER>().DRAW8IMAGE("Player", tileXPlayer,

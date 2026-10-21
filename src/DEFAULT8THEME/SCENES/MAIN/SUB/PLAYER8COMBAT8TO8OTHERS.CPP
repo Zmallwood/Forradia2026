@@ -33,7 +33,7 @@ namespace FORRADIA8GAME {
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (mousePosition.x < viewWidth / 2.0f)
+        if (mousePosition.x < viewWidth / 2.0F)
             return;
 
         auto worldArea{_<WORLD>().currentWorldArea_};
@@ -60,17 +60,17 @@ namespace FORRADIA8GAME {
 
         auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
-        auto imageWidth{imageSize.width / 60.0f * kLargeObjectScale};
-        auto imageHeight{imageSize.height / 60.0f *
+        auto imageWidth{imageSize.width / 60.0F * kLargeObjectScale};
+        auto imageHeight{imageSize.height / 60.0F *
                          CONVERT8WIDTH8TO8HEIGHT(kLargeObjectScale)};
 
-        auto tileWidth{viewWidth - 2 * kMargin.x - 0.5f * viewWidth * 0.6f};
-        auto tileLeft{1.0f - viewWidth + kMargin.x + 0.5f * viewWidth * 0.3f};
+        auto tileWidth{viewWidth - 2 * kMargin.x - 0.5F * viewWidth * 0.6F};
+        auto tileLeft{1.0F - viewWidth + kMargin.x + 0.5F * viewWidth * 0.3F};
 
-        auto baseX{tileLeft + 0.5f * tileWidth};
-        auto baseY{0.75f + kMargin.y + 0.5f * (0.25f - 2 * kMargin.y)};
+        auto baseX{tileLeft + 0.5F * tileWidth};
+        auto baseY{0.75F + kMargin.y + 0.5F * (0.25F - 2 * kMargin.y)};
 
-        auto imageX{baseX - imageWidth / 2.0f};
+        auto imageX{baseX - imageWidth / 2.0F};
         auto imageY{baseY - imageHeight};
 
         auto dx{mousePosition.x - imageX};
@@ -85,7 +85,7 @@ namespace FORRADIA8GAME {
         if (!isPixelVisible)
             return;
 
-        creature->HIT(1.0f, POINT8F{x, y});
+        creature->HIT(1.0F, POINT8F{x, y});
 
         _<PLAYER>().ticksLastHitOnOther_ = now;
 

@@ -13,7 +13,7 @@ namespace FORRADIA8GAME {
     GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title,
                                                float width,
                                                GUI8WINDOW &guiWindow)
-        : GUI8PANEL(0.0f, 0.0f, width, 0.05f), title_(title),
+        : GUI8PANEL(0.0F, 0.0F, width, 0.05F), title_(title),
           guiWindow_(guiWindow) {
     }
 
@@ -25,7 +25,6 @@ namespace FORRADIA8GAME {
 
         if (isMoving_) {
             auto delta{mousePosition - mousePositionStartMove_};
-
             auto newPosition{positionStartMove_ + delta};
 
             SET8POSITION(newPosition);
@@ -38,11 +37,8 @@ namespace FORRADIA8GAME {
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
             positionStartMove_ = GET8POSITION();
-
             mousePositionStartMove_ = GET8MOUSE8POSITION();
-
             isMoving_ = true;
-
             return true;
         }
 
@@ -55,7 +51,6 @@ namespace FORRADIA8GAME {
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
             isMoving_ = false;
-
             return true;
         }
 

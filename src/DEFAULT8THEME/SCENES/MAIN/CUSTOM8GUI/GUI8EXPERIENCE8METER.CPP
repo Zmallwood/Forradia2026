@@ -11,7 +11,7 @@
 
 namespace FORRADIA8GAME {
     GUI8EXPERIENCE8METER::GUI8EXPERIENCE8METER()
-        : GUI8METER(0.0f, 0.985f, 1.0f, 0.015f) {
+        : GUI8METER(0.0F, 0.985F, 1.0F, 0.015F) {
     }
 
     float

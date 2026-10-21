@@ -12,7 +12,6 @@ namespace FORRADIA8GAME {
     std::shared_ptr<T> &
     SINGLETON8STORAGE() {
         static std::shared_ptr<T> instance{std::make_shared<T>()};
-
         return instance;
     }
 
@@ -20,10 +19,8 @@ namespace FORRADIA8GAME {
     std::shared_ptr<T>
     GET8SINGLETON8PTR() {
         auto &instance{SINGLETON8STORAGE<T>()};
-
         if (!instance)
             instance = std::make_shared<T>();
-
         return instance;
     }
 

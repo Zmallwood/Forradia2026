@@ -36,7 +36,7 @@ namespace FORRADIA8GAME {
                 if ((absDx <= 1 && absDy == 0) || (absDx == 0 && absDy <= 1)) {
                     if (now > creature->ticksLastHitOnOther_ +
                                   INVERT8SPEED(creature->attackSpeed_)) {
-                        _<PLAYER>().HIT(1.0f);
+                        _<PLAYER>().HIT(1.0F);
 
                         creature->ticksLastHitOnOther_ = now;
                     }

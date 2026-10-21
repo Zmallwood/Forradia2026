@@ -38,9 +38,9 @@ namespace FORRADIA8GAME {
                        int flags = 0, std::vector<POINT8F> impactPoints = {},
                        std::vector<OBJECT8IMPACT8ACTION> impactActions = {},
                        std::string_view worldViewObjectType = "",
-                       POINT8F worldViewRenderOffset = POINT8F{0.0f, 0.0f},
-                       POINT8F firstPersonViewRenderOffset = POINT8F{0.0f,
-                                                                     0.0f});
+                       POINT8F worldViewRenderOffset = POINT8F{0.0F, 0.0F},
+                       POINT8F firstPersonViewRenderOffset = POINT8F{0.0F,
+                                                                     0.0F});
 
         std::unordered_map<int, OBJECT8INDEX8ENTRY> entries_;
     };

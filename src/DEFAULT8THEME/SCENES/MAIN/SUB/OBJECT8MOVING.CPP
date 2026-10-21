@@ -104,12 +104,12 @@ namespace FORRADIA8GAME {
 
         auto scale{isSmallObject ? smallObjectScale : largeObjectScale};
 
-        auto imageWidth{imageSize.width / 60.0f * scale};
-        auto imageHeight{imageSize.height / 60.0f *
+        auto imageWidth{imageSize.width / 60.0F * scale};
+        auto imageHeight{imageSize.height / 60.0F *
                          CONVERT8WIDTH8TO8HEIGHT(scale)};
 
         auto imageX{mousePosition.x - draggingMouseOffset_.x -
-                    imageWidth / 2.0f};
+                    imageWidth / 2.0F};
         auto imageY{mousePosition.y - draggingMouseOffset_.y - imageHeight};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(objectType, imageX, imageY, imageWidth,
@@ -120,6 +120,6 @@ namespace FORRADIA8GAME {
     OBJECT8MOVING::CLEAR8OBJECT() {
         objectInAir_ = nullptr;
 
-        draggingMouseOffset_ = {0.0f, 0.0f};
+        draggingMouseOffset_ = {0.0F, 0.0F};
     }
 }

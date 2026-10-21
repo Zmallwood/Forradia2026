@@ -76,15 +76,15 @@ namespace FORRADIA8GAME {
 
         auto anchorPosition{GET8MOUSE8POSITION() - mouseOffset};
 
-        auto groundTop{0.75f + kMargin.y};
-        auto groundHeight{0.25f - 2 * kMargin.y};
+        auto groundTop{0.75F + kMargin.y};
+        auto groundHeight{0.25F - 2 * kMargin.y};
 
         auto relativeY{(anchorPosition.y - groundTop) / groundHeight};
 
-        if (relativeY >= 0.0f && relativeY <= 1.0f) {
+        if (relativeY >= 0.0F && relativeY <= 1.0F) {
             // Bases sit on the near edge of a cell, so step just inside it.
             auto hoveredY{
-                static_cast<int>(relativeY * tileUnitsWidth - 0.001f)};
+                static_cast<int>(relativeY * tileUnitsWidth - 0.001F)};
 
             if (hoveredY < 0)
                 hoveredY = 0;
@@ -94,15 +94,15 @@ namespace FORRADIA8GAME {
 
             auto tileWidth{viewWidth - 2 * kMargin.x -
                            static_cast<float>(tileUnitsWidth - hoveredY) /
-                               tileUnitsWidth * viewWidth * 0.6f};
+                               tileUnitsWidth * viewWidth * 0.6F};
 
-            auto tileLeft{1.0f - viewWidth + kMargin.x +
+            auto tileLeft{1.0F - viewWidth + kMargin.x +
                           static_cast<float>(tileUnitsWidth - hoveredY) /
-                              tileUnitsWidth * viewWidth * 0.3f};
+                              tileUnitsWidth * viewWidth * 0.3F};
 
             auto relativeX{(anchorPosition.x - tileLeft) / tileWidth};
 
-            if (relativeX >= 0.0f && relativeX < 1.0f) {
+            if (relativeX >= 0.0F && relativeX < 1.0F) {
                 auto hoveredX{static_cast<int>(relativeX * tileUnitsWidth)};
 
                 if (hoveredX >= tileUnitsWidth)

@@ -8,6 +8,6 @@
 #pragma once
 
 namespace FORRADIA8GAME {
-    constexpr float kSmallValue{0.0005f};
+    constexpr float kSmallValue{0.0005F};
     constexpr int kOneSecondMillis{1000};
 }

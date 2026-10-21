@@ -52,7 +52,7 @@ namespace FORRADIA8GAME {
 
       private:
         std::vector<std::shared_ptr<GUI8COMPONENT>> components_;
-        POINT8F position_{0.0f, 0.0f};
+        POINT8F position_{0.0F, 0.0F};
         GUI8COMPONENT *parent_{nullptr};
     };
 }

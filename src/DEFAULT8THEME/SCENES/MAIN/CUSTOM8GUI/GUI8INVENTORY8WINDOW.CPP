@@ -19,7 +19,7 @@
 
 namespace FORRADIA8GAME {
     GUI8INVENTORY8WINDOW::GUI8INVENTORY8WINDOW()
-        : GUI8WINDOW("Inventory", 0.2f, 0.3f, 0.2f, 0.4f) {
+        : GUI8WINDOW("Inventory", 0.2F, 0.3F, 0.2F, 0.4F) {
     }
 
     bool
@@ -82,7 +82,7 @@ namespace FORRADIA8GAME {
                                                      : largeObjectScale};
 
                             auto offsetX{(mousePosition.x -
-                                          (slotBounds.x + slotWidth / 2.0f)) *
+                                          (slotBounds.x + slotWidth / 2.0F)) *
                                          scale / kSlotWidth_};
                             auto offsetY{(mousePosition.y -
                                           (slotBounds.y + slotHeight)) *

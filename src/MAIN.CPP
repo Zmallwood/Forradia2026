@@ -11,6 +11,5 @@ int
 main(int argc, char *argv[]) {
     using namespace FORRADIA8GAME;
     RUN8NEW8DEFAULT8THEME();
-
     return EXIT_SUCCESS;
 }

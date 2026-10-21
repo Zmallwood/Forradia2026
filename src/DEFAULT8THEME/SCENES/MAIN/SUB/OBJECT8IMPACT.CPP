@@ -90,21 +90,21 @@ namespace FORRADIA8GAME {
             auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
             if (isSmallObject) {
-                imageWidth = imageSize.width / 60.0f * smallObjectScale *
+                imageWidth = imageSize.width / 60.0F * smallObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
                 imageHeight =
-                    imageSize.height / 60.0f *
+                    imageSize.height / 60.0F *
                     CONVERT8WIDTH8TO8HEIGHT(
                         smallObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                         tileUnitsWidth);
             } else {
-                imageWidth = imageSize.width / 60.0f * largeObjectScale *
+                imageWidth = imageSize.width / 60.0F * largeObjectScale *
                              (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
                              tileUnitsWidth;
                 imageHeight =
-                    imageSize.height / 60.0f *
+                    imageSize.height / 60.0F *
                     CONVERT8WIDTH8TO8HEIGHT(
                         largeObjectScale *
                         (tileUnitsWidth - (tileUnitsWidth - yPos) / 2) /
@@ -113,18 +113,18 @@ namespace FORRADIA8GAME {
 
             auto tileWidth{viewWidth - 2 * kMargin.x -
                            static_cast<float>(tileUnitsWidth - yPos) /
-                               tileUnitsWidth * viewWidth * 0.6f};
-            auto tileLeft{1.0f - viewWidth + kMargin.x +
+                               tileUnitsWidth * viewWidth * 0.6F};
+            auto tileLeft{1.0F - viewWidth + kMargin.x +
                           static_cast<float>(tileUnitsWidth - yPos) /
-                              tileUnitsWidth * viewWidth * 0.3f};
+                              tileUnitsWidth * viewWidth * 0.3F};
 
             auto baseX{tileLeft +
                        static_cast<float>(xPos) / tileUnitsWidth * tileWidth};
-            auto baseY{0.75f + kMargin.y +
+            auto baseY{0.75F + kMargin.y +
                        static_cast<float>(yPos + 1) / tileUnitsWidth *
-                           (0.25f - 2 * kMargin.y)};
+                           (0.25F - 2 * kMargin.y)};
 
-            auto imageX{baseX - imageWidth / 2.0f};
+            auto imageX{baseX - imageWidth / 2.0F};
             auto imageY{baseY - imageHeight};
 
             auto renderOffset{
@@ -133,7 +133,7 @@ namespace FORRADIA8GAME {
 
             imageX += renderOffset.x * tileWidth;
 
-            constexpr auto kTileHeight{0.25f};
+            constexpr auto kTileHeight{0.25F};
 
             imageY += renderOffset.y * kTileHeight;
 
@@ -150,9 +150,9 @@ namespace FORRADIA8GAME {
                 auto impactPointCenterY{imageY +
                                         impactPoint.position.y * imageHeight};
 
-                auto impactPointX{impactPointCenterX - impactPointWidth / 2.0f};
+                auto impactPointX{impactPointCenterX - impactPointWidth / 2.0F};
                 auto impactPointY{impactPointCenterY -
-                                  impactPointHeight / 2.0f};
+                                  impactPointHeight / 2.0F};
 
                 auto rect{RECT8F{impactPointX, impactPointY, impactPointWidth,
                                  impactPointHeight}};

@@ -118,7 +118,7 @@ namespace FORRADIA8GAME {
 
     POINT8F
     GUI8COMPONENT::GET8POSITION() {
-        POINT8F finalPosition{0.0f, 0.0f};
+        POINT8F finalPosition{0.0F, 0.0F};
 
         if (parent_)
             finalPosition += parent_->GET8POSITION();

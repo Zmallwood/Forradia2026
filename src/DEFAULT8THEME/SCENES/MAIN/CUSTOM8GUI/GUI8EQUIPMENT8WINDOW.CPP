@@ -14,7 +14,7 @@
 
 namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GUI8EQUIPMENT8WINDOW()
-        : GUI8WINDOW("Equipment", 0.45f, 0.3f, 0.2f, 0.4f) {
+        : GUI8WINDOW("Equipment", 0.45F, 0.3F, 0.2F, 0.4F) {
     }
 
     bool
@@ -160,14 +160,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8HEAD8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 2.0f};
-        auto yCenter{size_.height / 5.0f * 1};
+        auto xCenter{size_.width / 2.0F};
+        auto yCenter{size_.height / 5.0F * 1};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }
@@ -176,14 +176,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8CHEST8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 2.0f};
-        auto yCenter{size_.height / 5.0f * 2};
+        auto xCenter{size_.width / 2.0F};
+        auto yCenter{size_.height / 5.0F * 2};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }
@@ -192,14 +192,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8LEGS8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 2.0f};
-        auto yCenter{size_.height / 5.0f * 3};
+        auto xCenter{size_.width / 2.0F};
+        auto yCenter{size_.height / 5.0F * 3};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }
@@ -208,14 +208,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8FEET8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 2.0f};
-        auto yCenter{size_.height / 5.0f * 4};
+        auto xCenter{size_.width / 2.0F};
+        auto yCenter{size_.height / 5.0F * 4};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }
@@ -224,14 +224,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8RIGHT8HAND8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 4.0f * 1};
-        auto yCenter{size_.height / 5.0f * 2};
+        auto xCenter{size_.width / 4.0F * 1};
+        auto yCenter{size_.height / 5.0F * 2};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }
@@ -240,14 +240,14 @@ namespace FORRADIA8GAME {
     GUI8EQUIPMENT8WINDOW::GET8LEFT8HAND8SLOT8BOUNDS() {
         auto position{GET8POSITION()};
 
-        auto xCenter{size_.width / 4.0f * 3};
-        auto yCenter{size_.height / 5.0f * 2};
+        auto xCenter{size_.width / 4.0F * 3};
+        auto yCenter{size_.height / 5.0F * 2};
 
         auto width{kSlotWidth_};
         auto height{CONVERT8WIDTH8TO8HEIGHT(kSlotWidth_)};
 
-        auto x{position.x + xCenter - width / 2.0f};
-        auto y{position.y + kMarginY_ + yCenter - height / 2.0f};
+        auto x{position.x + xCenter - width / 2.0F};
+        auto y{position.y + kMarginY_ + yCenter - height / 2.0F};
 
         return {x, y, width, height};
     }

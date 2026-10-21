@@ -15,7 +15,6 @@ namespace FORRADIA8GAME {
 
         for (char chr : text) {
             constexpr unsigned long algorithmFactor{33};
-
             hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
         }
 

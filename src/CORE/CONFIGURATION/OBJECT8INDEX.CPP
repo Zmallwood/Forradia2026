@@ -94,13 +94,13 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).worldViewRenderOffset;
-        return {0.0f, 0.0f};
+        return {0.0F, 0.0F};
     }
 
     POINT8F
     OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).firstPersonViewRenderOffset;
-        return {0.0f, 0.0f};
+        return {0.0F, 0.0F};
     }
 }

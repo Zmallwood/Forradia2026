@@ -47,6 +47,6 @@ namespace FORRADIA8GAME {
 
     bool
     CREATURE::IS8DEAD() {
-        return health_ <= 0.0f;
+        return health_ <= 0.0F;
     }
 }

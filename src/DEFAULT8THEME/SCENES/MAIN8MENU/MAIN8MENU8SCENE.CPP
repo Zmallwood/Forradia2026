@@ -20,18 +20,18 @@ namespace FORRADIA8GAME {
         gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
         gui_->ADD8COMPONENT(
-            std::make_shared<GUI8PANEL>(0.4f, 0.4f, 0.2f, 0.3f));
+            std::make_shared<GUI8PANEL>(0.4F, 0.4F, 0.2F, 0.3F));
 
         gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
-            "Play", 0.45f, 0.44f, 0.1f, 0.04f, [this]() {
+            "Play", 0.45F, 0.44F, 0.1F, 0.04F, [this]() {
                 _<SCENE8MANAGER>().GO8TO8SCENE("WorldGenerationScene");
             }));
 
         gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
-            "Editor ", 0.45f, 0.52f, 0.1f, 0.04f, [this]() {}));
+            "Editor ", 0.45F, 0.52F, 0.1F, 0.04F, [this]() {}));
 
         gui_->ADD8COMPONENT(
-            std::make_shared<GUI8BUTTON>("Quit ", 0.45f, 0.6f, 0.1f, 0.04f,
+            std::make_shared<GUI8BUTTON>("Quit ", 0.45F, 0.6F, 0.1F, 0.04F,
                                          [this]() { _<ENGINE>().STOP(); }));
     }
 
@@ -40,14 +40,14 @@ namespace FORRADIA8GAME {
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("Starting game.");
 
         _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(
-            1.0f - _<GUI8TEXT8CONSOLE>().size_.height);
+            1.0F - _<GUI8TEXT8CONSOLE>().size_.height);
     }
 
     void
     MAIN8MENU8SCENE::RENDER8BEFORE8GUI8DERIVED() {
-        _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0f, 0.0f,
-                                       1.0f, 1.0f);
-        _<IMAGE8RENDERER>().DRAW8IMAGE("ForradiaLogo", 0.3f, 0.2f, 0.4f, 0.15f);
+        _<IMAGE8RENDERER>().DRAW8IMAGE("DefaultSceneBackground", 0.0F, 0.0F,
+                                       1.0F, 1.0F);
+        _<IMAGE8RENDERER>().DRAW8IMAGE("ForradiaLogo", 0.3F, 0.2F, 0.4F, 0.15F);
     }
 
     void

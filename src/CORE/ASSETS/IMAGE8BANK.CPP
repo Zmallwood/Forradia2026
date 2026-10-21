@@ -89,8 +89,8 @@ namespace FORRADIA8GAME {
             auto surface{images_.at(imageNameHash).surface.get()};
 
             if (!surface || !surface->pixels || surface->w <= 0 ||
-                surface->h <= 0 || x < 0.0f || y < 0.0f || x >= 1.0f ||
-                y >= 1.0f)
+                surface->h <= 0 || x < 0.0F || y < 0.0F || x >= 1.0F ||
+                y >= 1.0F)
                 return false;
 
             auto xPx{static_cast<int>(x * static_cast<float>(surface->w))};
