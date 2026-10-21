@@ -43,8 +43,12 @@ namespace FORRADIA8GAME {
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-        _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.0F, viewWidth, 0.5F,
-                                      COLORS::kMildBlue);
+        _<IMAGE8RENDERER>().DRAW8IMAGE("Sky", 1.0F - viewWidth, 0.0F, viewWidth,
+                                       0.5F);
+
+        // _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.0F, viewWidth,
+        // 0.5F,
+        //                               COLORS::kMildBlue);
 
         _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.5F, viewWidth, 0.5F,
                                       COLORS::kVeryDarkBlue);
