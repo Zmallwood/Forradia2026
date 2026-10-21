@@ -15,7 +15,7 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8PANEL::ON8MOUSE8DOWN(Uint8 mouseButton) {
-        auto result = GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton);
+        auto result{GUI8COMPONENT::ON8MOUSE8DOWN(mouseButton)};
 
         if (result)
             return true;
@@ -28,7 +28,7 @@ namespace FORRADIA8GAME {
 
     void
     GUI8PANEL::RENDER8DERIVED() {
-        auto position = GET8POSITION();
+        auto position{GET8POSITION()};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(GET8BACKGROUND8IMAGE(), position.x,
                                        position.y, size_.width, size_.height);
@@ -41,7 +41,7 @@ namespace FORRADIA8GAME {
 
     RECT8F
     GUI8PANEL::GET8BOUNDS() {
-        auto position = GET8POSITION();
+        auto position{GET8POSITION()};
 
         return {position.x, position.y, size_.width, size_.height};
     }

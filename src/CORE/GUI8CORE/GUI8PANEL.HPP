@@ -26,7 +26,7 @@ namespace FORRADIA8GAME {
         RECT8F GET8BOUNDS();
 
       private:
-        inline static const std::string kDefaultBackgroundImage_ =
-            "GUIPanelBackground";
+        inline static const std::string kDefaultBackgroundImage_{
+            "GUIPanelBackground"};
     };
 }

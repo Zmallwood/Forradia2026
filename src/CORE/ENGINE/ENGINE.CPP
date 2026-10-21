@@ -81,7 +81,7 @@ namespace FORRADIA8GAME {
                 break;
             }
             case SDL_MOUSEBUTTONUP: {
-                auto clickSpeed = 0;
+                auto clickSpeed{0};
 
                 switch (event.button.button) {
                 case SDL_BUTTON_LEFT:

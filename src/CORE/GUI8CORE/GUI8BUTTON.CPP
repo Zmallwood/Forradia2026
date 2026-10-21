@@ -23,11 +23,11 @@ namespace FORRADIA8GAME {
     GUI8BUTTON::UPDATE8DERIVED() {
         GUI8PANEL::UPDATE8DERIVED();
 
-        auto position = GET8POSITION();
+        auto position{GET8POSITION()};
 
-        auto size = size_;
+        auto size{size_};
 
-        auto rect = RECT8F{position.x, position.y, size.width, size.height};
+        RECT8F rect{position.x, position.y, size.width, size.height};
 
         if (rect.CONTAINS(GET8MOUSE8POSITION())) {
             hovered_ = true;
@@ -42,9 +42,9 @@ namespace FORRADIA8GAME {
     GUI8BUTTON::RENDER8DERIVED() {
         GUI8PANEL::RENDER8DERIVED();
 
-        auto position = GET8POSITION();
+        auto position{GET8POSITION()};
 
-        auto size = size_;
+        auto size{size_};
 
         _<TEXT8RENDERER>().DRAW8STRING(text_, position.x + size.width / 2,
                                        position.y + size.height / 2,
@@ -56,7 +56,7 @@ namespace FORRADIA8GAME {
         if (!isVisible_)
             return false;
 
-        auto mousePosition = GET8MOUSE8POSITION();
+        auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
             action_();

@@ -18,12 +18,12 @@ namespace FORRADIA8GAME {
 
     void
     TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize) {
-        auto absFontPath = std::string(SDL_GetBasePath()) + kDefaultFontPath_;
-        auto fontPath = REPLACE(absFontPath, "\\", "/");
-        auto fontSizeN = static_cast<int>(fontSize);
+        auto absFontPath{std::string(SDL_GetBasePath()) + kDefaultFontPath_};
+        auto fontPath{REPLACE(absFontPath, "\\", "/")};
+        auto fontSizeN{static_cast<int>(fontSize)};
 
-        auto newFont = std::shared_ptr<TTF_Font>(
-            TTF_OpenFont(fontPath.c_str(), fontSizeN), SDL8DELETER());
+        auto newFont{std::shared_ptr<TTF_Font>(
+            TTF_OpenFont(fontPath.c_str(), fontSizeN), SDL8DELETER())};
 
         fonts_.insert({fontSize, newFont});
     }
@@ -35,24 +35,24 @@ namespace FORRADIA8GAME {
         if (text.empty())
             return;
 
-        auto font = fonts_[fontSize];
+        auto font{fonts_[fontSize]};
 
-        auto sdlColor = color.TO8SDL8COLOR();
+        auto sdlColor{color.TO8SDL8COLOR()};
 
-        auto surface = std::shared_ptr<SDL_Surface>(
+        auto surface{std::shared_ptr<SDL_Surface>(
             TTF_RenderText_Solid(font.get(), text.data(), sdlColor),
-            SDL8DELETER());
+            SDL8DELETER())};
 
-        auto texture = std::shared_ptr<SDL_Texture>(
+        auto texture{std::shared_ptr<SDL_Texture>(
             SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
                                          surface.get()),
-            SDL8DELETER());
+            SDL8DELETER())};
 
-        auto canvasSize = GET8CANVAS8SIZE();
+        auto canvasSize{GET8CANVAS8SIZE()};
 
-        SDL_Rect rect = {static_cast<int>(x * canvasSize.width),
-                         static_cast<int>(y * canvasSize.height), surface->w,
-                         surface->h};
+        SDL_Rect rect{static_cast<int>(x * canvasSize.width),
+                      static_cast<int>(y * canvasSize.height), surface->w,
+                      surface->h};
 
         if (centered) {
             rect.x -= surface->w / 2;
@@ -65,17 +65,17 @@ namespace FORRADIA8GAME {
 
     SIZE8F
     TEXT8RENDERER::MEASURE8STRING(std::string_view text, FONT8SIZES fontSize) {
-        auto font = fonts_.at(fontSize);
+        auto font{fonts_.at(fontSize)};
 
         int widthPx;
         int heightPx;
 
         TTF_SizeUTF8(font.get(), text.data(), &widthPx, &heightPx);
 
-        auto canvasSize = GET8CANVAS8SIZE();
+        auto canvasSize{GET8CANVAS8SIZE()};
 
-        auto width = static_cast<float>(widthPx) / canvasSize.width;
-        auto height = static_cast<float>(heightPx) / canvasSize.height;
+        auto width{static_cast<float>(widthPx) / canvasSize.width};
+        auto height{static_cast<float>(heightPx) / canvasSize.height};
 
         return {width, height};
     }

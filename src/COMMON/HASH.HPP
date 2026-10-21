@@ -8,13 +8,13 @@
 #pragma once
 
 namespace FORRADIA8GAME {
-    constexpr auto
-    HASH(std::string_view text) -> int {
+    constexpr int
+    HASH(std::string_view text) {
         // Use djb2 algorithm by Daniel J. Bernstein.
-        unsigned long hash = 5381;
+        unsigned long hash{5381};
 
         for (char chr : text) {
-            constexpr unsigned long algorithmFactor = 33;
+            constexpr unsigned long algorithmFactor{33};
 
             hash = algorithmFactor * hash + static_cast<unsigned char>(chr);
         }

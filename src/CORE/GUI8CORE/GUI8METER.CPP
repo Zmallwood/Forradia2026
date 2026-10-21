@@ -15,9 +15,8 @@ namespace FORRADIA8GAME {
 
     void
     GUI8METER::RENDER8DERIVED() {
-        auto position = GET8POSITION();
-
-        auto size = size_;
+        auto position{GET8POSITION()};
+        auto size{size_};
 
         _<COLOR8RENDERER>().FILL8RECT(position.x, position.y, size.width,
                                       size.height, COLORS::kDarkBlue);

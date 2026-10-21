@@ -11,13 +11,13 @@
 namespace FORRADIA8GAME {
     void
     IMAGE8BANK::LOAD8IMAGES() {
-        auto imagesDirectory =
-            SDL_GetBasePath() + std::string(kRelativeImagesDirectory_);
+        auto imagesDirectory{SDL_GetBasePath() +
+                             std::string(kRelativeImagesDirectory_)};
 
         imagesDirectory = REPLACE(imagesDirectory, "\\", "/");
 
-        auto rdi =
-            std::filesystem::recursive_directory_iterator(imagesDirectory);
+        auto rdi{
+            std::filesystem::recursive_directory_iterator(imagesDirectory)};
 
         for (const auto &entry : rdi)
             if (entry.is_regular_file() && entry.path().extension() == ".png")
@@ -26,13 +26,13 @@ namespace FORRADIA8GAME {
 
     void
     IMAGE8BANK::LOAD8SINGLE8IMAGE(std::string_view fullPath) {
-        std::string path = REPLACE(fullPath, "\\", "/");
+        std::string path{REPLACE(fullPath, "\\", "/")};
 
-        auto pureName = GET8FILE8NAME8NO8EXT(path);
+        auto pureName{GET8FILE8NAME8NO8EXT(path)};
 
-        auto hash = HASH(pureName);
+        auto hash{HASH(pureName)};
 
-        auto loaded = IMG_Load(path.c_str());
+        auto loaded{IMG_Load(path.c_str())};
 
         if (!loaded) {
             std::cout << "Failed to load image " << path << ": "
@@ -40,8 +40,8 @@ namespace FORRADIA8GAME {
             return;
         }
 
-        auto converted =
-            SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32, 0);
+        auto converted{
+            SDL_ConvertSurfaceFormat(loaded, SDL_PIXELFORMAT_RGBA32, 0)};
 
         SDL_FreeSurface(loaded);
 
@@ -51,12 +51,12 @@ namespace FORRADIA8GAME {
             return;
         }
 
-        auto surface = std::shared_ptr<SDL_Surface>(converted, SDL8DELETER());
+        auto surface{std::shared_ptr<SDL_Surface>(converted, SDL8DELETER())};
 
-        auto texture = std::shared_ptr<SDL_Texture>(
+        auto texture{std::shared_ptr<SDL_Texture>(
             SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
                                          surface.get()),
-            SDL8DELETER());
+            SDL8DELETER())};
 
         IMAGE8ENTRY entry{texture, surface};
 
@@ -73,8 +73,8 @@ namespace FORRADIA8GAME {
 
     SIZE
     IMAGE8BANK::GET8IMAGE8SIZE(int imageNameHash) {
-        auto width = 0;
-        auto height = 0;
+        auto width{0};
+        auto height{0};
 
         if (images_.contains(imageNameHash))
             SDL_QueryTexture(images_.at(imageNameHash).texture.get(), nullptr,
@@ -86,15 +86,15 @@ namespace FORRADIA8GAME {
     bool
     IMAGE8BANK::IS8PIXEL8VISIBLE(int imageNameHash, float x, float y) {
         if (images_.contains(imageNameHash)) {
-            auto surface = images_.at(imageNameHash).surface.get();
+            auto surface{images_.at(imageNameHash).surface.get()};
 
             if (!surface || !surface->pixels || surface->w <= 0 ||
                 surface->h <= 0 || x < 0.0f || y < 0.0f || x >= 1.0f ||
                 y >= 1.0f)
                 return false;
 
-            auto xPx = static_cast<int>(x * static_cast<float>(surface->w));
-            auto yPx = static_cast<int>(y * static_cast<float>(surface->h));
+            auto xPx{static_cast<int>(x * static_cast<float>(surface->w))};
+            auto yPx{static_cast<int>(y * static_cast<float>(surface->h))};
 
             if (xPx < 0)
                 xPx = 0;
@@ -108,8 +108,8 @@ namespace FORRADIA8GAME {
             if (yPx >= surface->h)
                 yPx = surface->h - 1;
 
-            auto pixels = static_cast<Uint8 *>(surface->pixels);
-            auto alpha = pixels[yPx * surface->pitch + xPx * 4 + 3];
+            auto pixels{static_cast<Uint8 *>(surface->pixels)};
+            auto alpha{pixels[yPx * surface->pitch + xPx * 4 + 3]};
 
             return alpha > 0;
         }

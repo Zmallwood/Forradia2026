@@ -15,11 +15,11 @@ namespace FORRADIA8GAME {
     class OBJECT8INDEX8ENTRY {
       public:
         std::string label;
-        int flags = 0;
+        int flags{0};
         std::vector<POINT8F> impactPoints;
         std::vector<OBJECT8IMPACT8ACTION> impactActions;
-        int worldViewObjectType = 0;
-        POINT8F worldViewRenderOffset = {0.0f, 0.0f};
-        POINT8F firstPersonViewRenderOffset = {0.0f, 0.0f};
+        int worldViewObjectType{0};
+        POINT8F worldViewRenderOffset{0.0f, 0.0f};
+        POINT8F firstPersonViewRenderOffset{0.0f, 0.0f};
     };
 }

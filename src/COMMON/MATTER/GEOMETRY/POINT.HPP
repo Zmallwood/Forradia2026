@@ -14,7 +14,7 @@ namespace FORRADIA8GAME {
 
         POINT operator+(const POINT &other) const;
 
-        int x = 0;
-        int y = 0;
+        int x{0};
+        int y{0};
     };
 }

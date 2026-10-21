@@ -23,20 +23,17 @@ namespace FORRADIA8GAME {
 
     void
     SCENE8MANAGER::ADD8SCENE(std::string_view sceneName, I8SCENE &scene) {
-        auto hash = HASH(sceneName);
-
+        auto hash{HASH(sceneName)};
         scenes_.insert({hash, scene});
-
         scene.INITIALIZE();
     }
 
     void
     SCENE8MANAGER::GO8TO8SCENE(std::string_view sceneName) {
-        auto hash = HASH(sceneName);
+        auto hash{HASH(sceneName)};
 
         if (scenes_.contains(hash)) {
             currentScene_ = hash;
-
             scenes_.at(currentScene_).ON8ENTER();
         }
     }

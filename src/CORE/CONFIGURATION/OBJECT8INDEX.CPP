@@ -27,7 +27,7 @@ namespace FORRADIA8GAME {
                             std::string_view worldViewObjectType,
                             POINT8F worldViewRenderOffset,
                             POINT8F firstPersonViewRenderOffset) {
-        int worldViewObjectTypeHash = 0;
+        int worldViewObjectTypeHash{0};
 
         if (worldViewObjectType != "")
             worldViewObjectTypeHash = HASH(worldViewObjectType);
@@ -43,7 +43,6 @@ namespace FORRADIA8GAME {
         if (entries_.contains(objectHash))
             return (entries_.at(objectHash).flags &
                     OBJECT8FLAGS::kSmallObject) != 0;
-
         return false;
     }
 
@@ -51,7 +50,6 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).label;
-
         return "";
     }
 
@@ -60,7 +58,6 @@ namespace FORRADIA8GAME {
         if (entries_.contains(objectHash))
             return (entries_.at(objectHash).flags &
                     OBJECT8FLAGS::kBlocksSight) != 0;
-
         return false;
     }
 
@@ -69,7 +66,6 @@ namespace FORRADIA8GAME {
         if (entries_.contains(objectHash))
             return (entries_.at(objectHash).flags & OBJECT8FLAGS::kUnmovable) !=
                    0;
-
         return false;
     }
 
@@ -77,7 +73,6 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).impactPoints;
-
         return {};
     }
 
@@ -85,7 +80,6 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8OBJECT8IMPACT8ACTIONS(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).impactActions;
-
         return {};
     }
 
@@ -93,7 +87,6 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).worldViewObjectType;
-
         return 0;
     }
 
@@ -101,15 +94,13 @@ namespace FORRADIA8GAME {
     OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).worldViewRenderOffset;
-
-        return POINT8F{0.0f, 0.0f};
+        return {0.0f, 0.0f};
     }
 
     POINT8F
     OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash) {
         if (entries_.contains(objectHash))
             return entries_.at(objectHash).firstPersonViewRenderOffset;
-
-        return POINT8F{0.0f, 0.0f};
+        return {0.0f, 0.0f};
     }
 }

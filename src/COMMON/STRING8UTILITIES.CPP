@@ -13,7 +13,7 @@ namespace FORRADIA8GAME {
             std::string_view newValue) {
         std::string result(text);
 
-        size_t position = 0;
+        size_t position{0};
 
         while ((position = result.find(oldValue, position)) !=
                std::string::npos) {

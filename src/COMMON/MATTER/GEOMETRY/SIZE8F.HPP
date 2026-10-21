@@ -10,7 +10,7 @@
 namespace FORRADIA8GAME {
     class SIZE8F {
       public:
-        float width = 0.0f;
-        float height = 0.0f;
+        float width{0.0f};
+        float height{0.0f};
     };
 }

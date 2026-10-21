@@ -11,8 +11,8 @@
 namespace FORRADIA8GAME {
     SIZE
     GET8CANVAS8SIZE() {
-        int width = 0;
-        int height = 0;
+        int width{0};
+        int height{0};
 
         SDL_GetWindowSize(_<SDL8DEVICE>().window_.get(), &width, &height);
 
@@ -21,7 +21,7 @@ namespace FORRADIA8GAME {
 
     float
     GET8ASPECT8RATIO() {
-        auto size = GET8CANVAS8SIZE();
+        auto size{GET8CANVAS8SIZE()};
 
         return static_cast<float>(size.width) / size.height;
     }

@@ -177,7 +177,7 @@ namespace FORRADIA8GAME {
                             tileY + tileHeight / 4, tileWidth,
                             tileHeight * 3 / 4);
 
-                    if (i >= elevationEast && i <= elevationNorthEast)
+                    if (i >= elevationEast && i < elevationNorthEast)
                         _<IMAGE8RENDERER>().DRAW8IMAGE(
                             "ElevationEdgeRight", tileX, tileY + tileHeight / 4,
                             tileWidth, tileHeight * 3 / 4);

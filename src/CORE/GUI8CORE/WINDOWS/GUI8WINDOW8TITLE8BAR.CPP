@@ -21,12 +21,12 @@ namespace FORRADIA8GAME {
     GUI8WINDOW8TITLE8BAR::UPDATE8DERIVED() {
         GUI8PANEL::UPDATE8DERIVED();
 
-        auto mousePosition = GET8MOUSE8POSITION();
+        auto mousePosition{GET8MOUSE8POSITION()};
 
         if (isMoving_) {
-            auto delta = mousePosition - mousePositionStartMove_;
+            auto delta{mousePosition - mousePositionStartMove_};
 
-            auto newPosition = positionStartMove_ + delta;
+            auto newPosition{positionStartMove_ + delta};
 
             SET8POSITION(newPosition);
         }
@@ -34,7 +34,7 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8WINDOW8TITLE8BAR::ON8MOUSE8DOWN(Uint8 mouseButton) {
-        auto mousePosition = GET8MOUSE8POSITION();
+        auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
             positionStartMove_ = GET8POSITION();
@@ -51,7 +51,7 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8WINDOW8TITLE8BAR::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) {
-        auto mousePosition = GET8MOUSE8POSITION();
+        auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
             isMoving_ = false;
@@ -66,7 +66,7 @@ namespace FORRADIA8GAME {
     GUI8WINDOW8TITLE8BAR::RENDER8DERIVED() {
         GUI8PANEL::RENDER8DERIVED();
 
-        auto position = GET8POSITION();
+        auto position{GET8POSITION()};
 
         _<TEXT8RENDERER>().DRAW8STRING(title_, position.x + kMargin_.x,
                                        position.y + kMargin_.y, FONT8SIZES::_20,

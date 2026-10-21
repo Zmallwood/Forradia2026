@@ -15,8 +15,8 @@ namespace FORRADIA8GAME {
         void RENDER();
 
       private:
-        int fps_ = 0;
-        int framesCounter_ = 0;
-        int ticksLastUpdate_ = 0;
+        int fps_{0};
+        int framesCounter_{0};
+        int ticksLastUpdate_{0};
     };
 }

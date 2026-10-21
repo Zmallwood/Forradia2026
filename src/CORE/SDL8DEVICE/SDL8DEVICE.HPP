@@ -26,7 +26,6 @@ namespace FORRADIA8GAME {
         std::shared_ptr<SDL_Renderer> renderer_;
 
       private:
-        static constexpr std::string_view kWindowName_ = "Forradia";
-        bool initialized_ = false;
+        bool initialized_{false};
     };
 }

@@ -11,7 +11,7 @@
 namespace FORRADIA8GAME {
     void
     FPS8COUNTER::UPDATE() {
-        auto now = NOW();
+        auto now{NOW()};
 
         if (now > ticksLastUpdate_ + kOneSecondMillis) {
             fps_ = framesCounter_;
@@ -24,7 +24,7 @@ namespace FORRADIA8GAME {
 
     void
     FPS8COUNTER::RENDER() {
-        std::string text = "FPS: " + std::to_string(fps_);
+        std::string text{"FPS: " + std::to_string(fps_)};
 
         _<TEXT8RENDERER>().DRAW8STRING(text, 0.95f, 0.03f);
     }

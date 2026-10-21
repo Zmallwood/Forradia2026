@@ -28,15 +28,15 @@ namespace FORRADIA8GAME {
 
     void
     PLAYER::SPAWN8ONSUITABLE8LOCATION() {
-        auto worldArea = _<WORLD>().currentWorldArea_;
+        auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto worldAreaSize = worldArea->GET8SIZE();
+        auto worldAreaSize{worldArea->GET8SIZE()};
 
         position_ = {4.0f + (worldAreaSize.width - 5.0f) / 2,
                      4.0f + (worldAreaSize.height - 5.0f) / 2};
 
-        auto tile = worldArea->GET8TILE(static_cast<int>(position_.x),
-                                        static_cast<int>(position_.y));
+        auto tile{worldArea->GET8TILE(static_cast<int>(position_.x),
+                                      static_cast<int>(position_.y))};
 
         while (tile->ground_ == HASH("GroundWater")) {
             position_ = {4.0f + (rand() % (worldAreaSize.width - 5)),
@@ -52,11 +52,11 @@ namespace FORRADIA8GAME {
 
     void
     PLAYER::MOVE8NORTH() {
-        auto newX = position_.x;
-        auto newY = position_.y - stepSize_;
+        auto newX{position_.x};
+        auto newY{position_.y - stepSize_};
 
-        auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
-            {static_cast<int>(newX), static_cast<int>(newY)});
+        auto newTile{_<WORLD>().currentWorldArea_->GET8TILE(
+            {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
             (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
@@ -72,11 +72,11 @@ namespace FORRADIA8GAME {
 
     void
     PLAYER::MOVE8EAST() {
-        auto newX = position_.x + stepSize_;
-        auto newY = position_.y;
+        auto newX{position_.x + stepSize_};
+        auto newY{position_.y};
 
-        auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
-            {static_cast<int>(newX), static_cast<int>(newY)});
+        auto newTile{_<WORLD>().currentWorldArea_->GET8TILE(
+            {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
             (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
@@ -92,11 +92,11 @@ namespace FORRADIA8GAME {
 
     void
     PLAYER::MOVE8SOUTH() {
-        auto newX = position_.x;
-        auto newY = position_.y + stepSize_;
+        auto newX{position_.x};
+        auto newY{position_.y + stepSize_};
 
-        auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
-            {static_cast<int>(newX), static_cast<int>(newY)});
+        auto newTile{_<WORLD>().currentWorldArea_->GET8TILE(
+            {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
             (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
@@ -112,11 +112,11 @@ namespace FORRADIA8GAME {
 
     void
     PLAYER::MOVE8WEST() {
-        auto newX = position_.x - stepSize_;
-        auto newY = position_.y;
+        auto newX{position_.x - stepSize_};
+        auto newY{position_.y};
 
-        auto newTile = _<WORLD>().currentWorldArea_->GET8TILE(
-            {static_cast<int>(newX), static_cast<int>(newY)});
+        auto newTile{_<WORLD>().currentWorldArea_->GET8TILE(
+            {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
             (newTile->ground_ == HASH("GroundWater") || newTile->creature_))

@@ -30,7 +30,6 @@ namespace FORRADIA8GAME {
     PLAYER8INVENTORY::GET8OBJECT(int index) {
         if (objects_.contains(index))
             return objects_.at(index);
-
         return nullptr;
     }
 
@@ -38,7 +37,7 @@ namespace FORRADIA8GAME {
     PLAYER8INVENTORY::PICK8OBJECT(int index) {
         for (auto it = objects_.begin(); it != objects_.end();) {
             if (it->first == index) {
-                auto result = it->second;
+                auto result{it->second};
 
                 objects_.erase(it++);
 

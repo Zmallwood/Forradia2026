@@ -18,9 +18,9 @@ namespace FORRADIA8GAME {
 
         void RENDER();
 
-        CURSOR8STYLES cursorStyle_ = CURSOR8STYLES::Default;
+        CURSOR8STYLES cursorStyle_{CURSOR8STYLES::Default};
 
       private:
-        static constexpr float kCursorSize_ = 0.05f;
+        static constexpr float kCursorSize_{0.05f};
     };
 }

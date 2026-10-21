@@ -23,8 +23,8 @@ namespace FORRADIA8GAME {
       private:
         void LOAD8SINGLE8IMAGE(std::string_view fullPath);
 
-        static constexpr std::string_view kRelativeImagesDirectory_ =
-            "resources/Images/";
+        static constexpr std::string_view kRelativeImagesDirectory_{
+            "resources/Images/"};
         std::unordered_map<int, IMAGE8ENTRY> images_;
     };
 }

@@ -10,7 +10,6 @@
 namespace FORRADIA8GAME {
     CREATURE8INDEX::CREATURE8INDEX() {
         ADD8ENTRY("CreatureDeer", "Deer", "ObjectCreatureDeerCorpse");
-
         ADD8ENTRY("CreatureBoar", "Boar", "ObjectCreatureBoarCorpse");
     }
 
@@ -24,7 +23,6 @@ namespace FORRADIA8GAME {
     CREATURE8INDEX::GET8CREATURE8LABEL(int creatureHash) {
         if (entries_.contains(creatureHash))
             return entries_[creatureHash].label;
-
         return "";
     }
 
@@ -32,7 +30,6 @@ namespace FORRADIA8GAME {
     CREATURE8INDEX::GET8CREATURE8CORPSE8TYPE(int creatureHash) {
         if (entries_.contains(creatureHash))
             return entries_[creatureHash].corpseType;
-
         return 0;
     }
 }
