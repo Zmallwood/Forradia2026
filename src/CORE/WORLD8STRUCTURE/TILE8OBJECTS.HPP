@@ -28,6 +28,8 @@ namespace FORRADIA8GAME {
 
         std::shared_ptr<OBJECT> PICK8OBJECT(std::shared_ptr<OBJECT> object);
 
+        std::shared_ptr<OBJECT> PICK8OBJECT(POINT position);
+
         void REMOVE8OBJECT(std::shared_ptr<OBJECT> object);
 
         bool HAS8OBJECT8OF8TYPE(std::string_view objectType);

@@ -14,6 +14,7 @@
 #include "CORE/WORLD8STRUCTURE/OBJECT.HPP"
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW.HPP"
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW8FUNCTIONS.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER8EQUIPMENT8SLOTS.HPP"
 
 namespace FORRADIA8GAME {
     void
@@ -42,8 +43,10 @@ namespace FORRADIA8GAME {
         constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
         constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
 
-        auto rightHandObject{_<PLAYER>().playerEquipment_->rightHandObject_};
-        auto leftHandObject{_<PLAYER>().playerEquipment_->leftHandObject_};
+        using namespace PLAYER8EQUIPMENT8SLOTS;
+
+        auto rightHandObject{_<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]};
+        auto leftHandObject{_<PLAYER>().playerEquipment_->slots_[LEFT8HAND]};
 
         for (auto &entry : orderedObjects) {
             auto xPos{entry.second.position_.x};

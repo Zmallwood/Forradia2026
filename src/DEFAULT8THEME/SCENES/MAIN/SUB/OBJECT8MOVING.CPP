@@ -18,6 +18,10 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW/FIRST8PERSON8VIEW8FUNCTIONS.HPP"
 #include "FIRST8PERSON8HOVERING.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER8INVENTORY.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER8EQUIPMENT.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER8EQUIPMENT8SLOTS.HPP"
 
 namespace FORRADIA8GAME {
     void
@@ -81,6 +85,13 @@ namespace FORRADIA8GAME {
 
         auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
+        auto objectOnLocation{
+            tile->tileObjects_->PICK8OBJECT(hoveredTilePosition)};
+
+        if (objectOnLocation) {
+            MOVE8OBJECT8TO8PICKUP8LOCATION(objectOnLocation);
+        }
+
         tile->tileObjects_->ADD8OBJECT(objectInAir_, hoveredTilePosition);
 
         CLEAR8OBJECT();
@@ -119,6 +130,28 @@ namespace FORRADIA8GAME {
     void
     OBJECT8MOVING::CLEAR8OBJECT() {
         objectInAir_ = nullptr;
+        pickedPosition_ = POINT{-1, -1};
+        pickedInventoryPosition_ = -1;
+        pickedEquipmentSlot_ = -1;
         draggingMouseOffset_ = {0.0F, 0.0F};
+    }
+
+    void
+    OBJECT8MOVING::MOVE8OBJECT8TO8PICKUP8LOCATION(
+        std::shared_ptr<OBJECT> object) {
+        if (pickedPosition_ != POINT{-1, -1}) {
+            auto worldArea{_<WORLD>().currentWorldArea_};
+
+            auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+    
+            auto tile{worldArea->GET8TILE(facedTileCoordinate)};
+            
+            tile->tileObjects_->ADD8OBJECT(object, pickedPosition_);
+        } else if (pickedInventoryPosition_ != -1) {
+            _<PLAYER>().playerInventory_->ADD8OBJECT(object,
+                                                     pickedInventoryPosition_);
+        } else if (pickedEquipmentSlot_ != -1) {
+            _<PLAYER>().playerEquipment_->slots_[pickedEquipmentSlot_] = object;
+        }
     }
 }

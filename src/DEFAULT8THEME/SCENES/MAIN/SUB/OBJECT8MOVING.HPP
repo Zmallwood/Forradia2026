@@ -20,6 +20,8 @@ namespace FORRADIA8GAME {
 
         void CLEAR8OBJECT();
 
+        void MOVE8OBJECT8TO8PICKUP8LOCATION(std::shared_ptr<OBJECT> object);
+
         auto
         GET8OBJECT8IN8AIR() {
             return objectInAir_;
@@ -31,9 +33,11 @@ namespace FORRADIA8GAME {
         }
 
         POINT8F draggingMouseOffset_;
+        int pickedInventoryPosition_{-1};
+        int pickedEquipmentSlot_{-1};
 
       private:
         std::shared_ptr<OBJECT> objectInAir_;
-        POINT pickedPosition_;
+        POINT pickedPosition_{-1, -1};
     };
 }

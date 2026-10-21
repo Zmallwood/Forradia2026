@@ -21,6 +21,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD.HPP"
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "FIRST8PERSON8VIEW8FUNCTIONS.HPP"
+#include "CORE/CORE8GAME8OBJECTS/PLAYER8EQUIPMENT8SLOTS.HPP"
 
 namespace FORRADIA8GAME {
     void
@@ -56,8 +57,10 @@ namespace FORRADIA8GAME {
         if (!facedTile)
             return;
 
-        auto rightHandObject{_<PLAYER>().playerEquipment_->rightHandObject_};
-        auto leftHandObject{_<PLAYER>().playerEquipment_->leftHandObject_};
+        using namespace PLAYER8EQUIPMENT8SLOTS;
+
+        auto rightHandObject{_<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]};
+        auto leftHandObject{_<PLAYER>().playerEquipment_->slots_[LEFT8HAND]};
 
         auto groundType{facedTile->ground_};
 
@@ -130,7 +133,7 @@ namespace FORRADIA8GAME {
                     _<OBJECT8INDEX>().GET8OBJECT8NAME(usedObjectType)};
 
                 auto animationIndex{(NOW() / 2 + 10 * facedTileCoordinate.x *
-                                                      facedTileCoordinate.y) %
+                                                     facedTileCoordinate.y) %
                                     (animationFrames * 100) / 100};
 
                 std::string animationName{objectName + "_" +
@@ -339,7 +342,7 @@ namespace FORRADIA8GAME {
                     _<OBJECT8INDEX>().GET8OBJECT8NAME(usedObjectType)};
 
                 auto animationIndex{(NOW() / 2 + 10 * facedTileCoordinate.x *
-                                                      facedTileCoordinate.y) %
+                                                     facedTileCoordinate.y) %
                                     (animationFrames * 100) / 100};
 
                 std::string animationName{objectName + "_" +

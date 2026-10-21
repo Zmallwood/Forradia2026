@@ -12,11 +12,8 @@ namespace FORRADIA8GAME {
 
     class PLAYER8EQUIPMENT {
       public:
-        std::shared_ptr<OBJECT> headObject_;
-        std::shared_ptr<OBJECT> chestObject_;
-        std::shared_ptr<OBJECT> legsObject_;
-        std::shared_ptr<OBJECT> feetObject_;
-        std::shared_ptr<OBJECT> rightHandObject_;
-        std::shared_ptr<OBJECT> leftHandObject_;
+        PLAYER8EQUIPMENT();
+
+        std::map<int, std::shared_ptr<OBJECT>> slots_;
     };
 }

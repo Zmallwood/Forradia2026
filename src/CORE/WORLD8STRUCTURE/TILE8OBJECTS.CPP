@@ -51,6 +51,18 @@ namespace FORRADIA8GAME {
         return nullptr;
     }
 
+    std::shared_ptr<OBJECT>
+    TILE8OBJECTS::PICK8OBJECT(POINT position) {
+        for (auto it = objects_.begin(); it != objects_.end(); ++it) {
+            if (it->first == position) {
+                auto result{it->second};
+                objects_.erase(it);
+                return result;
+            }
+        }
+        return nullptr;
+    }
+
     void
     TILE8OBJECTS::TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
                                    std::string_view newObjectType) {

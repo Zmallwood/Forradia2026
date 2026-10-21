@@ -67,6 +67,8 @@ namespace FORRADIA8GAME {
                             inventoryIndex)};
 
                         if (object) {
+                            _<OBJECT8MOVING>().pickedInventoryPosition_ =
+                                inventoryIndex;
                             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(object);
 
                             constexpr auto largeObjectScale{
@@ -143,16 +145,21 @@ namespace FORRADIA8GAME {
                 RECT8F slotBounds{slotX, slotY, slotWidth, slotHeight};
 
                 if (slotBounds.CONTAINS(mousePosition)) {
-                    if (!_<PLAYER>().playerInventory_->HAS8OBJECT(
-                            inventoryIndex)) {
-                        _<PLAYER>().playerInventory_->ADD8OBJECT(
-                            _<OBJECT8MOVING>().GET8OBJECT8IN8AIR(),
-                            inventoryIndex);
+                    auto objectOnLocation{
+                        _<PLAYER>().playerInventory_->PICK8OBJECT(
+                            inventoryIndex)};
 
-                        _<OBJECT8MOVING>().CLEAR8OBJECT();
-
-                        return true;
+                    if (objectOnLocation) {
+                        _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                            objectOnLocation);
                     }
+
+                    _<PLAYER>().playerInventory_->ADD8OBJECT(
+                        _<OBJECT8MOVING>().GET8OBJECT8IN8AIR(), inventoryIndex);
+
+                    _<OBJECT8MOVING>().CLEAR8OBJECT();
+
+                    return true;
                 }
 
                 ++inventoryIndex;
