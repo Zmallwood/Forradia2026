@@ -55,7 +55,7 @@ namespace FORRADIA8GAME {
         draggingMouseOffset_ =
             _<FIRST8PERSON8HOVERING>().hoveredThingMouseOffset_;
 
-        pickedPosition_ = GET8HOVERED8TILE8POSITION(draggingMouseOffset_);
+        SET8PICKED8POSITION(GET8HOVERED8TILE8POSITION(draggingMouseOffset_));
     }
 
     void
@@ -88,9 +88,8 @@ namespace FORRADIA8GAME {
         auto objectOnLocation{
             tile->tileObjects_->PICK8OBJECT(hoveredTilePosition)};
 
-        if (objectOnLocation) {
+        if (objectOnLocation)
             MOVE8OBJECT8TO8PICKUP8LOCATION(objectOnLocation);
-        }
 
         tile->tileObjects_->ADD8OBJECT(objectInAir_, hoveredTilePosition);
 
@@ -143,9 +142,9 @@ namespace FORRADIA8GAME {
             auto worldArea{_<WORLD>().currentWorldArea_};
 
             auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
-    
+
             auto tile{worldArea->GET8TILE(facedTileCoordinate)};
-            
+
             tile->tileObjects_->ADD8OBJECT(object, pickedPosition_);
         } else if (pickedInventoryPosition_ != -1) {
             _<PLAYER>().playerInventory_->ADD8OBJECT(object,
@@ -153,5 +152,26 @@ namespace FORRADIA8GAME {
         } else if (pickedEquipmentSlot_ != -1) {
             _<PLAYER>().playerEquipment_->slots_[pickedEquipmentSlot_] = object;
         }
+    }
+
+    void
+    OBJECT8MOVING::SET8PICKED8INVENTORY8POSITION(int position) {
+        pickedInventoryPosition_ = position;
+        pickedPosition_ = POINT{-1, -1};
+        pickedEquipmentSlot_ = -1;
+    }
+
+    void
+    OBJECT8MOVING::SET8PICKED8EQUIPMENT8SLOT(int slot) {
+        pickedEquipmentSlot_ = slot;
+        pickedPosition_ = POINT{-1, -1};
+        pickedInventoryPosition_ = -1;
+    }
+
+    void
+    OBJECT8MOVING::SET8PICKED8POSITION(POINT position) {
+        pickedPosition_ = position;
+        pickedInventoryPosition_ = -1;
+        pickedEquipmentSlot_ = -1;
     }
 }

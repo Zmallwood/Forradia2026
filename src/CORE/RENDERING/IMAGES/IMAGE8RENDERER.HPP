@@ -23,5 +23,9 @@ namespace FORRADIA8GAME {
 
         void DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
                         float opacity = 1.0F, bool flipHorizontal = false);
+
+        void DRAW8IMAGE8AUTOSIZE(std::string_view imageName, float x, float y,
+                                 float width, float opacity = 1.0F,
+                                 bool flipHorizontal = false);
     };
 }

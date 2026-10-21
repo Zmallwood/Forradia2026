@@ -30,7 +30,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[HEAD]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = HEAD;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(HEAD);
 
             _<PLAYER>().playerEquipment_->slots_[HEAD] = nullptr;
 
@@ -39,7 +39,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[CHEST]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = CHEST;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(CHEST);
 
             _<PLAYER>().playerEquipment_->slots_[CHEST] = nullptr;
 
@@ -48,7 +48,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[LEGS]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = LEGS;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(LEGS);
 
             _<PLAYER>().playerEquipment_->slots_[LEGS] = nullptr;
 
@@ -57,7 +57,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[FEET]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = FEET;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(FEET);
 
             _<PLAYER>().playerEquipment_->slots_[FEET] = nullptr;
 
@@ -66,7 +66,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = RIGHT8HAND;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(RIGHT8HAND);
 
             _<PLAYER>().playerEquipment_->slots_[RIGHT8HAND] = nullptr;
 
@@ -75,7 +75,7 @@ namespace FORRADIA8GAME {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
                 _<PLAYER>().playerEquipment_->slots_[LEFT8HAND]);
 
-            _<OBJECT8MOVING>().pickedEquipmentSlot_ = LEFT8HAND;
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(LEFT8HAND);
 
             _<PLAYER>().playerEquipment_->slots_[LEFT8HAND] = nullptr;
 

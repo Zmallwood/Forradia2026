@@ -67,8 +67,8 @@ namespace FORRADIA8GAME {
                             inventoryIndex)};
 
                         if (object) {
-                            _<OBJECT8MOVING>().pickedInventoryPosition_ =
-                                inventoryIndex;
+                            _<OBJECT8MOVING>().SET8PICKED8INVENTORY8POSITION(
+                                inventoryIndex);
                             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(object);
 
                             constexpr auto largeObjectScale{

@@ -60,4 +60,16 @@ namespace FORRADIA8GAME {
         DRAW8IMAGE(imageName, bounds.x, bounds.y, bounds.width, bounds.height,
                    opacity, flipHorizontal);
     }
+
+    void
+    IMAGE8RENDERER::DRAW8IMAGE8AUTOSIZE(std::string_view imageName, float x,
+                                        float y, float width, float opacity,
+                                        bool flipHorizontal) {
+        auto hash{HASH(imageName)};
+        auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(hash)};
+        auto height{CONVERT8WIDTH8TO8HEIGHT(imageSize.height * width /
+                                            imageSize.width)};
+
+        DRAW8IMAGE(imageName, x, y, width, height, opacity, flipHorizontal);
+    }
 }
