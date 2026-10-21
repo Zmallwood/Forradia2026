@@ -20,5 +20,6 @@ namespace FORRADIA8GAME {
         inline static constexpr COLOR kDarkBlueGray{0.2F, 0.25F, 0.35F, 1.0F};
         inline static constexpr COLOR kBlueGray{0.3F, 0.35F, 0.55F, 1.0F};
         inline static constexpr COLOR kVeryDarkBlue{0.0F, 0.0F, 0.1F, 1.0F};
+        inline static constexpr COLOR kMildBlue{0.0F, 0.6F, 1.0F, 1.0F};
     }
 }
