@@ -34,19 +34,19 @@ namespace FORRADIA8GAME {
 
         RECT8F GET8LEFT8HAND8SLOT8BOUNDS();
 
-        static constexpr float kSlotWidth_ = 0.037f;
-        static constexpr float kMarginY_ = 0.02f;
-        static constexpr std::string_view kHeadSlotImage_ =
-            "GUIEquipmentWindowHeadSlotBackground";
-        static constexpr std::string_view kChestSlotImage_ =
-            "GUIEquipmentWindowChestSlotBackground";
-        static constexpr std::string_view kLegsSlotImage_ =
-            "GUIEquipmentWindowLegsSlotBackground";
-        static constexpr std::string_view kFeetSlotImage_ =
-            "GUIEquipmentWindowFeetSlotBackground";
-        static constexpr std::string_view kRightHandSlotImage_ =
-            "GUIEquipmentWindowRightHandSlotBackground";
-        static constexpr std::string_view kLeftHandSlotImage_ =
-            "GUIEquipmentWindowLeftHandSlotBackground";
+        static constexpr float kSlotWidth_{0.037f};
+        static constexpr float kMarginY_{0.02f};
+        static constexpr std::string_view kHeadSlotImage_{
+            "GUIEquipmentWindowHeadSlotBackground"};
+        static constexpr std::string_view kChestSlotImage_{
+            "GUIEquipmentWindowChestSlotBackground"};
+        static constexpr std::string_view kLegsSlotImage_{
+            "GUIEquipmentWindowLegsSlotBackground"};
+        static constexpr std::string_view kFeetSlotImage_{
+            "GUIEquipmentWindowFeetSlotBackground"};
+        static constexpr std::string_view kRightHandSlotImage_{
+            "GUIEquipmentWindowRightHandSlotBackground"};
+        static constexpr std::string_view kLeftHandSlotImage_{
+            "GUIEquipmentWindowLeftHandSlotBackground"};
     };
 }

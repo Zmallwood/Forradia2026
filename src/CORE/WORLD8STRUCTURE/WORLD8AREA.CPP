@@ -11,7 +11,7 @@
 
 namespace FORRADIA8GAME {
     WORLD8AREA::WORLD8AREA() {
-        auto size = _<GAME8PROPERTIES>().kWorldAreaSize_;
+        auto size{_<GAME8PROPERTIES>().kWorldAreaSize_};
 
         for (auto x = 0; x < size.width; x++) {
             tiles_.push_back(std::vector<std::shared_ptr<TILE>>());
@@ -23,8 +23,8 @@ namespace FORRADIA8GAME {
 
     SIZE
     WORLD8AREA::GET8SIZE() {
-        auto width = static_cast<int>(tiles_.size());
-        auto height = 0;
+        auto width{static_cast<int>(tiles_.size())};
+        auto height{0};
 
         if (width)
             height = static_cast<int>(tiles_.at(0).size());
@@ -34,8 +34,7 @@ namespace FORRADIA8GAME {
 
     bool
     WORLD8AREA::IS8VALID8COORDINATE(int x, int y) {
-        auto size = GET8SIZE();
-
+        auto size{GET8SIZE()};
         return x >= 0 && x < size.width && y >= 0 && y < size.height;
     }
 
@@ -48,7 +47,6 @@ namespace FORRADIA8GAME {
     WORLD8AREA::GET8TILE(int x, int y) {
         if (IS8VALID8COORDINATE(x, y))
             return tiles_.at(x).at(y);
-
         return nullptr;
     }
 

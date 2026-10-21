@@ -17,11 +17,11 @@ namespace FORRADIA8GAME {
         void RENDER();
 
       private:
-        static constexpr float kWidth = 0.17f;
-        static constexpr float kLineHeight = 0.02f;
-        static constexpr float kMarginX = 0.002f;
+        static constexpr float kWidth{0.17f};
+        static constexpr float kLineHeight{0.02f};
+        static constexpr float kMarginX{0.002f};
         POINT8F rightClickMousePosition_;
         std::vector<GUI8ACTION8MENU8ENTRY> entries_;
-        bool visible_ = false;
+        bool visible_{false};
     };
 }

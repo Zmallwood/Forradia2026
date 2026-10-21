@@ -17,7 +17,7 @@ namespace FORRADIA8GAME {
     CREATURE::CREATURE(int type) {
         type_ = type;
 
-        auto typeName = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type);
+        auto typeName{_<CREATURE8INDEX>().GET8CREATURE8LABEL(type)};
     }
 
     void
@@ -30,12 +30,12 @@ namespace FORRADIA8GAME {
 
         targetingPlayer_ = true;
 
-        auto now = NOW();
+        auto now{NOW()};
 
         if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_))
             ticksLastHitOnOther_ = now;
 
-        auto creatureLabel = _<CREATURE8INDEX>().GET8CREATURE8LABEL(type_);
+        auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(type_)};
 
         std::stringstream ssDamage;
 

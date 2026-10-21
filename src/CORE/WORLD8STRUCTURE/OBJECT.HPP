@@ -16,8 +16,8 @@ namespace FORRADIA8GAME {
 
         OBJECT(std::string_view typeName);
 
-        int type_ = 0;
-        int quantity_ = 1;
+        int type_{0};
+        int quantity_{1};
         std::vector<COMPLETABLE8IMPACT8POINT> impactPoints_;
     };
 }

@@ -45,25 +45,21 @@ namespace FORRADIA8GAME {
         for (auto it = objects_.begin(); it != objects_.end(); ++it) {
             if (it->second == object) {
                 objects_.erase(it);
-
                 return object;
             }
         }
-
         return nullptr;
     }
 
     void
     TILE8OBJECTS::TRANSFORM8OBJECT(std::shared_ptr<OBJECT> object,
                                    std::string_view newObjectType) {
-        POINT position = {-1, -1};
+        POINT position{-1, -1};
 
         for (auto it = objects_.begin(); it != objects_.end(); ++it) {
             if (it->second == object) {
                 position = it->first;
-
                 objects_.erase(it);
-
                 break;
             }
         }
@@ -77,7 +73,6 @@ namespace FORRADIA8GAME {
         for (auto it = objects_.begin(); it != objects_.end(); ++it) {
             if (it->second == object) {
                 objects_.erase(it);
-
                 return;
             }
         }
@@ -88,7 +83,6 @@ namespace FORRADIA8GAME {
         for (auto it = objects_.begin(); it != objects_.end(); ++it)
             if (it->second->type_ == HASH(objectType))
                 return true;
-
         return false;
     }
 }

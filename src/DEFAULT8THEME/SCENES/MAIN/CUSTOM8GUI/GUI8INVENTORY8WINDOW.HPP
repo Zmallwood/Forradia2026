@@ -22,7 +22,7 @@ namespace FORRADIA8GAME {
         void RENDER8DERIVED() override;
 
       private:
-        static constexpr float kSlotWidth_ = 0.037f;
-        static constexpr float kSlotMarginX_ = 0.005f;
+        static constexpr float kSlotWidth_{0.037f};
+        static constexpr float kSlotMarginX_{0.005f};
     };
 }

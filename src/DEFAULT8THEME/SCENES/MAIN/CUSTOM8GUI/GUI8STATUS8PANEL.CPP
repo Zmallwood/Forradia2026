@@ -23,9 +23,9 @@ namespace FORRADIA8GAME {
         _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().name_, 0.015f, 0.01f,
                                        FONT8SIZES::_20, false);
 
-        auto playerLevel = CALCULATE8CURRENT8LEVEL(_<PLAYER>().experience_);
+        auto playerLevel{CALCULATE8CURRENT8LEVEL(_<PLAYER>().experience_)};
 
-        std::string levelText = "Level " + std::to_string(playerLevel);
+        std::string levelText{"Level " + std::to_string(playerLevel)};
 
         _<TEXT8RENDERER>().DRAW8STRING(levelText, 0.015f, 0.04f,
                                        FONT8SIZES::_25, false,
