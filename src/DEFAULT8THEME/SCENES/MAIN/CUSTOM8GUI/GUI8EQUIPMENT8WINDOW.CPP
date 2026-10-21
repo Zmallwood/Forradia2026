@@ -94,31 +94,61 @@ namespace FORRADIA8GAME {
         auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8HEAD8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[HEAD]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[HEAD]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[HEAD] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8CHEST8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[CHEST]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[CHEST]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[CHEST] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8LEGS8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[LEGS]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[LEGS]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[LEGS] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8FEET8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[FEET]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[FEET]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[FEET] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8RIGHT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[RIGHT8HAND] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8LEFT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
+            if (_<PLAYER>().playerEquipment_->slots_[LEFT8HAND]) {
+                _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
+                    _<PLAYER>().playerEquipment_->slots_[LEFT8HAND]);
+            }
+
             _<PLAYER>().playerEquipment_->slots_[LEFT8HAND] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
