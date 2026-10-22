@@ -123,13 +123,35 @@ namespace FORRADIA8GAME {
         auto noticeObject{!noticeGround};
 
         if (noticeGround && !potentialGroundDescriptions.empty()) {
-            descriptions_[currentDescriptionIndex_] =
-                potentialGroundDescriptions.at(
+            std::string newDescription;
+
+            auto numTries{10};
+            auto i{0};
+
+            do {
+                newDescription = potentialGroundDescriptions.at(
                     rand() % potentialGroundDescriptions.size());
+                i++;
+            } while (newDescription ==
+                         descriptions_[currentDescriptionIndex_] &&
+                     i < numTries);
+
+            descriptions_[currentDescriptionIndex_] = newDescription;
         } else if (noticeObject && !potentialObjectDescriptions.empty()) {
-            descriptions_[currentDescriptionIndex_] =
-                potentialObjectDescriptions.at(
+            std::string newDescription;
+
+            auto numTries{10};
+            auto i{0};
+
+            do {
+                newDescription = potentialObjectDescriptions.at(
                     rand() % potentialObjectDescriptions.size());
+                i++;
+            } while (newDescription ==
+                         descriptions_[currentDescriptionIndex_] &&
+                     i < numTries);
+
+            descriptions_[currentDescriptionIndex_] = newDescription;
         }
 
         currentDescriptionIndex_++;
@@ -137,7 +159,7 @@ namespace FORRADIA8GAME {
         if (currentDescriptionIndex_ >= descriptions_.size())
             currentDescriptionIndex_ = 0;
 
-        ticksLastUpdate_ = now;
+        ticksLastUpdate_ = now + rand() % kMaxRandomDelay_;
     }
 
     std::string

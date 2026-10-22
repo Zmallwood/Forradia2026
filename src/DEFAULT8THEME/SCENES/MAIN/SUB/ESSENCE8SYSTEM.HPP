@@ -20,9 +20,10 @@ namespace FORRADIA8GAME {
 
       private:
         static constexpr int kNoticingRadius_{8};
+        static constexpr int kMaxRandomDelay_{200};
         std::vector<std::string> descriptions_;
         int currentDescriptionIndex_{0};
         int ticksLastUpdate_{0};
-        int ticksPerUpdate_{500};
+        int ticksPerUpdate_{300};
     };
 }

@@ -17,8 +17,8 @@ namespace FORRADIA8GAME {
                                  "a small insect crawling on the rock"});
         ADD8ENTRY("GroundWater", {"that the water is clear and transparent",
                                   "a small fish is swimming in the water"});
-        ADD8ENTRY("ObjectTree1", {"a small bird is singing in the tree"});
-        ADD8ENTRY("ObjectTree2", {"a small bird is singing in the tree"});
+        ADD8ENTRY("ObjectTree1", {"a bird is singing in the tree"});
+        ADD8ENTRY("ObjectTree2", {"a bird is singing in the tree"});
     }
 
     void
