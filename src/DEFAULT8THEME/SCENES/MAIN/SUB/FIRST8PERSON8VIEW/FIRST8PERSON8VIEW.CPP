@@ -583,6 +583,9 @@ namespace FORRADIA8GAME {
                                           kImpactReloadHeight, COLORS::kGold);
         }
 
+        _<IMAGE8RENDERER>().DRAW8IMAGE("Filter", viewWidth, 0.0F, viewWidth,
+                                       1.0F, 1.0F, false, SDL_BLENDMODE_MUL);
+
         _<SDL8DEVICE>().RESET8CLIP();
 
         _<COLOR8RENDERER>().FILL8RECT(viewWidth - kBorderWidth_ / 2, 0.0F,

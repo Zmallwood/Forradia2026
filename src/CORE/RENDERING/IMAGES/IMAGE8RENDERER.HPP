@@ -12,20 +12,25 @@ namespace FORRADIA8GAME {
       public:
         void DRAW8IMAGE(int imageNameHash, float x, float y, float width,
                         float height, float opacity = 1.0F,
-                        bool flipHorizontal = false);
+                        bool flipHorizontal = false,
+                        SDL_BlendMode blendMode = SDL_BLENDMODE_NONE);
 
         void DRAW8IMAGE(std::string_view imageName, float x, float y,
                         float width, float height, float opacity = 1.0F,
-                        bool flipHorizontal = false);
+                        bool flipHorizontal = false,
+                        SDL_BlendMode blendMode = SDL_BLENDMODE_NONE);
 
         void DRAW8IMAGE(int imageNameHash, RECT8F bounds, float opacity = 1.0F,
-                        bool flipHorizontal = false);
+                        bool flipHorizontal = false,
+                        SDL_BlendMode blendMode = SDL_BLENDMODE_NONE);
 
         void DRAW8IMAGE(std::string_view imageName, RECT8F bounds,
-                        float opacity = 1.0F, bool flipHorizontal = false);
+                        float opacity = 1.0F, bool flipHorizontal = false,
+                        SDL_BlendMode blendMode = SDL_BLENDMODE_NONE);
 
         void DRAW8IMAGE8AUTOSIZE(std::string_view imageName, float x, float y,
                                  float width, float opacity = 1.0F,
-                                 bool flipHorizontal = false);
+                                 bool flipHorizontal = false,
+                                 SDL_BlendMode blendMode = SDL_BLENDMODE_NONE);
     };
 }
