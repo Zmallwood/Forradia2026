@@ -43,7 +43,11 @@ namespace FORRADIA8GAME {
 
         auto viewWidth{GAME8PROPERTIES::kViewWidth_};
 
-        _<IMAGE8RENDERER>().DRAW8IMAGE("Sky", 1.0F - viewWidth, 0.0F, viewWidth,
+        auto skyAnimIndex{(NOW() % 3200) / 800};
+
+        auto skyImageName{"Sky_" + std::to_string(skyAnimIndex)};
+
+        _<IMAGE8RENDERER>().DRAW8IMAGE(skyImageName, 1.0F - viewWidth, 0.0F, viewWidth,
                                        0.5F);
 
         // _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.0F, viewWidth,
