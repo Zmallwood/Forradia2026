@@ -59,6 +59,8 @@ namespace FORRADIA8GAME {
 
         auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
 
+        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset_};
+
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};
 
@@ -137,7 +139,7 @@ namespace FORRADIA8GAME {
                                    x * tileHeight / 2 + y * tileHeight / 2 +
                                    playerElevation * tileHeight / 4 -
                                    playerMoveDx * tileHeight / 2 -
-                                   playerMoveDy * tileHeight / 2};
+                                   playerMoveDy * tileHeight / 2 + yOffset};
 
                 auto tileY{tileYOriginal};
 
@@ -298,8 +300,6 @@ namespace FORRADIA8GAME {
                                                    objectHeight);
                 }
 
-                auto tileYCopy{tileYOriginal};
-
                 auto npc{tile->npc_};
 
                 if (npc) {
@@ -342,7 +342,8 @@ namespace FORRADIA8GAME {
                                      5 * tileWidth / 2};
 
                     auto tileYPlayer{0.5F - 5.5F * tileHeight +
-                                     5 * tileHeight / 2 + 5 * tileHeight / 2};
+                                     5 * tileHeight / 2 + 5 * tileHeight / 2 +
+                                     yOffset};
 
                     _<IMAGE8RENDERER>().DRAW8IMAGE("Player", tileXPlayer,
                                                    tileYPlayer - tileHeight,

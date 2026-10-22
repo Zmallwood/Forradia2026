@@ -37,6 +37,8 @@ namespace FORRADIA8GAME {
 
         auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
 
+        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset_};
+
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};
 
@@ -60,7 +62,7 @@ namespace FORRADIA8GAME {
                            y * tileHeight / 2 +
                            playerElevation * tileHeight / 4 -
                            playerMoveDx * tileHeight / 2 -
-                           playerMoveDy * tileHeight / 2};
+                           playerMoveDy * tileHeight / 2 + yOffset};
 
                 auto centerBottom{
                     POINT8F{tileX + tileWidth / 2, tileY + tileHeight / 2}};

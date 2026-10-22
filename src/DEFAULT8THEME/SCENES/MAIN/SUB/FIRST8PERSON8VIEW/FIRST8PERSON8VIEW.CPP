@@ -555,8 +555,8 @@ namespace FORRADIA8GAME {
         _<IMAGE8RENDERER>().DRAW8IMAGE("HandRight", rightHandX, handY,
                                        handWidth, handHeight, kHandsOpacity_);
 
-        _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0F, viewWidth, 1.0F,
-                                      COLORS::kWhite);
+        // _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0F, viewWidth, 1.0F,
+        //                               COLORS::kWhite);
 
         if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_)
             _<COLOR8RENDERER>().FILL8RECT(viewWidth, 0.0F, viewWidth, 1.0F,
@@ -584,5 +584,16 @@ namespace FORRADIA8GAME {
         }
 
         _<SDL8DEVICE>().RESET8CLIP();
+
+        _<COLOR8RENDERER>().FILL8RECT(viewWidth - kBorderWidth_ / 2, 0.0F,
+                                      kBorderWidth_, 1.0F, COLORS::kDarkGray);
+
+        _<COLOR8RENDERER>().DRAW8LINE(viewWidth - kBorderWidth_ / 2, 0.0F,
+                                      viewWidth - kBorderWidth_ / 2, 1.0F,
+                                      COLORS::kGray);
+
+        _<COLOR8RENDERER>().DRAW8LINE(viewWidth + kBorderWidth_ / 2, 0.0F,
+                                      viewWidth + kBorderWidth_ / 2, 1.0F,
+                                      COLORS::kGray);
     }
 }

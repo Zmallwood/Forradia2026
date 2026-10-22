@@ -21,5 +21,6 @@ namespace FORRADIA8GAME {
         static constexpr POINT8F kFirstPersonViewMargin_{0.03F, 0.01F};
         static constexpr float kImpactPointWidth_{0.005F};
         static constexpr float kHoveringLabelYOffset_{-0.03F};
+        static constexpr float kWorldViewYOffset_{0.07F};
     };
 }

@@ -24,5 +24,6 @@ namespace FORRADIA8GAME {
         static constexpr int kImpactPointEffectDuration_{100};
         static constexpr float kWieldedObjectScale_{0.15F};
         static constexpr float kHandsOpacity_{0.5F};
+        static constexpr float kBorderWidth_{0.01F};
     };
 }
