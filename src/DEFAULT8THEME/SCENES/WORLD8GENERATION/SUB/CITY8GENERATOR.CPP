@@ -18,10 +18,13 @@ namespace FORRADIA8GAME {
     CITY8GENERATOR::GENERATE8CITY() {
         CLEAR8WITH8GRASS();
         SET8BASE8ELEVATION();
+        GENERATE8WATER();
         GENERATE8DIRT();
         GENERATE8HILLS();
-        GENERATE8ROADS();
+        GENERATE8MOUNTAINS();
+        GENERATE8FORESTS();
         GENERATE8LARGE8OBJECTS();
+        GENERATE8ROADS();
         GENERATE8SMALL8OBJECTS();
         GENERATE8CREATURES();
     }
@@ -68,6 +71,8 @@ namespace FORRADIA8GAME {
 
             tile->roadOrientation_ = ROAD8ORIENTATION::Vertical;
 
+            tile->tileObjects_->CLEAR();
+
             if (rand() % 8 == 0) {
                 x++;
 
@@ -76,6 +81,8 @@ namespace FORRADIA8GAME {
                 auto tile{worldArea->GET8TILE(x, y)};
 
                 tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthWest;
+
+                tile->tileObjects_->CLEAR();
             } else if (rand() % 8 == 0) {
                 x--;
 
@@ -84,6 +91,8 @@ namespace FORRADIA8GAME {
                 auto tile{worldArea->GET8TILE(x, y)};
 
                 tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthEast;
+
+                tile->tileObjects_->CLEAR();
             }
         }
 
@@ -104,6 +113,8 @@ namespace FORRADIA8GAME {
 
                         tile2->roadOrientation_ = ROAD8ORIENTATION::Fill;
 
+                        tile2->tileObjects_->CLEAR();
+
                         tile2->elevation_ = tile->elevation_;
                     }
                 }
@@ -111,6 +122,8 @@ namespace FORRADIA8GAME {
                 roadNetworkCenter_ = {x, y};
             } else if (tile->roadOrientation_ != ROAD8ORIENTATION::Fill) {
                 tile->roadOrientation_ = ROAD8ORIENTATION::Horizontal;
+
+                tile->tileObjects_->CLEAR();
             }
 
             if (tile->roadOrientation_ != ROAD8ORIENTATION::CrossIntersection &&
@@ -120,17 +133,25 @@ namespace FORRADIA8GAME {
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthWest;
 
+                    tile->tileObjects_->CLEAR();
+
                     auto tile{worldArea->GET8TILE(x, y)};
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerNorthEast;
+
+                    tile->tileObjects_->CLEAR();
                 } else if (rand() % 8 == 0) {
                     y--;
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerNorthWest;
 
+                    tile->tileObjects_->CLEAR();
+
                     auto tile{worldArea->GET8TILE(x, y)};
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthEast;
+
+                    tile->tileObjects_->CLEAR();
                 }
             }
         }
@@ -566,5 +587,300 @@ namespace FORRADIA8GAME {
 
             worldArea->creaturesMirror_.insert({newCreature, {x, y}});
         }
+    }
+
+    void
+    CITY8GENERATOR::GENERATE8WATER() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
+
+        for (auto y = 1; y < size.height - 1; y++) {
+            for (auto x = 1; x < size.width - 1; x++) {
+                auto tile{worldArea->GET8TILE(x, y)};
+
+                auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+                auto tileN{worldArea->GET8TILE(x, y - 1)};
+                auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+                auto tileW{worldArea->GET8TILE(x - 1, y)};
+
+                auto groundNW{tileNW->ground_};
+                auto groundN{tileN->ground_};
+                auto groundNE{tileNE->ground_};
+                auto groundW{tileW->ground_};
+
+                if (groundNW == HASH("GroundGrass") &&
+                    groundN == HASH("GroundGrass") &&
+                    groundNE == HASH("GroundGrass") &&
+                    groundW == HASH("GroundGrass")) {
+                    auto makeWater{rand() % 1000 < 3};
+
+                    if (makeWater) {
+                        tile->ground_ = HASH("GroundWater");
+
+                        tileW->ground_ = HASH("GroundWater");
+
+                        tile->elevation_ = 0;
+                        tileW->elevation_ = 0;
+                    }
+                }
+            }
+        }
+
+        auto fnMakeWater = std::function<void(int, int)>([&](int x, int y) {
+            auto tile{worldArea->GET8TILE(x, y)};
+
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
+            auto tileE{worldArea->GET8TILE(x + 1, y)};
+            auto tileSW{worldArea->GET8TILE(x - 1, y + 1)};
+            auto tileS{worldArea->GET8TILE(x, y + 1)};
+            auto tileSE{worldArea->GET8TILE(x + 1, y + 1)};
+
+            auto groundNW{tileNW->ground_};
+            auto groundN{tileN->ground_};
+            auto groundNE{tileNE->ground_};
+            auto groundW{tileW->ground_};
+            auto groundE{tileE->ground_};
+            auto groundSW{tileSW->ground_};
+            auto groundS{tileS->ground_};
+            auto groundSE{tileSE->ground_};
+
+            auto numWaterTiles{0};
+
+            if (groundNW == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundN == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundNE == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundW == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundE == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundSW == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundS == HASH("GroundWater"))
+                numWaterTiles++;
+            if (groundSE == HASH("GroundWater"))
+                numWaterTiles++;
+
+            if (numWaterTiles == 2) {
+                auto makeWater{rand() % 1000 < 500};
+
+                if (makeWater) {
+                    tile->ground_ = HASH("GroundWater");
+
+                    tile->elevation_ = 0;
+                }
+            } else if (numWaterTiles > 2) {
+                auto makeWater{rand() % 1000 < 600};
+
+                if (makeWater) {
+                    tile->ground_ = HASH("GroundWater");
+
+                    tile->elevation_ = 0;
+                }
+            }
+        });
+
+        TRAVERSE81(fnMakeWater);
+        TRAVERSE82(fnMakeWater);
+        TRAVERSE83(fnMakeWater);
+        TRAVERSE84(fnMakeWater);
+    }
+
+    void
+    CITY8GENERATOR::GENERATE8MOUNTAINS() {
+
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
+
+        auto numMountains = 40 + rand() % 10;
+
+        for (auto i = 0; i < numMountains; i++) {
+            auto xCenter{rand() % size.width};
+            auto yCenter{rand() % size.height};
+            auto radius{3 + rand() % 8};
+
+            for (auto r = radius; r >= 0; r -= 2 + rand() % 6) {
+                auto elevationChange = 3 + rand() % 3;
+
+                for (auto y = yCenter - r; y <= yCenter + r; y++) {
+                    for (auto x = xCenter - r; x <= xCenter + r; x++) {
+                        if (!worldArea->IS8VALID8COORDINATE(x, y))
+                            continue;
+
+                        auto dx = x - xCenter;
+                        auto dy = y - yCenter;
+
+                        if (dx * dx + dy * dy <= r * r) {
+                            auto tile{worldArea->GET8TILE(x, y)};
+
+                            if (tile->ground_ == HASH("GroundWater"))
+                                continue;
+
+                            tile->elevation_ += elevationChange;
+
+                            tile->ground_ = HASH("GroundRock");
+
+                            if (rand() % 5 == 0) {
+                                tile->tileObjects_->CLEAR();
+
+                                tile->tileObjects_->ADD8OBJECT(
+                                    "ObjectStoneBoulder");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void
+    CITY8GENERATOR::GENERATE8FORESTS() {
+        auto worldArea{_<WORLD>().currentWorldArea_};
+        auto size{worldArea->GET8SIZE()};
+
+        for (auto y = 1; y < size.height - 1; y++) {
+            for (auto x = 1; x < size.width - 1; x++) {
+                auto tile{worldArea->GET8TILE(x, y)};
+
+                auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+                auto tileN{worldArea->GET8TILE(x, y - 1)};
+                auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+                auto tileW{worldArea->GET8TILE(x - 1, y)};
+
+                auto groundNW{tileNW->ground_};
+                auto groundN{tileN->ground_};
+                auto groundNE{tileNE->ground_};
+                auto groundW{tileW->ground_};
+
+                if (groundNW != HASH("GroundWater") &&
+                    groundN != HASH("GroundWater") &&
+                    groundNE != HASH("GroundWater") &&
+                    groundW != HASH("GroundWater") &&
+                    groundNW != HASH("GroundRock") &&
+                    groundN != HASH("GroundRock") &&
+                    groundNE != HASH("GroundRock") &&
+                    groundW != HASH("GroundRock")) {
+                    auto makeTree{rand() % 1000 < 5};
+
+                    if (makeTree) {
+                        if (rand() % 2) {
+                            tile->tileObjects_->CLEAR();
+
+                            tile->tileObjects_->ADD8OBJECT("ObjectTree1");
+
+                            tileW->tileObjects_->CLEAR();
+
+                            tileW->tileObjects_->ADD8OBJECT("ObjectTree1");
+                        } else {
+                            tile->tileObjects_->CLEAR();
+
+                            tile->tileObjects_->ADD8OBJECT("ObjectTree2");
+
+                            tileW->tileObjects_->CLEAR();
+
+                            tileW->tileObjects_->ADD8OBJECT("ObjectTree2");
+                        }
+                    }
+                }
+            }
+        }
+
+        auto fnMakeTrees = std::function<void(int, int)>([&](int x, int y) {
+            auto tile{worldArea->GET8TILE(x, y)};
+
+            auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
+            auto tileN{worldArea->GET8TILE(x, y - 1)};
+            auto tileNE{worldArea->GET8TILE(x + 1, y - 1)};
+            auto tileW{worldArea->GET8TILE(x - 1, y)};
+            auto tileE{worldArea->GET8TILE(x + 1, y)};
+            auto tileSW{worldArea->GET8TILE(x - 1, y + 1)};
+            auto tileS{worldArea->GET8TILE(x, y + 1)};
+            auto tileSE{worldArea->GET8TILE(x + 1, y + 1)};
+
+            auto hasTreeNW{
+                tileNW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileNW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeN{
+                tileN->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileN->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeNE{
+                tileNE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileNE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeW{
+                tileW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeE{
+                tileE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeSW{
+                tileSW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileSW->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeS{
+                tileS->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileS->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+            auto hasTreeSE{
+                tileSE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree1") ||
+                tileSE->tileObjects_->HAS8OBJECT8OF8TYPE("ObjectTree2")};
+
+            auto numTreeTiles{0};
+
+            if (tile->ground_ != HASH("GroundWater") &&
+                tile->ground_ != HASH("GroundRock")) {
+                if (hasTreeNW)
+                    numTreeTiles++;
+                if (hasTreeN)
+                    numTreeTiles++;
+                if (hasTreeNE)
+                    numTreeTiles++;
+                if (hasTreeW)
+                    numTreeTiles++;
+                if (hasTreeE)
+                    numTreeTiles++;
+                if (hasTreeSW)
+                    numTreeTiles++;
+                if (hasTreeS)
+                    numTreeTiles++;
+                if (hasTreeSE)
+                    numTreeTiles++;
+            }
+
+            if (numTreeTiles == 2) {
+                auto makeTree{rand() % 1000 < 700};
+
+                if (makeTree) {
+                    if (rand() % 2 % 2) {
+                        tile->tileObjects_->CLEAR();
+
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree1");
+                    } else if (rand() % 2) {
+                        tile->tileObjects_->CLEAR();
+
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree2");
+                    }
+                }
+            } else if (numTreeTiles > 2) {
+                auto makeTree{rand() % 1000 < 900};
+
+                if (makeTree) {
+                    if (rand() % 2) {
+                        tile->tileObjects_->CLEAR();
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree1");
+                    } else if (rand() % 2) {
+                        tile->tileObjects_->CLEAR();
+                        tile->tileObjects_->ADD8OBJECT("ObjectTree2");
+                    }
+                }
+            }
+        });
+
+        TRAVERSE81(fnMakeTrees);
+        TRAVERSE82(fnMakeTrees);
+        TRAVERSE83(fnMakeTrees);
+        TRAVERSE84(fnMakeTrees);
     }
 }

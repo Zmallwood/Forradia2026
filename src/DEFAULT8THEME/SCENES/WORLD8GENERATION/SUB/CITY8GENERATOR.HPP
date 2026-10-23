@@ -31,6 +31,12 @@ namespace FORRADIA8GAME {
 
         void GENERATE8CREATURES();
 
+        void GENERATE8WATER();
+
+        void GENERATE8MOUNTAINS();
+
+        void GENERATE8FORESTS();
+
         void TRAVERSE81(std::function<void(int, int)> callback);
 
         void TRAVERSE82(std::function<void(int, int)> callback);
