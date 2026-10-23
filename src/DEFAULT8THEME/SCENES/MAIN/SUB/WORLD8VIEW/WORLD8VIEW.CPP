@@ -345,7 +345,20 @@ namespace FORRADIA8GAME {
                                      5 * tileHeight / 2 + 5 * tileHeight / 2 +
                                      yOffset};
 
-                    _<IMAGE8RENDERER>().DRAW8IMAGE("Player", tileXPlayer,
+                    std::string imageName{"Player"};
+
+                    auto isWalking{
+                        NOW() < _<PLAYER>().ticksLastMovement_ +
+                                    INVERT8SPEED(_<PLAYER>().movementSpeed_)};
+
+                    if (isWalking) {
+                        auto animIndex{(NOW() % (7 * 150)) / 150};
+
+                        imageName =
+                            "PlayerWalking_" + std::to_string(animIndex);
+                    }
+
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(imageName, tileXPlayer,
                                                    tileYPlayer - tileHeight,
                                                    tileWidth, tileHeight);
                 }
