@@ -48,13 +48,13 @@ namespace FORRADIA8GAME {
         auto skyImageName{"Sky_" + std::to_string(skyAnimIndex)};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(skyImageName, 1.0F - viewWidth, 0.0F, viewWidth,
-                                       0.5F);
+                                       0.4F);
 
         // _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.0F, viewWidth,
         // 0.5F,
         //                               COLORS::kMildBlue);
 
-        _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.5F, viewWidth, 0.5F,
+        _<COLOR8RENDERER>().FILL8RECT(1.0F - viewWidth, 0.4F, viewWidth, 0.6F,
                                       COLORS::kVeryDarkBlue);
 
         auto now{NOW()};
