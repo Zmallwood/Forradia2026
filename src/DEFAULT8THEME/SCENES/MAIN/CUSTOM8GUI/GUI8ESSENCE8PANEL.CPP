@@ -10,7 +10,8 @@
 #include "CORE/RENDERING/TEXT/TEXT8RENDERER.HPP"
 
 namespace FORRADIA8GAME {
-    GUI8ESSENCE8PANEL::GUI8ESSENCE8PANEL() : GUI8PANEL(0.2F, 0.0F, 0.4F, 0.2F) {
+    GUI8ESSENCE8PANEL::GUI8ESSENCE8PANEL()
+        : GUI8PANEL(0.2F, 0.0F, 0.4F, 0.23F) {
     }
 
     void
@@ -19,10 +20,14 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
+        _<TEXT8RENDERER>().DRAW8STRING("You notice:", position.x + 0.015F,
+                                       position.y + 0.01F, FONT8SIZES::_15,
+                                       false, COLORS::kGold);
+
         for (auto i = 0; i < _<ESSENCE8SYSTEM>().kMaxDescriptions_; i++) {
             auto description{_<ESSENCE8SYSTEM>().GET8ESSENCE8DESCRIPTION(i)};
 
-            auto randomColor{(description.size()*3 + i) % 4};
+            auto randomColor{(description.size() * 3 + i) % 4};
 
             COLOR color{COLORS::kWhite};
 
@@ -45,7 +50,8 @@ namespace FORRADIA8GAME {
             }
 
             _<TEXT8RENDERER>().DRAW8STRING(description, position.x + 0.015F,
-                                           position.y + 0.01F + (i * 0.03F),
+                                           position.y + 0.01F +
+                                               ((i + 1) * 0.03F),
                                            FONT8SIZES::_15, false, color);
         }
     }

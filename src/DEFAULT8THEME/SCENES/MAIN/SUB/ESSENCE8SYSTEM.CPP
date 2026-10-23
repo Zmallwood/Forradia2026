@@ -83,7 +83,7 @@ namespace FORRADIA8GAME {
                     auto randomEssence{
                         descriptions.at(rand() % descriptions.size())};
 
-                    auto description{"You notice " + randomEssence + " " +
+                    auto description{randomEssence + " " +
                                      std::to_string(distance) + "m to the " +
                                      direction};
 
@@ -109,7 +109,7 @@ namespace FORRADIA8GAME {
                         auto randomEssence{
                             descriptions.at(rand() % descriptions.size())};
 
-                        auto description{"You notice " + randomEssence + " " +
+                        auto description{randomEssence + " " +
                                          std::to_string(distance) +
                                          "m to the " + direction};
 
