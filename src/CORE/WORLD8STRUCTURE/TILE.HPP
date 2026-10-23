@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "ROAD8ORIENTATION.HPP"
+
 namespace FORRADIA8GAME {
     class TILE8OBJECTS;
     class CREATURE;
@@ -21,5 +23,6 @@ namespace FORRADIA8GAME {
         std::shared_ptr<TILE8OBJECTS> tileObjects_;
         std::shared_ptr<CREATURE> creature_;
         std::shared_ptr<NPC> npc_;
+        ROAD8ORIENTATION roadOrientation_{ROAD8ORIENTATION::None};
     };
 }

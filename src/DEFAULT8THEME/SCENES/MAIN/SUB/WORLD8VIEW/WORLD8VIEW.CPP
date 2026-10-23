@@ -211,6 +211,71 @@ namespace FORRADIA8GAME {
                                                tileWidth + kSmallValue,
                                                tileHeight + kSmallValue);
 
+                auto roadOrientation{tile->roadOrientation_};
+
+                switch (roadOrientation) {
+                case ROAD8ORIENTATION::Horizontal:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE("RoadCobblestoneHorizontal",
+                                                   tileX, tileY, tileWidth,
+                                                   tileHeight);
+                    break;
+                case ROAD8ORIENTATION::Vertical:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE("RoadCobblestoneVertical",
+                                                   tileX, tileY, tileWidth,
+                                                   tileHeight);
+                    break;
+                case ROAD8ORIENTATION::CornerNorthEast:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneCornerNorthEast", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::CornerSouthEast:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneCornerSouthEast", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::CornerSouthWest:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneCornerSouthWest", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::CornerNorthWest:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneCornerNorthWest", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::TIntersectionNorth:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneTIntersectionNorth", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::TIntersectionSouth:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneTIntersectionSouth", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::TIntersectionEast:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneTIntersectionEast", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::TIntersectionWest:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneTIntersectionWest", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::CrossIntersection:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(
+                        "RoadCobblestoneCrossIntersection", tileX, tileY,
+                        tileWidth, tileHeight);
+                    break;
+                case ROAD8ORIENTATION::Fill:
+                    _<IMAGE8RENDERER>().DRAW8IMAGE("RoadCobblestoneFill", tileX,
+                                                   tileY, tileWidth,
+                                                   tileHeight);
+                    break;
+                }
+
                 if (elevation != elevationNorth)
                     _<IMAGE8RENDERER>().DRAW8IMAGE("ElevationEdgeNorth", tileX,
                                                    tileY, tileWidth,

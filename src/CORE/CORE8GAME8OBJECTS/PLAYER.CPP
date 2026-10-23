@@ -13,6 +13,7 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 #include "PLAYER8EQUIPMENT.HPP"
 #include "PLAYER8INVENTORY.HPP"
+#include "DEFAULT8THEME/SCENES/WORLD8GENERATION/SUB/CITY8GENERATOR.HPP"
 
 namespace FORRADIA8GAME {
     PLAYER::PLAYER()
@@ -32,8 +33,10 @@ namespace FORRADIA8GAME {
 
         auto worldAreaSize{worldArea->GET8SIZE()};
 
-        position_ = {4.0F + (worldAreaSize.width - 5.0F) / 2,
-                     4.0F + (worldAreaSize.height - 5.0F) / 2};
+        auto roadNetworkCenter{_<CITY8GENERATOR>().roadNetworkCenter_};
+
+        position_ = {static_cast<float>(roadNetworkCenter.x) + 0.5F,
+                     static_cast<float>(roadNetworkCenter.y) + 0.5F};
 
         auto tile{worldArea->GET8TILE(static_cast<int>(position_.x),
                                       static_cast<int>(position_.y))};
