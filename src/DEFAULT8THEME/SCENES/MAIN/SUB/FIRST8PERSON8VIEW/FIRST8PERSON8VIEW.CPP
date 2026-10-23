@@ -513,7 +513,7 @@ namespace FORRADIA8GAME {
 
         if (delta < ticksOneStep)
             handAnimation =
-                std::sin(static_cast<float>(delta) / ticksOneStep * M_PI) *
+                std::sin(static_cast<float>(NOW()*3/4) / ticksOneStep * M_PI) *
                 0.02F;
 
         auto handYOffset{0.07F};
