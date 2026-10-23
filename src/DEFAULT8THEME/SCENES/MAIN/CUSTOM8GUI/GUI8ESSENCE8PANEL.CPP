@@ -11,7 +11,7 @@
 
 namespace FORRADIA8GAME {
     GUI8ESSENCE8PANEL::GUI8ESSENCE8PANEL()
-        : GUI8PANEL(0.2F, 0.0F, 0.4F, 0.23F) {
+        : GUI8PANEL(0.2F, 0.0F, 0.36F, 0.23F) {
     }
 
     void
