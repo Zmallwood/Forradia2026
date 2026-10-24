@@ -10,9 +10,9 @@
 namespace FORRADIA8GAME {
     class WORLD8AREA;
 
-    class CITY8GENERATOR {
+    class STARTING8AREA8GENERATOR {
       public:
-        std::shared_ptr<WORLD8AREA> GENERATE8CITY();
+        std::shared_ptr<WORLD8AREA> GENERATE8WORLD8AREA();
 
         POINT roadNetworkCenter_{-1, -1};
 

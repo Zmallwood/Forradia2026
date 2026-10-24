@@ -8,6 +8,6 @@
 #include "NPC.HPP"
 
 namespace FORRADIA8GAME {
-    NPC::NPC(std::string_view typeName) : type_(HASH(typeName)) {
+    NPC::NPC(std::string_view typeName) : mType(HASH(typeName)) {
     }
 }

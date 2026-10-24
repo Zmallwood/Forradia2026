@@ -78,7 +78,7 @@ namespace FORRADIA8GAME {
 
                             auto isSmallObject{
                                 _<OBJECT8INDEX>().IS8SMALL8OBJECT(
-                                    object->type_)};
+                                    object->mType)};
 
                             auto scale{isSmallObject ? smallObjectScale
                                                      : largeObjectScale};
@@ -215,14 +215,14 @@ namespace FORRADIA8GAME {
                     _<PLAYER>().mPlayerInventory->GET8OBJECT(inventoryIndex)};
 
                 if (object) {
-                    _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,
+                    _<IMAGE8RENDERER>().DRAW8IMAGE(object->mType, slotX, slotY,
                                                    slotWidth, slotHeight);
 
                     RECT8F objectBounds{slotX, slotY, slotWidth, slotHeight};
 
                     if (objectBounds.CONTAINS(mousePosition)) {
                         auto objectLabel{
-                            _<OBJECT8INDEX>().GET8OBJECT8LABEL(object->type_)};
+                            _<OBJECT8INDEX>().GET8OBJECT8LABEL(object->mType)};
 
                         hoveredObjectLabel = objectLabel;
 

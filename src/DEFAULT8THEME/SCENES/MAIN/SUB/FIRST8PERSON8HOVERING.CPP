@@ -58,7 +58,7 @@ namespace FORRADIA8GAME {
                 break;
             }
 
-            auto objectType = entry.second.object_->type_;
+            auto objectType = entry.second.object_->mType;
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
@@ -169,7 +169,7 @@ namespace FORRADIA8GAME {
                 continue;
             }
 
-            auto objectType = entry.second.object_->type_;
+            auto objectType = entry.second.object_->mType;
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
@@ -242,7 +242,7 @@ namespace FORRADIA8GAME {
 
         if (hoveredObject_) {
             auto objectLabel{
-                _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->type_)};
+                _<OBJECT8INDEX>().GET8OBJECT8LABEL(hoveredObject_->mType)};
 
             if (objectLabel.empty())
                 objectLabel = "?";

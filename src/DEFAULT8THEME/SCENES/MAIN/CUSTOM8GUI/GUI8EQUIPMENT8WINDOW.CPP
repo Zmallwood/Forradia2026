@@ -180,29 +180,29 @@ namespace FORRADIA8GAME {
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kHead])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kHead]->type_, headBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kHead]->mType, headBounds);
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kChest])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kChest]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kChest]->mType,
                 chestBounds);
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kLegs])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kLegs]->type_, legsBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kLegs]->mType, legsBounds);
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kFeet])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kFeet]->type_, feetBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kFeet]->mType, feetBounds);
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kRightHand])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kRightHand]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kRightHand]->mType,
                 rightHandBounds);
 
         if (_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]->mType,
                 leftHandBounds);
     }
 

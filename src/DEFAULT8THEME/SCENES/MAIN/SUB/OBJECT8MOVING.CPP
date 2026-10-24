@@ -41,7 +41,7 @@ namespace FORRADIA8GAME {
         if (!hoveredObject)
             return;
 
-        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->type_))
+        if (_<OBJECT8INDEX>().OBJECT8UNMOVABLE(hoveredObject->mType))
             return;
 
         auto worldArea{_<WORLD>().currentWorldArea_};
@@ -103,7 +103,7 @@ namespace FORRADIA8GAME {
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto objectType{objectInAir_->type_};
+        auto objectType{objectInAir_->mType};
 
         auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 

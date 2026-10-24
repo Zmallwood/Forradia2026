@@ -12,6 +12,6 @@ namespace FORRADIA8GAME {
       public:
         NPC(std::string_view typeName);
 
-        int type_{0};
+        int mType{0};
     };
 }

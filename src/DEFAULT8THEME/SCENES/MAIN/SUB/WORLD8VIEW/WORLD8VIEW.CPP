@@ -311,7 +311,7 @@ namespace FORRADIA8GAME {
                 for (auto entry : objects) {
                     auto object{entry.second};
 
-                    auto objectType{object->type_};
+                    auto objectType{object->mType};
 
                     auto worldViewObjectType{
                         _<OBJECT8INDEX>().GET8WORLD8VIEW8OBJECT8TYPE(
@@ -368,7 +368,7 @@ namespace FORRADIA8GAME {
                 auto npc{tile->npc_};
 
                 if (npc) {
-                    auto npcType{npc->type_};
+                    auto npcType{npc->mType};
 
                     auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(npcType)};
 

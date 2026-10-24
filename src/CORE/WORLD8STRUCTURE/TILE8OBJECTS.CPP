@@ -93,7 +93,7 @@ namespace FORRADIA8GAME {
     bool
     TILE8OBJECTS::HAS8OBJECT8OF8TYPE(std::string_view objectType) {
         for (auto it = objects_.begin(); it != objects_.end(); ++it)
-            if (it->second->type_ == HASH(objectType))
+            if (it->second->mType == HASH(objectType))
                 return true;
         return false;
     }

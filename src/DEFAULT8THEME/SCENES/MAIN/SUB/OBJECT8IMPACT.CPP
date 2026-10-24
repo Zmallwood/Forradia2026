@@ -53,7 +53,7 @@ namespace FORRADIA8GAME {
             auto yPos{entry.second.position_.y};
 
             auto object{entry.second.object_};
-            auto objectType{object->type_};
+            auto objectType{object->mType};
 
             auto impactActions{
                 _<OBJECT8INDEX>().GET8OBJECT8IMPACT8ACTIONS(objectType)};
@@ -65,7 +65,7 @@ namespace FORRADIA8GAME {
             for (auto &impactActionEntry : impactActions) {
                 if (rightHandObject) {
                     if (HASH(impactActionEntry.objectName) ==
-                        rightHandObject->type_) {
+                        rightHandObject->mType) {
                         canImpact = true;
                         impactAction = &impactActionEntry;
                         break;
@@ -74,7 +74,7 @@ namespace FORRADIA8GAME {
 
                 if (leftHandObject) {
                     if (HASH(impactActionEntry.objectName) ==
-                        leftHandObject->type_) {
+                        leftHandObject->mType) {
                         canImpact = true;
                         impactAction = &impactActionEntry;
                         break;
@@ -143,7 +143,7 @@ namespace FORRADIA8GAME {
             auto impactPointWidth{GAME8PROPERTIES::mkImpactPointWidth};
             auto impactPointHeight{CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
 
-            auto &impactPoints{object->impactPoints_};
+            auto &impactPoints{object->mImpactPoints};
 
             auto completedImpactPointThisClick{false};
 

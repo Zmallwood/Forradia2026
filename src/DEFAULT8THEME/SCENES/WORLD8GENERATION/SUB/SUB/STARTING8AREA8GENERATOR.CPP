@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: MIT                                         //
 //////////////////////////////////////////////////////////////////////////
 
-#include "CITY8GENERATOR.HPP"
+#include "STARTING8AREA8GENERATOR.HPP"
 #include "CORE/WORLD8STRUCTURE/CREATURE.HPP"
 #include "CORE/WORLD8STRUCTURE/NPC.HPP"
 #include "CORE/WORLD8STRUCTURE/TILE.HPP"
@@ -15,7 +15,7 @@
 
 namespace FORRADIA8GAME {
     std::shared_ptr<WORLD8AREA>
-    CITY8GENERATOR::GENERATE8CITY() {
+    STARTING8AREA8GENERATOR::GENERATE8WORLD8AREA() {
         auto worldArea{std::make_shared<WORLD8AREA>()};
 
         CLEAR8WITH8GRASS(worldArea);
@@ -34,7 +34,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::CLEAR8WITH8GRASS(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::CLEAR8WITH8GRASS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 0; y < size.height; y++) {
@@ -47,7 +48,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::SET8BASE8ELEVATION(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::SET8BASE8ELEVATION(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 0; y < size.height; y++) {
@@ -59,7 +61,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8ROADS(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8ROADS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto centerX{size.width / 2};
@@ -72,7 +75,14 @@ namespace FORRADIA8GAME {
 
             tile->roadOrientation_ = ROAD8ORIENTATION::Vertical;
 
-            tile->tileObjects_->CLEAR();
+            for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                    auto tile2{worldArea->GET8TILE(x2, y2)};
+                    if (tile2) {
+                        tile2->tileObjects_->CLEAR();
+                    }
+                }
+            }
 
             if (rand() % 8 == 0) {
                 x++;
@@ -83,7 +93,14 @@ namespace FORRADIA8GAME {
 
                 tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthWest;
 
-                tile->tileObjects_->CLEAR();
+                for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                    for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                        auto tile2{worldArea->GET8TILE(x2, y2)};
+                        if (tile2) {
+                            tile2->tileObjects_->CLEAR();
+                        }
+                    }
+                }
             } else if (rand() % 8 == 0) {
                 x--;
 
@@ -93,7 +110,14 @@ namespace FORRADIA8GAME {
 
                 tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthEast;
 
-                tile->tileObjects_->CLEAR();
+                for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                    for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                        auto tile2{worldArea->GET8TILE(x2, y2)};
+                        if (tile2) {
+                            tile2->tileObjects_->CLEAR();
+                        }
+                    }
+                }
             }
         }
 
@@ -124,7 +148,14 @@ namespace FORRADIA8GAME {
             } else if (tile->roadOrientation_ != ROAD8ORIENTATION::Fill) {
                 tile->roadOrientation_ = ROAD8ORIENTATION::Horizontal;
 
-                tile->tileObjects_->CLEAR();
+                for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                    for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                        auto tile2{worldArea->GET8TILE(x2, y2)};
+                        if (tile2) {
+                            tile2->tileObjects_->CLEAR();
+                        }
+                    }
+                }
             }
 
             if (tile->roadOrientation_ != ROAD8ORIENTATION::CrossIntersection &&
@@ -140,7 +171,14 @@ namespace FORRADIA8GAME {
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerNorthEast;
 
-                    tile->tileObjects_->CLEAR();
+                    for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                        for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                            auto tile2{worldArea->GET8TILE(x2, y2)};
+                            if (tile2) {
+                                tile2->tileObjects_->CLEAR();
+                            }
+                        }
+                    }
                 } else if (rand() % 8 == 0) {
                     y--;
 
@@ -152,14 +190,21 @@ namespace FORRADIA8GAME {
 
                     tile->roadOrientation_ = ROAD8ORIENTATION::CornerSouthEast;
 
-                    tile->tileObjects_->CLEAR();
+                    for (auto y2 = y - 1; y2 <= y + 1; y2++) {
+                        for (auto x2 = x - 1; x2 <= x + 1; x2++) {
+                            auto tile2{worldArea->GET8TILE(x2, y2)};
+                            if (tile2) {
+                                tile2->tileObjects_->CLEAR();
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
     void
-    CITY8GENERATOR::GENERATE8LARGE8OBJECTS(
+    STARTING8AREA8GENERATOR::GENERATE8LARGE8OBJECTS(
         std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
@@ -252,7 +297,7 @@ namespace FORRADIA8GAME {
         }
     }
     void
-    CITY8GENERATOR::GENERATE8SMALL8OBJECTS(
+    STARTING8AREA8GENERATOR::GENERATE8SMALL8OBJECTS(
         std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
@@ -318,7 +363,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8DIRT(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8DIRT(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
@@ -419,8 +465,9 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE81(std::shared_ptr<WORLD8AREA> worldArea,
-                               std::function<void(int, int)> callback) {
+    STARTING8AREA8GENERATOR::TRAVERSE81(
+        std::shared_ptr<WORLD8AREA> worldArea,
+        std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++)
@@ -429,8 +476,9 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE82(std::shared_ptr<WORLD8AREA> worldArea,
-                               std::function<void(int, int)> callback) {
+    STARTING8AREA8GENERATOR::TRAVERSE82(
+        std::shared_ptr<WORLD8AREA> worldArea,
+        std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto x = 1; x < size.width - 1; x++)
@@ -439,8 +487,9 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE83(std::shared_ptr<WORLD8AREA> worldArea,
-                               std::function<void(int, int)> callback) {
+    STARTING8AREA8GENERATOR::TRAVERSE83(
+        std::shared_ptr<WORLD8AREA> worldArea,
+        std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = size.height - 2; y > 0; y--)
@@ -449,8 +498,9 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE84(std::shared_ptr<WORLD8AREA> worldArea,
-                               std::function<void(int, int)> callback) {
+    STARTING8AREA8GENERATOR::TRAVERSE84(
+        std::shared_ptr<WORLD8AREA> worldArea,
+        std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto x = size.width - 2; x > 0; x--)
@@ -459,7 +509,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8HILLS(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8HILLS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numHills = 60 + rand() % 10;
@@ -498,7 +549,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8CREATURES(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8CREATURES(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numDeers{80 + rand() % 10};
@@ -590,7 +642,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8WATER(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8WATER(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
@@ -698,7 +751,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8MOUNTAINS(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8MOUNTAINS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numMountains = 30 + rand() % 10;
@@ -749,7 +803,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8FORESTS(std::shared_ptr<WORLD8AREA> worldArea) {
+    STARTING8AREA8GENERATOR::GENERATE8FORESTS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {

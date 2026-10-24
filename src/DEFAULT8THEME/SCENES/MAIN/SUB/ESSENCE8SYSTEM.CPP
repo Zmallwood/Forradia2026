@@ -99,7 +99,7 @@ namespace FORRADIA8GAME {
 
                     auto object = randomObjectEntry->second;
 
-                    auto objectType{object->type_};
+                    auto objectType{object->mType};
 
                     auto descriptions{
                         _<ESSENCE8INDEX>().GET8ESSENCE8DESCRIPTIONS(
