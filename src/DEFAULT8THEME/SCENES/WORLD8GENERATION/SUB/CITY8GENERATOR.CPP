@@ -595,6 +595,13 @@ namespace FORRADIA8GAME {
 
         for (auto y = 1; y < size.height - 1; y++) {
             for (auto x = 1; x < size.width - 1; x++) {
+
+                if (std::abs(x - size.width / 2) < 15)
+                    continue;
+
+                if (std::abs(y - size.height / 2) < 15)
+                    continue;
+
                 auto tile{worldArea->GET8TILE(x, y)};
 
                 auto tileNW{worldArea->GET8TILE(x - 1, y - 1)};
@@ -694,12 +701,18 @@ namespace FORRADIA8GAME {
     CITY8GENERATOR::GENERATE8MOUNTAINS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
-        auto numMountains = 40 + rand() % 10;
+        auto numMountains = 30 + rand() % 10;
 
         for (auto i = 0; i < numMountains; i++) {
             auto xCenter{rand() % size.width};
             auto yCenter{rand() % size.height};
             auto radius{3 + rand() % 8};
+
+            if (std::abs(xCenter - size.width / 2) - radius < 5)
+                continue;
+
+            if (std::abs(yCenter - size.height / 2) - radius < 5)
+                continue;
 
             for (auto r = radius; r >= 0; r -= 2 + rand() % 6) {
                 auto elevationChange = 3 + rand() % 3;
