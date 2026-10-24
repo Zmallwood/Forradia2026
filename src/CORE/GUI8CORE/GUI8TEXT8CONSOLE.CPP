@@ -24,7 +24,7 @@ namespace FORRADIA8GAME {
         auto position{GET8POSITION()};
         auto size{mSize};
 
-        auto maxNumLines{static_cast<int>(size.height / kLineHeight) - 1};
+        auto maxNumLines{static_cast<int>(size.height / mkLineHeight) - 1};
 
         auto iStart{std::max(0, static_cast<int>(mLines.size() - maxNumLines))};
 
@@ -38,7 +38,7 @@ namespace FORRADIA8GAME {
 
             _<TEXT8RENDERER>().DRAW8STRING(text, position.x + 0.01F,
                                            position.y + 0.01F +
-                                               rowIndex * kLineHeight);
+                                               rowIndex * mkLineHeight);
 
             rowIndex++;
         }

@@ -36,7 +36,7 @@ namespace FORRADIA8GAME {
 
     std::string
     GUI8PANEL::GET8BACKGROUND8IMAGE() {
-        return kDefaultBackgroundImage;
+        return mkDefaultBackgroundImage;
     }
 
     RECT8F

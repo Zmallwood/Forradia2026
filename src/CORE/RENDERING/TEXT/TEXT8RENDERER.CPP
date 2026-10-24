@@ -18,7 +18,7 @@ namespace FORRADIA8GAME {
 
     void
     TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize) {
-        auto absFontPath{std::string(SDL_GetBasePath()) + kDefaultFontPath};
+        auto absFontPath{std::string(SDL_GetBasePath()) + mkDefaultFontPath};
         auto fontPath{REPLACE(absFontPath, "\\", "/")};
         auto fontSizeN{static_cast<int>(fontSize)};
 

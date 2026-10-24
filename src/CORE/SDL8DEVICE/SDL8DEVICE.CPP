@@ -24,7 +24,7 @@ namespace FORRADIA8GAME {
 
         mInitialized = true;
 
-        auto windowName{_<GAME8PROPERTIES>().kWindowName};
+        auto windowName{_<GAME8PROPERTIES>().mkWindowName};
         auto windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
 
         mWindow = std::shared_ptr<SDL_Window>(

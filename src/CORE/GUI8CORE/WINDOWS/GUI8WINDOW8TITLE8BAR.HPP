@@ -33,9 +33,9 @@ namespace FORRADIA8GAME {
         void SET8POSITION(POINT8F value) override;
 
       private:
-        inline static const std::string kDefaultBackgroundImage{
+        inline static const std::string mkDefaultBackgroundImage{
             "GUIWindowTitleBarBackground"};
-        static constexpr POINT8F kMargin{0.01F, 0.01F};
+        static constexpr POINT8F mkMargin{0.01F, 0.01F};
 
         GUI8WINDOW &mGUIWindow;
         std::string mTitle;

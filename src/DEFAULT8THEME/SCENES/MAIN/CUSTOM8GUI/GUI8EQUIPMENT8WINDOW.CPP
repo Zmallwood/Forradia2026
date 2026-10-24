@@ -28,56 +28,56 @@ namespace FORRADIA8GAME {
 
         if (GET8HEAD8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[HEAD]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kHead]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(HEAD);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kHead);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[HEAD] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kHead] = nullptr;
 
             return true;
         } else if (GET8CHEST8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[CHEST]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kChest]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(CHEST);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kChest);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[CHEST] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kChest] = nullptr;
 
             return true;
         } else if (GET8LEGS8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[LEGS]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kLegs]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(LEGS);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kLegs);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[LEGS] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kLegs] = nullptr;
 
             return true;
         } else if (GET8FEET8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[FEET]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kFeet]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(FEET);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kFeet);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[FEET] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kFeet] = nullptr;
 
             return true;
         } else if (GET8RIGHT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kRightHand]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(RIGHT8HAND);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kRightHand);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kRightHand] = nullptr;
 
             return true;
         } else if (GET8LEFT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(
-                _<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]);
+                _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]);
 
-            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(LEFT8HAND);
+            _<OBJECT8MOVING>().SET8PICKED8EQUIPMENT8SLOT(kLeftHand);
 
-            _<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND] = nullptr;
+            _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand] = nullptr;
 
             return true;
         }
@@ -94,62 +94,62 @@ namespace FORRADIA8GAME {
         auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8HEAD8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[HEAD]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kHead]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[HEAD]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kHead]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[HEAD] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kHead] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8CHEST8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[CHEST]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kChest]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[CHEST]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kChest]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[CHEST] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kChest] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8LEGS8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[LEGS]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kLegs]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[LEGS]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kLegs]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[LEGS] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kLegs] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8FEET8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[FEET]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kFeet]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[FEET]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kFeet]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[FEET] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kFeet] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8RIGHT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kRightHand]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kRightHand]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kRightHand] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
         } else if (GET8LEFT8HAND8SLOT8BOUNDS().CONTAINS(mousePosition)) {
-            if (_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]) {
+            if (_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]) {
                 _<OBJECT8MOVING>().MOVE8OBJECT8TO8PICKUP8LOCATION(
-                    _<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]);
+                    _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]);
             }
 
-            _<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND] =
+            _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand] =
                 _<OBJECT8MOVING>().GET8OBJECT8IN8AIR();
 
             _<OBJECT8MOVING>().CLEAR8OBJECT();
@@ -178,31 +178,31 @@ namespace FORRADIA8GAME {
         _<IMAGE8RENDERER>().DRAW8IMAGE(kRightHandSlotImage_, rightHandBounds);
         _<IMAGE8RENDERER>().DRAW8IMAGE(kLeftHandSlotImage_, leftHandBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[HEAD])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kHead])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[HEAD]->type_, headBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kHead]->type_, headBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[CHEST])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kChest])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[CHEST]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kChest]->type_,
                 chestBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[LEGS])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kLegs])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[LEGS]->type_, legsBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kLegs]->type_, legsBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[FEET])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kFeet])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[FEET]->type_, feetBounds);
+                _<PLAYER>().mPlayerEquipment->mSlots[kFeet]->type_, feetBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kRightHand])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kRightHand]->type_,
                 rightHandBounds);
 
-        if (_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND])
+        if (_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand])
             _<IMAGE8RENDERER>().DRAW8IMAGE(
-                _<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]->type_,
+                _<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]->type_,
                 leftHandBounds);
     }
 

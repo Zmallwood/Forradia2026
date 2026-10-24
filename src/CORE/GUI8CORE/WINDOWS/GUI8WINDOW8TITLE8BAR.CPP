@@ -63,14 +63,14 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        _<TEXT8RENDERER>().DRAW8STRING(mTitle, position.x + kMargin.x,
-                                       position.y + kMargin.y, FONT8SIZES::_20,
+        _<TEXT8RENDERER>().DRAW8STRING(mTitle, position.x + mkMargin.x,
+                                       position.y + mkMargin.y, FONT8SIZES::_20,
                                        false);
     }
 
     std::string
     GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE() {
-        return kDefaultBackgroundImage;
+        return mkDefaultBackgroundImage;
     }
 
     POINT8F

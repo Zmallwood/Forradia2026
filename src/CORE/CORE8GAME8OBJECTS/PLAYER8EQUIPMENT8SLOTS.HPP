@@ -9,11 +9,11 @@
 
 namespace FORRADIA8GAME {
     namespace PLAYER8EQUIPMENT8SLOTS {
-        constexpr auto HEAD{1 << 0};
-        constexpr auto CHEST{1 << 1};
-        constexpr auto LEGS{1 << 2};
-        constexpr auto FEET{1 << 3};
-        constexpr auto RIGHT8HAND{1 << 4};
-        constexpr auto LEFT8HAND{1 << 5};
+        constexpr auto kHead{1 << 0};
+        constexpr auto kChest{1 << 1};
+        constexpr auto kLegs{1 << 2};
+        constexpr auto kFeet{1 << 3};
+        constexpr auto kRightHand{1 << 4};
+        constexpr auto kLeftHand{1 << 5};
     }
 }

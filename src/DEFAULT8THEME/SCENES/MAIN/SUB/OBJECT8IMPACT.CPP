@@ -22,7 +22,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -37,16 +37,16 @@ namespace FORRADIA8GAME {
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().mkTileUnitsWidth};
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
+        constexpr auto kMargin{GAME8PROPERTIES::mkFirstPersonViewMargin};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::mkLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::mkSmallObjectScale};
 
         using namespace PLAYER8EQUIPMENT8SLOTS;
 
-        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]};
-        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]};
+        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kRightHand]};
+        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]};
 
         for (auto &entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -140,7 +140,7 @@ namespace FORRADIA8GAME {
 
             imageY += renderOffset.y * kTileHeight;
 
-            auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
+            auto impactPointWidth{GAME8PROPERTIES::mkImpactPointWidth};
             auto impactPointHeight{CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
 
             auto &impactPoints{object->impactPoints_};

@@ -12,7 +12,7 @@ namespace FORRADIA8GAME {
     void
     IMAGE8BANK::LOAD8IMAGES() {
         auto imagesDirectory{SDL_GetBasePath() +
-                             std::string(kRelativeImagesDirectory)};
+                             std::string(mkRelativeImagesDirectory)};
 
         imagesDirectory = REPLACE(imagesDirectory, "\\", "/");
 

@@ -11,31 +11,31 @@
 
 namespace FORRADIA8GAME {
     CREATURE::CREATURE(std::string_view typeName) {
-        type_ = HASH(typeName);
+        mType = HASH(typeName);
     }
 
     CREATURE::CREATURE(int type) {
-        type_ = type;
+        mType = type;
 
         auto typeName{_<CREATURE8INDEX>().GET8CREATURE8LABEL(type)};
     }
 
     void
     CREATURE::HIT(float damage, POINT8F hitPosition) {
-        health_ -= damage;
+        mHealth -= damage;
 
-        ticksLastHitOnSelf_ = NOW();
+        mTicksLastHitOnSelf = NOW();
 
-        lastHitPosition_ = hitPosition;
+        mLastHitPosition = hitPosition;
 
-        targetingPlayer_ = true;
+        mTargetingPlayer = true;
 
         auto now{NOW()};
 
-        if (now - ticksLastHitOnOther_ > INVERT8SPEED(attackSpeed_))
-            ticksLastHitOnOther_ = now;
+        if (now - mTicksLastHitOnOther > INVERT8SPEED(mAttackSpeed))
+            mTicksLastHitOnOther = now;
 
-        auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(type_)};
+        auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(mType)};
 
         std::stringstream ssDamage;
 
@@ -47,6 +47,6 @@ namespace FORRADIA8GAME {
 
     bool
     CREATURE::IS8DEAD() {
-        return health_ <= 0.0F;
+        return mHealth <= 0.0F;
     }
 }

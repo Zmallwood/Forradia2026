@@ -20,7 +20,7 @@ namespace FORRADIA8GAME {
         void RENDER8DERIVED() override;
 
       private:
-        static constexpr float kLineHeight{0.02F};
+        static constexpr float mkLineHeight{0.02F};
 
         std::vector<std::string> mLines;
     };

@@ -29,7 +29,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -66,7 +66,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -107,8 +107,8 @@ namespace FORRADIA8GAME {
 
         auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::mkLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::mkSmallObjectScale};
 
         auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 

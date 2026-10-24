@@ -72,9 +72,9 @@ namespace FORRADIA8GAME {
                             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(object);
 
                             constexpr auto largeObjectScale{
-                                GAME8PROPERTIES::kLargeObjectScale};
+                                GAME8PROPERTIES::mkLargeObjectScale};
                             constexpr auto smallObjectScale{
-                                GAME8PROPERTIES::kSmallObjectScale};
+                                GAME8PROPERTIES::mkSmallObjectScale};
 
                             auto isSmallObject{
                                 _<OBJECT8INDEX>().IS8SMALL8OBJECT(
@@ -177,7 +177,7 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset};
+        auto textYOffset{_<GAME8PROPERTIES>().mkHoveringLabelYOffset};
 
         auto size{mSize};
 

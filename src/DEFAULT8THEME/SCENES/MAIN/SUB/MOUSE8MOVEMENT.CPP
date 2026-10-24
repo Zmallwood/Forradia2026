@@ -98,7 +98,7 @@ namespace FORRADIA8GAME {
 
     void
     MOUSE8MOVEMENT::ON8MOUSE8DOWN(Uint8 button) {
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 

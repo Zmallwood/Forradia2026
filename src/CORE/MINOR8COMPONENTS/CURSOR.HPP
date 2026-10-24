@@ -21,6 +21,6 @@ namespace FORRADIA8GAME {
         CURSOR8STYLES mCursorStyle{CURSOR8STYLES::Default};
 
       private:
-        static constexpr float kCursorSize{0.05F};
+        static constexpr float mkCursorSize{0.05F};
     };
 }

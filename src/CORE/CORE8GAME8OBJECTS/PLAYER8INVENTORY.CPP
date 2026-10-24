@@ -11,7 +11,7 @@
 namespace FORRADIA8GAME {
     void
     PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName) {
-        for (auto i = 0; i < kMaxObjects; i++) {
+        for (auto i = 0; i < mkMaxObjects; i++) {
             if (!mObjects.contains(i)) {
                 mObjects[i] = std::make_shared<OBJECT>(objectName);
                 return;

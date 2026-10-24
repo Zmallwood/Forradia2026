@@ -27,8 +27,8 @@ namespace FORRADIA8GAME {
             auto creature{it->first};
             auto position{it->second};
 
-            if (now > creature->ticksLastMovement_ +
-                          INVERT8SPEED(creature->movementSpeed_)) {
+            if (now > creature->mTicksLastMovement +
+                          INVERT8SPEED(creature->mMovementSpeed)) {
                 auto direction{rand() % 4};
 
                 auto dx{0};
@@ -73,8 +73,8 @@ namespace FORRADIA8GAME {
                     continue;
                 }
 
-                if (creature->type_ == HASH("CreatureDeer") ||
-                    creature->type_ == HASH("CreatureBoar")) {
+                if (creature->mType == HASH("CreatureDeer") ||
+                    creature->mType == HASH("CreatureBoar")) {
                     if (newTile->ground_ == HASH("GroundRock")) {
                         ++it;
 
@@ -90,7 +90,7 @@ namespace FORRADIA8GAME {
                 creatures.erase(it++);
                 creatures.insert({creature, newPosition});
 
-                creature->ticksLastMovement_ = now;
+                creature->mTicksLastMovement = now;
 
                 continue;
             }

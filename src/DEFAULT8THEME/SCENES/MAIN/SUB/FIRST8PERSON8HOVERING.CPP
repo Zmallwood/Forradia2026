@@ -26,11 +26,11 @@ namespace FORRADIA8GAME {
         hoveredObject_ = nullptr;
         hoveredCreature_ = nullptr;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().mkTileUnitsWidth};
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
+        constexpr auto kMargin{GAME8PROPERTIES::mkFirstPersonViewMargin};
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
@@ -46,8 +46,8 @@ namespace FORRADIA8GAME {
             return;
         }
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::mkLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::mkSmallObjectScale};
 
         for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -124,7 +124,7 @@ namespace FORRADIA8GAME {
         auto creature{facedTile->creature_};
 
         if (creature) {
-            auto creatureType{creature->type_};
+            auto creatureType{creature->mType};
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
@@ -238,7 +238,7 @@ namespace FORRADIA8GAME {
     FIRST8PERSON8HOVERING::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset};
+        auto textYOffset{_<GAME8PROPERTIES>().mkHoveringLabelYOffset};
 
         if (hoveredObject_) {
             auto objectLabel{
@@ -259,7 +259,7 @@ namespace FORRADIA8GAME {
                                            FONT8SIZES::_20);
         } else if (hoveredCreature_) {
             auto creatureLabel{_<CREATURE8INDEX>().GET8CREATURE8LABEL(
-                hoveredCreature_->type_)};
+                hoveredCreature_->mType)};
 
             if (creatureLabel.empty())
                 creatureLabel = "?";

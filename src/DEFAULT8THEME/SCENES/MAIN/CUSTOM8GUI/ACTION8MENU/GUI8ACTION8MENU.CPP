@@ -21,7 +21,7 @@ namespace FORRADIA8GAME {
     GUI8ACTION8MENU::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().mkTileUnitsWidth};
 
         if (mouseButton == SDL_BUTTON_RIGHT) {
             visible_ = true;

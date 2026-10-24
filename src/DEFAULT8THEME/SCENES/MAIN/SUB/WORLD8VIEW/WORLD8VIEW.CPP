@@ -27,7 +27,7 @@ namespace FORRADIA8GAME {
     WORLD8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.0F, 0.0F, 0.5F, 1.0F);
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         _<COLOR8RENDERER>().FILL8RECT(0.0F, 0.0F, viewWidth, 1.0F,
                                       COLORS::kBlack);
@@ -54,12 +54,12 @@ namespace FORRADIA8GAME {
 
         auto facedTile{_<PLAYER>().mFacedTileCoordinate};
 
-        auto tileWidth{_<GAME8PROPERTIES>().kTileWidth};
+        auto tileWidth{_<GAME8PROPERTIES>().mkTileWidth};
         auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-        auto tileGridSize{GAME8PROPERTIES::kTileGridSize};
+        auto tileGridSize{GAME8PROPERTIES::mkTileGridSize};
 
-        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset};
+        auto yOffset{_<GAME8PROPERTIES>().mkWorldViewYOffset};
 
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};
@@ -385,7 +385,7 @@ namespace FORRADIA8GAME {
                 auto creature{tile->creature_};
 
                 if (creature) {
-                    auto creatureType{creature->type_};
+                    auto creatureType{creature->mType};
 
                     auto imageSize{
                         _<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};

@@ -18,19 +18,19 @@ namespace FORRADIA8GAME {
 
         bool IS8DEAD();
 
-        int type_{0};
-        int ticksLastMovement_{0};
-        float movementSpeed_{1.0F};
-        int ticksLastHitOnSelf_{0};
-        POINT8F lastHitPosition_{-1.0F, -1.0F};
-        int experienceValue_{13};
-        int respawnTimeMillis_{5000};
-        int ticksLastHitOnOther_{0};
-        float attackSpeed_{0.5F};
-        bool targetingPlayer_{false};
+        int mType{0};
+        int mTicksLastMovement{0};
+        float mMovementSpeed{1.0F};
+        int mTicksLastHitOnSelf{0};
+        POINT8F mLastHitPosition{-1.0F, -1.0F};
+        int mExperienceValue{13};
+        int mRespawnTimeMillis{5000};
+        int mTicksLastHitOnOther{0};
+        float mAttackSpeed{0.5F};
+        bool mTargetingPlayer{false};
 
       private:
-        float health_{5.0F};
-        float maxHealth_{5.0F};
+        float mHealth{5.0F};
+        float mMaxHealth{5.0F};
     };
 }

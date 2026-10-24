@@ -22,7 +22,7 @@ namespace FORRADIA8GAME {
     CURSOR::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto cursorWidth{kCursorSize};
+        auto cursorWidth{mkCursorSize};
         auto cursorHeight{CONVERT8WIDTH8TO8HEIGHT(cursorWidth)};
 
         std::string cursorImage;

@@ -15,8 +15,8 @@ namespace FORRADIA8GAME {
                            std::string_view backgroundImage,
                            std::string_view hoveredBackgroundImage)
         : GUI8PANEL(x, y, width, height), mText(text), mAction(action),
-          kBackgroundImage(backgroundImage),
-          kHoveredBackgroundImage(hoveredBackgroundImage) {
+          mkBackgroundImage(backgroundImage),
+          mkHoveredBackgroundImage(hoveredBackgroundImage) {
     }
 
     void
@@ -69,6 +69,6 @@ namespace FORRADIA8GAME {
 
     std::string
     GUI8BUTTON::GET8BACKGROUND8IMAGE() {
-        return mHovered ? kHoveredBackgroundImage : kBackgroundImage;
+        return mHovered ? mkHoveredBackgroundImage : mkBackgroundImage;
     }
 }

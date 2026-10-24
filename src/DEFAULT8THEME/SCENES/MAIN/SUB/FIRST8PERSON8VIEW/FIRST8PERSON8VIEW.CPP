@@ -41,7 +41,7 @@ namespace FORRADIA8GAME {
     FIRST8PERSON8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.5F, 0.0F, 0.5F, 1.0F);
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
         auto skyAnimIndex{(NOW() % 3200) / 800};
 
@@ -70,8 +70,8 @@ namespace FORRADIA8GAME {
 
         using namespace PLAYER8EQUIPMENT8SLOTS;
 
-        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]};
-        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]};
+        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kRightHand]};
+        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]};
 
         auto groundType{facedTile->ground_};
 
@@ -111,18 +111,18 @@ namespace FORRADIA8GAME {
         }
         }
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
+        constexpr auto kMargin{GAME8PROPERTIES::mkFirstPersonViewMargin};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(
             groundImageName, 1.0F - viewWidth + kMargin.x, 0.75F + kMargin.y,
             viewWidth - 2 * kMargin.x, 0.25F - 2 * kMargin.y);
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().mkTileUnitsWidth};
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::mkLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::mkSmallObjectScale};
 
         for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -238,7 +238,7 @@ namespace FORRADIA8GAME {
                 auto impactPoints{entry.second.object_->impactPoints_};
 
                 for (auto impactPoint : impactPoints) {
-                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
+                    auto impactPointWidth{GAME8PROPERTIES::mkImpactPointWidth};
                     auto impactPointHeight{
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
                     auto impactPointX{imageX +
@@ -286,7 +286,7 @@ namespace FORRADIA8GAME {
         auto creature{facedTile->creature_};
 
         if (creature) {
-            auto creatureType{creature->type_};
+            auto creatureType{creature->mType};
 
             auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
@@ -307,9 +307,9 @@ namespace FORRADIA8GAME {
             _<IMAGE8RENDERER>().DRAW8IMAGE(creatureType, imageX, imageY,
                                            imageWidth, imageHeight);
 
-            if (now - creature->ticksLastHitOnSelf_ <
+            if (now - creature->mTicksLastHitOnSelf <
                 kHitOtherEffectDuration_) {
-                auto lastHitPosition{creature->lastHitPosition_};
+                auto lastHitPosition{creature->mLastHitPosition};
 
                 auto hitEffectImageSize{
                     _<IMAGE8BANK>().GET8IMAGE8SIZE(HASH("HitEffect"))};
@@ -447,7 +447,7 @@ namespace FORRADIA8GAME {
                 auto impactPoints{entry.second.object_->impactPoints_};
 
                 for (auto impactPoint : impactPoints) {
-                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
+                    auto impactPointWidth{GAME8PROPERTIES::mkImpactPointWidth};
                     auto impactPointHeight{
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
                     auto impactPointX{imageX +

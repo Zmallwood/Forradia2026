@@ -21,9 +21,9 @@
 namespace FORRADIA8GAME {
     void
     PLAYER8COMBAT8TO8OTHERS::ON8MOUSE8DOWN(Uint8 button) {
-        auto viewWidth{GAME8PROPERTIES::kViewWidth};
+        auto viewWidth{GAME8PROPERTIES::mkViewWidth};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().mkTileUnitsWidth};
 
         auto now{NOW()};
 
@@ -53,10 +53,10 @@ namespace FORRADIA8GAME {
         if (creature->IS8DEAD())
             return;
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
-        constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
+        constexpr auto kMargin{GAME8PROPERTIES::mkFirstPersonViewMargin};
+        constexpr auto kLargeObjectScale{GAME8PROPERTIES::mkLargeObjectScale};
 
-        auto creatureType{creature->type_};
+        auto creatureType{creature->mType};
 
         auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(creatureType)};
 
@@ -108,10 +108,10 @@ namespace FORRADIA8GAME {
             _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have killed a " +
                                              creatureLabel + ".");
 
-            _<PLAYER>().ADD8EXPERIENCE(creature->experienceValue_);
+            _<PLAYER>().ADD8EXPERIENCE(creature->mExperienceValue);
 
             _<CREATURE8RESPAWNER>().RESPAWN8CREATURE(
-                creatureType, creature->respawnTimeMillis_);
+                creatureType, creature->mRespawnTimeMillis);
         }
     }
 }

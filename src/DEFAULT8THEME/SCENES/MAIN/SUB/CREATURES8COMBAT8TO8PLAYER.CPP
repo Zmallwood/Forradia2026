@@ -26,7 +26,7 @@ namespace FORRADIA8GAME {
             auto creature{entry.first};
             auto position{entry.second};
 
-            if (creature->targetingPlayer_) {
+            if (creature->mTargetingPlayer) {
                 auto dx{position.x - static_cast<int>(playerPosition.x)};
                 auto dy{position.y - static_cast<int>(playerPosition.y)};
 
@@ -34,11 +34,11 @@ namespace FORRADIA8GAME {
                 auto absDy{std::abs(dy)};
 
                 if ((absDx <= 1 && absDy == 0) || (absDx == 0 && absDy <= 1)) {
-                    if (now > creature->ticksLastHitOnOther_ +
-                                  INVERT8SPEED(creature->attackSpeed_)) {
+                    if (now > creature->mTicksLastHitOnOther +
+                                  INVERT8SPEED(creature->mAttackSpeed)) {
                         _<PLAYER>().HIT(1.0F);
 
-                        creature->ticksLastHitOnOther_ = now;
+                        creature->mTicksLastHitOnOther = now;
                     }
                 }
             }

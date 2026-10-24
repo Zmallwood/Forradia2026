@@ -32,12 +32,12 @@ namespace FORRADIA8GAME {
 
         auto playerElevation{playerTile->elevation_};
 
-        auto tileWidth{GAME8PROPERTIES::kTileWidth};
+        auto tileWidth{GAME8PROPERTIES::mkTileWidth};
         auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-        auto tileGridSize{GAME8PROPERTIES::kTileGridSize};
+        auto tileGridSize{GAME8PROPERTIES::mkTileGridSize};
 
-        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset};
+        auto yOffset{_<GAME8PROPERTIES>().mkWorldViewYOffset};
 
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};
