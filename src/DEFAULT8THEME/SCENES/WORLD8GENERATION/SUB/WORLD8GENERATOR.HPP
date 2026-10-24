@@ -11,34 +11,5 @@ namespace FORRADIA8GAME {
     class WORLD8GENERATOR {
       public:
         void GENERATE8NEW8WORLD();
-
-      private:
-        void CLEAR8WITH8GRASS();
-
-        void SET8BASE8ELEVATION();
-
-        void GENERATE8WATER();
-
-        void GENERATE8DIRT();
-
-        void GENERATE8HILLS();
-
-        void GENERATE8MOUNTAINS();
-
-        void GENERATE8FORESTS();
-
-        void TRAVERSE81(std::function<void(int, int)> callback);
-
-        void TRAVERSE82(std::function<void(int, int)> callback);
-
-        void TRAVERSE83(std::function<void(int, int)> callback);
-
-        void TRAVERSE84(std::function<void(int, int)> callback);
-
-        void GENERATE8LARGE8OBJECTS();
-
-        void GENERATE8SMALL8OBJECTS();
-
-        void GENERATE8CREATURES();
     };
 }

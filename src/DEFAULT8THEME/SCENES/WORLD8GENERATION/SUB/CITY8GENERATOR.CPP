@@ -14,24 +14,27 @@
 #include "CORE/WORLD8STRUCTURE/WORLD8AREA.HPP"
 
 namespace FORRADIA8GAME {
-    void
+    std::shared_ptr<WORLD8AREA>
     CITY8GENERATOR::GENERATE8CITY() {
-        CLEAR8WITH8GRASS();
-        SET8BASE8ELEVATION();
-        GENERATE8WATER();
-        GENERATE8DIRT();
-        GENERATE8HILLS();
-        GENERATE8MOUNTAINS();
-        GENERATE8FORESTS();
-        GENERATE8LARGE8OBJECTS();
-        GENERATE8ROADS();
-        GENERATE8SMALL8OBJECTS();
-        GENERATE8CREATURES();
+        auto worldArea{std::make_shared<WORLD8AREA>()};
+
+        CLEAR8WITH8GRASS(worldArea);
+        SET8BASE8ELEVATION(worldArea);
+        GENERATE8WATER(worldArea);
+        GENERATE8DIRT(worldArea);
+        GENERATE8HILLS(worldArea);
+        GENERATE8MOUNTAINS(worldArea);
+        GENERATE8FORESTS(worldArea);
+        GENERATE8LARGE8OBJECTS(worldArea);
+        GENERATE8ROADS(worldArea);
+        GENERATE8SMALL8OBJECTS(worldArea);
+        GENERATE8CREATURES(worldArea);
+
+        return worldArea;
     }
 
     void
-    CITY8GENERATOR::CLEAR8WITH8GRASS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::CLEAR8WITH8GRASS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 0; y < size.height; y++) {
@@ -44,8 +47,7 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::SET8BASE8ELEVATION() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::SET8BASE8ELEVATION(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 0; y < size.height; y++) {
@@ -57,8 +59,7 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8ROADS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8ROADS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto centerX{size.width / 2};
@@ -158,8 +159,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8LARGE8OBJECTS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8LARGE8OBJECTS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numBush1s{100 + rand() % 30};
@@ -251,8 +252,8 @@ namespace FORRADIA8GAME {
         }
     }
     void
-    CITY8GENERATOR::GENERATE8SMALL8OBJECTS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8SMALL8OBJECTS(
+        std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numStones{500 + rand() % 50};
@@ -315,9 +316,9 @@ namespace FORRADIA8GAME {
             tile->tileObjects_->ADD8OBJECT("ObjectLeaf");
         }
     }
+
     void
-    CITY8GENERATOR::GENERATE8DIRT() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8DIRT(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
@@ -411,15 +412,15 @@ namespace FORRADIA8GAME {
             }
         });
 
-        TRAVERSE81(fnMakeDirt);
-        TRAVERSE82(fnMakeDirt);
-        TRAVERSE83(fnMakeDirt);
-        TRAVERSE84(fnMakeDirt);
+        TRAVERSE81(worldArea, fnMakeDirt);
+        TRAVERSE82(worldArea, fnMakeDirt);
+        TRAVERSE83(worldArea, fnMakeDirt);
+        TRAVERSE84(worldArea, fnMakeDirt);
     }
 
     void
-    CITY8GENERATOR::TRAVERSE81(std::function<void(int, int)> callback) {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::TRAVERSE81(std::shared_ptr<WORLD8AREA> worldArea,
+                               std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++)
@@ -428,8 +429,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE82(std::function<void(int, int)> callback) {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::TRAVERSE82(std::shared_ptr<WORLD8AREA> worldArea,
+                               std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto x = 1; x < size.width - 1; x++)
@@ -438,8 +439,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE83(std::function<void(int, int)> callback) {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::TRAVERSE83(std::shared_ptr<WORLD8AREA> worldArea,
+                               std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = size.height - 2; y > 0; y--)
@@ -448,8 +449,8 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::TRAVERSE84(std::function<void(int, int)> callback) {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::TRAVERSE84(std::shared_ptr<WORLD8AREA> worldArea,
+                               std::function<void(int, int)> callback) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto x = size.width - 2; x > 0; x--)
@@ -458,8 +459,7 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8HILLS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8HILLS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numHills = 60 + rand() % 10;
@@ -496,9 +496,9 @@ namespace FORRADIA8GAME {
             }
         }
     }
+
     void
-    CITY8GENERATOR::GENERATE8CREATURES() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8CREATURES(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numDeers{80 + rand() % 10};
@@ -590,8 +590,7 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8WATER() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8WATER(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
@@ -685,16 +684,14 @@ namespace FORRADIA8GAME {
             }
         });
 
-        TRAVERSE81(fnMakeWater);
-        TRAVERSE82(fnMakeWater);
-        TRAVERSE83(fnMakeWater);
-        TRAVERSE84(fnMakeWater);
+        TRAVERSE81(worldArea, fnMakeWater);
+        TRAVERSE82(worldArea, fnMakeWater);
+        TRAVERSE83(worldArea, fnMakeWater);
+        TRAVERSE84(worldArea, fnMakeWater);
     }
 
     void
-    CITY8GENERATOR::GENERATE8MOUNTAINS() {
-
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8MOUNTAINS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         auto numMountains = 40 + rand() % 10;
@@ -739,8 +736,7 @@ namespace FORRADIA8GAME {
     }
 
     void
-    CITY8GENERATOR::GENERATE8FORESTS() {
-        auto worldArea{_<WORLD>().currentWorldArea_};
+    CITY8GENERATOR::GENERATE8FORESTS(std::shared_ptr<WORLD8AREA> worldArea) {
         auto size{worldArea->GET8SIZE()};
 
         for (auto y = 1; y < size.height - 1; y++) {
@@ -878,9 +874,9 @@ namespace FORRADIA8GAME {
             }
         });
 
-        TRAVERSE81(fnMakeTrees);
-        TRAVERSE82(fnMakeTrees);
-        TRAVERSE83(fnMakeTrees);
-        TRAVERSE84(fnMakeTrees);
+        TRAVERSE81(worldArea, fnMakeTrees);
+        TRAVERSE82(worldArea, fnMakeTrees);
+        TRAVERSE83(worldArea, fnMakeTrees);
+        TRAVERSE84(worldArea, fnMakeTrees);
     }
 }
