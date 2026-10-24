@@ -121,7 +121,7 @@ namespace FORRADIA8GAME {
             }
         }
 
-        auto creature{facedTile->creature_};
+        auto creature{facedTile->mCreature};
 
         if (creature) {
             auto creatureType{creature->mType};

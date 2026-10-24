@@ -24,7 +24,7 @@ namespace FORRADIA8GAME {
         if (!facedTile)
             return {};
 
-        auto objects{facedTile->tileObjects_->objects_};
+        auto objects{facedTile->mTileObjects->objects_};
 
         std::map<std::pair<int, int>, POSITIONED8OBJECT> orderedObjects;
 
@@ -38,19 +38,19 @@ namespace FORRADIA8GAME {
             auto facingDirection{_<PLAYER>().mFacingDirection};
 
             switch (facingDirection) {
-            case WORLD8DIRECTIONS::North:
+            case COMPASS8DIRECTIONS::North:
                 xPos = position.x;
                 yPos = position.y;
                 break;
-            case WORLD8DIRECTIONS::East:
+            case COMPASS8DIRECTIONS::East:
                 xPos = position.y;
                 yPos = tileUnitsWidth - 1 - position.x;
                 break;
-            case WORLD8DIRECTIONS::South:
+            case COMPASS8DIRECTIONS::South:
                 xPos = tileUnitsWidth - 1 - position.x;
                 yPos = tileUnitsWidth - 1 - position.y;
                 break;
-            case WORLD8DIRECTIONS::West:
+            case COMPASS8DIRECTIONS::West:
                 xPos = tileUnitsWidth - 1 - position.y;
                 yPos = position.x;
                 break;
@@ -112,17 +112,17 @@ namespace FORRADIA8GAME {
                 int tileY{hoveredY};
 
                 switch (_<PLAYER>().mFacingDirection) {
-                case WORLD8DIRECTIONS::North:
+                case COMPASS8DIRECTIONS::North:
                     break;
-                case WORLD8DIRECTIONS::East:
+                case COMPASS8DIRECTIONS::East:
                     tileX = tileUnitsWidth - 1 - hoveredY;
                     tileY = hoveredX;
                     break;
-                case WORLD8DIRECTIONS::South:
+                case COMPASS8DIRECTIONS::South:
                     tileX = tileUnitsWidth - 1 - hoveredX;
                     tileY = tileUnitsWidth - 1 - hoveredY;
                     break;
-                case WORLD8DIRECTIONS::West:
+                case COMPASS8DIRECTIONS::West:
                     tileX = hoveredY;
                     tileY = tileUnitsWidth - 1 - hoveredX;
                     break;

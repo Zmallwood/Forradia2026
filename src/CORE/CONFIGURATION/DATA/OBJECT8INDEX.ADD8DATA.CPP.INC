@@ -16,7 +16,7 @@ auto allImpactPointsCompletedActionObjectTree1{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectFelledTree");
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object, "ObjectFelledTree");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have felled the tree.");
 
@@ -63,7 +63,7 @@ auto singleImpactPointCompletedActionObjectFelledTree{[]() {
 
     auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-    facedTile->tileObjects_->ADD8OBJECT("ObjectWoodLog");
+    facedTile->mTileObjects->ADD8OBJECT("ObjectWoodLog");
 
     _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have chopped some wood logs.");
 
@@ -78,7 +78,7 @@ auto allImpactPointsCompletedActionObjectFelledTree{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->REMOVE8OBJECT(object);
+        facedTile->mTileObjects->REMOVE8OBJECT(object);
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE(
             "You have chopped up the felled tree.");
@@ -98,7 +98,7 @@ auto allImpactPointsCompletedActionObjectWoodLogUsingSaw{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object, "ObjectWoodPlank");
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object, "ObjectWoodPlank");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have sawed the wood log.");
     }};
@@ -111,7 +111,7 @@ auto allImpactPointsCompletedActionObjectWoodLogUsingWoodAxe{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectUnlitCampfire");
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have created a campfire.");
@@ -142,7 +142,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth1");
     }};
 
@@ -161,7 +161,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth2");
     }};
 
@@ -180,7 +180,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth3");
     }};
 
@@ -199,7 +199,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankNorth4");
     }};
 
@@ -234,7 +234,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast1{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast1");
     }};
 
@@ -253,7 +253,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast2{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast2");
     }};
 
@@ -272,7 +272,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast3{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast3");
     }};
 
@@ -291,7 +291,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast4{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankEast4");
     }};
 
@@ -326,7 +326,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth1");
     }};
 
@@ -345,7 +345,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth2");
     }};
 
@@ -364,7 +364,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth3");
     }};
 
@@ -383,7 +383,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankSouth4");
     }};
 
@@ -418,7 +418,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest1{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest1");
     }};
 
@@ -437,7 +437,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest2{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest2");
     }};
 
@@ -456,7 +456,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest3{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest3");
     }};
 
@@ -475,7 +475,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest4{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectWoodWallPlankWest4");
     }};
 
@@ -510,9 +510,9 @@ auto allImpactPointsCompletedActionObjectWoodFloor{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->REMOVE8OBJECT(object);
+        facedTile->mTileObjects->REMOVE8OBJECT(object);
 
-        facedTile->ground_ = HASH("GroundWoodFloor");
+        facedTile->mGround = HASH("GroundWoodFloor");
     }};
 
 ADD8ENTRY("ObjectPlannedWoodFloor", "Planned wood floor",
@@ -531,7 +531,7 @@ auto allImpactPointsCompletedActionObjectUnlitCampfire{
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        facedTile->tileObjects_->TRANSFORM8OBJECT(object,
+        facedTile->mTileObjects->TRANSFORM8OBJECT(object,
                                                   "ObjectLitCampfire");
     }};
 

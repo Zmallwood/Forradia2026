@@ -45,7 +45,7 @@ namespace FORRADIA8GAME {
         if (!tile)
             return;
 
-        auto creature{tile->creature_};
+        auto creature{tile->mCreature};
 
         if (!creature)
             return;
@@ -89,16 +89,16 @@ namespace FORRADIA8GAME {
 
         _<PLAYER>().mTicksLastHitOnOther = now;
 
-        tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
+        tile->mTileObjects->ADD8OBJECT("ObjectPoolOfBlood");
 
         if (creature->IS8DEAD()) {
             auto corpseType{
                 _<CREATURE8INDEX>().GET8CREATURE8CORPSE8TYPE(creatureType)};
 
-            tile->tileObjects_->ADD8OBJECT(
+            tile->mTileObjects->ADD8OBJECT(
                 corpseType, {tileUnitsWidth / 2, tileUnitsWidth / 2});
 
-            tile->creature_ = nullptr;
+            tile->mCreature = nullptr;
 
             worldArea->creaturesMirror_.erase(creature);
 

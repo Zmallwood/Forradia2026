@@ -8,7 +8,7 @@
 #pragma once
 
 namespace FORRADIA8GAME {
-    enum class WORLD8DIRECTIONS {
+    enum class COMPASS8DIRECTIONS {
         North,
         East,
         South,

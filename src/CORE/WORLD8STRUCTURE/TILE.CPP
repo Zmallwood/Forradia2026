@@ -10,6 +10,6 @@
 
 namespace FORRADIA8GAME {
     TILE::TILE() {
-        tileObjects_ = std::make_shared<TILE8OBJECTS>();
+        mTileObjects = std::make_shared<TILE8OBJECTS>();
     }
 }

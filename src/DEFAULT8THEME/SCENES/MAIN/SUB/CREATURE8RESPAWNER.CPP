@@ -37,11 +37,11 @@ namespace FORRADIA8GAME {
                     y = rand() % size.height;
 
                     tile = worldArea->GET8TILE({x, y});
-                } while (tile->ground_ == HASH("GroundWater") ||
-                         tile->ground_ == HASH("GroundDirt"));
+                } while (tile->mGround == HASH("GroundWater") ||
+                         tile->mGround == HASH("GroundDirt"));
 
                 if (tile) {
-                    tile->creature_ = newCreature;
+                    tile->mCreature = newCreature;
 
                     worldArea->creaturesMirror_.insert({newCreature, {x, y}});
                 }

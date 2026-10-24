@@ -41,7 +41,7 @@ namespace FORRADIA8GAME {
         auto tile{worldArea->GET8TILE(static_cast<int>(mPosition.x),
                                       static_cast<int>(mPosition.y))};
 
-        while (tile->ground_ == HASH("GroundWater")) {
+        while (tile->mGround == HASH("GroundWater")) {
             mPosition = {4.0F + (rand() % (worldAreaSize.width - 5)),
                          4.0F + (rand() % (worldAreaSize.height - 5))};
 
@@ -62,7 +62,7 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
+            (newTile->mGround == HASH("GroundWater") || newTile->mCreature))
             return;
 
         mPosition = {newX, newY};
@@ -70,7 +70,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x),
                                 static_cast<int>(mPosition.y) - 1};
 
-        mFacingDirection = WORLD8DIRECTIONS::North;
+        mFacingDirection = COMPASS8DIRECTIONS::North;
     }
 
     void
@@ -82,7 +82,7 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
+            (newTile->mGround == HASH("GroundWater") || newTile->mCreature))
             return;
 
         mPosition = {newX, newY};
@@ -90,7 +90,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x) + 1,
                                 static_cast<int>(mPosition.y)};
 
-        mFacingDirection = WORLD8DIRECTIONS::East;
+        mFacingDirection = COMPASS8DIRECTIONS::East;
     }
 
     void
@@ -102,7 +102,7 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
+            (newTile->mGround == HASH("GroundWater") || newTile->mCreature))
             return;
 
         mPosition = {newX, newY};
@@ -110,7 +110,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x),
                                 static_cast<int>(mPosition.y) + 1};
 
-        mFacingDirection = WORLD8DIRECTIONS::South;
+        mFacingDirection = COMPASS8DIRECTIONS::South;
     }
 
     void
@@ -122,7 +122,7 @@ namespace FORRADIA8GAME {
             {static_cast<int>(newX), static_cast<int>(newY)})};
 
         if (newTile &&
-            (newTile->ground_ == HASH("GroundWater") || newTile->creature_))
+            (newTile->mGround == HASH("GroundWater") || newTile->mCreature))
             return;
 
         mPosition = {newX, newY};
@@ -130,7 +130,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x) - 1,
                                 static_cast<int>(mPosition.y)};
 
-        mFacingDirection = WORLD8DIRECTIONS::West;
+        mFacingDirection = COMPASS8DIRECTIONS::West;
     }
 
     void
@@ -138,7 +138,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x),
                                 static_cast<int>(mPosition.y) - 1};
 
-        mFacingDirection = WORLD8DIRECTIONS::North;
+        mFacingDirection = COMPASS8DIRECTIONS::North;
     }
 
     void
@@ -146,7 +146,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x) + 1,
                                 static_cast<int>(mPosition.y)};
 
-        mFacingDirection = WORLD8DIRECTIONS::East;
+        mFacingDirection = COMPASS8DIRECTIONS::East;
     }
 
     void
@@ -154,7 +154,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x),
                                 static_cast<int>(mPosition.y) + 1};
 
-        mFacingDirection = WORLD8DIRECTIONS::South;
+        mFacingDirection = COMPASS8DIRECTIONS::South;
     }
 
     void
@@ -162,7 +162,7 @@ namespace FORRADIA8GAME {
         mFacedTileCoordinate = {static_cast<int>(mPosition.x) - 1,
                                 static_cast<int>(mPosition.y)};
 
-        mFacingDirection = WORLD8DIRECTIONS::West;
+        mFacingDirection = COMPASS8DIRECTIONS::West;
     }
 
     void

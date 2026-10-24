@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "CORE/WORLD8STRUCTURE/WORLD8DIRECTIONS.HPP"
+#include "CORE/WORLD8STRUCTURE/COMPASS8DIRECTIONS.HPP"
 
 namespace FORRADIA8GAME {
     class PLAYER8INVENTORY;
@@ -45,7 +45,7 @@ namespace FORRADIA8GAME {
         float mStepSize{0.3F};
         POINT mDestination{-1, -1};
         POINT mFacedTileCoordinate{-1, -1};
-        WORLD8DIRECTIONS mFacingDirection{WORLD8DIRECTIONS::South};
+        COMPASS8DIRECTIONS mFacingDirection{COMPASS8DIRECTIONS::South};
         int mTicksLastHitOnOther{0};
         float mAttackSpeed{2.0F};
         std::string mName{"Unnamed player"};

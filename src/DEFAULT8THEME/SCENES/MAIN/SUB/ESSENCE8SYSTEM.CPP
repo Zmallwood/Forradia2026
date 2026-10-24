@@ -75,7 +75,7 @@ namespace FORRADIA8GAME {
                 auto noticeGround{static_cast<bool>(rand() % 2)};
                 auto noticeObject{!noticeGround};
 
-                auto groundType{tile->ground_};
+                auto groundType{tile->mGround};
                 auto descriptions{
                     _<ESSENCE8INDEX>().GET8ESSENCE8DESCRIPTIONS(groundType)};
 
@@ -89,7 +89,7 @@ namespace FORRADIA8GAME {
 
                     potentialGroundDescriptions.push_back(description);
                 }
-                auto tileObjects{tile->tileObjects_};
+                auto tileObjects{tile->mTileObjects};
 
                 auto objects{tileObjects->objects_};
 

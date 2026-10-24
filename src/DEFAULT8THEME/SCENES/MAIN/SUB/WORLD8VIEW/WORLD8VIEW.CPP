@@ -48,7 +48,7 @@ namespace FORRADIA8GAME {
         auto playerElevation{0};
 
         if (playerTile)
-            playerElevation = playerTile->elevation_;
+            playerElevation = playerTile->mElevation;
 
         auto hoveredCoordinate{_<TILE8HOVERING>().hoveredCoordinate_};
 
@@ -77,7 +77,7 @@ namespace FORRADIA8GAME {
 
                 auto tile{worldArea->GET8TILE(xCoordinate, yCoordinate)};
 
-                auto elevation{tile->elevation_};
+                auto elevation{tile->mElevation};
 
                 POINT coordinateNorth{xCoordinate, yCoordinate - 1};
                 POINT coordinateEast{xCoordinate + 1, yCoordinate};
@@ -101,35 +101,35 @@ namespace FORRADIA8GAME {
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateNorth))
                     elevationNorth =
-                        worldArea->GET8TILE(coordinateNorth)->elevation_;
+                        worldArea->GET8TILE(coordinateNorth)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateEast))
                     elevationEast =
-                        worldArea->GET8TILE(coordinateEast)->elevation_;
+                        worldArea->GET8TILE(coordinateEast)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateSouth))
                     elevationSouth =
-                        worldArea->GET8TILE(coordinateSouth)->elevation_;
+                        worldArea->GET8TILE(coordinateSouth)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateWest))
                     elevationWest =
-                        worldArea->GET8TILE(coordinateWest)->elevation_;
+                        worldArea->GET8TILE(coordinateWest)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateNorthEast))
                     elevationNorthEast =
-                        worldArea->GET8TILE(coordinateNorthEast)->elevation_;
+                        worldArea->GET8TILE(coordinateNorthEast)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateSouthEast))
                     elevationSouthEast =
-                        worldArea->GET8TILE(coordinateSouthEast)->elevation_;
+                        worldArea->GET8TILE(coordinateSouthEast)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateSouthWest))
                     elevationSouthWest =
-                        worldArea->GET8TILE(coordinateSouthWest)->elevation_;
+                        worldArea->GET8TILE(coordinateSouthWest)->mElevation;
 
                 if (worldArea->IS8VALID8COORDINATE(coordinateNorthWest))
                     elevationNorthWest =
-                        worldArea->GET8TILE(coordinateNorthWest)->elevation_;
+                        worldArea->GET8TILE(coordinateNorthWest)->mElevation;
 
                 auto tileX{0.25F - tileWidth / 2 + x * tileWidth / 2 -
                            y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +
@@ -145,7 +145,7 @@ namespace FORRADIA8GAME {
 
                 tileY = tileYOriginal;
 
-                auto ground{tile->ground_};
+                auto ground{tile->mGround};
 
                 for (auto i = 0; i < elevation; i++) {
                     if (ground == HASH("GroundRock"))
@@ -211,7 +211,7 @@ namespace FORRADIA8GAME {
                                                tileWidth + kSmallValue,
                                                tileHeight + kSmallValue);
 
-                auto roadOrientation{tile->roadOrientation_};
+                auto roadOrientation{tile->mRoadOrientation};
 
                 switch (roadOrientation) {
                 case ROAD8ORIENTATION::Horizontal:
@@ -306,7 +306,7 @@ namespace FORRADIA8GAME {
                     _<IMAGE8RENDERER>().DRAW8IMAGE("HoveredTile", tileX, tileY,
                                                    tileWidth, tileHeight);
 
-                auto objects{tile->tileObjects_->objects_};
+                auto objects{tile->mTileObjects->objects_};
 
                 for (auto entry : objects) {
                     auto object{entry.second};
@@ -365,7 +365,7 @@ namespace FORRADIA8GAME {
                                                    objectHeight);
                 }
 
-                auto npc{tile->npc_};
+                auto npc{tile->mNPC};
 
                 if (npc) {
                     auto npcType{npc->mType};
@@ -382,7 +382,7 @@ namespace FORRADIA8GAME {
                                                    npcWidth, npcHeight);
                 }
 
-                auto creature{tile->creature_};
+                auto creature{tile->mCreature};
 
                 if (creature) {
                     auto creatureType{creature->mType};

@@ -30,7 +30,7 @@ namespace FORRADIA8GAME {
         if (!playerTile)
             return;
 
-        auto playerElevation{playerTile->elevation_};
+        auto playerElevation{playerTile->mElevation};
 
         auto tileWidth{GAME8PROPERTIES::mkTileWidth};
         auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
@@ -52,7 +52,7 @@ namespace FORRADIA8GAME {
 
                 auto tile{worldArea->GET8TILE(xCoordinate, yCoordinate)};
 
-                auto elevation{tile->elevation_};
+                auto elevation{tile->mElevation};
 
                 auto tileX{0.25F - tileWidth / 2 + x * tileWidth / 2 -
                            y * tileWidth / 2 - playerMoveDx * tileWidth / 2 +

@@ -73,7 +73,7 @@ namespace FORRADIA8GAME {
         auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kRightHand]};
         auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[kLeftHand]};
 
-        auto groundType{facedTile->ground_};
+        auto groundType{facedTile->mGround};
 
         switch (groundType) {
         case HASH("GroundGrass"): {
@@ -258,7 +258,7 @@ namespace FORRADIA8GAME {
             }
         }
 
-        auto npc{facedTile->npc_};
+        auto npc{facedTile->mNPC};
 
         if (npc) {
             auto npcType{npc->mType};
@@ -283,7 +283,7 @@ namespace FORRADIA8GAME {
                                            imageHeight);
         }
 
-        auto creature{facedTile->creature_};
+        auto creature{facedTile->mCreature};
 
         if (creature) {
             auto creatureType{creature->mType};

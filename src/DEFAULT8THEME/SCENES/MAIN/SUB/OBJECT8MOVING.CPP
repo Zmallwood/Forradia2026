@@ -50,7 +50,7 @@ namespace FORRADIA8GAME {
 
         auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
-        objectInAir_ = tile->tileObjects_->PICK8OBJECT(hoveredObject);
+        objectInAir_ = tile->mTileObjects->PICK8OBJECT(hoveredObject);
 
         draggingMouseOffset_ =
             _<FIRST8PERSON8HOVERING>().hoveredThingMouseOffset_;
@@ -86,12 +86,12 @@ namespace FORRADIA8GAME {
         auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
         auto objectOnLocation{
-            tile->tileObjects_->PICK8OBJECT(hoveredTilePosition)};
+            tile->mTileObjects->PICK8OBJECT(hoveredTilePosition)};
 
         if (objectOnLocation)
             MOVE8OBJECT8TO8PICKUP8LOCATION(objectOnLocation);
 
-        tile->tileObjects_->ADD8OBJECT(objectInAir_, hoveredTilePosition);
+        tile->mTileObjects->ADD8OBJECT(objectInAir_, hoveredTilePosition);
 
         CLEAR8OBJECT();
     }
@@ -145,7 +145,7 @@ namespace FORRADIA8GAME {
 
             auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
-            tile->tileObjects_->ADD8OBJECT(object, pickedPosition_);
+            tile->mTileObjects->ADD8OBJECT(object, pickedPosition_);
         } else if (pickedInventoryPosition_ != -1) {
             _<PLAYER>().mPlayerInventory->ADD8OBJECT(object,
                                                      pickedInventoryPosition_);

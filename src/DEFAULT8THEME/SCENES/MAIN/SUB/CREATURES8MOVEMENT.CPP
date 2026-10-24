@@ -66,8 +66,8 @@ namespace FORRADIA8GAME {
 
                 auto newTile{worldArea->GET8TILE(newPosition)};
 
-                if (newTile->ground_ == HASH("GroundWater") ||
-                    newTile->creature_) {
+                if (newTile->mGround == HASH("GroundWater") ||
+                    newTile->mCreature) {
                     ++it;
 
                     continue;
@@ -75,7 +75,7 @@ namespace FORRADIA8GAME {
 
                 if (creature->mType == HASH("CreatureDeer") ||
                     creature->mType == HASH("CreatureBoar")) {
-                    if (newTile->ground_ == HASH("GroundRock")) {
+                    if (newTile->mGround == HASH("GroundRock")) {
                         ++it;
 
                         continue;
@@ -84,8 +84,8 @@ namespace FORRADIA8GAME {
 
                 auto oldTile{worldArea->GET8TILE(position)};
 
-                newTile->creature_ = creature;
-                oldTile->creature_ = nullptr;
+                newTile->mCreature = creature;
+                oldTile->mCreature = nullptr;
 
                 creatures.erase(it++);
                 creatures.insert({creature, newPosition});
