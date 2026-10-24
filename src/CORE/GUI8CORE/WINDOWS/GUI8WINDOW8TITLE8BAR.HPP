@@ -33,14 +33,14 @@ namespace FORRADIA8GAME {
         void SET8POSITION(POINT8F value) override;
 
       private:
-        inline static const std::string kDefaultBackgroundImage_{
+        inline static const std::string kDefaultBackgroundImage{
             "GUIWindowTitleBarBackground"};
-        static constexpr POINT8F kMargin_{0.01F, 0.01F};
+        static constexpr POINT8F kMargin{0.01F, 0.01F};
 
-        GUI8WINDOW &guiWindow_;
-        std::string title_;
-        POINT8F positionStartMove_;
-        POINT8F mousePositionStartMove_;
-        bool isMoving_{false};
+        GUI8WINDOW &mGUIWindow;
+        std::string mTitle;
+        POINT8F mPositionStartMove;
+        POINT8F mMousePositionStartMove;
+        bool mIsMoving{false};
     };
 }

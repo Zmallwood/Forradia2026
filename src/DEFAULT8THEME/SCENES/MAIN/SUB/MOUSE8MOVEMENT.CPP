@@ -13,16 +13,16 @@
 namespace FORRADIA8GAME {
     void
     MOUSE8MOVEMENT::UPDATE() {
-        auto destination{_<PLAYER>().destination_};
+        auto destination{_<PLAYER>().mDestination};
 
-        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
-                             static_cast<int>(_<PLAYER>().position_.y)};
+        POINT playerPosition{static_cast<int>(_<PLAYER>().mPosition.x),
+                             static_cast<int>(_<PLAYER>().mPosition.y)};
 
         if (destination.x != -1 && destination.y != -1) {
             auto now{NOW()};
 
-            if (now > _<PLAYER>().ticksLastMovement_ +
-                          INVERT8SPEED(_<PLAYER>().movementSpeed_)) {
+            if (now > _<PLAYER>().mTicksLastMovement +
+                          INVERT8SPEED(_<PLAYER>().mMovementSpeed)) {
                 auto dx{destination.x - playerPosition.x};
                 auto dy{destination.y - playerPosition.y};
 
@@ -30,7 +30,7 @@ namespace FORRADIA8GAME {
                 auto absDy{std::abs(dy)};
 
                 if (dx == 0 && dy == 0) {
-                    _<PLAYER>().destination_ = {-1, -1};
+                    _<PLAYER>().mDestination = {-1, -1};
 
                     return;
                 }
@@ -77,9 +77,9 @@ namespace FORRADIA8GAME {
                         _<PLAYER>().MOVE8EAST();
                 }
 
-                _<PLAYER>().ticksLastMovement_ =
+                _<PLAYER>().mTicksLastMovement =
                     now +
-                    rand() % 3 * (INVERT8SPEED(_<PLAYER>().movementSpeed_));
+                    rand() % 3 * (INVERT8SPEED(_<PLAYER>().mMovementSpeed));
             }
         }
     }
@@ -98,7 +98,7 @@ namespace FORRADIA8GAME {
 
     void
     MOUSE8MOVEMENT::ON8MOUSE8DOWN(Uint8 button) {
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -106,6 +106,6 @@ namespace FORRADIA8GAME {
             return;
 
         if (button == SDL_BUTTON_LEFT)
-            _<PLAYER>().destination_ = _<TILE8HOVERING>().hoveredCoordinate_;
+            _<PLAYER>().mDestination = _<TILE8HOVERING>().hoveredCoordinate_;
     }
 }

@@ -16,7 +16,7 @@ namespace FORRADIA8GAME {
 
     float
     GUI8EXPERIENCE8METER::GET8METER8PROGRESS() {
-        auto experience{_<PLAYER>().experience_};
+        auto experience{_<PLAYER>().mExperience};
         auto progress{CALCULATE8FRACTIONAL8EXPERIENCE8PROGRESS(experience)};
         return progress;
     }

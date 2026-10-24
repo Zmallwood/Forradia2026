@@ -36,7 +36,7 @@ namespace FORRADIA8GAME {
             SDL_SetTextureBlendMode(image.get(), blendMode);
         }
 
-        SDL_RenderCopyEx(_<SDL8DEVICE>().renderer_.get(), image.get(), nullptr,
+        SDL_RenderCopyEx(_<SDL8DEVICE>().mRenderer.get(), image.get(), nullptr,
                          &rect, 0, nullptr, flip);
 
         SDL_SetTextureAlphaMod(image.get(), 255);

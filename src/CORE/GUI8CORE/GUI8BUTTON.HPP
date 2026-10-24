@@ -28,12 +28,11 @@ namespace FORRADIA8GAME {
         std::string GET8BACKGROUND8IMAGE() override;
 
       private:
-        const std::string kBackgroundImage_{"GUIButtonBackground"};
-        const std::string kHoveredBackgroundImage_{
-            "GUIButtonHoveredBackground"};
+        const std::string kBackgroundImage{"GUIButtonBackground"};
+        const std::string kHoveredBackgroundImage{"GUIButtonHoveredBackground"};
 
-        std::string text_;
-        std::function<void()> action_;
-        bool hovered_{false};
+        std::string mText;
+        std::function<void()> mAction;
+        bool mHovered{false};
     };
 }

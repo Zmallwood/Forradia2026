@@ -29,8 +29,8 @@ namespace FORRADIA8GAME {
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
-                             static_cast<int>(_<PLAYER>().position_.y)};
+        POINT playerPosition{static_cast<int>(_<PLAYER>().mPosition.x),
+                             static_cast<int>(_<PLAYER>().mPosition.y)};
 
         auto r{kNoticingRadius_};
 

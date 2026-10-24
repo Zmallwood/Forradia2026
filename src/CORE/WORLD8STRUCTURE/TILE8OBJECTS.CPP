@@ -18,8 +18,8 @@ namespace FORRADIA8GAME {
     void
     TILE8OBJECTS::ADD8OBJECT(int objectType, POINT position) {
         if (position.x == -1 || position.y == -1) {
-            position.x = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
-            position.y = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth_;
+            position.x = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth;
+            position.y = rand() % _<GAME8PROPERTIES>().kTileUnitsWidth;
         }
 
         objects_.insert({position, std::make_shared<OBJECT>(objectType)});

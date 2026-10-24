@@ -21,7 +21,7 @@ namespace FORRADIA8GAME {
     GUI8ACTION8MENU::ON8MOUSE8DOWN(Uint8 mouseButton) {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
         if (mouseButton == SDL_BUTTON_RIGHT) {
             visible_ = true;
@@ -84,7 +84,7 @@ namespace FORRADIA8GAME {
             if (bounds.CONTAINS(mousePosition)) {
                 _<COLOR8RENDERER>().FILL8RECT(bounds, COLORS::kBlueGray);
 
-                _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
+                _<CURSOR>().mCursorStyle = CURSOR8STYLES::Hovering;
             }
 
             _<TEXT8RENDERER>().DRAW8STRING(

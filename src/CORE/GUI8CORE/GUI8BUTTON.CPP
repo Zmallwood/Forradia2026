@@ -14,9 +14,9 @@ namespace FORRADIA8GAME {
                            float height, std::function<void()> action,
                            std::string_view backgroundImage,
                            std::string_view hoveredBackgroundImage)
-        : GUI8PANEL(x, y, width, height), text_(text), action_(action),
-          kBackgroundImage_(backgroundImage),
-          kHoveredBackgroundImage_(hoveredBackgroundImage) {
+        : GUI8PANEL(x, y, width, height), mText(text), mAction(action),
+          kBackgroundImage(backgroundImage),
+          kHoveredBackgroundImage(hoveredBackgroundImage) {
     }
 
     void
@@ -25,16 +25,16 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        auto size{size_};
+        auto size{mSize};
 
         RECT8F rect{position.x, position.y, size.width, size.height};
 
         if (rect.CONTAINS(GET8MOUSE8POSITION())) {
-            hovered_ = true;
+            mHovered = true;
 
-            _<CURSOR>().cursorStyle_ = CURSOR8STYLES::Hovering;
+            _<CURSOR>().mCursorStyle = CURSOR8STYLES::Hovering;
         } else {
-            hovered_ = false;
+            mHovered = false;
         }
     }
 
@@ -44,22 +44,22 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        auto size{size_};
+        auto size{mSize};
 
-        _<TEXT8RENDERER>().DRAW8STRING(text_, position.x + size.width / 2,
+        _<TEXT8RENDERER>().DRAW8STRING(mText, position.x + size.width / 2,
                                        position.y + size.height / 2,
                                        FONT8SIZES::_15, true);
     }
 
     bool
     GUI8BUTTON::ON8MOUSE8DOWN(Uint8 mouseButton) {
-        if (!isVisible_)
+        if (!mIsVisible)
             return false;
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
-            action_();
+            mAction();
 
             return true;
         }
@@ -69,6 +69,6 @@ namespace FORRADIA8GAME {
 
     std::string
     GUI8BUTTON::GET8BACKGROUND8IMAGE() {
-        return hovered_ ? kHoveredBackgroundImage_ : kBackgroundImage_;
+        return mHovered ? kHoveredBackgroundImage : kBackgroundImage;
     }
 }

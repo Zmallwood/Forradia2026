@@ -20,13 +20,13 @@ namespace FORRADIA8GAME {
 
         // Constructed before every other runtime singleton so textures, fonts,
         // and the world are released while SDL is still initialized.
-        if (!_<SDL8DEVICE>().renderer_)
+        if (!_<SDL8DEVICE>().mRenderer)
             return;
 
         _<IMAGE8BANK>().LOAD8IMAGES();
         _<TEXT8RENDERER>().INITIALIZE();
 
-        while (running_) {
+        while (mRunning) {
             POLL_EVENTS();
             _<CURSOR>().RESET();
             _<SCENE8MANAGER>().UPDATE8CURRENT8SCENE();
@@ -51,7 +51,7 @@ namespace FORRADIA8GAME {
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
             case SDL_QUIT: {
-                running_ = false;
+                mRunning = false;
                 break;
             }
             case SDL_KEYDOWN: {
@@ -72,10 +72,10 @@ namespace FORRADIA8GAME {
 
                 switch (event.button.button) {
                 case SDL_BUTTON_LEFT:
-                    ticksLeftMouseButtonDown_ = NOW();
+                    mTicksLeftMouseButtonDown = NOW();
                     break;
                 case SDL_BUTTON_RIGHT:
-                    ticksRightMouseButtonDown_ = NOW();
+                    mTicksRightMouseButtonDown = NOW();
                     break;
                 }
                 break;
@@ -85,10 +85,10 @@ namespace FORRADIA8GAME {
 
                 switch (event.button.button) {
                 case SDL_BUTTON_LEFT:
-                    clickSpeed = NOW() - ticksLeftMouseButtonDown_;
+                    clickSpeed = NOW() - mTicksLeftMouseButtonDown;
                     break;
                 case SDL_BUTTON_RIGHT:
-                    clickSpeed = NOW() - ticksRightMouseButtonDown_;
+                    clickSpeed = NOW() - mTicksRightMouseButtonDown;
                     break;
                 }
 
@@ -102,6 +102,6 @@ namespace FORRADIA8GAME {
 
     void
     ENGINE::STOP() {
-        running_ = false;
+        mRunning = false;
     }
 }

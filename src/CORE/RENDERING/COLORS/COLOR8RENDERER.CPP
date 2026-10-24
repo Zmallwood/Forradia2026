@@ -15,10 +15,10 @@ namespace FORRADIA8GAME {
         auto rect{CREATE8SDL8RECT(x, y, width, height)};
         auto sdlColor{color.TO8SDL8COLOR()};
 
-        SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
+        SDL_SetRenderDrawColor(_<SDL8DEVICE>().mRenderer.get(), sdlColor.r,
                                sdlColor.g, sdlColor.b, sdlColor.a);
 
-        SDL_RenderFillRect(_<SDL8DEVICE>().renderer_.get(), &rect);
+        SDL_RenderFillRect(_<SDL8DEVICE>().mRenderer.get(), &rect);
     }
 
     void
@@ -32,10 +32,10 @@ namespace FORRADIA8GAME {
         auto rect{CREATE8SDL8RECT(x, y, width, height)};
         auto sdlColor{color.TO8SDL8COLOR()};
 
-        SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
+        SDL_SetRenderDrawColor(_<SDL8DEVICE>().mRenderer.get(), sdlColor.r,
                                sdlColor.g, sdlColor.b, sdlColor.a);
 
-        SDL_RenderDrawRect(_<SDL8DEVICE>().renderer_.get(), &rect);
+        SDL_RenderDrawRect(_<SDL8DEVICE>().mRenderer.get(), &rect);
     }
 
     void
@@ -50,10 +50,10 @@ namespace FORRADIA8GAME {
 
         auto sdlColor{color.TO8SDL8COLOR()};
 
-        SDL_SetRenderDrawColor(_<SDL8DEVICE>().renderer_.get(), sdlColor.r,
+        SDL_SetRenderDrawColor(_<SDL8DEVICE>().mRenderer.get(), sdlColor.r,
                                sdlColor.g, sdlColor.b, sdlColor.a);
 
-        SDL_RenderDrawLine(_<SDL8DEVICE>().renderer_.get(), destX1, destY1,
+        SDL_RenderDrawLine(_<SDL8DEVICE>().mRenderer.get(), destX1, destY1,
                            destX2, destY2);
     }
 

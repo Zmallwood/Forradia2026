@@ -19,11 +19,11 @@ namespace FORRADIA8GAME {
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
-                             static_cast<int>(_<PLAYER>().position_.y)};
+        POINT playerPosition{static_cast<int>(_<PLAYER>().mPosition.x),
+                             static_cast<int>(_<PLAYER>().mPosition.y)};
 
-        auto playerMoveDx{_<PLAYER>().position_.x - playerPosition.x};
-        auto playerMoveDy{_<PLAYER>().position_.y - playerPosition.y};
+        auto playerMoveDx{_<PLAYER>().mPosition.x - playerPosition.x};
+        auto playerMoveDy{_<PLAYER>().mPosition.y - playerPosition.y};
 
         auto playerTile{worldArea->GET8TILE(playerPosition)};
 
@@ -32,12 +32,12 @@ namespace FORRADIA8GAME {
 
         auto playerElevation{playerTile->elevation_};
 
-        auto tileWidth{GAME8PROPERTIES::kTileWidth_};
+        auto tileWidth{GAME8PROPERTIES::kTileWidth};
         auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-        auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
+        auto tileGridSize{GAME8PROPERTIES::kTileGridSize};
 
-        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset_};
+        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset};
 
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};

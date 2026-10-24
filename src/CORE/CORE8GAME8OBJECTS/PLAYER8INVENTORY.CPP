@@ -11,9 +11,9 @@
 namespace FORRADIA8GAME {
     void
     PLAYER8INVENTORY::ADD8OBJECT(std::string_view objectName) {
-        for (auto i = 0; i < kMaxObjects_; i++) {
-            if (!objects_.contains(i)) {
-                objects_[i] = std::make_shared<OBJECT>(objectName);
+        for (auto i = 0; i < kMaxObjects; i++) {
+            if (!mObjects.contains(i)) {
+                mObjects[i] = std::make_shared<OBJECT>(objectName);
                 return;
             }
         }
@@ -22,22 +22,22 @@ namespace FORRADIA8GAME {
     void
     PLAYER8INVENTORY::ADD8OBJECT(std::shared_ptr<OBJECT> object,
                                  int slotIndex) {
-        objects_.insert({slotIndex, object});
+        mObjects.insert({slotIndex, object});
     }
 
     std::shared_ptr<OBJECT>
     PLAYER8INVENTORY::GET8OBJECT(int index) {
-        if (objects_.contains(index))
-            return objects_.at(index);
+        if (mObjects.contains(index))
+            return mObjects.at(index);
         return nullptr;
     }
 
     std::shared_ptr<OBJECT>
     PLAYER8INVENTORY::PICK8OBJECT(int index) {
-        for (auto it = objects_.begin(); it != objects_.end();) {
+        for (auto it = mObjects.begin(); it != mObjects.end();) {
             if (it->first == index) {
                 auto result{it->second};
-                objects_.erase(it++);
+                mObjects.erase(it++);
                 return result;
             }
             ++it;
@@ -47,6 +47,6 @@ namespace FORRADIA8GAME {
 
     bool
     PLAYER8INVENTORY::HAS8OBJECT(int index) {
-        return objects_.contains(index);
+        return mObjects.contains(index);
     }
 }

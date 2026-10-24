@@ -15,19 +15,19 @@ namespace FORRADIA8GAME {
 
     void
     CURSOR::RESET() {
-        cursorStyle_ = CURSOR8STYLES::Default;
+        mCursorStyle = CURSOR8STYLES::Default;
     }
 
     void
     CURSOR::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto cursorWidth{kCursorSize_};
+        auto cursorWidth{kCursorSize};
         auto cursorHeight{CONVERT8WIDTH8TO8HEIGHT(cursorWidth)};
 
         std::string cursorImage;
 
-        switch (cursorStyle_) {
+        switch (mCursorStyle) {
         case CURSOR8STYLES::Hovering:
             cursorImage = "CursorHovering";
             break;

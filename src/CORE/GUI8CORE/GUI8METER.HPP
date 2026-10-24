@@ -14,7 +14,7 @@ namespace FORRADIA8GAME {
       public:
         GUI8METER(float x, float y, float width, float height);
 
-        SIZE8F size_;
+        SIZE8F mSize;
 
       protected:
         virtual void RENDER8DERIVED() override;

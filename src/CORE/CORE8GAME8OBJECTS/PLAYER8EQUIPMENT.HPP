@@ -14,6 +14,6 @@ namespace FORRADIA8GAME {
       public:
         PLAYER8EQUIPMENT();
 
-        std::map<int, std::shared_ptr<OBJECT>> slots_;
+        std::map<int, std::shared_ptr<OBJECT>> mSlots;
     };
 }

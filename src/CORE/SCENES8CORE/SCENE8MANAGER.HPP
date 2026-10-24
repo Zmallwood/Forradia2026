@@ -31,7 +31,7 @@ namespace FORRADIA8GAME {
       private:
         void ADD8SCENE(std::string_view sceneName, I8SCENE &scene);
 
-        int currentScene_{0};
-        std::unordered_map<int, I8SCENE &> scenes_;
+        int mCurrentScene{0};
+        std::unordered_map<int, I8SCENE &> mScenes;
     };
 }

@@ -11,7 +11,7 @@
 
 namespace FORRADIA8GAME {
     WORLD8AREA::WORLD8AREA() {
-        auto size{_<GAME8PROPERTIES>().kWorldAreaSize_};
+        auto size{_<GAME8PROPERTIES>().kWorldAreaSize};
 
         for (auto x = 0; x < size.width; x++) {
             tiles_.push_back(std::vector<std::shared_ptr<TILE>>());

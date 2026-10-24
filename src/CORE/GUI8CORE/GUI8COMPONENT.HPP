@@ -35,11 +35,11 @@ namespace FORRADIA8GAME {
 
         virtual void
         SET8POSITION(POINT8F value) {
-            position_ = value;
+            mPosition = value;
         }
 
-        bool isVisible_{true};
-        bool isEnabled_{true};
+        bool mIsVisible{true};
+        bool mIsEnabled{true};
 
       protected:
         virtual void
@@ -51,8 +51,8 @@ namespace FORRADIA8GAME {
         }
 
       private:
-        std::vector<std::shared_ptr<GUI8COMPONENT>> components_;
-        POINT8F position_{0.0F, 0.0F};
-        GUI8COMPONENT *parent_{nullptr};
+        std::vector<std::shared_ptr<GUI8COMPONENT>> mComponents;
+        POINT8F mPosition{0.0F, 0.0F};
+        GUI8COMPONENT *mParent{nullptr};
     };
 }

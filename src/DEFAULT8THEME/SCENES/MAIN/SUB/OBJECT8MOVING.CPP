@@ -29,7 +29,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -46,7 +46,7 @@ namespace FORRADIA8GAME {
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -66,7 +66,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -81,7 +81,7 @@ namespace FORRADIA8GAME {
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -107,8 +107,8 @@ namespace FORRADIA8GAME {
 
         auto imageSize{_<IMAGE8BANK>().GET8IMAGE8SIZE(objectType)};
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
 
         auto isSmallObject{_<OBJECT8INDEX>().IS8SMALL8OBJECT(objectType)};
 
@@ -141,16 +141,16 @@ namespace FORRADIA8GAME {
         if (pickedPosition_ != POINT{-1, -1}) {
             auto worldArea{_<WORLD>().currentWorldArea_};
 
-            auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+            auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
             auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 
             tile->tileObjects_->ADD8OBJECT(object, pickedPosition_);
         } else if (pickedInventoryPosition_ != -1) {
-            _<PLAYER>().playerInventory_->ADD8OBJECT(object,
+            _<PLAYER>().mPlayerInventory->ADD8OBJECT(object,
                                                      pickedInventoryPosition_);
         } else if (pickedEquipmentSlot_ != -1) {
-            _<PLAYER>().playerEquipment_->slots_[pickedEquipmentSlot_] = object;
+            _<PLAYER>().mPlayerEquipment->mSlots[pickedEquipmentSlot_] = object;
         }
     }
 

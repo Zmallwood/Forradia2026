@@ -22,6 +22,6 @@ namespace FORRADIA8GAME {
         void ADD8ENTRY(std::string_view creatureName, std::string_view label,
                        std::string_view corpseType = {});
 
-        std::unordered_map<int, CREATURE8INDEX8ENTRY> entries_;
+        std::unordered_map<int, CREATURE8INDEX8ENTRY> mEntries;
     };
 }

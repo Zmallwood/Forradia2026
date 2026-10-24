@@ -15,7 +15,7 @@ namespace FORRADIA8GAME {
 
     float
     GUI8HEALTH8METER::GET8METER8PROGRESS() {
-        return _<PLAYER>().health_ / _<PLAYER>().maxHealth_;
+        return _<PLAYER>().mHealth / _<PLAYER>().mMaxHealth;
     }
 
     COLOR

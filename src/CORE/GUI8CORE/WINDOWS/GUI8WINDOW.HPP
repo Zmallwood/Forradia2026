@@ -19,6 +19,6 @@ namespace FORRADIA8GAME {
 
         void TOGGLE8VISIBILITY();
 
-        std::shared_ptr<GUI8WINDOW8TITLE8BAR> titleBar_;
+        std::shared_ptr<GUI8WINDOW8TITLE8BAR> mTitleBar;
     };
 }

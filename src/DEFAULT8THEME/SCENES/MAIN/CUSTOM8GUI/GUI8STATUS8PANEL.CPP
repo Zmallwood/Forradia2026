@@ -20,10 +20,10 @@ namespace FORRADIA8GAME {
     GUI8STATUS8PANEL::RENDER8DERIVED() {
         GUI8PANEL::RENDER8DERIVED();
 
-        _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().name_, 0.015F, 0.01F,
+        _<TEXT8RENDERER>().DRAW8STRING(_<PLAYER>().mName, 0.015F, 0.01F,
                                        FONT8SIZES::_20, false);
 
-        auto playerLevel{CALCULATE8CURRENT8LEVEL(_<PLAYER>().experience_)};
+        auto playerLevel{CALCULATE8CURRENT8LEVEL(_<PLAYER>().mExperience)};
 
         std::string levelText{"Level " + std::to_string(playerLevel)};
 
@@ -34,8 +34,8 @@ namespace FORRADIA8GAME {
         std::stringstream ssHealth;
 
         ssHealth << std::fixed << std::setprecision(1)
-                 << "Health: " << _<PLAYER>().health_ << "/"
-                 << _<PLAYER>().maxHealth_;
+                 << "Health: " << _<PLAYER>().mHealth << "/"
+                 << _<PLAYER>().mMaxHealth;
 
         _<TEXT8RENDERER>().DRAW8STRING(ssHealth.str(), 0.015F, 0.08F,
                                        FONT8SIZES::_15, false, COLORS::kWheat);

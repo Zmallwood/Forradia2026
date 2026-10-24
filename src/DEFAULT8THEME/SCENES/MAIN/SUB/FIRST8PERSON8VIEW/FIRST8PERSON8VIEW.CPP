@@ -41,7 +41,7 @@ namespace FORRADIA8GAME {
     FIRST8PERSON8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.5F, 0.0F, 0.5F, 1.0F);
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         auto skyAnimIndex{(NOW() % 3200) / 800};
 
@@ -62,7 +62,7 @@ namespace FORRADIA8GAME {
         std::string groundImageName;
 
         auto worldArea{_<WORLD>().currentWorldArea_};
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
         if (!facedTile)
@@ -70,8 +70,8 @@ namespace FORRADIA8GAME {
 
         using namespace PLAYER8EQUIPMENT8SLOTS;
 
-        auto rightHandObject{_<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]};
-        auto leftHandObject{_<PLAYER>().playerEquipment_->slots_[LEFT8HAND]};
+        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]};
+        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]};
 
         auto groundType{facedTile->ground_};
 
@@ -111,18 +111,18 @@ namespace FORRADIA8GAME {
         }
         }
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(
             groundImageName, 1.0F - viewWidth + kMargin.x, 0.75F + kMargin.y,
             viewWidth - 2 * kMargin.x, 0.25F - 2 * kMargin.y);
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
 
         for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -238,7 +238,7 @@ namespace FORRADIA8GAME {
                 auto impactPoints{entry.second.object_->impactPoints_};
 
                 for (auto impactPoint : impactPoints) {
-                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth_};
+                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
                     auto impactPointHeight{
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
                     auto impactPointX{imageX +
@@ -447,7 +447,7 @@ namespace FORRADIA8GAME {
                 auto impactPoints{entry.second.object_->impactPoints_};
 
                 for (auto impactPoint : impactPoints) {
-                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth_};
+                    auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
                     auto impactPointHeight{
                         CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
                     auto impactPointX{imageX +
@@ -503,9 +503,9 @@ namespace FORRADIA8GAME {
         auto rightHandX{1.0F - viewWidth + 0.5F * viewWidth + handSpacing -
                         handWidth / 2};
 
-        auto ticksLastMovement{_<PLAYER>().ticksLastMovement_};
+        auto ticksLastMovement{_<PLAYER>().mTicksLastMovement};
 
-        auto ticksOneStep{INVERT8SPEED(_<PLAYER>().movementSpeed_)};
+        auto ticksOneStep{INVERT8SPEED(_<PLAYER>().mMovementSpeed)};
 
         auto delta{NOW() - ticksLastMovement};
 
@@ -562,18 +562,18 @@ namespace FORRADIA8GAME {
         // _<COLOR8RENDERER>().DRAW8LINE(viewWidth, 0.0F, viewWidth, 1.0F,
         //                               COLORS::kWhite);
 
-        if (now < _<PLAYER>().ticksLastHitOnSelf_ + kHitSelfEffectDuration_)
+        if (now < _<PLAYER>().mTicksLastHitOnSelf + kHitSelfEffectDuration_)
             _<COLOR8RENDERER>().FILL8RECT(viewWidth, 0.0F, viewWidth, 1.0F,
                                           COLORS::kRed);
 
-        if (now < _<PLAYER>().ticksLastImpact_ +
-                      INVERT8SPEED(_<PLAYER>().impactSpeed_)) {
+        if (now < _<PLAYER>().mTicksLastImpact +
+                      INVERT8SPEED(_<PLAYER>().mImpactSpeed)) {
             constexpr auto kImpactReloadWidth{0.1F};
             constexpr auto kImpactReloadHeight{0.01F};
 
             auto progress{
-                static_cast<float>(now - _<PLAYER>().ticksLastImpact_) /
-                INVERT8SPEED(_<PLAYER>().impactSpeed_)};
+                static_cast<float>(now - _<PLAYER>().mTicksLastImpact) /
+                INVERT8SPEED(_<PLAYER>().mImpactSpeed)};
 
             auto filledWidth{kImpactReloadWidth * (1.0F - progress)};
 

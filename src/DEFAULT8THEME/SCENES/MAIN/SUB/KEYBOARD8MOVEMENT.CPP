@@ -18,11 +18,11 @@ namespace FORRADIA8GAME {
 
         auto now{NOW()};
 
-        if (now > _<PLAYER>().ticksLastMovement_ +
-                      INVERT8SPEED(_<PLAYER>().movementSpeed_) &&
+        if (now > _<PLAYER>().mTicksLastMovement +
+                      INVERT8SPEED(_<PLAYER>().mMovementSpeed) &&
             (wPressed || sPressed || aPressed || qPressed)) {
 
-            _<PLAYER>().destination_ = {-1, -1};
+            _<PLAYER>().mDestination = {-1, -1};
 
             if (wPressed) {
                 if (pressedKeys_.contains(SDLK_LCTRL) ||
@@ -58,8 +58,8 @@ namespace FORRADIA8GAME {
                 }
             }
 
-            _<PLAYER>().ticksLastMovement_ =
-                now + rand() % 3 * (INVERT8SPEED(_<PLAYER>().movementSpeed_));
+            _<PLAYER>().mTicksLastMovement =
+                now + rand() % 3 * (INVERT8SPEED(_<PLAYER>().mMovementSpeed));
         }
     }
 

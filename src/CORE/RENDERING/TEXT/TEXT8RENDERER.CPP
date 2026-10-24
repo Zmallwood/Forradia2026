@@ -18,14 +18,14 @@ namespace FORRADIA8GAME {
 
     void
     TEXT8RENDERER::ADD8FONT(FONT8SIZES fontSize) {
-        auto absFontPath{std::string(SDL_GetBasePath()) + kDefaultFontPath_};
+        auto absFontPath{std::string(SDL_GetBasePath()) + kDefaultFontPath};
         auto fontPath{REPLACE(absFontPath, "\\", "/")};
         auto fontSizeN{static_cast<int>(fontSize)};
 
         auto newFont{std::shared_ptr<TTF_Font>(
             TTF_OpenFont(fontPath.c_str(), fontSizeN), SDL8DELETER())};
 
-        fonts_.insert({fontSize, newFont});
+        mFonts.insert({fontSize, newFont});
     }
 
     void
@@ -35,7 +35,7 @@ namespace FORRADIA8GAME {
         if (text.empty())
             return;
 
-        auto font{fonts_[fontSize]};
+        auto font{mFonts[fontSize]};
 
         auto sdlColor{color.TO8SDL8COLOR()};
 
@@ -44,7 +44,7 @@ namespace FORRADIA8GAME {
             SDL8DELETER())};
 
         auto texture{std::shared_ptr<SDL_Texture>(
-            SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
+            SDL_CreateTextureFromSurface(_<SDL8DEVICE>().mRenderer.get(),
                                          surface.get()),
             SDL8DELETER())};
 
@@ -59,13 +59,13 @@ namespace FORRADIA8GAME {
             rect.y -= surface->h / 2;
         }
 
-        SDL_RenderCopy(_<SDL8DEVICE>().renderer_.get(), texture.get(), nullptr,
+        SDL_RenderCopy(_<SDL8DEVICE>().mRenderer.get(), texture.get(), nullptr,
                        &rect);
     }
 
     SIZE8F
     TEXT8RENDERER::MEASURE8STRING(std::string_view text, FONT8SIZES fontSize) {
-        auto font{fonts_.at(fontSize)};
+        auto font{mFonts.at(fontSize)};
 
         int widthPx;
         int heightPx;

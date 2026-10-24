@@ -67,6 +67,6 @@ namespace FORRADIA8GAME {
         ON8MOUSE8UP8DERIVED(Uint8 button, int clickSpeed) {
         }
 
-        std::shared_ptr<GUI> gui_;
+        std::shared_ptr<GUI> mGUI;
     };
 }

@@ -26,18 +26,18 @@ namespace FORRADIA8GAME {
         hoveredObject_ = nullptr;
         hoveredCreature_ = nullptr;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
         auto worldArea{_<WORLD>().currentWorldArea_};
-        auto facedTile{worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_)};
+        auto facedTile{worldArea->GET8TILE(_<PLAYER>().mFacedTileCoordinate)};
 
         if (!facedTile) {
             hoveredObject_ = nullptr;
@@ -46,8 +46,8 @@ namespace FORRADIA8GAME {
             return;
         }
 
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
 
         for (auto entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -238,7 +238,7 @@ namespace FORRADIA8GAME {
     FIRST8PERSON8HOVERING::RENDER() {
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset_};
+        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset};
 
         if (hoveredObject_) {
             auto objectLabel{

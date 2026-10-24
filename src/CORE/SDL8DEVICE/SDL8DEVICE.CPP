@@ -22,36 +22,36 @@ namespace FORRADIA8GAME {
             return;
         }
 
-        initialized_ = true;
+        mInitialized = true;
 
-        auto windowName{_<GAME8PROPERTIES>().kWindowName_};
+        auto windowName{_<GAME8PROPERTIES>().kWindowName};
         auto windowFlags{SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP};
 
-        window_ = std::shared_ptr<SDL_Window>(
+        mWindow = std::shared_ptr<SDL_Window>(
             SDL_CreateWindow(windowName.data(), SDL_WINDOWPOS_CENTERED,
                              SDL_WINDOWPOS_CENTERED, 800, 600, windowFlags),
             SDL8DELETER());
 
-        renderer_ = std::shared_ptr<SDL_Renderer>(
-            SDL_CreateRenderer(window_.get(), -1, SDL_RENDERER_ACCELERATED),
+        mRenderer = std::shared_ptr<SDL_Renderer>(
+            SDL_CreateRenderer(mWindow.get(), -1, SDL_RENDERER_ACCELERATED),
             SDL8DELETER());
     }
 
     SDL8DEVICE::~SDL8DEVICE() {
-        if (window_)
-            SDL_SetWindowFullscreen(window_.get(), 0);
+        if (mWindow)
+            SDL_SetWindowFullscreen(mWindow.get(), 0);
 
-        if (initialized_) {
+        if (mInitialized) {
             SDL_Event event;
 
             while (SDL_PollEvent(&event)) {
             }
         }
 
-        renderer_.reset();
-        window_.reset();
+        mRenderer.reset();
+        mWindow.reset();
 
-        if (!initialized_)
+        if (!mInitialized)
             return;
 
         TTF_Quit();
@@ -61,13 +61,13 @@ namespace FORRADIA8GAME {
 
     void
     SDL8DEVICE::CLEAR8CANVAS() {
-        SDL_SetRenderDrawColor(renderer_.get(), 0, 150, 255, 255);
-        SDL_RenderClear(renderer_.get());
+        SDL_SetRenderDrawColor(mRenderer.get(), 0, 150, 255, 255);
+        SDL_RenderClear(mRenderer.get());
     }
 
     void
     SDL8DEVICE::PRESENT8CANVAS() {
-        SDL_RenderPresent(renderer_.get());
+        SDL_RenderPresent(mRenderer.get());
     }
 
     void
@@ -81,11 +81,11 @@ namespace FORRADIA8GAME {
         clipRect.w = static_cast<int>(width * canvasSize.width);
         clipRect.h = static_cast<int>(height * canvasSize.height);
 
-        SDL_RenderSetClipRect(renderer_.get(), &clipRect);
+        SDL_RenderSetClipRect(mRenderer.get(), &clipRect);
     }
 
     void
     SDL8DEVICE::RESET8CLIP() {
-        SDL_RenderSetClipRect(renderer_.get(), nullptr);
+        SDL_RenderSetClipRect(mRenderer.get(), nullptr);
     }
 }

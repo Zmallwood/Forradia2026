@@ -47,6 +47,6 @@ namespace FORRADIA8GAME {
                                                                      0.0F},
                        int animationFames = 0);
 
-        std::unordered_map<int, OBJECT8INDEX8ENTRY> entries_;
+        std::unordered_map<int, OBJECT8INDEX8ENTRY> mEntries;
     };
 }

@@ -12,7 +12,7 @@ namespace FORRADIA8GAME {
     void
     IMAGE8BANK::LOAD8IMAGES() {
         auto imagesDirectory{SDL_GetBasePath() +
-                             std::string(kRelativeImagesDirectory_)};
+                             std::string(kRelativeImagesDirectory)};
 
         imagesDirectory = REPLACE(imagesDirectory, "\\", "/");
 
@@ -54,20 +54,19 @@ namespace FORRADIA8GAME {
         auto surface{std::shared_ptr<SDL_Surface>(converted, SDL8DELETER())};
 
         auto texture{std::shared_ptr<SDL_Texture>(
-            SDL_CreateTextureFromSurface(_<SDL8DEVICE>().renderer_.get(),
+            SDL_CreateTextureFromSurface(_<SDL8DEVICE>().mRenderer.get(),
                                          surface.get()),
             SDL8DELETER())};
 
         IMAGE8ENTRY entry{texture, surface};
 
-        images_.insert({hash, entry});
+        mImages.insert({hash, entry});
     }
 
     std::shared_ptr<SDL_Texture>
     IMAGE8BANK::GET8IMAGE(int imageNameHash) {
-        if (images_.contains(imageNameHash))
-            return images_.at(imageNameHash).texture;
-
+        if (mImages.contains(imageNameHash))
+            return mImages.at(imageNameHash).texture;
         return nullptr;
     }
 
@@ -76,8 +75,8 @@ namespace FORRADIA8GAME {
         auto width{0};
         auto height{0};
 
-        if (images_.contains(imageNameHash))
-            SDL_QueryTexture(images_.at(imageNameHash).texture.get(), nullptr,
+        if (mImages.contains(imageNameHash))
+            SDL_QueryTexture(mImages.at(imageNameHash).texture.get(), nullptr,
                              nullptr, &width, &height);
 
         return {width, height};
@@ -85,8 +84,8 @@ namespace FORRADIA8GAME {
 
     bool
     IMAGE8BANK::IS8PIXEL8VISIBLE(int imageNameHash, float x, float y) {
-        if (images_.contains(imageNameHash)) {
-            auto surface{images_.at(imageNameHash).surface.get()};
+        if (mImages.contains(imageNameHash)) {
+            auto surface{mImages.at(imageNameHash).surface.get()};
 
             if (!surface || !surface->pixels || surface->w <= 0 ||
                 surface->h <= 0 || x < 0.0F || y < 0.0F || x >= 1.0F ||

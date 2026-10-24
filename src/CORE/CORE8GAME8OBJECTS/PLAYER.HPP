@@ -39,23 +39,23 @@ namespace FORRADIA8GAME {
 
         void SPAWN8ONSUITABLE8LOCATION();
 
-        POINT8F position_{0.0F, 0.0F};
-        int ticksLastMovement_{0};
-        float movementSpeed_{11.0F};
-        float stepSize_{0.3F};
-        POINT destination_{-1, -1};
-        POINT facedTileCoordinate_{-1, -1};
-        WORLD8DIRECTIONS facingDirection_{WORLD8DIRECTIONS::South};
-        int ticksLastHitOnOther_{0};
-        float attackSpeed_{2.0F};
-        std::string name_{"Unnamed player"};
-        int experience_{0};
-        std::shared_ptr<PLAYER8INVENTORY> playerInventory_;
-        float health_{10.0F};
-        float maxHealth_{10.0F};
-        int ticksLastHitOnSelf_{0};
-        std::shared_ptr<PLAYER8EQUIPMENT> playerEquipment_;
-        int ticksLastImpact_{0};
-        float impactSpeed_{1.0F};
+        POINT8F mPosition{0.0F, 0.0F};
+        int mTicksLastMovement{0};
+        float mMovementSpeed{11.0F};
+        float mStepSize{0.3F};
+        POINT mDestination{-1, -1};
+        POINT mFacedTileCoordinate{-1, -1};
+        WORLD8DIRECTIONS mFacingDirection{WORLD8DIRECTIONS::South};
+        int mTicksLastHitOnOther{0};
+        float mAttackSpeed{2.0F};
+        std::string mName{"Unnamed player"};
+        int mExperience{0};
+        std::shared_ptr<PLAYER8INVENTORY> mPlayerInventory;
+        float mHealth{10.0F};
+        float mMaxHealth{10.0F};
+        int mTicksLastHitOnSelf{0};
+        std::shared_ptr<PLAYER8EQUIPMENT> mPlayerEquipment;
+        int mTicksLastImpact{0};
+        float mImpactSpeed{1.0F};
     };
 }

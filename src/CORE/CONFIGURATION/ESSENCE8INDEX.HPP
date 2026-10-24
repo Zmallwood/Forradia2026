@@ -18,6 +18,6 @@ namespace FORRADIA8GAME {
         void ADD8ENTRY(std::string_view name,
                        std::vector<std::string> descriptions);
 
-        std::unordered_map<int, std::vector<std::string>> entries_;
+        std::unordered_map<int, std::vector<std::string>> mEntries;
     };
 }

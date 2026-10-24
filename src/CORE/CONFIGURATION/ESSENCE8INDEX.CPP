@@ -24,13 +24,13 @@ namespace FORRADIA8GAME {
     void
     ESSENCE8INDEX::ADD8ENTRY(std::string_view name,
                              std::vector<std::string> descriptions) {
-        entries_.insert({HASH(name), descriptions});
+        mEntries.insert({HASH(name), descriptions});
     }
 
     std::vector<std::string>
     ESSENCE8INDEX::GET8ESSENCE8DESCRIPTIONS(int nameHash) {
-        if (entries_.contains(nameHash))
-            return entries_.at(nameHash);
+        if (mEntries.contains(nameHash))
+            return mEntries.at(nameHash);
         return {};
     }
 }

@@ -12,7 +12,7 @@ auto allImpactPointsCompletedActionObjectTree1{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -59,7 +59,7 @@ ADD8ENTRY("ObjectWoodAxe", "Wood axe", OBJECT8FLAGS::kSmallObject);
 auto singleImpactPointCompletedActionObjectFelledTree{[]() {
     auto worldArea{_<WORLD>().currentWorldArea_};
 
-    auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+    auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
     auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -74,7 +74,7 @@ auto allImpactPointsCompletedActionObjectFelledTree{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -94,7 +94,7 @@ auto allImpactPointsCompletedActionObjectWoodLogUsingSaw{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -107,7 +107,7 @@ auto allImpactPointsCompletedActionObjectWoodLogUsingWoodAxe{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -138,7 +138,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth1{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -157,7 +157,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth2{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -176,7 +176,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth3{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -195,7 +195,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankNorth4{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -230,7 +230,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast1{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -249,7 +249,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast2{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -268,7 +268,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast3{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -287,7 +287,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankEast4{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -322,7 +322,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth1{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -341,7 +341,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth2{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -360,7 +360,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth3{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -379,7 +379,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankSouth4{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -414,7 +414,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest1{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -433,7 +433,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest2{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -452,7 +452,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest3{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -471,7 +471,7 @@ auto allImpactPointsCompletedActionObjectWoodWallPlankWest4{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -506,7 +506,7 @@ auto allImpactPointsCompletedActionObjectWoodFloor{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 
@@ -527,7 +527,7 @@ auto allImpactPointsCompletedActionObjectUnlitCampfire{
     [](std::shared_ptr<OBJECT> object) {
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+        auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
         auto facedTile{worldArea->GET8TILE(facedTileCoordinate)};
 

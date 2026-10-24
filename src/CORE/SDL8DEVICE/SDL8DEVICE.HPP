@@ -22,10 +22,10 @@ namespace FORRADIA8GAME {
 
         void RESET8CLIP();
 
-        std::shared_ptr<SDL_Window> window_;
-        std::shared_ptr<SDL_Renderer> renderer_;
+        std::shared_ptr<SDL_Window> mWindow;
+        std::shared_ptr<SDL_Renderer> mRenderer;
 
       private:
-        bool initialized_{false};
+        bool mInitialized{false};
     };
 }

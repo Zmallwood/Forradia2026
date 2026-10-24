@@ -31,12 +31,12 @@ namespace FORRADIA8GAME {
         auto bounds{GET8BOUNDS()};
 
         if (mouseButton == SDL_BUTTON_LEFT && bounds.CONTAINS(mousePosition) &&
-            isVisible_ && isEnabled_) {
+            mIsVisible && mIsEnabled) {
             auto position{GET8POSITION()};
 
-            auto size{size_};
+            auto size{mSize};
 
-            auto titleBarHeight{titleBar_->size_.height};
+            auto titleBarHeight{mTitleBar->mSize.height};
 
             auto numCols{
                 static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_))};
@@ -63,7 +63,7 @@ namespace FORRADIA8GAME {
                     RECT8F slotBounds{slotX, slotY, slotWidth, slotHeight};
 
                     if (slotBounds.CONTAINS(mousePosition)) {
-                        auto object{_<PLAYER>().playerInventory_->PICK8OBJECT(
+                        auto object{_<PLAYER>().mPlayerInventory->PICK8OBJECT(
                             inventoryIndex)};
 
                         if (object) {
@@ -72,9 +72,9 @@ namespace FORRADIA8GAME {
                             _<OBJECT8MOVING>().SET8OBJECT8IN8AIR(object);
 
                             constexpr auto largeObjectScale{
-                                GAME8PROPERTIES::kLargeObjectScale_};
+                                GAME8PROPERTIES::kLargeObjectScale};
                             constexpr auto smallObjectScale{
-                                GAME8PROPERTIES::kSmallObjectScale_};
+                                GAME8PROPERTIES::kSmallObjectScale};
 
                             auto isSmallObject{
                                 _<OBJECT8INDEX>().IS8SMALL8OBJECT(
@@ -116,9 +116,9 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        auto size{size_};
+        auto size{mSize};
 
-        auto titleBarHeight{titleBar_->size_.height};
+        auto titleBarHeight{mTitleBar->mSize.height};
 
         auto numCols{
             static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_))};
@@ -146,7 +146,7 @@ namespace FORRADIA8GAME {
 
                 if (slotBounds.CONTAINS(mousePosition)) {
                     auto objectOnLocation{
-                        _<PLAYER>().playerInventory_->PICK8OBJECT(
+                        _<PLAYER>().mPlayerInventory->PICK8OBJECT(
                             inventoryIndex)};
 
                     if (objectOnLocation) {
@@ -154,7 +154,7 @@ namespace FORRADIA8GAME {
                             objectOnLocation);
                     }
 
-                    _<PLAYER>().playerInventory_->ADD8OBJECT(
+                    _<PLAYER>().mPlayerInventory->ADD8OBJECT(
                         _<OBJECT8MOVING>().GET8OBJECT8IN8AIR(), inventoryIndex);
 
                     _<OBJECT8MOVING>().CLEAR8OBJECT();
@@ -177,11 +177,11 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset_};
+        auto textYOffset{_<GAME8PROPERTIES>().kHoveringLabelYOffset};
 
-        auto size{size_};
+        auto size{mSize};
 
-        auto titleBarHeight{titleBar_->size_.height};
+        auto titleBarHeight{mTitleBar->mSize.height};
 
         auto numCols{
             static_cast<int>(size.width / (kSlotWidth_ + kSlotMarginX_))};
@@ -212,7 +212,7 @@ namespace FORRADIA8GAME {
                     slotHeight);
 
                 auto object{
-                    _<PLAYER>().playerInventory_->GET8OBJECT(inventoryIndex)};
+                    _<PLAYER>().mPlayerInventory->GET8OBJECT(inventoryIndex)};
 
                 if (object) {
                     _<IMAGE8RENDERER>().DRAW8IMAGE(object->type_, slotX, slotY,

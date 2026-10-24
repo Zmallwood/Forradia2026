@@ -10,7 +10,7 @@
 
 namespace FORRADIA8GAME {
     GUI8PANEL::GUI8PANEL(float x, float y, float width, float height)
-        : GUI8COMPONENT(x, y), size_(width, height) {
+        : GUI8COMPONENT(x, y), mSize(width, height) {
     }
 
     bool
@@ -20,7 +20,7 @@ namespace FORRADIA8GAME {
         if (result)
             return true;
 
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return false;
 
         return GET8BOUNDS().CONTAINS(GET8MOUSE8POSITION());
@@ -31,18 +31,18 @@ namespace FORRADIA8GAME {
         auto position{GET8POSITION()};
 
         _<IMAGE8RENDERER>().DRAW8IMAGE(GET8BACKGROUND8IMAGE(), position.x,
-                                       position.y, size_.width, size_.height);
+                                       position.y, mSize.width, mSize.height);
     }
 
     std::string
     GUI8PANEL::GET8BACKGROUND8IMAGE() {
-        return kDefaultBackgroundImage_;
+        return kDefaultBackgroundImage;
     }
 
     RECT8F
     GUI8PANEL::GET8BOUNDS() {
         auto position{GET8POSITION()};
 
-        return {position.x, position.y, size_.width, size_.height};
+        return {position.x, position.y, mSize.width, mSize.height};
     }
 }

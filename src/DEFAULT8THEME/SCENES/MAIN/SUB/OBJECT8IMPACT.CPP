@@ -22,7 +22,7 @@ namespace FORRADIA8GAME {
         if (button != SDL_BUTTON_LEFT)
             return;
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
@@ -31,22 +31,22 @@ namespace FORRADIA8GAME {
 
         auto now{NOW()};
 
-        if (now < _<PLAYER>().ticksLastImpact_ +
-                      INVERT8SPEED(_<PLAYER>().impactSpeed_))
+        if (now < _<PLAYER>().mTicksLastImpact +
+                      INVERT8SPEED(_<PLAYER>().mImpactSpeed))
             return;
 
         auto orderedObjects{GET8ORDERED8OBJECTS()};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
-        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
-        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale_};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
+        constexpr auto largeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
+        constexpr auto smallObjectScale{GAME8PROPERTIES::kSmallObjectScale};
 
         using namespace PLAYER8EQUIPMENT8SLOTS;
 
-        auto rightHandObject{_<PLAYER>().playerEquipment_->slots_[RIGHT8HAND]};
-        auto leftHandObject{_<PLAYER>().playerEquipment_->slots_[LEFT8HAND]};
+        auto rightHandObject{_<PLAYER>().mPlayerEquipment->mSlots[RIGHT8HAND]};
+        auto leftHandObject{_<PLAYER>().mPlayerEquipment->mSlots[LEFT8HAND]};
 
         for (auto &entry : orderedObjects) {
             auto xPos{entry.second.position_.x};
@@ -140,7 +140,7 @@ namespace FORRADIA8GAME {
 
             imageY += renderOffset.y * kTileHeight;
 
-            auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth_};
+            auto impactPointWidth{GAME8PROPERTIES::kImpactPointWidth};
             auto impactPointHeight{CONVERT8WIDTH8TO8HEIGHT(impactPointWidth)};
 
             auto &impactPoints{object->impactPoints_};
@@ -165,7 +165,7 @@ namespace FORRADIA8GAME {
 
                     completedImpactPointThisClick = true;
 
-                    _<PLAYER>().ticksLastImpact_ = now;
+                    _<PLAYER>().mTicksLastImpact = now;
 
                     _<FIRST8PERSON8VIEW>().completedObjectImpacts_.push_back(
                         {POINT8F{impactPointCenterX, impactPointCenterY}, now});

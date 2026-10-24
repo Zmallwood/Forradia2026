@@ -16,10 +16,10 @@
 namespace FORRADIA8GAME {
     std::map<std::pair<int, int>, POSITIONED8OBJECT>
     GET8ORDERED8OBJECTS() {
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
         auto worldArea{_<WORLD>().currentWorldArea_};
-        auto facedTile{worldArea->GET8TILE(_<PLAYER>().facedTileCoordinate_)};
+        auto facedTile{worldArea->GET8TILE(_<PLAYER>().mFacedTileCoordinate)};
 
         if (!facedTile)
             return {};
@@ -35,7 +35,7 @@ namespace FORRADIA8GAME {
             int xPos;
             int yPos;
 
-            auto facingDirection{_<PLAYER>().facingDirection_};
+            auto facingDirection{_<PLAYER>().mFacingDirection};
 
             switch (facingDirection) {
             case WORLD8DIRECTIONS::North:
@@ -68,9 +68,9 @@ namespace FORRADIA8GAME {
 
     POINT
     GET8HOVERED8TILE8POSITION(POINT8F mouseOffset) {
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         POINT hoveredTilePosition{-1, -1};
 
@@ -111,7 +111,7 @@ namespace FORRADIA8GAME {
                 int tileX{hoveredX};
                 int tileY{hoveredY};
 
-                switch (_<PLAYER>().facingDirection_) {
+                switch (_<PLAYER>().mFacingDirection) {
                 case WORLD8DIRECTIONS::North:
                     break;
                 case WORLD8DIRECTIONS::East:

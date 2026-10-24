@@ -19,8 +19,8 @@ namespace FORRADIA8GAME {
 
         void POLL_EVENTS();
 
-        bool running_{true};
-        int ticksLeftMouseButtonDown_{0};
-        int ticksRightMouseButtonDown_{0};
+        bool mRunning{true};
+        int mTicksLeftMouseButtonDown{0};
+        int mTicksRightMouseButtonDown{0};
     };
 }

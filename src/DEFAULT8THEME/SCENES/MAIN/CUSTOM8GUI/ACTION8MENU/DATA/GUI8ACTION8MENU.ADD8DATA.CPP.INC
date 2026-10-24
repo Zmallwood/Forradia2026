@@ -1,6 +1,6 @@
 auto worldArea{_<WORLD>().currentWorldArea_};
 
-auto facedTileCoordinate{_<PLAYER>().facedTileCoordinate_};
+auto facedTileCoordinate{_<PLAYER>().mFacedTileCoordinate};
 
 auto tile{worldArea->GET8TILE(facedTileCoordinate)};
 

@@ -23,7 +23,7 @@ namespace FORRADIA8GAME {
         bool HAS8OBJECT(int index);
 
       private:
-        static constexpr int kMaxObjects_{1000};
-        std::unordered_map<int, std::shared_ptr<OBJECT>> objects_;
+        static constexpr int kMaxObjects{1000};
+        std::unordered_map<int, std::shared_ptr<OBJECT>> mObjects;
     };
 }

@@ -24,8 +24,8 @@ namespace FORRADIA8GAME {
       private:
         void ADD8FONT(FONT8SIZES fontSize);
 
-        const std::string kDefaultFontPath_{
+        const std::string kDefaultFontPath{
             "./resources/Fonts/PixeloidSans.ttf"};
-        std::unordered_map<FONT8SIZES, std::shared_ptr<TTF_Font>> fonts_;
+        std::unordered_map<FONT8SIZES, std::shared_ptr<TTF_Font>> mFonts;
     };
 }

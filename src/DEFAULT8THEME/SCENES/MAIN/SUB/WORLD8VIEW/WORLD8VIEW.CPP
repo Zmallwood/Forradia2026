@@ -27,21 +27,21 @@ namespace FORRADIA8GAME {
     WORLD8VIEW::RENDER() {
         _<SDL8DEVICE>().CLIP(0.0F, 0.0F, 0.5F, 1.0F);
 
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
         _<COLOR8RENDERER>().FILL8RECT(0.0F, 0.0F, viewWidth, 1.0F,
                                       COLORS::kBlack);
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        POINT playerPosition{static_cast<int>(_<PLAYER>().position_.x),
-                             static_cast<int>(_<PLAYER>().position_.y)};
+        POINT playerPosition{static_cast<int>(_<PLAYER>().mPosition.x),
+                             static_cast<int>(_<PLAYER>().mPosition.y)};
 
-        auto playerXInt{static_cast<int>(_<PLAYER>().position_.x)};
-        auto playerYInt{static_cast<int>(_<PLAYER>().position_.y)};
+        auto playerXInt{static_cast<int>(_<PLAYER>().mPosition.x)};
+        auto playerYInt{static_cast<int>(_<PLAYER>().mPosition.y)};
 
-        auto playerMoveDx{_<PLAYER>().position_.x - playerPosition.x};
-        auto playerMoveDy{_<PLAYER>().position_.y - playerPosition.y};
+        auto playerMoveDx{_<PLAYER>().mPosition.x - playerPosition.x};
+        auto playerMoveDy{_<PLAYER>().mPosition.y - playerPosition.y};
 
         auto playerTile{worldArea->GET8TILE(playerPosition)};
 
@@ -52,14 +52,14 @@ namespace FORRADIA8GAME {
 
         auto hoveredCoordinate{_<TILE8HOVERING>().hoveredCoordinate_};
 
-        auto facedTile{_<PLAYER>().facedTileCoordinate_};
+        auto facedTile{_<PLAYER>().mFacedTileCoordinate};
 
-        auto tileWidth{_<GAME8PROPERTIES>().kTileWidth_};
+        auto tileWidth{_<GAME8PROPERTIES>().kTileWidth};
         auto tileHeight{CONVERT8WIDTH8TO8HEIGHT(tileWidth)};
 
-        auto tileGridSize{GAME8PROPERTIES::kTileGridSize_};
+        auto tileGridSize{GAME8PROPERTIES::kTileGridSize};
 
-        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset_};
+        auto yOffset{_<GAME8PROPERTIES>().kWorldViewYOffset};
 
         auto numGridRows{tileGridSize - 11};
         auto numGridColumns{tileGridSize - 11};
@@ -401,8 +401,8 @@ namespace FORRADIA8GAME {
                                                    creatureHeight);
                 }
 
-                if (xCoordinate == static_cast<int>(_<PLAYER>().position_.x) &&
-                    yCoordinate == static_cast<int>(_<PLAYER>().position_.y)) {
+                if (xCoordinate == static_cast<int>(_<PLAYER>().mPosition.x) &&
+                    yCoordinate == static_cast<int>(_<PLAYER>().mPosition.y)) {
                     auto tileXPlayer{0.25F - tileWidth / 2 + 5 * tileWidth / 2 -
                                      5 * tileWidth / 2};
 
@@ -413,8 +413,8 @@ namespace FORRADIA8GAME {
                     std::string imageName{"Player"};
 
                     auto isWalking{
-                        NOW() < _<PLAYER>().ticksLastMovement_ +
-                                    INVERT8SPEED(_<PLAYER>().movementSpeed_)};
+                        NOW() < _<PLAYER>().mTicksLastMovement +
+                                    INVERT8SPEED(_<PLAYER>().mMovementSpeed)};
 
                     if (isWalking) {
                         auto animIndex{(NOW() % (7 * 150)) / 150};

@@ -21,14 +21,14 @@
 namespace FORRADIA8GAME {
     void
     PLAYER8COMBAT8TO8OTHERS::ON8MOUSE8DOWN(Uint8 button) {
-        auto viewWidth{GAME8PROPERTIES::kViewWidth_};
+        auto viewWidth{GAME8PROPERTIES::kViewWidth};
 
-        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth_};
+        auto tileUnitsWidth{_<GAME8PROPERTIES>().kTileUnitsWidth};
 
         auto now{NOW()};
 
-        if (now - _<PLAYER>().ticksLastHitOnOther_ <
-            INVERT8SPEED(_<PLAYER>().attackSpeed_))
+        if (now - _<PLAYER>().mTicksLastHitOnOther <
+            INVERT8SPEED(_<PLAYER>().mAttackSpeed))
             return;
 
         auto mousePosition{GET8MOUSE8POSITION()};
@@ -38,7 +38,7 @@ namespace FORRADIA8GAME {
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 
-        auto facedTile{_<PLAYER>().facedTileCoordinate_};
+        auto facedTile{_<PLAYER>().mFacedTileCoordinate};
 
         auto tile{worldArea->GET8TILE(facedTile)};
 
@@ -53,8 +53,8 @@ namespace FORRADIA8GAME {
         if (creature->IS8DEAD())
             return;
 
-        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin_};
-        constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale_};
+        constexpr auto kMargin{GAME8PROPERTIES::kFirstPersonViewMargin};
+        constexpr auto kLargeObjectScale{GAME8PROPERTIES::kLargeObjectScale};
 
         auto creatureType{creature->type_};
 
@@ -87,7 +87,7 @@ namespace FORRADIA8GAME {
 
         creature->HIT(1.0F, POINT8F{x, y});
 
-        _<PLAYER>().ticksLastHitOnOther_ = now;
+        _<PLAYER>().mTicksLastHitOnOther = now;
 
         tile->tileObjects_->ADD8OBJECT("ObjectPoolOfBlood");
 

@@ -12,7 +12,7 @@ namespace FORRADIA8GAME {
     SIZE
     GET8CANVAS8SIZE() {
         int width, height;
-        SDL_GetWindowSize(_<SDL8DEVICE>().window_.get(), &width, &height);
+        SDL_GetWindowSize(_<SDL8DEVICE>().mWindow.get(), &width, &height);
         return {width, height};
     }
 

@@ -16,7 +16,7 @@ namespace FORRADIA8GAME {
     CREATURES8COMBAT8TO8PLAYER::UPDATE() {
         auto now{NOW()};
 
-        auto playerPosition{_<PLAYER>().position_};
+        auto playerPosition{_<PLAYER>().mPosition};
 
         auto worldArea{_<WORLD>().currentWorldArea_};
 

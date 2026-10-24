@@ -11,11 +11,11 @@
 namespace FORRADIA8GAME {
     PLAYER8EQUIPMENT::PLAYER8EQUIPMENT() {
         using namespace PLAYER8EQUIPMENT8SLOTS;
-        slots_.insert({HEAD, nullptr});
-        slots_.insert({CHEST, nullptr});
-        slots_.insert({LEGS, nullptr});
-        slots_.insert({FEET, nullptr});
-        slots_.insert({RIGHT8HAND, nullptr});
-        slots_.insert({LEFT8HAND, nullptr});
+        mSlots.insert({HEAD, nullptr});
+        mSlots.insert({CHEST, nullptr});
+        mSlots.insert({LEGS, nullptr});
+        mSlots.insert({FEET, nullptr});
+        mSlots.insert({RIGHT8HAND, nullptr});
+        mSlots.insert({LEFT8HAND, nullptr});
     }
 }

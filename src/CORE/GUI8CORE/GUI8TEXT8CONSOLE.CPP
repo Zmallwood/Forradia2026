@@ -14,7 +14,7 @@ namespace FORRADIA8GAME {
 
     void
     GUI8TEXT8CONSOLE::PRINT8LINE(std::string_view line) {
-        lines_.push_back(line.data());
+        mLines.push_back(line.data());
     }
 
     void
@@ -22,23 +22,23 @@ namespace FORRADIA8GAME {
         GUI8PANEL::RENDER8DERIVED();
 
         auto position{GET8POSITION()};
-        auto size{size_};
+        auto size{mSize};
 
-        auto maxNumLines{static_cast<int>(size.height / kLineHeight_) - 1};
+        auto maxNumLines{static_cast<int>(size.height / kLineHeight) - 1};
 
-        auto iStart{std::max(0, static_cast<int>(lines_.size() - maxNumLines))};
+        auto iStart{std::max(0, static_cast<int>(mLines.size() - maxNumLines))};
 
         auto rowIndex{0};
 
-        for (auto line = iStart; line < lines_.size(); line++) {
-            if (line > lines_.size() - 1)
+        for (auto line = iStart; line < mLines.size(); line++) {
+            if (line > mLines.size() - 1)
                 break;
 
-            auto text{lines_[line]};
+            auto text{mLines[line]};
 
             _<TEXT8RENDERER>().DRAW8STRING(text, position.x + 0.01F,
                                            position.y + 0.01F +
-                                               rowIndex * kLineHeight_);
+                                               rowIndex * kLineHeight);
 
             rowIndex++;
         }

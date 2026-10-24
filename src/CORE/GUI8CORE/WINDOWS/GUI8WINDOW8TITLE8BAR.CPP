@@ -13,8 +13,8 @@ namespace FORRADIA8GAME {
     GUI8WINDOW8TITLE8BAR::GUI8WINDOW8TITLE8BAR(std::string_view title,
                                                float width,
                                                GUI8WINDOW &guiWindow)
-        : GUI8PANEL(0.0F, 0.0F, width, 0.05F), title_(title),
-          guiWindow_(guiWindow) {
+        : GUI8PANEL(0.0F, 0.0F, width, 0.05F), mTitle(title),
+          mGUIWindow(guiWindow) {
     }
 
     void
@@ -23,9 +23,9 @@ namespace FORRADIA8GAME {
 
         auto mousePosition{GET8MOUSE8POSITION()};
 
-        if (isMoving_) {
-            auto delta{mousePosition - mousePositionStartMove_};
-            auto newPosition{positionStartMove_ + delta};
+        if (mIsMoving) {
+            auto delta{mousePosition - mMousePositionStartMove};
+            auto newPosition{mPositionStartMove + delta};
 
             SET8POSITION(newPosition);
         }
@@ -36,9 +36,9 @@ namespace FORRADIA8GAME {
         auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
-            positionStartMove_ = GET8POSITION();
-            mousePositionStartMove_ = GET8MOUSE8POSITION();
-            isMoving_ = true;
+            mPositionStartMove = GET8POSITION();
+            mMousePositionStartMove = GET8MOUSE8POSITION();
+            mIsMoving = true;
             return true;
         }
 
@@ -50,7 +50,7 @@ namespace FORRADIA8GAME {
         auto mousePosition{GET8MOUSE8POSITION()};
 
         if (GET8BOUNDS().CONTAINS(mousePosition)) {
-            isMoving_ = false;
+            mIsMoving = false;
             return true;
         }
 
@@ -63,23 +63,23 @@ namespace FORRADIA8GAME {
 
         auto position{GET8POSITION()};
 
-        _<TEXT8RENDERER>().DRAW8STRING(title_, position.x + kMargin_.x,
-                                       position.y + kMargin_.y, FONT8SIZES::_20,
+        _<TEXT8RENDERER>().DRAW8STRING(mTitle, position.x + kMargin.x,
+                                       position.y + kMargin.y, FONT8SIZES::_20,
                                        false);
     }
 
     std::string
     GUI8WINDOW8TITLE8BAR::GET8BACKGROUND8IMAGE() {
-        return kDefaultBackgroundImage_;
+        return kDefaultBackgroundImage;
     }
 
     POINT8F
     GUI8WINDOW8TITLE8BAR::GET8POSITION() {
-        return guiWindow_.GET8POSITION();
+        return mGUIWindow.GET8POSITION();
     }
 
     void
     GUI8WINDOW8TITLE8BAR::SET8POSITION(POINT8F value) {
-        guiWindow_.SET8POSITION(value);
+        mGUIWindow.SET8POSITION(value);
     }
 }

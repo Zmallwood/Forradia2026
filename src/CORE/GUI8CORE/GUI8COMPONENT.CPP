@@ -8,48 +8,48 @@
 #include "GUI8COMPONENT.HPP"
 
 namespace FORRADIA8GAME {
-    GUI8COMPONENT::GUI8COMPONENT(float x, float y) : position_(x, y) {
+    GUI8COMPONENT::GUI8COMPONENT(float x, float y) : mPosition(x, y) {
     }
 
     void
     GUI8COMPONENT::UPDATE() {
-        if (!isEnabled_)
+        if (!mIsEnabled)
             return;
 
-        if (parent_ && !parent_->isEnabled_)
+        if (mParent && !mParent->mIsEnabled)
             return;
 
         UPDATE8DERIVED();
 
-        for (const auto &component : components_)
+        for (const auto &component : mComponents)
             component->UPDATE();
     }
 
     void
     GUI8COMPONENT::RENDER() {
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return;
 
-        if (parent_ && (!parent_->isVisible_ && !parent_->isEnabled_))
+        if (mParent && (!mParent->mIsVisible && !mParent->mIsEnabled))
             return;
 
         RENDER8DERIVED();
 
-        for (const auto &component : components_)
+        for (const auto &component : mComponents)
             component->RENDER();
     }
 
     bool
     GUI8COMPONENT::ON8MOUSE8DOWN(Uint8 mouseButton) {
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return false;
 
-        if (parent_ && (!parent_->isVisible_ && !parent_->isEnabled_))
+        if (mParent && (!mParent->mIsVisible && !mParent->mIsEnabled))
             return false;
 
-        if (std::any_of(components_.rbegin(), components_.rend(),
-                        [=](const std::shared_ptr<GUI8COMPONENT> &comp) {
-                            return comp->ON8MOUSE8DOWN(mouseButton);
+        if (std::any_of(mComponents.rbegin(), mComponents.rend(),
+                        [=](const std::shared_ptr<GUI8COMPONENT> &component) {
+                            return component->ON8MOUSE8DOWN(mouseButton);
                         }))
             return true;
 
@@ -58,15 +58,16 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8COMPONENT::ON8MOUSE8UP(Uint8 mouseButton, int clickSpeed) {
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return false;
 
-        if (parent_ && (!parent_->isVisible_ && !parent_->isEnabled_))
+        if (mParent && (!mParent->mIsVisible && !mParent->mIsEnabled))
             return false;
 
-        if (std::any_of(components_.rbegin(), components_.rend(),
-                        [=](const std::shared_ptr<GUI8COMPONENT> &comp) {
-                            return comp->ON8MOUSE8UP(mouseButton, clickSpeed);
+        if (std::any_of(mComponents.rbegin(), mComponents.rend(),
+                        [=](const std::shared_ptr<GUI8COMPONENT> &component) {
+                            return component->ON8MOUSE8UP(mouseButton,
+                                                          clickSpeed);
                         }))
             return true;
 
@@ -75,15 +76,15 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8COMPONENT::ON8KEY8DOWN(SDL_Keycode key) {
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return false;
 
-        if (parent_ && (!parent_->isVisible_ && !parent_->isEnabled_))
+        if (mParent && (!mParent->mIsVisible && !mParent->mIsEnabled))
             return false;
 
-        if (std::any_of(components_.rbegin(), components_.rend(),
-                        [=](const std::shared_ptr<GUI8COMPONENT> &comp) {
-                            return comp->ON8KEY8DOWN(key);
+        if (std::any_of(mComponents.rbegin(), mComponents.rend(),
+                        [=](const std::shared_ptr<GUI8COMPONENT> &component) {
+                            return component->ON8KEY8DOWN(key);
                         }))
             return true;
 
@@ -92,15 +93,15 @@ namespace FORRADIA8GAME {
 
     bool
     GUI8COMPONENT::ON8KEY8UP(SDL_Keycode key) {
-        if (!isVisible_ || !isEnabled_)
+        if (!mIsVisible || !mIsEnabled)
             return false;
 
-        if (parent_ && (!parent_->isVisible_ && !parent_->isEnabled_))
+        if (mParent && (!mParent->mIsVisible && !mParent->mIsEnabled))
             return false;
 
-        if (std::any_of(components_.rbegin(), components_.rend(),
-                        [=](const std::shared_ptr<GUI8COMPONENT> &comp) {
-                            return comp->ON8KEY8UP(key);
+        if (std::any_of(mComponents.rbegin(), mComponents.rend(),
+                        [=](const std::shared_ptr<GUI8COMPONENT> &component) {
+                            return component->ON8KEY8UP(key);
                         }))
             return true;
 
@@ -109,9 +110,9 @@ namespace FORRADIA8GAME {
 
     std::shared_ptr<GUI8COMPONENT>
     GUI8COMPONENT::ADD8COMPONENT(std::shared_ptr<GUI8COMPONENT> component) {
-        component->parent_ = this;
+        component->mParent = this;
 
-        components_.push_back(component);
+        mComponents.push_back(component);
 
         return component;
     }
@@ -120,16 +121,16 @@ namespace FORRADIA8GAME {
     GUI8COMPONENT::GET8POSITION() {
         POINT8F finalPosition{0.0F, 0.0F};
 
-        if (parent_)
-            finalPosition += parent_->GET8POSITION();
+        if (mParent)
+            finalPosition += mParent->GET8POSITION();
 
-        finalPosition += position_;
+        finalPosition += mPosition;
 
         return finalPosition;
     }
 
     void
     GUI8COMPONENT::SET8Y8POSITION(float y) {
-        position_.y = y;
+        mPosition.y = y;
     }
 }

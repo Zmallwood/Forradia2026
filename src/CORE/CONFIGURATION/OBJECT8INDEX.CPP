@@ -33,7 +33,7 @@ namespace FORRADIA8GAME {
         if (worldViewObjectType != "")
             worldViewObjectTypeHash = HASH(worldViewObjectType);
 
-        entries_.insert(
+        mEntries.insert(
             {HASH(name),
              {name.data(), label.data(), flags, impactPoints, impactActions,
               worldViewObjectTypeHash, worldViewRenderOffset,
@@ -42,81 +42,81 @@ namespace FORRADIA8GAME {
 
     bool
     OBJECT8INDEX::IS8SMALL8OBJECT(int objectHash) {
-        if (entries_.contains(objectHash))
-            return (entries_.at(objectHash).flags &
+        if (mEntries.contains(objectHash))
+            return (mEntries.at(objectHash).flags &
                     OBJECT8FLAGS::kSmallObject) != 0;
         return false;
     }
 
     std::string
     OBJECT8INDEX::GET8OBJECT8LABEL(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).label;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).label;
         return "";
     }
 
     bool
     OBJECT8INDEX::OBJECT8BLOCKSSIGHT(int objectHash) {
-        if (entries_.contains(objectHash))
-            return (entries_.at(objectHash).flags &
+        if (mEntries.contains(objectHash))
+            return (mEntries.at(objectHash).flags &
                     OBJECT8FLAGS::kBlocksSight) != 0;
         return false;
     }
 
     bool
     OBJECT8INDEX::OBJECT8UNMOVABLE(int objectHash) {
-        if (entries_.contains(objectHash))
-            return (entries_.at(objectHash).flags & OBJECT8FLAGS::kUnmovable) !=
+        if (mEntries.contains(objectHash))
+            return (mEntries.at(objectHash).flags & OBJECT8FLAGS::kUnmovable) !=
                    0;
         return false;
     }
 
     std::vector<POINT8F>
     OBJECT8INDEX::GET8IMPACT8POINTS(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).impactPoints;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).impactPoints;
         return {};
     }
 
     std::vector<OBJECT8IMPACT8ACTION>
     OBJECT8INDEX::GET8OBJECT8IMPACT8ACTIONS(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).impactActions;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).impactActions;
         return {};
     }
 
     int
     OBJECT8INDEX::GET8WORLD8VIEW8OBJECT8TYPE(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).worldViewObjectType;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).worldViewObjectType;
         return 0;
     }
 
     POINT8F
     OBJECT8INDEX::GET8WORLD8VIEW8RENDER8OFFSET(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).worldViewRenderOffset;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).worldViewRenderOffset;
         return {0.0F, 0.0F};
     }
 
     POINT8F
     OBJECT8INDEX::GET8FIRST8PERSON8VIEW8RENDER8OFFSET(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).firstPersonViewRenderOffset;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).firstPersonViewRenderOffset;
         return {0.0F, 0.0F};
     }
 
     int
     OBJECT8INDEX::GET8ANIMATION8FRAMES(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).animationFames;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).animationFames;
         return 0;
     }
 
     std::string
     OBJECT8INDEX::GET8OBJECT8NAME(int objectHash) {
-        if (entries_.contains(objectHash))
-            return entries_.at(objectHash).objectName;
+        if (mEntries.contains(objectHash))
+            return mEntries.at(objectHash).objectName;
         return "";
     }
 }

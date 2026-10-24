@@ -33,36 +33,36 @@
 namespace FORRADIA8GAME {
     void
     MAIN8SCENE::INITIALIZE8DERIVED() {
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
+        mGUI->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8TEXT8CONSOLE>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EXPERIENCE8METER>());
+        mGUI->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EXPERIENCE8METER>());
 
-        gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
+        mGUI->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
             "", 0.94F, 0.08F, 0.05F, CONVERT8WIDTH8TO8HEIGHT(0.05F),
             [this]() { _<GUI8INVENTORY8WINDOW>().TOGGLE8VISIBILITY(); },
             "GUIButtonInventoryBackground",
             "GUIButtonInventoryHoveredBackground"));
 
-        gui_->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
+        mGUI->ADD8COMPONENT(std::make_shared<GUI8BUTTON>(
             "", 0.94F, 0.18F, 0.05F, CONVERT8WIDTH8TO8HEIGHT(0.05F),
             [this]() { _<GUI8EQUIPMENT8WINDOW>().TOGGLE8VISIBILITY(); },
             "GUIButtonEquipmentBackground",
             "GUIButtonEquipmentHoveredBackground"));
 
-        gui_->ADD8COMPONENT(std::make_shared<GUI8STATUS8PANEL>());
+        mGUI->ADD8COMPONENT(std::make_shared<GUI8STATUS8PANEL>());
 
-        gui_->ADD8COMPONENT(std::make_shared<GUI8ESSENCE8PANEL>());
+        mGUI->ADD8COMPONENT(std::make_shared<GUI8ESSENCE8PANEL>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8INVENTORY8WINDOW>());
+        mGUI->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8INVENTORY8WINDOW>());
 
-        gui_->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EQUIPMENT8WINDOW>());
+        mGUI->ADD8COMPONENT(GET8SINGLETON8PTR<GUI8EQUIPMENT8WINDOW>());
     }
 
     void
     MAIN8SCENE::ON8ENTER8DERIVED() {
         _<GUI8TEXT8CONSOLE>().SET8Y8POSITION(
-            1.0F - _<GUI8TEXT8CONSOLE>().size_.height -
-            _<GUI8EXPERIENCE8METER>().size_.height);
+            1.0F - _<GUI8TEXT8CONSOLE>().mSize.height -
+            _<GUI8EXPERIENCE8METER>().mSize.height);
 
         _<GUI8TEXT8CONSOLE>().PRINT8LINE("You have entered the world.");
     }
